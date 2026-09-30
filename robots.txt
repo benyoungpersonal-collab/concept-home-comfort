@@ -1,0 +1,3 @@
+# Concept site by Ben Young Web Design. Sample data. Not for search engines.
+User-agent: *
+Disallow: /

@@ -1,0 +1,24 @@
+<div class="chat" data-chat>
+  <button class="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel" data-chat-toggle>
+    <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+    <span class="visually-hidden">Open the demo assistant</span>
+    <span class="chat-badge" aria-hidden="true">Demo</span>
+  </button>
+  <section class="chat-panel" id="chat-panel" aria-label="Demo assistant" hidden>
+    <header class="chat-head">
+      <span class="chat-avatar"><svg aria-hidden="true"><use href="#logo-mark"/></svg></span>
+      <div>
+        <p class="chat-title">Pinwheel Helper</p>
+        <p class="chat-sub"><span class="tag on-dark">Demo assistant</span>Scripted answers, no AI calls</p>
+      </div>
+      <button class="chat-close" type="button" aria-label="Close the demo assistant" data-chat-close><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="chat-log" data-chat-log role="log" aria-live="polite"></div>
+    <div class="chat-suggest" data-chat-suggest aria-label="Suggested questions" role="group"></div>
+    <form class="chat-form" data-chat-form>
+      <label class="visually-hidden" for="chat-input">Ask a question</label>
+      <input class="input" id="chat-input" type="text" placeholder="Ask about service, prices, or areas" autocomplete="off" maxlength="200">
+      <button class="chat-send" type="submit" aria-label="Send question"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button>
+    </form>
+  </section>
+</div>
