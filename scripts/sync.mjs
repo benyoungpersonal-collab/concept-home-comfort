@@ -13,7 +13,8 @@
   2. Rebuilds every <img data-photo="key"> (and <link rel="preload" data-photo="key">) from
      scripts/photos.json: Unsplash CDN srcset, focal-point crop, width/height, alt, lazy loading,
      and a loading color.
-  3. Rebuilds the photo credits list between <!-- credits --> and <!-- /credits -->.
+  3. Rebuilds the photo credits list between <!-- credits --> and <!-- /credits -->. Only photos
+     that appear on at least one page get a credit, so spares in photos.json stay off the list.
   No dependencies. Node 18+.
 */
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
@@ -123,14 +124,20 @@ function buildPreload(tag, file) {
   return `<link rel="preload" as="image" data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}" imagesrcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}" imagesizes="${sizes}"${media ? ` media="${media}"` : ''} fetchpriority="high">`;
 }
 
-function credits() {
+function credits(used) {
   const items = Object.entries(photos)
-    .filter(([k]) => !k.startsWith('_'))
+    .filter(([k]) => !k.startsWith('_') && used.has(k))
     .map(([, p]) => {
       const utm = '?utm_source=pinwheel_concept&utm_medium=referral';
       return `      <li><strong>${escHtml(p.alt)}</strong><span>Photo by <a href="https://unsplash.com/@${p.user}${utm}">${escHtml(p.by)}</a> on <a href="${p.page}${utm}">Unsplash</a>. Used for: ${escHtml(p.use)}.</span></li>`;
     });
   return `<!-- credits -->\n    <ul class="credit-list">\n${items.join('\n')}\n    </ul>\n    <!-- /credits -->`;
+}
+
+// Photos in use anywhere on the site (the credits page lists only these)
+const used = new Set();
+for (const file of pages()) {
+  for (const m of readFileSync(file, 'utf8').matchAll(/\sdata-photo="([^"]+)"/g)) used.add(m[1]);
 }
 
 let changed = 0;
@@ -152,7 +159,7 @@ for (const file of pages()) {
   html = html.replace(/<img\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildImg(tag, rel));
   html = html.replace(/<link\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildPreload(tag, rel));
   html = html.replace(/<source\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildSource(tag, rel));
-  html = html.replace(/<!-- credits -->[\s\S]*?<!-- \/credits -->/g, () => credits());
+  html = html.replace(/<!-- credits -->[\s\S]*?<!-- \/credits -->/g, () => credits(used));
 
   if (html !== before) { writeFileSync(file, html); changed++; console.log(`updated ${rel}`); }
 }

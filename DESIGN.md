@@ -102,7 +102,7 @@ All tokens live at the top of `css/site.css` as custom properties.
   /* Layout */
   --max: 1200px;
   --gutter: clamp(16px, 0.5rem + 2vw, 32px);
-  --header-h: 72px;         /* 64px when compact */
+  --header-h: 64px;         /* 76px at 900px and up. The bar shrinks to 64px once you scroll */
   --bar-h: 64px;            /* mobile sticky bar (plus safe area) */
 
   /* Motion */
@@ -401,7 +401,7 @@ Pricing model (sample): base for 1,500 to 2,500 sq ft. AC only $6,800 to $9,200.
 
 ### City pages
 - Tracy H1: Heating, air, and plumbing in *Tracy, CA.* Local detail: 100-degree summers, afternoon wind and dust on coils, older downtown homes with galvanized pipes, newer homes in Ellis and Tracy Hills. Neighborhoods: Downtown, Redbridge, Ellis, Tracy Hills, Hidden Lake, Fair Oaks Ranch. ZIPs 95376, 95377, 95304.
-- Mountain House H1: Comfort for *Mountain House* homes. Local detail: first homes went up in the early 2000s, so many original AC systems are 18 to 22 years old. Two-story floor plans run hot upstairs. Villages: Wicklund, Altamont, Bethany, Hansen, Questa, Cordes, College Park, and The Lakes. ZIP 95391.
+- Mountain House H1: Heating, air, and plumbing in *Mountain House.* Local detail: first homes went up in the early 2000s, so many original AC systems are 18 to 22 years old. Two-story floor plans run hot upstairs. Villages: Wicklund, Altamont, Bethany, Hansen, Questa, Cordes, College Park, and The Lakes. ZIP 95391.
 
 ### Review page (review.html)
 - H1: Thanks for choosing us!
@@ -426,25 +426,27 @@ Pricing model (sample): base for 1,500 to 2,500 sq ft. AC only $6,800 to $9,200.
 
 Real photography only (Unsplash). No AI-generated people. Credits on credits.html.
 
-| Slot | Subject | Where |
-|---|---|---|
-| Hero | Tech at an outdoor AC unit, bright daylight | Home hero, Heating & Cooling |
-| Owner | Friendly owner portrait (HTML comment marks where the real photo goes) | Home team, About |
-| Plumber | Plumber under a sink | Plumbing, bento |
-| Water heater | Water heater service | Bento, Plumbing |
-| Van | Clean white service van | About, final band |
-| Team | Small crew | Home team, About |
-| Tech friendly | Smiling tech | Review page |
-| Stucco home | Stucco house, tile roof, sun | Tracy page |
-| Suburb | Newer tidy neighborhood | Mountain House page |
+| Slot | Plan | What shipped | Where |
+|---|---|---|---|
+| Hero | Tech at an outdoor AC unit, bright daylight | Smiling tech in a navy jacket and cap (no free photo of a tech at a home AC unit was good enough) | Home hero, team |
+| Owner | Friendly owner portrait (HTML comment marks where the real photo goes) | Owner in a work shirt in the shop | Home team, About |
+| Plumber | Plumber under a sink | Plumber tightening a drain under a sink | Home bento, Plumbing |
+| AC units | Outdoor condensers | Two condensers on a river rock bed | Home bento, Heating & Cooling |
+| Van | Clean white service van | White van under oaks, golden light | About |
+| Team | Small crew | Three single portraits (Ray, Jess, Mateo) | Home team, About, Review page |
+| Stucco home | Stucco house, tile roof, sun | White stucco, red tile roof, arched entry | Tracy page |
+| Suburb | Newer tidy neighborhood | Aerial of a sunny planned neighborhood | Mountain House page |
+| Extras | Supporting shots | Heat pump, cozy mug, filter change, copper pipes, Altamont turbines, couple at home | Inner pages |
 
-Delivery: images.unsplash.com is blocked in the build container, so photos load from the Unsplash CDN with size and format parameters (`w`, `h`, `fit=crop`, `fm=webp`, `q=70`) and `srcset`. Every photo has width and height set, a warm background color while loading, and lazy loading below the fold. The hero is preloaded with `fetchpriority="high"` and never wider than 1600px.
+Spare: a smart thermostat photo sits in `scripts/photos.json` but is not on a page. Credits list only the photos in use.
+
+Delivery: images.unsplash.com is blocked in the build container, so photos load from the Unsplash CDN with size and format parameters (`w`, `h`, `fit=crop`, focal point, `fm=webp`, `q=70`, or `q=62` at 1200px and wider) and `srcset`. The hero is art directed: a square crop on phones and a 4:5 crop on desktop, each with its own preload. Every photo has width and height set, a warm background color while loading, and lazy loading below the fold. The hero is preloaded with `fetchpriority="high"` and never wider than 1600px.
 
 ---
 
 ## 7. Speed and accessibility plan
 - One CSS file, one deferred JS file. The QR library loads only on review.html.
-- Two self-hosted variable WOFF2 fonts (Latin subset), preloaded, `font-display: swap`.
+- Two self-hosted variable WOFF2 fonts, preloaded, `font-display: swap`. Subset to Latin-1 plus common punctuation and trimmed to the weights we use (Inter 400 to 800 is 27KB, Plus Jakarta Sans 700 to 800 is 16KB). Size-adjusted fallback faces keep the layout from shifting while fonts load.
 - No animation libraries. CSS transitions only. `prefers-reduced-motion` turns them off and shows final numbers.
 - AA contrast (see table), visible focus ring on everything, one H1 per page, 44px minimum tap targets, skip link, landmarks, labeled forms, `aria-live` results.
 - No sideways scroll at 390px: `overflow-x: clip` on the page wrapper is a safety net only. Layouts are built to fit.

@@ -467,8 +467,8 @@ legend { padding: 0; }
   color: var(--c-navy); text-decoration: none; transition: background-color var(--t-fast);
 }
 .panel-link:hover { background: var(--c-bg); color: var(--c-navy); }
-.panel-link strong { display: block; font-size: 15px; }
-.panel-link span { display: block; font-size: 13.5px; color: var(--c-muted); line-height: 1.45; }
+.panel-link strong { display: block; font-size: 15px; color: var(--c-navy); }
+.panel-link strong + span { display: block; font-size: 13.5px; color: var(--c-muted); line-height: 1.45; }
 .panel-link .icon-bubble { width: 42px; height: 42px; border-radius: 12px; }
 .panel-foot { margin-top: 6px; padding: 10px 12px 4px; border-top: 1px solid var(--c-line); font-size: 13.5px; color: var(--c-muted); }
 .panel-foot a { font-weight: 700; }
@@ -874,6 +874,8 @@ legend { padding: 0; }
 .city-list a:hover { color: var(--c-navy); transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: var(--c-line-strong); }
 .city-list a .go { margin-left: auto; width: 18px; height: 18px; color: var(--c-brand-deep); }
 .city-list .is-hq { border-color: #F2C2AE; background: var(--c-brand-tint); }
+/* Cities with their own page get a full-width row, so long names never wrap into tall chips */
+.city-list li:has(> a) { grid-column: 1 / -1; }
 
 /* ---------- FAQ accordion ---------- */
 .faq-grid { display: grid; gap: var(--sp-4); grid-template-areas: "head" "acc" "card"; }
@@ -989,10 +991,10 @@ legend { padding: 0; }
 .chat-launcher {
   position: fixed; right: 14px; bottom: var(--chat-bottom); z-index: 56;
   display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; border: 0;
-  background: var(--c-navy); color: #fff; box-shadow: 0 10px 28px rgb(20 33 61 / .35);
+  background: var(--c-navy); color: #fff; box-shadow: 0 0 0 3px #fff, 0 10px 28px rgb(20 33 61 / .35);
   transition: transform var(--t-med) var(--ease), box-shadow var(--t-med);
 }
-.chat-launcher:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 34px rgb(20 33 61 / .4); }
+.chat-launcher:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 0 3px #fff, 0 14px 34px rgb(20 33 61 / .4); }
 .chat-launcher .icon { width: 26px; height: 26px; }
 .chat-launcher .chat-badge {
   position: absolute; top: -6px; right: -6px; padding: 2px 7px; border-radius: 999px; background: var(--c-brand-strong); color: #fff;
@@ -1001,6 +1003,7 @@ legend { padding: 0; }
 .chat-launcher[aria-expanded="true"] { transform: scale(.92); }
 .js .chat-launcher { opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease), visibility var(--t-med), box-shadow var(--t-med); }
 .js.is-scrolled .chat-launcher, .js .chat-launcher[aria-expanded="true"] { opacity: 1; visibility: visible; transform: none; }
+.js.is-scrolled .chat-launcher:hover { transform: translateY(-3px) scale(1.03); }
 .chat-panel {
   position: fixed; left: 8px; right: 8px; bottom: calc(var(--chat-bottom) + 70px); z-index: 57;
   display: flex; flex-direction: column; max-height: calc(100dvh - var(--chat-bottom) - 70px - 72px);
@@ -1061,13 +1064,14 @@ legend { padding: 0; }
 .steps li.is-active::before, .steps li.is-done::before { background: var(--c-brand-strong); }
 .booking-body { flex: 1; overflow-y: auto; padding: 20px var(--gutter); }
 .booking-body .step > legend { margin-bottom: 14px; font-family: var(--ff-display); font-size: var(--fs-lg); font-weight: 800; color: var(--c-navy); letter-spacing: -.015em; }
-.booking-body .sub-legend { margin: 22px 0 12px; font-family: var(--ff-display); font-size: var(--fs-md); font-weight: 700; color: var(--c-navy); }
+.booking-body .step > fieldset { margin-top: 24px; }
+.booking-body .sub-legend { margin: 0 0 12px; font-family: var(--ff-display); font-size: var(--fs-md); font-weight: 700; color: var(--c-navy); }
 .booking-foot { display: flex; gap: 10px; padding: 12px var(--gutter) calc(12px + var(--safe-b)); border-top: 1px solid var(--c-line); background: #fff; flex: none; }
 .booking-foot .btn { flex: 1; }
 .day-chip > span { flex-direction: column; gap: 0; line-height: 1.2; }
 .day-chip > span b { font-size: 15px; }
 @media (min-width: 700px) {
-  .booking { width: min(640px, calc(100% - 48px)); height: auto; max-height: min(820px, calc(100% - 48px)); margin: auto; border-radius: 24px; box-shadow: var(--shadow-3); }
+  .booking { width: min(640px, calc(100% - 48px)); height: fit-content; max-height: min(820px, calc(100% - 48px)); margin: auto; border-radius: 24px; box-shadow: var(--shadow-3); }
   .booking-head { padding: 22px 28px 18px; }
   .booking-body { padding: 24px 28px; }
   .booking-foot { padding: 16px 28px; }
@@ -1228,8 +1232,10 @@ legend { padding: 0; }
 .report-head { display: grid; gap: var(--sp-2); padding: var(--sp-4) 0 var(--sp-3); }
 .report-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; color: var(--c-muted); font-size: var(--fs-sm); }
 .kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-@media (min-width: 800px) { .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
-@media (min-width: 1100px) { .kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+/* The headline metric (calls) gets the wide tile, so 5 tiles fill the grid with no orphan */
+.kpis > .kpi:first-child { grid-column: 1 / -1; }
+@media (min-width: 800px) { .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } .kpis > .kpi:first-child { grid-column: span 2; } }
+@media (min-width: 1100px) { .kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); } .kpis > .kpi:first-child { grid-column: auto; } }
 .kpi { padding: 18px; border-radius: var(--r-card); background: #fff; box-shadow: var(--shadow-1); border: 1px solid #EFEAE3; }
 .kpi-label { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 13px; font-weight: 700; color: var(--c-muted); line-height: 1.3; }
 .kpi-label .icon { width: 18px; height: 18px; color: var(--c-brand-deep); flex: none; }
@@ -1274,6 +1280,14 @@ legend { padding: 0; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .lost .lead { margin: var(--sp-2) auto var(--sp-4); }
 .lost .btn-row { justify-content: center; }
+/* Phones: smaller pinwheel and a 2-up button row, so every button clears the sticky bar on first load */
+@media (max-width: 599px) {
+  .lost { padding-top: var(--sp-5); }
+  .lost .spin { width: 120px; height: 120px; margin-bottom: var(--sp-3); }
+  .lost .btn-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lost .btn-row .btn:first-child { grid-column: 1 / -1; }
+  .lost .btn-row .btn { padding-inline: 12px; }
+}
 
 /* ---------- Credits ---------- */
 .credit-list { list-style: none; display: grid; gap: 12px; }
