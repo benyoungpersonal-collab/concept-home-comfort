@@ -1,0 +1,88 @@
+<dialog class="booking" id="book" aria-labelledby="booking-title">
+  <form class="booking-form" method="dialog" data-booking novalidate>
+    <div class="booking-head">
+      <p class="eyebrow">Book online <span class="tag">Demo</span></p>
+      <h2 id="booking-title" tabindex="-1">Book your visit</h2>
+      <button class="dialog-close" type="button" aria-label="Close booking" data-booking-close><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      <ol class="steps" data-steps aria-label="Booking progress">
+        <li class="is-active" aria-current="step">Service</li>
+        <li>Time</li>
+        <li>Details</li>
+      </ol>
+    </div>
+    <div class="booking-body">
+      <fieldset class="step" data-step="1">
+        <legend>What do you need?</legend>
+        <div class="chips-grid">
+          <label class="chip"><input type="radio" name="service" value="AC repair"><span><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg>AC repair</span></label>
+          <label class="chip"><input type="radio" name="service" value="Heating repair"><span><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg>Heating repair</span></label>
+          <label class="chip"><input type="radio" name="service" value="Furnace tune-up"><span><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg>Furnace tune-up</span></label>
+          <label class="chip"><input type="radio" name="service" value="Heat pump"><span><svg class="icon" aria-hidden="true"><use href="#i-heatpump"/></svg>Heat pump</span></label>
+          <label class="chip"><input type="radio" name="service" value="Water heater"><span><svg class="icon" aria-hidden="true"><use href="#i-waterheater"/></svg>Water heater</span></label>
+          <label class="chip"><input type="radio" name="service" value="Drain cleaning"><span><svg class="icon" aria-hidden="true"><use href="#i-drain"/></svg>Drain cleaning</span></label>
+          <label class="chip"><input type="radio" name="service" value="Leak repair"><span><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg>Leak repair</span></label>
+          <label class="chip"><input type="radio" name="service" value="Repiping quote"><span><svg class="icon" aria-hidden="true"><use href="#i-pipes"/></svg>Repiping quote</span></label>
+          <label class="chip"><input type="radio" name="service" value="New system quote"><span><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg>New system quote</span></label>
+          <label class="chip"><input type="radio" name="service" value="Air quality"><span><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg>Air quality</span></label>
+        </div>
+        <p class="form-error" data-error role="alert" hidden>Pick a service to keep going.</p>
+      </fieldset>
+      <fieldset class="step" data-step="2" hidden>
+        <legend>Pick a day and time</legend>
+        <div class="chips-grid four" data-days></div>
+        <fieldset>
+          <legend class="sub-legend">Arrival window</legend>
+          <div class="chips-grid" data-windows>
+            <label class="chip"><input type="radio" name="window" value="8 to 11am" data-start="8"><span>Morning<small>8 to 11am</small></span></label>
+            <label class="chip"><input type="radio" name="window" value="11am to 2pm" data-start="11"><span>Midday<small>11am to 2pm</small></span></label>
+            <label class="chip"><input type="radio" name="window" value="2 to 5pm" data-start="14"><span>Afternoon<small>2 to 5pm</small></span></label>
+            <label class="chip"><input type="radio" name="window" value="5 to 7pm" data-start="17"><span>Evening<small>5 to 7pm</small></span></label>
+          </div>
+        </fieldset>
+        <p class="form-error" data-error role="alert" hidden>Pick a day and an arrival window.</p>
+      </fieldset>
+      <fieldset class="step" data-step="3" hidden>
+        <legend>Where should we come?</legend>
+        <div class="field">
+          <label for="bk-name">Your name</label>
+          <input class="input" id="bk-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="bk-phone">Mobile number</label>
+          <input class="input" id="bk-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="bk-phone-hint">
+          <span class="hint" id="bk-phone-hint">We text to confirm your window. This demo sends nothing.</span>
+        </div>
+        <div class="field">
+          <label for="bk-city">City</label>
+          <select class="select" id="bk-city" name="city" required>
+            <option value="">Choose your city</option>
+            <option>Tracy</option>
+            <option>Mountain House</option>
+            <option>Manteca</option>
+            <option>Lathrop</option>
+            <option>Stockton</option>
+            <option>Livermore</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bk-notes">Anything we should know? (optional)</label>
+          <textarea class="textarea" id="bk-notes" name="notes" rows="3"></textarea>
+        </div>
+        <p class="form-error" data-error role="alert" hidden>Add your name, a phone number, and your city.</p>
+      </fieldset>
+      <div class="demo-confirm" data-booking-done tabindex="-1" hidden>
+        <div class="confirm-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div>
+        <h3>You're on the schedule</h3>
+        <p class="confirm-summary">Here's the request the owner would get:</p>
+        <ul class="confirm-list" data-summary></ul>
+        <p class="demo-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>This is a demo. On a live site, this goes straight to the owner's phone.</p>
+      </div>
+    </div>
+    <div class="booking-foot">
+      <button class="btn btn-secondary" type="button" data-back hidden>Back</button>
+      <button class="btn btn-primary" type="button" data-next>Next</button>
+      <button class="btn btn-primary" type="submit" data-submit hidden>Book my visit</button>
+      <button class="btn btn-navy" type="button" data-done hidden>Done</button>
+    </div>
+  </form>
+</dialog>

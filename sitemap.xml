@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Concept site: every page is noindex and robots.txt disallows all. Replace the domain when this becomes a real site. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://pinwheel-concept.netlify.app/</loc><lastmod>2026-09-30</lastmod><priority>1.0</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/heating-cooling.html</loc><lastmod>2026-09-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/plumbing.html</loc><lastmod>2026-09-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/membership.html</loc><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/financing.html</loc><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/about.html</loc><lastmod>2026-09-30</lastmod><priority>0.7</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/service-areas/tracy.html</loc><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/service-areas/mountain-house.html</loc><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/review.html</loc><lastmod>2026-09-30</lastmod><priority>0.3</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/sample-report.html</loc><lastmod>2026-09-30</lastmod><priority>0.3</priority></url>
+  <url><loc>https://pinwheel-concept.netlify.app/credits.html</loc><lastmod>2026-09-30</lastmod><priority>0.2</priority></url>
+</urlset>
