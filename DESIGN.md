@@ -428,17 +428,17 @@ Real photography only (Unsplash). No AI-generated people. Credits on credits.htm
 
 | Slot | Plan | What shipped | Where |
 |---|---|---|---|
-| Hero | Tech at an outdoor AC unit, bright daylight | Smiling tech in a navy jacket and cap (no free photo of a tech at a home AC unit was good enough) | Home hero, team |
-| Owner | Friendly owner portrait (HTML comment marks where the real photo goes) | Owner in a work shirt in the shop | Home team, About |
+| Hero | Tech at an outdoor AC unit, bright daylight | Ray: smiling tech in plain blue coveralls and cap (no logo-free free photo of a tech at a home AC unit was available) | Home hero, team, About |
+| Owner | Friendly owner portrait (HTML comment marks where the real photo goes) | Smiling man in a plain white cap and light blue work shirt | Home team, About |
 | Plumber | Plumber under a sink | Plumber tightening a drain under a sink | Home bento, Plumbing |
-| AC units | Outdoor condensers | Two condensers on a river rock bed | Home bento, Heating & Cooling |
-| Van | Clean white service van | White van under oaks, golden light | About |
-| Team | Small crew | Three single portraits (Ray, Jess, Mateo) | Home team, About, Review page |
+| AC tile | Outdoor condensers | Smart thermostat set to 63 (the condenser photos all showed brand badges) | Home bento, Heating & Cooling |
+| Team | Small crew | Ray and Jess photos; Marcus, Diego, Carmen, Andre as initial avatars | Home team, About, Review page |
 | Stucco home | Stucco house, tile roof, sun | White stucco, red tile roof, arched entry | Tracy page |
 | Suburb | Newer tidy neighborhood | Aerial of a sunny planned neighborhood | Mountain House page |
-| Extras | Supporting shots | Heat pump, cozy mug, filter change, copper pipes, Altamont turbines, couple at home | Inner pages |
+| About hero | Service van | Altamont windmills at sunset (the van showed a RAM badge); "Why Pinwheel" uses our own mark | About |
+| Extras | Supporting shots | Heat pump, cozy mug, filter change, copper pipes, couple at home | Inner pages |
 
-Spare: a smart thermostat photo sits in `scripts/photos.json` but is not on a page. Credits list only the photos in use.
+Rule: real people only, and no visible logos or business names from other companies in any photo.
 
 Delivery: images.unsplash.com is blocked in the build container, so photos load from the Unsplash CDN with size and format parameters (`w`, `h`, `fit=crop`, focal point, `fm=webp`, `q=70`, or `q=62` at 1200px and wider) and `srcset`. The hero is art directed: a square crop on phones and a 4:5 crop on desktop, each with its own preload. Every photo has width and height set, a warm background color while loading, and lazy loading below the fold. The hero is preloaded with `fetchpriority="high"` and never wider than 1600px.
 

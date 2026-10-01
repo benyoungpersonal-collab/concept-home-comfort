@@ -27,6 +27,11 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+[[headers]]
+  for = "/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 # Keep working files off the public site (they stay in the repo)
 [[redirects]]
   from = "/partials/*"

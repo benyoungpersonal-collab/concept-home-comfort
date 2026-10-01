@@ -71,8 +71,11 @@ function cdnUrl(p, w, h, crop) {
 }
 
 function photoSet(key, attrs, file) {
-  const p = photos[key];
-  if (!p) throw new Error(`Unknown photo "${key}" in ${file}`);
+  const base = photos[key];
+  if (!base) throw new Error(`Unknown photo "${key}" in ${file}`);
+  // data-fp="x,y" overrides the focal point for one placement (for example, a hero that needs room for cards)
+  const fpAttr = getAttr(attrs, 'data-fp');
+  const p = fpAttr ? { ...base, fp: fpAttr.split(',').map(Number) } : base;
   const cropAttr = getAttr(attrs, 'data-crop') || 'orig';
   const widths = (getAttr(attrs, 'data-widths') || '480,800,1200').split(',').map((n) => parseInt(n, 10));
   if (Math.max(...widths) > 1600) throw new Error(`Photo wider than 1600px in ${file}`);
@@ -89,7 +92,7 @@ function buildImg(tag, file) {
   const eager = getAttr(attrs, 'data-eager') !== undefined;
   const mid = set[Math.min(1, set.length - 1)];
   const big = set[set.length - 1];
-  const keep = ['data-photo', 'data-crop', 'data-widths', 'data-eager', 'data-alt', 'class', 'sizes', 'id'];
+  const keep = ['data-photo', 'data-crop', 'data-widths', 'data-fp', 'data-eager', 'data-alt', 'class', 'sizes', 'id'];
   const out = [];
   for (const k of keep) {
     const v = getAttr(attrs, k);
@@ -112,7 +115,8 @@ function buildSource(tag, file) {
   const big = set[set.length - 1];
   const media = getAttr(attrs, 'media');
   const sizes = getAttr(attrs, 'sizes') || '100vw';
-  return `<source data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}"${media ? ` media="${media}"` : ''} srcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}" sizes="${sizes}" width="${big.w}" height="${big.h}">`;
+  const fp = getAttr(attrs, 'data-fp');
+  return `<source data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}"${fp ? ` data-fp="${fp}"` : ''}${media ? ` media="${media}"` : ''} srcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}" sizes="${sizes}" width="${big.w}" height="${big.h}">`;
 }
 
 function buildPreload(tag, file) {
@@ -121,7 +125,8 @@ function buildPreload(tag, file) {
   const { p, set, crop } = photoSet(key, attrs, file);
   const sizes = getAttr(attrs, 'imagesizes') || '100vw';
   const media = getAttr(attrs, 'media');
-  return `<link rel="preload" as="image" data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}" imagesrcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}" imagesizes="${sizes}"${media ? ` media="${media}"` : ''} fetchpriority="high">`;
+  const fp = getAttr(attrs, 'data-fp');
+  return `<link rel="preload" as="image" data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}"${fp ? ` data-fp="${fp}"` : ''} imagesrcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}" imagesizes="${sizes}"${media ? ` media="${media}"` : ''} fetchpriority="high">`;
 }
 
 function credits(used) {
