@@ -12,7 +12,6 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css">
@@ -24,8 +23,8 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
-<link rel="preload" as="image" data-photo="tech-marcus" data-crop="1:1" data-widths="480,720,960,1200" imagesrcset="https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=480&amp;h=480&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 480w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=720&amp;h=720&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 720w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=960&amp;h=960&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 960w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=1200&amp;h=1200&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=62&amp;cs=tinysrgb 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
-<link rel="preload" as="image" data-photo="tech-marcus" data-crop="4:5" data-widths="480,720,960,1200" imagesrcset="https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=480&amp;h=600&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 480w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=720&amp;h=900&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 720w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=960&amp;h=1200&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 960w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=1200&amp;h=1500&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=62&amp;cs=tinysrgb 1200w" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">
+<link rel="preload" as="image" data-photo="tech-marcus" data-crop="1:1" data-widths="480,720,960,1200" imagesrcset="images/photos/tech-marcus-480x480.webp 480w, images/photos/tech-marcus-720x720.webp 720w, images/photos/tech-marcus-960x960.webp 960w, images/photos/tech-marcus-1200x1200.webp 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
+<link rel="preload" as="image" data-photo="tech-marcus" data-crop="4:5" data-widths="480,720,960,1200" imagesrcset="images/photos/tech-marcus-480x600.webp 480w, images/photos/tech-marcus-720x900.webp 720w, images/photos/tech-marcus-960x1200.webp 960w, images/photos/tech-marcus-1200x1500.webp 1200w" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">
 <meta property="og:title" content="Pinwheel Heating, Air &amp; Plumbing (concept site)">
 <meta property="og:description" content="A comfortable home, without the runaround. A concept site by Ben Young Web Design.">
 <meta property="og:url" content="https://pinwheel-concept.netlify.app/">
@@ -202,6 +201,9 @@
 <!-- /partial:sprite -->
 <!-- partial:header -->
 <a class="skip-link" href="#main">Skip to content</a>
+<aside class="concept-strip" aria-label="Concept notice">
+  <p class="container">Concept site by Ben Young Web Design. Sample data.</p>
+</aside>
 <aside class="offer-bar" aria-label="Seasonal offer" data-offer-bar>
   <div class="container offer-inner">
     <p><strong>Fall furnace safety check $89.</strong> Members free. <a href="#book" data-book data-service="Furnace tune-up">Book my check</a> <span class="tag on-dark">Sample offer</span></p>
@@ -310,7 +312,6 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="concept-pill"><b aria-hidden="true">BY</b>Concept site by Ben Young Web Design. Sample data.</p>
         <p class="eyebrow">Family owned in Tracy since 2010</p>
         <h1 id="hero-title">A comfortable home, <span class="accent">without the runaround.</span></h1>
         <p class="lead">Same-day heating, air, and plumbing repair for Tracy, Mountain House, Manteca, Lathrop, Stockton, and Livermore. You see the price before we start. Every time.</p>
@@ -330,15 +331,15 @@
       <div class="hero-media">
         <div class="arch">
           <picture>
-            <source data-photo="tech-marcus" data-crop="1:1" data-widths="480,720,960,1200" media="(max-width: 899px)" srcset="https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=480&amp;h=480&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 480w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=720&amp;h=720&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 720w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=960&amp;h=960&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 960w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=1200&amp;h=1200&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=62&amp;cs=tinysrgb 1200w" sizes="92vw" width="1200" height="1200">
-            <img data-photo="tech-marcus" data-crop="4:5" data-widths="480,720,960,1200" data-eager sizes="(min-width: 1200px) 522px, 42vw" src="https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=720&amp;h=900&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb" srcset="https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=480&amp;h=600&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 480w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=720&amp;h=900&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 720w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=960&amp;h=1200&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 960w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=1200&amp;h=1500&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=62&amp;cs=tinysrgb 1200w" width="1200" height="1500" alt="Smiling technician in a navy work jacket and cap" fetchpriority="high" style="object-position:58% 45%;background-color:#1d3057">
+            <source data-photo="tech-marcus" data-crop="1:1" data-widths="480,720,960,1200" media="(max-width: 899px)" srcset="images/photos/tech-marcus-480x480.webp 480w, images/photos/tech-marcus-720x720.webp 720w, images/photos/tech-marcus-960x960.webp 960w, images/photos/tech-marcus-1200x1200.webp 1200w" sizes="92vw" width="1200" height="1200">
+            <img data-photo="tech-marcus" data-crop="4:5" data-widths="480,720,960,1200" data-eager sizes="(min-width: 1200px) 522px, 42vw" src="images/photos/tech-marcus-720x900.webp" srcset="images/photos/tech-marcus-480x600.webp 480w, images/photos/tech-marcus-720x900.webp 720w, images/photos/tech-marcus-960x1200.webp 960w, images/photos/tech-marcus-1200x1500.webp 1200w" width="1200" height="1500" alt="Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight" fetchpriority="high" style="object-position:49% 50%;background-color:#9a9a92">
           </picture>
         </div>
         <div class="floating-card" aria-hidden="true">
           <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span>
           <span><strong>Price first</strong><span>You approve it before we start</span></span>
         </div>
-        <p class="next-chip"><span class="live-dot" aria-hidden="true"></span>Next opening <strong data-next-opening>today, 2 to 5pm</strong></p>
+        <p class="next-chip"><span class="live-dot" aria-hidden="true"></span><span>Next opening <strong data-next-opening>today, 2 to 5pm</strong></span></p>
       </div>
     </div>
   </section>
@@ -434,7 +435,7 @@
       </div>
       <div class="bento">
         <a class="tile photo-tile t-ac" href="heating-cooling.html#ac-repair">
-          <img data-photo="ac-units" data-crop="4:3" data-widths="480,720,960,1200" sizes="(min-width: 900px) 590px, 92vw" src="https://images.unsplash.com/photo-1761072124769-86d08736a3e5?w=720&amp;h=540&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.55&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb" srcset="https://images.unsplash.com/photo-1761072124769-86d08736a3e5?w=480&amp;h=360&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.55&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 480w, https://images.unsplash.com/photo-1761072124769-86d08736a3e5?w=720&amp;h=540&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.55&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 720w, https://images.unsplash.com/photo-1761072124769-86d08736a3e5?w=960&amp;h=720&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.55&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 960w, https://images.unsplash.com/photo-1761072124769-86d08736a3e5?w=1200&amp;h=900&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.55&amp;fp-y=0.45&amp;fm=webp&amp;q=62&amp;cs=tinysrgb 1200w" width="1200" height="900" alt="Two outdoor AC condenser units on a river rock bed beside a brick home" loading="lazy" decoding="async" style="object-position:55% 45%;background-color:#827c72">
+          <img data-photo="thermostat" data-crop="4:3" data-widths="480,720,960,1200" sizes="(min-width: 900px) 590px, 92vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w, images/photos/thermostat-960x720.webp 960w, images/photos/thermostat-1200x900.webp 1200w" width="1200" height="900" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7">
           <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
           <span class="tile-kicker"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg>Most requested</span>
           <h3>AC repair</h3>
@@ -453,7 +454,7 @@
           <p>One quiet system that cools and heats. Lower bills all year.</p>
         </a>
         <a class="tile photo-tile t-drain" href="plumbing.html#drains">
-          <img data-photo="plumber" data-crop="16:9" data-widths="480,720,960,1200" sizes="(min-width: 900px) 590px, 92vw" src="https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=720&amp;h=405&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.66&amp;fp-y=0.5&amp;fm=webp&amp;q=70&amp;cs=tinysrgb" srcset="https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=480&amp;h=270&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.66&amp;fp-y=0.5&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 480w, https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=720&amp;h=405&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.66&amp;fp-y=0.5&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 720w, https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=960&amp;h=540&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.66&amp;fp-y=0.5&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 960w, https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=1200&amp;h=675&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.66&amp;fp-y=0.5&amp;fm=webp&amp;q=62&amp;cs=tinysrgb 1200w" width="1200" height="675" alt="Plumber smiling while tightening a drain pipe under a bathroom sink" loading="lazy" decoding="async" style="object-position:66% 50%;background-color:#6c8fb0">
+          <img data-photo="plumber" data-crop="16:9" data-widths="480,720,960,1200" sizes="(min-width: 900px) 590px, 92vw" src="images/photos/plumber-720x405.webp" srcset="images/photos/plumber-480x270.webp 480w, images/photos/plumber-720x405.webp 720w, images/photos/plumber-960x540.webp 960w, images/photos/plumber-1200x675.webp 1200w" width="1200" height="675" alt="Plumber smiling while tightening a drain pipe under a bathroom sink" loading="lazy" decoding="async" style="object-position:66% 50%;background-color:#6c8fb0">
           <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
           <span class="tile-kicker warm-k"><svg class="icon" aria-hidden="true"><use href="#i-drain"/></svg>Plumbing</span>
           <h3>Drains</h3>
@@ -487,6 +488,27 @@
       <div class="bento-foot">
         <a class="text-link" href="heating-cooling.html">See heating and cooling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         <a class="text-link" href="plumbing.html">See plumbing <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6b. How a visit works (short muted video, poster first) -->
+  <section class="section visit" id="how-it-works" aria-labelledby="visit-title">
+    <div class="container visit-grid">
+      <div class="visit-media" data-video="video/visit">
+        <picture>
+          <img src="images/visit-poster-960.webp" srcset="images/visit-poster-640.webp 640w, images/visit-poster-960.webp 960w, images/visit-poster-1280.webp 1280w" sizes="(min-width: 900px) 600px, 92vw" width="1280" height="720" alt="Close-up of a plumber's gloved hands tightening an outdoor faucet with a pipe wrench" loading="lazy" decoding="async" style="background-color:#5a1f24">
+        </picture>
+      </div>
+      <div>
+        <p class="eyebrow">How a visit works</p>
+        <h2 id="visit-title">Three steps. <span class="accent">No surprises.</span></h2>
+        <ol class="visit-steps">
+          <li><strong>Book in a minute</strong><span>Call, text, or tap Book. We text you a <span class="nowrap">3-hour</span> arrival window.</span></li>
+          <li><strong>See the price first</strong><span>Your tech finds the problem and shows you the price. You decide.</span></li>
+          <li><strong>Fixed and cleaned up</strong><span>Shoe covers on, mess gone, and photos of the work sent to your phone.</span></li>
+        </ol>
+        <a class="btn btn-primary" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a visit</a>
       </div>
     </div>
   </section>
@@ -640,7 +662,7 @@
       <figure class="owner-figure">
         <div class="arch">
           <!-- REAL OWNER PHOTO GOES HERE: swap "owner-luis" in scripts/photos.json (or this img) for the owner's own portrait. -->
-          <img data-photo="owner-luis" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 88vw" src="https://images.unsplash.com/photo-1586447751596-6c2050a0d335?w=640&amp;h=800&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.28&amp;fm=webp&amp;q=70&amp;cs=tinysrgb" srcset="https://images.unsplash.com/photo-1586447751596-6c2050a0d335?w=400&amp;h=500&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.28&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 400w, https://images.unsplash.com/photo-1586447751596-6c2050a0d335?w=640&amp;h=800&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.28&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 640w, https://images.unsplash.com/photo-1586447751596-6c2050a0d335?w=900&amp;h=1125&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.28&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 900w" width="900" height="1125" alt="Smiling owner in a gray work shirt standing in the shop beside a red tool chest" loading="lazy" decoding="async" style="object-position:50% 28%;background-color:#b9b4ac">
+          <img data-photo="owner-luis" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 88vw" src="images/photos/owner-luis-640x800.webp" srcset="images/photos/owner-luis-400x500.webp 400w, images/photos/owner-luis-640x800.webp 640w, images/photos/owner-luis-900x1125.webp 900w" width="900" height="1125" alt="Smiling owner with a gray beard in a dark work uniform, holding a toolbox and wrenches" loading="lazy" decoding="async" style="object-position:42% 30%;background-color:#f2c230">
         </div>
         <figcaption><strong>Luis Ortega</strong><span>Owner and master tech</span></figcaption>
       </figure>
@@ -658,9 +680,9 @@
           <li><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Shoe covers on, every visit</li>
         </ul>
         <ul class="team-row">
-          <li class="team-card"><img data-photo="tech-marcus" data-crop="1:1" data-widths="120,240" sizes="60px" src="https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=240&amp;h=240&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb" srcset="https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=120&amp;h=120&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 120w, https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=240&amp;h=240&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.58&amp;fp-y=0.45&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 240w" width="240" height="240" alt="Smiling technician in a navy work jacket and cap" loading="lazy" decoding="async" style="object-position:58% 45%;background-color:#1d3057"><span><strong>Marcus</strong><span>Lead HVAC tech</span></span></li>
-          <li class="team-card"><img data-photo="tech-jess" data-crop="1:1" data-widths="120,240" sizes="60px" src="https://images.unsplash.com/photo-1618298363483-e31a31f1a1e2?w=240&amp;h=240&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.42&amp;fm=webp&amp;q=70&amp;cs=tinysrgb" srcset="https://images.unsplash.com/photo-1618298363483-e31a31f1a1e2?w=120&amp;h=120&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.42&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 120w, https://images.unsplash.com/photo-1618298363483-e31a31f1a1e2?w=240&amp;h=240&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.42&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 240w" width="240" height="240" alt="Service tech in a plaid flannel and work overalls smiling from the driver's seat of a work vehicle" loading="lazy" decoding="async" style="object-position:50% 42%;background-color:#6f7361"><span><strong>Jess</strong><span>Service tech</span></span></li>
-          <li class="team-card"><img data-photo="tech-ray" data-crop="1:1" data-widths="120,240" sizes="60px" src="https://images.unsplash.com/photo-1787672357491-d43acdf974cb?w=240&amp;h=240&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.4&amp;fm=webp&amp;q=70&amp;cs=tinysrgb" srcset="https://images.unsplash.com/photo-1787672357491-d43acdf974cb?w=120&amp;h=120&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.4&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 120w, https://images.unsplash.com/photo-1787672357491-d43acdf974cb?w=240&amp;h=240&amp;fit=crop&amp;crop=focalpoint&amp;fp-x=0.5&amp;fp-y=0.4&amp;fm=webp&amp;q=70&amp;cs=tinysrgb 240w" width="240" height="240" alt="Senior technician in blue work coveralls and a cap, arms crossed and smiling" loading="lazy" decoding="async" style="object-position:50% 40%;background-color:#a88f86"><span><strong>Ray</strong><span>Install lead</span></span></li>
+          <li class="team-card"><img data-photo="tech-marcus" data-crop="1:1" data-widths="120,240" sizes="60px" src="images/photos/tech-marcus-240x240.webp" srcset="images/photos/tech-marcus-120x120.webp 120w, images/photos/tech-marcus-240x240.webp 240w" width="240" height="240" alt="Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight" loading="lazy" decoding="async" style="object-position:49% 50%;background-color:#9a9a92"><span><strong>Marcus</strong><span>Lead HVAC tech</span></span></li>
+          <li class="team-card"><img data-photo="tech-jess" data-crop="1:1" data-widths="120,240" sizes="60px" src="images/photos/tech-jess-240x240.webp" srcset="images/photos/tech-jess-120x120.webp 120w, images/photos/tech-jess-240x240.webp 240w" width="240" height="240" alt="Service tech in a plaid flannel and work overalls smiling from the driver's seat of a work vehicle" loading="lazy" decoding="async" style="object-position:50% 42%;background-color:#6f7361"><span><strong>Jess</strong><span>Service tech</span></span></li>
+          <li class="team-card"><span class="initial" aria-hidden="true">+12</span><span><strong>12 more</strong><span>Trained techs and installers</span></span></li>
         </ul>
         <div class="btn-row">
           <a class="btn btn-secondary" href="about.html">Meet the whole team<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>

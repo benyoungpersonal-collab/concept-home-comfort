@@ -60,6 +60,8 @@
   --c-line-strong: #CFC5B8;
   --c-text: #26314D;
   --c-muted: #5A6275;
+  --c-fine: #636A7C;          /* fine print, 4.6:1 on --c-bg-fine */
+  --c-bg-fine: #F1EDE7;
   --c-on-dark: #FFFFFF;
   --c-on-dark-soft: #C9D3E8;
 
@@ -286,6 +288,10 @@ p, li, .lead { text-wrap: pretty; }
 .on-dark .concept-pill, .concept-pill.on-dark { background: rgb(255 255 255 / .06); border-color: rgb(255 255 255 / .2); color: var(--c-on-dark-soft); box-shadow: none; }
 .on-dark .concept-pill b { background: var(--c-brand-strong); }
 
+/* Concept notice: slim fine print at the very top of every page */
+.concept-strip { background: var(--c-bg-fine); border-bottom: 1px solid var(--c-line); }
+.concept-strip p { margin: 0 auto; padding-block: 5px; font-size: 12px; font-weight: 500; line-height: 1.4; letter-spacing: .01em; color: var(--c-fine); text-align: center; }
+
 /* ---------- Cards ---------- */
 .card {
   background: var(--c-surface); border-radius: var(--r-card); box-shadow: var(--shadow-1);
@@ -449,9 +455,15 @@ legend { padding: 0; }
   .header-phone-text small { font-size: 11px; font-weight: 600; color: var(--c-muted); letter-spacing: .02em; }
   .header-phone-text span { font-weight: 800; font-size: 16px; letter-spacing: -.01em; white-space: nowrap; }
 }
-@media (min-width: 1000px) and (max-width: 1139px) {
-  .header-phone-text small { display: none; }
-  .nav-link { padding: 0 9px; font-size: 14.5px; }
+/* Small laptops and iPad landscape: icon-only phone (it keeps its "Call" label) so the bar never overflows */
+@media (min-width: 1000px) and (max-width: 1239px) {
+  .header-phone-text { display: none; }
+  .header-phone { padding: 0 2px; }
+  .nav-link { padding: 0 10px; font-size: 14.5px; }
+}
+@media (min-width: 1000px) and (max-width: 1079px) {
+  .nav { margin-left: 4px; }
+  .nav-link { padding: 0 8px; }
 }
 
 /* Desktop dropdown panels (disclosure pattern) */
@@ -515,8 +527,10 @@ legend { padding: 0; }
   content: ""; position: absolute; z-index: -1; inset: -6% -8% auto auto; width: 62%; aspect-ratio: 1; border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #FFC9AE, #FDE8DF 70%);
 }
+/* Floating cards never sit on the photo's subject. Phones: the chip hangs just under the photo.
+   Desktop: both cards stack on the left edge, beside the face and above the shoulders (see data-fp on the hero). */
 .next-chip {
-  position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 45%);
+  position: absolute; left: 50%; top: 100%; transform: translate(-50%, 14px);
   display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
   padding: 10px 16px 10px 12px; border-radius: var(--r-pill); background: #fff; box-shadow: var(--shadow-3);
   font-size: var(--fs-sm); color: var(--c-navy);
@@ -556,8 +570,13 @@ legend { padding: 0; }
   .hero { padding: var(--sp-8) 0 var(--sp-12); }
   .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: var(--sp-8); }
   .hero-media .arch { --aw: 4; --ah: 5; }
-  .next-chip { left: auto; right: 24px; bottom: 28px; transform: none; }
-  .floating-card { display: flex; left: -48px; top: 38%; }
+}
+/* Wide screens: both cards hang off the photo's left edge and cover at most 24% of it, which stays clear of the face */
+@media (min-width: 1200px) {
+  .floating-card { display: flex; left: -150px; top: 15%; width: calc(24% + 150px); }
+  .next-chip { left: -96px; top: 31%; transform: none; align-items: flex-start; width: calc(24% + 96px); padding: 12px 16px; border-radius: 16px; white-space: normal; line-height: 1.3; }
+  .next-chip .live-dot { margin-top: 5px; }
+  .next-chip strong { display: block; }
 }
 
 /* ---------- Page hero (inner pages) ---------- */
@@ -828,6 +847,7 @@ legend { padding: 0; }
 .team-row { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 var(--sp-3); }
 .team-card { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 8px; border-radius: 14px; background: #fff; border: 1px solid var(--c-line); text-align: center; }
 .team-card img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: none; }
+.team-card .initial { display: grid; place-items: center; width: 56px; height: 56px; flex: none; border-radius: 50%; background: var(--c-navy); color: #fff; font-family: var(--ff-display); font-size: 17px; font-weight: 800; letter-spacing: -.02em; }
 .team-card strong { display: block; font-size: var(--fs-sm); color: var(--c-navy); line-height: 1.2; }
 .team-card strong + span { display: block; font-size: 12px; color: var(--c-muted); line-height: 1.3; }
 @media (min-width: 600px) {
@@ -876,6 +896,19 @@ legend { padding: 0; }
 .city-list .is-hq { border-color: #F2C2AE; background: var(--c-brand-tint); }
 /* Cities with their own page get a full-width row, so long names never wrap into tall chips */
 .city-list li:has(> a) { grid-column: 1 / -1; }
+
+/* ---------- How a visit works (video strip) ---------- */
+.visit-grid { display: grid; gap: var(--sp-5); align-items: center; }
+.visit-media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: var(--r-lg); background: #5a1f24; box-shadow: var(--shadow-2); }
+.visit-media img, .lazy-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lazy-video { z-index: 1; opacity: 0; transition: opacity .7s var(--ease); }
+.lazy-video.is-playing { opacity: 1; }
+.visit-steps { list-style: none; counter-reset: step; display: grid; gap: var(--sp-2); margin: var(--sp-3) 0 var(--sp-4); }
+.visit-steps li { counter-increment: step; display: grid; grid-template-columns: 36px 1fr; column-gap: 14px; }
+.visit-steps li::before { content: counter(step); grid-row: span 2; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--c-brand-tint); color: var(--c-brand-deep); font-family: var(--ff-display); font-weight: 800; }
+.visit-steps strong { color: var(--c-navy); font-family: var(--ff-display); font-size: var(--fs-md); line-height: 1.3; }
+.visit-steps span { color: var(--c-muted); }
+@media (min-width: 900px) { .visit-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: var(--sp-8); } }
 
 /* ---------- FAQ accordion ---------- */
 .faq-grid { display: grid; gap: var(--sp-4); grid-template-areas: "head" "acc" "card"; }
@@ -1109,6 +1142,9 @@ legend { padding: 0; }
 .split { display: grid; gap: var(--sp-5); align-items: center; }
 @media (min-width: 900px) { .split { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-10); } .split.reverse > :first-child { order: 2; } }
 .split .photo { aspect-ratio: 4 / 3; }
+/* About, "Why Pinwheel": our own mark instead of a stock photo */
+.name-art { display: grid; place-items: center; background: radial-gradient(120% 95% at 28% 18%, #FFF6F1 0%, var(--c-brand-tint) 46%, var(--c-ice-tint) 100%); }
+.name-art svg { width: 42%; height: auto; aspect-ratio: 1; filter: drop-shadow(0 18px 28px rgb(20 33 61 / .18)); animation: spin 18s linear infinite; }
 
 .signs { list-style: none; display: grid; gap: 10px; }
 .signs li { display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 14px; background: #fff; border: 1px solid #EFEAE3; font-weight: 600; color: var(--c-navy); }
@@ -1302,7 +1338,6 @@ legend { padding: 0; }
 .report-title-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; }
 .report-title-row h1 { font-size: clamp(2rem, 1.5rem + 2.2vw, 3.25rem); }
 .report-meta { margin: 12px 0 0; }
-.report-head .concept-pill { justify-self: start; }
 .kpi-value { font-family: var(--ff-body); font-weight: 700; letter-spacing: -.02em; font-variant-numeric: normal; }
 .colchart-plot { position: relative; height: 200px; margin: 28px 0 0 32px; }
 .gridline { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid #ECE6DE; }
@@ -1366,7 +1401,8 @@ legend { padding: 0; }
     animation-iteration-count: 1 !important;
   }
   .live-dot::after { display: none; }
-  .lost .spin { animation: none; }
+  .lost .spin, .name-art svg { animation: none; }
+  .lazy-video { display: none; }
   .member-card, .member-card:hover { transform: rotate(-5deg); }
 }
 

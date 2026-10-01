@@ -1,0 +1,1694 @@
+[
+ {
+  "file": "couple-1200x1200.webp",
+  "key": "couple",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "couple-480x480.webp",
+  "key": "couple",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "couple-480x600.webp",
+  "key": "couple",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "couple-720x720.webp",
+  "key": "couple",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "couple-720x900.webp",
+  "key": "couple",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "couple-960x1200.webp",
+  "key": "couple",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "couple-960x960.webp",
+  "key": "couple",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-1200x900.webp",
+  "key": "cozy",
+  "w": 1200,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "cozy-480x360.webp",
+  "key": "cozy",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-720x540.webp",
+  "key": "cozy",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-960x720.webp",
+  "key": "cozy",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "filter-1200x1200.webp",
+  "key": "filter",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "filter-480x480.webp",
+  "key": "filter",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "filter-480x600.webp",
+  "key": "filter",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "filter-720x720.webp",
+  "key": "filter",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "filter-720x900.webp",
+  "key": "filter",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "filter-960x1200.webp",
+  "key": "filter",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "filter-960x960.webp",
+  "key": "filter",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-1200x1200.webp",
+  "key": "heat-pump",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "heat-pump-480x480.webp",
+  "key": "heat-pump",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-480x600.webp",
+  "key": "heat-pump",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-720x720.webp",
+  "key": "heat-pump",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-720x900.webp",
+  "key": "heat-pump",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-960x1200.webp",
+  "key": "heat-pump",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-960x960.webp",
+  "key": "heat-pump",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "owner-luis-160x160.webp",
+  "key": "owner-luis",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.3
+  ],
+  "box": [
+   0.18,
+   0,
+   0.78,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "owner-luis-320x320.webp",
+  "key": "owner-luis",
+  "w": 320,
+  "h": 320,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.3
+  ],
+  "box": [
+   0.18,
+   0,
+   0.78,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "owner-luis-400x500.webp",
+  "key": "owner-luis",
+  "w": 400,
+  "h": 500,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.3
+  ],
+  "box": [
+   0.18,
+   0,
+   0.78,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "owner-luis-640x800.webp",
+  "key": "owner-luis",
+  "w": 640,
+  "h": 800,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.3
+  ],
+  "box": [
+   0.18,
+   0,
+   0.78,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "owner-luis-900x1125.webp",
+  "key": "owner-luis",
+  "w": 900,
+  "h": 1125,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.3
+  ],
+  "box": [
+   0.18,
+   0,
+   0.78,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pipes-1200x900.webp",
+  "key": "pipes",
+  "w": 1200,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pipes-480x360.webp",
+  "key": "pipes",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pipes-720x540.webp",
+  "key": "pipes",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pipes-960x720.webp",
+  "key": "pipes",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-1200x1200.webp",
+  "key": "plumber",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "plumber-1200x675.webp",
+  "key": "plumber",
+  "w": 1200,
+  "h": 675,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "plumber-480x270.webp",
+  "key": "plumber",
+  "w": 480,
+  "h": 270,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-480x480.webp",
+  "key": "plumber",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-480x600.webp",
+  "key": "plumber",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-720x405.webp",
+  "key": "plumber",
+  "w": 720,
+  "h": 405,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-720x720.webp",
+  "key": "plumber",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-720x900.webp",
+  "key": "plumber",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-960x1200.webp",
+  "key": "plumber",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-960x540.webp",
+  "key": "plumber",
+  "w": 960,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "plumber-960x960.webp",
+  "key": "plumber",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.66,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "stucco-home-1200x1200.webp",
+  "key": "stucco-home",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "stucco-home-480x480.webp",
+  "key": "stucco-home",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "stucco-home-480x600.webp",
+  "key": "stucco-home",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "stucco-home-720x720.webp",
+  "key": "stucco-home",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "stucco-home-720x900.webp",
+  "key": "stucco-home",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "stucco-home-960x1200.webp",
+  "key": "stucco-home",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "stucco-home-960x960.webp",
+  "key": "stucco-home",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "suburb-1200x1200.webp",
+  "key": "suburb",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "suburb-480x480.webp",
+  "key": "suburb",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "suburb-480x600.webp",
+  "key": "suburb",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "suburb-720x720.webp",
+  "key": "suburb",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "suburb-720x900.webp",
+  "key": "suburb",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "suburb-960x1200.webp",
+  "key": "suburb",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "suburb-960x960.webp",
+  "key": "suburb",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-jess-120x120.webp",
+  "key": "tech-jess",
+  "w": 120,
+  "h": 120,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.42
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-jess-160x160.webp",
+  "key": "tech-jess",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.42
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-jess-240x240.webp",
+  "key": "tech-jess",
+  "w": 240,
+  "h": 240,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.42
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-jess-320x320.webp",
+  "key": "tech-jess",
+  "w": 320,
+  "h": 320,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.42
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-jess-480x480.webp",
+  "key": "tech-jess",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.42
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-jess-640x640.webp",
+  "key": "tech-jess",
+  "w": 640,
+  "h": 640,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.42
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-1200x1200.webp",
+  "key": "tech-marcus",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 62
+ },
+ {
+  "file": "tech-marcus-1200x1500.webp",
+  "key": "tech-marcus",
+  "w": 1200,
+  "h": 1500,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 62
+ },
+ {
+  "file": "tech-marcus-120x120.webp",
+  "key": "tech-marcus",
+  "w": 120,
+  "h": 120,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-160x160.webp",
+  "key": "tech-marcus",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-240x240.webp",
+  "key": "tech-marcus",
+  "w": 240,
+  "h": 240,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-320x320.webp",
+  "key": "tech-marcus",
+  "w": 320,
+  "h": 320,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-480x480.webp",
+  "key": "tech-marcus",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-480x600.webp",
+  "key": "tech-marcus",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-720x720.webp",
+  "key": "tech-marcus",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-720x900.webp",
+  "key": "tech-marcus",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-960x1200.webp",
+  "key": "tech-marcus",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-960x960.webp",
+  "key": "tech-marcus",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-ray-1200x900.webp",
+  "key": "tech-ray",
+  "w": 1200,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "tech-ray-160x160.webp",
+  "key": "tech-ray",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-ray-320x320.webp",
+  "key": "tech-ray",
+  "w": 320,
+  "h": 320,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-ray-480x360.webp",
+  "key": "tech-ray",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-ray-720x540.webp",
+  "key": "tech-ray",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-ray-960x720.webp",
+  "key": "tech-ray",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.36
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "thermostat-1200x900.webp",
+  "key": "thermostat",
+  "w": 1200,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "thermostat-480x360.webp",
+  "key": "thermostat",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "thermostat-720x540.webp",
+  "key": "thermostat",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "thermostat-960x720.webp",
+  "key": "thermostat",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "turbines-1200x1200.webp",
+  "key": "turbines",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "turbines-480x480.webp",
+  "key": "turbines",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "turbines-480x600.webp",
+  "key": "turbines",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "turbines-720x720.webp",
+  "key": "turbines",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "turbines-720x900.webp",
+  "key": "turbines",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "turbines-960x1200.webp",
+  "key": "turbines",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "turbines-960x960.webp",
+  "key": "turbines",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ }
+]

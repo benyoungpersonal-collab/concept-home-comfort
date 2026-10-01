@@ -10,12 +10,13 @@
   1. Fills <!-- partial:NAME --> ... <!-- /partial:NAME --> with partials/NAME.html
      ({{root}} becomes "" or "../" so links work from /service-areas/ too) and marks the
      current page's nav links with aria-current="page".
-  2. Rebuilds every <img data-photo="key"> (and <link rel="preload" data-photo="key">) from
-     scripts/photos.json: Unsplash CDN srcset, focal-point crop, width/height, alt, lazy loading,
-     and a loading color.
+  2. Rebuilds every <img data-photo="key"> (and <source>/<link rel="preload"> with data-photo) from
+     scripts/photos.json: self-hosted srcset in images/photos/, focal-point crop, width/height, alt,
+     lazy loading, and a loading color. It also writes scripts/image-manifest.json, the list of
+     files `python3 scripts/build-images.py` creates.
   3. Rebuilds the photo credits list between <!-- credits --> and <!-- /credits -->. Only photos
      that appear on at least one page get a credit, so spares in photos.json stay off the list.
-  No dependencies. Node 18+.
+  No dependencies. Node 18+. After it runs, run `python3 scripts/build-images.py` if photos changed.
 */
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, dirname, sep } from 'node:path';
@@ -54,49 +55,46 @@ function parseAttrs(tag) {
 }
 const getAttr = (attrs, name) => { const a = attrs.find(([k]) => k === name); return a ? a[1] : undefined; };
 
-function cdnUrl(p, w, h, crop) {
-  const params = new URLSearchParams();
-  params.set('w', String(w));
-  if (crop) {
-    params.set('h', String(h));
-    params.set('fit', 'crop');
-    params.set('crop', 'focalpoint');
-    params.set('fp-x', String(p.fp[0]));
-    params.set('fp-y', String(p.fp[1]));
-  }
-  params.set('fm', 'webp');
-  params.set('q', w >= 1200 ? '62' : '70');
-  params.set('cs', 'tinysrgb');
-  return `${p.base}?${params.toString().replace(/&/g, '&amp;')}`;
+// Self-hosted file for one size of one photo. A placement-level focal point (data-fp) gets its own file.
+const manifest = new Map();
+function photoUrl(p, w, h, crop, root) {
+  const fpTag = p.fpOverride ? `-fp${Math.round(p.fp[0] * 100)}-${Math.round(p.fp[1] * 100)}` : '';
+  const name = `${p.key}-${w}x${h}${crop ? '' : '-full'}${fpTag}.webp`;
+  manifest.set(name, { file: name, key: p.key, w, h, crop, fp: p.fp, box: p.box || [0, 0, 1, 1], q: w >= 1200 ? 62 : 70 });
+  return `${root}images/photos/${name}`;
 }
 
 function photoSet(key, attrs, file) {
-  const p = photos[key];
-  if (!p) throw new Error(`Unknown photo "${key}" in ${file}`);
+  const base = photos[key];
+  if (!base) throw new Error(`Unknown photo "${key}" in ${file}`);
+  // data-fp="x,y" overrides the focal point for one placement (for example, a hero that needs room for cards)
+  const fpAttr = getAttr(attrs, 'data-fp');
+  const p = fpAttr ? { ...base, key, fp: fpAttr.split(',').map(Number), fpOverride: true } : { ...base, key };
   const cropAttr = getAttr(attrs, 'data-crop') || 'orig';
   const widths = (getAttr(attrs, 'data-widths') || '480,800,1200').split(',').map((n) => parseInt(n, 10));
   if (Math.max(...widths) > 1600) throw new Error(`Photo wider than 1600px in ${file}`);
-  let rw = p.w, rh = p.h, crop = false;
+  const box = p.box || [0, 0, 1, 1];
+  let rw = p.w * (box[2] - box[0]), rh = p.h * (box[3] - box[1]), crop = false;
   if (cropAttr !== 'orig') { [rw, rh] = cropAttr.split(':').map(Number); crop = true; }
   const set = widths.map((w) => ({ w, h: Math.round((w * rh) / rw) }));
   return { p, set, crop };
 }
 
-function buildImg(tag, file) {
+function buildImg(tag, file, root) {
   const attrs = parseAttrs(tag);
   const key = getAttr(attrs, 'data-photo');
   const { p, set, crop } = photoSet(key, attrs, file);
   const eager = getAttr(attrs, 'data-eager') !== undefined;
   const mid = set[Math.min(1, set.length - 1)];
   const big = set[set.length - 1];
-  const keep = ['data-photo', 'data-crop', 'data-widths', 'data-eager', 'data-alt', 'class', 'sizes', 'id'];
+  const keep = ['data-photo', 'data-crop', 'data-widths', 'data-fp', 'data-eager', 'data-alt', 'class', 'sizes', 'id'];
   const out = [];
   for (const k of keep) {
     const v = getAttr(attrs, k);
     if (v !== undefined) out.push(v === null ? k : `${k}="${v}"`);
   }
-  out.push(`src="${cdnUrl(p, mid.w, mid.h, crop)}"`);
-  out.push(`srcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}"`);
+  out.push(`src="${photoUrl(p, mid.w, mid.h, crop, root)}"`);
+  out.push(`srcset="${set.map((s) => `${photoUrl(p, s.w, s.h, crop, root)} ${s.w}w`).join(', ')}"`);
   if (getAttr(attrs, 'sizes') === undefined) out.push('sizes="100vw"');
   out.push(`width="${big.w}" height="${big.h}"`);
   out.push(`alt="${escAttr(getAttr(attrs, 'data-alt') ?? p.alt)}"`);
@@ -105,23 +103,25 @@ function buildImg(tag, file) {
   return `<img ${out.join(' ')}>`;
 }
 
-function buildSource(tag, file) {
+function buildSource(tag, file, root) {
   const attrs = parseAttrs(tag);
   const key = getAttr(attrs, 'data-photo');
   const { p, set, crop } = photoSet(key, attrs, file);
   const big = set[set.length - 1];
   const media = getAttr(attrs, 'media');
   const sizes = getAttr(attrs, 'sizes') || '100vw';
-  return `<source data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}"${media ? ` media="${media}"` : ''} srcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}" sizes="${sizes}" width="${big.w}" height="${big.h}">`;
+  const fp = getAttr(attrs, 'data-fp');
+  return `<source data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}"${fp ? ` data-fp="${fp}"` : ''}${media ? ` media="${media}"` : ''} srcset="${set.map((s) => `${photoUrl(p, s.w, s.h, crop, root)} ${s.w}w`).join(', ')}" sizes="${sizes}" width="${big.w}" height="${big.h}">`;
 }
 
-function buildPreload(tag, file) {
+function buildPreload(tag, file, root) {
   const attrs = parseAttrs(tag);
   const key = getAttr(attrs, 'data-photo');
   const { p, set, crop } = photoSet(key, attrs, file);
   const sizes = getAttr(attrs, 'imagesizes') || '100vw';
   const media = getAttr(attrs, 'media');
-  return `<link rel="preload" as="image" data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}" imagesrcset="${set.map((s) => `${cdnUrl(p, s.w, s.h, crop)} ${s.w}w`).join(', ')}" imagesizes="${sizes}"${media ? ` media="${media}"` : ''} fetchpriority="high">`;
+  const fp = getAttr(attrs, 'data-fp');
+  return `<link rel="preload" as="image" data-photo="${key}" data-crop="${getAttr(attrs, 'data-crop') || 'orig'}" data-widths="${set.map((s) => s.w).join(',')}"${fp ? ` data-fp="${fp}"` : ''} imagesrcset="${set.map((s) => `${photoUrl(p, s.w, s.h, crop, root)} ${s.w}w`).join(', ')}" imagesizes="${sizes}"${media ? ` media="${media}"` : ''} fetchpriority="high">`;
 }
 
 function credits(used) {
@@ -129,7 +129,8 @@ function credits(used) {
     .filter(([k]) => !k.startsWith('_') && used.has(k))
     .map(([, p]) => {
       const utm = '?utm_source=pinwheel_concept&utm_medium=referral';
-      return `      <li><strong>${escHtml(p.alt)}</strong><span>Photo by <a href="https://unsplash.com/@${p.user}${utm}">${escHtml(p.by)}</a> on <a href="${p.page}${utm}">Unsplash</a>. Used for: ${escHtml(p.use)}.</span></li>`;
+      const u = p.site === 'Unsplash' ? utm : '';
+      return `      <li><strong>${escHtml(p.alt)}</strong><span>Photo by <a href="${p.profile}${u}">${escHtml(p.by)}</a> on <a href="${p.page}${u}">${p.site}</a>. Used for: ${escHtml(p.use)}.</span></li>`;
     });
   return `<!-- credits -->\n    <ul class="credit-list">\n${items.join('\n')}\n    </ul>\n    <!-- /credits -->`;
 }
@@ -156,11 +157,16 @@ for (const file of pages()) {
       target === rel ? `${pre} data-nav="${target}" aria-current="page"${post}` : all);
     return `<!-- partial:${name} -->\n${content}\n<!-- /partial:${name} -->`;
   });
-  html = html.replace(/<img\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildImg(tag, rel));
-  html = html.replace(/<link\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildPreload(tag, rel));
-  html = html.replace(/<source\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildSource(tag, rel));
+  html = html.replace(/<img\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildImg(tag, rel, rootPrefix));
+  html = html.replace(/<link\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildPreload(tag, rel, rootPrefix));
+  html = html.replace(/<source\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildSource(tag, rel, rootPrefix));
   html = html.replace(/<!-- credits -->[\s\S]*?<!-- \/credits -->/g, () => credits(used));
 
   if (html !== before) { writeFileSync(file, html); changed++; console.log(`updated ${rel}`); }
 }
+const list = [...manifest.values()].sort((a, b) => a.file.localeCompare(b.file));
+const manifestPath = join(ROOT, 'scripts/image-manifest.json');
+const next = JSON.stringify(list, null, 1) + '\n';
+let prev = ''; try { prev = readFileSync(manifestPath, 'utf8'); } catch (e) {}
+if (next !== prev) { writeFileSync(manifestPath, next); console.log(`updated scripts/image-manifest.json (${list.length} image files)`); }
 console.log(changed ? `Done. ${changed} page(s) updated.` : 'Done. Everything was already in sync.');

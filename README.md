@@ -6,6 +6,7 @@ A sample website by **Ben Young Web Design** for showing HVAC and plumbing owner
 - Mobile first. Works at 390px with no sideways scroll.
 - Lighthouse mobile performance 98 to 100 on every page (details below).
 - Every page is `noindex`, and `robots.txt` blocks crawlers, so search engines stay away from the concept.
+- Honesty labels: a slim fine-print strip at the very top of every page, the footer pill, and an "Illustrative" or "Sample" tag on every review, number, and price.
 
 ---
 
@@ -53,7 +54,7 @@ The other 4 cities (Manteca, Lathrop, Stockton, Livermore) are covered on the ho
 
 ## Preview locally
 
-Photos load from the Unsplash CDN, so you need an internet connection.
+Every photo, font, and video is self-hosted, so the site runs fully offline.
 
 ```bash
 # Option 1
@@ -70,6 +71,7 @@ Then open the URL it prints (for example `http://localhost:8080`).
 - Drag the folder into Netlify Drop, or connect this repo. `netlify.toml` already sets `publish = "."` with no build command.
 - `netlify.toml` also sends an `X-Robots-Tag: noindex` header, caches fonts for a year, and returns a 404 for the working files (`/partials/`, `/scripts/`, `README.md`, `DESIGN.md`).
 - After deploy, replace the placeholder domain `https://pinwheel-concept.netlify.app` (see the placeholder table).
+- **The floating Netlify badge on preview links is not part of this site.** It is the Netlify Drawer, a review toolbar Netlify adds to Deploy Previews and branch deploys only. It never shows on the live production URL. To turn it off: Netlify project > Project configuration > Developer settings > Continuous deployment > Collaboration tools > Configure. To hide it for one visit, add `?ntl-drawer-state=hidden` to the preview URL.
 
 ---
 
@@ -91,16 +93,39 @@ Then open the URL it prints (for example `http://localhost:8080`).
 
 ## How to swap photos
 
-**Quick swap (another Unsplash photo):** edit the entry in `scripts/photos.json` (`base`, `w`, `h`, focal point `fp`, `alt`, and the photographer fields), then run `node scripts/sync.mjs`. Every image using that key updates, with a fresh `srcset`, and the credits page rebuilds itself. Only photos that appear on a page get credited.
+All photos are self-hosted WebP files in `images/photos/`, made from `scripts/photos.json`.
 
-**Real client photos (recommended):**
+**Swap a stock photo:** edit its entry in `scripts/photos.json` (`src` download link, `w`, `h`, focal point `fp`, optional `box`, `alt`, and the credit fields `by`, `profile`, `page`, `site`). Then run:
 
-1. Export each photo as WebP at 480, 720, 960, and 1200px wide (hero max 1600px). Put them in `images/`.
-2. Replace the `src` and `srcset` on the `<img>` (and the hero's `<source>` and preload links). Keep `width`, `height`, and a real `alt`.
-3. The owner portrait is marked in `index.html` and `about.html` with `<!-- REAL OWNER PHOTO GOES HERE -->`.
-4. Once no photos come from Unsplash, delete the `preconnect` to `images.unsplash.com` in `partials/head.html` and remove the `data-photo` attributes so sync leaves those tags alone.
+```bash
+node scripts/sync.mjs                    # rewrites every <img>, srcset, preload, and the credits page
+python3 scripts/build-images.py --prune  # downloads the photo once and makes every size (needs Pillow)
+```
+
+Commit the new files in `images/photos/`. Only photos that appear on a page get credited.
+
+**Real client photos (recommended):** put the owner's original file anywhere reachable (or in `scripts/.cache/` named `KEY-ID.jpg`), point `src` at it, set `site` and the credit fields to the owner's business, and run the same two commands. The owner portrait is marked in `index.html` and `about.html` with `<!-- REAL OWNER PHOTO GOES HERE -->`.
 
 Real photos of the owner, the crew, and the vans will beat any stock photo. That is the single biggest upgrade for a real client.
+
+**Photo rules:** real people only, no AI people, and no visible logos or business names from other companies (shirts, caps, vans, tool chests, equipment badges). Check every photo at full size before it goes live.
+
+**Crops:** `fp` sets where each crop centers. `box` trims the source first, so something like a brand badge never appears in any crop. The hero uses both: the condenser's badge and an electrical box label are trimmed off, and the tech sits right of center so the two floating cards on the left never cover him. One placement can override the focal point with `data-fp="x,y"` on its tag.
+
+## The video strip
+
+"How a visit works" on the homepage plays a 9-second muted clip (`video/visit.mp4` 523 KB and `video/visit.webm` 326 KB, 1280x720) with a WebP poster in `images/visit-poster-*.webp`.
+
+What it does: the poster loads first. The video loads only after the page finishes, plays muted on a loop inline, pauses when scrolled off screen, and never loads for visitors who prefer reduced motion or have Save-Data on. Add `data-video-desktop-only` to the `data-video` tag to keep phones on the poster.
+
+To swap the clip (same steps work for adding one to the hero frame):
+
+```bash
+ffmpeg -ss 0.5 -t 9 -i source.mp4 -vf "scale=1280:720,fade=in:st=0:d=0.4,fade=out:st=8.6:d=0.4" -an -c:v libx264 -profile:v high -preset slow -crf 27 -pix_fmt yuv420p -movflags +faststart video/visit.mp4
+ffmpeg -ss 0.5 -t 9 -i source.mp4 -vf "scale=1280:720,fade=in:st=0:d=0.4,fade=out:st=8.6:d=0.4" -an -c:v libvpx-vp9 -b:v 0 -crf 38 -row-mt 1 video/visit.webm
+```
+
+Keep each under about 2 MB, and update the video credit on `credits.html`.
 
 ---
 
@@ -120,7 +145,7 @@ Real photos of the owner, the crew, and the vans will beat any stock photo. That
 | Report numbers | `sample-report.html` |
 | Google review link (`href="#"`) | `review.html` |
 | Domain `pinwheel-concept.netlify.app` | Open Graph tags, JSON-LD, `sitemap.xml` |
-| Photos (Unsplash stock) | See `credits.html` |
+| Photos and video (Unsplash and Pexels stock) | See `credits.html` |
 | `noindex` meta tags, `Disallow: /` in `robots.txt`, and the `X-Robots-Tag` header in `netlify.toml` | On purpose for a concept. Remove all three for a real launch |
 
 ---
@@ -163,18 +188,18 @@ All forms show: "This is a demo. On a live site, this goes straight to the owner
 
 ---
 
-## QA checklist (final run)
+## QA checklist (fix round 2, Oct 1)
 
 | Check | Result | How it was tested |
 |---|---|---|
 | Every phone number is a `tel:` link | PASS | 73 `tel:` links, all `+12095550142`. Text buttons use `sms:` (32 links) |
-| No sideways scroll at 390px | PASS | All 12 pages, page width equals viewport, no element past the edge |
+| No sideways scroll | PASS | All 12 pages at 390 and 1440, plus 768, 900, 1000 to 1240 (a header overflow at 1000 to 1239px was found and fixed this round) |
 | No broken images | PASS | Every image loads, has `width`, `height`, and `alt` (390 and 1440) |
-| No broken links or anchors | PASS | 1,335 internal links and in-page anchors checked |
+| No broken links or anchors | PASS | 1,338 internal links and in-page anchors, plus all 165 `srcset` files and both video files, checked |
 | No console errors | PASS | All 12 pages at 390 and 1440, plus every demo flow |
 | No em dashes | PASS | Zero em or en dashes in any file in the repo |
 | Sticky bar never covers content | PASS | Footer padded for the bar; chat bubble sits above it; every page checked |
-| Lighthouse mobile 90+ | PASS | 98 to 100 on all 12 pages |
+| Lighthouse mobile 90+ | PASS | 98 to 100 on all 12 pages, with the real self-hosted photos and the video strip |
 | Accessibility (axe-core) | PASS | 0 violations on 12 pages at 390 and 1440 |
 | Tap targets 44px+ | PASS | Every button and standalone link on every page (links inside sentences are exempt under WCAG) |
 | One H1 per page, unique titles and descriptions | PASS | All 12 pages |
@@ -184,19 +209,24 @@ All forms show: "This is a demo. On a live site, this goes straight to the owner
 | Forms never send, demo message shown | PASS | Booking, membership join, review button |
 | QR code scans | PASS | Decoded back to the page URL |
 | No star-gating | PASS | One Google button for every customer |
-| Homepage body copy 700 to 900 words | PASS | 811 words |
+| Homepage body copy 700 to 900 words | PASS | 869 words (with the new visit strip) |
 | Fonts self-hosted WOFF2 | PASS | Inter 27KB, Plus Jakarta Sans 16KB (subset) |
-| Hero 1600px max, preloaded, lazy below the fold | PASS | Art-directed hero (square on phones, 4:5 on desktop) |
+| Hero 1600px max, preloaded, lazy below the fold | PASS | Art-directed hero (square on phones, 4:5 on desktop), a tech at a home AC condenser |
 | `noindex` everywhere, robots blocks all | PASS | Meta tag, `X-Robots-Tag` header, `Disallow: /` |
-| Photos self-hosted | NOT DONE | Unsplash downloads were blocked in the build environment. Photos load as WebP from the Unsplash CDN with `srcset`, the fallback the brief allows |
+| Concept label | PASS | Fine-print strip at the top of every page (4.6:1 contrast), footer pill, every Illustrative tag kept |
+| No other companies' logos in photos or video | PASS | Every photo checked at full size after self-hosting; the hero's condenser badge and an electrical box label are trimmed off with `box`. Video frames checked: wrench and faucet markings are out of focus |
+| Floating cards never cover a face or subject | PASS | Checked at 390, 768, 900, 1024, 1200, 1280, 1440: on wide screens both cards sit over the window, clear of the tech; on smaller screens the chip sits under the photo |
+| Video behavior | PASS | Real clip, 9 seconds, 1280x720, MP4 523 KB plus WebM 326 KB. Poster first, loads after the page, muted loop inline, pauses off screen, poster only for reduced motion. Plays on phones and desktop |
+| No Netlify badge in our code | PASS | No Netlify script or badge anywhere; the preview-link toolbar comes from Netlify (see Deploy) |
+| Photos and video self-hosted | PASS | 94 WebP files (3.5 MB total, each page loads only what it shows) in `images/photos/`, video in `video/`. No page loads anything from another host |
 
-## Review loop scores (final round)
+## Review loop scores (after fix round 2)
 
-Scored 1 to 10 after three screenshot rounds at 390 and 1440.
+Scored 1 to 10 after five screenshot rounds at 390 and 1440.
 
 | Page | First look | Hierarchy | Spacing | Type | Color | Photos | Thumb reach | Speed | Copy |
 |---|---|---|---|---|---|---|---|---|---|
-| Home | 9 | 9 | 9 | 9 | 9 | 8 | 10 | 10 | 9 |
+| Home | 10 | 9 | 9 | 9 | 9 | 9 | 10 | 10 | 9 |
 | Heating & Cooling | 9 | 9 | 9 | 9 | 9 | 9 | 10 | 10 | 9 |
 | Plumbing | 9 | 9 | 9 | 9 | 9 | 8 | 10 | 10 | 9 |
 | Comfort Club | 9 | 9 | 9 | 9 | 9 | 8 | 10 | 10 | 9 |
@@ -209,7 +239,7 @@ Scored 1 to 10 after three screenshot rounds at 390 and 1440.
 | Credits | 9 | 9 | 9 | 9 | 9 | n/a | 10 | 10 | 9 |
 | 404 | 9 | 9 | 9 | 9 | 9 | n/a | 10 | 10 | 10 |
 
-Photos are the only scores under 9, and stock cannot fix them. The hero is a friendly tech portrait, not a tech at a home AC unit (no free photo of that was good enough), the plumber shot has a blue studio glow, and the Comfort Club filter shot is generic. Real crew photos take these to 10.
+Photo scores under 9 are Plumbing (the plumber shot has a blue studio glow) and Comfort Club (the filter shot is generic). The owner portrait has a studio backdrop rather than a home. Real crew photos take all of these to 10.
 
 ## Lighthouse
 
@@ -217,29 +247,30 @@ Lighthouse 12.8.2, default mobile settings (simulated slow 4G, 4x CPU slowdown),
 
 | Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|
-| Home | 99 | 100 | 100 | 66 | 2.1s | 0 | 0ms |
-| Heating & Cooling | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
-| Plumbing | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
-| Comfort Club | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
-| Financing & Offers | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
-| About | 98 | 100 | 100 | 66 | 2.3s | 0 | 0ms |
-| Tracy | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
+| Home | 98 | 100 | 100 | 66 | 1.7s | 0 | 160ms |
+| Heating & Cooling | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
+| Plumbing | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
+| Comfort Club | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
+| Financing & Offers | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
+| About | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
+| Tracy | 100 | 100 | 100 | 66 | 1.8s | 0 | 0ms |
 | Mountain House | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
-| Review page | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
+| Review page | 100 | 100 | 100 | 66 | 1.7s | 0 | 0ms |
 | Sample report | 100 | 100 | 100 | 63 | 1.4s | 0 | 0ms |
 | Credits | 100 | 100 | 100 | 63 | 1.4s | 0 | 0ms |
 | 404 | 100 | 100 | 100 | 63 | 1.4s | 0 | 0ms |
-| Home (desktop) | 100 | 100 | 100 | 66 | 0.6s | 0 | 0ms |
+| Home (desktop) | 100 | 100 | 100 | 66 | 0.4s | 0 | 0ms |
 
+- **Video:** the strip's clip loads after the page finishes, so it does not count against the first load. Phones play it; no desktop-only fallback was needed.
 - **SEO is low on purpose.** The only failing SEO check is "page is blocked from indexing," which is the required `noindex`. Remove it for a real launch.
-- **About the photos in the test:** the Unsplash CDN was blocked in the build environment, so Lighthouse loaded the same image URLs from a local stand-in serving WebP files at realistic sizes. After deploy, run PageSpeed Insights on the live URL to confirm with the real CDN.
+- **Real files this time:** every photo and the video are self-hosted, so these numbers use the exact files that ship. Run PageSpeed Insights after deploy to confirm on Netlify.
 
 ---
 
 ## Known limits
 
-- Photos are hotlinked from the Unsplash CDN, not self-hosted (downloads were blocked in the build environment). Fine for a concept; self-host for a real client.
-- No free stock photo showed a tech working on a home AC unit, so the hero uses a friendly tech portrait.
+- The video is a plumbing clip (tightening an outdoor faucet), not HVAC: Pexels had no free, logo-free clip of a tech at a home AC unit or furnace, so it sits in a "How a visit works" strip as planned, not in the hero.
+- The owner portrait is a friendly tech in a plain work uniform on a studio backdrop, not in a home.
 - Only Tracy and Mountain House have city pages. Steps for the other 4 are above.
 - "Pinwheel" passed a web search, not a trademark search.
 
@@ -259,14 +290,17 @@ fonts/                Inter and Plus Jakarta Sans (WOFF2, OFL licenses)
 images/               Open Graph image and app icon
 partials/             shared header, footer, booking, chat, icons
 scripts/sync.mjs      optional helper that copies partials into pages
-scripts/photos.json   every photo: crop, focal point, alt text, credit
+scripts/photos.json   every photo: source, crop box, focal point, alt text, credit
+scripts/build-images.py  makes the self-hosted WebP files (Python + Pillow)
+images/photos/        self-hosted photos, every size and crop
+video/                visit.mp4 and visit.webm
 DESIGN.md             the plan: tokens, wireframes, full copy deck
 netlify.toml, robots.txt, sitemap.xml, favicon.svg
 ```
 
 ## Credits
 
-- Photos: Unsplash photographers, listed on `credits.html`.
+- Photos and video: Unsplash and Pexels creators, listed on `credits.html`.
 - Fonts: Inter and Plus Jakarta Sans, SIL Open Font License 1.1, subset and self-hosted.
 - QR codes: QR Code Generator for JavaScript by Kazuhiko Arase, MIT license, vendored in `js/vendor/`.
 - Icons, logo, and map: drawn for this concept as inline SVG.
