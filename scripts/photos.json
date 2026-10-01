@@ -1,21 +1,52 @@
 {
-  "_note": "Photo registry. Every <img data-photo=\"key\"> in the HTML is built from this file by `node scripts/sync.mjs`. All photos are free Unsplash photos (unsplash.com/license), credited on credits.html. fp = focal point [x, y] from 0 to 1. preview = local 400px file used only for QA screenshots.",
-  "owner-luis": {
-    "id": "snFilgm4_RU",
-    "base": "https://images.unsplash.com/photo-1530983822321-fcac2d3c0f06",
-    "w": 3922,
-    "h": 2729,
-    "color": "#c0c0c0",
-    "fp": [
-      0.56,
-      0.4
+  "_note": "Photo registry. Every <img data-photo=\"key\"> in the HTML is built from this file by `node scripts/sync.mjs`, and `python3 scripts/build-images.py` downloads each `src` once and writes the self-hosted WebP files to images/photos/. All photos are free Unsplash or Pexels photos, credited on credits.html. fp = focal point [x, y] from 0 to 1, measured inside box. box = optional [x0, y0, x1, y1] (0 to 1) that trims the source first, e.g. to keep another company's logo out of every crop. Rule: real people only, and no visible logos or business names from other companies.",
+  "tech-marcus": {
+    "id": "32497161",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=3600",
+    "w": 5472,
+    "h": 3648,
+    "box": [
+      0.15,
+      0.0,
+      1.0,
+      0.86
     ],
-    "alt": "Smiling owner in a white cap and a light blue work shirt",
-    "by": "James Balensiefen",
-    "user": "balensiefenphoto",
-    "page": "https://unsplash.com/photos/man-smiling-while-sitting-snFilgm4_RU",
+    "fp": [
+      0.49,
+      0.5
+    ],
+    "color": "#9a9a92",
+    "alt": "Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight",
+    "by": "Kathleen Austin Kuhn",
+    "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
+    "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
+    "use": "Home hero, team",
+    "preview": "pexels__32497161.jpg"
+  },
+  "owner-luis": {
+    "id": "6050244",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/6050244/pexels-photo-6050244.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 6000,
+    "h": 4000,
+    "box": [
+      0.18,
+      0.0,
+      0.78,
+      1.0
+    ],
+    "fp": [
+      0.42,
+      0.3
+    ],
+    "color": "#f2c230",
+    "alt": "Smiling owner with a gray beard in a dark work uniform, holding a toolbox and wrenches",
+    "by": "Gustavo Fring",
+    "profile": "https://www.pexels.com/@gustavo-fring/",
+    "page": "https://www.pexels.com/photo/man-smiling-while-holding-wrenches-6050244/",
     "use": "Owner portrait (placeholder for the real owner photo)",
-    "preview": "owner__snFilgm4_RU.jpg"
+    "preview": "pexels__6050244.jpg"
   },
   "tech-ray": {
     "id": "F4ox6XvbDps",
@@ -31,8 +62,11 @@
     "by": "Divaris Shirichena",
     "user": "divaris",
     "page": "https://unsplash.com/photos/man-in-blue-work-uniform-F4ox6XvbDps",
-    "use": "Home hero, team, about",
-    "preview": "tech-friendly__F4ox6XvbDps.jpg"
+    "use": "Team, about",
+    "preview": "tech-friendly__F4ox6XvbDps.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1787672357491-d43acdf974cb?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@divaris"
   },
   "tech-jess": {
     "id": "dYgyzxlHJ58",
@@ -49,7 +83,10 @@
     "user": "troymade",
     "page": "https://unsplash.com/photos/smiling-woman-in-blue-and-black-plaid-shirt-dYgyzxlHJ58",
     "use": "Team, review page",
-    "preview": "owner__dYgyzxlHJ58.jpg"
+    "preview": "owner__dYgyzxlHJ58.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1618298363483-e31a31f1a1e2?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@troymade"
   },
   "plumber": {
     "id": "c314Gh8dXAo",
@@ -66,7 +103,10 @@
     "user": "shaker_jpg",
     "page": "https://unsplash.com/photos/a-man-working-on-a-pipe-in-a-wall-c314Gh8dXAo",
     "use": "Drains tile, plumbing hero",
-    "preview": "plumber__c314Gh8dXAo.jpg"
+    "preview": "plumber__c314Gh8dXAo.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@shaker_jpg"
   },
   "heat-pump": {
     "id": "_7huNth8Y2s",
@@ -83,7 +123,10 @@
     "user": "87gi",
     "page": "https://unsplash.com/photos/a-air-conditioner-sitting-outside-of-a-building-_7huNth8Y2s",
     "use": "Heating and cooling hero",
-    "preview": "heat-pump___7huNth8Y2s.jpg"
+    "preview": "heat-pump___7huNth8Y2s.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1724488751821-1415f5cf4960?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@87gi"
   },
   "cozy": {
     "id": "3GNesMmbHBo",
@@ -100,7 +143,10 @@
     "user": "happpyal",
     "page": "https://unsplash.com/photos/white-ceramic-mug-on-white-knit-textile-3GNesMmbHBo",
     "use": "Heating section",
-    "preview": "furnace__3GNesMmbHBo.jpg"
+    "preview": "furnace__3GNesMmbHBo.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1586011591237-2772414429d2?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@happpyal"
   },
   "thermostat": {
     "id": "RFAHj4tI37Y",
@@ -117,7 +163,10 @@
     "user": "danlefeb",
     "page": "https://unsplash.com/photos/gray-nest-thermostat-displaying-at-63-RFAHj4tI37Y",
     "use": "AC repair tile, heating and cooling",
-    "preview": "thermostat__RFAHj4tI37Y.jpg"
+    "preview": "thermostat__RFAHj4tI37Y.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@danlefeb"
   },
   "filter": {
     "id": "WwzK2S0h6zU",
@@ -134,7 +183,10 @@
     "user": "hadleycummings",
     "page": "https://unsplash.com/photos/a-person-is-working-on-a-ceiling-air-conditioner-WwzK2S0h6zU",
     "use": "Comfort Club hero",
-    "preview": "air-quality__WwzK2S0h6zU.jpg"
+    "preview": "air-quality__WwzK2S0h6zU.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1737012197886-7d5a52ded45b?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@hadleycummings"
   },
   "pipes": {
     "id": "c5aW5Xy-O7c",
@@ -151,7 +203,10 @@
     "user": "sparkledump",
     "page": "https://unsplash.com/photos/a-pair-of-copper-pipes-sitting-on-top-of-a-wall-c5aW5Xy-O7c",
     "use": "Repiping section",
-    "preview": "pipes__c5aW5Xy-O7c.jpg"
+    "preview": "pipes__c5aW5Xy-O7c.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1694827893591-af9b80361599?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@sparkledump"
   },
   "turbines": {
     "id": "XtzmNLLL8Sc",
@@ -168,7 +223,10 @@
     "user": "mischievous_penguins",
     "page": "https://unsplash.com/photos/wind-turbines-under-clear-blue-sky-XtzmNLLL8Sc",
     "use": "About hero",
-    "preview": "suburb__XtzmNLLL8Sc.jpg"
+    "preview": "suburb__XtzmNLLL8Sc.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1515126789130-64cfc19c9015?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@mischievous_penguins"
   },
   "stucco-home": {
     "id": "lx-FLZx3iQk",
@@ -185,7 +243,10 @@
     "user": "ubeyonroad",
     "page": "https://unsplash.com/photos/a-white-stucco-house-with-a-red-tile-roof-lx-FLZx3iQk",
     "use": "Tracy page",
-    "preview": "stucco-home__lx-FLZx3iQk.jpg"
+    "preview": "stucco-home__lx-FLZx3iQk.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1759355787174-044355f63c55?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@ubeyonroad"
   },
   "suburb": {
     "id": "f9qZuKoZYoY",
@@ -202,7 +263,10 @@
     "user": "aviosly",
     "page": "https://unsplash.com/photos/white-and-red-houses-f9qZuKoZYoY",
     "use": "Mountain House page",
-    "preview": "suburb__f9qZuKoZYoY.jpg"
+    "preview": "suburb__f9qZuKoZYoY.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1565402170291-8491f14678db?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@aviosly"
   },
   "couple": {
     "id": "zS3nwvUpg9A",
@@ -219,6 +283,9 @@
     "user": "omarlopez1",
     "page": "https://unsplash.com/photos/a-man-and-woman-laughing-zS3nwvUpg9A",
     "use": "Financing page",
-    "preview": "homeowners__zS3nwvUpg9A.jpg"
+    "preview": "homeowners__zS3nwvUpg9A.jpg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1655759738595-418970010986?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@omarlopez1"
   }
 }

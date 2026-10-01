@@ -731,36 +731,38 @@
     });
   }
 
-  /* ---------- Hero video (off until data-hero-video names a clip, e.g. "video/hero") ----------
-     Loads after the page, muted loop, pauses off screen, never plays for reduced motion or Save-Data.
-     Add data-video-desktop-only to keep phones on the poster photo. */
-  function initHeroVideo() {
-    var frame = $('[data-hero-video]');
-    if (!frame) return;
-    var base = frame.getAttribute('data-hero-video');
-    if (!base || reduced() || !('IntersectionObserver' in window)) return;
+  /* ---------- Lazy background video ([data-video="video/name"] holds a poster <img>) ----------
+     Loads after the page, muted loop inline, pauses off screen, never plays for reduced motion or Save-Data.
+     Add data-video-desktop-only to keep phones on the poster. */
+  function initLazyVideos() {
+    var frames = $$('[data-video]');
+    if (!frames.length || reduced() || !('IntersectionObserver' in window)) return;
     var conn = navigator.connection;
     if (conn && conn.saveData) return;
-    if (frame.hasAttribute('data-video-desktop-only') && !window.matchMedia('(min-width: 900px)').matches) return;
-    var img = $('img', frame);
     var start = function () {
-      var v = d.createElement('video');
-      v.className = 'hero-video';
-      v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
-      v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true'); v.tabIndex = -1;
-      if (img) v.poster = img.currentSrc || img.src;
-      [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (t) {
-        var src = d.createElement('source'); src.src = base + '.' + t[0]; src.type = t[1]; v.appendChild(src);
-      });
-      v.addEventListener('playing', function () { v.classList.add('is-playing'); });
-      frame.appendChild(v);
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); }
+      frames.forEach(function (frame) {
+        var base = frame.getAttribute('data-video');
+        if (!base) return;
+        if (frame.hasAttribute('data-video-desktop-only') && !window.matchMedia('(min-width: 900px)').matches) return;
+        var img = $('img', frame);
+        var v = d.createElement('video');
+        v.className = 'lazy-video';
+        v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
+        v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true'); v.tabIndex = -1;
+        if (img) v.poster = img.currentSrc || img.src;
+        [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (t) {
+          var src = d.createElement('source'); src.src = base + '.' + t[0]; src.type = t[1]; v.appendChild(src);
         });
-      }, { threshold: 0.2 });
-      io.observe(v);
-      if (motionQuery.addEventListener) motionQuery.addEventListener('change', function () { if (reduced()) { io.disconnect(); v.pause(); v.remove(); } });
+        v.addEventListener('playing', function () { v.classList.add('is-playing'); });
+        frame.appendChild(v);
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); }
+          });
+        }, { threshold: 0.2 });
+        io.observe(v);
+        if (motionQuery.addEventListener) motionQuery.addEventListener('change', function () { if (reduced()) { io.disconnect(); v.pause(); v.remove(); } });
+      });
     };
     var later = function () { setTimeout(start, 800); };
     if (d.readyState === 'complete') later(); else window.addEventListener('load', later);
@@ -783,5 +785,5 @@
   initQR();
   initTooltips();
   initHelpers();
-  initHeroVideo();
+  initLazyVideos();
 })();

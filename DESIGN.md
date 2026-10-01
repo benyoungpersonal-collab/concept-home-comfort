@@ -424,23 +424,25 @@ Pricing model (sample): base for 1,500 to 2,500 sq ft. AC only $6,800 to $9,200.
 
 ## 6. Photo plan
 
-Real photography only (Unsplash). No AI-generated people. Credits on credits.html.
+Real photography and video only (Unsplash and Pexels). No AI-generated people. Credits on credits.html.
 
 | Slot | Plan | What shipped | Where |
 |---|---|---|---|
-| Hero | Tech at an outdoor AC unit, bright daylight | Ray: smiling tech in plain blue coveralls and cap (no logo-free free photo of a tech at a home AC unit was available) | Home hero, team, About |
-| Owner | Friendly owner portrait (HTML comment marks where the real photo goes) | Smiling man in a plain white cap and light blue work shirt | Home team, About |
+| Hero | Tech at an outdoor AC unit, bright daylight | Marcus: tech in a plain gray polo checking a condenser beside a home with a flashlight (Pexels). The condenser badge is trimmed off with `box` | Home hero, team, About |
+| Owner | Friendly owner portrait (HTML comment marks where the real photo goes) | Smiling gray-bearded man in a dark work uniform with a toolbox and wrenches (studio backdrop) | Home team, About |
 | Plumber | Plumber under a sink | Plumber tightening a drain under a sink | Home bento, Plumbing |
 | AC tile | Outdoor condensers | Smart thermostat set to 63 (the condenser photos all showed brand badges) | Home bento, Heating & Cooling |
-| Team | Small crew | Ray and Jess photos; Marcus, Diego, Carmen, Andre as initial avatars | Home team, About, Review page |
+| Team | Small crew | Marcus, Ray, and Jess photos; Diego, Carmen, Andre as initial avatars | Home team, About, Review page |
 | Stucco home | Stucco house, tile roof, sun | White stucco, red tile roof, arched entry | Tracy page |
 | Suburb | Newer tidy neighborhood | Aerial of a sunny planned neighborhood | Mountain House page |
 | About hero | Service van | Altamont windmills at sunset (the van showed a RAM badge); "Why Pinwheel" uses our own mark | About |
 | Extras | Supporting shots | Heat pump, cozy mug, filter change, copper pipes, couple at home | Inner pages |
 
-Rule: real people only, and no visible logos or business names from other companies in any photo.
+| Video | Tech at work | 9-second muted clip of a plumber tightening an outdoor faucet (Pexels), in a "How a visit works" strip. No free clip of a tech at a home AC unit or furnace was available | Homepage |
 
-Delivery: images.unsplash.com is blocked in the build container, so photos load from the Unsplash CDN with size and format parameters (`w`, `h`, `fit=crop`, focal point, `fm=webp`, `q=70`, or `q=62` at 1200px and wider) and `srcset`. The hero is art directed: a square crop on phones and a 4:5 crop on desktop, each with its own preload. Every photo has width and height set, a warm background color while loading, and lazy loading below the fold. The hero is preloaded with `fetchpriority="high"` and never wider than 1600px.
+Rule: real people only, and no visible logos or business names from other companies in any photo or video.
+
+Delivery: every photo is self-hosted WebP in `images/photos/`, made by `scripts/build-images.py` from `scripts/photos.json` (focal-point crops, quality 70, or 62 at 1200px and wider) with `srcset`. The hero is art directed: a square crop on phones and a 4:5 crop on desktop, each with its own preload. Every photo has width and height set, a warm background color while loading, and lazy loading below the fold. The hero is preloaded with `fetchpriority="high"` and never wider than 1600px.
 
 ---
 
