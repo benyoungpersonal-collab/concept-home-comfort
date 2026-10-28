@@ -768,6 +768,21 @@
     if (d.readyState === 'complete') later(); else window.addEventListener('load', later);
   }
 
+  /* ---------- Phones: hide the Call, Book, Text bar while the hero's own call buttons are on screen ---------- */
+  function initStickyBar() {
+    var bar = $('.sticky-bar');
+    var triggers = $$('[data-hide-bar]');
+    if (!bar || !triggers.length || !('IntersectionObserver' in window)) return;
+    var onScreen = new Set();
+    var update = function () { bar.classList.toggle('is-waiting', onScreen.size > 0); };
+    bar.classList.add('is-waiting');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) onScreen.add(e.target); else onScreen.delete(e.target); });
+      update();
+    });
+    triggers.forEach(function (t) { io.observe(t); });
+  }
+
   initOfferBar();
   initHeader();
   initPanels();
@@ -786,4 +801,5 @@
   initTooltips();
   initHelpers();
   initLazyVideos();
+  initStickyBar();
 })();

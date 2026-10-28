@@ -1018,6 +1018,9 @@ legend { padding: 0; }
 @media (max-width: 899px) {
   .has-sticky-bar .header-phone { display: none; }
 }
+/* Pages with hero call buttons (data-hide-bar): the bar waits until those buttons scroll out of view, then slides in */
+.js .sticky-bar.is-waiting { transform: translateY(110%); visibility: hidden; box-shadow: none; }
+.js .sticky-bar { transition: transform var(--t-med) var(--ease), visibility var(--t-med), box-shadow var(--t-med); }
 @media (min-width: 900px) {
   .sticky-bar { display: none; }
   .has-sticky-bar .site-footer { padding-bottom: var(--sp-4); }
