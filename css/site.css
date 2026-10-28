@@ -1013,6 +1013,11 @@ legend { padding: 0; }
 .sb-text:hover { color: var(--c-navy); border-color: var(--c-navy); }
 /* Reserve room for the bar inside the footer, so the navy runs under it and nothing is ever covered */
 .has-sticky-bar .site-footer { padding-bottom: calc(var(--sp-4) + var(--bar-h) + var(--safe-b)); }
+/* One call button on phones: while the bar shows, it carries Call, so the header drops its phone button.
+   Pages without the bar, and screens 900px and up where the bar hides, keep the header button. */
+@media (max-width: 899px) {
+  .has-sticky-bar .header-phone { display: none; }
+}
 @media (min-width: 900px) {
   .sticky-bar { display: none; }
   .has-sticky-bar .site-footer { padding-bottom: var(--sp-4); }
