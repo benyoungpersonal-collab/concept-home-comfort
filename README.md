@@ -6,7 +6,9 @@ A sample website by **Ben Young Web Design** for showing HVAC and plumbing owner
 - Mobile first. Works at 390px with no sideways scroll.
 - Lighthouse mobile performance 98 to 100 on every page (details below).
 - Every page is `noindex`, and `robots.txt` blocks crawlers, so search engines stay away from the concept.
-- Honesty labels: a slim fine-print strip at the very top of every page, the footer pill, and an "Illustrative" or "Sample" tag on every review, number, and price.
+- Honesty labels, kept quiet: one fine-print line under the hero, the footer pill, and an "Illustrative" or "Sample" tag on every review, number, and price.
+- Every photo of a person is real stock photography (Pexels and Unsplash, free for commercial use). No AI-generated people. Credits on `credits.html`.
+- The same design doubles as a template: one data file per prospect builds a homepage preview. See [Homepage previews for prospects](#homepage-previews-for-prospects) and `prospects/README.md`.
 
 ---
 
@@ -24,9 +26,12 @@ Why it works: the Altamont Pass windmills are the first thing you see driving ho
 
 | Page | File | What it shows |
 |---|---|---|
-| Home | `index.html` | Offer bar, sticky header, hero, trust strip, review feed, services bento, price estimator, Comfort Club, financing calculator, owner and team, service area map, FAQ, final call band, mobile sticky bar, chat |
-| Heating & Cooling | `heating-cooling.html` | Services, Valley heat warning signs, repair-or-replace helper, FAQ |
-| Plumbing | `plumbing.html` | Emergency shutoff steps, services, tank vs tankless table, repiping, FAQ |
+| Home | `index.html` | Google rating bar, sticky header, hero (who, where, what), trust strip, Comfort photos (families at home), review feed, services bento, how a visit works (video plus tech at the door), specials and discounts, price estimator, Comfort Club, financing calculator, owner and team (crew photo), all 18 service areas, FAQ, request-a-visit form with a family photo, mobile sticky bar, chat |
+| Heating | `heating.html` | 8 sub-services (furnace repair, heat pumps, mini-splits, boilers, tune-ups, ducts), side contact form, FAQ |
+| Cooling | `cooling.html` | 8 sub-services, repair-or-replace helper, side contact form, FAQ |
+| Plumbing | `plumbing.html` | 9 sub-services, emergency shutoff steps, tank vs tankless table, repiping, side contact form, FAQ |
+| Indoor air quality | `air-quality.html` | 7 sub-services, smoke-season section, side contact form, FAQ |
+| Contact | `contact.html` | Four ways to reach us, every location with hours, all service areas, side contact form |
 | Comfort Club | `membership.html` | Two plans, "does it pay for itself" math, demo join form, FAQ |
 | Financing & Offers | `financing.html` | Payment calculator, 3-step process, 4 seasonal offers, FAQ |
 | About | `about.html` | Owner story, why "Pinwheel," four promises, the crew, license and insurance |
@@ -36,6 +41,8 @@ Why it works: the Altamont Pass windmills are the first thing you see driving ho
 | Sample report | `sample-report.html` | One-page monthly results dashboard (sample data), printable |
 | Photo credits | `credits.html` | Every photographer, fonts, and code credited |
 | 404 | `404.html` | "This page blew away." Links home, call, and book |
+
+`heating-cooling.html` is the old combined page. `netlify.toml` redirects it to `cooling.html` (301). The file is still in the repo so nothing breaks; delete it once you are sure no one links to it.
 
 The other 4 cities (Manteca, Lathrop, Stockton, Livermore) are covered on the homepage map and in the booking form. See [Adding the other 4 city pages](#adding-the-other-4-city-pages).
 
@@ -70,7 +77,7 @@ Then open the URL it prints (for example `http://localhost:8080`).
 
 - Drag the folder into Netlify Drop, or connect this repo. `netlify.toml` already sets `publish = "."` with no build command.
 - `netlify.toml` also sends an `X-Robots-Tag: noindex` header, caches fonts for a year, and returns a 404 for the working files (`/partials/`, `/scripts/`, `README.md`, `DESIGN.md`).
-- After deploy, replace the placeholder domain `https://pinwheel-concept.netlify.app` (see the placeholder table).
+- Live at `https://byw-home-comfort.netlify.app` (deploys from `main`). If the domain ever changes, update the Open Graph tags, JSON-LD, and `sitemap.xml`.
 - **The floating Netlify badge on preview links is not part of this site.** It is the Netlify Drawer, a review toolbar Netlify adds to Deploy Previews and branch deploys only. It never shows on the live production URL. To turn it off: Netlify project > Project configuration > Developer settings > Continuous deployment > Collaboration tools > Configure. To hide it for one visit, add `?ntl-drawer-state=hidden` to the preview URL.
 
 ---
@@ -89,7 +96,10 @@ Then open the URL it prints (for example `http://localhost:8080`).
 - **Chat answers:** `js/site.js`, the `KB` list inside `initChat`.
 - **Estimator price ranges:** `js/site.js`, the `BASE`, `SIZE`, and `AGE` tables inside `initEstimator`.
 - **Financing APR:** the `data-apr="7.99"` attribute on the calculator form in `financing.html` and `index.html`, plus the fine print right below it.
-- **Offer bar:** `partials/header.html`. When the offer changes, also change `fall-2026` in `js/site.js` and `partials/head.html` so people who closed the old offer see the new one.
+- **Google rating bar:** `partials/header.html` (rating, count, and the two links). The hero badge and the reviews heading on `index.html` repeat the number, so change those too.
+- **Specials:** the four `.deal` cards in `index.html` under `<!-- 6c. Specials and discounts -->`.
+- **Service areas:** the `.area-chips` list in `index.html` and `contact.html`, plus `areaServed` in the JSON-LD.
+- **Locations:** `contact.html` (cards) and `partials/footer.html`.
 
 ## How to swap photos
 
@@ -136,7 +146,10 @@ Keep each under about 2 MB, and update the video credit on `credits.html`.
 | Business name, logo, "since 2010" | Everywhere |
 | Phone (209) 555-0142 | Every `tel:` and `sms:` link, JSON-LD |
 | License CSLB #000000 | Footer, About, trust strip, JSON-LD |
-| Street address | Footer, JSON-LD |
+| Street addresses (Tracy shop, Manteca yard) | Footer, Contact page, JSON-LD |
+| Email hello@pinwheel-example.com | Contact page |
+| Specials (the four offers and their terms) | Home |
+| Google review links (they go to `review.html`) | Rating bar, hero badge |
 | Owners (Luis and Carmen Ortega) and team names | Home, About |
 | Reviews, reviewer names, 4.9 rating, 186 reviews | Home, city pages |
 | Stats (16 years, 8,400+ homes, 97% on time) | Home trust strip |
@@ -144,7 +157,7 @@ Keep each under about 2 MB, and update the video credit on `credits.html`.
 | 7.99% APR and terms | Financing, Home, `js/site.js` |
 | Report numbers | `sample-report.html` |
 | Google review link (`href="#"`) | `review.html` |
-| Domain `pinwheel-concept.netlify.app` | Open Graph tags, JSON-LD, `sitemap.xml` |
+| Domain `byw-home-comfort.netlify.app` | Open Graph tags, JSON-LD, `sitemap.xml` |
 | Photos and video (Unsplash and Pexels stock) | See `credits.html` |
 | `noindex` meta tags, `Disallow: /` in `robots.txt`, and the `X-Robots-Tag` header in `netlify.toml` | On purpose for a concept. Remove all three for a real launch |
 
@@ -171,9 +184,12 @@ Write real local copy for each city. Pages that only swap the city name read as 
 
 ## Features
 
-- **Seasonal offer bar** that stays closed once dismissed.
-- **Sticky header** that compacts on scroll. Phone number always one tap away.
-- **Mobile sticky bar** (Call, Book, Text), with the chat bubble sitting above it.
+- **Google rating bar** at the very top of every page: stars, rating, review count, and "Write a review". Tapping it opens the reviews.
+- **Sticky header** that compacts on scroll. Desktop keeps the call button; on phones the header shows only the logo and menu once the bottom bar is up.
+- **Mobile sticky bar** (Call, Book, Text) that waits until the hero buttons scroll away, on every page. Never two sets of the same buttons on one screen.
+- **Service pages** for Heating, Cooling, Plumbing, and Indoor air quality, each with sub-services and a short side form (name, phone, address, how can we help).
+- **Contact page** with every location, and a **Specials and discounts** section on the homepage.
+- **Link preview** for texts: a family photo (different from the hero) and the title `Pinwheel Heating, Air & Plumbing | Tracy HVAC`. The title adds "5-Star Service" only when the Google rating is 5.0 (Pinwheel's is 4.9, so it does not).
 - **Booking demo:** 3 steps, the next 8 open days (no Sundays, today drops off after 4pm), validation, confirmation. Sends nothing.
 - **Demo AI assistant:** scripted answers to 10 common questions, then hands off to a call, text, or booking.
 - **Instant price estimator:** 3 questions, a real price range, no email needed.
@@ -247,23 +263,41 @@ Lighthouse 12.8.2, default mobile settings (simulated slow 4G, 4x CPU slowdown),
 
 | Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|
-| Home | 98 | 100 | 100 | 66 | 1.7s | 0 | 160ms |
-| Heating & Cooling | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
-| Plumbing | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
-| Comfort Club | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
+| Home | 99 | 100 | 100 | 66 | 0.9s | 0 | 140ms |
+| Heating | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
+| Cooling | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
+| Plumbing | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
+| Indoor air quality | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
+| Contact | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
+| Comfort Club | 100 | 100 | 100 | 66 | 1.6s | 0 | 20ms |
 | Financing & Offers | 100 | 100 | 100 | 66 | 1.5s | 0 | 0ms |
 | About | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
 | Tracy | 100 | 100 | 100 | 66 | 1.8s | 0 | 0ms |
 | Mountain House | 99 | 100 | 100 | 66 | 2.0s | 0 | 0ms |
-| Review page | 100 | 100 | 100 | 66 | 1.7s | 0 | 0ms |
-| Sample report | 100 | 100 | 100 | 63 | 1.4s | 0 | 0ms |
-| Credits | 100 | 100 | 100 | 63 | 1.4s | 0 | 0ms |
-| 404 | 100 | 100 | 100 | 63 | 1.4s | 0 | 0ms |
-| Home (desktop) | 100 | 100 | 100 | 66 | 0.4s | 0 | 0ms |
+| Review page | 100 | 100 | 100 | 66 | 1.5s | 0 | 20ms |
+| Sample report | 100 | 100 | 100 | 63 | 0.9s | 0 | 0ms |
+| Credits | 100 | 100 | 100 | 63 | 0.9s | 0 | 0ms |
+
+Run on Oct 31 after the upgrade (rating bar, new pages, 21 photos). Axe reports zero issues on every page at 390px and 1440px, every tap target is at least 44px, and no page scrolls sideways at 390px.
 
 - **Video:** the strip's clip loads after the page finishes, so it does not count against the first load. Phones play it; no desktop-only fallback was needed.
 - **SEO is low on purpose.** The only failing SEO check is "page is blocked from indexing," which is the required `noindex`. Remove it for a real launch.
 - **Real files this time:** every photo and the video are self-hosted, so these numbers use the exact files that ship. Run PageSpeed Insights after deploy to confirm on Netlify.
+
+---
+
+## Homepage previews for prospects
+
+The Pinwheel design is also a template. One JSON file per business builds a complete homepage preview; sections with no data hide themselves, so there is never placeholder text.
+
+```bash
+cp prospects/example.json prospects/NAME.json      # fill it in, delete what you do not have
+node scripts/build-preview.mjs prospects/NAME.json # -> previews/NAME/
+npx serve previews/NAME                            # check it on your phone
+scripts/deploy-preview.sh NAME                     # -> https://byw-NAME.pages.dev/ (Cloudflare Pages)
+```
+
+`prospects/README.md` has the full list of fields to collect, the exact steps, and the one-time Cloudflare setup. Two test data files are included: `sunrise-comfort.json` (logo, custom colors, 5.0 rating) and `delta-air.json` (no logo, 4.6 rating, most optional fields missing).
 
 ---
 
@@ -279,9 +313,10 @@ Lighthouse 12.8.2, default mobile settings (simulated slow 4G, 4x CPU slowdown),
 ## Files
 
 ```
-index.html, heating-cooling.html, plumbing.html, membership.html,
-financing.html, about.html, review.html, sample-report.html,
-credits.html, 404.html
+index.html, heating.html, cooling.html, plumbing.html, air-quality.html,
+contact.html, membership.html, financing.html, about.html, review.html,
+sample-report.html, credits.html, 404.html
+heating-cooling.html  old combined page, redirected to cooling.html (safe to delete later)
 service-areas/        tracy.html, mountain-house.html
 css/site.css          design tokens at the top, then components
 js/site.js            all interactions (vanilla JS, one file)
@@ -294,6 +329,11 @@ scripts/photos.json   every photo: source, crop box, focal point, alt text, cred
 scripts/build-images.py  makes the self-hosted WebP files (Python + Pillow)
 images/photos/        self-hosted photos, every size and crop
 video/                visit.mp4 and visit.webm
+template/homepage.html   the one-page template that builds prospect previews
+scripts/build-preview.mjs  data file in, previews/NAME/ out (no dependencies)
+scripts/deploy-preview.sh  puts a preview on Cloudflare Pages
+prospects/            one JSON data file per prospect, logos/, and the field guide (README.md)
+previews/             built previews (ignored by git, rebuilt from the data files)
 DESIGN.md             the plan: tokens, wireframes, full copy deck
 netlify.toml, robots.txt, sitemap.xml, favicon.svg
 ```

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{titleTag}}</title>
+<meta name="description" content="{{metaDescription}}">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="{{themeColor}}">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="{{{faviconHref}}}" type="image/svg+xml">
+<link rel="preload" href="fonts/plus-jakarta-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+{{#if brandCss}}<style>{{{brandCss}}}</style>
+{{/if}}<script>document.documentElement.classList.replace('no-js','js')</script>
+<meta property="og:site_name" content="{{name}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{titleTag}}">
+<meta property="og:description" content="{{metaDescription}}">
+<meta property="og:url" content="{{previewUrl}}">
+<meta property="og:image" content="{{previewUrl}}images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A smiling family of three on their living room couch.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" imagesrcset="images/photos/tech-marcus-480x480.webp 480w, images/photos/tech-marcus-720x720.webp 720w, images/photos/tech-marcus-960x960.webp 960w, images/photos/tech-marcus-1200x1200.webp 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="images/photos/tech-marcus-480x600.webp 480w, images/photos/tech-marcus-720x900.webp 720w, images/photos/tech-marcus-960x1200.webp 960w, images/photos/tech-marcus-1200x1500.webp 1200w" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">
+</head>
+<body class="has-sticky-bar">
+{{> sprite}}
+<a class="skip-link" href="#main">Skip to content</a>
+{{#if hasRating}}<aside class="rating-bar" aria-label="Google rating">
+  <div class="container rating-bar-inner">
+    <a class="rating-bar-score" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">
+      <svg class="g-mark" aria-hidden="true"><use href="#g-logo"/></svg>
+      <span class="stars5 small" role="img" aria-label="{{starsLabel}}"></span>
+      <b>{{ratingText}}</b>
+      {{#if reviewCount}}<span class="rating-bar-count"><span class="rating-bar-n">{{reviewCount}}</span> <span class="rb-g">Google </span>reviews</span>{{else}}<span class="rating-bar-count">on <span class="rb-g">Google</span></span>{{/if}}
+    </a>
+    {{#if writeReviewUrl}}<a class="rating-bar-write" href="{{writeReviewUrl}}" target="_blank" rel="noopener">Write a review<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>{{/if}}
+  </div>
+</aside>
+{{/if}}<div class="header-sentinel" data-header-sentinel aria-hidden="true"></div>
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <a class="logo" href="#main" aria-label="{{name}}, back to top">
+      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="200" height="44">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
+      <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-list">
+        {{#if hasServices}}<li><a class="nav-link" href="#services">Services</a></li>{{/if}}
+        {{#if hasReviews}}<li><a class="nav-link" href="#reviews">Reviews</a></li>{{/if}}
+        {{#if hasSpecials}}<li><a class="nav-link" href="#specials">Specials</a></li>{{/if}}
+        {{#if hasAreas}}<li><a class="nav-link" href="#areas">Service Areas</a></li>{{/if}}
+        <li><a class="nav-link" href="#request">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="header-phone" href="tel:{{tel}}" aria-label="Call {{phonePretty}}">
+        <span class="icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+        <span class="header-phone-text" aria-hidden="true"><small>{{#if hasHours}}{{hours}}{{else}}Call or text{{/if}}</small><span>{{phonePretty}}</span></span>
+      </a>
+      <a class="btn btn-primary btn-sm header-book" href="#request">Request a visit</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-open><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
+  <div class="mm-head">
+    <a class="logo" href="#main" aria-label="{{name}}, back to top">
+      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="200" height="44">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
+      <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
+    </a>
+    <button class="mm-close" type="button" aria-label="Close menu" data-menu-close><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <nav class="mm-body" aria-label="Mobile">
+    <div class="mm-group">
+      <p class="mm-group-title">On this page</p>
+      <ul class="mm-links">
+        {{#if hasServices}}<li><a href="#services">Services <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>{{/if}}
+        <li><a href="#how-it-works">How a visit works <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
+        {{#if hasReviews}}<li><a href="#reviews">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>{{/if}}
+        {{#if hasSpecials}}<li><a href="#specials">Specials and discounts <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>{{/if}}
+        {{#if hasAreas}}<li><a href="#areas">Service areas <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>{{/if}}
+        {{#if hasFaqs}}<li><a href="#faq">FAQ <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>{{/if}}
+        <li><a href="#request">Request a visit <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
+      </ul>
+    </div>
+    <div class="mm-cta">
+      <a class="btn btn-primary btn-lg" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call {{phonePretty}}</a>
+      <a class="btn btn-navy btn-lg" href="sms:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Text us</a>
+    </div>
+    {{#if hasHours}}<p class="mm-hours">{{hours}}</p>{{/if}}
+  </nav>
+</dialog>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">{{eyebrow}}</p>
+        <h1 id="hero-title">{{{headline}}}</h1>
+        <p class="lead">{{lead}}</p>
+        <div class="hero-ctas" data-hide-bar>
+          <a class="btn btn-primary btn-lg" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call now</a>
+          <a class="btn btn-secondary btn-lg" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Request a visit</a>
+        </div>
+        {{#if hasHours}}<p class="hero-note"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>{{hours}}</p>{{/if}}
+        {{#if hasRating}}<a class="rating-badge rating-badge-link" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">
+          <svg class="g-mark" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+          <span class="score">{{ratingText}}</span>
+          <span class="stars5" role="img" aria-label="{{starsLabel}}"></span>
+          {{#if reviewCount}}<span class="count">{{reviewCount}} Google reviews</span>{{else}}<span class="count">on Google</span>{{/if}}
+        </a>{{/if}}
+        <p class="hero-fine">Homepage preview by Ben Young Web Design. Photos are placeholders until we add yours.</p>
+      </div>
+      <div class="hero-media">
+        <div class="arch">
+          <picture>
+            <source media="(max-width: 899px)" srcset="images/photos/tech-marcus-480x480.webp 480w, images/photos/tech-marcus-720x720.webp 720w, images/photos/tech-marcus-960x960.webp 960w, images/photos/tech-marcus-1200x1200.webp 1200w" sizes="92vw" width="1200" height="1200">
+            <img sizes="(min-width: 1200px) 522px, 42vw" src="images/photos/tech-marcus-720x900.webp" srcset="images/photos/tech-marcus-480x600.webp 480w, images/photos/tech-marcus-720x900.webp 720w, images/photos/tech-marcus-960x1200.webp 960w, images/photos/tech-marcus-1200x1500.webp 1200w" width="1200" height="1500" alt="Technician checking an outdoor AC condenser beside a home with a flashlight" fetchpriority="high" style="object-position:49% 50%;background-color:#9a9a92">
+          </picture>
+        </div>
+        <div class="floating-card" aria-hidden="true">
+          <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span>
+          <span><strong>Price first</strong><span>You approve it before we start</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{#if hasTrust}}<section class="trust on-dark" aria-label="Why neighbors trust us">
+    <div class="container">
+      <ul class="trust-list">
+        {{#if hasLicense}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-license"/></svg></span><span><strong>Licensed</strong><span>{{license}}</span></span></li>{{/if}}
+        {{#if insured}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span><strong>Insured</strong><span>Bonded and fully covered</span></span></li>{{/if}}
+        {{#if hasYears}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span><span><strong>{{yearsInBusiness}} years local</strong><span>Serving {{city}} since {{sinceYear}}</span></span></li>{{/if}}
+        {{#if upfront}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span><span><strong>Upfront pricing</strong><span>Your price before we start</span></span></li>{{/if}}
+        {{#if guarantee}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-guarantee"/></svg></span><span><strong>Satisfaction guarantee</strong><span>We make it right</span></span></li>{{/if}}
+      </ul>
+    </div>
+  </section>{{/if}}
+
+  <section class="section comfort bg-white" id="comfort" aria-labelledby="comfort-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Why we do this</p>
+        <h2 id="comfort-title">Comfort looks like <span class="accent">this.</span></h2>
+        <p class="lead">A cool bedroom in August. Warm floors on a January morning. Hot water on the first try. That is the whole job, and it is why {{city}} families call us back.</p>
+      </div>
+      <div class="comfort-grid">
+        <figure class="comfort-tile big">
+          <div class="photo"><img sizes="(min-width: 1000px) 640px, 92vw" src="images/photos/family-couch-720x540.webp" srcset="images/photos/family-couch-480x360.webp 480w, images/photos/family-couch-720x540.webp 720w, images/photos/family-couch-960x720.webp 960w, images/photos/family-couch-1200x900.webp 1200w" width="1200" height="900" alt="Smiling family of three sitting close together on a gray couch in a bright living room" loading="lazy" decoding="async" style="object-position:50% 52%;background-color:#c8b9a6"></div>
+          <figcaption><strong>Cool upstairs in August</strong><span>Systems sized right for the whole house, so the kids' rooms cool down too.</span></figcaption>
+        </figure>
+        <figure class="comfort-tile">
+          <div class="photo"><img sizes="(min-width: 1000px) 460px, 92vw" src="images/photos/dad-daughter-720x540.webp" srcset="images/photos/dad-daughter-480x360.webp 480w, images/photos/dad-daughter-720x540.webp 720w, images/photos/dad-daughter-960x720.webp 960w" width="960" height="720" alt="Dad and his laughing daughter building a toy together at the living room table" loading="lazy" decoding="async" style="object-position:42% 50%;background-color:#cfc7bc"></div>
+          <figcaption><strong>Warm mornings in January</strong><span>Heating checked and ready before the first cold snap.</span></figcaption>
+        </figure>
+        <figure class="comfort-tile">
+          <div class="photo"><img sizes="(min-width: 1000px) 460px, 92vw" src="images/photos/couple-home-720x540.webp" srcset="images/photos/couple-home-480x360.webp 480w, images/photos/couple-home-720x540.webp 720w, images/photos/couple-home-960x720.webp 960w" width="960" height="720" alt="Couple standing arm in arm in the driveway of their stucco home with a red tile roof" loading="lazy" decoding="async" style="object-position:45% 62%;background-color:#b9a58f"></div>
+          <figcaption><strong>A home that just works</strong><span>One number to call when something stops working.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  {{#if hasReviews}}<section class="section reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
+    <div class="container">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">Reviews</p>
+          <h2 id="reviews-title">Neighbors say it better <span class="accent">than we can.</span></h2>
+          {{#if hasRating}}<p class="rating-line"><svg class="g-mark" role="img" aria-label="Google"><use href="#g-logo"/></svg>{{ratingText}} stars{{#if reviewCount}} from {{reviewCount}} Google reviews{{else}} on Google{{/if}}. <a class="text-link" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">Read them all<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></p>{{/if}}
+        </div>
+        <div class="carousel-controls">
+          <button class="round-btn" type="button" data-prev aria-label="Previous reviews"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+          <button class="round-btn" type="button" data-next aria-label="More reviews"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="review-track" data-track tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
+      <ul class="review-list">
+        {{#each reviews}}<li class="review-card">
+          <div class="review-top"><span class="avatar" style="--h:{{hue}}" aria-hidden="true">{{initial}}</span><div><p class="review-name">{{name}}</p>{{#if meta}}<p class="review-meta">{{meta}}</p>{{/if}}</div><svg class="g-mark" role="img" aria-label="Google review"><use href="#g-logo"/></svg></div>
+          <span class="stars5" role="img" aria-label="5 out of 5 stars"></span>
+          <p class="review-text">{{quote}}</p>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    <p class="swipe-hint"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-right"/></svg>Swipe for more reviews</p>
+  </section>{{/if}}
+
+  {{#if hasServices}}<section class="section services bg-white" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2 id="services-title">One call for <span class="accent">{{serviceSummary}}.</span></h2>
+        <p class="lead">The same trained techs and the same upfront pricing on every job, big or small.</p>
+      </div>
+      <div class="svc-grid">
+        {{#each services}}<article class="svc-card" id="{{anchor}}">
+          <span class="icon-bubble {{tone}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span>
+          <h3>{{name}}</h3>
+          {{#if blurb}}<p>{{blurb}}</p>{{/if}}
+          {{#if sub}}<ul class="svc-sub">
+            {{#each sub}}<li>{{this}}</li>
+            {{/each}}
+          </ul>{{/if}}
+          <a class="text-link" href="#request">Request {{nameLower}}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+  </section>{{/if}}
+
+  <section class="section visit" id="how-it-works" aria-labelledby="visit-title">
+    <div class="container visit-grid">
+      <div class="visit-media-col">
+      <div class="visit-media" data-video="video/visit">
+        <picture>
+          <img src="images/visit-poster-960.webp" srcset="images/visit-poster-640.webp 640w, images/visit-poster-960.webp 960w, images/visit-poster-1280.webp 1280w" sizes="(min-width: 900px) 600px, 92vw" width="1280" height="720" alt="Close-up of a plumber's gloved hands tightening an outdoor faucet with a pipe wrench" loading="lazy" decoding="async" style="background-color:#5a1f24">
+        </picture>
+      </div>
+        <figure class="visit-door">
+          <img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/tech-door-720x315.webp" srcset="images/photos/tech-door-480x210.webp 480w, images/photos/tech-door-720x315.webp 720w, images/photos/tech-door-960x420.webp 960w, images/photos/tech-door-1200x525.webp 1200w" width="1200" height="525" alt="Homeowner opening her front door to a technician in a light green shirt" loading="lazy" decoding="async" style="object-position:45% 40%;background-color:#d6cfc6">
+          <figcaption>Shoe covers on at the door, every visit</figcaption>
+        </figure>
+      </div>
+      <div>
+        <p class="eyebrow">How a visit works</p>
+        <h2 id="visit-title">Three steps. <span class="accent">No surprises.</span></h2>
+        <ol class="visit-steps">
+          <li><strong>Reach out in a minute</strong><span>Call, text, or send the form below. We confirm an arrival window by text.</span></li>
+          <li><strong>See the price first</strong><span>Your tech finds the problem and shows you the price. You decide.</span></li>
+          <li><strong>Fixed and cleaned up</strong><span>Shoe covers on, mess gone, and the work explained before we leave.</span></li>
+        </ol>
+        <a class="btn btn-primary" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Request a visit</a>
+      </div>
+    </div>
+  </section>
+
+  {{#if hasSpecials}}<section class="section specials" id="specials" aria-labelledby="specials-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Specials and discounts</p>
+        <h2 id="specials-title">Deals for your <span class="accent">whole home.</span></h2>
+        <p class="lead">Current offers for {{city}} area homeowners. Mention one when you reach out.</p>
+      </div>
+      <div class="deals">
+        {{#each specials}}<article class="deal">
+          <p class="deal-amount">{{amount}}</p>
+          <h3>{{title}}</h3>
+          {{#if text}}<p>{{text}}</p>{{/if}}
+          <a class="btn btn-secondary btn-sm" href="#request">Claim this offer</a>
+          {{#if fine}}<p class="fine">{{fine}}</p>{{/if}}
+        </article>
+        {{/each}}
+      </div>
+    </div>
+  </section>{{/if}}
+
+  {{#if hasAreas}}<section class="section areas bg-white" id="areas" aria-labelledby="areas-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Service areas</p>
+        <h2 id="areas-title">Close by, so we <span class="accent">get there fast.</span></h2>
+        <p class="lead">Based in {{city}} and serving {{areaSummary}}.</p>
+      </div>
+      <ul class="area-chips" aria-label="Cities we serve">
+        {{#each areaChips}}<li{{#if hq}} class="is-hq"{{/if}}>{{#if hq}}<svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>{{/if}}{{name}}</li>
+        {{/each}}
+      </ul>
+      <p class="muted">Just outside these cities? Call us. If we can get there fast, we'll come.</p>
+    </div>
+  </section>{{/if}}
+
+  {{#if hasFaqs}}<section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="container faq-grid">
+      <div class="faq-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">Straight answers to <span class="accent">common questions.</span></h2>
+      </div>
+      <div class="accordion" data-accordion data-first-open>
+        {{#each faqs}}<div class="acc-item">
+          <h3 class="acc-heading"><button class="acc-trigger" type="button" id="faq-{{n}}-btn" aria-expanded="true" aria-controls="faq-{{n}}">{{q}}<span class="acc-icon" aria-hidden="true"></span></button></h3>
+          <div class="acc-panel" id="faq-{{n}}" role="region" aria-labelledby="faq-{{n}}-btn"><div class="acc-inner"><div><p>{{a}}</p></div></div></div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="card call-card">
+        <p><strong>Still wondering about something?</strong> A real person can answer it in a minute.</p>
+        <a class="btn btn-primary" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call {{phonePretty}}</a>
+      </div>
+    </div>
+  </section>{{/if}}
+
+</main>
+
+  <section class="section request bg-white" id="request" aria-labelledby="request-title">
+    <div class="container request-grid">
+      <div class="request-photo arch tall">
+        <img sizes="(min-width: 900px) 480px, 92vw" src="images/photos/family-baby-720x960.webp" srcset="images/photos/family-baby-480x640.webp 480w, images/photos/family-baby-720x960.webp 720w, images/photos/family-baby-960x1280.webp 960w" width="960" height="1280" alt="Mom kissing a baby while dad and their daughter laugh beside them on a green couch" loading="lazy" decoding="async" style="object-position:50% 40%;background-color:#9aa98c">
+      </div>
+      <div class="request-card">
+        <p class="eyebrow">Request a visit</p>
+        <h2 id="request-title">Tell us what's going on. <span class="accent">We'll text you back.</span></h2>
+        <form class="side-form" data-demo-form="request-done" method="dialog" novalidate>
+          <div class="field">
+            <label for="rq-name">Your name</label>
+            <input class="input" id="rq-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="rq-phone">Mobile number</label>
+            <input class="input" id="rq-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+          </div>
+          <div class="field">
+            <label for="rq-address">Home address</label>
+            <input class="input" id="rq-address" name="address" type="text" autocomplete="street-address" required>
+          </div>
+          <div class="field">
+            <label for="rq-help">How can we help?</label>
+            <textarea class="textarea" id="rq-help" name="help" rows="3" required></textarea>
+          </div>
+          <p class="form-error" data-error role="alert" hidden>Add your name, number, address, and a few words about the problem.</p>
+          <button class="btn btn-primary btn-lg btn-block" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Send request</button>
+          <p class="fine">Preview form. On the live site, this goes straight to your phone.</p>
+        </form>
+        <div class="demo-confirm" id="request-done" tabindex="-1" hidden>
+          <div class="confirm-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div>
+          <h3>Got it</h3>
+          <p class="confirm-summary" data-summary>Your request is in.</p>
+          <p class="demo-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>This is a preview. On the live site, requests go straight to the owner's phone.</p>
+        </div>
+        <p class="request-alt">Prefer to talk? <a href="tel:{{tel}}">Call {{phonePretty}}</a> or <a href="sms:{{tel}}">text us</a>.{{#if hasHours}} {{hours}}.{{/if}}</p>
+      </div>
+    </div>
+  </section>
+
+<footer class="site-footer on-dark">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="logo light" href="#main" aria-label="{{name}}, back to top">
+        <span class="logo-initial" aria-hidden="true">{{initial}}</span>
+        <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>
+      </a>
+      <p>{{name}} serves homeowners in {{areaSummary}}.</p>
+      {{#if hasLicense}}<p>{{license}}.{{#if insured}} Bonded and insured.{{/if}}</p>{{else}}{{#if insured}}<p>Bonded and insured.</p>{{/if}}{{/if}}
+    </div>
+    <nav aria-label="On this page">
+      <p class="footer-title">On this page</p>
+      <ul class="footer-links">
+        {{#if hasServices}}<li><a href="#services">Services</a></li>{{/if}}
+        <li><a href="#how-it-works">How a visit works</a></li>
+        {{#if hasReviews}}<li><a href="#reviews">Reviews</a></li>{{/if}}
+        {{#if hasSpecials}}<li><a href="#specials">Specials</a></li>{{/if}}
+        {{#if hasAreas}}<li><a href="#areas">Service areas</a></li>{{/if}}
+        {{#if hasFaqs}}<li><a href="#faq">FAQ</a></li>{{/if}}
+        <li><a href="#request">Request a visit</a></li>
+      </ul>
+    </nav>
+    {{#if hasLocations}}<nav aria-label="Locations">
+      <p class="footer-title">{{#if oneLocation}}Location{{else}}Locations{{/if}}</p>
+      {{#each locations}}<p><strong>{{name}}</strong>{{#if address}}<br>{{address}}{{/if}}{{#if cityLine}}<br>{{cityLine}}{{/if}}</p>
+      {{/each}}
+    </nav>{{/if}}
+    <div class="footer-contact">
+      <p class="footer-title">Contact</p>
+      <a class="big" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>{{phonePretty}}</a>
+      <p><a class="footer-text-link" href="sms:{{tel}}">Text us at the same number</a></p>
+      {{#if hasEmail}}<p><a class="footer-text-link" href="mailto:{{email}}">{{email}}</a></p>{{/if}}
+      {{#if hasHours}}<p>{{hours}}</p>{{/if}}
+      {{#if hasRating}}<p><a class="footer-text-link" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">Read our Google reviews</a></p>{{/if}}
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Homepage preview by Ben Young Web Design</p>
+    <p>© {{year}} {{nameDot}} Photos are stock placeholders until replaced with your own.</p>
+  </div>
+</footer>
+<nav class="sticky-bar" aria-label="Quick contact">
+  <a class="sb-btn sb-call" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
+  <a class="sb-btn sb-book" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Request</a>
+  <a class="sb-btn sb-text" href="sms:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Text</a>
+</nav>
+<script src="js/site.js" defer></script>
+</body>
+</html>

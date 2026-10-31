@@ -21,7 +21,7 @@
     "by": "Kathleen Austin Kuhn",
     "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
     "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
-    "use": "Home hero, team",
+    "use": "Home hero, cooling hero, team",
     "preview": "pexels__32497161.jpg"
   },
   "owner-luis": {
@@ -122,7 +122,7 @@
     "by": "yanagi",
     "user": "87gi",
     "page": "https://unsplash.com/photos/a-air-conditioner-sitting-outside-of-a-building-_7huNth8Y2s",
-    "use": "Heating and cooling hero",
+    "use": "Heating page, ductless section",
     "preview": "heat-pump___7huNth8Y2s.jpg",
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1724488751821-1415f5cf4960?w=2400&q=85&fm=jpg",
@@ -142,7 +142,7 @@
     "by": "allison christine",
     "user": "happpyal",
     "page": "https://unsplash.com/photos/white-ceramic-mug-on-white-knit-textile-3GNesMmbHBo",
-    "use": "Heating section",
+    "use": "Heating hero",
     "preview": "furnace__3GNesMmbHBo.jpg",
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1586011591237-2772414429d2?w=2400&q=85&fm=jpg",
@@ -162,7 +162,7 @@
     "by": "Dan LeFebvre",
     "user": "danlefeb",
     "page": "https://unsplash.com/photos/gray-nest-thermostat-displaying-at-63-RFAHj4tI37Y",
-    "use": "AC repair tile, heating and cooling",
+    "use": "AC repair tile, cooling, air quality",
     "preview": "thermostat__RFAHj4tI37Y.jpg",
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=2400&q=85&fm=jpg",
@@ -182,7 +182,7 @@
     "by": "Birmingham Airduct Cleaning Services",
     "user": "hadleycummings",
     "page": "https://unsplash.com/photos/a-person-is-working-on-a-ceiling-air-conditioner-WwzK2S0h6zU",
-    "use": "Comfort Club hero",
+    "use": "Comfort Club hero, air quality hero",
     "preview": "air-quality__WwzK2S0h6zU.jpg",
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1737012197886-7d5a52ded45b?w=2400&q=85&fm=jpg",
@@ -287,5 +287,173 @@
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1655759738595-418970010986?w=2400&q=85&fm=jpg",
     "profile": "https://unsplash.com/@omarlopez1"
+  },
+  "family-couch": {
+    "id": "39191159",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/39191159/pexels-photo-39191159.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 3840,
+    "h": 2160,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.5,
+      0.52
+    ],
+    "color": "#c8b9a6",
+    "alt": "Smiling family of three sitting close together on a gray couch in a bright living room",
+    "by": "Vitaly Gariev",
+    "profile": "https://www.pexels.com/@silverkblack/",
+    "page": "https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/",
+    "use": "Comfort section, link preview image",
+    "preview": "pexels__39191159.jpg"
+  },
+  "dad-daughter": {
+    "id": "4814865",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/4814865/pexels-photo-4814865.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 5510,
+    "h": 3673,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.42,
+      0.5
+    ],
+    "color": "#cfc7bc",
+    "alt": "Dad and his laughing daughter building a toy together at the living room table",
+    "by": "Ketut Subiyanto",
+    "profile": "https://www.pexels.com/@ketut-subiyanto/",
+    "page": "https://www.pexels.com/photo/a-father-and-daughter-having-fun-4814865/",
+    "use": "Comfort section",
+    "preview": "pexels__4814865.jpg"
+  },
+  "couple-home": {
+    "id": "7579046",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/7579046/pexels-photo-7579046.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 5184,
+    "h": 3888,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.45,
+      0.62
+    ],
+    "color": "#b9a58f",
+    "alt": "Couple standing arm in arm in the driveway of their stucco home with a red tile roof",
+    "by": "Kindel Media",
+    "profile": "https://www.pexels.com/@kindelmedia/",
+    "page": "https://www.pexels.com/photo/couple-standing-in-front-of-their-house-7579046/",
+    "use": "Comfort section",
+    "preview": "pexels__7579046.jpg"
+  },
+  "crew-van": {
+    "id": "6200780",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/6200780/pexels-photo-6200780.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 3787,
+    "h": 5680,
+    "box": [
+      0.0,
+      0.3,
+      1.0,
+      0.86
+    ],
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#b57c45",
+    "alt": "Two technicians in matching red uniforms unloading a white van in a home's driveway",
+    "by": "Tima Miroshnichenko",
+    "profile": "https://www.pexels.com/@tima-miroshnichenko/",
+    "page": "https://www.pexels.com/photo/man-and-woman-in-red-suits-standing-beside-white-van-6200780/",
+    "use": "Team",
+    "preview": "pexels__6200780.jpg"
+  },
+  "tech-door": {
+    "id": "8292806",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/8292806/pexels-photo-8292806.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 4500,
+    "h": 3000,
+    "box": [
+      0.08,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.45,
+      0.4
+    ],
+    "color": "#d6cfc6",
+    "alt": "Homeowner opening her front door to a technician in a light green shirt",
+    "by": "RDNE Stock project",
+    "profile": "https://www.pexels.com/@rdne/",
+    "page": "https://www.pexels.com/photo/a-man-talking-to-a-woman-on-a-doorway-8292806/",
+    "use": "How a visit works, contact page",
+    "preview": "pexels__8292806.jpg"
+  },
+  "family-baby": {
+    "id": "16852512",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/16852512/pexels-photo-16852512.jpeg?auto=compress&cs=tinysrgb&w=1707",
+    "w": 1707,
+    "h": 2560,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.5,
+      0.4
+    ],
+    "color": "#9aa98c",
+    "alt": "Mom kissing a baby while dad and their daughter laugh beside them on a green couch",
+    "by": "Dasha Halepova",
+    "profile": "https://www.pexels.com/@dasha-halepova-566202699/",
+    "page": "https://www.pexels.com/photo/couple-sitting-on-couch-with-children-16852512/",
+    "use": "Request a visit form",
+    "preview": "pexels__16852512.jpg"
+  },
+  "grandparents": {
+    "id": "7489081",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/7489081/pexels-photo-7489081.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 5760,
+    "h": 3840,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#d9d3cb",
+    "alt": "Grandparents and two grandchildren laughing together on a white couch",
+    "by": "Gustavo Fring",
+    "profile": "https://www.pexels.com/@gustavo-fring/",
+    "page": "https://www.pexels.com/photo/a-family-sitting-on-the-couch-7489081/",
+    "use": "Comfort Club page",
+    "preview": "pexels__7489081.jpg"
   }
 }

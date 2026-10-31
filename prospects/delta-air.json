@@ -1,0 +1,19 @@
+{
+  "name": "Delta Air & Heat",
+  "phone": "(209) 555-0133",
+  "city": "Stockton",
+  "serviceAreas": ["Stockton", "Lodi", "Manteca", "Lathrop", "French Camp"],
+  "services": [
+    { "name": "Air conditioning", "sub": ["AC repair", "AC replacement", "Maintenance plans"] },
+    { "name": "Heating", "sub": ["Furnace repair", "Furnace replacement", "Heat pumps"] }
+  ],
+  "googleRating": 4.6,
+  "reviewCount": 48,
+  "googleReviewsUrl": "https://www.google.com/maps/search/Delta+Air+and+Heat+Stockton",
+  "writeReviewUrl": "https://www.google.com/maps/search/Delta+Air+and+Heat+Stockton",
+  "reviews": [
+    { "name": "Tom W.", "city": "Stockton", "quote": "Showed up on time, found the problem in ten minutes, and the bill matched the quote." },
+    { "name": "Priya S.", "city": "Lodi", "quote": "They replaced our furnace in a day and left the garage cleaner than they found it." },
+    { "name": "Kevin L.", "quote": "Fair price and no pressure to buy a new system when a repair would do." }
+  ]
+}

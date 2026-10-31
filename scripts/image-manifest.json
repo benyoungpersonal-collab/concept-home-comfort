@@ -126,6 +126,78 @@
   "q": 70
  },
  {
+  "file": "couple-home-480x360.webp",
+  "key": "couple-home",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.62
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "couple-home-720x540.webp",
+  "key": "couple-home",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.62
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "couple-home-960x720.webp",
+  "key": "couple-home",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.62
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-1200x1200.webp",
+  "key": "cozy",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
   "file": "cozy-1200x900.webp",
   "key": "cozy",
   "w": 1200,
@@ -162,10 +234,100 @@
   "q": 70
  },
  {
+  "file": "cozy-480x480.webp",
+  "key": "cozy",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-480x600.webp",
+  "key": "cozy",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "cozy-720x540.webp",
   "key": "cozy",
   "w": 720,
   "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-720x720.webp",
+  "key": "cozy",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-720x900.webp",
+  "key": "cozy",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-960x1200.webp",
+  "key": "cozy",
+  "w": 960,
+  "h": 1200,
   "crop": true,
   "fp": [
    0.5,
@@ -188,6 +350,348 @@
   "fp": [
    0.5,
    0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "cozy-960x960.webp",
+  "key": "cozy",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "crew-van-1200x457.webp",
+  "key": "crew-van",
+  "w": 1200,
+  "h": 457,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 62
+ },
+ {
+  "file": "crew-van-1200x675.webp",
+  "key": "crew-van",
+  "w": 1200,
+  "h": 675,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 62
+ },
+ {
+  "file": "crew-van-1600x610.webp",
+  "key": "crew-van",
+  "w": 1600,
+  "h": 610,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 62
+ },
+ {
+  "file": "crew-van-480x270.webp",
+  "key": "crew-van",
+  "w": 480,
+  "h": 270,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "crew-van-720x274.webp",
+  "key": "crew-van",
+  "w": 720,
+  "h": 274,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "crew-van-720x405.webp",
+  "key": "crew-van",
+  "w": 720,
+  "h": 405,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "crew-van-960x366.webp",
+  "key": "crew-van",
+  "w": 960,
+  "h": 366,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "crew-van-960x540.webp",
+  "key": "crew-van",
+  "w": 960,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0.3,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "dad-daughter-480x360.webp",
+  "key": "dad-daughter",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "dad-daughter-720x540.webp",
+  "key": "dad-daughter",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "dad-daughter-960x720.webp",
+  "key": "dad-daughter",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.42,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "family-baby-480x640.webp",
+  "key": "family-baby",
+  "w": 480,
+  "h": 640,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "family-baby-720x960.webp",
+  "key": "family-baby",
+  "w": 720,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "family-baby-960x1280.webp",
+  "key": "family-baby",
+  "w": 960,
+  "h": 1280,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "family-couch-1200x900.webp",
+  "key": "family-couch",
+  "w": 1200,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.52
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "family-couch-480x360.webp",
+  "key": "family-couch",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.52
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "family-couch-720x540.webp",
+  "key": "family-couch",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.52
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "family-couch-960x720.webp",
+  "key": "family-couch",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.52
   ],
   "box": [
    0,
@@ -324,6 +828,60 @@
   "q": 70
  },
  {
+  "file": "grandparents-480x600.webp",
+  "key": "grandparents",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "grandparents-720x900.webp",
+  "key": "grandparents",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "grandparents-960x1200.webp",
+  "key": "grandparents",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "heat-pump-1200x1200.webp",
   "key": "heat-pump",
   "w": 1200,
@@ -340,6 +898,42 @@
    1
   ],
   "q": 62
+ },
+ {
+  "file": "heat-pump-1200x900.webp",
+  "key": "heat-pump",
+  "w": 1200,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "heat-pump-480x360.webp",
+  "key": "heat-pump",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
  },
  {
   "file": "heat-pump-480x480.webp",
@@ -364,6 +958,24 @@
   "key": "heat-pump",
   "w": 480,
   "h": 600,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-720x540.webp",
+  "key": "heat-pump",
+  "w": 720,
+  "h": 540,
   "crop": true,
   "fp": [
    0.6,
@@ -418,6 +1030,24 @@
   "key": "heat-pump",
   "w": 960,
   "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "heat-pump-960x720.webp",
+  "key": "heat-pump",
+  "w": 960,
+  "h": 720,
   "crop": true,
   "fp": [
    0.6,
@@ -1055,6 +1685,204 @@
   ],
   "box": [
    0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-1200x1200.webp",
+  "key": "tech-door",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "tech-door-1200x525.webp",
+  "key": "tech-door",
+  "w": 1200,
+  "h": 525,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "tech-door-480x210.webp",
+  "key": "tech-door",
+  "w": 480,
+  "h": 210,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-480x480.webp",
+  "key": "tech-door",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-480x600.webp",
+  "key": "tech-door",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-720x315.webp",
+  "key": "tech-door",
+  "w": 720,
+  "h": 315,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-720x720.webp",
+  "key": "tech-door",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-720x900.webp",
+  "key": "tech-door",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-960x1200.webp",
+  "key": "tech-door",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-960x420.webp",
+  "key": "tech-door",
+  "w": 960,
+  "h": 420,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-door-960x960.webp",
+  "key": "tech-door",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.4
+  ],
+  "box": [
+   0.08,
    0,
    1,
    1

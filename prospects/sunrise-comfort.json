@@ -1,0 +1,42 @@
+{
+  "name": "Sunrise Comfort Co.",
+  "shortName": "Sunrise",
+  "tagline": "Heating · Air · Plumbing",
+  "phone": "209-555-0177",
+  "city": "Manteca",
+  "logo": "logos/sunrise-comfort.svg",
+  "colors": { "brand": "#D9731F", "navy": "#1E5E8A" },
+  "license": "CSLB #1099999",
+  "yearsInBusiness": 12,
+  "hours": "Mon to Sat, 7am to 7pm",
+  "email": "hello@sunrisecomfort.example",
+  "serviceAreas": ["Manteca", "Lathrop", "Ripon", "Tracy", "Stockton", "Escalon", "Salida", "Modesto", "French Camp", "Mountain House"],
+  "services": [
+    { "name": "Heating", "blurb": "Repairs finished the same day, most of the time.", "sub": ["Furnace repair", "Furnace installation", "Heat pumps", "Ductless mini-splits", "Fall tune-ups"] },
+    { "name": "Cooling", "blurb": "Cool again fast, with the price shown before we start.", "sub": ["AC repair", "New AC systems", "Heat pump cooling", "Duct sealing", "Spring tune-ups"] },
+    { "name": "Plumbing", "blurb": "Water heaters, drains, and leaks handled in one visit.", "sub": ["Water heaters", "Tankless water heaters", "Drain cleaning", "Leak repair", "Repiping"] },
+    { "name": "Indoor air quality", "sub": ["Duct cleaning", "Whole-home filtration", "Air purifiers", "Humidity control"] }
+  ],
+  "googleRating": 5.0,
+  "reviewCount": 212,
+  "googleReviewsUrl": "https://www.google.com/maps/search/Sunrise+Comfort+Co+Manteca",
+  "writeReviewUrl": "https://www.google.com/maps/search/Sunrise+Comfort+Co+Manteca",
+  "reviews": [
+    { "name": "Elena R.", "city": "Manteca", "when": "2 weeks ago", "quote": "Our AC died on a 104 degree day. They were here by 2 and the house was cool by dinner. The price was on the tablet before anyone touched a tool." },
+    { "name": "Marcus D.", "city": "Lathrop", "when": "1 month ago", "quote": "Water heater started leaking on a Sunday. They answered, came out, and had a new one in by Monday at noon. Zero mess." },
+    { "name": "Janet K.", "city": "Ripon", "when": "3 weeks ago", "quote": "Another company said we needed a whole new furnace. Sunrise found a bad igniter and fixed it for a fraction of that. Honest people." }
+  ],
+  "specials": [
+    { "amount": "$79", "title": "Fall furnace safety check", "text": "A 21-point check with a carbon monoxide test.", "fine": "Through December 31. One per home." },
+    { "amount": "$50 off", "title": "Any repair", "text": "Heating, cooling, or plumbing. Mention this offer when you reach out.", "fine": "Repairs over $250. Not valid with other offers." },
+    { "amount": "Free", "title": "Second opinion on big repairs", "text": "Quoted more than $1,000 by someone else? We will check the diagnosis at no charge.", "fine": "Bring the written quote. No obligation." }
+  ],
+  "faqs": [
+    { "q": "How fast can you get here?", "a": "Most homes in Manteca, Lathrop, and Ripon get a same-day visit. Stockton and Modesto are usually same day or next morning." },
+    { "q": "Will I know the price before you start?", "a": "Yes. You approve the full price before we pick up a tool. No hourly surprises." },
+    { "q": "Do you work on all brands?", "a": "Yes. We service every major brand of AC, furnace, heat pump, and water heater." }
+  ],
+  "locations": [
+    { "name": "Manteca shop", "address": "1200 Industrial Park Dr", "cityLine": "Manteca, CA 95337" }
+  ]
+}
