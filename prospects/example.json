@@ -1,0 +1,46 @@
+{
+  "_comment": "Copy this file, rename it to the business (lowercase-with-dashes.json), fill what you have, delete what you do not. Sections with no data hide themselves. Delete this _comment line too.",
+  "name": "Business Name Heating & Air",
+  "shortName": "Business Name",
+  "tagline": "Heating · Air · Plumbing",
+  "phone": "209-555-0100",
+  "city": "Tracy",
+  "logo": "logos/business-name.svg",
+  "colors": { "brand": "#E4572E", "navy": "#14213D" },
+  "license": "CSLB #000000",
+  "yearsInBusiness": 10,
+  "hours": "Mon to Sat, 7am to 7pm",
+  "email": "office@example.com",
+  "serviceAreas": ["Tracy", "Mountain House", "Manteca", "Lathrop"],
+  "services": [
+    { "name": "Heating", "blurb": "One line about this service.", "sub": ["Furnace repair", "Heat pumps", "Ductless mini-splits", "Boilers", "Duct cleaning"] },
+    { "name": "Cooling", "sub": ["AC repair", "New AC systems", "Tune-ups"] },
+    { "name": "Plumbing", "sub": ["Water heaters", "Drain cleaning", "Leak repair"] }
+  ],
+  "googleRating": 4.9,
+  "reviewCount": 120,
+  "googleReviewsUrl": "https://g.page/r/XXXXXXXX/reviews",
+  "writeReviewUrl": "https://g.page/r/XXXXXXXX/review",
+  "reviews": [
+    { "name": "First L.", "city": "Tracy", "when": "2 weeks ago", "quote": "Short quote copied word for word from Google." },
+    { "name": "First L.", "city": "Manteca", "quote": "Second quote." },
+    { "name": "First L.", "quote": "Third quote." }
+  ],
+  "specials": [
+    { "amount": "$89", "title": "Fall furnace safety check", "text": "One line about the offer.", "fine": "Through December 31." }
+  ],
+  "faqs": [
+    { "q": "How fast can you get here?", "a": "Most homes get a same-day visit." }
+  ],
+  "locations": [
+    { "name": "Tracy shop", "address": "123 Main St", "cityLine": "Tracy, CA 95376" }
+  ],
+  "insured": true,
+  "upfrontPricing": true,
+  "guarantee": true,
+  "headline": "Optional custom headline",
+  "eyebrow": "Optional line above the headline",
+  "lead": "Optional paragraph under the headline.",
+  "description": "Optional link-preview description.",
+  "previewUrl": "https://byw-business-name.pages.dev/"
+}

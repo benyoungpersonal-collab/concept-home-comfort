@@ -1,5 +1,7 @@
 # DESIGN.md: Pinwheel Heating, Air & Plumbing (concept)
 
+> **Update, Oct 31:** the site grew past this plan. The top strip is now a Google rating bar (stars, rating, count, "Write a review"). The hero names who we serve and where. New pages: `heating.html`, `cooling.html`, `air-quality.html`, `contact.html` (every location), each service page with a short side form. New homepage sections: Comfort (real families at home), Specials and discounts, all 18 service areas, and a Request a visit form with a family photo. Real-people stock photos from Pexels and Unsplash, never AI. `template/homepage.html` plus `scripts/build-preview.mjs` turn the design into per-prospect previews (see `prospects/README.md`). The wireframes and copy below are the original plan and still describe the bones.
+
 Concept site by Ben Young Web Design. Everything here is sample data for a fictional business.
 
 This is the plan. Tokens, wireframes, and every word of copy were written before any page code. Build around this document. If the site and this file disagree, update this file.

@@ -14,31 +14,31 @@
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=20261028">
-<script>document.documentElement.classList.replace('no-js','js');try{if(localStorage.getItem('pw-offer-dismissed')==='fall-2026')document.documentElement.classList.add('offer-off')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261031">
+<script>document.documentElement.classList.replace('no-js','js')</script>
 <meta property="og:site_name" content="Pinwheel Heating, Air &amp; Plumbing (concept)">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://byw-home-comfort.netlify.app/images/og-pinwheel-1200x630.jpg">
+<meta property="og:image" content="https://byw-home-comfort.netlify.app/images/og-family-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Pinwheel logo and the headline: A comfortable home, without the runaround.">
+<meta property="og:image:alt" content="A smiling family of three on their living room couch.">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
 <link rel="preload" as="image" data-photo="turbines" data-crop="1:1" data-widths="480,720,960,1200" imagesrcset="images/photos/turbines-480x480.webp 480w, images/photos/turbines-720x720.webp 720w, images/photos/turbines-960x960.webp 960w, images/photos/turbines-1200x1200.webp 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
 <link rel="preload" as="image" data-photo="turbines" data-crop="4:5" data-widths="480,720,960" imagesrcset="images/photos/turbines-480x600.webp 480w, images/photos/turbines-720x900.webp 720w, images/photos/turbines-960x1200.webp 960w" imagesizes="(min-width: 1200px) 450px, 38vw" media="(min-width: 900px)" fetchpriority="high">
 <meta property="og:title" content="About | Pinwheel (concept site)">
 <meta property="og:description" content="Family owned. Valley raised. A concept site by Ben Young Web Design.">
-<meta property="og:url" content="https://pinwheel-concept.netlify.app/about.html">
+<meta property="og:url" content="https://byw-home-comfort.netlify.app/about.html">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "name": "About Pinwheel Heating, Air & Plumbing",
   "description": "Sample data for a fictional concept business.",
-  "url": "https://pinwheel-concept.netlify.app/about.html",
+  "url": "https://byw-home-comfort.netlify.app/about.html",
   "mainEntity": {
     "@type": ["HVACBusiness", "Plumber"],
-    "@id": "https://pinwheel-concept.netlify.app/#business",
+    "@id": "https://byw-home-comfort.netlify.app/#business",
     "name": "Pinwheel Heating, Air & Plumbing",
     "foundingDate": "2010",
     "telephone": "+1-209-555-0142",
@@ -133,13 +133,15 @@
 <!-- /partial:sprite -->
 <!-- partial:header -->
 <a class="skip-link" href="#main">Skip to content</a>
-<aside class="concept-strip" aria-label="Concept notice">
-  <p class="container">Concept site by Ben Young Web Design. Sample data.</p>
-</aside>
-<aside class="offer-bar" aria-label="Seasonal offer" data-offer-bar>
-  <div class="container offer-inner">
-    <p><strong>Fall furnace safety check $89.</strong> Members free. <a href="#book" data-book data-service="Furnace tune-up">Book my check</a> <span class="tag on-dark">Sample offer</span></p>
-    <button class="offer-close" type="button" data-offer-close aria-label="Dismiss offer"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+<aside class="rating-bar" aria-label="Google rating">
+  <div class="container rating-bar-inner">
+    <a class="rating-bar-score" href="index.html#reviews">
+      <svg class="g-mark" aria-hidden="true"><use href="#g-logo"/></svg>
+      <span class="stars5 small" role="img" aria-label="Rated 4.9 out of 5"></span>
+      <b>4.9</b>
+      <span class="rating-bar-count"><span class="rating-bar-n">186</span> <span class="rb-g">Google </span>reviews</span>
+    </a>
+    <a class="rating-bar-write" href="review.html">Write a review<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </div>
 </aside>
 <div class="header-sentinel" data-header-sentinel aria-hidden="true"></div>
@@ -155,17 +157,21 @@
           <button class="nav-link" type="button" aria-expanded="false" aria-controls="panel-services" data-panel-toggle>Services <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
           <div class="nav-panel" id="panel-services" hidden>
             <div class="panel-grid">
-              <a class="panel-link" href="heating-cooling.html" data-nav="heating-cooling.html">
+              <a class="panel-link" href="heating.html" data-nav="heating.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>
+                <span><strong>Heating</strong><span>Furnace repair, heat pumps, mini-splits, and tune-ups.</span></span>
+              </a>
+              <a class="panel-link" href="cooling.html" data-nav="cooling.html">
                 <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg></span>
-                <span><strong>Heating &amp; Cooling</strong><span>AC repair, furnaces, heat pumps, and cleaner indoor air.</span></span>
+                <span><strong>Cooling</strong><span>AC repair, new systems, and duct sealing for valley summers.</span></span>
               </a>
               <a class="panel-link" href="plumbing.html" data-nav="plumbing.html">
                 <span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg></span>
                 <span><strong>Plumbing</strong><span>Water heaters, drains, leaks, and whole-home repiping.</span></span>
               </a>
-              <a class="panel-link" href="membership.html" data-nav="membership.html">
-                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg></span>
-                <span><strong>Comfort Club</strong><span>Priority service, 2 tune-ups a year, and member pricing.</span></span>
+              <a class="panel-link" href="air-quality.html" data-nav="air-quality.html">
+                <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg></span>
+                <span><strong>Indoor air quality</strong><span>Duct cleaning, filtration, and purifiers for smoke season.</span></span>
               </a>
             </div>
             <p class="panel-foot">Not sure what you need? <a href="index.html#services">See all services</a></p>
@@ -186,10 +192,10 @@
                 <span><strong>Mountain House</strong><span>Same-day service in every village.</span></span>
               </a>
             </div>
-            <p class="panel-foot">Also serving Manteca, Lathrop, Stockton, and Livermore. <a href="index.html#areas">See the map</a></p>
+            <p class="panel-foot">Plus 14 more cities across San Joaquin County and the Tri-Valley. <a href="index.html#areas">See every service area</a></p>
           </div>
         </li>
-        <li><a class="nav-link" href="index.html#reviews">Reviews</a></li>
+        <li><a class="nav-link" href="contact.html" data-nav="contact.html">Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">
@@ -214,10 +220,12 @@
     <div class="mm-group">
       <p class="mm-group-title">Services</p>
       <ul class="mm-links">
-        <li><a href="heating-cooling.html" data-nav="heating-cooling.html">Heating &amp; Cooling <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
+        <li><a href="heating.html" data-nav="heating.html">Heating <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
+        <li><a href="cooling.html" data-nav="cooling.html">Cooling <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
         <li><a href="plumbing.html" data-nav="plumbing.html">Plumbing <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
+        <li><a href="air-quality.html" data-nav="air-quality.html">Indoor air quality <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
         <li><a href="membership.html" data-nav="membership.html">Comfort Club membership <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="financing.html" data-nav="financing.html">Financing &amp; offers <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
+        <li><a href="financing.html" data-nav="financing.html">Financing &amp; specials <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
       </ul>
     </div>
     <div class="mm-group">
@@ -225,6 +233,7 @@
       <ul class="mm-links">
         <li><a href="about.html" data-nav="about.html" aria-current="page">About us <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
         <li><a href="index.html#reviews">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
+        <li><a href="contact.html" data-nav="contact.html">Contact and locations <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
         <li><a href="service-areas/tracy.html" data-nav="service-areas/tracy.html">Tracy <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
         <li><a href="service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">Mountain House <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
       </ul>
@@ -246,7 +255,7 @@
         <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">About</li></ol></nav>
         <h1 id="page-title">Family owned. <span class="accent">Valley raised.</span></h1>
         <p class="lead">Luis and Carmen Ortega started Pinwheel in 2010 with one van, one phone, and a simple idea: treat every home like it belongs to family.</p>
-        <div class="btn-row">
+        <div class="btn-row" data-hide-bar>
           <a class="btn btn-primary btn-lg" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call now</a>
           <a class="btn btn-secondary btn-lg" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
         </div>
@@ -380,8 +389,10 @@
     <nav aria-label="Services">
       <p class="footer-title">Services</p>
       <ul class="footer-links">
-        <li><a href="heating-cooling.html">Heating &amp; cooling</a></li>
+        <li><a href="heating.html">Heating</a></li>
+        <li><a href="cooling.html">Cooling</a></li>
         <li><a href="plumbing.html">Plumbing</a></li>
+        <li><a href="air-quality.html">Indoor air quality</a></li>
         <li><a href="membership.html">Comfort Club</a></li>
         <li><a href="financing.html">Financing &amp; offers</a></li>
       </ul>
@@ -391,6 +402,8 @@
       <ul class="footer-links">
         <li><a href="about.html">About us</a></li>
         <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="contact.html">Contact and locations</a></li>
+        <li><a href="index.html#specials">Specials</a></li>
         <li><a href="service-areas/tracy.html">Tracy</a></li>
         <li><a href="service-areas/mountain-house.html">Mountain House</a></li>
         <li><a href="credits.html">Photo credits</a></li>
@@ -400,12 +413,14 @@
       <p class="footer-title">Contact</p>
       <a class="big" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>(209) 555-0142</a>
       <p><a class="footer-text-link" href="sms:+12095550142">Text us at the same number</a></p>
-      <p>Street address placeholder<br>Tracy, CA 95376</p>
+      <p><strong>Tracy shop</strong><br>Street address placeholder<br>Tracy, CA 95376</p>
+      <p><strong>Manteca yard</strong><br>Street address placeholder<br>Manteca, CA 95336</p>
       <dl class="hours">
         <dt>Mon to Sat</dt><dd>7am to 7pm</dd>
         <dt>Sunday</dt><dd>Emergency calls</dd>
         <dt>24/7</dt><dd>Emergency line</dd>
       </dl>
+      <p><a class="footer-text-link" href="contact.html">All locations and service areas</a></p>
     </div>
   </div>
   <div class="container footer-bottom">
@@ -538,6 +553,6 @@
   </form>
 </dialog>
 <!-- /partial:booking -->
-<script src="js/site.js?v=20261028" defer></script>
+<script src="js/site.js?v=20261031" defer></script>
 </body>
 </html>

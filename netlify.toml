@@ -53,6 +53,24 @@
   force = true
 
 [[redirects]]
+  from = "/template/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/prospects/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/previews/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/README.md"
   to = "/404.html"
   status = 404
@@ -62,4 +80,11 @@
   from = "/DESIGN.md"
   to = "/404.html"
   status = 404
+  force = true
+
+# The old combined page split into heating.html and cooling.html
+[[redirects]]
+  from = "/heating-cooling.html"
+  to = "/cooling.html"
+  status = 301
   force = true

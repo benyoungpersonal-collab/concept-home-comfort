@@ -530,7 +530,7 @@
         actions: [['Mountain House page', ROOT + 'service-areas/mountain-house.html'], BOOK] },
       { q: 'Should I repair or replace a 15-year-old AC?', keys: ['repair or replace', 'replace', 'replacement', '15', 'year old', 'years old', 'old ac', 'worth fixing', 'new system', 'new ac'],
         a: 'At 15 years it depends on the repair. If the fix costs more than about a third of a new system, or your bills keep climbing, replacing usually saves money. Our 4-question helper gives you a straight answer.',
-        actions: [['Try the helper', ROOT + 'heating-cooling.html#repair-or-replace'], ['Free replacement quote', '#book', 'New system quote']] },
+        actions: [['Try the helper', ROOT + 'cooling.html#repair-or-replace'], ['Free replacement quote', '#book', 'New system quote']] },
       { q: 'Can you come today?', keys: ['today', 'same day', 'same-day', 'asap', 'right now', 'emergency', 'urgent', 'tonight', 'soon', 'available'],
         a: 'Most days, yes. Call for the fastest answer, or book online and we will text to confirm your arrival window.',
         actions: [CALL, BOOK] },
