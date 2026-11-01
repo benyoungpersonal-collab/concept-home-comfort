@@ -553,7 +553,7 @@
         a: 'Yes. California license CSLB #000000 (a placeholder on this concept), bonded, with full liability and workers comp coverage.',
         actions: [['About us', ROOT + 'about.html']] },
       { q: 'What areas do you serve?', keys: ['area', 'serve', 'service area', 'city', 'cities', 'tracy', 'manteca', 'lathrop', 'stockton', 'livermore', 'where', 'near me'],
-        a: 'Tracy, Mountain House, Manteca, Lathrop, Stockton, and Livermore. Just outside those cities? Call and ask. If we can get there fast, we will come.',
+        a: 'Twelve cities across San Joaquin and Alameda counties: Tracy, Mountain House, Manteca, Lathrop, French Camp, Stockton, Lodi, Ripon, Escalon, Livermore, Pleasanton, and Dublin. Just outside those? Call and ask. If we can get there fast, we will come.',
         actions: [['See the map', ROOT + 'index.html#areas'], CALL] }
     ];
     var SUGGESTED = [0, 1, 2, 3, 5, 6, 4, 7];

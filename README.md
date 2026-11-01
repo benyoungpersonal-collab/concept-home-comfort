@@ -26,7 +26,7 @@ Why it works: the Altamont Pass windmills are the first thing you see driving ho
 
 | Page | File | What it shows |
 |---|---|---|
-| Home | `index.html` | Google rating bar, sticky header, hero (who, where, what), trust strip, Comfort photos (families at home), review feed, services bento, how a visit works (video plus tech at the door), specials and discounts, price estimator, Comfort Club, financing calculator, owner and team (crew photo), all 18 service areas, FAQ, request-a-visit form with a family photo, mobile sticky bar, chat |
+| Home | `index.html` | Google rating bar, sticky header, hero (who, where, what), trust strip, review feed, services bento, how a visit works (video plus tech at the door), specials and discounts, instant estimate (the highlight band), owner and team (crew photo), all 12 service areas on a map, FAQ, request-a-visit form with a family photo, mobile sticky bar, chat |
 | Heating | `heating.html` | 8 sub-services (furnace repair, heat pumps, mini-splits, boilers, tune-ups, ducts), side contact form, FAQ |
 | Cooling | `cooling.html` | 8 sub-services, repair-or-replace helper, side contact form, FAQ |
 | Plumbing | `plumbing.html` | 9 sub-services, emergency shutoff steps, tank vs tankless table, repiping, side contact form, FAQ |
@@ -42,7 +42,9 @@ Why it works: the Altamont Pass windmills are the first thing you see driving ho
 | Photo credits | `credits.html` | Every photographer, fonts, and code credited |
 | 404 | `404.html` | "This page blew away." Links home, call, and book |
 
-`heating-cooling.html` is the old combined page. `netlify.toml` redirects it to `cooling.html` (301). The file is still in the repo so nothing breaks; delete it once you are sure no one links to it.
+`heating-cooling.html` (the old combined page) is gone. `netlify.toml` still 301s that URL to `cooling.html` so old links keep working.
+
+**Optional homepage sections.** The Comfort Club and Financing blocks are off the homepage and out of the menu. Their markup lives in `partials/optional/membership-section.html` and `partials/optional/financing-section.html`. To turn one on for a client who has it: paste the block into `index.html` where the "Optional sections" comment sits (after the instant estimate), then add the Membership or Financing links back to the nav and mobile menu in `partials/header.html` and run `node scripts/sync.mjs`. The `membership.html` and `financing.html` pages stay live and linked from the footer.
 
 The other 4 cities (Manteca, Lathrop, Stockton, Livermore) are covered on the homepage map and in the booking form. See [Adding the other 4 city pages](#adding-the-other-4-city-pages).
 
@@ -158,7 +160,7 @@ Keep each under about 2 MB, and update the video credit on `credits.html`.
 | Report numbers | `sample-report.html` |
 | Google review link (`href="#"`) | `review.html` |
 | Domain `byw-home-comfort.netlify.app` | Open Graph tags, JSON-LD, `sitemap.xml` |
-| Photos and video (Unsplash and Pexels stock) | See `credits.html` |
+| Photos and video (Unsplash and Pexels stock) | See `credits.html`. Family photos appear in two places only: the request-a-visit section and the link-preview image |
 | `noindex` meta tags, `Disallow: /` in `robots.txt`, and the `X-Robots-Tag` header in `netlify.toml` | On purpose for a concept. Remove all three for a real launch |
 
 ---
@@ -189,6 +191,8 @@ Write real local copy for each city. Pages that only swap the city name read as 
 - **Mobile sticky bar** (Call, Book, Text) that waits until the hero buttons scroll away, on every page. Never two sets of the same buttons on one screen.
 - **Service pages** for Heating, Cooling, Plumbing, and Indoor air quality, each with sub-services and a short side form (name, phone, address, how can we help).
 - **Contact page** with every location, and a **Specials and discounts** section on the homepage.
+- **Instant estimate** is the highlight band: 3 questions, a real price range, no email needed. Pinwheel has starting prices, so it shows a range. (The template will offer a quick quote request instead when a client has no prices.)
+- **Service areas:** 12 cities across San Joaquin and Alameda counties, every one on the map and in the chip list.
 - **Link preview** for texts: a family photo (different from the hero) and the title `Pinwheel Heating, Air & Plumbing | Tracy HVAC`. The title adds "5-Star Service" only when the Google rating is 5.0 (Pinwheel's is 4.9, so it does not).
 - **Booking demo:** 3 steps, the next 8 open days (no Sundays, today drops off after 4pm), validation, confirmation. Sends nothing.
 - **Demo AI assistant:** scripted answers to 10 common questions, then hands off to a call, text, or booking.
@@ -263,7 +267,7 @@ Lighthouse 12.8.2, default mobile settings (simulated slow 4G, 4x CPU slowdown),
 
 | Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|
-| Home | 99 | 100 | 100 | 66 | 0.9s | 0 | 140ms |
+| Home | 100 | 100 | 100 | 66 | 0.9s | 0 | 10ms |
 | Heating | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
 | Cooling | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
 | Plumbing | 100 | 100 | 100 | 66 | 1.6s | 0 | 0ms |
@@ -278,7 +282,7 @@ Lighthouse 12.8.2, default mobile settings (simulated slow 4G, 4x CPU slowdown),
 | Sample report | 100 | 100 | 100 | 63 | 0.9s | 0 | 0ms |
 | Credits | 100 | 100 | 100 | 63 | 0.9s | 0 | 0ms |
 
-Run on Oct 31 after the upgrade (rating bar, new pages, 21 photos). Axe reports zero issues on every page at 390px and 1440px, every tap target is at least 44px, and no page scrolls sideways at 390px.
+Home re-run on Nov 1 after the review fixes (new hero, 12-city map, estimate band); the rest from Oct 31. Axe reports zero issues on every page at 390px and 1440px, every tap target is at least 44px, and no page scrolls sideways at 390px.
 
 - **Video:** the strip's clip loads after the page finishes, so it does not count against the first load. Phones play it; no desktop-only fallback was needed.
 - **SEO is low on purpose.** The only failing SEO check is "page is blocked from indexing," which is the required `noindex`. Remove it for a real launch.
@@ -316,7 +320,6 @@ scripts/deploy-preview.sh NAME                     # -> https://byw-NAME.pages.d
 index.html, heating.html, cooling.html, plumbing.html, air-quality.html,
 contact.html, membership.html, financing.html, about.html, review.html,
 sample-report.html, credits.html, 404.html
-heating-cooling.html  old combined page, redirected to cooling.html (safe to delete later)
 service-areas/        tracy.html, mountain-house.html
 css/site.css          design tokens at the top, then components
 js/site.js            all interactions (vanilla JS, one file)
@@ -324,6 +327,7 @@ js/vendor/            QR code library (MIT) and its license
 fonts/                Inter and Plus Jakarta Sans (WOFF2, OFL licenses)
 images/               Open Graph image and app icon
 partials/             shared header, footer, booking, chat, icons
+partials/optional/    Comfort Club and Financing homepage sections, off by default
 scripts/sync.mjs      optional helper that copies partials into pages
 scripts/photos.json   every photo: source, crop box, focal point, alt text, credit
 scripts/build-images.py  makes the self-hosted WebP files (Python + Pillow)

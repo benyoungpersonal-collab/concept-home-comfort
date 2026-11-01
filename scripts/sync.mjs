@@ -140,6 +140,8 @@ const used = new Set();
 for (const file of pages()) {
   for (const m of readFileSync(file, 'utf8').matchAll(/\sdata-photo="([^"]+)"/g)) used.add(m[1]);
 }
+// Photos used outside the HTML (the link-preview JPG) carry "alwaysCredit": true in photos.json
+for (const [k, p] of Object.entries(photos)) if (p && p.alwaysCredit) used.add(k);
 
 let changed = 0;
 for (const file of pages()) {

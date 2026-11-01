@@ -21,8 +21,32 @@
     "by": "Kathleen Austin Kuhn",
     "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
     "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
-    "use": "Home hero, cooling hero, team",
+    "use": "Cooling hero, team",
     "preview": "pexels__32497161.jpg"
+  },
+  "tech-red": {
+    "id": "7218567",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/7218567/pexels-photo-7218567.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 4000,
+    "h": 6000,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.6,
+      0.45
+    ],
+    "color": "#dad6d2",
+    "alt": "Technician in a red shirt drilling a wall mount into place inside a home",
+    "by": "Blue Bird",
+    "profile": "https://www.pexels.com/@blue-bird/",
+    "page": "https://www.pexels.com/photo/man-in-red-long-sleeve-shirt-holding-a-drilling-tool-7218567/",
+    "use": "Home hero",
+    "preview": "pexels__7218567.jpg"
   },
   "owner-luis": {
     "id": "6050244",
@@ -309,7 +333,8 @@
     "by": "Vitaly Gariev",
     "profile": "https://www.pexels.com/@silverkblack/",
     "page": "https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/",
-    "use": "Comfort section, link preview image",
+    "use": "Link preview image for texts and social (images/og-family-1200x630.jpg)",
+    "alwaysCredit": true,
     "preview": "pexels__39191159.jpg"
   },
   "dad-daughter": {
@@ -333,7 +358,7 @@
     "by": "Ketut Subiyanto",
     "profile": "https://www.pexels.com/@ketut-subiyanto/",
     "page": "https://www.pexels.com/photo/a-father-and-daughter-having-fun-4814865/",
-    "use": "Comfort section",
+    "use": "Not currently placed",
     "preview": "pexels__4814865.jpg"
   },
   "couple-home": {
@@ -357,7 +382,7 @@
     "by": "Kindel Media",
     "profile": "https://www.pexels.com/@kindelmedia/",
     "page": "https://www.pexels.com/photo/couple-standing-in-front-of-their-house-7579046/",
-    "use": "Comfort section",
+    "use": "Not currently placed",
     "preview": "pexels__7579046.jpg"
   },
   "crew-van": {
@@ -453,7 +478,7 @@
     "by": "Gustavo Fring",
     "profile": "https://www.pexels.com/@gustavo-fring/",
     "page": "https://www.pexels.com/photo/a-family-sitting-on-the-couch-7489081/",
-    "use": "Comfort Club page",
+    "use": "Not currently placed",
     "preview": "pexels__7489081.jpg"
   }
 }
