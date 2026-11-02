@@ -24,8 +24,8 @@
 <meta property="og:image:alt" content="A smiling family of three on their living room couch.">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
-<link rel="preload" as="image" data-photo="tech-red" data-crop="1:1" data-widths="480,720,960,1200" imagesrcset="images/photos/tech-red-480x480.webp 480w, images/photos/tech-red-720x720.webp 720w, images/photos/tech-red-960x960.webp 960w, images/photos/tech-red-1200x1200.webp 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
-<link rel="preload" as="image" data-photo="tech-red" data-crop="4:5" data-widths="480,720,960,1200" imagesrcset="images/photos/tech-red-480x600.webp 480w, images/photos/tech-red-720x900.webp 720w, images/photos/tech-red-960x1200.webp 960w, images/photos/tech-red-1200x1500.webp 1200w" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">
+<link rel="preload" as="image" data-photo="tech-marcus-red" data-crop="1:1" data-widths="480,720,960,1200" imagesrcset="images/photos/tech-marcus-red-480x480.webp 480w, images/photos/tech-marcus-red-720x720.webp 720w, images/photos/tech-marcus-red-960x960.webp 960w, images/photos/tech-marcus-red-1200x1200.webp 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
+<link rel="preload" as="image" data-photo="tech-marcus-red" data-crop="4:5" data-widths="480,720,960,1200" imagesrcset="images/photos/tech-marcus-red-480x600.webp 480w, images/photos/tech-marcus-red-720x900.webp 720w, images/photos/tech-marcus-red-960x1200.webp 960w, images/photos/tech-marcus-red-1200x1500.webp 1200w" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">
 <meta property="og:title" content="Pinwheel Heating, Air &amp; Plumbing | Tracy HVAC">
 <meta property="og:description" content="Same-day heating, AC, and plumbing repair for Tracy homeowners. See the price before we start.">
 <meta property="og:url" content="https://byw-home-comfort.netlify.app/">
@@ -255,6 +255,7 @@
             <p class="panel-foot">Plus 10 more cities across San Joaquin and Alameda counties. <a href="index.html#areas">See every service area</a></p>
           </div>
         </li>
+        <li><a class="nav-link" href="about.html" data-nav="about.html">About</a></li>
         <li><a class="nav-link" href="contact.html" data-nav="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -333,8 +334,8 @@
       <div class="hero-media">
         <div class="arch">
           <picture>
-            <source data-photo="tech-red" data-crop="1:1" data-widths="480,720,960,1200" media="(max-width: 899px)" srcset="images/photos/tech-red-480x480.webp 480w, images/photos/tech-red-720x720.webp 720w, images/photos/tech-red-960x960.webp 960w, images/photos/tech-red-1200x1200.webp 1200w" sizes="92vw" width="1200" height="1200">
-            <img data-photo="tech-red" data-crop="4:5" data-widths="480,720,960,1200" data-eager sizes="(min-width: 1200px) 522px, 42vw" src="images/photos/tech-red-720x900.webp" srcset="images/photos/tech-red-480x600.webp 480w, images/photos/tech-red-720x900.webp 720w, images/photos/tech-red-960x1200.webp 960w, images/photos/tech-red-1200x1500.webp 1200w" width="1200" height="1500" alt="Technician in a red shirt drilling a wall mount into place inside a home" fetchpriority="high" style="object-position:60% 45%;background-color:#dad6d2">
+            <source data-photo="tech-marcus-red" data-crop="1:1" data-widths="480,720,960,1200" media="(max-width: 899px)" srcset="images/photos/tech-marcus-red-480x480.webp 480w, images/photos/tech-marcus-red-720x720.webp 720w, images/photos/tech-marcus-red-960x960.webp 960w, images/photos/tech-marcus-red-1200x1200.webp 1200w" sizes="92vw" width="1200" height="1200">
+            <img data-photo="tech-marcus-red" data-crop="4:5" data-widths="480,720,960,1200" data-eager sizes="(min-width: 1200px) 522px, 42vw" src="images/photos/tech-marcus-red-720x900.webp" srcset="images/photos/tech-marcus-red-480x600.webp 480w, images/photos/tech-marcus-red-720x900.webp 720w, images/photos/tech-marcus-red-960x1200.webp 960w, images/photos/tech-marcus-red-1200x1500.webp 1200w" width="1200" height="1500" alt="Technician in a red polo checking an outdoor AC condenser beside a home with a flashlight" fetchpriority="high" style="object-position:49% 50%;background-color:#938a8b">
           </picture>
         </div>
         <p class="next-chip"><span class="live-dot" aria-hidden="true"></span><span>Next opening <strong data-next-opening>today, 2 to 5pm</strong></span></p>
@@ -519,8 +520,10 @@
     </div>
   </section>
 
-  <!-- 8. Specials and discounts -->
-  <section class="section specials" id="specials" aria-labelledby="specials-title">
+  <!-- 8. Specials and discounts (optional section, on for Pinwheel; markup in partials/optional/specials.html) -->
+  <!-- partial:optional-specials -->
+<!-- Optional section: Specials and discounts. On for Pinwheel. A page turns it on with the optional-specials marker pair (see README) and node scripts/sync.mjs. -->
+  <section class="section specials" id="specials" aria-labelledby="specials-title" data-optional="Specials and discounts">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">Specials and discounts</p>
@@ -560,6 +563,7 @@
       <p class="fine specials-foot">Sample offers for a concept site. A real site lists the real terms here.</p>
     </div>
   </section>
+<!-- /partial:optional-specials -->
 
   <!-- 9. Instant estimate (the highlight) -->
   <section class="section estimator on-dark" id="estimate" aria-labelledby="estimate-title">
@@ -632,7 +636,10 @@
     </div>
   </section>
 
-  <!-- Optional sections (Comfort Club, Financing) are off. Their markup lives in partials/optional/. See README. -->
+  <!-- Optional sections: Comfort Club and Financing are OFF on this page. Each one is a partial in partials/optional/.
+       To turn one on, add its marker pair here (the same kind of marker pair the specials section uses above, named
+       optional-membership or optional-financing) and run node scripts/sync.mjs. showcase.html has every optional section on.
+  -->
 
   <!-- 10. Meet the owner and team -->
   <section class="section team" id="team" aria-labelledby="team-title">
@@ -658,7 +665,7 @@
           <li><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Shoe covers on, every visit</li>
         </ul>
         <ul class="team-row">
-          <li class="team-card"><img data-photo="tech-marcus" data-crop="1:1" data-widths="120,240" sizes="60px" src="images/photos/tech-marcus-240x240.webp" srcset="images/photos/tech-marcus-120x120.webp 120w, images/photos/tech-marcus-240x240.webp 240w" width="240" height="240" alt="Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight" loading="lazy" decoding="async" style="object-position:49% 50%;background-color:#9a9a92"><span><strong>Marcus</strong><span>Lead HVAC tech</span></span></li>
+          <li class="team-card"><img data-photo="tech-marcus-red" data-crop="1:1" data-widths="120,240" sizes="60px" src="images/photos/tech-marcus-red-240x240.webp" srcset="images/photos/tech-marcus-red-120x120.webp 120w, images/photos/tech-marcus-red-240x240.webp 240w" width="240" height="240" alt="Technician in a red polo checking an outdoor AC condenser beside a home with a flashlight" loading="lazy" decoding="async" style="object-position:49% 50%;background-color:#938a8b"><span><strong>Marcus</strong><span>Lead HVAC tech</span></span></li>
           <li class="team-card"><img data-photo="tech-jess" data-crop="1:1" data-widths="120,240" sizes="60px" src="images/photos/tech-jess-240x240.webp" srcset="images/photos/tech-jess-120x120.webp 120w, images/photos/tech-jess-240x240.webp 240w" width="240" height="240" alt="Service tech in a plaid flannel and work overalls smiling from the driver's seat of a work vehicle" loading="lazy" decoding="async" style="object-position:50% 42%;background-color:#6f7361"><span><strong>Jess</strong><span>Service tech</span></span></li>
           <li class="team-card"><span class="initial" aria-hidden="true">+12</span><span><strong>12 more</strong><span>Trained techs and installers</span></span></li>
         </ul>
@@ -880,8 +887,6 @@
         <li><a href="cooling.html">Cooling</a></li>
         <li><a href="plumbing.html">Plumbing</a></li>
         <li><a href="air-quality.html">Indoor air quality</a></li>
-        <li><a href="membership.html">Comfort Club</a></li>
-        <li><a href="financing.html">Financing &amp; offers</a></li>
       </ul>
     </nav>
     <nav aria-label="Company">

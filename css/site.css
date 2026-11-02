@@ -1448,6 +1448,11 @@ legend { padding: 0; }
 .estimator.on-dark .form-error { color: #FFC9B8; }
 .estimator.on-dark .est-result { color: var(--c-text); }
 .estimator.on-dark .est-result h3, .estimator.on-dark .est-result .est-label { color: var(--c-navy); }
+/* showcase.html: every optional section carries a small tag */
+.is-showcase [data-optional] .eyebrow::after { content: "Optional section"; margin-left: 10px; padding: 3px 9px; border-radius: var(--r-pill); border: 1px dashed currentColor; font-size: 10px; letter-spacing: .08em; opacity: .85; }
+.is-showcase .showcase-note { margin: 0; background: var(--c-navy); color: #fff; text-align: center; font-size: var(--fs-sm); padding: 10px 16px; border-top: 1px solid rgb(255 255 255 / .12); }
+.is-showcase .showcase-note p { margin: 0; }
+.is-showcase .showcase-note b { color: var(--c-brand-light); }
 .hero-fine { margin: 14px 0 0; font-size: 12px; line-height: 1.45; color: var(--c-fine); }
 
 /* ---------- Comfort: people at home ---------- */

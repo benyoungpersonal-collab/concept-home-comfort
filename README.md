@@ -34,17 +34,27 @@ Why it works: the Altamont Pass windmills are the first thing you see driving ho
 | Contact | `contact.html` | Four ways to reach us, every location with hours, all service areas, side contact form |
 | Comfort Club | `membership.html` | Two plans, "does it pay for itself" math, demo join form, FAQ |
 | Financing & Offers | `financing.html` | Payment calculator, 3-step process, 4 seasonal offers, FAQ |
-| About | `about.html` | Owner story, why "Pinwheel," four promises, the crew, license and insurance |
+| About | `about.html` | Owner story and why they started, why "Pinwheel," four promises, what we believe, the crew, license and insurance, service area. On a client site this page is written from the interview answers |
 | Tracy | `service-areas/tracy.html` | Local page: neighborhoods, local reviews, FAQ |
 | Mountain House | `service-areas/mountain-house.html` | Local page: villages, aging first-gen systems, FAQ |
 | Review page | `review.html` | Google review button, text-the-owner link, scannable QR code. No star-gating |
 | Sample report | `sample-report.html` | One-page monthly results dashboard (sample data), printable |
 | Photo credits | `credits.html` | Every photographer, fonts, and code credited |
+| Showcase | `showcase.html` | The homepage with every optional section on and tagged. Not linked, not in the sitemap |
 | 404 | `404.html` | "This page blew away." Links home, call, and book |
 
 `heating-cooling.html` (the old combined page) is gone. `netlify.toml` still 301s that URL to `cooling.html` so old links keep working.
 
-**Optional homepage sections.** The Comfort Club and Financing blocks are off the homepage and out of the menu. Their markup lives in `partials/optional/membership-section.html` and `partials/optional/financing-section.html`. To turn one on for a client who has it: paste the block into `index.html` where the "Optional sections" comment sits (after the instant estimate), then add the Membership or Financing links back to the nav and mobile menu in `partials/header.html` and run `node scripts/sync.mjs`. The `membership.html` and `financing.html` pages stay live and linked from the footer.
+**Optional homepage sections.** Three homepage sections are optional and live in `partials/optional/`: `specials.html` (on for Pinwheel), `membership.html` (Comfort Club, off), and `financing.html` (off). A page turns one on by carrying a marker pair for it, exactly like the shared partials:
+
+```html
+<!-- partial:optional-specials -->
+<!-- /partial:optional-specials -->
+```
+
+Put the pair where the section should sit (the homepage has a comment after the instant estimate showing where), run `node scripts/sync.mjs`, and the section fills in. Remove the pair to turn it off. When Comfort Club or Financing is on, add their links back to the nav and mobile menu in `partials/header.html`. While they are off, nothing on the site links to `membership.html` or `financing.html` (both pages still exist for the showcase).
+
+**`showcase.html`** is the homepage with every optional section on, each tagged "Optional section". It is for walkthrough videos: noindex, not linked from any page, not in the sitemap. Rebuild it after any homepage edit with `node scripts/make-showcase.mjs && node scripts/sync.mjs`.
 
 The other 4 cities (Manteca, Lathrop, Stockton, Livermore) are covered on the homepage map and in the booking form. See [Adding the other 4 city pages](#adding-the-other-4-city-pages).
 
@@ -161,6 +171,7 @@ Keep each under about 2 MB, and update the video credit on `credits.html`.
 | Google review link (`href="#"`) | `review.html` |
 | Domain `byw-home-comfort.netlify.app` | Open Graph tags, JSON-LD, `sitemap.xml` |
 | Photos and video (Unsplash and Pexels stock) | See `credits.html`. Family photos appear in two places only: the request-a-visit section and the link-preview image |
+| Hero tech's red polo | The original Pexels photo shows a gray polo. It was recolored to Pinwheel red for this labeled sample (`images/source/tech-marcus-red.jpg`); the credit on `credits.html` says so |
 | `noindex` meta tags, `Disallow: /` in `robots.txt`, and the `X-Robots-Tag` header in `netlify.toml` | On purpose for a concept. Remove all three for a real launch |
 
 ---
@@ -327,7 +338,9 @@ js/vendor/            QR code library (MIT) and its license
 fonts/                Inter and Plus Jakarta Sans (WOFF2, OFL licenses)
 images/               Open Graph image and app icon
 partials/             shared header, footer, booking, chat, icons
-partials/optional/    Comfort Club and Financing homepage sections, off by default
+partials/optional/    optional homepage sections: specials (on), membership and financing (off)
+scripts/make-showcase.mjs  rebuilds showcase.html from index.html with every optional section on
+images/source/        the one retouched photo (hero tech, polo recolored to Pinwheel red)
 scripts/sync.mjs      optional helper that copies partials into pages
 scripts/photos.json   every photo: source, crop box, focal point, alt text, credit
 scripts/build-images.py  makes the self-hosted WebP files (Python + Pillow)
