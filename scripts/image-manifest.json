@@ -198,42 +198,6 @@
   "q": 62
  },
  {
-  "file": "cozy-1200x900.webp",
-  "key": "cozy",
-  "w": 1200,
-  "h": 900,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "cozy-480x360.webp",
-  "key": "cozy",
-  "w": 480,
-  "h": 360,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "cozy-480x480.webp",
   "key": "cozy",
   "w": 480,
@@ -256,24 +220,6 @@
   "key": "cozy",
   "w": 480,
   "h": 600,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-720x540.webp",
-  "key": "cozy",
-  "w": 720,
-  "h": 540,
   "crop": true,
   "fp": [
    0.5,
@@ -328,24 +274,6 @@
   "key": "cozy",
   "w": 960,
   "h": 1200,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-960x720.webp",
-  "key": "cozy",
-  "w": 960,
-  "h": 720,
   "crop": true,
   "fp": [
    0.5,
@@ -828,78 +756,6 @@
   "q": 70
  },
  {
-  "file": "grandparents-480x600.webp",
-  "key": "grandparents",
-  "w": 480,
-  "h": 600,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "grandparents-720x900.webp",
-  "key": "grandparents",
-  "w": 720,
-  "h": 900,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "grandparents-960x1200.webp",
-  "key": "grandparents",
-  "w": 960,
-  "h": 1200,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "heat-pump-1200x1200.webp",
-  "key": "heat-pump",
-  "w": 1200,
-  "h": 1200,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.6
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
   "file": "heat-pump-1200x900.webp",
   "key": "heat-pump",
   "w": 1200,
@@ -936,42 +792,6 @@
   "q": 70
  },
  {
-  "file": "heat-pump-480x480.webp",
-  "key": "heat-pump",
-  "w": 480,
-  "h": 480,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.6
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "heat-pump-480x600.webp",
-  "key": "heat-pump",
-  "w": 480,
-  "h": 600,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.6
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "heat-pump-720x540.webp",
   "key": "heat-pump",
   "w": 720,
@@ -990,82 +810,10 @@
   "q": 70
  },
  {
-  "file": "heat-pump-720x720.webp",
-  "key": "heat-pump",
-  "w": 720,
-  "h": 720,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.6
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "heat-pump-720x900.webp",
-  "key": "heat-pump",
-  "w": 720,
-  "h": 900,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.6
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "heat-pump-960x1200.webp",
-  "key": "heat-pump",
-  "w": 960,
-  "h": 1200,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.6
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "heat-pump-960x720.webp",
   "key": "heat-pump",
   "w": 960,
   "h": 720,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.6
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "heat-pump-960x960.webp",
-  "key": "heat-pump",
-  "w": 960,
-  "h": 960,
   "crop": true,
   "fp": [
    0.6,
@@ -2034,78 +1782,6 @@
   "q": 62
  },
  {
-  "file": "tech-marcus-120x120.webp",
-  "key": "tech-marcus",
-  "w": 120,
-  "h": 120,
-  "crop": true,
-  "fp": [
-   0.49,
-   0.5
-  ],
-  "box": [
-   0.15,
-   0,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
-  "file": "tech-marcus-160x160.webp",
-  "key": "tech-marcus",
-  "w": 160,
-  "h": 160,
-  "crop": true,
-  "fp": [
-   0.49,
-   0.5
-  ],
-  "box": [
-   0.15,
-   0,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
-  "file": "tech-marcus-240x240.webp",
-  "key": "tech-marcus",
-  "w": 240,
-  "h": 240,
-  "crop": true,
-  "fp": [
-   0.49,
-   0.5
-  ],
-  "box": [
-   0.15,
-   0,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
-  "file": "tech-marcus-320x320.webp",
-  "key": "tech-marcus",
-  "w": 320,
-  "h": 320,
-  "crop": true,
-  "fp": [
-   0.49,
-   0.5
-  ],
-  "box": [
-   0.15,
-   0,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
   "file": "tech-marcus-480x480.webp",
   "key": "tech-marcus",
   "w": 480,
@@ -2198,6 +1874,222 @@
  {
   "file": "tech-marcus-960x960.webp",
   "key": "tech-marcus",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-1200x1200.webp",
+  "key": "tech-marcus-red",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 62
+ },
+ {
+  "file": "tech-marcus-red-1200x1500.webp",
+  "key": "tech-marcus-red",
+  "w": 1200,
+  "h": 1500,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 62
+ },
+ {
+  "file": "tech-marcus-red-120x120.webp",
+  "key": "tech-marcus-red",
+  "w": 120,
+  "h": 120,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-160x160.webp",
+  "key": "tech-marcus-red",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-240x240.webp",
+  "key": "tech-marcus-red",
+  "w": 240,
+  "h": 240,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-320x320.webp",
+  "key": "tech-marcus-red",
+  "w": 320,
+  "h": 320,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-480x480.webp",
+  "key": "tech-marcus-red",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-480x600.webp",
+  "key": "tech-marcus-red",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-720x720.webp",
+  "key": "tech-marcus-red",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-720x900.webp",
+  "key": "tech-marcus-red",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-960x1200.webp",
+  "key": "tech-marcus-red",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.49,
+   0.5
+  ],
+  "box": [
+   0.15,
+   0,
+   1,
+   0.86
+  ],
+  "q": 70
+ },
+ {
+  "file": "tech-marcus-red-960x960.webp",
+  "key": "tech-marcus-red",
   "w": 960,
   "h": 960,
   "crop": true,

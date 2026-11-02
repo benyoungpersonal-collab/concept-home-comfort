@@ -21,7 +21,33 @@
     "by": "Kathleen Austin Kuhn",
     "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
     "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
-    "use": "Home hero, cooling hero, team",
+    "use": "Preview template hero (gray original)",
+    "preview": "pexels__32497161.jpg"
+  },
+  "tech-marcus-red": {
+    "id": "32497161",
+    "site": "Pexels",
+    "file": "images/source/tech-marcus-red.jpg",
+    "src": "https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=3600",
+    "w": 3000,
+    "h": 2000,
+    "box": [
+      0.15,
+      0.0,
+      1.0,
+      0.86
+    ],
+    "fp": [
+      0.49,
+      0.5
+    ],
+    "color": "#938a8b",
+    "alt": "Technician in a red polo checking an outdoor AC condenser beside a home with a flashlight",
+    "by": "Kathleen Austin Kuhn",
+    "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
+    "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
+    "use": "Home hero, cooling hero, team, about",
+    "edit": "The polo is gray in the original photo. It was recolored to Pinwheel red for this labeled sample site; folds and shadows are untouched.",
     "preview": "pexels__32497161.jpg"
   },
   "owner-luis": {
@@ -182,7 +208,7 @@
     "by": "Birmingham Airduct Cleaning Services",
     "user": "hadleycummings",
     "page": "https://unsplash.com/photos/a-person-is-working-on-a-ceiling-air-conditioner-WwzK2S0h6zU",
-    "use": "Comfort Club hero, air quality hero",
+    "use": "Membership page hero, air quality hero",
     "preview": "air-quality__WwzK2S0h6zU.jpg",
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1737012197886-7d5a52ded45b?w=2400&q=85&fm=jpg",
@@ -309,7 +335,8 @@
     "by": "Vitaly Gariev",
     "profile": "https://www.pexels.com/@silverkblack/",
     "page": "https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/",
-    "use": "Comfort section, link preview image",
+    "use": "Link preview image for texts and social (images/og-family-1200x630.jpg)",
+    "alwaysCredit": true,
     "preview": "pexels__39191159.jpg"
   },
   "dad-daughter": {
@@ -333,7 +360,7 @@
     "by": "Ketut Subiyanto",
     "profile": "https://www.pexels.com/@ketut-subiyanto/",
     "page": "https://www.pexels.com/photo/a-father-and-daughter-having-fun-4814865/",
-    "use": "Comfort section",
+    "use": "Not currently placed",
     "preview": "pexels__4814865.jpg"
   },
   "couple-home": {
@@ -357,7 +384,7 @@
     "by": "Kindel Media",
     "profile": "https://www.pexels.com/@kindelmedia/",
     "page": "https://www.pexels.com/photo/couple-standing-in-front-of-their-house-7579046/",
-    "use": "Comfort section",
+    "use": "Not currently placed",
     "preview": "pexels__7579046.jpg"
   },
   "crew-van": {
@@ -431,29 +458,6 @@
     "page": "https://www.pexels.com/photo/couple-sitting-on-couch-with-children-16852512/",
     "use": "Request a visit form",
     "preview": "pexels__16852512.jpg"
-  },
-  "grandparents": {
-    "id": "7489081",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/7489081/pexels-photo-7489081.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 5760,
-    "h": 3840,
-    "box": [
-      0.0,
-      0.0,
-      1.0,
-      1.0
-    ],
-    "fp": [
-      0.5,
-      0.5
-    ],
-    "color": "#d9d3cb",
-    "alt": "Grandparents and two grandchildren laughing together on a white couch",
-    "by": "Gustavo Fring",
-    "profile": "https://www.pexels.com/@gustavo-fring/",
-    "page": "https://www.pexels.com/photo/a-family-sitting-on-the-couch-7489081/",
-    "use": "Comfort Club page",
-    "preview": "pexels__7489081.jpg"
   }
+
 }

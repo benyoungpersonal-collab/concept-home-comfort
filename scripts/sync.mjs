@@ -23,13 +23,18 @@ import { join, relative, dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SKIP_DIRS = new Set(['partials', 'scripts', 'node_modules', '.git', 'fonts', 'images', 'css', 'js']);
+const SKIP_DIRS = new Set(['partials', 'scripts', 'node_modules', '.git', 'fonts', 'images', 'css', 'js', 'template', 'previews', 'prospects', 'video']);
 const photos = JSON.parse(readFileSync(join(ROOT, 'scripts/photos.json'), 'utf8'));
 const partials = Object.fromEntries(
   readdirSync(join(ROOT, 'partials'))
     .filter((f) => f.endsWith('.html'))
     .map((f) => [f.replace(/\.html$/, ''), readFileSync(join(ROOT, 'partials', f), 'utf8').trim()])
 );
+// Optional homepage sections: partials/optional/NAME.html is used as <!-- partial:optional-NAME -->.
+// A page turns a section on by carrying that marker pair, and off by not having it.
+for (const f of readdirSync(join(ROOT, 'partials', 'optional')).filter((f) => f.endsWith('.html'))) {
+  partials['optional-' + f.replace(/\.html$/, '')] = readFileSync(join(ROOT, 'partials', 'optional', f), 'utf8').trim();
+}
 
 function pages(dir = ROOT) {
   let out = [];
@@ -130,7 +135,8 @@ function credits(used) {
     .map(([, p]) => {
       const utm = '?utm_source=pinwheel_concept&utm_medium=referral';
       const u = p.site === 'Unsplash' ? utm : '';
-      return `      <li><strong>${escHtml(p.alt)}</strong><span>Photo by <a href="${p.profile}${u}">${escHtml(p.by)}</a> on <a href="${p.page}${u}">${p.site}</a>. Used for: ${escHtml(p.use)}.</span></li>`;
+      const edit = p.edit ? ` ${escHtml(p.edit)}` : '';
+      return `      <li><strong>${escHtml(p.alt)}</strong><span>Photo by <a href="${p.profile}${u}">${escHtml(p.by)}</a> on <a href="${p.page}${u}">${p.site}</a>. Used for: ${escHtml(p.use)}.${edit}</span></li>`;
     });
   return `<!-- credits -->\n    <ul class="credit-list">\n${items.join('\n')}\n    </ul>\n    <!-- /credits -->`;
 }
@@ -139,6 +145,21 @@ function credits(used) {
 const used = new Set();
 for (const file of pages()) {
   for (const m of readFileSync(file, 'utf8').matchAll(/\sdata-photo="([^"]+)"/g)) used.add(m[1]);
+}
+// Photos used outside the HTML (the link-preview JPG) carry "alwaysCredit": true in photos.json
+for (const [k, p] of Object.entries(photos)) if (p && p.alwaysCredit) used.add(k);
+
+// The preview template references photo files by name (no data-photo). Register them so build-images.py
+// keeps and regenerates them. Crop geometry comes from the file name: KEY-WxH[-full][-fpXX-YY].webp
+for (const f of readdirSync(join(ROOT, 'template')).filter((f) => f.endsWith('.html'))) {
+  const html = readFileSync(join(ROOT, 'template', f), 'utf8');
+  for (const m of html.matchAll(/images\/photos\/([a-z0-9-]+?)-(\d+)x(\d+)(-full)?(?:-fp(\d+)-(\d+))?\.webp/g)) {
+    const [, key, w, h, full, fx, fy] = m;
+    const base = photos[key];
+    if (!base) throw new Error(`template/${f} uses unknown photo "${key}"`);
+    const p = fx ? { ...base, key, fp: [Number(fx) / 100, Number(fy) / 100], fpOverride: true } : { ...base, key };
+    photoUrl(p, Number(w), Number(h), !full, '');
+  }
 }
 
 let changed = 0;
