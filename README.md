@@ -171,7 +171,6 @@ Keep each under about 2 MB, and update the video credit on `credits.html`.
 | Google review link (`href="#"`) | `review.html` |
 | Domain `byw-home-comfort.netlify.app` | Open Graph tags, JSON-LD, `sitemap.xml` |
 | Photos and video (Unsplash and Pexels stock) | See `credits.html`. Family photos appear in two places only: the request-a-visit section and the link-preview image |
-| Hero tech's red polo | The original Pexels photo shows a gray polo. It was recolored to Pinwheel red for this labeled sample (`images/source/tech-marcus-red.jpg`); the credit on `credits.html` says so |
 | `noindex` meta tags, `Disallow: /` in `robots.txt`, and the `X-Robots-Tag` header in `netlify.toml` | On purpose for a concept. Remove all three for a real launch |
 
 ---
@@ -301,6 +300,20 @@ Home re-run on Nov 1 after the review fixes (new hero, 12-city map, estimate ban
 
 ---
 
+## Service-area map
+
+The map on the homepage is a real map drawn from OpenStreetMap data: roads, rivers, canals, lakes, county lines, and the city limits of every city served, in the site's colors. Pins and labels sit on top as HTML so they stay sharp and readable on phones, Tracy is marked as home base, tapping the map opens Google Maps, and the "© OpenStreetMap contributors" credit sits under it.
+
+It is built once, not loaded live: no API key, no map script, one 57 KB SVG.
+
+```bash
+node scripts/build-map.mjs scripts/maps/pinwheel.json && node scripts/sync.mjs
+```
+
+The config lists the cities, the home-base city, and where to write the SVG and the `partials/area-map.html` partial. Labels are placed automatically to avoid collisions; `labelSide` locks one to a side (`r`, `l`, `t`, `b`, `tr`, `tl`, `br`, `bl`) when the automatic choice reads badly. Pinwheel locks Tracy, Manteca, and Escalon. The script caches its OpenStreetMap lookups in `scripts/.cache/`, so rebuilding works offline; delete those files to pull fresh data. For a client site, copy the config, change the cities, and run the same command.
+
+---
+
 ## Homepage previews for prospects
 
 The Pinwheel design is also a template. One JSON file per business builds a complete homepage preview; sections with no data hide themselves, so there is never placeholder text.
@@ -340,7 +353,9 @@ images/               Open Graph image and app icon
 partials/             shared header, footer, booking, chat, icons
 partials/optional/    optional homepage sections: specials (on), membership and financing (off)
 scripts/make-showcase.mjs  rebuilds showcase.html from index.html with every optional section on
-images/source/        the one retouched photo (hero tech, polo recolored to Pinwheel red)
+scripts/build-map.mjs   renders the service-area map from OpenStreetMap data (see "Service-area map")
+scripts/maps/         one map config per site (cities, home base, output paths)
+images/map/           the rendered map SVG
 scripts/sync.mjs      optional helper that copies partials into pages
 scripts/photos.json   every photo: source, crop box, focal point, alt text, credit
 scripts/build-images.py  makes the self-hosted WebP files (Python + Pillow)
