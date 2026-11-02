@@ -1453,6 +1453,37 @@ legend { padding: 0; }
 .is-showcase .showcase-note { margin: 0; background: var(--c-navy); color: #fff; text-align: center; font-size: var(--fs-sm); padding: 10px 16px; border-top: 1px solid rgb(255 255 255 / .12); }
 .is-showcase .showcase-note p { margin: 0; }
 .is-showcase .showcase-note b { color: var(--c-brand-light); }
+/* Service-area map: OSM render (scripts/build-map.mjs) with HTML pins on top */
+.svc-map { position: relative; display: block; overflow: hidden; border-radius: 14px; color: inherit; text-decoration: none; }
+.svc-map img { display: block; width: 100%; height: auto; }
+.svc-map:focus-visible { outline: 3px solid var(--c-focus); outline-offset: 3px; }
+.svc-pins { position: absolute; inset: 0; pointer-events: none; }
+.svc-pin { position: absolute; width: 0; height: 0; }
+.svc-pin::before { content: ""; position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--c-navy); box-shadow: 0 0 0 2.5px #fff, 0 1px 4px rgb(20 33 61 / .35); }
+.svc-pin-label { position: absolute; top: -7px; white-space: nowrap; font-family: var(--ff-display); font-size: 11px; font-weight: 800; line-height: 14px; color: var(--c-navy); text-shadow: 0 0 2px #FBF8F4, 0 0 2px #FBF8F4, 0 0 3px #FBF8F4, 0 0 4px #FBF8F4; }
+.svc-pin[data-side="r"] .svc-pin-label { left: 9px; }
+.svc-pin[data-side="l"] .svc-pin-label { right: 9px; }
+.svc-pin[data-side="b"] .svc-pin-label { top: 7px; left: 0; transform: translateX(-50%); }
+.svc-pin[data-side="t"] .svc-pin-label { top: auto; bottom: 7px; left: 0; transform: translateX(-50%); }
+.svc-pin[data-side="br"] .svc-pin-label { top: 4px; left: 4px; }
+.svc-pin[data-side="tr"] .svc-pin-label { top: auto; bottom: 4px; left: 4px; }
+.svc-pin[data-side="bl"] .svc-pin-label { top: 4px; right: 4px; }
+.svc-pin[data-side="tl"] .svc-pin-label { top: auto; bottom: 4px; right: 4px; }
+.svc-pin.is-hq::before { display: none; }
+.svc-hq-mark { position: absolute; left: -15px; top: -15px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px var(--c-brand), 0 2px 8px rgb(20 33 61 / .25); }
+.svc-hq-mark svg { width: 20px; height: 20px; }
+.svc-pin.is-hq .svc-pin-label { top: -14px; display: grid; color: var(--c-brand-deep); }
+.svc-pin.is-hq[data-side="r"] .svc-pin-label { left: 19px; }
+.svc-pin.is-hq[data-side="l"] .svc-pin-label { right: 19px; text-align: right; }
+.svc-pin.is-hq[data-side="b"] .svc-pin-label { top: 17px; text-align: center; }
+.svc-pin.is-hq[data-side="t"] .svc-pin-label { bottom: 17px; text-align: center; }
+.svc-pin.is-hq small { font-family: var(--ff-body); font-size: 10px; font-weight: 600; color: var(--c-muted); }
+.svc-map-credit { margin: 8px 6px 0; font-size: 12px; color: var(--c-muted); }
+.svc-map-credit a { color: inherit; }
+@media (min-width: 600px) {
+  .svc-pin-label { font-size: 13px; line-height: 16px; top: -8px; }
+  .svc-pin.is-hq small { font-size: 11px; }
+}
 .hero-fine { margin: 14px 0 0; font-size: 12px; line-height: 1.45; color: var(--c-fine); }
 
 /* ---------- Comfort: people at home ---------- */
@@ -1499,9 +1530,6 @@ legend { padding: 0; }
 
 /* ---------- Visit strip: door photo under the video ---------- */
 .visit-media-col { display: grid; gap: 14px; }
-.visit-door { position: relative; margin: 0; overflow: hidden; border-radius: var(--r-lg); aspect-ratio: 16 / 7; background: #d6cfc6; box-shadow: var(--shadow-1); }
-.visit-door img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.visit-door figcaption { position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; border-radius: 999px; background: rgb(255 255 255 / .92); font-size: 13px; font-weight: 600; color: var(--c-navy); }
 
 /* ---------- Request a visit (short form + family photo) ---------- */
 .request-grid { display: grid; gap: var(--sp-5); align-items: center; }

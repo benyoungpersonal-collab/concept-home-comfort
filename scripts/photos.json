@@ -21,33 +21,7 @@
     "by": "Kathleen Austin Kuhn",
     "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
     "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
-    "use": "Preview template hero (gray original)",
-    "preview": "pexels__32497161.jpg"
-  },
-  "tech-marcus-red": {
-    "id": "32497161",
-    "site": "Pexels",
-    "file": "images/source/tech-marcus-red.jpg",
-    "src": "https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=3600",
-    "w": 3000,
-    "h": 2000,
-    "box": [
-      0.15,
-      0.0,
-      1.0,
-      0.86
-    ],
-    "fp": [
-      0.49,
-      0.5
-    ],
-    "color": "#938a8b",
-    "alt": "Technician in a red polo checking an outdoor AC condenser beside a home with a flashlight",
-    "by": "Kathleen Austin Kuhn",
-    "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
-    "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
-    "use": "Home hero, cooling hero, team, about",
-    "edit": "The polo is gray in the original photo. It was recolored to Pinwheel red for this labeled sample site; folds and shadows are untouched.",
+    "use": "Home hero, cooling hero, team, about, preview template hero",
     "preview": "pexels__32497161.jpg"
   },
   "owner-luis": {

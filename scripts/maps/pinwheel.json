@@ -1,0 +1,28 @@
+{
+  "_comment": "Service-area map for Pinwheel. Build with: node scripts/build-map.mjs scripts/maps/pinwheel.json",
+  "name": "pinwheel",
+  "cities": [
+    "Tracy, CA",
+    "Mountain House, CA",
+    "Manteca, CA",
+    "Lathrop, CA",
+    "French Camp, CA",
+    "Stockton, CA",
+    "Lodi, CA",
+    "Ripon, CA",
+    "Escalon, CA",
+    "Livermore, CA",
+    "Pleasanton, CA",
+    "Dublin, CA"
+  ],
+  "hq": "Tracy, CA",
+  "hqLabel": "Home base",
+  "svg": "images/map/pinwheel-service-area.svg",
+  "partial": "partials/area-map.html",
+  "alt": "Map of San Joaquin and Alameda counties showing the 12 cities we serve, with Tracy as home base. Opens Google Maps.",
+  "labelSide": {
+    "Tracy": "b",
+    "Manteca": "b",
+    "Escalon": "t"
+  }
+}
