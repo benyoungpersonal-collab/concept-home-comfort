@@ -865,14 +865,15 @@ legend { padding: 0; }
 .areas-grid { display: grid; gap: var(--sp-4); align-items: center; }
 .map-card { position: relative; padding: 8px; border-radius: var(--r-lg); background: #fff; box-shadow: var(--shadow-2); }
 .area-map { width: 100%; height: auto; border-radius: 18px; }
-.area-map .map-label { font-family: var(--ff-display); font-weight: 800; font-size: 30px; fill: var(--c-navy); paint-order: stroke; stroke: #FBF8F4; stroke-width: 7px; stroke-linejoin: round; }
-.area-map .map-sub { font-family: var(--ff-body); font-weight: 600; font-size: 20px; fill: var(--c-muted); paint-order: stroke; stroke: #FBF8F4; stroke-width: 6px; stroke-linejoin: round; }
+.area-map .map-label { font-family: var(--ff-display); font-weight: 800; font-size: 25px; fill: var(--c-navy); paint-order: stroke; stroke: #FBF8F4; stroke-width: 7px; stroke-linejoin: round; }
+.area-map .map-sub { font-family: var(--ff-body); font-weight: 600; font-size: 17px; fill: var(--c-muted); paint-order: stroke; stroke: #FBF8F4; stroke-width: 6px; stroke-linejoin: round; }
 .area-map .map-hq .map-label { fill: var(--c-brand-deep); }
 .area-map a:hover .map-label, .area-map a:focus .map-label { fill: var(--c-brand-deep); }
 .area-map a:focus { outline: none; }
 .area-map a:focus-visible .pin-ring { stroke: var(--c-focus); stroke-width: 4; }
 .area-map .pin-ring { fill: #fff; stroke: var(--c-navy); stroke-width: 3; }
 .area-map .river-label { font-family: var(--ff-body); font-style: italic; font-weight: 600; font-size: 15px; fill: #3F7FA6; letter-spacing: .06em; }
+.area-map .map-county { font-family: var(--ff-body); font-weight: 700; font-size: 13px; fill: #A59684; letter-spacing: .18em; }
 .area-map .hills-label { font-family: var(--ff-body); font-weight: 700; font-size: 14px; fill: #8C7B66; letter-spacing: .16em; }
 .area-map .road-label { font-family: var(--ff-body); font-weight: 800; font-size: 13px; fill: #fff; }
 .area-map .blade { transform-box: fill-box; transform-origin: center; }
@@ -880,8 +881,8 @@ legend { padding: 0; }
 @media (min-width: 600px) { .area-map .road-shields { display: inline; } }
 @media (min-width: 900px) {
   .areas-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--sp-8); }
-  .area-map .map-label { font-size: 23px; }
-  .area-map .map-sub { font-size: 15px; }
+  .area-map .map-label { font-size: 19px; }
+  .area-map .map-sub { font-size: 14px; }
 }
 .city-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: var(--sp-3) 0; }
 .city-list li > * {
@@ -1441,6 +1442,17 @@ legend { padding: 0; }
 .svc-sub li::before { content: ""; flex: none; width: 7px; height: 7px; margin-top: 7px; border-radius: 50%; background: var(--c-brand); }
 .svc-card .text-link { margin-top: auto; padding-top: 4px; }
 .area-chips li.is-hq { background: var(--c-brand-tint); border-color: #F2C2AE; color: var(--c-brand-deep); }
+/* Instant estimate: the highlight band */
+.estimator.on-dark { background: radial-gradient(760px 420px at 90% 0%, rgb(255 255 255 / .09), transparent 62%), linear-gradient(165deg, var(--c-navy), var(--c-navy-2)); }
+.estimator.on-dark .q legend { color: #fff; }
+.estimator.on-dark .form-error { color: #FFC9B8; }
+.estimator.on-dark .est-result { color: var(--c-text); }
+.estimator.on-dark .est-result h3, .estimator.on-dark .est-result .est-label { color: var(--c-navy); }
+/* showcase.html: every optional section carries a small tag */
+.is-showcase [data-optional] .eyebrow::after { content: "Optional section"; margin-left: 10px; padding: 3px 9px; border-radius: var(--r-pill); border: 1px dashed currentColor; font-size: 10px; letter-spacing: .08em; opacity: .85; }
+.is-showcase .showcase-note { margin: 0; background: var(--c-navy); color: #fff; text-align: center; font-size: var(--fs-sm); padding: 10px 16px; border-top: 1px solid rgb(255 255 255 / .12); }
+.is-showcase .showcase-note p { margin: 0; }
+.is-showcase .showcase-note b { color: var(--c-brand-light); }
 .hero-fine { margin: 14px 0 0; font-size: 12px; line-height: 1.45; color: var(--c-fine); }
 
 /* ---------- Comfort: people at home ---------- */

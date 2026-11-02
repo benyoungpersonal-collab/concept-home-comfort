@@ -1,0 +1,43 @@
+  <!-- Optional section: Financing. Off for Pinwheel. A page turns it on with the optional-financing marker pair (see README) and node scripts/sync.mjs. Add the Financing links back to partials/header.html when it is on. -->
+  <section class="section financing bg-alt" id="financing" data-optional="Financing" aria-labelledby="financing-title">
+    <div class="container fin-grid">
+      <div class="fin-head">
+        <p class="eyebrow">Financing</p>
+        <h2 id="financing-title">Comfort now. <span class="accent">Easy monthly payments.</span></h2>
+        <p class="lead">Slide to your project cost and pick a term. Your example payment updates as you go.</p>
+      </div>
+      <form class="calc" data-finance data-apr="7.99" method="dialog" aria-label="Monthly payment calculator">
+        <span class="tag">Example only</span>
+        <div class="calc-head">
+          <label for="calc-amount">Project cost</label>
+          <output class="amount" for="calc-amount" data-amount-out>$12,000</output>
+        </div>
+        <input class="range" id="calc-amount" type="range" min="3000" max="25000" step="500" value="12000" data-amount aria-valuetext="$12,000">
+        <div class="range-scale" aria-hidden="true"><span>$3,000</span><span>$25,000</span></div>
+        <fieldset>
+          <legend>Term</legend>
+          <div class="chips-grid four">
+            <label class="chip"><input type="radio" name="term" value="36"><span>36 mo</span></label>
+            <label class="chip"><input type="radio" name="term" value="60"><span>60 mo</span></label>
+            <label class="chip"><input type="radio" name="term" value="84"><span>84 mo</span></label>
+            <label class="chip"><input type="radio" name="term" value="120" checked><span>120 mo</span></label>
+          </div>
+        </fieldset>
+        <div class="calc-result" aria-live="polite">
+          <p class="label">Estimated monthly payment</p>
+          <p class="calc-payment"><span data-payment>$146</span><small>/mo</small></p>
+          <p class="fine">at 7.99% APR for <span data-term-out>120</span> months</p>
+        </div>
+        <p class="fine">Example only. 7.99% APR is for illustration. Real rates and terms depend on credit approval.</p>
+      </form>
+      <div class="fin-rest">
+        <ul class="checklist">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>Apply in about 2 minutes</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>Checking your options won't hurt your credit</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>Terms up to 10 years on new systems</li>
+        </ul>
+        <a class="btn btn-navy btn-lg" href="financing.html">See financing options<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </section>
+

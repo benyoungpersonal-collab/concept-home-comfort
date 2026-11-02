@@ -26,6 +26,8 @@ CACHE = os.path.join(ROOT, 'scripts', '.cache')
 
 
 def source(key, photo):
+    if photo.get('file'):  # a retouched copy kept in the repo (see photos.json "edit")
+        return Image.open(os.path.join(ROOT, photo['file'])).convert('RGB')
     os.makedirs(CACHE, exist_ok=True)
     path = os.path.join(CACHE, f"{key}-{photo['id']}.jpg")
     if not os.path.exists(path):
