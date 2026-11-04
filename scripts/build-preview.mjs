@@ -298,10 +298,11 @@ if (mapHtml) {
 }
 
 const proofHeadline = hasTradeYears ? accent('A new name,', `${yearsInTrade} years in the trade.`) : accent('Licensed, insured, and', 'close by.');
+const hasProof = !!license || insured || hasTradeYears || !!warranty || hasOwner || areas.length > 1 || !!writeReviewUrl;
 const menu = [
   services.length && { id: 'services', label: 'Services' },
   established && reviews.length && { id: 'reviews', label: 'Reviews' },
-  isNew && { id: 'proof', label: 'Why us' },
+  isNew && hasProof && { id: 'proof', label: 'Why us' },
   { id: 'how-it-works', label: 'How a visit works' },
   specials.length && { id: 'specials', label: 'Specials and discounts' },
   { id: 'estimate', label: prices.length ? 'Starting prices' : 'Quick quote' },
@@ -321,7 +322,7 @@ const data = {
   heroPlumber: trade === 'plumbing',
   established, isNew, ratingText: rating !== null ? rating.toFixed(1) : '', reviewCount, starsLabel: rating !== null ? `Rated ${rating.toFixed(1)} out of 5` : '', googleReviewsUrl, writeReviewUrl,
   reviews, hasReviews: reviews.length > 0,
-  hasProof: !!license || insured || hasTradeYears || !!warranty || hasOwner || areas.length > 1 || !!writeReviewUrl,
+  hasProof,
   proofHeadline, proofLead: `${name} is ${hasTradeYears ? 'new, but the hands are not' : 'local, licensed, and easy to reach'}. Here is what you can count on before you call.`,
   tradeYearsText: owner.name ? `${owner.name.split(' ')[0]} has been on the tools for ${yearsInTrade} years before opening ${shortName}.` : `Years of hands-on work before opening ${shortName}.`,
   ownerProof: owner.name ? `Owned and run by ${owner.name}, right here in ${city}.` : '', areaCountText,

@@ -1,0 +1,49 @@
+{
+  "name": "Horizon Heating and Air Conditioning",
+  "shortName": "Horizon",
+  "phone": "(209) 535-4683",
+  "city": "Turlock",
+  "mode": "new",
+  "yearsInBusiness": 10,
+  "hours": "Open 7 days, 8am to 8pm",
+  "serviceAreas": [
+    "Turlock"
+  ],
+  "services": [
+    {
+      "name": "Repair and service",
+      "blurb": "No cool, no heat, or something just sounds wrong. We find it and fix it.",
+      "sub": [
+        "AC repair",
+        "Furnace repair",
+        "Heat pump repair"
+      ]
+    },
+    {
+      "name": "Tune-ups",
+      "blurb": "Catch the small stuff before it turns into a breakdown.",
+      "sub": [
+        "AC tune-ups",
+        "Furnace safety checks"
+      ]
+    },
+    {
+      "name": "New systems",
+      "blurb": "When a repair no longer makes sense, we size and install the right system.",
+      "sub": [
+        "AC replacement",
+        "Furnace replacement",
+        "Heat pump systems"
+      ]
+    }
+  ],
+  "owner": {
+    "name": "Greg Valdez",
+    "role": "Owner"
+  },
+  "insured": false,
+  "upfrontPricing": false,
+  "guarantee": false,
+  "lead": "AC or furnace acting up? We handle repair and service for homes in Turlock. If it heats or cools, we fix it.",
+  "tagline": "Heating & Air"
+}
