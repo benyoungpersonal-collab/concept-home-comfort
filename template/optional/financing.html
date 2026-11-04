@@ -1,0 +1,39 @@
+  <!-- Optional section: Financing. Same markup as Pinwheel's partials/optional/financing.html, filled from "financing" in the data file. -->
+  <section class="section financing bg-alt" id="financing" aria-labelledby="financing-title">
+    <div class="container fin-grid">
+      <div class="fin-head">
+        <p class="eyebrow">Financing</p>
+        <h2 id="financing-title">Comfort now. <span class="accent">Easy monthly payments.</span></h2>
+        <p class="lead">{{#if financing.hasCalc}}Slide to your project cost and pick a term. Your example payment updates as you go.{{else}}{{financing.lead}}{{/if}}</p>
+      </div>
+      {{#if financing.hasCalc}}<form class="calc" data-finance data-apr="{{financing.apr}}" method="dialog" aria-label="Monthly payment calculator">
+        <span class="tag">Example only</span>
+        <div class="calc-head">
+          <label for="calc-amount">Project cost</label>
+          <output class="amount" for="calc-amount" data-amount-out>{{financing.startPretty}}</output>
+        </div>
+        <input class="range" id="calc-amount" type="range" min="{{financing.min}}" max="{{financing.max}}" step="{{financing.step}}" value="{{financing.start}}" data-amount aria-valuetext="{{financing.startPretty}}">
+        <div class="range-scale" aria-hidden="true"><span>{{financing.minPretty}}</span><span>{{financing.maxPretty}}</span></div>
+        <fieldset>
+          <legend>Term</legend>
+          <div class="chips-grid four">
+            {{#each financing.terms}}<label class="chip"><input type="radio" name="term" value="{{months}}"{{#if last}} checked{{/if}}><span>{{months}} mo</span></label>
+            {{/each}}
+          </div>
+        </fieldset>
+        <div class="calc-result" aria-live="polite">
+          <p class="label">Estimated monthly payment</p>
+          <p class="calc-payment"><span data-payment>$0</span><small>/mo</small></p>
+          <p class="fine">at {{financing.apr}}% APR for <span data-term-out>{{financing.lastTerm}}</span> months</p>
+        </div>
+        <p class="fine">Example only. Real rates and terms depend on credit approval.</p>
+      </form>{{/if}}
+      <div class="fin-rest">
+        {{#if financing.bullets}}<ul class="checklist">
+          {{#each financing.bullets}}<li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>{{this}}</li>
+          {{/each}}
+        </ul>{{/if}}
+        <a class="btn btn-navy btn-lg" href="{{financing.href}}"{{#if financing.external}} target="_blank" rel="noopener"{{/if}}>{{financing.cta}}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </section>
