@@ -90,11 +90,5 @@
       "when": "a year ago",
       "quote": "...Greg, the owner, really knows his stuff. He's honest, hardworking, and doesn't mess around when it comes to customer service..."
     }
-  ],
-  "truckPhoto": {
-    "src": "photos/horizon-heating-air-van.webp",
-    "width": 1040,
-    "height": 632,
-    "alt": "Horizon Heating and Air Conditioning work van with the logo, phone number, services, and license number on the side"
-  }
+  ]
 }
