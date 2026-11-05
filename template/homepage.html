@@ -49,7 +49,7 @@
 <header class="site-header" data-header>
   <div class="container header-inner">
     <a class="logo" href="#main" aria-label="{{name}}, back to top">
-      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="200" height="44">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
+      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="{{logoW}}" height="{{logoH}}">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
       <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
     </a>
     <nav class="nav" aria-label="Main">
@@ -74,7 +74,7 @@
 <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
   <div class="mm-head">
     <a class="logo" href="#main" aria-label="{{name}}, back to top">
-      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="200" height="44">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
+      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="{{logoW}}" height="{{logoH}}">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
       <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
     </a>
     <button class="mm-close" type="button" aria-label="Close menu" data-menu-close><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
@@ -133,11 +133,12 @@
 
   <!-- 2. Trust strip -->
   {{#if hasTrust}}<section class="trust on-dark" aria-label="Why neighbors trust us">
-    <div class="container">
+    <div class="container{{#if hasTruck}} tpl-trust-grid{{/if}}">
       <ul class="trust-list tpl-trust n{{trustCount}}">
         {{#each trust}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span><span><strong>{{strong}}</strong>{{#if hasSub}}<span>{{sub}}</span>{{/if}}</span></li>
         {{/each}}
       </ul>
+      {{#if hasTruck}}<figure class="tpl-truck"><img src="{{truckSrc}}" width="{{truckW}}" height="{{truckH}}" alt="{{truckAlt}}" loading="lazy" decoding="async"></figure>{{/if}}
     </div>
   </section>{{/if}}
 
@@ -219,10 +220,12 @@
         {{#each leadService}}<a class="tile photo-tile tile-lead {{tileTone}}" href="#request" id="{{anchor}}">
           {{#if isPlumbing}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/pipes-720x540.webp" srcset="images/photos/pipes-480x360.webp 480w, images/photos/pipes-720x540.webp 720w, images/photos/pipes-960x720.webp 960w, images/photos/pipes-1200x900.webp 1200w" width="1200" height="900" alt="New copper water pipes running through an open wall" loading="lazy" decoding="async" style="object-position:50% 50%;background-color:#9c6b45">{{else}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w, images/photos/thermostat-960x720.webp 960w, images/photos/thermostat-1200x900.webp 1200w" width="1200" height="900" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7">{{/if}}
           <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
-          <span class="tile-kicker{{#if isPlumbing}} warm-k{{/if}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg>{{kicker}}</span>
-          <h3>{{name}}</h3>
-          {{#if blurb}}<p>{{blurb}}</p>{{/if}}
-          {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
+          <span class="tpl-photo-text">
+            <span class="tile-kicker{{#if isPlumbing}} warm-k{{/if}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg>{{kicker}}</span>
+            <h3>{{name}}</h3>
+            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
+            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
+          </span>
         </a>{{/each}}
         {{#if hasMoreServices}}<div class="tpl-bento-rest">
           {{#each moreServices}}<a class="tile {{tileTone}}" href="#request" id="{{anchor}}">
@@ -478,7 +481,7 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <a class="logo light" href="#main" aria-label="{{name}}, back to top">
-        {{#if hasLogo}}<span class="tpl-logo-chip"><img class="logo-img" src="{{logoSrc}}" alt="" width="200" height="44"></span>{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
+        {{#if hasLogo}}<span class="tpl-logo-chip"><img class="logo-img" src="{{logoSrc}}" alt="" width="{{logoW}}" height="{{logoH}}"></span>{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
         <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
       </a>
       <p>{{name}} serves homeowners in {{areaSummary}}.</p>

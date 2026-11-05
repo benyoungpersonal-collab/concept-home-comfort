@@ -37,6 +37,7 @@ These apply to every prospect. The build enforces the ones marked **(build)**; t
 **Logo and colors**
 - Use their real logo when they have one (`logo`). It goes in the header, mobile menu, footer (on a white chip), favicon, and the map pin **(build)**.
 - No logo: a clean text logo from their business name (`shortName` plus `tagline`) **(build)**.
+- Service cards with a photo never get a color tint **(build)**. The photo shows in its true colors, with only a soft dark gradient behind the words at the bottom (like Pinwheel's AC repair card). The gradient follows the text block, so the words pass contrast on any photo and any screen size.
 - Service cards use the main color plus a second color **(build)**: `colors.brand` (main, default orange) and `colors.second` (usually the other color in their logo, default navy). The first half of the cards use the main color and the rest the second, unless a service sets `"tone": "main"` or `"second"`.
 
 **Reviews** **(build)**
@@ -114,6 +115,8 @@ Nice to have:
 | `membership` | `{ "name": "Sunrise Club", "lead": "...", "price": "$17", "per": "a month", "benefits": [{ "title": "...", "text": "..." }], "cardLines": [{ "label": "Next tune-up", "value": "April" }] }` | Their real plan only |
 | `team` | `[{ "name": "Rico", "role": "HVAC tech" }]` | Name cards under the owner story |
 | `promises` | `["We clean up before we leave"]` | Check chips under the owner story. Only what they actually promise |
+| `logoMark` | `"logos/name-mark.png"` | The square icon part of their logo, for the favicon and the map pin. Without it, the full logo is used |
+| `truckPhoto` | `{ "src": "photos/name-van.webp", "width": 1040, "height": 632, "alt": "..." }` | A real photo of their truck or van, shown beside the trust strip. Only when it looks clean, with no other company's logo in it (crop it out) |
 | `logo` | `"logos/sunrise-comfort.svg"` | Path relative to the data file. No logo: the business name with a colored initial |
 | `yearsInBusiness` | `12` | "12 years local" in the trust strip |
 | `hours`, `email`, `locations`, `faqs` | see `example.json` | Header, footer, and FAQ |

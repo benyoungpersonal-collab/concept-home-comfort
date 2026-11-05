@@ -2,11 +2,13 @@
   "name": "Horizon Heating and Air Conditioning",
   "shortName": "Horizon",
   "tagline": "Heating & Air",
+  "logo": "logos/horizon-heating-air.webp",
+  "logoMark": "logos/horizon-heating-air-mark.png",
   "phone": "(209) 535-4683",
   "city": "Turlock",
   "trade": "hvac",
   "colors": {
-    "second": "#1F5FA8"
+    "second": "#028FE4"
   },
   "license": "CSLB #1018400",
   "bonded": true,
@@ -71,5 +73,28 @@
     "name": "Greg Valdez",
     "role": "Owner"
   },
-  "lead": "AC or furnace acting up? We handle repair and service for homes in Turlock. If it heats or cools, we fix it."
+  "lead": "AC or furnace acting up? We handle repair and service for homes in Turlock. If it heats or cools, we fix it.",
+  "reviews": [
+    {
+      "name": "Ivy W.",
+      "when": "3 months ago",
+      "quote": "I can’t recommend Horizon Heating and Air Conditioning enough! After I called, Greg was at my door within an hour. He quickly diagnosed the problem and had my air conditioner blowing cold air again in about 20 minutes..."
+    },
+    {
+      "name": "Matthew G.",
+      "when": "a month ago",
+      "quote": "...luckily Kenny called me for an earlier time slot, which worked out perfectly. While he was giving me a quote for a new package unit, he found the problem with my old unit and was instantly able to replace the capacitors, service the unit, and get it up and running..."
+    },
+    {
+      "name": "Thaddeus J.",
+      "when": "a year ago",
+      "quote": "...Greg, the owner, really knows his stuff. He's honest, hardworking, and doesn't mess around when it comes to customer service..."
+    }
+  ],
+  "truckPhoto": {
+    "src": "photos/horizon-heating-air-van.webp",
+    "width": 1040,
+    "height": 632,
+    "alt": "Horizon Heating and Air Conditioning work van with the logo, phone number, services, and license number on the side"
+  }
 }

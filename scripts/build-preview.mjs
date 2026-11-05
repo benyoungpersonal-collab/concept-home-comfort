@@ -242,6 +242,27 @@ const logo = str(raw.logo);
 const logoExt = logo ? extname(logo).toLowerCase() : '';
 if (logo && !['.svg', '.png', '.jpg', '.jpeg', '.webp'].includes(logoExt)) fail('logo must be an .svg, .png, .jpg, or .webp file');
 const logoSrc = logo ? `images/logo${logoExt}` : '';
+/* logoMark: the square icon part of their logo, for the favicon and the map pin. Falls back to the full logo. */
+const logoMark = str(raw.logoMark);
+const logoMarkExt = logoMark ? extname(logoMark).toLowerCase() : '';
+if (logoMark && !['.svg', '.png', '.jpg', '.jpeg', '.webp'].includes(logoMarkExt)) fail('logoMark must be an .svg, .png, .jpg, or .webp file');
+const markSrc = logoMark ? `images/logo-mark${logoMarkExt}` : logoSrc;
+const markExt = logoMark ? logoMarkExt : logoExt;
+/* Logo size for the img tag: read from the PNG or WebP header, otherwise a wide default. */
+let logoW = 200, logoH = 44;
+if (logo && ['.png', '.webp'].includes(logoExt)) { try {
+  const b = readFileSync(resolve(dirname(dataPath), logo));
+  if (logoExt === '.png') { logoW = b.readUInt32BE(16); logoH = b.readUInt32BE(20); }
+  else { const kind = b.toString('ascii', 12, 16); // WebP: VP8X (extended), VP8L (lossless), or VP8 (lossy)
+    if (kind === 'VP8X') { logoW = 1 + b.readUIntLE(24, 3); logoH = 1 + b.readUIntLE(27, 3); }
+    else if (kind === 'VP8L') { const v = b.readUInt32LE(21); logoW = 1 + (v & 0x3FFF); logoH = 1 + ((v >> 14) & 0x3FFF); }
+    else if (kind === 'VP8 ') { logoW = b.readUInt16LE(26) & 0x3FFF; logoH = b.readUInt16LE(28) & 0x3FFF; } }
+} catch {} }
+/* truckPhoto: a real photo of their truck or van, shown beside the trust strip. Only when it looks clean (template rules). */
+const truck = raw.truckPhoto && typeof raw.truckPhoto === 'object' && str(raw.truckPhoto.src) ? raw.truckPhoto : null;
+const truckExt = truck ? extname(str(truck.src)).toLowerCase() : '';
+if (truck && !['.jpg', '.jpeg', '.png', '.webp'].includes(truckExt)) fail('truckPhoto.src must be a .jpg, .png, or .webp file');
+if (truck && !(num(truck.width) && num(truck.height))) fail('truckPhoto needs width and height (in pixels)');
 const brand = str(raw.colors && raw.colors.brand);
 const navy = str(raw.colors && raw.colors.navy);
 const second = str(raw.colors && raw.colors.second);
@@ -310,15 +331,15 @@ const defaultHeadline = trade === 'plumbing' ? accent('Plumbing done right,', 'w
 const servicesHeadline = trade === 'plumbing' ? accent('One call for', 'every plumbing job.') : trade === 'both' ? accent('One call for heating,', 'air, and plumbing.') : accent('One call for', 'heating and cooling.');
 const faviconText = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${brandColor}"/><text x="32" y="44" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="36" fill="#fff">${esc(initial)}</text></svg>`)}`;
 /* Their real logo is the favicon when they have one. */
-const faviconHref = logo ? logoSrc : faviconText;
-const faviconType = !logo || logoExt === '.svg' ? 'image/svg+xml' : logoExt === '.png' ? 'image/png' : logoExt === '.webp' ? 'image/webp' : 'image/jpeg';
+const faviconHref = markSrc || faviconText;
+const faviconType = !markSrc || markExt === '.svg' ? 'image/svg+xml' : markExt === '.png' ? 'image/png' : markExt === '.webp' ? 'image/webp' : 'image/jpeg';
 
 if (mapHtml) {
   const alt = areas.length > 1 ? `Map of ${countiesFull || 'the area'} showing the ${areas.length} cities we serve, with ${city} as home base. Opens Google Maps.`
     : `Map of ${city}${mapNearby.length ? ` and nearby ${listWords(mapNearby)}` : ''}, with ${city} as home base. Opens Google Maps.`;
   mapHtml = mapHtml.replace(`{{root}}scripts/.cache/preview-maps/${slug}.svg`, 'images/map/service-area.svg').replace('alt="ALT"', `alt="${esc(alt)}"`)
-    .replace(/<span class="svc-hq-mark"><svg><use href="#logo-mark"\/><\/svg><\/span>/, logo ? `<span class="svc-hq-mark tpl-hq tpl-hq-logo"><img src="${logoSrc}" alt="" width="32" height="32"></span>` : `<span class="svc-hq-mark tpl-hq">${esc(initial)}</span>`);
-  if (/logo-mark|\{\{/.test(mapHtml)) fail('Map partial still has a Pinwheel logo or template tag.');
+    .replace(/<span class="svc-hq-mark"><svg><use href="#logo-mark"\/><\/svg><\/span>/, markSrc ? `<span class="svc-hq-mark tpl-hq tpl-hq-logo"><img src="${markSrc}" alt="" width="32" height="32"></span>` : `<span class="svc-hq-mark tpl-hq">${esc(initial)}</span>`);
+  if (/#logo-mark|\{\{/.test(mapHtml)) fail('Map partial still has a Pinwheel logo or template tag.');
 }
 
 /* ---------- Trust strip: 4 to 6 facts, never just one ---------- */
@@ -460,7 +481,9 @@ const data = {
   team, promises, menu,
   faqs: faqList, hasFaqs: faqList.length > 0,
   locations, hasLocations: locations.length > 0, oneLocation: locations.length === 1,
-  hasLogo: !!logo, logoSrc,
+  hasLogo: !!logo, logoSrc, logoW, logoH,
+  hasTruck: !!truck, truckSrc: truck ? `images/truck${truckExt}` : '', truckW: truck ? num(truck.width) : '', truckH: truck ? num(truck.height) : '',
+  truckAlt: truck ? (str(truck.alt) || `${name} work van`) : '',
   license, hasLicense: !!license, yearsInBusiness: years, hasYears, sinceYear: years ? year - years : '', yearsInTrade, hasTradeYears, showTradeYears: hasTradeYears && !hasYears,
   warranty, hasWarranty: !!warranty,
   insured, upfront, guarantee: guarantee || !!warranty,
@@ -536,7 +559,7 @@ const unfilled = html.match(/\{\{[^}]*\}\}/g);
 if (unfilled) fail('Unfilled template tags: ' + [...new Set(unfilled)].join(' '));
 if (/claude/i.test(html)) fail('The page mentions Claude. Remove that from the data file.');
 if (/—/.test(html)) fail('The page contains an em dash. Replace it in the data file.');
-const pw = html.match(/.{0,60}(?:logo-mark|Pinwheel).{0,60}/i); if (pw) fail('The page still has a Pinwheel name or logo in it: ' + pw[0]);
+const pw = html.match(/.{0,60}(?:#logo-mark|Pinwheel).{0,60}/i); if (pw) fail('The page still has a Pinwheel name or logo in it: ' + pw[0]);
 if (/(^|[^\w&])#1\b|\bnumber one\b|\bbest in\b/i.test(html)) fail('The page makes a "#1" or "best" claim. Remove it from the data file.');
 
 /* ---------- 4. Copy only what the page uses ---------- */
@@ -547,7 +570,7 @@ const own = { 'css/preview.css': 'template/preview.css', 'js/preview.js': 'templ
 let copied = 0;
 const refs = new Set([...html.matchAll(/\b(src|href|poster|imagesrcset|srcset)="([^"]+)"/g)].flatMap((m) => m[2].startsWith('data:') ? [] : (/srcset/.test(m[1]) ? m[2].split(',') : [m[2]]).map((p) => p.trim().split(/\s+/)[0].split('?')[0])));
 for (const ref of refs) {
-  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/owner') || ref === 'images/map/service-area.svg') continue;
+  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/owner') || ref.startsWith('images/truck') || ref === 'images/map/service-area.svg') continue;
   if (own[ref]) { copied += copy(own[ref], ref); continue; }
   if (!existsSync(join(ROOT, ref))) fail('Referenced file is missing: ' + ref);
   copied += copy(ref);
@@ -557,6 +580,8 @@ for (const v of [...html.matchAll(/data-video="([^"]+)"/g)].map((m) => m[1])) fo
 copied += copy('images/og-family-1200x630.jpg', 'images/og.jpg');
 const copyOwn = (rel, to) => { const from = resolve(dirname(dataPath), rel); if (!existsSync(from)) fail('File not found: ' + from); mkdirSync(dirname(join(OUT, to)), { recursive: true }); copyFileSync(from, join(OUT, to)); copied++; };
 if (logo) copyOwn(logo, logoSrc);
+if (logoMark) copyOwn(logoMark, markSrc);
+if (truck) copyOwn(str(truck.src), `images/truck${truckExt}`);
 if (data.hasOwnerPhoto) copyOwn(ownerPhoto, data.ownerPhotoSrc);
 if (mapHtml) {
   let svg = readFileSync(mapSvgFile, 'utf8');

@@ -71,6 +71,7 @@ a[href^="tel:"] { white-space: nowrap; }
 
 /* Their real logo: header, mobile menu, footer (on a white chip so any logo reads on the dark footer), favicon, map pin */
 .logo-img { display: block; width: auto; height: 44px; max-width: 220px; object-fit: contain; }
+@media (min-width: 900px) { .site-header .logo-img { height: 50px; } }
 .tpl-logo-chip { display: inline-flex; padding: 6px 10px; border-radius: 12px; background: #fff; }
 .tpl-logo-chip .logo-img { height: 40px; }
 .svc-hq-mark.tpl-hq-logo { width: 40px; height: 40px; left: -20px; top: -20px; overflow: hidden; }
@@ -96,8 +97,15 @@ a[href^="tel:"] { white-space: nowrap; }
 .tpl-bento .tile.tone-main:hover, .tpl-bento .tile.tone-second:hover { color: #fff; transform: translateY(-4px); }
 .tpl-bento .tile.tone-main:hover .tile-arrow, .tpl-bento .tile.tone-second:hover .tile-arrow { background: #fff; color: var(--c-navy); }
 .tpl-bento .tile.photo-tile { box-shadow: var(--shadow-3); }
-.tpl-bento .tile.photo-tile.tone-main::after { background: linear-gradient(180deg, rgb(var(--c-brand-rgb, 209 68 28) / 0) 25%, rgb(var(--c-brand-rgb, 209 68 28) / .72) 52%, var(--c-brand-deep) 92%); }
-.tpl-bento .tile.photo-tile.tone-second::after { background: linear-gradient(180deg, rgb(var(--c-second-rgb) / 0) 25%, rgb(var(--c-second-rgb) / .75) 52%, var(--c-second-deep) 92%); }
+/* A service card with a photo never gets a color tint: the photo shows in its true colors, with only a soft dark
+   gradient behind the words at the bottom (the same idea as Pinwheel's AC repair card). The gradient is tied to the
+   text block, not the card's height, so the words stay readable on a short phone card and on a bright photo. */
+.tpl-bento .tile.photo-tile::after { content: none; }
+.tpl-photo-text { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 6px; }
+.tpl-photo-text::before { content: ""; position: absolute; z-index: -1; left: -60px; right: -60px; bottom: -60px; top: -110px; pointer-events: none;
+  background: linear-gradient(180deg, rgb(12 16 26 / 0) 0, rgb(12 16 26 / .42) 60px, rgb(12 16 26 / .72) 110px, rgb(12 16 26 / .84) calc(110px + 30%), rgb(12 16 26 / .9) 100%); }
+.tpl-bento .tile.photo-tile .tile-kicker { background: rgb(12 16 26 / .55); }
+.tpl-bento .tile.photo-tile h3, .tpl-bento .tile.photo-tile p { text-shadow: 0 1px 3px rgb(0 0 0 / .35); }
 
 /* Free second opinion callout under the service cards */
 .tpl-callout { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: var(--sp-3); padding: 18px 20px; border-radius: var(--r-card); background: var(--c-second-tint); border: 1px solid rgb(var(--c-second-rgb) / .22); }
@@ -129,3 +137,16 @@ a[href^="tel:"] { white-space: nowrap; }
 @media (max-width: 359px) { .site-header .logo-name { font-size: 21px; } .site-header .logo-tag { letter-spacing: .1em; } .site-header .logo-img { max-width: 170px; } }
 /* Membership: the tilted back card never makes a narrow phone scroll sideways */
 .section.membership { overflow-x: clip; }
+
+/* Real truck or van photo beside the trust strip */
+.tpl-truck { margin: var(--sp-4) 0 0; }
+.tpl-truck img { display: block; width: 100%; height: auto; border-radius: 16px; box-shadow: 0 18px 40px rgb(0 0 0 / .3); }
+@media (min-width: 1000px) {
+  .tpl-trust-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--sp-6); align-items: center; }
+  .tpl-trust-grid .tpl-trust { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .tpl-trust-grid .tpl-trust li:last-child { grid-column: auto; }
+  .tpl-truck { margin: 0; }
+}
+.tpl-bento .tile.photo-tile .tile-arrow { background: rgb(255 255 255 / .92); color: var(--c-navy); }
+/* Phones: the photo card is tall enough that the photo shows above the words, not just behind them */
+@media (max-width: 899px) { .tpl-bento .tile-lead { min-height: 500px; } .tpl-bento .tile-lead img { object-position: 60% 22% !important; } }
