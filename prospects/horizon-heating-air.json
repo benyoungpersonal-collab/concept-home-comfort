@@ -1,14 +1,36 @@
 {
   "name": "Horizon Heating and Air Conditioning",
   "shortName": "Horizon",
+  "tagline": "Heating & Air",
   "phone": "(209) 535-4683",
   "city": "Turlock",
-  "mode": "new",
-  "yearsInBusiness": 10,
+  "trade": "hvac",
+  "colors": {
+    "second": "#1F5FA8"
+  },
+  "license": "CSLB #1018400",
+  "bonded": true,
+  "since": 2016,
+  "insured": true,
+  "upfrontPricing": true,
+  "guarantee": true,
+  "secondOpinion": true,
+  "unverified": [
+    "Insured",
+    "Upfront pricing",
+    "Satisfaction guarantee"
+  ],
   "hours": "Open 7 days, 8am to 8pm",
   "serviceAreas": [
     "Turlock"
   ],
+  "mapNearby": [
+    "Ceres",
+    "Denair"
+  ],
+  "googleRating": 4.7,
+  "reviewCount": 12,
+  "googleReviewsUrl": "https://www.google.com/maps/search/?api=1&query=Horizon%20Heating%20and%20Air%20Conditioning%20Turlock&query_place_id=ChIJ1Ye7YpAFkYAReGzKI9U4d_Y",
   "services": [
     {
       "name": "Repair and service",
@@ -35,15 +57,19 @@
         "Furnace replacement",
         "Heat pump systems"
       ]
+    },
+    {
+      "name": "Water heaters",
+      "blurb": "Out of hot water? We repair and replace water heaters.",
+      "sub": [
+        "Water heater repair",
+        "Replacement"
+      ]
     }
   ],
   "owner": {
     "name": "Greg Valdez",
     "role": "Owner"
   },
-  "insured": false,
-  "upfrontPricing": false,
-  "guarantee": false,
-  "lead": "AC or furnace acting up? We handle repair and service for homes in Turlock. If it heats or cools, we fix it.",
-  "tagline": "Heating & Air"
+  "lead": "AC or furnace acting up? We handle repair and service for homes in Turlock. If it heats or cools, we fix it."
 }

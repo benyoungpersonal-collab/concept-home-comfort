@@ -6,7 +6,7 @@ Every preview is `noindex`, says "Homepage preview by Ben Young Web Design" in t
 
 ## What the page shows
 
-Core sections, in this order: hero, trust strip, reviews (or proof, see below), services, how a visit works, estimate, meet the family, service areas, FAQ, request a visit.
+Core sections, in this order: hero, trust strip, reviews (plus proof for a new business, see below), services, how a visit works, estimate, meet the family, service areas, FAQ, request a visit.
 
 Optional sections, on only when the data file has them: specials (right after how a visit works), financing, and membership.
 
@@ -14,10 +14,52 @@ Two modes, picked from the data file:
 
 | Mode | When | What changes |
 |---|---|---|
-| Established | `googleRating`, `googleReviewsUrl`, and review quotes are filled in, and `reviewCount` is 5 or more | Rating bar with "Write a review", rating badge in the hero, review quotes. Title adds "5-Star Service" only when the rating is 5.0 |
-| New business | Few or no reviews | No rating or review sections. A proof section instead: license, insured, years in the trade, warranty, owner, service area, and a "Leave us a review" button |
+| Established | `googleRating` and `googleReviewsUrl` are filled in, and `reviewCount` is 3 or more | Rating bar (with "Write a review" when `writeReviewUrl` is set), rating badge in the hero, rating in the trust strip, and their real review quotes. Title adds "5-Star Service" only when the rating is 5.0 |
+| New business | Fewer than 3 reviews | 3 sample review cards tagged "Sample" (preview only), plus a proof section: license, insured, years in the trade, warranty, owner, service area, and a "Leave us a review" button |
 
 Set `"mode": "new"` or `"mode": "established"` to choose yourself.
+
+## Template rules (every preview)
+
+These apply to every prospect. The build enforces the ones marked **(build)**; the rest are on you before you build.
+
+**Research first**
+- Their Google listing: rating, review count, hours, services, logo, the best 3 reviews (word for word), team names, and cities mentioned.
+- Their CSLB license: number, first issued date, status, bond, and workers' comp (https://www.cslb.ca.gov, Check a License). If CSLB will not load, use a public record site and say which one, because those can be out of date.
+- If the Google listing cannot be read, ask Ben for the facts instead of guessing.
+- If Ben pastes a Preview facts note from his Tracker, start from that.
+
+**Trust strip** **(build)**
+- 4 to 6 facts, never just one. The build picks them in this order and keeps the first 6: Google rating and review count, license (as "Licensed & bonded" when `bonded` is true), insured, since year, free second opinions, upfront pricing, warranty or satisfaction guarantee.
+- A brand-new business still gets at least 3, like their license number, "Licensed & bonded" when CSLB shows an active bond, and "Based in [their city]" (added for you when there are fewer than 4).
+- When a guarantee is on, a line under the 3 visit steps says: "Satisfaction guarantee: if something's not right, we'll make it right." (or their real warranty).
+
+**Logo and colors**
+- Use their real logo when they have one (`logo`). It goes in the header, mobile menu, footer (on a white chip), favicon, and the map pin **(build)**.
+- No logo: a clean text logo from their business name (`shortName` plus `tagline`) **(build)**.
+- Service cards use the main color plus a second color **(build)**: `colors.brand` (main, default orange) and `colors.second` (usually the other color in their logo, default navy). The first half of the cards use the main color and the rest the second, unless a service sets `"tone": "main"` or `"second"`.
+
+**Reviews** **(build)**
+- 3 or more real Google reviews (`reviewCount` 3 or more): show only their real reviews, word for word, first name and last initial, trimmed with "..." if long. Never use a negative review. Until the quotes are in the data file, the section shows the rating and a link to read them all on Google.
+- Fewer than 3: the reviews section still shows, with 3 sample review cards so they can see how it will look. It is labeled "Preview: this is how your Google reviews will show up," every card has a "Sample" tag, the names are generic first names with a last initial, and the reviews are short and believable for their trade. Under it: "Most people read reviews before they call. Your site will make it easy for customers to leave one."
+- Sample reviews never go on a live site. At launch the section shows only real reviews, or a "Leave us a review" button if they have none yet.
+- Stars fill to the real rating (4.7 is four and most of a fifth), never five full stars by default.
+
+**FAQ** **(build)**
+- Every preview has an FAQ. Without `faqs` in the data file, the build writes defaults for their trade (`trade`: hvac, plumbing, both, electrical, roofing, landscaping, or general), filled with their own facts: license number, hours, services, cities.
+- Every answer has to be true from their facts, or general advice. A question whose answer needs a fact you do not have is left out. Set `"faq": false` to hide the section.
+
+**Map** **(build)**
+- Centered on their city, with their logo as the pin (their initial with no logo), and 1 to 2 nearby cities as plain labels with no pins (`mapNearby`). The chips list only the cities they serve, plus "Just outside [city]? Call us." for a one-city business.
+
+**Photos**
+- Real photos only when they look good at the size they will show and fit the spot: crew, trucks, or clean finished work. Blurry, dark, cluttered, or a close-up of equipment: stock instead. Zero real photos is fine. Keep the note that photos are placeholders until we add theirs.
+
+**Phone numbers** **(build)**
+- Phone numbers never break across lines. "Prefer to talk?" puts "Call (xxx) xxx-xxxx" on its own line as one link.
+
+**Confirm with the owner** **(build)**
+- Anything not verified gets listed under "Confirm with the owner" in your reply to Ben. Put those claims in `unverified` in the data file; the build prints them, plus any claim that is only on by default (insured, upfront pricing, satisfaction guarantee).
 
 ## What to collect from each prospect
 
@@ -35,8 +77,13 @@ Should have (each one unlocks something; leave it out and it hides):
 |---|---|---|
 | `serviceAreas` | `["Manteca", "Lathrop", "Ripon"]` | Every city they serve. The build draws a real OpenStreetMap map from these and reads the counties for the hero line |
 | `services` | `[{ "name": "Heating", "blurb": "...", "sub": ["Furnace repair", "Heat pumps"] }]` | Main services with sub-services. Decides the trade (HVAC, plumbing, or both), the hero photo, and the title |
-| `colors` | `{ "brand": "#1F6FB8", "navy": "#14213D" }` | `brand` is their main color (red, blue, anything). No colors: Pinwheel's red-orange. Every shade on the page, the map, and the accents follows it, and light colors are darkened where text sits on them |
-| `license` | `"CSLB #1099999"` | Trust strip, proof section, footer |
+| `colors` | `{ "brand": "#1F6FB8", "second": "#1F5FA8", "navy": "#14213D" }` | `brand` is their main color (red, blue, anything). No colors: Pinwheel's red-orange. Every shade on the page, the map, and the accents follows it, and light colors are darkened where text sits on them |
+| `license` | `"CSLB #1099999"` | Trust strip, proof section, FAQ, footer |
+| `bonded` | `true` | Only when CSLB shows an active contractor's bond. The trust strip says "Licensed & bonded" |
+| `since` | `2016` | The year they started (CSLB first issued date works). "Serving [city] since 2016" in the trust strip |
+| `secondOpinion` | `true` | Only if they offer free second opinions. Trust strip, a callout under the services, and an FAQ |
+| `mapNearby` | `["Ceres", "Denair"]` | 1 or 2 nearby towns shown as plain map labels (no pin) for context |
+| `unverified` | `["Insured", "Upfront pricing"]` | Claims on the page that the owner still has to confirm. The build lists them |
 | `owner` | `{ "name": "Dana Whitfield", "role": "Owner and lead tech", "story": "...", "quote": "...", "photo": "owners/dana.jpg" }` | Meet the family. Needs a name plus a story or quote. `photo` is optional: only a real photo of the owner, never stock |
 
 Established businesses:
@@ -74,7 +121,9 @@ Nice to have:
 | `pill`, `pillShort` | `"Plumbing services in San Joaquin County"` | Override the line above the headline. Normally it is built for you as "[their services] in [their counties]" |
 | `counties` | `["San Joaquin", "Stanislaus"]` | Only if the map cannot be built (no network) or the counties read wrong |
 | `mapLabelSide` | `{ "Ripon": "b" }` | Moves one city label on the map (r, l, t, b, tr, tl, br, bl) if two ever touch |
-| `trade`, `tradeLabel` | `"plumbing"`, `"Plumbing"` | Only if the build guesses the trade wrong |
+| `trade`, `tradeLabel` | `"plumbing"`, `"Plumbing"` | hvac, plumbing, both, electrical, roofing, landscaping, or general. Picks the FAQ defaults and sample reviews. Set it when the build guesses wrong (an HVAC company with a water heater card is still `"hvac"`) |
+| `faq` | `false` | Hides the FAQ. Without `faqs`, the build writes defaults for the trade |
+| service `tone`, `icon` | `"second"`, `"i-waterheater"` | Per service: which color its card uses, and its icon if the automatic one is wrong |
 | `headline`, `lead`, `description` | text | Override the hero copy and the link-preview description |
 | `insured`, `upfrontPricing`, `guarantee` | `false` | All default to true. Set false to hide one |
 | `previewUrl` | `"https://byw-sunrise-comfort.pages.dev/"` | Only if you deploy somewhere other than the default project name |
@@ -134,7 +183,7 @@ Three made-up businesses live in this folder to test the fallbacks:
 
 - `sunrise-comfort.json`: established, everything filled in, a logo, custom colors, 5.0 rating (title gets "5-Star Service"), starting prices, specials, financing, and membership.
 - `delta-air.json`: established, 4.6 rating, default red, no logo. No specials, prices, owner, FAQ, license, hours, email, or locations, so those sections disappear and the estimate is a quick quote.
-- `oakline-plumbing.json`: a brand-new plumbing company with no reviews, blue brand. New-business mode: proof section, owner story, warranty, "Leave us a review".
+- `oakline-plumbing.json`: a brand-new plumbing company with no reviews, blue brand. New-business mode: 3 sample reviews tagged "Sample", proof section, owner story, warranty, "Leave us a review".
 
 Build all three with the commands above to see the difference.
 

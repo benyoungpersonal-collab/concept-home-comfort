@@ -6,9 +6,9 @@
 
   What it does:
   1. Reads the data file (prospects/README.md lists every field).
-  2. Picks the mode: "established" (Google rating, review quotes, Write a review link) or "new"
-     (no rating or reviews; license, insurance, years in the trade, warranty, owner story, service area,
-     and a Leave us a review link instead). Set "mode" in the data file, or let the build decide.
+  2. Picks the mode: "established" (a Google rating with 3 or more reviews: rating bar, rating badge, and only
+     their real reviews) or "new" (fewer than 3 reviews: 3 sample review cards tagged "Sample", plus the proof
+     section). Set "mode" in the data file, or let the build decide. prospects/README.md has the template rules.
   3. Builds a real service-area map from the cities (scripts/build-map.mjs, OpenStreetMap data, cached).
   4. Fills template/homepage.html in Pinwheel's section order. A section whose data is missing is left
      out entirely: no placeholder text, no empty boxes.
@@ -68,9 +68,11 @@ const reviews = arr(raw.reviews).filter((r) => r && str(r.quote)).map((r) => {
   return { name: n, quote: str(r.quote), initial: n.charAt(0).toUpperCase(), hue: hueOf(n), meta: [str(r.city), str(r.when)].filter(Boolean).join(' · ') };
 });
 const canBeEstablished = rating !== null && googleReviewsUrl !== '';
+const realCount = reviewCount !== null ? reviewCount : reviews.length;
 let mode = str(raw.mode).toLowerCase();
 if (mode && !['established', 'new'].includes(mode)) fail('mode must be "established" or "new"');
-if (!mode) mode = canBeEstablished && reviews.length > 0 && (reviewCount === null || reviewCount >= 5) ? 'established' : 'new';
+/* 3 or more real Google reviews: their real reviews only. Fewer: sample cards, clearly tagged. */
+if (!mode) mode = canBeEstablished && realCount >= 3 ? 'established' : 'new';
 if (mode === 'established' && !canBeEstablished) { console.warn('note: mode is "established" but googleRating or googleReviewsUrl is missing, so the page uses new-business mode.'); mode = 'new'; }
 const established = mode === 'established';
 const isNew = !established;
@@ -79,24 +81,32 @@ const ratingIs5 = established && rating >= 5;
 /* Services and trade */
 const KIND = { heating: /(?<!water )heat(?!er)|furnace|boiler/i, cooling: /cool|\bac\b|a\/c|air cond/i, plumbing: /plumb|water heater|drain|sewer|leak|pipe|toilet|faucet|repip/i };
 const kindOf = (text) => Object.keys(KIND).filter((k) => KIND[k].test(text));
-const icons = [['water heater', 'i-waterheater'], ['heat pump', 'i-heatpump'], ['heat', 'i-flame'], ['furnace', 'i-flame'], ['cool', 'i-snowflake'], ['air cond', 'i-snowflake'], ['a/c', 'i-snowflake'], ['ac ', 'i-snowflake'], ['drain', 'i-drain'], ['sewer', 'i-drain'], ['leak', 'i-droplet'], ['repip', 'i-pipes'], ['pipe', 'i-pipes'], ['plumb', 'i-droplet'], ['air quality', 'i-wind'], ['duct', 'i-wind'], ['electric', 'i-zap'], ['maint', 'i-wrench'], ['tune', 'i-wrench'], ['solar', 'i-sun'], ['insul', 'i-home']];
+const icons = [['water heater', 'i-waterheater'], ['heat pump', 'i-heatpump'], ['heat', 'i-flame'], ['furnace', 'i-flame'], ['cool', 'i-snowflake'], ['air cond', 'i-snowflake'], ['a/c', 'i-snowflake'], ['ac ', 'i-snowflake'], ['drain', 'i-drain'], ['sewer', 'i-drain'], ['leak', 'i-droplet'], ['repip', 'i-pipes'], ['pipe', 'i-pipes'], ['plumb', 'i-droplet'], ['air quality', 'i-wind'], ['duct', 'i-wind'], ['electric', 'i-zap'], ['maint', 'i-wrench'], ['tune', 'i-wrench'], ['solar', 'i-sun'], ['insul', 'i-home'], ['new system', 'i-heatpump'], ['install', 'i-heatpump'], ['replace', 'i-refresh']];
 const iconFor = (n) => { const l = (n + ' ').toLowerCase(); for (const [k, v] of icons) if (l.includes(k)) return v; return 'i-sparkle'; };
 const toneFor = (n) => /cool|a\/c|\bac\b|air cond|quality|duct/i.test(n) ? 'cool' : /plumb|water|drain|sewer|leak|pipe/i.test(n) ? 'navy' : '';
-const services = arr(raw.services).map((s) => typeof s === 'string' ? { name: s } : s).filter((s) => s && str(s.name)).map((s) => {
+const svcList = arr(raw.services).map((s) => typeof s === 'string' ? { name: s } : s).filter((s) => s && str(s.name));
+/* Service cards use the main color plus a second color: the first half main, the rest second, unless a service sets "tone". */
+const services = svcList.map((s, i) => {
   const sub = arr(s.sub).map(str).filter(Boolean);
   const nm = str(s.name), tone = toneFor(nm);
   const kinds = kindOf(nm);
-  return { name: nm, nameLower: nm.toLowerCase(), blurb: str(s.blurb), icon: iconFor(nm), tone, tileTone: tone === 'cool' ? 'cool' : tone === '' ? 'warm' : '',
+  const t = str(s.tone).toLowerCase();
+  if (t && !['main', 'second'].includes(t)) fail(`services[${i}].tone must be "main" or "second"`);
+  const colorTone = t || (i < Math.ceil(svcList.length / 2) ? 'main' : 'second');
+  return { name: nm, nameLower: nm.toLowerCase(), blurb: str(s.blurb), icon: str(s.icon) || iconFor(nm), tone, tileTone: `tone-${colorTone}`, colorTone,
     anchor: 'svc-' + nm.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), sub, subLine: sub.join(' · '),
     isPlumbing: kinds.length ? kinds.every((k) => k === 'plumbing') : kindOf(sub.join(' ')).includes('plumbing') && !kindOf(sub.join(' ')).some((k) => k !== 'plumbing'),
     kicker: kinds.includes('plumbing') ? 'Plumbing' : kinds.includes('cooling') ? 'Cooling' : kinds.includes('heating') ? 'Heating' : 'Most requested' };
 });
 const kinds = new Set(services.flatMap((s) => kindOf(s.name + ' ' + s.sub.join(' '))));
+const TRADES = ['hvac', 'plumbing', 'both', 'electrical', 'roofing', 'landscaping', 'general'];
 let trade = str(raw.trade).toLowerCase();
 if (!trade) trade = kinds.has('plumbing') && (kinds.has('heating') || kinds.has('cooling')) ? 'both' : kinds.has('plumbing') ? 'plumbing' : 'hvac';
-if (!['hvac', 'plumbing', 'both'].includes(trade)) fail('trade must be "hvac", "plumbing", or "both"');
-const tradeLabel = str(raw.tradeLabel) || { hvac: 'HVAC', plumbing: 'Plumbing', both: 'HVAC & Plumbing' }[trade];
-const svcWords = ['heating', 'cooling', 'plumbing'].filter((k) => kinds.has(k));
+if (!TRADES.includes(trade)) fail(`trade must be one of: ${TRADES.join(', ')}`);
+const hvacLike = ['hvac', 'both'].includes(trade), plumbingLike = ['plumbing', 'both'].includes(trade);
+const tradeLabel = str(raw.tradeLabel) || { hvac: 'HVAC', plumbing: 'Plumbing', both: 'HVAC & Plumbing', electrical: 'Electrician', roofing: 'Roofing', landscaping: 'Landscaping', general: 'Home Services' }[trade];
+/* An HVAC company that also does water heaters is still HVAC: the pill only names the trades they are. */
+const svcWords = ['heating', 'cooling', 'plumbing'].filter((k) => kinds.has(k) && (k === 'plumbing' ? plumbingLike : hvacLike));
 const svcPhrase = str(raw.pillServices) || (svcWords.length ? cap(listAmp(svcWords)) : services.length ? cap(listAmp(services.slice(0, 2).map((s) => s.nameLower))) : tradeLabel);
 const svcShort = trade === 'both' ? 'HVAC & plumbing' : trade === 'plumbing' ? 'Plumbing' : kinds.has('heating') && kinds.has('cooling') ? 'HVAC' : svcPhrase;
 const serviceSummary = services.length ? listWords(services.slice(0, 3).map((s) => s.nameLower)) : tradeLabel.toLowerCase();
@@ -107,11 +117,14 @@ if (areas.length && !areas.some((a) => a.toLowerCase() === city.toLowerCase())) 
 const areaChips = areas.map((a) => ({ name: a, hq: a.toLowerCase() === city.toLowerCase() }));
 const areaSummary = areas.length === 0 ? city : areas.length <= 4 ? listWords(areas) : `${areas.slice(0, 3).join(', ')}, and ${areas.length - 3} more cities`;
 let mapHtml = '', mapSvgFile = '', counties = arr(raw.counties).map(str).filter(Boolean).map((c) => c.replace(/\s+County$/i, ''));
-if (areas.length >= 2 && raw.map !== false) {
+/* mapNearby: 1 or 2 nearby towns shown as plain map labels (no pin, no shading) so a one-city map still has context */
+const mapNearby = arr(raw.mapNearby).map(str).filter(Boolean).slice(0, 2);
+if (arr(raw.mapNearby).length > 2) console.warn('note: mapNearby takes 1 or 2 towns. Only the first 2 are on the map.');
+if ((areas.length >= 2 || (areas.length === 1 && mapNearby.length)) && raw.map !== false) {
   const dir = join(ROOT, 'scripts', '.cache', 'preview-maps');
   mkdirSync(dir, { recursive: true });
   const q = (a) => (/,/.test(a) ? a : `${a}, ${state}`);
-  const cfg = { name: slug, cities: areas.map(q), hq: q(city), hqLabel: 'Home base',
+  const cfg = { name: slug, cities: areas.map(q), hq: q(city), hqLabel: 'Home base', nearby: mapNearby.map(q), centerOnHq: true,
     svg: `scripts/.cache/preview-maps/${slug}.svg`, partial: `scripts/.cache/preview-maps/${slug}.html`, alt: 'ALT', labelSide: raw.mapLabelSide || {} };
   const cfgFile = join(dir, `${slug}.json`);
   writeFileSync(cfgFile, JSON.stringify(cfg, null, 1));
@@ -119,7 +132,7 @@ if (areas.length >= 2 && raw.map !== false) {
     execFileSync(process.execPath, [join(ROOT, 'scripts', 'build-map.mjs'), cfgFile], { stdio: ['ignore', 'pipe', 'pipe'] });
     mapHtml = readFileSync(join(ROOT, cfg.partial), 'utf8').replace(/^<!--.*?-->\n/, '').trim();
     mapSvgFile = join(ROOT, cfg.svg);
-    if (!counties.length) {
+    if (!counties.length && areas.length >= 2) {
       const geo = JSON.parse(readFileSync(join(ROOT, 'scripts', '.cache', 'geocode.json'), 'utf8'));
       const tally = new Map();
       for (const a of areas) { const c = str(geo[q(a)]?.county).replace(/\s+County$/i, ''); if (c) tally.set(c, (tally.get(c) || 0) + 1); }
@@ -219,6 +232,9 @@ const guarantee = raw.guarantee !== false;
 const warranty = str(raw.warranty);
 const hasYears = years !== null && years > 0;
 const hasTradeYears = yearsInTrade !== null && yearsInTrade > 0;
+const since = num(raw.since); // the year they started (CSLB first issued date is a good source)
+const bonded = raw.bonded === true;
+const secondOpinion = raw.secondOpinion === true;
 
 /* Logo and brand colors. The main color comes from colors.brand; with no colors the page keeps Pinwheel's red-orange.
    A light color is darkened step by step until white text on it (and it on white) reads at 4.5:1. */
@@ -228,8 +244,9 @@ if (logo && !['.svg', '.png', '.jpg', '.jpeg', '.webp'].includes(logoExt)) fail(
 const logoSrc = logo ? `images/logo${logoExt}` : '';
 const brand = str(raw.colors && raw.colors.brand);
 const navy = str(raw.colors && raw.colors.navy);
+const second = str(raw.colors && raw.colors.second);
 const hex = /^#[0-9a-fA-F]{6}$/;
-for (const [k, v] of [['colors.brand', brand], ['colors.navy', navy]]) if (v && !hex.test(v)) fail(`${k} must look like #RRGGBB, got ${v}`);
+for (const [k, v] of [['colors.brand', brand], ['colors.navy', navy], ['colors.second', second]]) if (v && !hex.test(v)) fail(`${k} must look like #RRGGBB, got ${v}`);
 const toRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 const toHex = (rgb) => '#' + rgb.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('').toUpperCase();
 const lum = (rgb) => { const [r, g, b] = rgb.map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
@@ -275,6 +292,9 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
   mapColors = [['#F6E3D6', mix(brand, 0.86)], ['#EDC9B3', mix(brand, 0.66)]];
 }
 if (navy) { const n = darkenUntil(navy, 7); brandCss += `:root{--c-navy:${n};--c-navy-2:${mix(n, 0.08)};--c-on-dark-soft:#E3E9F2}`; }
+/* Second color (their logo's other color) for half the service cards. No second color: the navy. White text reads on both. */
+{ const sc = second || (navy ? darkenUntil(navy, 7) : '#14213D');
+  brandCss += `:root{--c-second:${darkenUntil(sc, 4.6)};--c-second-deep:${darkenUntil(sc, 7.5)};--c-second-rgb:${rgbStr(darkenUntil(sc, 4.6))};--c-second-tint:${mix(sc, 0.88)}}`; }
 const brandColor = brand || '#E4572E';
 
 /* Copy */
@@ -288,20 +308,120 @@ const leadAreas = areas.length === 0 ? city : areas.length <= 6 ? listWords(area
 const lead = str(raw.lead) || `Fast repair${upfront ? ' and honest, upfront pricing' : ''} for homes in ${leadAreas}. ${fixLine}`;
 const defaultHeadline = trade === 'plumbing' ? accent('Plumbing done right,', 'without the runaround.') : accent('A comfortable home,', 'without the runaround.');
 const servicesHeadline = trade === 'plumbing' ? accent('One call for', 'every plumbing job.') : trade === 'both' ? accent('One call for heating,', 'air, and plumbing.') : accent('One call for', 'heating and cooling.');
-const faviconHref = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${brandColor}"/><text x="32" y="44" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="36" fill="#fff">${esc(initial)}</text></svg>`)}`;
+const faviconText = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${brandColor}"/><text x="32" y="44" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="36" fill="#fff">${esc(initial)}</text></svg>`)}`;
+/* Their real logo is the favicon when they have one. */
+const faviconHref = logo ? logoSrc : faviconText;
+const faviconType = !logo || logoExt === '.svg' ? 'image/svg+xml' : logoExt === '.png' ? 'image/png' : logoExt === '.webp' ? 'image/webp' : 'image/jpeg';
 
 if (mapHtml) {
-  const alt = `Map of ${countiesFull || 'the area'} showing the ${areas.length} cities we serve, with ${city} as home base. Opens Google Maps.`;
+  const alt = areas.length > 1 ? `Map of ${countiesFull || 'the area'} showing the ${areas.length} cities we serve, with ${city} as home base. Opens Google Maps.`
+    : `Map of ${city}${mapNearby.length ? ` and nearby ${listWords(mapNearby)}` : ''}, with ${city} as home base. Opens Google Maps.`;
   mapHtml = mapHtml.replace(`{{root}}scripts/.cache/preview-maps/${slug}.svg`, 'images/map/service-area.svg').replace('alt="ALT"', `alt="${esc(alt)}"`)
-    .replace(/<span class="svc-hq-mark"><svg><use href="#logo-mark"\/><\/svg><\/span>/, `<span class="svc-hq-mark tpl-hq">${esc(initial)}</span>`);
+    .replace(/<span class="svc-hq-mark"><svg><use href="#logo-mark"\/><\/svg><\/span>/, logo ? `<span class="svc-hq-mark tpl-hq tpl-hq-logo"><img src="${logoSrc}" alt="" width="32" height="32"></span>` : `<span class="svc-hq-mark tpl-hq">${esc(initial)}</span>`);
   if (/logo-mark|\{\{/.test(mapHtml)) fail('Map partial still has a Pinwheel logo or template tag.');
 }
+
+/* ---------- Trust strip: 4 to 6 facts, never just one ---------- */
+const licNum = (license.match(/(\d{5,})/) || [])[1] || '';
+const trustItems = [];
+const addTrust = (icon, strong, sub = '') => trustItems.push({ icon, strong, sub, hasSub: !!sub });
+if (established && rating !== null) addTrust('i-star', `${rating.toFixed(1)} stars on Google`, reviewCount ? `${reviewCount} reviews` : '');
+if (license) addTrust('i-license', bonded ? 'Licensed & bonded' : 'Licensed', license);
+if (insured) addTrust('i-shield', 'Insured');
+if (since) addTrust('i-home-heart', `Serving ${city} since ${since}`);
+else if (hasYears) addTrust('i-home-heart', `${years} years local`, `Serving ${city} since ${year - years}`);
+else if (hasTradeYears) addTrust('i-wrench', `${yearsInTrade} years in the trade`, 'Experienced hands, new name');
+if (secondOpinion) addTrust('i-eye', 'Free second opinions');
+if (upfront) addTrust('i-tag', 'Upfront pricing');
+if (warranty) addTrust('i-guarantee', 'Warranty', warranty);
+else if (guarantee) addTrust('i-guarantee', 'Satisfaction guarantee', 'We make it right');
+if (trustItems.length < 4 && !trustItems.some((t) => t.strong.includes(city))) addTrust('i-map-pin', `Based in ${city}`);
+const trust = trustItems.slice(0, 6);
+if (trust.length < 3) console.warn(`note: the trust strip has only ${trust.length} fact(s). Add license, bonded, since, or other verified facts to reach at least 3.`);
+
+/* ---------- Reviews ---------- */
+/* Fewer than 3 real Google reviews: 3 sample cards so the owner sees how theirs will look, each tagged "Sample".
+   Sample reviews are for the preview only and never go on a live site. */
+const SAMPLE = {
+  hvac: [['Maria G.', 'Our AC quit on a hot afternoon. The tech found the problem fast, showed us the price first, and had it cooling again the same visit.'],
+    ['James T.', 'Quick furnace tune-up and a clear explanation of what he checked. Good to have someone local we can call.'],
+    ['Linda K.', 'Honest advice. They told us a repair would do instead of pushing a new system.']],
+  plumbing: [['Maria G.', 'Kitchen drain backed up the night before a family dinner. They came out, cleared it, and cleaned up after.'],
+    ['James T.', 'Our water heater died on a Monday and they had a new one in by the next day. Fair price, explained up front.'],
+    ['Linda K.', 'Found the leak without tearing up half the wall. Friendly and on time.']],
+  both: [['Maria G.', 'Our AC quit on a hot afternoon. The tech found the problem fast, showed us the price first, and had it cooling again the same visit.'],
+    ['James T.', 'Our water heater died on a Monday and they had a new one in by the next day. Fair price, explained up front.'],
+    ['Linda K.', 'Honest advice. They told us a repair would do instead of pushing a new system.']],
+  electrical: [['Maria G.', 'Breaker kept tripping in the kitchen. They found a bad outlet, fixed it, and explained what happened.'],
+    ['James T.', 'Panel upgrade went smoothly. They pulled the permit and kept us posted the whole way.'],
+    ['Linda K.', 'On time, careful in the house, and the price matched the quote.']],
+  roofing: [['Maria G.', 'Found the leak after the first big storm and patched it the same week. No pressure to replace the whole roof.'],
+    ['James T.', 'New roof done in two days and the yard was cleaner than before they started.'],
+    ['Linda K.', 'Clear quote, good communication, and they showed us photos of the work.']],
+  landscaping: [['Maria G.', 'Our backyard went from dirt to a place we actually use. They listened to what we wanted.'],
+    ['James T.', 'Fixed our sprinkler system and our water bill went down. Quick and friendly.'],
+    ['Linda K.', 'Reliable every week and the yard always looks sharp.']],
+  general: [['Maria G.', 'Knocked out a whole list of small jobs in one visit. Fair price and tidy work.'],
+    ['James T.', 'Showed up when they said they would and explained everything before starting.'],
+    ['Linda K.', 'Easy to reach, friendly, and the work held up.']],
+};
+const sampleReviews = isNew ? SAMPLE[trade].map(([n, quote]) => ({ name: n, quote, initial: n.charAt(0), hue: hueOf(n) })) : [];
+if (established && reviews.length < 3) console.warn(`note: ${reviews.length} review quote(s) in the data file. Add 3 short real Google reviews, word for word, so the reviews section shows them.`);
+
+/* ---------- FAQ: their own answers, or defaults for their trade filled from their facts ---------- */
+/* Every default answer is either true from the data file or general advice. Questions whose answer needs a fact
+   we do not have are left out. */
+const stateName = { CA: 'California', NV: 'Nevada', OR: 'Oregon', AZ: 'Arizona', WA: 'Washington', TX: 'Texas' }[state] || state;
+const hoursSentence = hours ? (/^open\b/i.test(hours) ? `We're ${hours.charAt(0).toLowerCase()}${hours.slice(1)}` : `Our hours are ${hours}`).replace(/\.?$/, '.') : '';
+const hasWaterHeaters = services.some((sv) => /water heater/i.test(sv.name + ' ' + sv.sub.join(' ')));
+const areasAnswer = areas.length > 1 ? `We serve ${listWords(areas)}. Just outside? Call us.` : `${city} and nearby. Just outside ${city}? Call us.`;
+const faqDefaults = () => {
+  const out = [];
+  const add = (q, a, ok = true) => { if (ok && a) out.push({ q, a }); };
+  add('How fast can you get here?', `Call or text, and we'll give you an arrival window.${hoursSentence ? ' ' + hoursSentence : ''}`);
+  add('Do you give second opinions?', "Yes, for free. Got a big quote from someone else? We'll take a look.", secondOpinion);
+  if (hvacLike) {
+    add('Should I repair or replace my system?', "We'll show you both options and the price of each, so you can decide.");
+    add('How often should I get a tune-up?', 'A good rule of thumb is once a year for your AC in spring, and once for your furnace in fall.');
+  }
+  if (plumbingLike) {
+    add('What should I do if a pipe bursts?', 'Shut off the main water valve, usually where the water line enters the house, then call us.');
+    if (!hvacLike) add('Should I repair or replace my water heater?', "Most tank water heaters last 8 to 12 years. We'll show you both options and the price of each, so you can decide.");
+  }
+  if (trade === 'electrical') {
+    add('When should I call an electrician?', 'If breakers keep tripping, outlets feel warm, or lights flicker, have it checked soon.');
+    add('Do I need a permit?', 'Most panel upgrades, new circuits, and rewiring need a permit from your city.');
+  }
+  if (trade === 'roofing') {
+    add('How long does a roof last?', 'Asphalt shingles usually last 20 to 30 years. Tile roofs often last 50 or more.');
+    add('Should I repair or replace my roof?', "We'll show you both options and the price of each, so you can decide.");
+  }
+  if (trade === 'landscaping') {
+    add('How often should I water my lawn?', 'About an inch of water a week, early in the morning, works for most lawns.');
+    add('When is the best time to plant?', 'Fall and spring are best for most trees and shrubs.');
+  }
+  if (trade === 'general' && services.length) add('What jobs do you take on?', `We handle ${listWords(services.slice(0, 4).map((sv) => sv.nameLower))}.`);
+  add('Are you licensed?', licNum ? `Yes. ${stateName} license #${licNum}.${bonded ? " We're licensed and bonded." : ''}` : `Yes. ${license}.`, !!license);
+  add('Do you work on water heaters?', 'Yes, we repair and replace them.', hasWaterHeaters && !plumbingLike);
+  add('What areas do you serve?', areasAnswer);
+  return out;
+};
+const faqSource = raw.faq === false ? [] : faqs.length ? faqs : faqDefaults();
+const faqList = faqSource.map((f, i) => ({ q: f.q, a: f.a, n: i + 1 }));
+
+/* Claims that are on by default or marked unverified: listed after the build so they get confirmed with the owner. */
+const confirmList = [...new Set([
+  ...arr(raw.unverified).map(str).filter(Boolean),
+  ...(insured && raw.insured === undefined ? ['Insured (on by default)'] : []),
+  ...(upfront && raw.upfrontPricing === undefined ? ['Upfront pricing (on by default)'] : []),
+  ...(guarantee && !warranty && raw.guarantee === undefined ? ['Satisfaction guarantee (on by default)'] : []),
+])];
 
 const proofHeadline = hasTradeYears ? accent('A new name,', `${yearsInTrade} years in the trade.`) : accent('Licensed, insured, and', 'close by.');
 const hasProof = !!license || insured || hasTradeYears || !!warranty || hasOwner || areas.length > 1 || !!writeReviewUrl;
 const menu = [
   services.length && { id: 'services', label: 'Services' },
-  established && reviews.length && { id: 'reviews', label: 'Reviews' },
+  { id: 'reviews', label: 'Reviews' },
   isNew && hasProof && { id: 'proof', label: 'Why us' },
   { id: 'how-it-works', label: 'How a visit works' },
   specials.length && { id: 'specials', label: 'Specials and discounts' },
@@ -310,7 +430,7 @@ const menu = [
   membership && { id: 'membership', label: membership.name },
   hasOwner && { id: 'team', label: 'Meet the family' },
   areas.length && { id: 'areas', label: 'Service areas' },
-  faqs.length && { id: 'faq', label: 'FAQ' },
+  faqList.length && { id: 'faq', label: 'FAQ' },
   { id: 'request', label: 'Request a visit' },
 ].filter(Boolean);
 
@@ -318,16 +438,18 @@ const data = {
   name, nameDot: /[.!?]$/.test(name) ? name : name + '.', shortName, tagline, initial, city, year, tel, phonePretty, previewUrl, titleTag, lead,
   metaDescription: str(raw.description) || `${name}: ${serviceSummary} for homeowners in ${areaSummary}. Call ${phonePretty}.`,
   headline: str(raw.headline) ? esc(raw.headline) : defaultHeadline, servicesHeadline, pillHtml,
-  themeColor: navy ? darkenUntil(navy, 7) : '#14213D', pageCss: brandCss + pillCss, faviconHref,
+  themeColor: navy ? darkenUntil(navy, 7) : '#14213D', pageCss: brandCss + pillCss, faviconHref, faviconType,
   heroPlumber: trade === 'plumbing',
-  established, isNew, ratingText: rating !== null ? rating.toFixed(1) : '', reviewCount, starsLabel: rating !== null ? `Rated ${rating.toFixed(1)} out of 5` : '', googleReviewsUrl, writeReviewUrl,
-  reviews, hasReviews: reviews.length > 0,
+  established, isNew, ratingText: rating !== null ? rating.toFixed(1) : '', reviewCount, starsLabel: rating !== null ? `Rated ${rating.toFixed(1)} out of 5` : '', starsFrac: rating !== null ? (rating / 5).toFixed(3) : 1, googleReviewsUrl, writeReviewUrl,
+  reviews, hasReviews: reviews.length > 0, sampleReviews, hasSampleReviews: sampleReviews.length > 0, hasRatingLine: established && rating !== null,
+  trust, trustCount: trust.length, hasTrust: trust.length > 0, secondOpinion, mapNearby,
   hasProof,
   proofHeadline, proofLead: `${name} is ${hasTradeYears ? 'new, but the hands are not' : 'local, licensed, and easy to reach'}. Here is what you can count on before you call.`,
   tradeYearsText: owner.name ? `${owner.name.split(' ')[0]} has been on the tools for ${yearsInTrade} years before opening ${shortName}.` : `Years of hands-on work before opening ${shortName}.`,
   ownerProof: owner.name ? `Owned and run by ${owner.name}, right here in ${city}.` : '', areaCountText,
   areas, areaChips, areaSummary, areaCount: areas.length, hasAreas: areas.length > 0, hasMap: !!mapHtml, mapHtml,
-  areasLead: `Based in ${city} and serving ${areaCountText}, so a tech is never far away.`,
+  areasLead: areas.length > 1 ? `Based in ${city} and serving ${areaCountText}, so a tech is never far away.` : `Based in ${city}, so a tech is never far away.`,
+  areasNote: areas.length > 1 ? "Just outside these cities? Call us. If we can get there fast, we'll come." : `Just outside ${city}? Call us.`,
   services, hasServices: services.length > 0, leadService: services.slice(0, 1), moreServices: services.slice(1), hasMoreServices: services.length > 1, serviceSummary,
   specials, hasSpecials: specials.length > 0,
   prices, hasPrices: prices.length > 0, quoteOptions: services.length ? quoteOptions : [], quoteStep2: services.length ? 2 : 1, quoteStep3: services.length ? 3 : 2,
@@ -336,12 +458,13 @@ const data = {
   financing, hasFinancing: !!financing, membership, hasMembership: !!membership,
   owner, hasOwner, hasOwnerPhoto: hasOwner && !!ownerPhoto, ownerPhotoSrc: ownerPhoto ? `images/owner${ownerPhotoExt}` : '', ownerPhotoAlt: str(o.photoAlt) || `${owner.name}, ${owner.role.toLowerCase()} of ${name}`,
   team, promises, menu,
-  faqs, hasFaqs: faqs.length > 0,
+  faqs: faqList, hasFaqs: faqList.length > 0,
   locations, hasLocations: locations.length > 0, oneLocation: locations.length === 1,
   hasLogo: !!logo, logoSrc,
   license, hasLicense: !!license, yearsInBusiness: years, hasYears, sinceYear: years ? year - years : '', yearsInTrade, hasTradeYears, showTradeYears: hasTradeYears && !hasYears,
   warranty, hasWarranty: !!warranty,
-  insured, upfront, guarantee: guarantee || !!warranty, hasTrust: !!license || insured || hasYears || hasTradeYears || upfront || guarantee || !!warranty,
+  insured, upfront, guarantee: guarantee || !!warranty,
+  guaranteeLine: warranty ? `Warranty: ${warranty}` : guarantee ? "Satisfaction guarantee: if something's not right, we'll make it right." : '',
   hours, hasHours: !!hours, email, hasEmail: !!email,
 };
 
@@ -454,7 +577,10 @@ writeFileSync(join(OUT, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 const hidden = Object.entries({ 'service areas': data.hasAreas, map: data.hasMap, services: data.hasServices, specials: data.hasSpecials, 'starting prices (quick quote shown instead)': data.hasPrices, financing: data.hasFinancing, membership: data.hasMembership, 'meet the family': hasOwner, FAQ: data.hasFaqs, locations: data.hasLocations, logo: data.hasLogo, license: data.hasLicense, hours: data.hasHours, email: data.hasEmail })
   .filter(([, v]) => !v).map(([k]) => k);
 console.log(`Built previews/${slug}/ (${copied} files copied).`);
-console.log(`Mode: ${mode}${established ? '' : ' (no rating or review sections; proof section instead)'}. Title: ${titleTag}`);
+console.log(`Mode: ${mode}${established ? '' : ' (sample review cards and the proof section)'}. Title: ${titleTag}`);
 console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}" | 320 phone "${keep[base.ti]}"`);
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
+console.log(`Trust strip (${trust.length}): ${trust.map((t) => t.strong + (t.sub ? ` (${t.sub})` : '')).join(' | ')}`);
+console.log(`Reviews: ${established ? `${data.ratingText} stars from ${reviewCount ?? '?'} Google reviews, ${reviews.length} quote(s) shown` : '3 sample cards, tagged Sample (preview only, never on a live site)'}. FAQ: ${faqList.length} questions${faqs.length ? '' : ' (trade defaults)'}.`);
+if (confirmList.length) console.log(`Confirm with the owner: ${confirmList.join(', ')}.`);
 console.log(`Preview URL it expects: ${previewUrl}  (Cloudflare project name: byw-${slug})`);

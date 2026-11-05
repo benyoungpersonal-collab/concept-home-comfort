@@ -7,6 +7,8 @@
   The config lists the cities (any order), the home-base city, and where to write files:
     { "cities": ["Tracy, CA", ...], "hq": "Tracy, CA", "hqLabel": "Home base",
       "svg": "images/map/NAME.svg", "partial": "partials/area-map.html", "alt": "..." }
+  Optional: "nearby": ["Ceres, CA", "Denair, CA"] adds plain place names (no pin, no shading) for context,
+  and "centerOnHq": true frames the map evenly around the home base instead of around all the cities.
 
   What it does:
   1. Finds each city with Nominatim (OpenStreetMap's search), one request per second.
@@ -42,7 +44,7 @@ const W = 800;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function getJSON(url, opts = {}) {
-  const res = await fetch(url, { ...opts, headers: { 'User-Agent': UA, ...(opts.headers || {}) } });
+  const res = await fetch(url, { signal: AbortSignal.timeout(opts.timeout || 60000), ...opts, headers: { 'User-Agent': UA, ...(opts.headers || {}) } });
   if (!res.ok) throw new Error(`${res.status} from ${url}`);
   return res.json();
 }
@@ -50,7 +52,8 @@ async function getJSON(url, opts = {}) {
 /* ---------- 1. Geocode ---------- */
 const geoPath = join(CACHE, 'geocode.json');
 const geo = existsSync(geoPath) ? JSON.parse(readFileSync(geoPath, 'utf8')) : {};
-for (const q of cfg.cities) {
+const nearbyQ = (cfg.nearby || []).filter((q) => !cfg.cities.includes(q));
+for (const q of [...cfg.cities, ...nearbyQ]) {
   if (geo[q]) continue;
   const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&countrycodes=us&q=${encodeURIComponent(q)}`;
   const r = await getJSON(url);
@@ -60,14 +63,22 @@ for (const q of cfg.cities) {
   await sleep(1100);
 }
 const cities = cfg.cities.map((q) => ({ ...geo[q], q, hq: q === cfg.hq }));
+const nearby = nearbyQ.map((q) => ({ ...geo[q], q, hq: false, nearby: true }));
+const framed = [...cities, ...nearby];
 
 /* ---------- 2. Frame (Web Mercator) ---------- */
 const mx = (lon) => (lon + 180) / 360;
 const my = (lat) => { const s = Math.sin((lat * Math.PI) / 180); return 0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI); };
 const ilon = (x) => x * 360 - 180;
 const ilat = (y) => (Math.atan(Math.sinh(Math.PI * (1 - 2 * y))) * 180) / Math.PI;
-let x0 = Math.min(...cities.map((c) => mx(c.lon))), x1 = Math.max(...cities.map((c) => mx(c.lon)));
-let y0 = Math.min(...cities.map((c) => my(c.lat))), y1 = Math.max(...cities.map((c) => my(c.lat)));
+let x0 = Math.min(...framed.map((c) => mx(c.lon))), x1 = Math.max(...framed.map((c) => mx(c.lon)));
+let y0 = Math.min(...framed.map((c) => my(c.lat))), y1 = Math.max(...framed.map((c) => my(c.lat)));
+const hqCity = cities.find((c) => c.hq);
+if (cfg.centerOnHq && hqCity) { // the same reach on every side of the home base, so it sits in the middle
+  const hx = mx(hqCity.lon), hy = my(hqCity.lat);
+  const rx = Math.max(hx - x0, x1 - hx), ry = Math.max(hy - y0, y1 - hy);
+  x0 = hx - rx * 1.15; x1 = hx + rx * 1.15; y0 = hy - ry * 1.15; y1 = hy + ry * 1.15;
+}
 const span = Math.max(x1 - x0, y1 - y0, 0.0004);
 x0 -= span * 0.1; x1 += span * 0.1; y0 -= span * 0.09; y1 += span * 0.09;
 // aspect between 1.25 and 1.6 (wide), centered
@@ -92,7 +103,7 @@ else {
   for (const ep of OVERPASS) {
     try {
       console.log('Fetching OSM data from ' + new URL(ep).host + ' ...');
-      osm = await getJSON(ep, { method: 'POST', body: 'data=' + encodeURIComponent(query), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+      osm = await getJSON(ep, { timeout: 90000, method: 'POST', body: 'data=' + encodeURIComponent(query), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
       break;
     } catch (e) { lastErr = e; console.log('  ' + e.message); }
   }
@@ -165,7 +176,13 @@ function rings(members) { // join member ways into closed rings
   }
   return out;
 }
-const dPoly = (ring, tol) => { const s = simplify(ring.map(([lon, lat]) => [px(lon), py(lat)]), tol); return s.length > 2 ? dLine(s) + 'Z' : ''; };
+/* A closed ring starts and ends on the same point, which collapses Douglas-Peucker to nothing, so simplify it as two halves. */
+const dPoly = (ring, tol) => {
+  const pts = ring.map(([lon, lat]) => [px(lon), py(lat)]);
+  const mid = Math.floor(pts.length / 2);
+  const s = pts.length < 4 ? pts : [...simplify(pts.slice(0, mid + 1), tol), ...simplify(pts.slice(mid), tol).slice(1)];
+  return s.length > 2 ? dLine(s) + 'Z' : '';
+};
 
 /* ---------- 5. Layers ---------- */
 const els = osm.elements;
@@ -191,7 +208,7 @@ const trunk = lines(ways((t) => t.highway === 'trunk'), 0.7, 3);
 const primary = lines(ways((t) => t.highway === 'primary'), 0.9, 8);
 
 /* ---------- 6. Route shields (one per route, away from the pins) ---------- */
-const pins = cities.map((c) => ({ ...c, x: px(c.lon), y: py(c.lat) }));
+const pins = framed.map((c) => ({ ...c, x: px(c.lon), y: py(c.lat) }));
 const shields = [];
 const byRef = new Map();
 for (const w of ways((t) => (t.highway === 'motorway' || t.highway === 'trunk') && t.ref)) {
@@ -218,9 +235,10 @@ const shieldSvg = shields.map((s) => { const n = refNum(s.ref); const w = 12 + n
 
 /* ---------- 7. County names in the top corners ---------- */
 const countyNames = [...new Set(cities.map((c) => c.county).filter(Boolean))];
+const pinsServed = pins.filter((c) => !c.nearby);
 let countySvg = '';
 if (countyNames.length === 2) {
-  const avgX = (n) => { const cs = pins.filter((c) => c.county === n); return cs.reduce((a, c) => a + c.x, 0) / cs.length; };
+  const avgX = (n) => { const cs = pinsServed.filter((c) => c.county === n); return cs.reduce((a, c) => a + c.x, 0) / cs.length; };
   const [left, right] = countyNames.sort((a, b) => avgX(a) - avgX(b));
   countySvg = `<text x="22" y="30">${left.toUpperCase()}</text><text x="${W - 22}" y="30" text-anchor="end">${right.toUpperCase()}</text>`;
 }
@@ -268,14 +286,16 @@ const costOf = (c, side) => {
 // Config can lock a label to a side when the automatic choice reads badly: "labelSide": { "Manteca": "b" }
 const locked = (c) => Boolean(cfg.labelSide?.[c.name]);
 for (const c of pins) if (locked(c)) c.side = cfg.labelSide[c.name];
-const order = [...pins].filter((c) => !locked(c)).sort((a, b) => (b.hq - a.hq));
+const order = [...pins].filter((c) => !locked(c) && !c.nearby).sort((a, b) => (b.hq - a.hq));
 for (const c of order) c.side = Object.keys(SIDES).reduce((best, side) => (costOf(c, side) < costOf(c, best) ? side : best), 'r');
 for (let pass = 0; pass < 4; pass++) for (const c of order) c.side = Object.keys(SIDES).reduce((best, side) => (costOf(c, side) < costOf(c, best) ? side : best), c.side);
-for (const c of pins) { const k = costOf(c, c.side); if (k >= 20) console.log(`  note: label for ${c.name} overlaps something (cost ${Math.round(k)})`); }
+for (const c of pins.filter((p) => !p.nearby)) { const k = costOf(c, c.side); if (k >= 20) console.log(`  note: label for ${c.name} overlaps something (cost ${Math.round(k)})`); }
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const pct = (v, of) => (Math.round((v / of) * 10000) / 100) + '%';
 const gmaps = `https://www.google.com/maps/@?api=1&map_action=map&center=${center[0].toFixed(4)},${center[1].toFixed(4)}&zoom=10`;
-const pinHtml = pins.map((c) => c.hq
+const pinHtml = pins.map((c) => c.nearby
+  ? `    <span class="svc-place" style="left:${pct(c.x, W)};top:${pct(c.y, H)}">${esc(c.name)}</span>`
+  : c.hq
   ? `    <span class="svc-pin is-hq" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-hq-mark"><svg><use href="#logo-mark"/></svg></span><span class="svc-pin-label"><strong>${esc(c.name)}</strong><small>${esc(cfg.hqLabel || '')}</small></span></span>`
   : `    <span class="svc-pin" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-pin-label">${esc(c.name)}</span></span>`).join('\n');
 const partial = `<!-- Built by scripts/build-map.mjs from ${cfgPath.replace(/^.*scripts\//, 'scripts/')}. Edit the config and rebuild instead of editing this file. -->
@@ -288,4 +308,4 @@ ${pinHtml}
 <p class="svc-map-credit">Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Tap the map to open Google Maps.</p>`;
 writeFileSync(join(ROOT, cfg.partial), partial + '\n');
 const kb = (Buffer.byteLength(svg) / 1024).toFixed(1);
-console.log(`Wrote ${cfg.svg} (${W}x${H}, ${kb} KB) and ${cfg.partial} with ${pins.length} pins, ${shields.length} route shields.`);
+console.log(`Wrote ${cfg.svg} (${W}x${H}, ${kb} KB) and ${cfg.partial} with ${pins.length - nearby.length} pins, ${nearby.length} plain labels, ${shields.length} route shields.`);

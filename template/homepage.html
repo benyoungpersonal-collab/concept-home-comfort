@@ -9,7 +9,7 @@
 <meta name="theme-color" content="{{themeColor}}">
 <meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=no">
-<link rel="icon" href="{{{faviconHref}}}" type="image/svg+xml">
+<link rel="icon" href="{{{faviconHref}}}" type="{{faviconType}}">
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css">
@@ -38,7 +38,7 @@
   <div class="container rating-bar-inner">
     <a class="rating-bar-score" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">
       <svg class="g-mark" aria-hidden="true"><use href="#g-logo"/></svg>
-      <span class="stars5 small" role="img" aria-label="{{starsLabel}}"></span>
+      <span class="stars5 small tpl-rated" style="--stars:{{starsFrac}}" role="img" aria-label="{{starsLabel}}"></span>
       <b>{{ratingText}}</b>
       {{#if reviewCount}}<span class="rating-bar-count"><span class="rating-bar-n">{{reviewCount}}</span> <span class="rb-g">Google </span>reviews</span>{{else}}<span class="rating-bar-count">on <span class="rb-g">Google</span></span>{{/if}}
     </a>
@@ -55,8 +55,7 @@
     <nav class="nav" aria-label="Main">
       <ul class="nav-list">
         {{#if hasServices}}<li><a class="nav-link" href="#services">Services</a></li>{{/if}}
-        {{#if established}}<li><a class="nav-link" href="#reviews">Reviews</a></li>{{/if}}
-        {{#if isNew}}{{#if hasProof}}<li><a class="nav-link" href="#proof">Why us</a></li>{{/if}}{{/if}}
+        <li><a class="nav-link" href="#reviews">Reviews</a></li>
         <li><a class="nav-link" href="#estimate">{{estimateNav}}</a></li>
         {{#if hasAreas}}<li><a class="nav-link" href="#areas">Service Areas</a></li>{{/if}}
         <li><a class="nav-link" href="#request">Contact</a></li>
@@ -113,7 +112,7 @@
         {{#if established}}<a class="rating-badge rating-badge-link" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">
           <svg class="g-mark" role="img" aria-label="Google"><use href="#g-logo"/></svg>
           <span class="score">{{ratingText}}</span>
-          <span class="stars5" role="img" aria-label="{{starsLabel}}"></span>
+          <span class="stars5 tpl-rated" style="--stars:{{starsFrac}}" role="img" aria-label="{{starsLabel}}"></span>
           {{#if reviewCount}}<span class="count">{{reviewCount}} Google reviews</span>{{else}}<span class="count">on Google</span>{{/if}}
         </a>{{/if}}
         <p class="hero-fine">Homepage preview by Ben Young Web Design. Photos are placeholders until we add yours.</p>
@@ -135,33 +134,29 @@
   <!-- 2. Trust strip -->
   {{#if hasTrust}}<section class="trust on-dark" aria-label="Why neighbors trust us">
     <div class="container">
-      <ul class="trust-list">
-        {{#if hasLicense}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-license"/></svg></span><span><strong>Licensed</strong><span>{{license}}</span></span></li>{{/if}}
-        {{#if insured}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span><strong>Insured</strong><span>Fully covered on every job</span></span></li>{{/if}}
-        {{#if hasYears}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span><span><strong>{{yearsInBusiness}} years local</strong><span>Serving {{city}} since {{sinceYear}}</span></span></li>{{/if}}
-        {{#if showTradeYears}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg></span><span><strong>{{yearsInTrade}} years in the trade</strong><span>Experienced hands, new name</span></span></li>{{/if}}
-        {{#if upfront}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span><span><strong>Upfront pricing</strong><span>Your price before we start</span></span></li>{{/if}}
-        {{#if guarantee}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-guarantee"/></svg></span><span><strong>{{#if hasWarranty}}Warranty{{else}}Satisfaction guarantee{{/if}}</strong><span>{{#if hasWarranty}}{{warranty}}{{else}}We make it right{{/if}}</span></span></li>{{/if}}
+      <ul class="trust-list tpl-trust n{{trustCount}}">
+        {{#each trust}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span><span><strong>{{strong}}</strong>{{#if hasSub}}<span>{{sub}}</span>{{/if}}</span></li>
+        {{/each}}
       </ul>
     </div>
   </section>{{/if}}
 
   <!-- 3. Reviews (established) or proof (new business) -->
-  {{#if established}}{{#if hasReviews}}<section class="section reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
+  {{#if established}}<section class="section reviews" id="reviews" aria-labelledby="reviews-title"{{#if hasReviews}} data-carousel{{/if}}>
     <div class="container">
       <div class="section-head split">
         <div>
           <p class="eyebrow">Reviews</p>
           <h2 id="reviews-title">Neighbors say it better <span class="accent">than we can.</span></h2>
-          <p class="rating-line"><svg class="g-mark" role="img" aria-label="Google"><use href="#g-logo"/></svg>{{ratingText}} stars{{#if reviewCount}} from {{reviewCount}} Google reviews{{else}} on Google{{/if}}. <a class="text-link" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">Read them all<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></p>
+          <p class="rating-line"><svg class="g-mark" role="img" aria-label="Google"><use href="#g-logo"/></svg><span class="stars5 small tpl-rated" style="--stars:{{starsFrac}}" role="img" aria-label="{{starsLabel}}"></span>{{ratingText}} stars{{#if reviewCount}} from {{reviewCount}} Google reviews{{else}} on Google{{/if}}. <a class="text-link" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">Read them all on Google<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></p>
         </div>
-        <div class="carousel-controls">
+        {{#if hasReviews}}<div class="carousel-controls">
           <button class="round-btn" type="button" data-prev aria-label="Previous reviews"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
           <button class="round-btn" type="button" data-next aria-label="More reviews"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
-        </div>
+        </div>{{/if}}
       </div>
     </div>
-    <div class="review-track" data-track tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
+    {{#if hasReviews}}<div class="review-track" data-track tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
       <ul class="review-list">
         {{#each reviews}}<li class="review-card">
           <div class="review-top"><span class="avatar" style="--h:{{hue}}" aria-hidden="true">{{initial}}</span><div><p class="review-name">{{name}}</p>{{#if meta}}<p class="review-meta">{{meta}}</p>{{/if}}</div><svg class="g-mark" role="img" aria-label="Google review"><use href="#g-logo"/></svg></div>
@@ -171,8 +166,25 @@
         {{/each}}
       </ul>
     </div>
-    <p class="swipe-hint"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-right"/></svg>Swipe for more reviews</p>
-  </section>{{/if}}{{/if}}
+    <p class="swipe-hint"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-right"/></svg>Swipe for more reviews</p>{{/if}}
+  </section>{{/if}}
+  {{#if hasSampleReviews}}<section class="section reviews tpl-sample-reviews" id="reviews" aria-labelledby="reviews-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Reviews</p>
+        <h2 id="reviews-title">Preview: this is how your Google reviews <span class="accent">will show up.</span></h2>
+      </div>
+      <ul class="tpl-sample-list">
+        {{#each sampleReviews}}<li class="review-card">
+          <div class="review-top"><span class="avatar" style="--h:{{hue}}" aria-hidden="true">{{initial}}</span><div><p class="review-name">{{name}}</p></div><span class="tag">Sample</span></div>
+          <span class="stars5" role="img" aria-label="5 out of 5 stars"></span>
+          <p class="review-text">{{quote}}</p>
+        </li>
+        {{/each}}
+      </ul>
+      <p class="tpl-sample-note">Most people read reviews before they call. Your site will make it easy for customers to leave one.</p>
+    </div>
+  </section>{{/if}}
   {{#if isNew}}{{#if hasProof}}<section class="section proof bg-white" id="proof" aria-labelledby="proof-title">
     <div class="container">
       <div class="section-head">
@@ -204,7 +216,7 @@
         <p class="lead">The same trained techs{{#if upfront}} and the same upfront pricing{{/if}} on every job, big or small.</p>
       </div>
       <div class="tpl-bento">
-        {{#each leadService}}<a class="tile photo-tile tile-lead" href="#request" id="{{anchor}}">
+        {{#each leadService}}<a class="tile photo-tile tile-lead {{tileTone}}" href="#request" id="{{anchor}}">
           {{#if isPlumbing}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/pipes-720x540.webp" srcset="images/photos/pipes-480x360.webp 480w, images/photos/pipes-720x540.webp 720w, images/photos/pipes-960x720.webp 960w, images/photos/pipes-1200x900.webp 1200w" width="1200" height="900" alt="New copper water pipes running through an open wall" loading="lazy" decoding="async" style="object-position:50% 50%;background-color:#9c6b45">{{else}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w, images/photos/thermostat-960x720.webp 960w, images/photos/thermostat-1200x900.webp 1200w" width="1200" height="900" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7">{{/if}}
           <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
           <span class="tile-kicker{{#if isPlumbing}} warm-k{{/if}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg>{{kicker}}</span>
@@ -214,7 +226,7 @@
         </a>{{/each}}
         {{#if hasMoreServices}}<div class="tpl-bento-rest">
           {{#each moreServices}}<a class="tile {{tileTone}}" href="#request" id="{{anchor}}">
-            <span class="icon-bubble {{tone}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span>
+            <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span>
             <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
             <h3>{{name}}</h3>
             {{#if blurb}}<p>{{blurb}}</p>{{/if}}
@@ -223,6 +235,11 @@
           {{/each}}
         </div>{{/if}}
       </div>
+      {{#if secondOpinion}}<div class="tpl-callout">
+        <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
+        <p><strong>Free second opinion</strong><span>Got a big quote from someone else? We'll take a look for free.</span></p>
+        <a class="btn btn-secondary tpl-callout-btn" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call {{phonePretty}}</a>
+      </div>{{/if}}
     </div>
   </section>{{/if}}
 
@@ -244,6 +261,7 @@
           <li><strong>See the price first</strong><span>Your tech finds the problem and shows you the price. You decide.</span></li>
           <li><strong>Fixed and cleaned up</strong><span>When we're done, photos of the finished work go straight to your phone.</span></li>
         </ol>
+        {{#if guaranteeLine}}<p class="tpl-guarantee"><svg class="icon" aria-hidden="true"><use href="#i-guarantee"/></svg><span>{{guaranteeLine}}</span></p>{{/if}}
         <a class="btn btn-primary" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a visit</a>
       </div>
     </div>
@@ -332,7 +350,7 @@
               <li><b>2</b><span>Tell us what's going on, in a sentence or two.</span></li>
               <li><b>3</b><span>{{shortName}} texts you back with a price or a quick question.</span></li>
             </ol>
-            <p>Prefer to talk? <a href="tel:{{tel}}">Call {{phonePretty}}</a></p>
+            <p class="tpl-talk">Prefer to talk?<a class="tpl-call-line" href="tel:{{tel}}">Call {{phonePretty}}</a></p>
           </div>
         </div>
       </div>{{/if}}
@@ -387,7 +405,7 @@
           {{#each areaChips}}<li{{#if hq}} class="is-hq"{{/if}}>{{#if hq}}<svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>{{/if}}{{name}}</li>
           {{/each}}
         </ul>
-        <p class="muted">Just outside these cities? Call us. If we can get there fast, we'll come.</p>
+        <p class="muted">{{areasNote}}</p>
       </div>
     </div>
   </section>{{/if}}
@@ -451,7 +469,7 @@
           <p class="confirm-summary" data-summary>Your request is in.</p>
           <p class="demo-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>This is a preview. On the live site, requests go straight to the owner's phone.</p>
         </div>
-        <p class="request-alt">Prefer to talk? <a href="tel:{{tel}}">Call {{phonePretty}}</a> or <a href="sms:{{tel}}">text us</a>.{{#if hasHours}} {{hours}}.{{/if}}</p>
+        <p class="request-alt tpl-talk">Prefer to talk?<a class="tpl-call-line" href="tel:{{tel}}">Call {{phonePretty}}</a><span>Or <a href="sms:{{tel}}">text us</a>.{{#if hasHours}} {{hours}}.{{/if}}</span></p>
       </div>
     </div>
   </section>
@@ -460,8 +478,8 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <a class="logo light" href="#main" aria-label="{{name}}, back to top">
-        <span class="logo-initial" aria-hidden="true">{{initial}}</span>
-        <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>
+        {{#if hasLogo}}<span class="tpl-logo-chip"><img class="logo-img" src="{{logoSrc}}" alt="" width="200" height="44"></span>{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
+        <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
       </a>
       <p>{{name}} serves homeowners in {{areaSummary}}.</p>
       {{#if hasLicense}}<p>{{license}}.{{#if insured}} Fully insured.{{/if}}</p>{{else}}{{#if insured}}<p>Fully insured.</p>{{/if}}{{/if}}
