@@ -99,6 +99,9 @@ const tradeLabel = str(raw.tradeLabel) || { hvac: 'HVAC', plumbing: 'Plumbing', 
 const svcWords = ['heating', 'cooling', 'plumbing'].filter((k) => kinds.has(k));
 const svcPhrase = str(raw.pillServices) || (svcWords.length ? cap(listAmp(svcWords)) : services.length ? cap(listAmp(services.slice(0, 2).map((s) => s.nameLower))) : tradeLabel);
 const svcShort = trade === 'both' ? 'HVAC & plumbing' : trade === 'plumbing' ? 'Plumbing' : kinds.has('heating') && kinds.has('cooling') ? 'HVAC' : svcPhrase;
+/* Service page links: only services with a "url" get one. They render as Pinwheel's equal-size buttons, never plain text links. */
+const slClass = (sv) => { const k = kindOf(sv.name); return /quality|air clean|purif|filter/i.test(sv.name) ? 'sl-air' : k[0] === 'heating' ? 'sl-heat' : k[0] === 'cooling' ? 'sl-cool' : 'sl-plumb'; };
+const servicePages = arr(raw.services).map((s, i) => (s && typeof s === 'object' && str(s.url) ? { ...services.find((x) => x.name === str(s.name)), url: str(s.url) } : null)).filter((s) => s && s.name).map((s) => ({ name: s.name, url: s.url, icon: s.icon, cls: slClass(s) }));
 const serviceSummary = services.length ? listWords(services.slice(0, 3).map((s) => s.nameLower)) : tradeLabel.toLowerCase();
 
 /* Service areas, map, counties */
@@ -327,6 +330,7 @@ const data = {
   ownerProof: owner.name ? `Owned and run by ${owner.name}, right here in ${city}.` : '', areaCountText,
   areas, areaChips, areaSummary, areaCount: areas.length, hasAreas: areas.length > 0, hasMap: !!mapHtml, mapHtml,
   areasLead: `Based in ${city} and serving ${areaCountText}, so a tech is never far away.`,
+  servicePages, hasServicePages: servicePages.length > 0, servicePageCount: Math.min(servicePages.length, 4),
   services, hasServices: services.length > 0, leadService: services.slice(0, 1), moreServices: services.slice(1), hasMoreServices: services.length > 1, serviceSummary,
   specials, hasSpecials: specials.length > 0,
   prices, hasPrices: prices.length > 0, quoteOptions: services.length ? quoteOptions : [], quoteStep2: services.length ? 2 : 1, quoteStep3: services.length ? 3 : 2,
@@ -413,6 +417,7 @@ if (unfilled) fail('Unfilled template tags: ' + [...new Set(unfilled)].join(' ')
 if (/claude/i.test(html)) fail('The page mentions Claude. Remove that from the data file.');
 if (/—/.test(html)) fail('The page contains an em dash. Replace it in the data file.');
 const pw = html.match(/.{0,60}(?:logo-mark|Pinwheel).{0,60}/i); if (pw) fail('The page still has a Pinwheel name or logo in it: ' + pw[0]);
+if (/class="bento-foot"/.test(html) || /<a class="text-link" href="[^"#]+\.html"[^>]*>[^<]*<svg[\s\S]{0,200}?<\/a>\s*<a class="text-link" href="[^"#]+\.html"/.test(html)) fail('Service page links must be the equal-size buttons (.svc-links), never a row of plain text links.');
 if (/(^|[^\w&])#1\b|\bnumber one\b|\bbest in\b/i.test(html)) fail('The page makes a "#1" or "best" claim. Remove it from the data file.');
 
 /* ---------- 4. Copy only what the page uses ---------- */

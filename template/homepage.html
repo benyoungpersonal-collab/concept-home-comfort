@@ -223,17 +223,19 @@
           {{/each}}
         </div>{{/if}}
       </div>
+      {{#if hasServicePages}}<ul class="svc-links" style="--n:{{servicePageCount}}" aria-label="Service pages">
+        {{#each servicePages}}<li><a class="svc-link {{cls}}" href="{{url}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg><span>{{name}}</span><svg class="icon sl-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        {{/each}}
+      </ul>{{/if}}
     </div>
   </section>{{/if}}
 
-  <!-- 5. How a visit works (Pinwheel's 3 steps, short muted video, no photo) -->
+  <!-- 5. How a visit works (Pinwheel's 3 steps, the faucet photo, no door photo) -->
   <section class="section visit" id="how-it-works" aria-labelledby="visit-title">
     <div class="container visit-grid">
       <div class="visit-media-col">
-      <div class="visit-media" data-video="video/visit">
-        <picture>
-          <img src="images/visit-poster-960.webp" srcset="images/visit-poster-640.webp 640w, images/visit-poster-960.webp 960w, images/visit-poster-1280.webp 1280w" sizes="(min-width: 900px) 600px, 92vw" width="1280" height="720" alt="Close-up of a plumber's gloved hands tightening an outdoor faucet with a pipe wrench" loading="lazy" decoding="async" style="background-color:#5a1f24">
-        </picture>
+      <div class="visit-media">
+        <img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/faucet-960x540.webp" srcset="images/photos/faucet-640x360.webp 640w, images/photos/faucet-960x540.webp 960w, images/photos/faucet-1280x720.webp 1280w" width="1280" height="720" alt="Brass outdoor faucet with a red lever handle, water running from the spout" loading="lazy" decoding="async" style="object-position:50% 18%;background-color:#3a3530">
       </div>
       </div>
       <div>

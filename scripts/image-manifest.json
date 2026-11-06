@@ -630,6 +630,60 @@
   "q": 70
  },
  {
+  "file": "faucet-1280x720.webp",
+  "key": "faucet",
+  "w": 1280,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.18
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "faucet-640x360.webp",
+  "key": "faucet",
+  "w": 640,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.18
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "faucet-960x540.webp",
+  "key": "faucet",
+  "w": 960,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.18
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "filter-1200x1200.webp",
   "key": "filter",
   "w": 1200,

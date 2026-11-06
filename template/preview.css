@@ -61,3 +61,6 @@
 .estimator.on-dark .est-result a:not(.btn) { color: var(--c-brand-strong); font-weight: 700; }
 @media (max-width: 899px) { .tpl-quote-side { display: none; } }
 .estimator.on-dark .q-num { background: rgb(255 255 255 / .16); }
+
+/* Service page buttons (same as Pinwheel's): 2 by 2 on phones, one row on desktop, however many there are */
+@media (min-width: 900px) { .svc-links { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } }

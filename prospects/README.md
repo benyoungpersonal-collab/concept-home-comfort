@@ -34,7 +34,7 @@ Should have (each one unlocks something; leave it out and it hides):
 | Field | Example | Notes |
 |---|---|---|
 | `serviceAreas` | `["Manteca", "Lathrop", "Ripon"]` | Every city they serve. The build draws a real OpenStreetMap map from these and reads the counties for the hero line |
-| `services` | `[{ "name": "Heating", "blurb": "...", "sub": ["Furnace repair", "Heat pumps"] }]` | Main services with sub-services. Decides the trade (HVAC, plumbing, or both), the hero photo, and the title |
+| `services` | `[{ "name": "Heating", "blurb": "...", "sub": ["Furnace repair", "Heat pumps"], "url": "https://..." }]` | Main services with sub-services. Decides the trade (HVAC, plumbing, or both), the hero photo, and the title. `url` is optional: only when they have a real page for that service, and each one becomes a service page button |
 | `colors` | `{ "brand": "#1F6FB8", "navy": "#14213D" }` | `brand` is their main color (red, blue, anything). No colors: Pinwheel's red-orange. Every shade on the page, the map, and the accents follows it, and light colors are darkened where text sits on them |
 | `license` | `"CSLB #1099999"` | Trust strip, proof section, footer |
 | `owner` | `{ "name": "Dana Whitfield", "role": "Owner and lead tech", "story": "...", "quote": "...", "photo": "owners/dana.jpg" }` | Meet the family. Needs a name plus a story or quote. `photo` is optional: only a real photo of the owner, never stock |
@@ -86,6 +86,7 @@ Rules baked in:
 - No "#1" or "best" claims, no em dashes, no Claude mentions, and no Pinwheel name or logo. The build stops if it finds any.
 - Photos are real, free-license stock (Pexels, Unsplash), never recolored, with no other company's logo. HVAC previews use the technician at the condenser, plumbing previews the plumber under the sink.
 - Family photos appear only in the request-a-visit section and the link-preview image (no words on it).
+- Service page links are always equal-size rounded buttons (icon, name, arrow): 2 by 2 on phones, one row on desktop, never a row of plain text links. Heating uses the brand color, cooling the logo blue, plumbing navy, and air quality light blue with dark text. The build stops if it finds plain service text links.
 - How a visit works is Pinwheel's 3 steps. Step 3: "When we're done, photos of the finished work go straight to your phone."
 
 ## Make a preview
@@ -140,7 +141,7 @@ Build all three with the commands above to see the difference.
 
 ## How it works
 
-- `template/homepage.html` is the page with `{{fields}}` and `{{#if field}}...{{/if}}` blocks. `template/optional/` holds the specials, financing, and membership sections (same markup as Pinwheel's `partials/optional/`, filled from data). `template/preview.css` and `template/preview.js` add the preview-only pieces. It all shares `css/site.css`, `js/site.js`, the fonts, photos, and video with the Pinwheel site, so a design fix there improves every preview.
+- `template/homepage.html` is the page with `{{fields}}` and `{{#if field}}...{{/if}}` blocks. `template/optional/` holds the specials, financing, and membership sections (same markup as Pinwheel's `partials/optional/`, filled from data). `template/preview.css` and `template/preview.js` add the preview-only pieces. It all shares `css/site.css`, `js/site.js`, the fonts, and photos with the Pinwheel site, so a design fix there improves every preview.
 - The map comes from `scripts/build-map.mjs` (the same script as Pinwheel's map), cached in `scripts/.cache/`, so a rebuild works offline.
 - `scripts/build-preview.mjs` fills the template, escapes every value, checks for leftovers, and copies only the files the page uses. No dependencies.
 - The `previews/` folder is ignored by git. Rebuild any preview from its data file in a second.
