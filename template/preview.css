@@ -1,0 +1,66 @@
+/* preview.css: loaded after css/site.css on every homepage preview (never on Pinwheel pages).
+   It holds only what a preview needs on top of the shared design: Pinwheel's current label and pill style,
+   and the few layouts that are filled from a data file. Brand colors and the pill's size steps are written
+   into the page by scripts/build-preview.mjs, because they depend on each business. */
+
+/* Section labels without the dash, the same as Pinwheel */
+.eyebrow::before { content: none; }
+
+/* Hero line as a pill in the brand color (Pinwheel's .hero-pill look). Which text and which size shows at
+   each width is generated per preview from the text length, so it never wraps and never drops below 12px. */
+.tpl-pill { display: inline-flex; align-items: center; max-width: 100%; margin: 0 0 var(--sp-2); padding: 6px 12px; border-radius: 999px; background: var(--c-brand-strong); color: #fff; font-family: var(--ff-body); font-size: 12px; font-weight: 700; line-height: 1.25; letter-spacing: 0; white-space: nowrap; box-shadow: 0 6px 16px rgb(var(--c-brand-rgb, 209 68 28) / .26), inset 0 1px 0 rgb(255 255 255 / .18); }
+.tpl-pill > span { display: none; }
+
+/* Services: a lead photo tile plus one tile per service, filled from the data file */
+.tpl-bento { display: grid; gap: 12px; }
+.tpl-bento-rest { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.tpl-bento-rest > .tile:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.tpl-bento .tile-lead { min-height: 320px; }
+.tile .tile-sub { margin: 10px 0 0; font-size: var(--fs-sm); line-height: 1.5; color: var(--c-text); }
+.tile.photo-tile .tile-sub { color: #E3E8F2; }
+@media (min-width: 900px) {
+  .tpl-bento { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px; }
+  .tpl-bento .tile-lead { min-height: 440px; }
+  .tpl-bento .tile-lead h3 { font-size: var(--fs-2xl); }
+  .tpl-bento-rest { gap: 16px; grid-auto-rows: 1fr; }
+}
+
+/* New business: proof in place of reviews */
+.tpl-proof { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); margin-top: var(--sp-4); }
+.tpl-proof .feature { flex-direction: row; align-items: flex-start; gap: 14px; padding: 18px; }
+.tpl-proof .feature .icon-bubble { flex: none; }
+.tpl-proof .feature p { margin-top: 2px; }
+.tpl-proof .feature strong { display: block; font-family: var(--ff-display); font-size: var(--fs-md); color: var(--c-navy); line-height: 1.25; }
+.tpl-proof .feature a { font-weight: 700; }
+.tpl-review-ask { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: var(--sp-3); padding: var(--sp-3); border-radius: var(--r-card); background: var(--c-brand-tint); }
+.tpl-review-ask p { margin: 0; max-width: 52ch; color: var(--c-navy); }
+.tpl-review-ask .g-mark { width: 18px; height: 18px; vertical-align: -3px; margin-right: 6px; }
+
+/* Meet the family without an owner photo: one column with a name card */
+.team-grid.no-photo { max-width: 760px; }
+.tpl-owner-card { display: flex; align-items: center; gap: 12px; margin: var(--sp-3) 0; }
+.tpl-owner-card .initial { display: grid; place-items: center; width: 52px; height: 52px; flex: none; border-radius: 50%; background: var(--c-navy); color: #fff; font-family: var(--ff-display); font-weight: 800; font-size: 20px; }
+.tpl-owner-card strong { display: block; font-family: var(--ff-display); color: var(--c-navy); font-size: var(--fs-md); line-height: 1.2; }
+.tpl-owner-card span span { font-size: var(--fs-sm); color: var(--c-muted); }
+.team-row.tpl-team { grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
+
+/* Estimate without starting prices: a quick quote by text */
+.tpl-quote-form .textarea, .tpl-quote-form .input { background: #fff; }
+.estimator.on-dark .tpl-quote-form label:not(.chip) { color: #fff; font-weight: 700; }
+.tpl-steps { list-style: none; display: grid; gap: 12px; margin: 0 0 var(--sp-3); padding: 0; text-align: left; }
+.tpl-steps li { display: flex; gap: 12px; align-items: flex-start; }
+.tpl-steps b { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--c-brand-tint); color: var(--c-brand-deep); font-family: var(--ff-display); font-size: 14px; }
+
+/* Map: the home-base pin shows the business initial (no Pinwheel logo) */
+.svc-hq-mark.tpl-hq { color: var(--c-brand-deep); font-family: var(--ff-display); font-weight: 800; font-size: 15px; line-height: 1; }
+
+/* Membership card without the Pinwheel logo */
+.mc-initial { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 9px; background: var(--c-brand-strong); color: #fff; font-size: 15px; }
+.mc-watermark-letter { position: absolute; right: -10px; bottom: -40px; font-family: var(--ff-display); font-weight: 800; font-size: 220px; line-height: 1; color: rgb(255 255 255 / .06); pointer-events: none; }
+.tpl-quote-form .field > label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-family: var(--ff-display); font-size: var(--fs-md); font-weight: 700; }
+.estimator.on-dark .est-result a:not(.btn) { color: var(--c-brand-strong); font-weight: 700; }
+@media (max-width: 899px) { .tpl-quote-side { display: none; } }
+.estimator.on-dark .q-num { background: rgb(255 255 255 / .16); }
+
+/* Service page buttons (same as Pinwheel's): 2 by 2 on phones, one row on desktop, however many there are */
+@media (min-width: 900px) { .svc-links { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } }

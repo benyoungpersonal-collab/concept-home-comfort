@@ -6,18 +6,22 @@
 
   What it does:
   1. Reads the data file (prospects/README.md lists every field).
-  2. Fills template/homepage.html. A section whose data is missing is left out entirely:
-     no placeholder text, no empty boxes.
-  3. Copies only the files the page needs (CSS, JS, fonts, the photos it uses, the video,
-     the link-preview image, the logo if there is one) into previews/NAME/.
-  4. Writes _headers (noindex) and robots.txt for Cloudflare Pages.
-  5. Refuses to finish if anything is unfilled or mentions Claude.
+  2. Picks the mode: "established" (Google rating, review quotes, Write a review link) or "new"
+     (no rating or reviews; license, insurance, years in the trade, warranty, owner story, service area,
+     and a Leave us a review link instead). Set "mode" in the data file, or let the build decide.
+  3. Builds a real service-area map from the cities (scripts/build-map.mjs, OpenStreetMap data, cached).
+  4. Fills template/homepage.html in Pinwheel's section order. A section whose data is missing is left
+     out entirely: no placeholder text, no empty boxes.
+  5. Copies only the files the page needs into previews/NAME/ and writes _headers (noindex) and robots.txt.
+  6. Refuses to finish if anything is unfilled, mentions Claude, has an em dash, or if the hero pill
+     cannot fit on a 320px phone at 12px.
 
   No dependencies. Node 18+.
 */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, rmSync, readdirSync } from 'node:fs';
 import { join, dirname, basename, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dataPath = process.argv[2];
@@ -25,112 +29,322 @@ if (!dataPath) { console.error('Usage: node scripts/build-preview.mjs prospects/
 const raw = JSON.parse(readFileSync(dataPath, 'utf8'));
 const slug = String(raw.slug || basename(dataPath, '.json')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const OUT = join(ROOT, 'previews', slug);
+const fail = (msg) => { console.error(msg); process.exit(1); };
 
 /* ---------- 1. Data: required fields, then everything derived ---------- */
 const str = (v) => (v === undefined || v === null ? '' : String(v).trim());
-const required = ['name', 'phone', 'city'];
-const missing = required.filter((k) => !str(raw[k]));
-if (missing.length) { console.error(`Missing required field(s) in ${dataPath}: ${missing.join(', ')}`); process.exit(1); }
+const arr = (v) => (Array.isArray(v) ? v : []);
+const num = (v) => (str(v) === '' || !Number.isFinite(Number(v)) ? null : Number(v));
+const missing = ['name', 'phone', 'city'].filter((k) => !str(raw[k]));
+if (missing.length) fail(`Missing required field(s) in ${dataPath}: ${missing.join(', ')}`);
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-const listWords = (arr) => arr.length <= 1 ? arr.join('') : arr.length === 2 ? `${arr[0]} and ${arr[1]}` : `${arr.slice(0, -1).join(', ')}, and ${arr[arr.length - 1]}`;
+const listWords = (a) => a.length <= 1 ? a.join('') : a.length === 2 ? `${a[0]} and ${a[1]}` : `${a.slice(0, -1).join(', ')}, and ${a[a.length - 1]}`;
+const listAmp = (a) => a.length <= 1 ? a.join('') : `${a.slice(0, -1).join(', ')} & ${a[a.length - 1]}`;
 const hueOf = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
+const accent = (before, hi) => `${esc(before)} <span class="accent">${esc(hi)}</span>`;
 
 const name = str(raw.name);
 const city = str(raw.city);
+const state = str(raw.state) || 'CA';
 const digits = str(raw.phone).replace(/\D/g, '');
-if (digits.length < 10) { console.error('phone needs 10 digits, got: ' + raw.phone); process.exit(1); }
+if (digits.length < 10) fail('phone needs 10 digits, got: ' + raw.phone);
 const tel = '+' + (digits.length === 10 ? '1' + digits : digits);
 const phonePretty = digits.length === 10 ? `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}` : str(raw.phone);
-const rating = str(raw.googleRating) === '' ? null : Number(raw.googleRating);
-if (rating !== null && !(rating >= 1 && rating <= 5)) { console.error('googleRating must be between 1 and 5'); process.exit(1); }
-const reviewCount = str(raw.reviewCount) === '' ? null : Number(raw.reviewCount);
-const ratingIs5 = rating !== null && rating >= 5;
+const year = new Date().getFullYear();
+const shortName = str(raw.shortName) || name;
+const initial = shortName.charAt(0).toUpperCase();
+
+/* Reviews and mode */
+const rating = num(raw.googleRating);
+if (rating !== null && !(rating >= 1 && rating <= 5)) fail('googleRating must be between 1 and 5');
+const reviewCount = num(raw.reviewCount);
 const googleReviewsUrl = str(raw.googleReviewsUrl);
 const writeReviewUrl = str(raw.writeReviewUrl);
-const hasRating = rating !== null && googleReviewsUrl !== '';
-if (rating !== null && !googleReviewsUrl) console.warn('note: googleRating is set but googleReviewsUrl is missing, so the rating is hidden.');
-const year = new Date().getFullYear();
-
-const areas = (Array.isArray(raw.serviceAreas) ? raw.serviceAreas : []).map(str).filter(Boolean);
-const areaChips = areas.map((a) => ({ name: a, hq: a.toLowerCase() === city.toLowerCase() }));
-const areaSummary = areas.length === 0 ? city : areas.length <= 4 ? listWords(areas) : `${areas.slice(0, 3).join(', ')}, and ${areas.length - 3} more cities`;
-
-const icons = [['heat', 'i-flame'], ['furnace', 'i-flame'], ['cool', 'i-snowflake'], ['air cond', 'i-snowflake'], ['a/c', 'i-snowflake'], ['ac ', 'i-snowflake'], ['plumb', 'i-droplet'], ['water heater', 'i-waterheater'], ['drain', 'i-drain'], ['air quality', 'i-wind'], ['duct', 'i-wind'], ['electric', 'i-zap'], ['maint', 'i-wrench'], ['tune', 'i-wrench'], ['solar', 'i-sun'], ['insul', 'i-home']];
-const iconFor = (n) => { const l = (n + ' ').toLowerCase(); for (const [k, v] of icons) if (l.includes(k)) return v; return 'i-sparkle'; };
-const toneFor = (n) => /cool|a\/c|\bac\b|air cond|quality|duct/i.test(n) ? 'cool' : /plumb|water|drain|sewer/i.test(n) ? 'navy' : '';
-const services = (Array.isArray(raw.services) ? raw.services : []).map((s) => typeof s === 'string' ? { name: s } : s).filter((s) => s && str(s.name)).map((s) => ({
-  name: str(s.name), nameLower: str(s.name).toLowerCase(), blurb: str(s.blurb), icon: iconFor(s.name), tone: toneFor(s.name),
-  anchor: 'svc-' + str(s.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
-  sub: (Array.isArray(s.sub) ? s.sub : []).map(str).filter(Boolean),
-}));
-const serviceSummary = services.length ? listWords(services.slice(0, 3).map((s) => s.nameLower)) : 'home comfort';
-
-const reviews = (Array.isArray(raw.reviews) ? raw.reviews : []).filter((r) => r && str(r.quote)).map((r) => {
+const reviews = arr(raw.reviews).filter((r) => r && str(r.quote)).map((r) => {
   const n = str(r.name) || 'Google reviewer';
   return { name: n, quote: str(r.quote), initial: n.charAt(0).toUpperCase(), hue: hueOf(n), meta: [str(r.city), str(r.when)].filter(Boolean).join(' · ') };
 });
-const specials = (Array.isArray(raw.specials) ? raw.specials : []).filter((s) => s && str(s.amount) && str(s.title)).map((s) => ({ amount: str(s.amount), title: str(s.title), text: str(s.text), fine: str(s.fine) }));
-const faqs = (Array.isArray(raw.faqs) ? raw.faqs : []).filter((f) => f && str(f.q) && str(f.a)).map((f, i) => ({ q: str(f.q), a: str(f.a), n: i + 1 }));
-const locations = (Array.isArray(raw.locations) ? raw.locations : []).filter((l) => l && str(l.name)).map((l) => ({ name: str(l.name), address: str(l.address), cityLine: str(l.cityLine) }));
+const canBeEstablished = rating !== null && googleReviewsUrl !== '';
+let mode = str(raw.mode).toLowerCase();
+if (mode && !['established', 'new'].includes(mode)) fail('mode must be "established" or "new"');
+if (!mode) mode = canBeEstablished && reviews.length > 0 && (reviewCount === null || reviewCount >= 5) ? 'established' : 'new';
+if (mode === 'established' && !canBeEstablished) { console.warn('note: mode is "established" but googleRating or googleReviewsUrl is missing, so the page uses new-business mode.'); mode = 'new'; }
+const established = mode === 'established';
+const isNew = !established;
+const ratingIs5 = established && rating >= 5;
 
+/* Services and trade */
+const KIND = { heating: /(?<!water )heat(?!er)|furnace|boiler/i, cooling: /cool|\bac\b|a\/c|air cond/i, plumbing: /plumb|water heater|drain|sewer|leak|pipe|toilet|faucet|repip/i };
+const kindOf = (text) => Object.keys(KIND).filter((k) => KIND[k].test(text));
+const icons = [['water heater', 'i-waterheater'], ['heat pump', 'i-heatpump'], ['heat', 'i-flame'], ['furnace', 'i-flame'], ['cool', 'i-snowflake'], ['air cond', 'i-snowflake'], ['a/c', 'i-snowflake'], ['ac ', 'i-snowflake'], ['drain', 'i-drain'], ['sewer', 'i-drain'], ['leak', 'i-droplet'], ['repip', 'i-pipes'], ['pipe', 'i-pipes'], ['plumb', 'i-droplet'], ['air quality', 'i-wind'], ['duct', 'i-wind'], ['electric', 'i-zap'], ['maint', 'i-wrench'], ['tune', 'i-wrench'], ['solar', 'i-sun'], ['insul', 'i-home']];
+const iconFor = (n) => { const l = (n + ' ').toLowerCase(); for (const [k, v] of icons) if (l.includes(k)) return v; return 'i-sparkle'; };
+const toneFor = (n) => /cool|a\/c|\bac\b|air cond|quality|duct/i.test(n) ? 'cool' : /plumb|water|drain|sewer|leak|pipe/i.test(n) ? 'navy' : '';
+const services = arr(raw.services).map((s) => typeof s === 'string' ? { name: s } : s).filter((s) => s && str(s.name)).map((s) => {
+  const sub = arr(s.sub).map(str).filter(Boolean);
+  const nm = str(s.name), tone = toneFor(nm);
+  const kinds = kindOf(nm);
+  return { name: nm, nameLower: nm.toLowerCase(), blurb: str(s.blurb), icon: iconFor(nm), tone, tileTone: tone === 'cool' ? 'cool' : tone === '' ? 'warm' : '',
+    anchor: 'svc-' + nm.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), sub, subLine: sub.join(' · '),
+    isPlumbing: kinds.length ? kinds.every((k) => k === 'plumbing') : kindOf(sub.join(' ')).includes('plumbing') && !kindOf(sub.join(' ')).some((k) => k !== 'plumbing'),
+    kicker: kinds.includes('plumbing') ? 'Plumbing' : kinds.includes('cooling') ? 'Cooling' : kinds.includes('heating') ? 'Heating' : 'Most requested' };
+});
+const kinds = new Set(services.flatMap((s) => kindOf(s.name + ' ' + s.sub.join(' '))));
+let trade = str(raw.trade).toLowerCase();
+if (!trade) trade = kinds.has('plumbing') && (kinds.has('heating') || kinds.has('cooling')) ? 'both' : kinds.has('plumbing') ? 'plumbing' : 'hvac';
+if (!['hvac', 'plumbing', 'both'].includes(trade)) fail('trade must be "hvac", "plumbing", or "both"');
+const tradeLabel = str(raw.tradeLabel) || { hvac: 'HVAC', plumbing: 'Plumbing', both: 'HVAC & Plumbing' }[trade];
+const svcWords = ['heating', 'cooling', 'plumbing'].filter((k) => kinds.has(k));
+const svcPhrase = str(raw.pillServices) || (svcWords.length ? cap(listAmp(svcWords)) : services.length ? cap(listAmp(services.slice(0, 2).map((s) => s.nameLower))) : tradeLabel);
+const svcShort = trade === 'both' ? 'HVAC & plumbing' : trade === 'plumbing' ? 'Plumbing' : kinds.has('heating') && kinds.has('cooling') ? 'HVAC' : svcPhrase;
+/* Service page links: only services with a "url" get one. They render as Pinwheel's equal-size buttons, never plain text links. */
+const slClass = (sv) => { const k = kindOf(sv.name); return /quality|air clean|purif|filter/i.test(sv.name) ? 'sl-air' : k[0] === 'heating' ? 'sl-heat' : k[0] === 'cooling' ? 'sl-cool' : 'sl-plumb'; };
+const servicePages = arr(raw.services).map((s, i) => (s && typeof s === 'object' && str(s.url) ? { ...services.find((x) => x.name === str(s.name)), url: str(s.url) } : null)).filter((s) => s && s.name).map((s) => ({ name: s.name, url: s.url, icon: s.icon, cls: slClass(s) }));
+const serviceSummary = services.length ? listWords(services.slice(0, 3).map((s) => s.nameLower)) : tradeLabel.toLowerCase();
+
+/* Service areas, map, counties */
+const areas = arr(raw.serviceAreas).map(str).filter(Boolean);
+if (areas.length && !areas.some((a) => a.toLowerCase() === city.toLowerCase())) areas.unshift(city);
+const areaChips = areas.map((a) => ({ name: a, hq: a.toLowerCase() === city.toLowerCase() }));
+const areaSummary = areas.length === 0 ? city : areas.length <= 4 ? listWords(areas) : `${areas.slice(0, 3).join(', ')}, and ${areas.length - 3} more cities`;
+let mapHtml = '', mapSvgFile = '', counties = arr(raw.counties).map(str).filter(Boolean).map((c) => c.replace(/\s+County$/i, ''));
+if (areas.length >= 2 && raw.map !== false) {
+  const dir = join(ROOT, 'scripts', '.cache', 'preview-maps');
+  mkdirSync(dir, { recursive: true });
+  const q = (a) => (/,/.test(a) ? a : `${a}, ${state}`);
+  const cfg = { name: slug, cities: areas.map(q), hq: q(city), hqLabel: 'Home base',
+    svg: `scripts/.cache/preview-maps/${slug}.svg`, partial: `scripts/.cache/preview-maps/${slug}.html`, alt: 'ALT', labelSide: raw.mapLabelSide || {} };
+  const cfgFile = join(dir, `${slug}.json`);
+  writeFileSync(cfgFile, JSON.stringify(cfg, null, 1));
+  try {
+    execFileSync(process.execPath, [join(ROOT, 'scripts', 'build-map.mjs'), cfgFile], { stdio: ['ignore', 'pipe', 'pipe'] });
+    mapHtml = readFileSync(join(ROOT, cfg.partial), 'utf8').replace(/^<!--.*?-->\n/, '').trim();
+    mapSvgFile = join(ROOT, cfg.svg);
+    if (!counties.length) {
+      const geo = JSON.parse(readFileSync(join(ROOT, 'scripts', '.cache', 'geocode.json'), 'utf8'));
+      const tally = new Map();
+      for (const a of areas) { const c = str(geo[q(a)]?.county).replace(/\s+County$/i, ''); if (c) tally.set(c, (tally.get(c) || 0) + 1); }
+      const hqC = str(geo[q(city)]?.county).replace(/\s+County$/i, '');
+      counties = [...tally.keys()].sort((a, b) => (b === hqC) - (a === hqC) || tally.get(b) - tally.get(a));
+    }
+  } catch (e) {
+    console.warn('note: the service-area map could not be built (no network and no cache?), so the section shows the city list only.\n' + String(e.stderr || e.message).trim().split('\n').slice(-2).join('\n'));
+  }
+}
+const countiesFull = counties.length === 0 ? '' : counties.length === 1 ? `${counties[0]} County` : `${listAmp(counties)} counties`;
+const countiesShort = counties.length === 1 ? `${counties[0]} County` : listAmp(counties);
+const areaCountText = areas.length > 1 ? `${areas.length} cities${countiesFull ? ` across ${countiesFull}` : ''}` : city;
+
+/* Hero pill: "[their services] in [their counties]", one line, the longest version that fits, never under 12px */
+const pillTiers = [];
+const addTier = (t) => { t = str(t); if (t && !pillTiers.includes(t)) pillTiers.push(t); };
+if (str(raw.pill)) addTier(raw.pill);
+if (str(raw.pillShort)) addTier(raw.pillShort);
+if (countiesFull) { addTier(`${svcPhrase} services in ${countiesFull}`); addTier(`${svcPhrase} in ${countiesShort}`); addTier(`${svcShort} in ${countiesShort}`); }
+addTier(`${svcPhrase} services in ${city} and nearby`); addTier(`${svcPhrase} in ${city} and nearby`); addTier(`${svcShort} in ${city} and nearby`);
+/* Inter 700 advance widths per character (em units), measured in the browser. Unknown characters count as wide. */
+const CW = { ' ': .2368, '!': .3379, '"': .5513, '#': .6489, $: .6548, '%': 1.0156, '&': .6719, "'": .3389, '(': .3775, ')': .3775, '*': .5591, '+': .6787, ',': .334, '-': .4678, '.': .334, '/': .3887, ':': .334, ';': .3433, '?': .5596, '@': 1.0156,
+  0: .6743, 1: .4312, 2: .6294, 3: .6455, 4: .6763, 5: .6221, 6: .6494, 7: .5991, 8: .6509, 9: .6494,
+  A: .7598, B: .6616, C: .7398, D: .7222, E: .6074, F: .5869, G: .7505, H: .7471, I: .2808, J: .5845, K: .7192, L: .5654, M: .9316, N: .7622, O: .7705, P: .648, Q: .7769, R: .6567, S: .6548, T: .6675, U: .7319, V: .7598, W: 1.0571, X: .7383, Y: .731, Z: .6641,
+  a: .5806, b: .6304, c: .5884, d: .6304, e: .5957, f: .3608, g: .6318, h: .6226, i: .2715, j: .2715, k: .5801, l: .2715, m: .9126, n: .6226, o: .6133, p: .6304, q: .6304, r: .4138, s: .5601, t: .3569, u: .6226, v: .5996, w: .8501, x: .5801, y: .6021, z: .5728 };
+const STEPS = [{ f: 12, pad: 12, ls: 0 }, { f: 13, pad: 14, ls: 0.01 }, { f: 14, pad: 16, ls: 0.01 }];
+const pillWidth = (t, s) => ([...t].reduce((a, c) => a + (CW[c] ?? 0.8), 0) * s.f + t.length * s.ls * s.f) * 1.03 + 2 * s.pad + 2;
+const PHONE = 288; // hero column on a 320px phone
+const fitsPhone = pillTiers.map((t, i) => ({ t, i })).filter(({ t }) => pillWidth(t, STEPS[0]) <= PHONE);
+if (!fitsPhone.length) fail(`The hero pill is too long for a 320px phone. Add a shorter "pillShort" (about 40 characters or less). Tried: ${pillTiers.join(' | ')}`);
+const keep = pillTiers.slice(0, fitsPhone[0].i + 1); // the longest tiers down to the first one that fits a phone
+const cands = keep.flatMap((t, ti) => STEPS.map((s, si) => ({ ti, si, w: Math.ceil(pillWidth(t, s)), score: (keep.length - ti) * 10 + si })));
+const best = (W) => cands.filter((c) => c.w <= W).sort((a, b) => b.score - a.score)[0];
+const base = best(PHONE);
+let pillCss = `.tpl-pill .tp-${base.ti}{display:inline}`;
+let cur = base;
+for (const w of [...new Set(cands.map((c) => c.w))].sort((a, b) => a - b)) {
+  if (w <= PHONE) continue;
+  const b = best(w);
+  if (b.score === cur.score) continue;
+  const s = STEPS[b.si];
+  pillCss += `@container (min-width:${w}px){.tpl-pill{font-size:${s.f}px;padding:${s.f === 12 ? 6 : s.f === 13 ? 6 : 7}px ${s.pad}px;letter-spacing:${s.ls ? s.ls + 'em' : '0'}}${keep.map((t, i) => `.tpl-pill .tp-${i}`).join(',')}{display:none}.tpl-pill .tp-${b.ti}{display:inline}}`;
+  cur = b;
+}
+if (base.si) { const s = STEPS[base.si]; pillCss = `.tpl-pill{font-size:${s.f}px;padding:6px ${s.pad}px;letter-spacing:${s.ls}em}` + pillCss; }
+const pillHtml = keep.map((t, i) => `<span class="tp-${i}">${esc(t)}</span>`).join('');
+const pillFull = keep[cur.ti];
+
+/* Specials, FAQ, locations, estimate */
+const specials = arr(raw.specials).filter((s) => s && str(s.amount) && str(s.title)).map((s) => ({ amount: str(s.amount), title: str(s.title), text: str(s.text), fine: str(s.fine) }));
+const faqs = arr(raw.faqs).filter((f) => f && str(f.q) && str(f.a)).map((f, i) => ({ q: str(f.q), a: str(f.a), n: i + 1 }));
+const locations = arr(raw.locations).filter((l) => l && str(l.name)).map((l) => ({ name: str(l.name), address: str(l.address), cityLine: str(l.cityLine) }));
+const prices = arr(raw.startingPrices).filter((p) => p && str(p.service) && num(p.from) !== null).map((p) => ({ service: str(p.service), from: num(p.from), to: num(p.to) ?? num(p.from), note: str(p.note) }));
+const quoteOptions = [...services.slice(0, 5).map((s) => s.name), 'Something else'];
+
+/* Financing (optional) */
+let financing = null;
+if (raw.financing && typeof raw.financing === 'object') {
+  const f = raw.financing;
+  const apr = num(f.apr), min = num(f.min) ?? 3000, max = num(f.max) ?? 25000;
+  const terms = arr(f.terms).map(num).filter((n) => n > 0);
+  const termList = (terms.length ? terms : [36, 60, 84, 120]).slice(0, 4);
+  const start = Math.round((min + (max - min) * 0.4) / 500) * 500;
+  financing = { hasCalc: apr !== null && apr > 0, apr: apr ?? '', min, max, step: max - min > 5000 ? 500 : 100, start, startPretty: money(start), minPretty: money(min), maxPretty: money(max),
+    terms: termList.map((m, i) => ({ months: m, last: i === termList.length - 1 })), lastTerm: termList[termList.length - 1],
+    bullets: arr(f.bullets).map(str).filter(Boolean), lead: str(f.lead) || 'Monthly payments on repairs and new systems. Ask us about the options when you reach out.',
+    href: str(f.url) || '#request', external: !!str(f.url), cta: str(f.cta) || (str(f.url) ? 'See financing options' : 'Ask about financing') };
+}
+
+/* Membership (optional) */
+let membership = null;
+if (raw.membership && typeof raw.membership === 'object' && str(raw.membership.name)) {
+  const m = raw.membership;
+  const benefits = arr(m.benefits).filter((b) => b && str(b.title)).map((b, i) => ({ title: str(b.title), text: str(b.text), icon: iconFor(b.title) === 'i-sparkle' ? ['i-zap', 'i-wrench', 'i-percent'][i % 3] : iconFor(b.title), tone: i % 3 === 1 ? 'cool' : '' }));
+  membership = { name: str(m.name), headline: str(m.headline) ? esc(m.headline) : accent('Skip the line when it', "matters most."), lead: str(m.lead), benefits, price: str(m.price), per: str(m.per),
+    cardLines: arr(m.cardLines).filter((l) => l && str(l.label) && str(l.value)).map((l) => ({ label: str(l.label), value: str(l.value) })) };
+}
+
+/* Owner and team */
+const o = raw.owner && typeof raw.owner === 'object' ? raw.owner : {};
+const owner = { name: str(o.name), role: str(o.role) || 'Owner', roleShort: (str(o.role) || 'owner').split(/ and |,/)[0].toLowerCase(), story: str(o.story), quote: str(o.quote), initial: str(o.name).charAt(0).toUpperCase() };
+const hasOwner = !!(owner.name && (owner.story || owner.quote));
+const ownerPhoto = str(o.photo);
+const ownerPhotoExt = ownerPhoto ? extname(ownerPhoto).toLowerCase() : '';
+if (ownerPhoto && !['.jpg', '.jpeg', '.png', '.webp'].includes(ownerPhotoExt)) fail('owner.photo must be a .jpg, .png, or .webp file');
+const team = arr(raw.team).filter((t) => t && str(t.name)).map((t) => ({ name: str(t.name), role: str(t.role), initial: str(t.name).charAt(0).toUpperCase() }));
+const promises = arr(raw.promises).map(str).filter(Boolean);
+
+/* Trust and proof */
+const years = num(raw.yearsInBusiness);
+const yearsInTrade = num(raw.yearsInTrade);
+const license = str(raw.license);
+const insured = raw.insured !== false;
+const upfront = raw.upfrontPricing !== false;
+const guarantee = raw.guarantee !== false;
+const warranty = str(raw.warranty);
+const hasYears = years !== null && years > 0;
+const hasTradeYears = yearsInTrade !== null && yearsInTrade > 0;
+
+/* Logo and brand colors. The main color comes from colors.brand; with no colors the page keeps Pinwheel's red-orange.
+   A light color is darkened step by step until white text on it (and it on white) reads at 4.5:1. */
 const logo = str(raw.logo);
 const logoExt = logo ? extname(logo).toLowerCase() : '';
-if (logo && !['.svg', '.png', '.jpg', '.jpeg', '.webp'].includes(logoExt)) { console.error('logo must be an .svg, .png, .jpg, or .webp file'); process.exit(1); }
+if (logo && !['.svg', '.png', '.jpg', '.jpeg', '.webp'].includes(logoExt)) fail('logo must be an .svg, .png, .jpg, or .webp file');
 const logoSrc = logo ? `images/logo${logoExt}` : '';
 const brand = str(raw.colors && raw.colors.brand);
 const navy = str(raw.colors && raw.colors.navy);
 const hex = /^#[0-9a-fA-F]{6}$/;
-for (const [k, v] of [['colors.brand', brand], ['colors.navy', navy]]) if (v && !hex.test(v)) { console.error(`${k} must look like #RRGGBB, got ${v}`); process.exit(1); }
-/* Brand colors: the site uses the brand color for buttons and headings, plus darker steps for text and hover.
-   A custom color is darkened step by step until white text on it (and it on white) reads at 4.5:1, so any brand color passes contrast. */
+for (const [k, v] of [['colors.brand', brand], ['colors.navy', navy]]) if (v && !hex.test(v)) fail(`${k} must look like #RRGGBB, got ${v}`);
 const toRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-const toHex = (rgb) => '#' + rgb.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+const toHex = (rgb) => '#' + rgb.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('').toUpperCase();
 const lum = (rgb) => { const [r, g, b] = rgb.map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
 const contrastWhite = (rgb) => 1.05 / (lum(rgb) + 0.05);
 const darken = (rgb, f) => rgb.map((v) => v * (1 - f));
 const darkenUntil = (hexColor, ratio) => { let rgb = toRgb(hexColor); let n = 0; while (contrastWhite(rgb) < ratio && n++ < 40) rgb = darken(rgb, 0.04); return toHex(rgb); };
 const mix = (hexColor, f) => toHex(toRgb(hexColor).map((v) => v + (255 - v) * f));
+const rgbStr = (h) => toRgb(h).join(' ');
 let brandCss = '';
-if (brand) {
-  const strong = darkenUntil(brand, 4.5), deep = darkenUntil(brand, 5.5), hover = darkenUntil(brand, 6);
-  brandCss += `--c-brand:${brand};--c-brand-strong:${strong};--c-brand-deep:${deep};--c-brand-hover:${hover};--c-brand-tint:${mix(brand, 0.86)};--c-brand-light:${mix(brand, 0.55)};`;
+let mapColors = null;
+if (brand && brand.toUpperCase() !== '#E4572E') {
+  const strong = darkenUntil(brand, 4.5), deep = darkenUntil(brand, 5.5), hover = darkenUntil(brand, 6), tint = mix(brand, 0.86);
+  /* --c-brand-light is the accent color on dark bands, so it is lightened until it reads at 4.5:1 on the navy. */
+  const darkBg = toRgb(navy ? darkenUntil(navy, 7) : '#14213D');
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  let lf = 0.55; while (ratio(toRgb(mix(brand, lf)), darkBg) < 4.6 && lf < 0.95) lf += 0.03;
+  const light = mix(brand, lf);
+  brandCss += `:root{--c-brand:${brand};--c-brand-strong:${strong};--c-brand-deep:${deep};--c-brand-hover:${hover};--c-brand-tint:${tint};--c-brand-light:${light};--c-brand-rgb:${rgbStr(strong)}}`;
+  /* site.css has a few warm colors written out (the headline underline, button shadows, soft tints). Every rule that uses
+     one is copied here with the brand's own shade, so a blue brand has no orange left on the page. */
+  const swap = [['%23E4572E', encodeURIComponent(brand)], ['#E4572E', brand], ['rgb(209 68 28', `rgb(${rgbStr(strong)}`], ['rgb(228 87 46', `rgb(${rgbStr(brand)}`],
+    ['#FDE8DF', tint], ['#FFC9AE', mix(brand, 0.7)], ['#F9C8B2', mix(brand, 0.7)], ['#F2C2AE', mix(brand, 0.72)], ['#F7D5C7', mix(brand, 0.8)], ['#F29E4C', mix(brand, 0.35)], ['#FFB59E', light], ['rgb(255 186 150', `rgb(${rgbStr(mix(brand, 0.6))}`], ['rgb(253 232 223', `rgb(${rgbStr(tint)}`]];
+  const site = readFileSync(join(ROOT, 'css', 'site.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+  const hasWarm = (s) => swap.some(([a]) => s.toUpperCase().includes(a.toUpperCase()));
+  const recolor = (s) => swap.reduce((acc, [a, b]) => acc.split(a).join(b).split(a.toLowerCase()).join(b), s);
+  const walk = (css) => {
+    let out = '', i = 0;
+    while (i < css.length) {
+      const open = css.indexOf('{', i); if (open === -1) break;
+      const sel = css.slice(i, open).trim();
+      let depth = 1, j = open + 1; while (j < css.length && depth) { if (css[j] === '{') depth++; else if (css[j] === '}') depth--; j++; }
+      const body = css.slice(open + 1, j - 1);
+      if (sel.startsWith('@media') || sel.startsWith('@supports') || sel.startsWith('@container')) { const inner = walk(body); if (inner) out += `${sel}{${inner}}`; }
+      else if (!sel.startsWith('@') && !sel.startsWith(':root') && hasWarm(body)) {
+        const decls = body.split(/;(?![^(]*\))/).map((d) => d.trim()).filter((d) => d && hasWarm(d));
+        if (decls.length) out += `${sel}{${recolor(decls.join(';'))}}`;
+      }
+      i = j;
+    }
+    return out;
+  };
+  brandCss += walk(site);
+  mapColors = [['#F6E3D6', mix(brand, 0.86)], ['#EDC9B3', mix(brand, 0.66)]];
 }
-if (navy) { const n = darkenUntil(navy, 7); brandCss += `--c-navy:${n};--c-navy-2:${n};--c-on-dark-soft:#E3E9F2;`; }
-if (brandCss) brandCss = `:root{${brandCss}}`;
-const years = str(raw.yearsInBusiness) === '' ? null : Number(raw.yearsInBusiness);
-const license = str(raw.license);
-const insured = raw.insured !== false;
-const upfront = raw.upfrontPricing !== false;
-const guarantee = raw.guarantee !== false;
+if (navy) { const n = darkenUntil(navy, 7); brandCss += `:root{--c-navy:${n};--c-navy-2:${mix(n, 0.08)};--c-on-dark-soft:#E3E9F2}`; }
+const brandColor = brand || '#E4572E';
+
+/* Copy */
 const hours = str(raw.hours);
 const email = str(raw.email);
-const shortName = str(raw.shortName) || name;
 const tagline = str(raw.tagline);
-const initial = shortName.charAt(0).toUpperCase();
 const previewUrl = (str(raw.previewUrl) || `https://byw-${slug}.pages.dev/`).replace(/\/?$/, '/');
-const titleTag = `${name} | ${city} HVAC${ratingIs5 ? ' | 5-Star Service' : ''}`;
-const lead = str(raw.lead) || `Same-day service and upfront pricing for homes in ${areaSummary}. If it heats, cools, or runs water, we fix it fast.`;
-const brandColor = brand || '#E4572E';
+const titleTag = `${name} | ${city} ${tradeLabel}${ratingIs5 ? ' | 5-Star Service' : ''}`;
+const fixLine = { hvac: 'If it heats or cools, we fix it fast.', plumbing: 'If it runs water, we fix it fast.', both: 'If it heats, cools, or runs water, we fix it fast.' }[trade];
+const leadAreas = areas.length === 0 ? city : areas.length <= 6 ? listWords(areas) : `${areas.slice(0, 6).join(', ')}, and ${areas.length - 6} more cities`;
+const lead = str(raw.lead) || `Fast repair${upfront ? ' and honest, upfront pricing' : ''} for homes in ${leadAreas}. ${fixLine}`;
+const defaultHeadline = trade === 'plumbing' ? accent('Plumbing done right,', 'without the runaround.') : accent('A comfortable home,', 'without the runaround.');
+const servicesHeadline = trade === 'plumbing' ? accent('One call for', 'every plumbing job.') : trade === 'both' ? accent('One call for heating,', 'air, and plumbing.') : accent('One call for', 'heating and cooling.');
 const faviconHref = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${brandColor}"/><text x="32" y="44" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="36" fill="#fff">${esc(initial)}</text></svg>`)}`;
+
+if (mapHtml) {
+  const alt = `Map of ${countiesFull || 'the area'} showing the ${areas.length} cities we serve, with ${city} as home base. Opens Google Maps.`;
+  mapHtml = mapHtml.replace(`{{root}}scripts/.cache/preview-maps/${slug}.svg`, 'images/map/service-area.svg').replace('alt="ALT"', `alt="${esc(alt)}"`)
+    .replace(/<span class="svc-hq-mark"><svg><use href="#logo-mark"\/><\/svg><\/span>/, `<span class="svc-hq-mark tpl-hq">${esc(initial)}</span>`);
+  if (/logo-mark|\{\{/.test(mapHtml)) fail('Map partial still has a Pinwheel logo or template tag.');
+}
+
+const proofHeadline = hasTradeYears ? accent('A new name,', `${yearsInTrade} years in the trade.`) : accent('Licensed, insured, and', 'close by.');
+const menu = [
+  services.length && { id: 'services', label: 'Services' },
+  established && reviews.length && { id: 'reviews', label: 'Reviews' },
+  isNew && { id: 'proof', label: 'Why us' },
+  { id: 'how-it-works', label: 'How a visit works' },
+  specials.length && { id: 'specials', label: 'Specials and discounts' },
+  { id: 'estimate', label: prices.length ? 'Starting prices' : 'Quick quote' },
+  financing && { id: 'financing', label: 'Financing' },
+  membership && { id: 'membership', label: membership.name },
+  hasOwner && { id: 'team', label: 'Meet the family' },
+  areas.length && { id: 'areas', label: 'Service areas' },
+  faqs.length && { id: 'faq', label: 'FAQ' },
+  { id: 'request', label: 'Request a visit' },
+].filter(Boolean);
 
 const data = {
   name, nameDot: /[.!?]$/.test(name) ? name : name + '.', shortName, tagline, initial, city, year, tel, phonePretty, previewUrl, titleTag, lead,
   metaDescription: str(raw.description) || `${name}: ${serviceSummary} for homeowners in ${areaSummary}. Call ${phonePretty}.`,
-  eyebrow: str(raw.eyebrow) || `${cap(serviceSummary)} for homeowners in ${city} and nearby`,
-  headline: str(raw.headline) ? esc(raw.headline) : 'A comfortable home, <span class="accent">without the runaround.</span>',
-  themeColor: navy ? darkenUntil(navy, 7) : '#14213D', brandCss, faviconHref,
-  hasRating, ratingText: rating !== null ? rating.toFixed(1) : '', reviewCount, starsLabel: rating !== null ? `Rated ${rating.toFixed(1)} out of 5` : '', googleReviewsUrl, writeReviewUrl,
-  areas, areaChips, areaSummary, hasAreas: areas.length > 0,
-  services, hasServices: services.length > 0, serviceSummary,
+  headline: str(raw.headline) ? esc(raw.headline) : defaultHeadline, servicesHeadline, pillHtml,
+  themeColor: navy ? darkenUntil(navy, 7) : '#14213D', pageCss: brandCss + pillCss, faviconHref,
+  heroPlumber: trade === 'plumbing',
+  established, isNew, ratingText: rating !== null ? rating.toFixed(1) : '', reviewCount, starsLabel: rating !== null ? `Rated ${rating.toFixed(1)} out of 5` : '', googleReviewsUrl, writeReviewUrl,
   reviews, hasReviews: reviews.length > 0,
+  hasProof: !!license || insured || hasTradeYears || !!warranty || hasOwner || areas.length > 1 || !!writeReviewUrl,
+  proofHeadline, proofLead: `${name} is ${hasTradeYears ? 'new, but the hands are not' : 'local, licensed, and easy to reach'}. Here is what you can count on before you call.`,
+  tradeYearsText: owner.name ? `${owner.name.split(' ')[0]} has been on the tools for ${yearsInTrade} years before opening ${shortName}.` : `Years of hands-on work before opening ${shortName}.`,
+  ownerProof: owner.name ? `Owned and run by ${owner.name}, right here in ${city}.` : '', areaCountText,
+  areas, areaChips, areaSummary, areaCount: areas.length, hasAreas: areas.length > 0, hasMap: !!mapHtml, mapHtml,
+  areasLead: `Based in ${city} and serving ${areaCountText}, so a tech is never far away.`,
+  servicePages, hasServicePages: servicePages.length > 0, servicePageCount: Math.min(servicePages.length, 4),
+  services, hasServices: services.length > 0, leadService: services.slice(0, 1), moreServices: services.slice(1), hasMoreServices: services.length > 1, serviceSummary,
   specials, hasSpecials: specials.length > 0,
+  prices, hasPrices: prices.length > 0, quoteOptions: services.length ? quoteOptions : [], quoteStep2: services.length ? 2 : 1, quoteStep3: services.length ? 3 : 2,
+  quoteError: services.length ? 'Pick a service, tell us what is going on, and add your mobile number.' : 'Tell us what is going on and add your mobile number.',
+  estimateNav: prices.length ? 'Prices' : 'Quick quote',
+  financing, hasFinancing: !!financing, membership, hasMembership: !!membership,
+  owner, hasOwner, hasOwnerPhoto: hasOwner && !!ownerPhoto, ownerPhotoSrc: ownerPhoto ? `images/owner${ownerPhotoExt}` : '', ownerPhotoAlt: str(o.photoAlt) || `${owner.name}, ${owner.role.toLowerCase()} of ${name}`,
+  team, promises, menu,
   faqs, hasFaqs: faqs.length > 0,
   locations, hasLocations: locations.length > 0, oneLocation: locations.length === 1,
   hasLogo: !!logo, logoSrc,
-  license, hasLicense: !!license, yearsInBusiness: years, hasYears: years !== null && years > 0, sinceYear: years ? year - years : '',
-  insured, upfront, guarantee, hasTrust: !!license || insured || (years !== null && years > 0) || upfront || guarantee,
+  license, hasLicense: !!license, yearsInBusiness: years, hasYears, sinceYear: years ? year - years : '', yearsInTrade, hasTradeYears, showTradeYears: hasTradeYears && !hasYears,
+  warranty, hasWarranty: !!warranty,
+  insured, upfront, guarantee: guarantee || !!warranty, hasTrust: !!license || insured || hasYears || hasTradeYears || upfront || guarantee || !!warranty,
   hours, hasHours: !!hours, email, hasEmail: !!email,
 };
 
@@ -187,39 +401,64 @@ function expand(tpl, ctx) {
 }
 
 /* ---------- 3. Render ---------- */
-const partials = Object.fromEntries(readdirSync(join(ROOT, 'partials')).filter((f) => f.endsWith('.html')).map((f) => [f.replace(/\.html$/, ''), readFileSync(join(ROOT, 'partials', f), 'utf8').trim()]));
-const tpl = readFileSync(join(ROOT, 'template', 'homepage.html'), 'utf8').replace(/\{\{> ([\w-]+)\}\}/g, (m, p) => { if (!(p in partials)) throw new Error('Missing partial ' + p); return partials[p]; });
-let html = expand(tpl, data).replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n');
+/* Shared partials come from partials/ (the sprite); preview-only sections from template/ (e.g. {{> optional/specials}}).
+   The sprite's Pinwheel logo symbols are dropped, so no preview carries another company's logo. */
+const partial = (p) => {
+  const file = existsSync(join(ROOT, 'template', p + '.html')) ? join(ROOT, 'template', p + '.html') : join(ROOT, 'partials', p + '.html');
+  if (!existsSync(file)) throw new Error('Missing partial ' + p);
+  let s = readFileSync(file, 'utf8').trim();
+  if (p === 'sprite') s = s.replace(/\s*<!--[^>]*Logo mark[\s\S]*?-->/, '').replace(/\s*<symbol id="logo-mark[\s\S]*?<\/symbol>/g, '');
+  return s;
+};
+const tpl = readFileSync(join(ROOT, 'template', 'homepage.html'), 'utf8').replace(/\{\{> ([\w/-]+)\}\}/g, (m, p) => partial(p));
+let html = expand(tpl, data).replace(/[ \t]*<!--[\s\S]*?-->\n?/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n\s*\n(\s*\n)+/g, '\n\n');
 const unfilled = html.match(/\{\{[^}]*\}\}/g);
-if (unfilled) { console.error('Unfilled template tags: ' + [...new Set(unfilled)].join(' ')); process.exit(1); }
-if (/claude/i.test(html)) { console.error('The page mentions Claude. Remove that from the data file.'); process.exit(1); }
-if (/\u2014/.test(html)) { console.error('The page contains an em dash. Replace it in the data file.'); process.exit(1); }
+if (unfilled) fail('Unfilled template tags: ' + [...new Set(unfilled)].join(' '));
+if (/claude/i.test(html)) fail('The page mentions Claude. Remove that from the data file.');
+if (/—/.test(html)) fail('The page contains an em dash. Replace it in the data file.');
+const pw = html.match(/.{0,60}(?:logo-mark|Pinwheel).{0,60}/i); if (pw) fail('The page still has a Pinwheel name or logo in it: ' + pw[0]);
+if (/class="bento-foot"/.test(html) || /<a class="text-link" href="[^"#]+\.html"[^>]*>[^<]*<svg[\s\S]{0,200}?<\/a>\s*<a class="text-link" href="[^"#]+\.html"/.test(html)) fail('Service page links must be the equal-size buttons (.svc-links), never a row of plain text links.');
+if (/(^|[^\w&])#1\b|\bnumber one\b|\bbest in\b/i.test(html)) fail('The page makes a "#1" or "best" claim. Remove it from the data file.');
 
 /* ---------- 4. Copy only what the page uses ---------- */
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 const copy = (from, to = from) => { mkdirSync(dirname(join(OUT, to)), { recursive: true }); copyFileSync(join(ROOT, from), join(OUT, to)); return 1; };
+const own = { 'css/preview.css': 'template/preview.css', 'js/preview.js': 'template/preview.js' };
 let copied = 0;
-const refs = new Set([...html.matchAll(/\b(?:src|href|poster|imagesrcset|srcset)="([^"]+)"/g)].flatMap((m) => m[1].startsWith('data:') ? [] : m[1].split(',').map((p) => p.trim().split(/\s+/)[0].split('?')[0])));
+const refs = new Set([...html.matchAll(/\b(src|href|poster|imagesrcset|srcset)="([^"]+)"/g)].flatMap((m) => m[2].startsWith('data:') ? [] : (/srcset/.test(m[1]) ? m[2].split(',') : [m[2]]).map((p) => p.trim().split(/\s+/)[0].split('?')[0])));
 for (const ref of refs) {
-  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo')) continue;
-  if (!existsSync(join(ROOT, ref))) { console.error('Referenced file is missing: ' + ref); process.exit(1); }
+  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/owner') || ref === 'images/map/service-area.svg') continue;
+  if (own[ref]) { copied += copy(own[ref], ref); continue; }
+  if (!existsSync(join(ROOT, ref))) fail('Referenced file is missing: ' + ref);
   copied += copy(ref);
 }
 for (const f of readdirSync(join(ROOT, 'fonts'))) copied += copy(`fonts/${f}`);
 for (const v of [...html.matchAll(/data-video="([^"]+)"/g)].map((m) => m[1])) for (const ext of ['mp4', 'webm']) if (existsSync(join(ROOT, `${v}.${ext}`))) copied += copy(`${v}.${ext}`);
 copied += copy('images/og-family-1200x630.jpg', 'images/og.jpg');
-if (logo) {
-  const from = resolve(dirname(dataPath), logo);
-  if (!existsSync(from)) { console.error('Logo not found: ' + from); process.exit(1); }
-  mkdirSync(join(OUT, 'images'), { recursive: true }); copyFileSync(from, join(OUT, logoSrc)); copied++;
+const copyOwn = (rel, to) => { const from = resolve(dirname(dataPath), rel); if (!existsSync(from)) fail('File not found: ' + from); mkdirSync(dirname(join(OUT, to)), { recursive: true }); copyFileSync(from, join(OUT, to)); copied++; };
+if (logo) copyOwn(logo, logoSrc);
+if (data.hasOwnerPhoto) copyOwn(ownerPhoto, data.ownerPhotoSrc);
+if (mapHtml) {
+  let svg = readFileSync(mapSvgFile, 'utf8');
+  if (mapColors) for (const [a, b] of mapColors) svg = svg.split(a).join(b);
+  /* Route badges that land on a county name in the top corners are dropped, so nothing on the map overlaps. */
+  const labels = [...svg.matchAll(/<text x="([\d.]+)" y="30"( text-anchor="end")?>([^<]+)<\/text>/g)].map((m) => { const w = m[3].length * 9.9; const x = +m[1]; return m[2] ? [x - w, x] : [x, x + w]; });
+  svg = svg.replace(/<g transform="translate\(([\d.]+) ([\d.]+)\)"><rect x="(-?[\d.]+)"[\s\S]*?<\/g>/g, (g, x, y, rx) => {
+    const half = -rx + 8;
+    return +y < 52 && labels.some(([a, b]) => +x + half > a && +x - half < b) ? '' : g;
+  });
+  mkdirSync(join(OUT, 'images', 'map'), { recursive: true });
+  writeFileSync(join(OUT, 'images', 'map', 'service-area.svg'), svg); copied++;
 }
 writeFileSync(join(OUT, 'index.html'), html);
 writeFileSync(join(OUT, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/images/*\n  Cache-Control: public, max-age=604800\n');
 writeFileSync(join(OUT, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 
-const hidden = Object.entries({ rating: data.hasRating, 'service areas': data.hasAreas, services: data.hasServices, reviews: data.hasReviews, specials: data.hasSpecials, FAQ: data.hasFaqs, locations: data.hasLocations, logo: data.hasLogo, license: data.hasLicense, 'years in business': data.hasYears, hours: data.hasHours, email: data.hasEmail }).filter(([, v]) => !v).map(([k]) => k);
+const hidden = Object.entries({ 'service areas': data.hasAreas, map: data.hasMap, services: data.hasServices, specials: data.hasSpecials, 'starting prices (quick quote shown instead)': data.hasPrices, financing: data.hasFinancing, membership: data.hasMembership, 'meet the family': hasOwner, FAQ: data.hasFaqs, locations: data.hasLocations, logo: data.hasLogo, license: data.hasLicense, hours: data.hasHours, email: data.hasEmail })
+  .filter(([, v]) => !v).map(([k]) => k);
 console.log(`Built previews/${slug}/ (${copied} files copied).`);
-console.log(`Title: ${titleTag}`);
+console.log(`Mode: ${mode}${established ? '' : ' (no rating or review sections; proof section instead)'}. Title: ${titleTag}`);
+console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}" | 320 phone "${keep[base.ti]}"`);
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
 console.log(`Preview URL it expects: ${previewUrl}  (Cloudflare project name: byw-${slug})`);

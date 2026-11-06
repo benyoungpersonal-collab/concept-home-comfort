@@ -1,0 +1,29 @@
+{
+  "name": "Oakline Plumbing",
+  "phone": "209-555-0164",
+  "city": "Lodi",
+  "colors": { "brand": "#1F6FB8" },
+  "license": "CSLB #1123456",
+  "yearsInTrade": 14,
+  "warranty": "1-year warranty on all labor, in writing",
+  "hours": "Mon to Sat, 7am to 6pm",
+  "serviceAreas": ["Lodi", "Woodbridge", "Acampo", "Lockeford", "Galt", "Stockton"],
+  "services": [
+    { "name": "Drain cleaning", "blurb": "Slow or stopped drains cleared, with a camera look when needed.", "sub": ["Kitchen and bath drains", "Main line clogs", "Camera inspection"] },
+    { "name": "Water heaters", "blurb": "Repairs and replacements, tank or tankless.", "sub": ["Tank water heaters", "Tankless water heaters", "Pilot and valve repair"] },
+    { "name": "Leak repair", "blurb": "Hidden leaks found fast and fixed with less mess.", "sub": ["Slab leaks", "Pipe repair", "Fixture leaks"] },
+    { "name": "Repiping", "sub": ["Whole-home PEX", "Copper repairs", "Clean drywall patching"] }
+  ],
+  "writeReviewUrl": "https://www.google.com/maps/search/Oakline+Plumbing+Lodi",
+  "owner": {
+    "name": "Marco Reyes",
+    "role": "Owner and plumber",
+    "story": "Marco spent 14 years as a plumber for a big Stockton outfit before opening Oakline in Lodi. He still runs most jobs himself, so the person who quotes the work is the person who does it.",
+    "quote": "You'll get my cell number and a straight answer."
+  },
+  "faqs": [
+    { "q": "You're new. Why should I trust you?", "a": "Oakline is new, Marco is not. He has 14 years in the trade, a California license, full insurance, and a written 1-year warranty on all labor." },
+    { "q": "Will I know the price before you start?", "a": "Yes. You get the full price in writing before any work starts." },
+    { "q": "Do you serve my area?", "a": "Lodi, Woodbridge, Acampo, Lockeford, Galt, and Stockton. Close by but not listed? Call and ask." }
+  ]
+}

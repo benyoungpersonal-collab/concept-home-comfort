@@ -108,6 +108,25 @@
     "src": "https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=2400&q=85&fm=jpg",
     "profile": "https://unsplash.com/@shaker_jpg"
   },
+  "faucet": {
+    "id": "AdA6DeV659Q",
+    "base": "https://images.unsplash.com/photo-1669920282671-e2f03e99513f",
+    "w": 5616,
+    "h": 3744,
+    "color": "#3a3530",
+    "fp": [
+      0.5,
+      0.18
+    ],
+    "alt": "Brass outdoor faucet with a red lever handle, water running from the spout",
+    "by": "Ian Talmacs",
+    "user": "iantalmacs",
+    "page": "https://unsplash.com/photos/a-water-hose-attached-to-a-metal-pipe-AdA6DeV659Q",
+    "use": "How a visit works (replaced the soft video frame)",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1669920282671-e2f03e99513f?w=2400&q=85&fm=jpg",
+    "profile": "https://unsplash.com/@iantalmacs"
+  },
   "heat-pump": {
     "id": "_7huNth8Y2s",
     "base": "https://images.unsplash.com/photo-1724488751821-1415f5cf4960",

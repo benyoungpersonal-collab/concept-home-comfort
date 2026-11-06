@@ -705,7 +705,24 @@ legend { padding: 0; }
 .tile.photo-tile .tile-kicker.warm-k .icon { color: var(--c-brand-light); }
 .t-ac { grid-area: ac; } .t-heat { grid-area: heat; } .t-pump { grid-area: pump; } .t-wh { grid-area: wh; }
 .t-drain { grid-area: drain; } .t-leak { grid-area: leak; } .t-repipe { grid-area: repipe; } .t-iaq { grid-area: iaq; }
-.bento-foot { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: var(--sp-3); }
+/* Service page buttons: four equal tiles, 2 by 2 on phones, one row on desktop. Each color passes 4.5:1 with its text. */
+.svc-links { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 10px; margin: var(--sp-3) 0 0; padding: 0; }
+.svc-links li { display: flex; }
+.svc-link { --sl-bg: var(--c-navy); --sl-fg: #fff; display: flex; align-items: center; gap: 10px; width: 100%; min-height: 56px; padding: 12px 14px; border-radius: 14px; background: var(--sl-bg); color: var(--sl-fg); font-family: var(--ff-display); font-size: var(--fs-base); font-weight: 800; line-height: 1.2; letter-spacing: -.01em; text-decoration: none; box-shadow: 0 6px 16px rgb(20 33 61 / .14); transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), filter var(--t-fast) var(--ease); }
+.svc-link span { flex: 1; min-width: 0; }
+.svc-link .icon { width: 20px; height: 20px; flex: none; }
+.svc-link .sl-arrow { width: 18px; height: 18px; transition: transform var(--t-fast) var(--ease); }
+.svc-link:hover { color: var(--sl-fg); transform: translateY(-2px); box-shadow: 0 10px 22px rgb(20 33 61 / .2); filter: brightness(.94); }
+.svc-link:hover .sl-arrow { transform: translateX(3px); }
+.svc-link:focus-visible { outline: 3px solid var(--c-focus); outline-offset: 3px; }
+.sl-heat { --sl-bg: var(--c-brand-strong); }   /* Pinwheel orange #D1441C, 4.6:1 with white */
+.sl-cool { --sl-bg: #287BAE; }                 /* logo blue #2E8FCB, darkened just enough for 4.6:1 with white */
+.sl-plumb { --sl-bg: var(--c-navy); }          /* navy, 16:1 with white */
+.sl-air { --sl-bg: var(--c-ice); --sl-fg: var(--c-navy); } /* light blue with navy text, 9.8:1 */
+@media (min-width: 900px) { .svc-links { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; } .svc-link { min-height: 60px; padding: 14px 18px; } }
+
+/* Two sections in a row on the same background read as one blank band, so the second one skips its top padding. */
+.page-hero + :is(.section, .section-tight):not(.bg-white, .bg-alt, .on-dark), .visit + .specials:not(.bg-white, .bg-alt, .on-dark) { padding-top: 0; }
 @media (min-width: 900px) {
   .bento { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(210px, auto); gap: 16px; grid-template-areas: "ac ac heat pump" "ac ac drain drain" "wh leak repipe iaq"; }
   .tile { padding: 24px; }
