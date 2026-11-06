@@ -320,6 +320,7 @@ const brandColor = brand || '#E4572E';
 
 /* Copy */
 const hours = str(raw.hours);
+const headerHours = str(raw.headerHours); // optional short label next to the header phone, e.g. "Call or text, 8am to 8pm"
 const email = str(raw.email);
 const tagline = str(raw.tagline);
 const previewUrl = (str(raw.previewUrl) || `https://byw-${slug}.pages.dev/`).replace(/\/?$/, '/');
@@ -395,7 +396,7 @@ if (established && reviews.length < 3) console.warn(`note: ${reviews.length} rev
 const stateName = { CA: 'California', NV: 'Nevada', OR: 'Oregon', AZ: 'Arizona', WA: 'Washington', TX: 'Texas' }[state] || state;
 const hoursSentence = hours ? (/^open\b/i.test(hours) ? `We're ${hours.charAt(0).toLowerCase()}${hours.slice(1)}` : `Our hours are ${hours}`).replace(/\.?$/, '.') : '';
 const hasWaterHeaters = services.some((sv) => /water heater/i.test(sv.name + ' ' + sv.sub.join(' ')));
-const areasAnswer = areas.length > 1 ? `We serve ${listWords(areas)}. Just outside? Call us.` : `${city} and nearby. Just outside ${city}? Call us.`;
+const areasAnswer = areas.length > 1 ? `We serve ${listWords(areas)}. Just outside? Call us. If we can get there fast, we'll come.` : `${city} and nearby. Just outside ${city}? Call us. If we can get there fast, we'll come.`;
 const faqDefaults = () => {
   const out = [];
   const add = (q, a, ok = true) => { if (ok && a) out.push({ q, a }); };
@@ -470,7 +471,7 @@ const data = {
   ownerProof: owner.name ? `Owned and run by ${owner.name}, right here in ${city}.` : '', areaCountText,
   areas, areaChips, areaSummary, areaCount: areas.length, hasAreas: areas.length > 0, hasMap: !!mapHtml, mapHtml,
   areasLead: areas.length > 1 ? `Based in ${city} and serving ${areaCountText}, so a tech is never far away.` : `Based in ${city}, so a tech is never far away.`,
-  areasNote: areas.length > 1 ? "Just outside these cities? Call us. If we can get there fast, we'll come." : `Just outside ${city}? Call us.`,
+  areasNote: areas.length > 1 ? "Just outside these cities? Call us. If we can get there fast, we'll come." : `Just outside ${city}? Call us. If we can get there fast, we'll come.`,
   services, hasServices: services.length > 0, leadService: services.slice(0, 1), moreServices: services.slice(1), hasMoreServices: services.length > 1, serviceSummary,
   specials, hasSpecials: specials.length > 0,
   prices, hasPrices: prices.length > 0, quoteOptions: services.length ? quoteOptions : [], quoteStep2: services.length ? 2 : 1, quoteStep3: services.length ? 3 : 2,
@@ -488,7 +489,7 @@ const data = {
   warranty, hasWarranty: !!warranty,
   insured, upfront, guarantee: guarantee || !!warranty,
   guaranteeLine: warranty ? `Warranty: ${warranty}` : guarantee ? "Satisfaction guarantee: if something's not right, we'll make it right." : '',
-  hours, hasHours: !!hours, email, hasEmail: !!email,
+  hours, hasHours: !!hours, headerHours, hasHeaderHours: !!headerHours, email, hasEmail: !!email,
 };
 
 /* ---------- 2. Tiny template engine: {{a.b}} escaped, {{{raw}}}, {{#if}} {{else}} {{/if}}, {{#each}} {{this}} {{/each}}, {{> partial}} ---------- */

@@ -64,7 +64,7 @@
     <div class="header-actions">
       <a class="header-phone" href="tel:{{tel}}" aria-label="Call {{phonePretty}}">
         <span class="icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
-        <span class="header-phone-text" aria-hidden="true"><small>{{#if hasHours}}{{hours}}{{else}}Call or text{{/if}}</small><span>{{phonePretty}}</span></span>
+        <span class="header-phone-text" aria-hidden="true"><small>{{#if hasHeaderHours}}{{headerHours}}{{else}}{{#if hasHours}}{{hours}}{{else}}Call or text{{/if}}{{/if}}</small><span>{{phonePretty}}</span></span>
       </a>
       <a class="btn btn-primary btn-sm header-book" href="#request">Request a visit</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-open><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>

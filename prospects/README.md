@@ -51,7 +51,7 @@ These apply to every prospect. The build enforces the ones marked **(build)**; t
 - Every answer has to be true from their facts, or general advice. A question whose answer needs a fact you do not have is left out. Set `"faq": false` to hide the section.
 
 **Map** **(build)**
-- Centered on their city, with their logo as the pin (their initial with no logo), and 1 to 2 nearby cities as plain labels with no pins (`mapNearby`). The chips list only the cities they serve, plus "Just outside [city]? Call us." for a one-city business.
+- Centered on their city, with their logo as the pin (their initial with no logo), and 1 to 2 nearby cities as plain labels with no pins (`mapNearby`). The chips list only the cities they serve, plus "Just outside [city]? Call us. If we can get there fast, we'll come." for a one-city business (the same line ends the FAQ answer about service areas).
 
 **Photos**
 - Real photos only when they look good at the size they will show and fit the spot: crew, trucks, or clean finished work. Blurry, dark, cluttered, or a close-up of equipment: stock instead. Zero real photos is fine. Keep the note that photos are placeholders until we add theirs.
@@ -119,6 +119,7 @@ Nice to have:
 | `truckPhoto` | `{ "src": "photos/name-van.webp", "width": 1040, "height": 632, "alt": "..." }` | A real photo of their truck or van, shown beside the trust strip. Only when it looks clean, with no other company's logo in it (crop it out) |
 | `logo` | `"logos/sunrise-comfort.svg"` | Path relative to the data file. No logo: the business name with a colored initial |
 | `yearsInBusiness` | `12` | "12 years local" in the trust strip |
+| `headerHours` | `"Call or text, 8am to 8pm"` | Optional short label next to the phone in the header. Without it, `hours` is used |
 | `hours`, `email`, `locations`, `faqs` | see `example.json` | Header, footer, and FAQ |
 | `shortName`, `tagline` | `"Sunrise"` | Header name when the full name is long |
 | `pill`, `pillShort` | `"Plumbing services in San Joaquin County"` | Override the line above the headline. Normally it is built for you as "[their services] in [their counties]" |
