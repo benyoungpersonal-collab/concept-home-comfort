@@ -458,6 +458,16 @@ h1, h2, h3 { text-wrap: balance; }
 </style>
 </head>`);
 
+
+/* ---------- Link preview (iMessage and others) ---------- */
+/* iMessage drops the part of the title that matches og:site_name, so there is no og:site_name and the title is just the name. */
+rep('<title>R&amp;A Plumbing Heating &amp; Air | Riverside Plumbing &amp; HVAC</title>', '<title>R&amp;A Plumbing Heating &amp; Air</title>');
+rep('<meta property="og:title" content="R&amp;A Plumbing Heating &amp; Air | Riverside Plumbing &amp; HVAC">', '<meta property="og:title" content="R&amp;A Plumbing Heating &amp; Air">');
+rep('<meta property="og:site_name" content="R&amp;A Plumbing Heating &amp; Air">\n', '');
+rep('<meta property="og:image:alt" content="A smiling family of three on their living room couch.">', '<meta property="og:image:alt" content="Ryan, owner of R&amp;A Plumbing Heating &amp; Air, in front of his van.">');
+/* og.jpg: Ryan in front of his van, 1200x630, full width of the original (rows 70 to 876 of 1024), no filter */
+copyFileSync(join(PHOTOS, 'og.jpg'), join(OUT, 'images', 'og.jpg'));
+
 /* ---------- Guards ---------- */
 for (const bad of [/Google(?! Maps)(?!\.com\/maps)/i, /Turlock/i, /Greg\b/, /Kenny/, /second opinion/i, /upfront/i, /satisfaction guarantee/i, /Horizon/i, /Claude/i, /—/, /PLANS_LINK/, /\{\{/, /CSLB/]) {
   const m = html.match(bad); if (m) fail(`leftover "${m[0]}" near: ${html.slice(Math.max(0, m.index - 80), m.index + 80)}`);
