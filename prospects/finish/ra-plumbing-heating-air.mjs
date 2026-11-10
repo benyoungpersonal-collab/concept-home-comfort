@@ -19,6 +19,7 @@
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync, unlinkSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
+import { balanceSections } from '../../scripts/section-backgrounds.mjs';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -202,7 +203,7 @@ function plansSection() {
           <a class="btn" href="${smsBody(`Hi Ryan, I'd like to hear about the ${o.name.replace('&amp;', '&')} maintenance plan.`)}">${icon('i-message')}Text about ${o.name}</a>
         </li>`;
   return `
-  <section class="section ra-plans" id="plans" aria-labelledby="plans-title">
+  <section class="section ra-plans tpl-bg-tint" id="plans" aria-labelledby="plans-title">
     <div class="container">
       <div class="ra-plans-head">
         <div class="section-head">
@@ -318,6 +319,8 @@ a, .text-link { color: var(--ra-bold); }
 a:hover { color: var(--ra-bold-hover); }
 .tpl-logo .tpl-amp { color: var(--ra-bold); }
 .tpl-tile-icon { background: var(--ra-bold); }
+/* Reviews: a soft tint of the bold blue (92% white), so it reads as its own section after the cream visit steps; the label still reads 3:1 */
+.reviews.tpl-bg-tint { background: #E8F3FC; }
 /* "shows up on time." stays on one line from 320px up (the headline size is set for it) */
 .tpl-hero h1 .accent { white-space: nowrap; }
 </style>
@@ -333,6 +336,10 @@ const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
 for (const m of html.matchAll(/href="#([^"]*)"/g)) if (m[1] && !ids.has(m[1])) fail(`link to a missing section: #${m[1]}`);
 if (!/<meta name="robots" content="noindex, nofollow">/.test(html)) fail('noindex missing');
 
+/* No two neighboring sections share a background, now that the plans section is in (scripts/section-backgrounds.mjs) */
+const bal = balanceSections(html); html = bal.html;
+if (bal.warnings.length) fail(bal.warnings.join('; '));
+console.log('Section backgrounds: ' + bal.order.join(' > ') + (bal.changes.length ? ' (changed: ' + bal.changes.join('; ') + ')' : ''));
 writeFileSync(file, html);
 
 /* Drop stock photos the page no longer uses (the build copied them for the default hero and plumbing card) */

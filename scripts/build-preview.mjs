@@ -25,6 +25,7 @@ import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, rmSyn
 import { join, dirname, basename, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { balanceSections } from './section-backgrounds.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dataPath = process.argv[2];
@@ -691,6 +692,9 @@ const partial = (p) => {
 };
 const tpl = readFileSync(join(ROOT, 'template', 'homepage.html'), 'utf8').replace(/\{\{> ([\w/-]+)\}\}/g, (m, p) => partial(p));
 let html = expand(tpl, data).replace(/[ \t]*<!--[\s\S]*?-->\n?/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n\s*\n(\s*\n)+/g, '\n\n');
+/* No two neighboring sections share a background (scripts/section-backgrounds.mjs). */
+const bal = balanceSections(html); html = bal.html;
+for (const w of bal.warnings) console.warn('note: ' + w);
 const unfilled = html.match(/\{\{[^}]*\}\}/g);
 if (unfilled) fail('Unfilled template tags: ' + [...new Set(unfilled)].join(' '));
 if (/claude/i.test(html)) fail('The page mentions Claude. Remove that from the data file.');
@@ -748,6 +752,7 @@ console.log(`Mode: ${mode}${established ? '' : ' (sample review cards and the pr
 console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}" | 320 phone "${keep[base.ti]}"`);
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
 console.log(`Hero photo: ${hero.own ? 'their own (heroPhoto), og.jpg cut from it' : 'stock ' + (trade === 'plumbing' ? 'plumber' : 'HVAC tech') + ' (add heroPhoto for theirs)'}. Header: ${headerMarkSrc ? 'their mark' : 'initial'} + "${shortName}"${logoTag ? ` / "${logoTag}"` : ''}.`);
+console.log(`Section backgrounds: ${bal.order.join(' > ')}${bal.changes.length ? ` (changed: ${bal.changes.join('; ')})` : ''}.`);
 console.log(`Trust row (${trust.length}): ${trust.map((t) => t.strong + (t.sub ? ` (${t.sub})` : '')).join(' | ')}`);
 console.log(`Reviews: ${established ? `${data.ratingText} stars from ${reviewCount ?? '?'} Google reviews, ${reviews.length} quote(s) shown` : '3 sample cards, tagged Sample (preview only, never on a live site)'}. FAQ: ${faqList.length} questions${faqs.length ? '' : ' (trade defaults)'}.`);
 if (brightReport) console.log(`Accent: ${brightReport}.`);

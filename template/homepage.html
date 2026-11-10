@@ -192,7 +192,7 @@
   {{#if hasSpecials}}{{> optional/specials}}{{/if}}
 
   <!-- 7. Reviews (established) or proof (new business) -->
-  {{#if established}}<section class="section reviews" id="reviews" aria-labelledby="reviews-title"{{#if hasReviews}} data-carousel{{/if}}>
+  {{#if established}}<section class="section reviews tpl-bg-tint" id="reviews" aria-labelledby="reviews-title"{{#if hasReviews}} data-carousel{{/if}}>
     <div class="container">
       <div class="section-head split">
         <div>
@@ -218,7 +218,7 @@
     </div>
     <p class="swipe-hint"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-right"/></svg>Swipe for more reviews</p>{{/if}}
   </section>{{/if}}
-  {{#if hasSampleReviews}}<section class="section reviews tpl-sample-reviews" id="reviews" aria-labelledby="reviews-title">
+  {{#if hasSampleReviews}}<section class="section reviews tpl-sample-reviews tpl-bg-tint" id="reviews" aria-labelledby="reviews-title">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">Reviews</p>

@@ -63,6 +63,19 @@
 .member-card { background: var(--c-navy); }
 .name-art { background: var(--c-brand-tint); }
 
+/* ---------- Section backgrounds and spacing ---------- */
+/* Neighboring sections never share a background (the build checks every pair, scripts/section-backgrounds.mjs):
+   cream (no class), white (bg-white), a soft brand tint (tpl-bg-tint, the reviews by default), or navy (on-dark).
+   Spacing between sections is even and tighter: half of site.css's padding, the same at the top and bottom of every section. */
+:root { --section-y: clamp(2rem, 1.443rem + 2.286vw, 3.5rem); }
+.tpl-bg-tint { background: var(--c-brand-tint); }
+.reviews { padding-bottom: var(--section-y); }
+/* The review row keeps 24px under the cards for their shadows; on desktop (no swipe hint) that comes out of the padding */
+@media (min-width: 900px) { .reviews { padding-bottom: max(0px, calc(var(--section-y) - 24px)); } }
+/* The last line in a section adds no extra space below it */
+.section > .container > :last-child, .section > .container > * > :last-child { margin-bottom: 0; }
+.site-footer { padding-top: var(--section-y); }
+
 /* ---------- Balanced headline line breaks ---------- */
 h1, h2, h3 { text-wrap: balance; }
 .faq-head h2 .accent { white-space: nowrap; }
