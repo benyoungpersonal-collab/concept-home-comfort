@@ -79,6 +79,7 @@ Should have (each one unlocks something; leave it out and it hides):
 | `serviceAreas` | `["Manteca", "Lathrop", "Ripon"]` | Every city they serve. The build draws a real OpenStreetMap map from these and reads the counties for the hero line |
 | `services` | `[{ "name": "Heating", "blurb": "...", "sub": ["Furnace repair", "Heat pumps"] }]` | Main services with sub-services. Decides the trade (HVAC, plumbing, or both), the hero photo, and the title |
 | `colors` | `{ "brand": "#1F6FB8", "second": "#1F5FA8", "navy": "#14213D" }` | `brand` is their main color (red, blue, anything). No colors: Pinwheel's red-orange. Every shade on the page, the map, and the accents follows it, and light colors are darkened where text sits on them |
+| `colors.fill` | `"bright"` | Use the brand color itself (often a bright logo color) on buttons, the hero pill, the call button and the main service cards. If white text on it is under 4.5:1, text on those fills turns navy. Headline words get the closest deeper shade that reaches 3:1 on cream and on the hero glow; small orange text keeps a shade that reaches 4.5:1. The build prints every pair |
 | `license` | `"CSLB #1099999"` | Trust strip, proof section, FAQ, footer |
 | `bonded` | `true` | Only when CSLB shows an active contractor's bond. The trust strip says "Licensed & bonded" |
 | `since` | `2016` | The year they started (CSLB first issued date works). "Serving [city] since 2016" in the trust strip |

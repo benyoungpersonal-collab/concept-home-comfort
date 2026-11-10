@@ -277,6 +277,7 @@ const darkenUntil = (hexColor, ratio) => { let rgb = toRgb(hexColor); let n = 0;
 const mix = (hexColor, f) => toHex(toRgb(hexColor).map((v) => v + (255 - v) * f));
 const rgbStr = (h) => toRgb(h).join(' ');
 let brandCss = '';
+let brightReport = '';
 let mapColors = null;
 if (brand && brand.toUpperCase() !== '#E4572E') {
   const strong = darkenUntil(brand, 4.5), deep = darkenUntil(brand, 5.5), hover = darkenUntil(brand, 6), tint = mix(brand, 0.86);
@@ -311,6 +312,75 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
   };
   brandCss += walk(site);
   mapColors = [['#F6E3D6', mix(brand, 0.86)], ['#EDC9B3', mix(brand, 0.66)]];
+  /* colors.fill "bright": the brand color itself (often a bright logo color) fills buttons, the hero pill, the call
+     button and the main service cards, instead of a darkened shade. When white text on it is under 4.5:1, text on those
+     fills turns navy. Orange headline words use the closest deeper shade of the same color that reaches 3:1 on the cream
+     background; smaller orange text keeps the deeper shade above, which reaches 4.5:1. */
+  if (str(raw.colors && raw.colors.fill).toLowerCase() === 'bright') {
+    const navyText = navy ? darkenUntil(navy, 7) : '#14213D';
+    const ratioHex = (a, b) => ratio(toRgb(a), toRgb(b));
+    const deepenVs = (hexColor, bg, r) => { let rgb = toRgb(hexColor); let n = 0; while (ratio(rgb, toRgb(bg)) < r && n++ < 80) rgb = darken(rgb, 0.015); return toHex(rgb); };
+    const onFill = contrastWhite(toRgb(brand)) >= 4.5 ? '#FFFFFF' : navyText;
+    let fillHover = toHex(darken(toRgb(brand), 0.08));
+    if (ratioHex(onFill, fillHover) < 4.5) fillHover = brand;
+    /* The hero's soft glow is the brand tint at 55% over cream, the darkest background headline words sit on. */
+    const glow = toHex(toRgb('#F6F3EF').map((v, k) => v * 0.45 + toRgb(mix(brand, 0.6))[k] * 0.55));
+    const accentLarge = deepenVs(deepenVs(brand, '#F6F3EF', 3), glow, 3);
+    if (ratioHex(deep, '#F6F3EF') < 4.5) fail('colors.fill bright: the small-text shade does not reach 4.5:1 on cream.');
+    brandCss += `:root{--c-brand-fill:${brand};--c-brand-fill-hover:${fillHover};--c-on-brand:${onFill};--c-brand-accent:${accentLarge}}`;
+    /* Every rule that paints a background with the brand shade gets the fill color, and its text the matching color. */
+    const fillProps = /^(background|background-color|--btn-bg|--btn-bd)\s*:/;
+    const usesBrandShade = (v) => /var\(--c-brand-(strong|hover)\)/.test(v);
+    const toFill = (d) => d.replace(/var\(--c-brand-strong\)/g, 'var(--c-brand-fill)').replace(/var\(--c-brand-(hover|deep)\)/g, 'var(--c-brand-fill-hover)');
+    /* Two passes, so the cascade stays as written: pass 1 finds the selectors whose background uses the brand shade;
+       pass 2 re-emits, in source order, those rules with the fill (and the matching text color) AND every later rule for
+       the same selectors that resets background or color (like the desktop header phone going transparent). */
+    const rules = (css, fn) => {
+      let i = 0;
+      while (i < css.length) {
+        const open = css.indexOf('{', i); if (open === -1) break;
+        const sel = css.slice(i, open).trim();
+        let depth = 1, j = open + 1; while (j < css.length && depth) { if (css[j] === '{') depth++; else if (css[j] === '}') depth--; j++; }
+        const body = css.slice(open + 1, j - 1);
+        if (sel.startsWith('@media') || sel.startsWith('@supports') || sel.startsWith('@container')) fn(sel, body, true);
+        else if (!sel.startsWith('@') && !sel.startsWith(':root')) fn(sel, body, false);
+        i = j;
+      }
+    };
+    const declsOf = (body) => body.split(/;(?![^(]*\))/).map((d) => d.trim()).filter(Boolean);
+    const fillDecls = (body) => declsOf(body).filter((d) => fillProps.test(d) && usesBrandShade(d));
+    const norm = (sel) => sel.replace(/\s+/g, ' ');
+    const filled = new Set();
+    const collect = (css) => rules(css, (sel, body, isAt) => { if (isAt) collect(body); else if (fillDecls(body).length) filled.add(norm(sel)); });
+    const reset = /^(background|background-color|color|--btn-bg|--btn-bd|--btn-fg)\s*:/;
+    const emit = (css) => {
+      let out = '';
+      rules(css, (sel, body, isAt) => {
+        if (isAt) { const inner = emit(body); if (inner) out += `${sel}{${inner}}`; return; }
+        if (!filled.has(norm(sel))) return;
+        const decls = declsOf(body);
+        const fills = decls.filter((d) => fillProps.test(d) && usesBrandShade(d));
+        if (fills.length) {
+          const sets = fills.map(toFill);
+          if (decls.some((d) => /^--btn-fg\s*:/.test(d))) sets.push('--btn-fg:var(--c-on-brand)');
+          sets.push('color:var(--c-on-brand)');
+          out += `${sel}{${sets.join(';')}}`;
+        } else {
+          const keep = decls.filter((d) => reset.test(d));
+          if (keep.length) out += `${sel}{${keep.join(';')}}`;
+        }
+      });
+      return out;
+    };
+    const strip = (f) => readFileSync(join(ROOT, f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+    const cssSite = strip('css/site.css'), cssPreview = strip('template/preview.css');
+    collect(cssSite); collect(cssPreview);
+    brandCss += emit(cssSite) + emit(cssPreview);
+    brandCss += '.accent{color:var(--c-brand-accent)}.on-dark .accent{color:var(--c-brand-light)}';
+    brandCss += '.tpl-bento .tile.tone-main:not(.photo-tile) h3,.tpl-bento .tile.tone-main:not(.photo-tile) p,.tpl-bento .tile.tone-main:not(.photo-tile) .tile-sub{color:var(--c-on-brand)}'
+      + '.tpl-bento .tile.tone-main:not(.photo-tile) .tile-arrow{background:rgb(255 255 255 / .4);color:var(--c-on-brand)}';
+    brightReport = `fill ${brand} with ${onFill === '#FFFFFF' ? 'white' : 'navy'} text (${ratioHex(onFill, brand).toFixed(2)}:1), hover ${fillHover} (${ratioHex(onFill, fillHover).toFixed(2)}:1), headline words ${accentLarge} (${ratioHex(accentLarge, '#F6F3EF').toFixed(2)}:1 on cream, ${ratioHex(accentLarge, glow).toFixed(2)}:1 on the hero glow), small text ${deep} (${ratioHex(deep, '#F6F3EF').toFixed(2)}:1 on cream, ${ratioHex(deep, '#FFFFFF').toFixed(2)}:1 on white)`;
+  }
 }
 if (navy) { const n = darkenUntil(navy, 7); brandCss += `:root{--c-navy:${n};--c-navy-2:${mix(n, 0.08)};--c-on-dark-soft:#E3E9F2}`; }
 /* Second color (their logo's other color) for half the service cards. No second color: the navy. White text reads on both. */
@@ -608,5 +678,6 @@ console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
 console.log(`Trust strip (${trust.length}): ${trust.map((t) => t.strong + (t.sub ? ` (${t.sub})` : '')).join(' | ')}`);
 console.log(`Reviews: ${established ? `${data.ratingText} stars from ${reviewCount ?? '?'} Google reviews, ${reviews.length} quote(s) shown` : '3 sample cards, tagged Sample (preview only, never on a live site)'}. FAQ: ${faqList.length} questions${faqs.length ? '' : ' (trade defaults)'}.`);
+if (brightReport) console.log(`Bright fill: ${brightReport}.`);
 if (confirmList.length) console.log(`Confirm with the owner: ${confirmList.join(', ')}.`);
 console.log(`Preview URL it expects: ${previewUrl}  (Cloudflare project name: byw-${slug})`);

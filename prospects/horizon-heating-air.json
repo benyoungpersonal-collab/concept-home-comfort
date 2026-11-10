@@ -8,7 +8,9 @@
   "city": "Turlock",
   "trade": "hvac",
   "colors": {
-    "second": "#028FE4"
+    "brand": "#E89100",
+    "second": "#028FE4",
+    "fill": "bright"
   },
   "license": "CSLB #1018400",
   "bonded": true,
