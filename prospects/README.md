@@ -6,15 +6,29 @@ Every preview is `noindex`, says "Homepage preview by Ben Young Web Design" in t
 
 ## What the page shows
 
-Core sections, in this order: hero, trust strip, reviews (plus proof for a new business, see below), services, how a visit works, estimate, meet the family, service areas, FAQ, request a visit.
+Sections, in this order: what they do first, the proof after **(build)**.
 
-Optional sections, on only when the data file has them: specials (right after how a visit works), financing, and membership.
+1. Hero: their photo edge to edge, then a white card over its bottom edge (pill, headline, paragraph, buttons, hours line)
+2. Trust row
+3. Services
+4. Membership or maintenance plans (optional)
+5. How a visit works
+6. Specials (optional)
+7. Reviews (plus the proof section for a new business)
+8. Meet the family (optional)
+9. Quick quote, or starting prices when the data file has them
+10. Financing (optional)
+11. FAQ
+12. Service areas
+13. Request a visit
+
+The mobile menu and the footer list the sections in the same order.
 
 Two modes, picked from the data file:
 
 | Mode | When | What changes |
 |---|---|---|
-| Established | `googleRating` and `googleReviewsUrl` are filled in, and `reviewCount` is 3 or more | Rating bar (with "Write a review" when `writeReviewUrl` is set), rating badge in the hero, rating in the trust strip, and their real review quotes. Title adds "5-Star Service" only when the rating is 5.0 |
+| Established | `googleRating` and `googleReviewsUrl` are filled in, and `reviewCount` is 3 or more | Rating bar at the top (with "Write a review" when `writeReviewUrl` is set), the rating line in the reviews section, and their real review quotes. The rating shows only in those two places: not in the hero, not in the trust row |
 | New business | Fewer than 3 reviews | 3 sample review cards tagged "Sample" (preview only), plus a proof section: license, insured, years in the trade, warranty, owner, service area, and a "Leave us a review" button |
 
 Set `"mode": "new"` or `"mode": "established"` to choose yourself.
@@ -29,14 +43,23 @@ These apply to every prospect. The build enforces the ones marked **(build)**; t
 - If the Google listing cannot be read, ask Ben for the facts instead of guessing.
 - If Ben pastes a Preview facts note from his Tracker, start from that.
 
-**Trust strip** **(build)**
-- 4 to 6 facts, never just one. The build picks them in this order and keeps the first 6: Google rating and review count, license (as "Licensed & bonded" when `bonded` is true), insured, since year, free second opinions, upfront pricing, warranty or satisfaction guarantee.
+**Look and feel** **(build)**
+- Hero: the photo first, edge to edge under the header (16:9 on phones, 2:1 and about 720px tall on desktop, never much taller on wide screens), then a white card with rounded top corners laid over its bottom edge. No rating badge and no preview note in the hero.
+- Header: their mark (`headerMark`, else `logoMark`, else their first letter in a brand-color square) beside their name (`shortName`), with a small-caps line under it (`logoTag`, else `tagline`). An "&" in the name takes the brand color. The name size follows its length, so long names fit from 320px up.
+- No gradient glows or color washes anywhere: solid colors. Only the dark shade behind words on a photo card stays, for contrast.
+- Balanced headline line breaks (`text-wrap: balance`), never one word alone on a line.
+- Scroll animations (js/reveal.js): sections and cards fade up about half a second as they come into view, once each, cards staggered a little, and the footer logo fades in. The hero is never animated. "Reduce motion" turns it off, nothing is hidden without JavaScript, and only opacity and transform change, so nothing shifts the layout. Add `data-reveal` to include any other element.
+- The preview note ("Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.") is in the footer only.
+- Link preview: the title is `Business Name | Main Service in City, ST` (`mainService`, else the trade default like "Plumbing & HVAC Repair"; `state`, default CA). There is no og:site_name, because iMessage drops the part of the title that matches it. og.jpg (1200x630) is cut from the hero photo, and its alt text is `heroPhoto.ogAlt`.
+
+**Trust row** **(build)**
+- Tiles: a bold brand-color square with a white icon and the label centered under it, on navy. 2x2 on phones, one row from 600px up.
+- 4 to 6 facts, never just one. The build picks them in this order and keeps the first 6: license (as "Licensed & bonded" when `bonded` is true), insured, since year, free second opinions, upfront pricing, warranty or satisfaction guarantee. `trust` in the data file replaces the list.
 - A brand-new business still gets at least 3, like their license number, "Licensed & bonded" when CSLB shows an active bond, and "Based in [their city]" (added for you when there are fewer than 4).
 - When a guarantee is on, a line under the 3 visit steps says: "Satisfaction guarantee: if something's not right, we'll make it right." (or their real warranty).
 
 **Logo and colors**
-- Use their real logo when they have one (`logo`). It goes in the header, mobile menu, footer (on a white chip), favicon, and the map pin **(build)**.
-- No logo: a clean text logo from their business name (`shortName` plus `tagline`) **(build)**.
+- Use their real logo when they have one (`logo`). It goes in the footer (on a white chip), and `logoMark` goes in the favicon and the map pin **(build)**. The header shows the mark beside their name (see Look and feel).
 - Service cards with a photo never get a color tint **(build)**. The photo shows in its true colors, with only a soft dark gradient behind the words at the bottom (like Pinwheel's AC repair card). The gradient follows the text block, so the words pass contrast on any photo and any screen size.
 - Service cards use the main color plus a second color **(build)**: `colors.brand` (main, default orange) and `colors.second` (usually the other color in their logo, default navy). The first half of the cards use the main color and the rest the second, unless a service sets `"tone": "main"` or `"second"`.
 
@@ -118,7 +141,13 @@ Nice to have:
 | `team` | `[{ "name": "Rico", "role": "HVAC tech" }]` | Name cards under the owner story |
 | `promises` | `["We clean up before we leave"]` | Check chips under the owner story. Only what they actually promise |
 | `logoMark` | `"logos/name-mark.png"` | The square icon part of their logo, for the favicon and the map pin. Without it, the full logo is used |
-| `truckPhoto` | `{ "src": "photos/name-van.webp", "width": 1040, "height": 632, "alt": "..." }` | A real photo of their truck or van, shown beside the trust strip. Only when it looks clean, with no other company's logo in it (crop it out) |
+| `heroPhoto` | `{ "src": "photos/name/owner-van.png", "alt": "...", "ogAlt": "Dana, owner of Sunrise, in front of her van.", "ogFocusY": 30, "position": "50% 30%", "positionDesktop": "50% 25%", "positionWide": "50% 20%", "box": "0,0,1,0.9" }` | Their own hero photo, best a wide shot of the owner by the van. The build makes the banner sizes and og.jpg from it (scripts/hero-images.py, needs Python and Pillow). `position*` is the CSS object-position per screen size, `ogFocusY` (0 top to 100 bottom) picks the band for og.jpg, `box` trims the photo first. Without it: the stock HVAC tech or plumber, with its own og image. Never recolor or filter it |
+| `headerMark` | `"logos/name-header.png"` | The square mark for the header, beside the name (for example just the picture part of the logo, on its own background). Without it, `logoMark` |
+| `logoTag` | `"Plumbing · Heating & Air"` | The small-caps line under the name in the header. Without it, `tagline` |
+| `headlineAccent` | `"shows up on time."` | With `headline`, the hero headline is `headline` on line 1 and this on line 2, in the accent color with the underline |
+| `mainService`, `state` | `"Plumbing & HVAC Repair"`, `"CA"` | The link-preview title: `Name | mainService in City, ST` |
+| `trust` | `[{ "icon": "i-clock", "strong": "24/7 emergency service" }, { "icon": "i-wrench", "strong": "Maintenance plans", "sub": "from $149/year" }]` | Replaces the automatic trust row. A sub starting lowercase continues the label; any other sub gets its own smaller line |
+| `servicesLead` | text | The line under the services heading |
 | `logo` | `"logos/sunrise-comfort.svg"` | Path relative to the data file. No logo: the business name with a colored initial |
 | `yearsInBusiness` | `12` | "12 years local" in the trust strip |
 | `headerHours` | `"Call or text, 8am to 8pm"` | Optional short label next to the phone in the header. Without it, `hours` is used |
@@ -136,11 +165,11 @@ Nice to have:
 
 Rules baked in:
 
-- Title and link preview: `Business Name | City HVAC` (or Plumbing, or HVAC & Plumbing), plus ` | 5-Star Service` only in established mode with a 5.0 rating.
+- Title and link preview: `Business Name | Main Service in City, ST`, no og:site_name, og.jpg cut from the hero photo.
 - The hero line is a pill in their brand color: one line on desktop, a shorter version on phones, never under 12px. The build fails if no version fits a 320px phone.
 - No "#1" or "best" claims, no em dashes, no Claude mentions, and no Pinwheel name or logo. The build stops if it finds any.
 - Photos are real, free-license stock (Pexels, Unsplash), never recolored, with no other company's logo. HVAC previews use the technician at the condenser, plumbing previews the plumber under the sink.
-- Family photos appear only in the request-a-visit section and the link-preview image (no words on it).
+- Family photos appear only in the request-a-visit section.
 - How a visit works is Pinwheel's 3 steps. Step 3: "When we're done, photos of the finished work go straight to your phone."
 
 ## Make a preview

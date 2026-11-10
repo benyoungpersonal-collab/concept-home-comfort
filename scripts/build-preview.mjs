@@ -10,8 +10,11 @@
      their real reviews) or "new" (fewer than 3 reviews: 3 sample review cards tagged "Sample", plus the proof
      section). Set "mode" in the data file, or let the build decide. prospects/README.md has the template rules.
   3. Builds a real service-area map from the cities (scripts/build-map.mjs, OpenStreetMap data, cached).
-  4. Fills template/homepage.html in Pinwheel's section order. A section whose data is missing is left
-     out entirely: no placeholder text, no empty boxes.
+  4. Fills template/homepage.html in the preview section order (hero, trust row, services, membership, how a visit
+     works, specials, reviews, team, quick quote, financing, FAQ, service areas, request). A section whose data is
+     missing is left out entirely: no placeholder text, no empty boxes.
+  4b. Makes the hero banner files and the link-preview image (og.jpg) from heroPhoto (scripts/hero-images.py),
+     or uses the stock HVAC or plumbing hero when there is no heroPhoto.
   5. Copies only the files the page needs into previews/NAME/ and writes _headers (noindex) and robots.txt.
   6. Refuses to finish if anything is unfilled, mentions Claude, has an em dash, or if the hero pill
      cannot fit on a 320px phone at 12px.
@@ -247,6 +250,12 @@ const logoMark = str(raw.logoMark);
 const logoMarkExt = logoMark ? extname(logoMark).toLowerCase() : '';
 if (logoMark && !['.svg', '.png', '.jpg', '.jpeg', '.webp'].includes(logoMarkExt)) fail('logoMark must be an .svg, .png, .jpg, or .webp file');
 const markSrc = logoMark ? `images/logo-mark${logoMarkExt}` : logoSrc;
+/* headerMark: the square mark shown beside the name in the header (for example the picture part of the logo, on its
+   own background). Falls back to logoMark. Without either, the header shows the first letter in a brand-color square. */
+const headerMark = str(raw.headerMark);
+const headerMarkExt = headerMark ? extname(headerMark).toLowerCase() : '';
+if (headerMark && !['.svg', '.png', '.jpg', '.jpeg', '.webp'].includes(headerMarkExt)) fail('headerMark must be an .svg, .png, .jpg, or .webp file');
+const headerMarkSrc = headerMark ? `images/header-mark${headerMarkExt}` : logoMark ? markSrc : '';
 const markExt = logoMark ? logoMarkExt : logoExt;
 /* Logo size for the img tag: read from the PNG or WebP header, otherwise a wide default. */
 let logoW = 200, logoH = 44;
@@ -258,8 +267,9 @@ if (logo && ['.png', '.webp'].includes(logoExt)) { try {
     else if (kind === 'VP8L') { const v = b.readUInt32LE(21); logoW = 1 + (v & 0x3FFF); logoH = 1 + ((v >> 14) & 0x3FFF); }
     else if (kind === 'VP8 ') { logoW = b.readUInt16LE(26) & 0x3FFF; logoH = b.readUInt16LE(28) & 0x3FFF; } }
 } catch {} }
-/* truckPhoto: a real photo of their truck or van, shown beside the trust strip. Only when it looks clean (template rules). */
-const truck = raw.truckPhoto && typeof raw.truckPhoto === 'object' && str(raw.truckPhoto.src) ? raw.truckPhoto : null;
+/* truckPhoto is no longer shown (the trust row is compact tiles now). A good van photo makes a great heroPhoto instead. */
+const truck = null;
+if (raw.truckPhoto) console.warn('note: truckPhoto is no longer shown. Use the van photo as heroPhoto instead (it also becomes the link-preview image).');
 const truckExt = truck ? extname(str(truck.src)).toLowerCase() : '';
 if (truck && !['.jpg', '.jpeg', '.png', '.webp'].includes(truckExt)) fail('truckPhoto.src must be a .jpg, .png, or .webp file');
 if (truck && !(num(truck.width) && num(truck.height))) fail('truckPhoto needs width and height (in pixels)');
@@ -403,13 +413,53 @@ const headerHours = str(raw.headerHours); // optional short label next to the he
 const email = str(raw.email);
 const tagline = str(raw.tagline);
 const previewUrl = (str(raw.previewUrl) || `https://byw-${slug}.pages.dev/`).replace(/\/?$/, '/');
-const titleTag = `${name} | ${city} ${tradeLabel}${ratingIs5 ? ' | 5-Star Service' : ''}`;
+/* Link preview title: "Business Name | Main Service in City, ST". There is no og:site_name, because iMessage drops the
+   part of the title that matches it. mainService overrides the trade default. */
+const mainService = str(raw.mainService) || { hvac: 'HVAC Repair', plumbing: 'Plumbing Repair', both: 'Plumbing & HVAC Repair', electrical: 'Electrical Repair', roofing: 'Roof Repair', landscaping: 'Landscaping', general: 'Home Repair' }[trade];
+const titleTag = `${name} | ${mainService} in ${city}, ${state}`;
+/* Header: the mark (headerMark, else logoMark) beside the business name, with a small-caps line under it.
+   An "&" in the name takes the brand color, like most trade logos. */
+const logoTag = str(raw.logoTag) || tagline;
+const logoNameHtml = esc(shortName).replace(/&amp;/g, '<span class="tpl-amp">&amp;</span>');
+const logoTagHtml = esc(logoTag).replace(/ · /g, ' <span aria-hidden="true">·</span> ');
 const fixLine = { hvac: 'If it heats or cools, we fix it fast.', plumbing: 'If it runs water, we fix it fast.', both: 'If it heats, cools, or runs water, we fix it fast.' }[trade];
 const leadAreas = areas.length === 0 ? city : areas.length <= 6 ? listWords(areas) : `${areas.slice(0, 6).join(', ')}, and ${areas.length - 6} more cities`;
 const lead = str(raw.lead) || `Fast repair${upfront ? ' and honest, upfront pricing' : ''} for homes in ${leadAreas}. ${fixLine}`;
 const defaultHeadline = trade === 'plumbing' ? accent('Plumbing done right,', 'without the runaround.') : accent('A comfortable home,', 'without the runaround.');
+/* Hero headline: headline, plus headlineAccent on its own line in the accent color with the underline. */
+const heroHeadline = str(raw.headline) && str(raw.headlineAccent) ? `${esc(raw.headline)}<br> <span class="accent">${esc(raw.headlineAccent)}</span>` : str(raw.headline) ? esc(raw.headline) : defaultHeadline;
+const servicesLead = str(raw.servicesLead) || `The same trained techs${upfront ? ' and the same upfront pricing' : ''} on every job, big or small.`;
 const servicesHeadline = trade === 'plumbing' ? accent('One call for', 'every plumbing job.') : trade === 'both' ? accent('One call for heating,', 'air, and plumbing.') : accent('One call for', 'heating and cooling.');
 const faviconText = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${brandColor}"/><text x="32" y="44" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="36" fill="#fff">${esc(initial)}</text></svg>`)}`;
+/* Hero photo: heroPhoto (their own photo, e.g. the owner by the van) or the stock HVAC or plumbing photo.
+   scripts/hero-images.py makes the banner sizes (whole photo, the page crops with object-fit) and og.jpg, cut from the
+   same photo. Without Python and Pillow, the build falls back to the stock hero and the stock link image. */
+const hp = raw.heroPhoto && typeof raw.heroPhoto === 'object' && str(raw.heroPhoto.src) ? raw.heroPhoto : null;
+const stockHero = trade === 'plumbing'
+  ? { files: [[480, 360], [768, 576], [1024, 768], [1536, 1152], [1920, 1440]].map(([w, h]) => ({ file: `hero-plumbing-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-plumbing.jpg',
+      alt: 'Plumber smiling while tightening a drain pipe under a bathroom sink', pos: ['70% 45%', '70% 40%', '70% 40%'] }
+  : { files: [[480, 324], [768, 518], [1024, 691], [1536, 1036], [1920, 1295]].map(([w, h]) => ({ file: `hero-hvac-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-hvac.jpg',
+      alt: 'Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight', pos: ['55% 30%', '55% 25%', '55% 20%'] };
+let hero = { ...stockHero, own: false };
+if (hp) {
+  const src = resolve(dirname(dataPath), str(hp.src));
+  if (!existsSync(src)) fail('heroPhoto.src not found: ' + src);
+  const cache = join(ROOT, 'scripts', '.cache', 'hero', slug);
+  try {
+    const out = JSON.parse(execFileSync('python3', [join(ROOT, 'scripts', 'hero-images.py'), '--src', src, '--out', cache, '--prefix', 'hero', '--og', join(cache, 'og.jpg'),
+      '--og-focus-y', String(num(hp.ogFocusY) ?? 30), ...(str(hp.box) ? ['--box', str(hp.box)] : [])], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }));
+    hero = { files: out.files, dir: 'images/hero', cacheDir: cache, og: join(cache, 'og.jpg'), alt: str(hp.alt) || `${name} owner by the work van`, pos: [str(hp.position) || '50% 30%', str(hp.positionDesktop) || '50% 25%', str(hp.positionWide) || '50% 20%'], own: true };
+  } catch (e) {
+    console.warn('note: the hero photo could not be processed (needs python3 and Pillow), so the stock hero is used.\n' + String(e.stderr || e.message).trim().split('\n').slice(-1)[0]);
+  }
+}
+const heroBig = hero.files[hero.files.length - 1];
+const heroData = {
+  heroSrc: `${hero.dir}/${heroBig.file}`, heroW: heroBig.w, heroH: heroBig.h, heroAlt: hero.alt,
+  heroSrcset: hero.files.map((f) => `${hero.dir}/${f.file} ${f.w}w`).join(', '),
+  heroPosStyle: `--pos:${hero.pos[0]};--pos-d:${hero.pos[1]};--pos-w:${hero.pos[2]}`,
+  ogAlt: (hp && str(hp.ogAlt)) || hero.alt,
+};
 /* Their real logo is the favicon when they have one. */
 const faviconHref = markSrc || faviconText;
 const faviconType = !markSrc || markExt === '.svg' ? 'image/svg+xml' : markExt === '.png' ? 'image/png' : markExt === '.webp' ? 'image/webp' : 'image/jpeg';
@@ -425,8 +475,10 @@ if (mapHtml) {
 /* ---------- Trust strip: 4 to 6 facts, never just one ---------- */
 const licNum = (license.match(/(\d{5,})/) || [])[1] || '';
 const trustItems = [];
-const addTrust = (icon, strong, sub = '') => trustItems.push({ icon, strong, sub, hasSub: !!sub });
-if (established && rating !== null) addTrust('i-star', `${rating.toFixed(1)} stars on Google`, reviewCount ? `${reviewCount} reviews` : '');
+/* A sub that continues the label ("from $149/year") stays on its line; any other sub gets its own smaller line. */
+const tile = (t) => ({ ...t, hasSub: !!t.sub, subClass: t.sub ? (/^[a-z$]/.test(t.sub) ? 'tpl-tile-sub is-inline' : 'tpl-tile-sub') + (t.sub.length <= 20 ? ' tpl-nowrap' : '') : '' });
+const addTrust = (icon, strong, sub = '') => trustItems.push(tile({ icon, strong, sub }));
+/* The rating lives in the top strip and the reviews section only, so the trust row has no star item. */
 if (license) addTrust('i-license', bonded ? 'Licensed & bonded' : 'Licensed', license);
 if (insured) addTrust('i-shield', 'Insured');
 if (since) addTrust('i-home-heart', `Serving ${city} since ${since}`);
@@ -437,7 +489,9 @@ if (upfront) addTrust('i-tag', 'Upfront pricing');
 if (warranty) addTrust('i-guarantee', 'Warranty', warranty);
 else if (guarantee) addTrust('i-guarantee', 'Satisfaction guarantee', 'We make it right');
 if (trustItems.length < 4 && !trustItems.some((t) => t.strong.includes(city))) addTrust('i-map-pin', `Based in ${city}`);
-const trust = trustItems.slice(0, 6);
+/* "trust" in the data file replaces the automatic list: [{ "icon": "i-clock", "strong": "24/7 emergency service", "sub": "" }] */
+const customTrust = arr(raw.trust).filter((t) => t && str(t.strong)).map((t) => tile({ icon: str(t.icon) || 'i-check-circle', strong: str(t.strong), sub: str(t.sub) }));
+const trust = (customTrust.length ? customTrust : trustItems).slice(0, 6);
 if (trust.length < 3) console.warn(`note: the trust strip has only ${trust.length} fact(s). Add license, bonded, since, or other verified facts to reach at least 3.`);
 
 /* ---------- Reviews ---------- */
@@ -520,25 +574,27 @@ const confirmList = [...new Set([
 
 const proofHeadline = hasTradeYears ? accent('A new name,', `${yearsInTrade} years in the trade.`) : accent('Licensed, insured, and', 'close by.');
 const hasProof = !!license || insured || hasTradeYears || !!warranty || hasOwner || areas.length > 1 || !!writeReviewUrl;
+/* Same order as the page: what they do first, the proof after */
 const menu = [
   services.length && { id: 'services', label: 'Services' },
-  { id: 'reviews', label: 'Reviews' },
-  isNew && hasProof && { id: 'proof', label: 'Why us' },
+  membership && { id: 'membership', label: membership.name },
   { id: 'how-it-works', label: 'How a visit works' },
   specials.length && { id: 'specials', label: 'Specials and discounts' },
+  { id: 'reviews', label: 'Reviews' },
+  isNew && hasProof && { id: 'proof', label: 'Why us' },
+  hasOwner && { id: 'team', label: 'Meet the family' },
   { id: 'estimate', label: prices.length ? 'Starting prices' : 'Quick quote' },
   financing && { id: 'financing', label: 'Financing' },
-  membership && { id: 'membership', label: membership.name },
-  hasOwner && { id: 'team', label: 'Meet the family' },
-  areas.length && { id: 'areas', label: 'Service areas' },
   faqList.length && { id: 'faq', label: 'FAQ' },
+  areas.length && { id: 'areas', label: 'Service areas' },
   { id: 'request', label: 'Request a visit' },
 ].filter(Boolean);
 
 const data = {
   name, nameDot: /[.!?]$/.test(name) ? name : name + '.', shortName, tagline, initial, city, year, tel, phonePretty, previewUrl, titleTag, lead,
   metaDescription: str(raw.description) || `${name}: ${serviceSummary} for homeowners in ${areaSummary}. Call ${phonePretty}.`,
-  headline: str(raw.headline) ? esc(raw.headline) : defaultHeadline, servicesHeadline, pillHtml,
+  headline: str(raw.headline) ? esc(raw.headline) : defaultHeadline, heroHeadline, servicesHeadline, servicesLead, pillHtml, ...heroData,
+  logoNameHtml, logoNameLen: [...shortName].length, logoTag, logoTagHtml, hasHeaderMark: !!headerMarkSrc, headerMarkSrc,
   themeColor: navy ? darkenUntil(navy, 7) : '#14213D', pageCss: brandCss + pillCss, faviconHref, faviconType,
   heroPlumber: trade === 'plumbing',
   established, isNew, ratingText: rating !== null ? rating.toFixed(1) : '', reviewCount, starsLabel: rating !== null ? `Rated ${rating.toFixed(1)} out of 5` : '', starsFrac: rating !== null ? (rating / 5).toFixed(3) : 1, googleReviewsUrl, writeReviewUrl,
@@ -646,21 +702,27 @@ if (/(^|[^\w&])#1\b|\bnumber one\b|\bbest in\b/i.test(html)) fail('The page make
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 const copy = (from, to = from) => { mkdirSync(dirname(join(OUT, to)), { recursive: true }); copyFileSync(join(ROOT, from), join(OUT, to)); return 1; };
-const own = { 'css/preview.css': 'template/preview.css', 'js/preview.js': 'template/preview.js' };
+const own = { 'css/preview.css': 'template/preview.css', 'css/preview-late.css': 'template/preview-late.css', 'js/preview.js': 'template/preview.js', 'js/reveal.js': 'template/reveal.js' };
 let copied = 0;
 const refs = new Set([...html.matchAll(/\b(src|href|poster|imagesrcset|srcset)="([^"]+)"/g)].flatMap((m) => m[2].startsWith('data:') ? [] : (/srcset/.test(m[1]) ? m[2].split(',') : [m[2]]).map((p) => p.trim().split(/\s+/)[0].split('?')[0])));
 for (const ref of refs) {
-  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/owner') || ref.startsWith('images/truck') || ref === 'images/map/service-area.svg') continue;
+  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/header-mark') || ref.startsWith('images/hero/') || ref.startsWith('images/owner') || ref.startsWith('images/truck') || ref === 'images/map/service-area.svg') continue;
   if (own[ref]) { copied += copy(own[ref], ref); continue; }
   if (!existsSync(join(ROOT, ref))) fail('Referenced file is missing: ' + ref);
   copied += copy(ref);
 }
 for (const f of readdirSync(join(ROOT, 'fonts'))) copied += copy(`fonts/${f}`);
 for (const v of [...html.matchAll(/data-video="([^"]+)"/g)].map((m) => m[1])) for (const ext of ['mp4', 'webm']) if (existsSync(join(ROOT, `${v}.${ext}`))) copied += copy(`${v}.${ext}`);
-copied += copy('images/og-family-1200x630.jpg', 'images/og.jpg');
+/* Link-preview image: cut from the hero photo */
+if (hero.own) {
+  mkdirSync(join(OUT, 'images', 'hero'), { recursive: true });
+  for (const f of hero.files) { copyFileSync(join(hero.cacheDir, f.file), join(OUT, 'images', 'hero', f.file)); copied++; }
+  copyFileSync(hero.og, join(OUT, 'images', 'og.jpg')); copied++;
+} else copied += copy(hero.og, 'images/og.jpg');
 const copyOwn = (rel, to) => { const from = resolve(dirname(dataPath), rel); if (!existsSync(from)) fail('File not found: ' + from); mkdirSync(dirname(join(OUT, to)), { recursive: true }); copyFileSync(from, join(OUT, to)); copied++; };
 if (logo) copyOwn(logo, logoSrc);
 if (logoMark) copyOwn(logoMark, markSrc);
+if (headerMark) copyOwn(headerMark, headerMarkSrc);
 if (truck) copyOwn(str(truck.src), `images/truck${truckExt}`);
 if (data.hasOwnerPhoto) copyOwn(ownerPhoto, data.ownerPhotoSrc);
 if (mapHtml) {
@@ -685,7 +747,8 @@ console.log(`Built previews/${slug}/ (${copied} files copied).`);
 console.log(`Mode: ${mode}${established ? '' : ' (sample review cards and the proof section)'}. Title: ${titleTag}`);
 console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}" | 320 phone "${keep[base.ti]}"`);
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
-console.log(`Trust strip (${trust.length}): ${trust.map((t) => t.strong + (t.sub ? ` (${t.sub})` : '')).join(' | ')}`);
+console.log(`Hero photo: ${hero.own ? 'their own (heroPhoto), og.jpg cut from it' : 'stock ' + (trade === 'plumbing' ? 'plumber' : 'HVAC tech') + ' (add heroPhoto for theirs)'}. Header: ${headerMarkSrc ? 'their mark' : 'initial'} + "${shortName}"${logoTag ? ` / "${logoTag}"` : ''}.`);
+console.log(`Trust row (${trust.length}): ${trust.map((t) => t.strong + (t.sub ? ` (${t.sub})` : '')).join(' | ')}`);
 console.log(`Reviews: ${established ? `${data.ratingText} stars from ${reviewCount ?? '?'} Google reviews, ${reviews.length} quote(s) shown` : '3 sample cards, tagged Sample (preview only, never on a live site)'}. FAQ: ${faqList.length} questions${faqs.length ? '' : ' (trade defaults)'}.`);
 if (brightReport) console.log(`Accent: ${brightReport}.`);
 if (confirmList.length) console.log(`Confirm with the owner: ${confirmList.join(', ')}.`);

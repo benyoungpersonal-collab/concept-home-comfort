@@ -15,8 +15,8 @@
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/preview.css">
 <style>{{{pageCss}}}</style>
+<link rel="stylesheet" href="css/preview-late.css">
 <script>document.documentElement.classList.replace('no-js','js')</script>
-<meta property="og:site_name" content="{{name}}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{titleTag}}">
 <meta property="og:description" content="{{metaDescription}}">
@@ -24,13 +24,10 @@
 <meta property="og:image" content="{{previewUrl}}images/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A smiling family of three on their living room couch.">
+<meta property="og:image:alt" content="{{ogAlt}}">
 <meta name="twitter:card" content="summary_large_image">
-{{#if heroPlumber}}<link rel="preload" as="image" imagesrcset="images/photos/plumber-480x480.webp 480w, images/photos/plumber-720x720.webp 720w, images/photos/plumber-960x960.webp 960w, images/photos/plumber-1200x1200.webp 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="images/photos/plumber-480x600.webp 480w, images/photos/plumber-720x900.webp 720w, images/photos/plumber-960x1200.webp 960w" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">
-{{else}}<link rel="preload" as="image" imagesrcset="images/photos/tech-marcus-480x480.webp 480w, images/photos/tech-marcus-720x720.webp 720w, images/photos/tech-marcus-960x960.webp 960w, images/photos/tech-marcus-1200x1200.webp 1200w" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="images/photos/tech-marcus-480x600.webp 480w, images/photos/tech-marcus-720x900.webp 720w, images/photos/tech-marcus-960x1200.webp 960w, images/photos/tech-marcus-1200x1500.webp 1200w" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">
-{{/if}}</head>
+<link rel="preload" as="image" imagesrcset="{{heroSrcset}}" imagesizes="100vw" fetchpriority="high">
+</head>
 <body class="has-sticky-bar">
 {{> sprite}}
 <a class="skip-link" href="#main">Skip to content</a>
@@ -48,9 +45,9 @@
 {{/if}}<div class="header-sentinel" data-header-sentinel aria-hidden="true"></div>
 <header class="site-header" data-header>
   <div class="container header-inner">
-    <a class="logo" href="#main" aria-label="{{name}}, back to top">
-      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="{{logoW}}" height="{{logoH}}">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
-      <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
+    <a class="logo tpl-logo" href="#main" aria-label="{{name}}, back to top">
+      {{#if hasHeaderMark}}<img class="tpl-logo-mark" src="{{headerMarkSrc}}" alt="" width="96" height="96">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>{{/if}}
+      <span class="logo-text"><span class="logo-name" style="--len:{{logoNameLen}}">{{{logoNameHtml}}}</span>{{#if logoTag}}<span class="logo-tag">{{{logoTagHtml}}}</span>{{/if}}</span>
     </a>
     <nav class="nav" aria-label="Main">
       <ul class="nav-list">
@@ -73,9 +70,9 @@
 </header>
 <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
   <div class="mm-head">
-    <a class="logo" href="#main" aria-label="{{name}}, back to top">
-      {{#if hasLogo}}<img class="logo-img" src="{{logoSrc}}" alt="" width="{{logoW}}" height="{{logoH}}">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>
-      <span class="logo-text"><span class="logo-name">{{shortName}}</span>{{#if tagline}} <span class="logo-tag">{{tagline}}</span>{{/if}}</span>{{/if}}
+    <a class="logo tpl-logo" href="#main" aria-label="{{name}}, back to top">
+      {{#if hasHeaderMark}}<img class="tpl-logo-mark" src="{{headerMarkSrc}}" alt="" width="96" height="96">{{else}}<span class="logo-initial" aria-hidden="true">{{initial}}</span>{{/if}}
+      <span class="logo-text"><span class="logo-name" style="--len:{{logoNameLen}}">{{{logoNameHtml}}}</span>{{#if logoTag}}<span class="logo-tag">{{{logoTagHtml}}}</span>{{/if}}</span>
     </a>
     <button class="mm-close" type="button" aria-label="Close menu" data-menu-close><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
   </div>
@@ -97,52 +94,104 @@
 
 <main id="main">
 
-  <!-- 1. Hero -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="container hero-grid">
-      <div class="hero-copy">
+  <!-- 1. Hero: the photo edge to edge, then a white card laid over its bottom edge -->
+  <section class="hero tpl-hero" aria-labelledby="hero-title">
+    <div class="tpl-hero-banner">
+      <img sizes="100vw" src="{{heroSrc}}" srcset="{{heroSrcset}}" width="{{heroW}}" height="{{heroH}}" alt="{{heroAlt}}" fetchpriority="high" style="{{heroPosStyle}}">
+    </div>
+    <div class="container tpl-hero-wrap">
+      <div class="hero-copy tpl-hero-card">
         <p class="tpl-pill">{{{pillHtml}}}</p>
-        <h1 id="hero-title">{{{headline}}}</h1>
+        <h1 id="hero-title">{{{heroHeadline}}}</h1>
         <p class="lead">{{lead}}</p>
         <div class="hero-ctas" data-hide-bar>
           <a class="btn btn-primary btn-lg" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call now</a>
           <a class="btn btn-secondary btn-lg" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Request a visit</a>
         </div>
         {{#if hasHours}}<p class="hero-note"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>{{hours}}</p>{{/if}}
-        {{#if established}}<a class="rating-badge rating-badge-link" href="{{googleReviewsUrl}}" target="_blank" rel="noopener">
-          <svg class="g-mark" role="img" aria-label="Google"><use href="#g-logo"/></svg>
-          <span class="score">{{ratingText}}</span>
-          <span class="stars5 tpl-rated" style="--stars:{{starsFrac}}" role="img" aria-label="{{starsLabel}}"></span>
-          {{#if reviewCount}}<span class="count">{{reviewCount}} Google reviews</span>{{else}}<span class="count">on Google</span>{{/if}}
-        </a>{{/if}}
-        <p class="hero-fine">Homepage preview by Ben Young Web Design. Photos are placeholders until we add yours.</p>
-      </div>
-      <div class="hero-media">
-        <div class="arch">
-          {{#if heroPlumber}}<picture>
-            <source media="(max-width: 899px)" srcset="images/photos/plumber-480x480.webp 480w, images/photos/plumber-720x720.webp 720w, images/photos/plumber-960x960.webp 960w, images/photos/plumber-1200x1200.webp 1200w" sizes="92vw" width="1200" height="1200">
-            <img sizes="(min-width: 1200px) 522px, 42vw" src="images/photos/plumber-720x900.webp" srcset="images/photos/plumber-480x600.webp 480w, images/photos/plumber-720x900.webp 720w, images/photos/plumber-960x1200.webp 960w" width="960" height="1200" alt="Plumber smiling while tightening a drain pipe under a bathroom sink" fetchpriority="high" style="object-position:66% 50%;background-color:#6c8fb0">
-          </picture>{{else}}<picture>
-            <source media="(max-width: 899px)" srcset="images/photos/tech-marcus-480x480.webp 480w, images/photos/tech-marcus-720x720.webp 720w, images/photos/tech-marcus-960x960.webp 960w, images/photos/tech-marcus-1200x1200.webp 1200w" sizes="92vw" width="1200" height="1200">
-            <img sizes="(min-width: 1200px) 522px, 42vw" src="images/photos/tech-marcus-720x900.webp" srcset="images/photos/tech-marcus-480x600.webp 480w, images/photos/tech-marcus-720x900.webp 720w, images/photos/tech-marcus-960x1200.webp 960w, images/photos/tech-marcus-1200x1500.webp 1200w" width="1200" height="1500" alt="Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight" fetchpriority="high" style="object-position:49% 50%;background-color:#9a9a92">
-          </picture>{{/if}}
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. Trust strip -->
+  <!-- 2. Trust row: bold icon squares, 2x2 on phones, one row on wider screens -->
   {{#if hasTrust}}<section class="trust on-dark" aria-label="Why neighbors trust us">
-    <div class="container{{#if hasTruck}} tpl-trust-grid{{/if}}">
-      <ul class="trust-list tpl-trust n{{trustCount}}">
-        {{#each trust}}<li><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span><span><strong>{{strong}}</strong>{{#if hasSub}}<span>{{sub}}</span>{{/if}}</span></li>
+    <div class="container">
+      <ul class="tpl-tiles n{{trustCount}}">
+        {{#each trust}}<li><span class="tpl-tile-icon"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span><span>{{strong}}{{#if hasSub}} <span class="{{subClass}}">{{sub}}</span>{{/if}}</span></li>
         {{/each}}
       </ul>
-      {{#if hasTruck}}<figure class="tpl-truck"><img src="{{truckSrc}}" width="{{truckW}}" height="{{truckH}}" alt="{{truckAlt}}" loading="lazy" decoding="async"></figure>{{/if}}
     </div>
   </section>{{/if}}
 
-  <!-- 3. Reviews (established) or proof (new business) -->
+  <!-- 3. Services -->
+  {{#if hasServices}}<section class="section services bg-white" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2 id="services-title">{{{servicesHeadline}}}</h2>
+        <p class="lead">{{servicesLead}}</p>
+      </div>
+      <div class="tpl-bento">
+        {{#each leadService}}<a class="tile photo-tile tile-lead {{tileTone}}" href="#request" id="{{anchor}}">
+          {{#if isPlumbing}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/pipes-720x540.webp" srcset="images/photos/pipes-480x360.webp 480w, images/photos/pipes-720x540.webp 720w, images/photos/pipes-960x720.webp 960w, images/photos/pipes-1200x900.webp 1200w" width="1200" height="900" alt="New copper water pipes running through an open wall" loading="lazy" decoding="async" style="object-position:50% 50%;background-color:#9c6b45">{{else}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w, images/photos/thermostat-960x720.webp 960w, images/photos/thermostat-1200x900.webp 1200w" width="1200" height="900" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7">{{/if}}
+          <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+          <span class="tpl-photo-text">
+            <span class="tile-kicker{{#if isPlumbing}} warm-k{{/if}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg>{{kicker}}</span>
+            <h3>{{name}}</h3>
+            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
+            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
+          </span>
+        </a>{{/each}}
+        {{#if hasMoreServices}}<div class="tpl-bento-rest">
+          {{#each moreServices}}<a class="tile {{tileTone}}" href="#request" id="{{anchor}}">
+            <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span>
+            <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+            <h3>{{name}}</h3>
+            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
+            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
+          </a>
+          {{/each}}
+        </div>{{/if}}
+      </div>
+      {{#if secondOpinion}}<div class="tpl-callout">
+        <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
+        <p><strong>Free second opinion</strong><span>Got a big quote from someone else? We'll take a look for free.</span></p>
+        <a class="btn btn-secondary tpl-callout-btn" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call {{phonePretty}}</a>
+      </div>{{/if}}
+    </div>
+  </section>{{/if}}
+
+  <!-- 4. Membership or maintenance plans (optional) -->
+  {{#if hasMembership}}{{> optional/membership}}{{/if}}
+
+  <!-- 5. How a visit works (Pinwheel's 3 steps, short muted video, no photo) -->
+  <section class="section visit" id="how-it-works" aria-labelledby="visit-title">
+    <div class="container visit-grid">
+      <div class="visit-media-col">
+      <div class="visit-media" data-video="video/visit">
+        <picture>
+          <img src="images/visit-poster-960.webp" srcset="images/visit-poster-640.webp 640w, images/visit-poster-960.webp 960w, images/visit-poster-1280.webp 1280w" sizes="(min-width: 900px) 600px, 92vw" width="1280" height="720" alt="Close-up of a plumber's gloved hands tightening an outdoor faucet with a pipe wrench" loading="lazy" decoding="async" style="background-color:#5a1f24">
+        </picture>
+      </div>
+      </div>
+      <div>
+        <p class="eyebrow">How a visit works</p>
+        <h2 id="visit-title">Three steps. <span class="accent">No surprises.</span></h2>
+        <ol class="visit-steps">
+          <li><strong>Book in a minute</strong><span>Call, text, or send the form below. We text you an arrival window.</span></li>
+          <li><strong>See the price first</strong><span>Your tech finds the problem and shows you the price. You decide.</span></li>
+          <li><strong>Fixed and cleaned up</strong><span>When we're done, photos of the finished work go straight to your phone.</span></li>
+        </ol>
+        {{#if guaranteeLine}}<p class="tpl-guarantee"><svg class="icon" aria-hidden="true"><use href="#i-guarantee"/></svg><span>{{guaranteeLine}}</span></p>{{/if}}
+        <a class="btn btn-primary" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Specials (optional: only when the data file has them) -->
+  {{#if hasSpecials}}{{> optional/specials}}{{/if}}
+
+  <!-- 7. Reviews (established) or proof (new business) -->
   {{#if established}}<section class="section reviews" id="reviews" aria-labelledby="reviews-title"{{#if hasReviews}} data-carousel{{/if}}>
     <div class="container">
       <div class="section-head split">
@@ -208,72 +257,37 @@
     </div>
   </section>{{/if}}{{/if}}
 
-  <!-- 4. Services -->
-  {{#if hasServices}}<section class="section services bg-white" id="services" aria-labelledby="services-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Services</p>
-        <h2 id="services-title">{{{servicesHeadline}}}</h2>
-        <p class="lead">The same trained techs{{#if upfront}} and the same upfront pricing{{/if}} on every job, big or small.</p>
-      </div>
-      <div class="tpl-bento">
-        {{#each leadService}}<a class="tile photo-tile tile-lead {{tileTone}}" href="#request" id="{{anchor}}">
-          {{#if isPlumbing}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/pipes-720x540.webp" srcset="images/photos/pipes-480x360.webp 480w, images/photos/pipes-720x540.webp 720w, images/photos/pipes-960x720.webp 960w, images/photos/pipes-1200x900.webp 1200w" width="1200" height="900" alt="New copper water pipes running through an open wall" loading="lazy" decoding="async" style="object-position:50% 50%;background-color:#9c6b45">{{else}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w, images/photos/thermostat-960x720.webp 960w, images/photos/thermostat-1200x900.webp 1200w" width="1200" height="900" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7">{{/if}}
-          <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
-          <span class="tpl-photo-text">
-            <span class="tile-kicker{{#if isPlumbing}} warm-k{{/if}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg>{{kicker}}</span>
-            <h3>{{name}}</h3>
-            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
-            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
-          </span>
-        </a>{{/each}}
-        {{#if hasMoreServices}}<div class="tpl-bento-rest">
-          {{#each moreServices}}<a class="tile {{tileTone}}" href="#request" id="{{anchor}}">
-            <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span>
-            <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
-            <h3>{{name}}</h3>
-            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
-            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
-          </a>
+  <!-- 8. Meet the family -->
+  {{#if hasOwner}}<section class="section team" id="team" aria-labelledby="team-title">
+    <div class="container team-grid{{#if hasOwnerPhoto}}{{else}} no-photo{{/if}}">
+      {{#if hasOwnerPhoto}}<figure class="owner-figure">
+        <div class="arch">
+          <img src="{{ownerPhotoSrc}}" width="900" height="1125" alt="{{ownerPhotoAlt}}" loading="lazy" decoding="async" style="object-fit:cover">
+        </div>
+        <figcaption><strong>{{owner.name}}</strong>{{#if owner.role}}<span>{{owner.role}}</span>{{/if}}</figcaption>
+      </figure>{{/if}}
+      <div>
+        <p class="eyebrow">Meet the family</p>
+        <h2 id="team-title">The people behind <span class="accent">{{shortName}}.</span></h2>
+        {{#if hasOwnerPhoto}}{{else}}<p class="tpl-owner-card"><span class="initial" aria-hidden="true">{{owner.initial}}</span><span><strong>{{owner.name}}</strong>{{#if owner.role}}<span>{{owner.role}}</span>{{/if}}</span></p>{{/if}}
+        {{#if owner.story}}<p class="lead">{{owner.story}}</p>{{/if}}
+        {{#if owner.quote}}<blockquote class="pull-quote">
+          <p>{{owner.quote}}</p>
+          <cite>{{owner.name}}{{#if owner.roleShort}}, {{owner.roleShort}}{{/if}}</cite>
+        </blockquote>{{/if}}
+        {{#if promises}}<ul class="proof-chips">
+          {{#each promises}}<li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>{{this}}</li>
           {{/each}}
-        </div>{{/if}}
+        </ul>{{/if}}
+        {{#if team}}<ul class="team-row tpl-team">
+          {{#each team}}<li class="team-card"><span class="initial" aria-hidden="true">{{initial}}</span><span><strong>{{name}}</strong>{{#if role}}<span>{{role}}</span>{{/if}}</span></li>
+          {{/each}}
+        </ul>{{/if}}
       </div>
-      {{#if secondOpinion}}<div class="tpl-callout">
-        <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
-        <p><strong>Free second opinion</strong><span>Got a big quote from someone else? We'll take a look for free.</span></p>
-        <a class="btn btn-secondary tpl-callout-btn" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call {{phonePretty}}</a>
-      </div>{{/if}}
     </div>
   </section>{{/if}}
 
-  <!-- 5. How a visit works (Pinwheel's 3 steps, short muted video, no photo) -->
-  <section class="section visit" id="how-it-works" aria-labelledby="visit-title">
-    <div class="container visit-grid">
-      <div class="visit-media-col">
-      <div class="visit-media" data-video="video/visit">
-        <picture>
-          <img src="images/visit-poster-960.webp" srcset="images/visit-poster-640.webp 640w, images/visit-poster-960.webp 960w, images/visit-poster-1280.webp 1280w" sizes="(min-width: 900px) 600px, 92vw" width="1280" height="720" alt="Close-up of a plumber's gloved hands tightening an outdoor faucet with a pipe wrench" loading="lazy" decoding="async" style="background-color:#5a1f24">
-        </picture>
-      </div>
-      </div>
-      <div>
-        <p class="eyebrow">How a visit works</p>
-        <h2 id="visit-title">Three steps. <span class="accent">No surprises.</span></h2>
-        <ol class="visit-steps">
-          <li><strong>Book in a minute</strong><span>Call, text, or send the form below. We text you an arrival window.</span></li>
-          <li><strong>See the price first</strong><span>Your tech finds the problem and shows you the price. You decide.</span></li>
-          <li><strong>Fixed and cleaned up</strong><span>When we're done, photos of the finished work go straight to your phone.</span></li>
-        </ol>
-        {{#if guaranteeLine}}<p class="tpl-guarantee"><svg class="icon" aria-hidden="true"><use href="#i-guarantee"/></svg><span>{{guaranteeLine}}</span></p>{{/if}}
-        <a class="btn btn-primary" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a visit</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Specials (optional: only when the data file has them) -->
-  {{#if hasSpecials}}{{> optional/specials}}{{/if}}
-
-  <!-- 7. Estimate: a price range with starting prices, a quick quote by text without them -->
+  <!-- 9. Estimate: a price range with starting prices, a quick quote by text without them -->
   <section class="section estimator on-dark" id="estimate" aria-labelledby="estimate-title">
     <div class="container est-grid">
       {{#if hasPrices}}<div>
@@ -360,58 +374,8 @@
     </div>
   </section>
 
-  <!-- 8. Financing and membership (optional: only when the data file has them) -->
+  <!-- 10. Financing (optional) -->
   {{#if hasFinancing}}{{> optional/financing}}{{/if}}
-  {{#if hasMembership}}{{> optional/membership}}{{/if}}
-
-  <!-- 9. Meet the family -->
-  {{#if hasOwner}}<section class="section team" id="team" aria-labelledby="team-title">
-    <div class="container team-grid{{#if hasOwnerPhoto}}{{else}} no-photo{{/if}}">
-      {{#if hasOwnerPhoto}}<figure class="owner-figure">
-        <div class="arch">
-          <img src="{{ownerPhotoSrc}}" width="900" height="1125" alt="{{ownerPhotoAlt}}" loading="lazy" decoding="async" style="object-fit:cover">
-        </div>
-        <figcaption><strong>{{owner.name}}</strong>{{#if owner.role}}<span>{{owner.role}}</span>{{/if}}</figcaption>
-      </figure>{{/if}}
-      <div>
-        <p class="eyebrow">Meet the family</p>
-        <h2 id="team-title">The people behind <span class="accent">{{shortName}}.</span></h2>
-        {{#if hasOwnerPhoto}}{{else}}<p class="tpl-owner-card"><span class="initial" aria-hidden="true">{{owner.initial}}</span><span><strong>{{owner.name}}</strong>{{#if owner.role}}<span>{{owner.role}}</span>{{/if}}</span></p>{{/if}}
-        {{#if owner.story}}<p class="lead">{{owner.story}}</p>{{/if}}
-        {{#if owner.quote}}<blockquote class="pull-quote">
-          <p>{{owner.quote}}</p>
-          <cite>{{owner.name}}{{#if owner.roleShort}}, {{owner.roleShort}}{{/if}}</cite>
-        </blockquote>{{/if}}
-        {{#if promises}}<ul class="proof-chips">
-          {{#each promises}}<li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>{{this}}</li>
-          {{/each}}
-        </ul>{{/if}}
-        {{#if team}}<ul class="team-row tpl-team">
-          {{#each team}}<li class="team-card"><span class="initial" aria-hidden="true">{{initial}}</span><span><strong>{{name}}</strong>{{#if role}}<span>{{role}}</span>{{/if}}</span></li>
-          {{/each}}
-        </ul>{{/if}}
-      </div>
-    </div>
-  </section>{{/if}}
-
-  <!-- 10. Service areas (real OpenStreetMap map built from the data file's cities) -->
-  {{#if hasAreas}}<section class="section areas bg-white" id="areas" aria-labelledby="areas-title">
-    <div class="container{{#if hasMap}} areas-grid{{/if}}">
-      {{#if hasMap}}<div class="map-card">
-{{{mapHtml}}}
-      </div>{{/if}}
-      <div>
-        <p class="eyebrow">Service areas</p>
-        <h2 id="areas-title">Close by, so we <span class="accent">get there fast.</span></h2>
-        <p class="lead">{{areasLead}}</p>
-        <ul class="area-chips" aria-label="All {{areaCount}} cities we serve">
-          {{#each areaChips}}<li{{#if hq}} class="is-hq"{{/if}}>{{#if hq}}<svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>{{/if}}{{name}}</li>
-          {{/each}}
-        </ul>
-        <p class="muted">{{areasNote}}</p>
-      </div>
-    </div>
-  </section>{{/if}}
 
   <!-- 11. FAQ -->
   {{#if hasFaqs}}<section class="section faq" id="faq" aria-labelledby="faq-title">
@@ -434,9 +398,28 @@
     </div>
   </section>{{/if}}
 
+  <!-- 12. Service areas (real OpenStreetMap map built from the data file's cities) -->
+  {{#if hasAreas}}<section class="section areas bg-white" id="areas" aria-labelledby="areas-title">
+    <div class="container{{#if hasMap}} areas-grid{{/if}}">
+      {{#if hasMap}}<div class="map-card">
+{{{mapHtml}}}
+      </div>{{/if}}
+      <div>
+        <p class="eyebrow">Service areas</p>
+        <h2 id="areas-title">Close by, so we <span class="accent">get there fast.</span></h2>
+        <p class="lead">{{areasLead}}</p>
+        <ul class="area-chips" aria-label="All {{areaCount}} cities we serve">
+          {{#each areaChips}}<li{{#if hq}} class="is-hq"{{/if}}>{{#if hq}}<svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>{{/if}}{{name}}</li>
+          {{/each}}
+        </ul>
+        <p class="muted">{{areasNote}}</p>
+      </div>
+    </div>
+  </section>{{/if}}
+
 </main>
 
-  <!-- 12. Request a visit (the one place a family photo appears on the page) -->
+  <!-- 13. Request a visit (the one place a family photo appears on the page) -->
   <section class="section request bg-white" id="request" aria-labelledby="request-title">
     <div class="container request-grid">
       <div class="request-photo arch tall">
@@ -510,8 +493,8 @@
     </div>
   </div>
   <div class="container footer-bottom">
-    <p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Homepage preview by Ben Young Web Design</p>
-    <p>© {{year}} {{nameDot}} Photos are stock placeholders until replaced with your own.</p>
+    <p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Ben Young Web Design</p>
+    <p>Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.</p>
   </div>
 </footer>
 <nav class="sticky-bar" aria-label="Quick contact">
@@ -520,6 +503,7 @@
   <a class="sb-btn sb-text" href="sms:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Text</a>
 </nav>
 <script src="js/site.js" defer></script>
+<script src="js/reveal.js" defer></script>
 {{#if hasPrices}}<script src="js/preview.js" defer></script>
 {{/if}}</body>
 </html>

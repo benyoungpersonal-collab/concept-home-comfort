@@ -5,12 +5,13 @@
       node scripts/build-preview.mjs prospects/ra-plumbing-heating-air.json
       node prospects/finish/ra-plumbing-heating-air.mjs
 
-  The main build makes the Horizon-style page. This pass adds what only R&A has:
-  - No Google listing: every rating spot reads "5-star reviews" (no count, no Google mark or link)
-  - Ryan's own photos (hero, plumbing and heating cards, maintenance plans)
-  - Trust row with the 5 facts Ben approved (license left out: the CSLB name does not match)
+  The main build makes the page from the data file with the template defaults (photo-first hero, name beside the
+  mark, trust tiles, section order, animations, link preview from the hero photo). This pass adds what only R&A has:
+  - Bold van-wrap blue (#0078DE) for the pill, accent words, main buttons and links; #43A8DE on navy
+  - No Google listing: the top strip and the reviews heading read "5-star reviews" (no count, no Google mark or link)
+  - Ryan's own photos on the plumbing and heating cards and the maintenance plans
   - $99 tune-up callout with a button that opens the quick quote with Tune-ups picked
-  - Home Comfort Maintenance Plans section (Essential, Comfort featured, Premium) right after the services
+  - Home Comfort Maintenance Plans section (Essential, Comfort, Premium) right after the services
   - Service areas: map card (3 counties, logo pin on Riverside), then 3 county dropdowns, all closed
   - Footer email and socials
   Every replacement must match exactly once, or the script stops.
@@ -49,19 +50,10 @@ mkdirSync(join(OUT, 'images', 'ra'), { recursive: true });
 for (const f of readdirSync(PHOTOS)) copyFileSync(join(PHOTOS, f), join(OUT, 'images', 'ra', f));
 
 /* ---------- Head ---------- */
-rep('<title>R&amp;A Plumbing Heating &amp; Air | Riverside HVAC &amp; Plumbing | 5-Star Service</title>', '<title>R&amp;A Plumbing Heating &amp; Air | Riverside Plumbing &amp; HVAC</title>');
-rep('content="R&amp;A Plumbing Heating &amp; Air | Riverside HVAC &amp; Plumbing | 5-Star Service"', 'content="R&amp;A Plumbing Heating &amp; Air | Riverside Plumbing &amp; HVAC"');
 const desc = 'R&amp;A Plumbing Heating &amp; Air: plumbing, heating, and A/C repairs, installs, and maintenance plans for homes and businesses in Riverside. 24/7 emergency service. Call (951) 992-6216.';
 rep('content="R&amp;A Plumbing Heating &amp; Air: plumbing, heating &amp; a/c, and water heaters for homeowners in Riverside. Call (951) 992-6216."', `content="${desc}"`, 2);
-/* Hero image preload: Ryan's photo, whole and uncropped (landscape 3:2) */
-rx(/<link rel="preload" as="image" imagesrcset="images\/photos\/[^"]*" imagesizes="92vw" media="\(max-width: 899px\)" fetchpriority="high">\n<link rel="preload" as="image" imagesrcset="images\/photos\/[^"]*" imagesizes="\(min-width: 1200px\) 522px, 42vw" media="\(min-width: 900px\)" fetchpriority="high">/,
-  `<link rel="preload" as="image" imagesrcset="${srcset('ryan-van-wide', WIDE)}" imagesizes="(min-width: 900px) 46vw, 92vw" fetchpriority="high">`);
-
 const css = `
 <style>
-/* R&A: square black logo, kept as is (never inverted or recolored) */
-.site-header .logo-img, .mobile-menu .logo-img { height: 48px; border-radius: 6px; }
-@media (min-width: 900px) { .site-header .logo-img { height: 56px; } .site-header.is-compact .logo-img { height: 46px; } }
 .footer-brand .tpl-logo-chip { padding: 0; background: none; border-radius: 10px; overflow: hidden; }
 .footer-brand .tpl-logo-chip .logo-img { height: 96px; }
 /* Accent on dark bands: the lighter logo blue */
@@ -76,16 +68,12 @@ body .on-dark .accent { color: #43A8DE !important; }
 /* Services: the heating photo card spans the top of the right column; water heaters and plans sit side by side */
 .tpl-bento-rest > .tile.ra-wide { grid-column: 1 / -1; min-height: 260px; }
 .tpl-bento-rest > .tile:last-child:nth-child(odd) { grid-column: auto; }
-@media (min-width: 900px) { .tpl-bento-rest { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; } .tpl-bento-rest > .tile.ra-wide { min-height: 230px; } }
+@media (min-width: 900px) { .tpl-bento-rest { grid-auto-rows: auto; } .tpl-bento-rest > .tile.ra-wide { min-height: 230px; } }
+@media (min-width: 1200px) { .tpl-bento-rest { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .tpl-callout { background: #E9F4FA; border-color: rgb(36 147 207 / .3); }
 .tpl-callout .icon-bubble { color: var(--c-brand); }
-/* Hero: Ryan's photo whole, at its own 3:2 shape (no arch crop) */
-.hero-media .ra-hero-photo { position: relative; aspect-ratio: 3 / 2; border-radius: var(--r-lg, 24px); overflow: hidden; background: #6f7f8c; box-shadow: var(--shadow-3); }
-.hero-media .ra-hero-photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
-@media (max-width: 899px) { .hero-media { max-width: none; } }
-@media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .hero-media { max-width: none; } }
 /* Maintenance plans: 3 equal cards, none lifted. Essential silver/white, Comfort blue, Premium navy and gold (his flyer). */
-.ra-plans { background: linear-gradient(180deg, #EEF6FB 0%, #F6F3EF 100%); }
+.ra-plans { background: #EEF6FB; }
 .ra-plans-head { display: grid; gap: var(--sp-4, 24px); align-items: center; margin-bottom: var(--sp-5, 32px); }
 .ra-plans-head .section-head { margin-bottom: 0; }
 .ra-plans-photo { margin: 0; border-radius: var(--r-card, 20px); overflow: hidden; box-shadow: var(--shadow-3); aspect-ratio: 16 / 9; background: #b8c8b0; }
@@ -107,23 +95,22 @@ body .on-dark .accent { color: #43A8DE !important; }
 .ra-plan .btn { margin-top: auto; align-self: stretch; justify-content: center; font-size: 1.17rem; font-weight: 800; }
 .ra-plan .btn, .ra-plan .btn:hover { color: #fff; --btn-fg: #fff; }
 /* Essential: white card, thin border, navy text, blue checks, blue button */
-.ra-plan--essential { background: #fff; border-color: #CFDCE6; color: var(--c-navy); box-shadow: 0 2px 4px rgb(20 33 61 / .06), 0 14px 30px rgb(20 33 61 / .08); }
+.ra-plan--essential { background: #fff; border-color: #CFDCE6; color: var(--c-navy); box-shadow: 0 2px 4px rgb(20 33 61 / .06), 0 12px 24px rgb(20 33 61 / .08); }
 .ra-plan--essential h3, .ra-plan--essential .ra-plan-price, .ra-plan--essential .ra-plan-tag, .ra-plan--essential li { color: var(--c-navy); }
 .ra-plan--essential .ra-plan-group { color: #1B6A97; }
 .ra-plan--essential li .icon { color: #2493CF; }
 .ra-plan--essential .btn { --btn-bg: #2493CF; --btn-bd: #2493CF; background: #2493CF; border-color: #2493CF; }
 .ra-plan--essential .btn:hover { background: #2187BE; border-color: #2187BE; }
 /* Comfort: his blue, one shade deeper so white body text passes 4.5:1; navy button */
-.ra-plan--comfort { background: linear-gradient(150deg, #1D7DB2 0%, #176796 100%); color: #fff; box-shadow: 0 2px 4px rgb(29 125 178 / .18), 0 14px 30px rgb(29 125 178 / .26); }
+.ra-plan--comfort { background: #1D7DB2; color: #fff; box-shadow: 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .1); }
 .ra-plan--comfort h3, .ra-plan--comfort .ra-plan-price, .ra-plan--comfort .ra-plan-tag, .ra-plan--comfort li, .ra-plan--comfort .ra-plan-group { color: #fff; }
 .ra-plan--comfort .btn { --btn-bg: var(--c-navy); --btn-bd: var(--c-navy); background: var(--c-navy); border-color: var(--c-navy); }
 .ra-plan--comfort .btn:hover { background: #0E1830; border-color: #0E1830; }
 /* Premium: deep navy, gold rim, gold name, price and checks; gold button with near-black text */
-.ra-plan--premium { background: linear-gradient(150deg, #1B2B4F 0%, #14213D 100%); border-color: #E8B04A; color: #E3E9F2; box-shadow: inset 0 0 0 1px #E8B04A, 0 2px 4px rgb(20 33 61 / .18), 0 14px 30px rgb(20 33 61 / .26); }
+.ra-plan--premium { background: #14213D; border-color: #E8B04A; color: #E3E9F2; box-shadow: inset 0 0 0 1px #E8B04A, 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .1); }
 .ra-plan--premium h3, .ra-plan--premium .ra-plan-price, .ra-plan--premium .ra-plan-group, .ra-plan--premium li .icon { color: #E8B04A; }
 .ra-plan--premium .ra-plan-tag, .ra-plan--premium li { color: #fff; }
-.ra-plan--premium .btn, .ra-plan--premium .btn:hover { --btn-bg: #E8B04A; --btn-bd: #E8B04A; --btn-fg: #1A1408; background: linear-gradient(180deg, #F0C058, #E0A038); border-color: #E0A038; color: #1A1408; }
-.ra-plan--premium .btn:hover { background: #E0A038; }
+.ra-plan--premium .btn, .ra-plan--premium .btn:hover { --btn-bg: #E8B04A; --btn-bd: #E8B04A; --btn-fg: #1A1408; background: #E8B04A; border-color: #E8B04A; color: #1A1408; }
 .ra-plan { min-width: 0; }
 @media (max-width: 359px) { .ra-plan { padding: 22px 16px 18px; } .ra-plan .btn { padding-inline: 12px; } .ra-plan .btn .icon { display: none; } }
 /* Service areas: map card, then 3 county dropdowns (all closed) */
@@ -164,32 +151,11 @@ rep('</svg>\n<a class="skip-link"', `  <symbol id="s-instagram" viewBox="0 0 24 
 rep('<aside class="rating-bar" aria-label="Google rating">', '<aside class="rating-bar" aria-label="Customer reviews">');
 rx(/<a class="rating-bar-score" href="#reviews" target="_blank" rel="noopener">\s*<svg class="g-mark" aria-hidden="true"><use href="#g-logo"\/><\/svg>\s*(<span class="stars5 small tpl-rated" style="--stars:1.000" role="img" aria-label=")Rated 5.0 out of 5("><\/span>)\s*<b>5.0<\/b>\s*<span class="rating-bar-count">[^\n]*?reviews<\/span>\s*<\/a>/s,
   '<a class="rating-bar-score" href="#reviews">\n      $1Five stars$2\n      <span class="rating-bar-count">5-star reviews</span>\n    </a>');
-rx(/<a class="rating-badge rating-badge-link" href="#reviews" target="_blank" rel="noopener">\s*<svg class="g-mark"[^>]*><use href="#g-logo"\/><\/svg>\s*<span class="score">5.0<\/span>\s*<span class="stars5 tpl-rated" style="--stars:1.000" role="img" aria-label="Rated 5.0 out of 5"><\/span>\s*<span class="count">3 Google reviews<\/span>\s*<\/a>/s,
-  '<a class="rating-badge rating-badge-link" href="#reviews">\n          <span class="stars5 tpl-rated" style="--stars:1.000" role="img" aria-label="Five stars"></span>\n          <span class="count">5-star reviews</span>\n        </a>');
 
 /* ---------- Header and menus: Plans link ---------- */
 rep('<li><a class="nav-link" href="#services">Services</a></li>', '<li><a class="nav-link" href="#services">Services</a></li>\n        <li><a class="nav-link" href="#plans">Plans</a></li>');
 rep(`<li><a href="#services">Services ${icon('i-chevron-right')}</a></li>`, `<li><a href="#services">Services ${icon('i-chevron-right')}</a></li>\n        <li><a href="#plans">Maintenance plans ${icon('i-chevron-right')}</a></li>`);
-rep('<li><a href="#services">Services</a></li>\n        <li><a href="#reviews">Reviews</a></li>\n        <li><a href="#how-it-works">', '<li><a href="#services">Services</a></li>\n        <li><a href="#plans">Maintenance plans</a></li>\n        <li><a href="#reviews">Reviews</a></li>\n        <li><a href="#how-it-works">');
-
-/* ---------- Hero ---------- */
-rep('<h1 id="hero-title">Plumbing, heating &amp; air.</h1>', '<h1 id="hero-title">Help that <span class="accent">shows up on time.</span></h1>');
-rep('for homes and businesses in Riverside and across the Inland Empire.', 'for homes and businesses in Riverside, San Bernardino, and Orange County.');
-rep('<p class="hero-fine">Homepage preview by Ben Young Web Design. Photos are placeholders until we add yours.</p>', '<p class="hero-fine">Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.</p>');
-rx(/<div class="arch">\s*<picture>\s*<source media="\(max-width: 899px\)" srcset="images\/photos\/[^"]*" sizes="92vw" width="1200" height="1200">\s*<img sizes="\(min-width: 1200px\) 522px, 42vw" src="images\/photos\/[^"]*" srcset="[^"]*" width="1200" height="1500" alt="[^"]*" fetchpriority="high" style="[^"]*">\s*<\/picture>\s*<\/div>/s,
-  `<div class="ra-hero-photo">
-          <img sizes="(min-width: 900px) 46vw, 92vw" src="images/ra/ryan-van-wide-1024x683.webp" srcset="${srcset('ryan-van-wide', WIDE)}" width="1536" height="1024" alt="Ryan, owner of R&amp;A Plumbing Heating &amp; Air, standing with arms crossed beside his R&amp;A work van with the logo, phone number, and services on its side" fetchpriority="high">
-        </div>`);
-
-/* ---------- Trust row: the 5 approved facts (license left out, see the reply to Ben) ---------- */
-rx(/<ul class="trust-list tpl-trust n3">[\s\S]*?<\/ul>/,
-  `<ul class="trust-list tpl-trust n5">
-        <li><span class="icon-bubble">${icon('i-star')}</span><span><strong>5-star reviews</strong></span></li>
-        <li><span class="icon-bubble">${icon('i-clock')}</span><span><strong>24/7 emergency service</strong></span></li>
-        <li><span class="icon-bubble">${icon('i-home')}</span><span><strong>Residential &amp; commercial</strong></span></li>
-        <li><span class="icon-bubble">${icon('i-wrench')}</span><span><strong>Maintenance plans</strong><span>from $149/year</span></span></li>
-        <li><span class="icon-bubble">${icon('i-shield')}</span><span><strong>Insured</strong></span></li>
-      </ul>`);
+rep('<li><a href="#services">Services</a></li>\n        <li><a href="#how-it-works">', '<li><a href="#services">Services</a></li>\n        <li><a href="#plans">Maintenance plans</a></li>\n        <li><a href="#how-it-works">');
 
 /* ---------- Reviews ---------- */
 rx(/<p class="rating-line"><svg class="g-mark"[^>]*><use href="#g-logo"\/><\/svg><span class="stars5 small tpl-rated" style="--stars:1.000" role="img" aria-label="Rated 5.0 out of 5"><\/span>[^\n]*?<\/p>/,
@@ -197,7 +163,6 @@ rx(/<p class="rating-line"><svg class="g-mark"[^>]*><use href="#g-logo"\/><\/svg
 rep('<svg class="g-mark" role="img" aria-label="Google review"><use href="#g-logo"/></svg>', '', 3);
 
 /* ---------- Services ---------- */
-rep('<p class="lead">The same trained techs on every job, big or small.</p>', '<p class="lead">Repairs, installs, and tune-ups for homes and businesses, big job or small.</p>');
 rx(/<img sizes="\(min-width: 900px\) 600px, 92vw" src="images\/photos\/pipes-[^"]*" srcset="[^"]*" width="1200" height="900" alt="[^"]*" loading="lazy" decoding="async" style="[^"]*">/,
   `<img sizes="(min-width: 900px) 600px, 92vw" src="images/ra/kitchen-sink-720x720.webp" srcset="${srcset('kitchen-sink', [[480, 480], [720, 720], [1024, 1024]])}" width="1024" height="1024" alt="Kitchen sink with the cabinet open and plumbing tools laid out on the counter" loading="lazy" decoding="async" style="object-position:50% 50%;background-color:#c9c4bb">`);
 rx(/\s*<span class="tile-kicker warm-k">[^\n]*?<\/span>/, '');
@@ -226,7 +191,7 @@ ${plansSection().split('$').join('$$')}`);
 function plansSection() {
   const li = (t) => `<li>${icon('i-check')}<span>${t}</span></li>`;
   const plan = (o) => `
-        <li class="ra-plan ra-plan--${o.name.toLowerCase()}">
+        <li class="ra-plan ra-plan--${o.name.toLowerCase()}" data-reveal>
           <h3>${o.name}</h3>
           <p class="ra-plan-price"><b>${o.price}</b><span>/year</span></p>
           <p class="ra-plan-tag">${o.tag}</p>
@@ -245,7 +210,7 @@ function plansSection() {
           <h2 id="plans-title">Home Comfort <span class="accent">Maintenance Plans.</span></h2>
           <p class="lead">Protect your home. Improve efficiency. Enjoy peace of mind.</p>
         </div>
-        <figure class="ra-plans-photo">
+        <figure class="ra-plans-photo" data-reveal>
           <img sizes="(min-width: 900px) 560px, 92vw" src="images/ra/ac-units-960x540.webp" srcset="${srcset('ac-units', [[480, 270], [720, 405], [960, 540], [1280, 720]])}" width="1280" height="720" alt="Two outdoor A/C units beside a home with the mountains behind" loading="lazy" decoding="async">
         </figure>
       </div>
@@ -276,7 +241,7 @@ const groups = [
   ['Orange County', ['Anaheim', 'Santa Ana', 'Irvine', 'Huntington Beach', 'Costa Mesa', 'Fullerton', 'Garden Grove', 'Orange', 'Newport Beach', 'Mission Viejo', 'Tustin', 'Laguna Beach', 'Lake Forest', 'Buena Park']],
 ];
 const areasHtml = `<div class="ra-areas">
-${groups.map(([g, cities], i) => `          <details class="ra-area">
+${groups.map(([g, cities], i) => `          <details class="ra-area" data-reveal>
             <summary><span class="ra-sum"><span class="ra-sum-name">${g}</span><span class="ra-sum-meta">${i === 0 ? `<span class="ra-hq-tag">${icon('i-map-pin')}Home base</span>` : ''}<small>${cities.length} cities</small></span></span>${icon('i-chevron-down')}</summary>
             <ul class="area-chips" aria-label="Cities we serve in ${g}">
               ${cities.map((c) => c === 'Riverside' ? `<li class="is-hq">${icon('i-map-pin')}${c}</li>` : `<li>${c}</li>`).join('\n              ')}
@@ -321,9 +286,6 @@ rep('<p>R&amp;A Plumbing Heating &amp; Air serves homeowners in Riverside.</p>\n
         <li><a href="https://www.tiktok.com/@rnaphac" target="_blank" rel="noopener" aria-label="TikTok"><svg aria-hidden="true"><use href="#s-tiktok"/></svg></a></li>
       </ul>`);
 rx(/\s*<p><a class="footer-text-link" href="#reviews" target="_blank" rel="noopener">Read our Google reviews<\/a><\/p>/, '');
-rep('<p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Homepage preview by Ben Young Web Design</p>', '<p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Ben Young Web Design</p>');
-rep('<p>© 2026 R&amp;A Plumbing Heating &amp; Air. Photos are stock placeholders until replaced with your own.</p>',
-  '<p>Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.</p>');
 
 /* ---------- Small script: tune-up button picks Tune-ups; county groups on phones ---------- */
 rep('<script src="js/site.js" defer></script>', `<script src="js/site.js" defer></script>
@@ -340,49 +302,13 @@ rep('<script src="js/site.js" defer></script>', `<script src="js/site.js" defer>
 </script>`);
 
 
-/* ================= Round 3: bolder and cleaner top of page ================= */
-/* Hero photo preload: the banner is full width now */
-rep('imagesizes="(min-width: 900px) 46vw, 92vw" fetchpriority="high">', 'imagesizes="100vw" fetchpriority="high">');
-copyFileSync(join(ROOT, 'prospects', 'logos', 'ra-plumbing-heating-air-bear.png'), join(OUT, 'images', 'logo-bear.png'));
-/* Header (and mobile menu): bear mark on its black rounded square + "R&A" and "PLUMBING · HEATING & AIR" */
-rep(`<a class="logo" href="#main" aria-label="R&amp;A Plumbing Heating &amp; Air, back to top">
-      <img class="logo-img" src="images/logo.webp" alt="" width="463" height="463">
-    </a>`, `<a class="logo ra-logo" href="#main" aria-label="R&amp;A Plumbing Heating &amp; Air, back to top">
-      <img class="ra-logo-mark" src="images/logo-bear.png" alt="" width="96" height="96">
-      <span class="logo-text"><span class="logo-name">R<span class="ra-amp">&amp;</span>A</span><span class="logo-tag">Plumbing <span aria-hidden="true">·</span> Heating &amp; Air</span></span>
-    </a>`, 2);
-/* Hero: photo banner first, then a white card laid over its bottom edge */
-rx(/<section class="hero" aria-labelledby="hero-title">[\s\S]*?<\/section>/, `<section class="hero ra-hero" aria-labelledby="hero-title">
-    <div class="ra-hero-banner">
-      <img sizes="100vw" src="images/ra/ryan-van-wide-1536x1024.webp" srcset="${srcset('ryan-van-wide', WIDE)}" width="1536" height="1024" alt="Ryan, owner of R&amp;A Plumbing Heating &amp; Air, standing with arms crossed beside his R&amp;A work van with the logo, phone number, and services on its side" fetchpriority="high">
-    </div>
-    <div class="container ra-hero-wrap">
-      <div class="hero-copy ra-hero-card">
-        <p class="tpl-pill"><span class="tp-0">Reliable by Nature</span></p>
-        <h1 id="hero-title">Help that<br> <span class="accent">shows up on time.</span></h1>
-        <p class="lead">Leaks, no heat, no cool, or no hot water? R&amp;A handles plumbing, heating, and A/C repairs and installs for homes and businesses in Riverside, San Bernardino, and Orange County.</p>
-        <div class="hero-ctas" data-hide-bar>
-          <a class="btn btn-primary btn-lg" href="tel:+19519926216">${icon('i-phone')}Call now</a>
-          <a class="btn btn-secondary btn-lg" href="#request">${icon('i-calendar')}Request a visit</a>
-        </div>
-        <p class="hero-note">${icon('i-check-circle')}24/7 emergency service, 365 days a year.</p>
-      </div>
-    </div>
-  </section>`);
-/* Trust row: 4 tiles (no 5-star item) */
-rx(/<ul class="trust-list tpl-trust n5">[\s\S]*?<\/ul>/, `<ul class="ra-trust">
-        <li><span class="ra-trust-icon">${icon('i-clock')}</span><span>24/7 emergency service</span></li>
-        <li><span class="ra-trust-icon">${icon('i-home')}</span><span>Residential &amp; commercial</span></li>
-        <li><span class="ra-trust-icon">${icon('i-wrench')}</span><span>Maintenance plans <span class="ra-nowrap">from $149/year</span></span></li>
-        <li><span class="ra-trust-icon">${icon('i-shield')}</span><span>Insured</span></li>
-      </ul>`.split('$').join('$$'));
+/* ---------- Bold blue from the van wrap (R&A only) ---------- */
 rep('</style>\n</head>', `
-/* ---- Round 3 ---- */
 /* Bold blue from the van wrap: pill, accent words on light backgrounds, main buttons on light backgrounds, links */
 :root { --ra-bold: #0078DE; --ra-bold-hover: #0067BF; }
 .accent { color: var(--ra-bold); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%230078DE' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' opacity='.45'/%3E%3C/svg%3E"); }
-.tpl-pill { background: var(--ra-bold); color: #fff; box-shadow: none; }
-.btn-primary, .btn-primary:hover { --btn-bg: var(--ra-bold); --btn-bd: var(--ra-bold); --btn-fg: #fff; --btn-shadow: none; box-shadow: none; }
+.tpl-pill { background: var(--ra-bold); color: #fff; }
+.btn-primary, .btn-primary:hover { --btn-bg: var(--ra-bold); --btn-bd: var(--ra-bold); --btn-fg: #fff; }
 .btn-primary:hover { --btn-bg: var(--ra-bold-hover); --btn-bd: var(--ra-bold-hover); }
 .on-dark .btn-primary { --btn-bg: #2493CF; --btn-bd: #2493CF; }
 .on-dark .btn-primary:hover { --btn-bg: #2187BE; --btn-bd: #2187BE; }
@@ -390,83 +316,12 @@ rep('</style>\n</head>', `
 .sb-call:hover { background: var(--ra-bold-hover); }
 a, .text-link { color: var(--ra-bold); }
 a:hover { color: var(--ra-bold-hover); }
-/* Header: name next to the bear mark */
-.ra-logo { gap: 12px; }
-.ra-logo-mark { display: block; width: 46px; height: 46px; border-radius: 11px; flex: none; }
-.ra-logo .logo-name { color: var(--c-navy); font-size: 28px; letter-spacing: -.01em; }
-.ra-logo .ra-amp { color: var(--ra-bold); margin: 0 1px; }
-.ra-logo .logo-tag { margin-top: 5px; font-size: 9.5px; letter-spacing: .16em; color: var(--c-muted, #5b6474); white-space: nowrap; }
-@media (min-width: 900px) { .ra-logo-mark { width: 52px; height: 52px; border-radius: 12px; } .ra-logo .logo-name { font-size: 31px; } .ra-logo .logo-tag { font-size: 10.5px; } }
-.site-header.is-compact .ra-logo-mark { width: 42px; height: 42px; }
-/* With the name beside the mark the header is wider: icon-only phone until there is room for its label */
-@media (min-width: 1000px) and (max-width: 1399px) { .header-phone-text { display: none; } .header-phone { padding: 0 2px; } .nav-link { padding: 0 10px; font-size: 14.5px; } }
-@media (min-width: 1000px) and (max-width: 1099px) { .nav-link { padding: 0 7px; font-size: 14px; } .ra-logo .logo-name { font-size: 28px; } .ra-logo .logo-tag { letter-spacing: .12em; } }
-@media (max-width: 359px) { .ra-logo .logo-name { font-size: 25px; } .ra-logo .logo-tag { font-size: 8.5px; letter-spacing: .12em; } }
-/* Hero: edge-to-edge photo banner, then the card */
-.ra-hero { padding: 0; background: #F6F3EF; }
-.ra-hero::before, .hero::before { display: none; content: none; background: none; }
-.ra-hero-banner { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #8a97a3; }
-.ra-hero-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-@media (min-width: 900px) {
-  .ra-hero-banner { aspect-ratio: auto; height: min(50vw, max(720px, 39vw), 760px); }
-  .ra-hero-banner img { object-position: 50% 25%; }
-}
-@media (min-width: 1600px) { .ra-hero-banner img { object-position: 50% 20%; } }
-.ra-hero-wrap { position: relative; z-index: 2; margin-top: -32px; }
-.ra-hero-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; background: #fff; border-radius: 28px 28px 0 0; padding: 32px 20px 44px; }
-.ra-hero-card > * { margin: 0; }
-.ra-hero-card .tpl-pill { margin: 0; }
-.ra-hero-card .hero-ctas { margin: 0; width: 100%; }
-.ra-hero-card .hero-note { margin: 0; }
-.ra-hero h1 { font-size: clamp(2.1rem, calc(11.8vw - 4px), 3.6rem); line-height: 1.04; letter-spacing: -.035em; margin: 0; }
-.ra-hero h1 .accent { white-space: nowrap; padding-bottom: .06em; background-size: 100% .2em; }
-.ra-hero .lead { max-width: 40rem; }
-@media (max-width: 599px) { .container.ra-hero-wrap { width: 100%; max-width: none; } .ra-hero-card { padding: 28px 16px 36px; border-radius: 24px 24px 0 0; } }
-@media (min-width: 600px) { .ra-hero-wrap { margin-top: -48px; } .ra-hero-card { padding: 44px 40px 52px; gap: 24px; } .ra-hero-card .hero-ctas { width: auto; } .ra-hero h1 { font-size: clamp(2.5rem, 7.5vw, 3.6rem); } }
-@media (min-width: 900px) { .ra-hero-wrap { margin-top: -72px; } .ra-hero-card { padding: 56px 64px 64px; gap: 26px; border-radius: 32px 32px 0 0; } .ra-hero h1 { font-size: clamp(3.5rem, 5.6vw, 5rem); } }
-/* No glows or color washes: solid colors everywhere */
-.hero-media::before, .page-hero::before { content: none; display: none; }
-.ra-plans { background: #EEF6FB; }
-.ra-plan--comfort { background: #1D7DB2; box-shadow: 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .1); }
-.ra-plan--premium { background: #14213D; box-shadow: inset 0 0 0 1px #E8B04A, 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .1); }
-.ra-plan--premium .btn, .ra-plan--premium .btn:hover { background: #E8B04A; border-color: #E8B04A; }
-.ra-plan--essential { box-shadow: 0 2px 4px rgb(20 33 61 / .06), 0 12px 24px rgb(20 33 61 / .08); }
-.tpl-bento .tile.tone-main:not(.photo-tile) { background: var(--c-brand-strong); box-shadow: 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .12); }
-.tpl-bento .tile.tone-second:not(.photo-tile) { background: var(--c-second); box-shadow: 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .12); }
-.tpl-bento .tile.tone-main:not(.photo-tile)::before, .tpl-bento .tile.tone-second:not(.photo-tile)::before { content: none; display: none; }
-.estimator.on-dark { background: var(--c-navy); }
-.est-result::before { background: #43A8DE; }
-.hero-pill, .tpl-pill { box-shadow: none; }
-/* Headings: balanced line breaks */
-h1, h2, h3 { text-wrap: balance; }
-@media (min-width: 900px) and (max-width: 1199px) {
-  .tpl-bento-rest { grid-template-columns: minmax(0, 1fr); }
-  .faq-head h2 { font-size: clamp(1.75rem, 2.75vw, 2.4rem); }
-}
-.faq-head h2 .accent { white-space: nowrap; }
-/* Trust row: 4 tiles, bold blue squares, labels centered under; under half the old height at every width */
-.trust { padding: 12px 0; }
-.ra-trust { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
-.ra-trust li { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; color: #fff; font-weight: 700; font-size: 13px; line-height: 1.2; }
-.ra-trust-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--ra-bold); color: #fff; flex: none; }
-.ra-trust-icon .icon { width: 18px; height: 18px; color: #fff; stroke: #fff; }
-.ra-nowrap { white-space: nowrap; }
-@media (max-width: 374px) { .ra-trust { row-gap: 10px; } }
-@media (min-width: 600px) { .trust { padding: 10px 0; } .ra-trust { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; } .ra-trust li { font-size: 13.5px; } .ra-trust-icon { width: 30px; height: 30px; } }
-@media (min-width: 900px) { .trust { padding: 6px 0; } .ra-trust-icon { width: 28px; height: 28px; border-radius: 8px; } .ra-trust-icon .icon { width: 16px; height: 16px; } }
-@media (min-width: 1280px) { .trust { padding: 7px 0; } .ra-trust li { gap: 6px; font-size: 15px; } .ra-trust-icon { width: 30px; height: 30px; } .ra-trust-icon .icon { width: 17px; height: 17px; } }
+.tpl-logo .tpl-amp { color: var(--ra-bold); }
+.tpl-tile-icon { background: var(--ra-bold); }
+/* "shows up on time." stays on one line from 320px up (the headline size is set for it) */
+.tpl-hero h1 .accent { white-space: nowrap; }
 </style>
 </head>`);
-
-
-/* ---------- Link preview (iMessage and others) ---------- */
-/* iMessage drops the part of the title that matches og:site_name, so there is no og:site_name and the title is just the name. */
-rep('<title>R&amp;A Plumbing Heating &amp; Air | Riverside Plumbing &amp; HVAC</title>', '<title>R&amp;A Plumbing Heating &amp; Air</title>');
-rep('<meta property="og:title" content="R&amp;A Plumbing Heating &amp; Air | Riverside Plumbing &amp; HVAC">', '<meta property="og:title" content="R&amp;A Plumbing Heating &amp; Air">');
-rep('<meta property="og:site_name" content="R&amp;A Plumbing Heating &amp; Air">\n', '');
-rep('<meta property="og:image:alt" content="A smiling family of three on their living room couch.">', '<meta property="og:image:alt" content="Ryan, owner of R&amp;A Plumbing Heating &amp; Air, in front of his van.">');
-/* og.jpg: Ryan in front of his van, 1200x630, full width of the original (rows 70 to 876 of 1024), no filter */
-copyFileSync(join(PHOTOS, 'og.jpg'), join(OUT, 'images', 'og.jpg'));
 
 /* ---------- Guards ---------- */
 for (const bad of [/Google(?! Maps)(?!\.com\/maps)/i, /Turlock/i, /Greg\b/, /Kenny/, /second opinion/i, /upfront/i, /satisfaction guarantee/i, /Horizon/i, /Claude/i, /—/, /PLANS_LINK/, /\{\{/, /CSLB/]) {

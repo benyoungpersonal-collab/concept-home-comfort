@@ -4,9 +4,22 @@
   "tagline": "Plumbing Heating & Air",
   "logo": "logos/ra-plumbing-heating-air.webp",
   "logoMark": "logos/ra-plumbing-heating-air-mark.png",
+  "headerMark": "logos/ra-plumbing-heating-air-bear.png",
+  "logoTag": "Plumbing · Heating & Air",
   "phone": "(951) 992-6216",
   "email": "raplumbingnhvac@gmail.com",
   "city": "Riverside",
+  "state": "CA",
+  "mainService": "Plumbing & HVAC Repair",
+  "heroPhoto": {
+    "src": "photos/ra-plumbing-heating-air/ryan-van-original.png",
+    "alt": "Ryan, owner of R&A Plumbing Heating & Air, standing with arms crossed beside his R&A work van with the logo, phone number, and services on its side",
+    "ogAlt": "Ryan, owner of R&A Plumbing Heating & Air, in front of his van.",
+    "ogFocusY": 32,
+    "position": "50% 30%",
+    "positionDesktop": "50% 25%",
+    "positionWide": "50% 20%"
+  },
   "trade": "both",
   "mode": "established",
   "map": false,
@@ -16,6 +29,25 @@
     "fill": "vivid"
   },
   "insured": true,
+  "trust": [
+    {
+      "icon": "i-clock",
+      "strong": "24/7 emergency service"
+    },
+    {
+      "icon": "i-home",
+      "strong": "Residential & commercial"
+    },
+    {
+      "icon": "i-wrench",
+      "strong": "Maintenance plans",
+      "sub": "from $149/year"
+    },
+    {
+      "icon": "i-shield",
+      "strong": "Insured"
+    }
+  ],
   "upfrontPricing": false,
   "guarantee": false,
   "secondOpinion": false,
@@ -28,7 +60,8 @@
   ],
   "pill": "Reliable by Nature",
   "pillShort": "Reliable by Nature",
-  "headline": "Plumbing, heating & air.",
+  "headline": "Help that",
+  "headlineAccent": "shows up on time.",
   "hours": "24/7 emergency service, 365 days a year.",
   "headerHours": "Call or text, 24/7 emergency service",
   "serviceAreas": [
@@ -82,7 +115,8 @@
     "name": "Ryan",
     "role": "Owner"
   },
-  "lead": "Leaks, no heat, no cool, or no hot water? R&A handles plumbing, heating, and A/C repairs and installs for homes and businesses in Riverside and across the Inland Empire.",
+  "lead": "Leaks, no heat, no cool, or no hot water? R&A handles plumbing, heating, and A/C repairs and installs for homes and businesses in Riverside, San Bernardino, and Orange County.",
+  "servicesLead": "Repairs, installs, and tune-ups for homes and businesses, big job or small.",
   "reviews": [
     {
       "name": "Hailie K.",
