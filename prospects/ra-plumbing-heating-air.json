@@ -1,0 +1,62 @@
+{
+  "name": "R&A Plumbing Heating & Air",
+  "shortName": "R&A",
+  "tagline": "Plumbing Heating & Air",
+  "logo": "logos/ra-plumbing-heating-air.webp",
+  "logoMark": "logos/ra-plumbing-heating-air-mark.png",
+  "phone": "(951) 992-6216",
+  "email": "raplumbingnhvac@gmail.com",
+  "city": "Riverside",
+  "trade": "both",
+  "mode": "established",
+  "map": false,
+  "colors": {
+    "brand": "#2493CF",
+    "second": "#14213D",
+    "fill": "vivid"
+  },
+  "insured": true,
+  "upfrontPricing": false,
+  "guarantee": false,
+  "secondOpinion": false,
+  "unverified": [
+    "Insured",
+    "$99 whole-system tune-up special (from his Instagram, may have ended)",
+    "Photos of the finished work texted to the customer (visit step 3)",
+    "Arrival-window text when you book (visit step 1)"
+  ],
+  "pill": "Reliable by Nature",
+  "pillShort": "Reliable by Nature",
+  "headline": "Plumbing, heating & air.",
+  "hours": "24/7 emergency service, 365 days a year.",
+  "headerHours": "Call or text, 24/7 emergency service",
+  "serviceAreas": ["Riverside"],
+  "googleRating": 5,
+  "reviewCount": 3,
+  "googleReviewsUrl": "#reviews",
+  "services": [
+    { "name": "Plumbing", "blurb": "Leaks, faucets, water pressure, valves, and piping. Repairs and installs.", "sub": ["Leak repair", "Faucets", "Valves and piping"], "icon": "i-droplet" },
+    { "name": "Heating & A/C", "blurb": "Repair, installation, and tune-ups.", "sub": ["A/C repair", "Furnace repair", "New systems"], "icon": "i-snowflake" },
+    { "name": "Water heaters", "blurb": "Tank and tankless, repair and replacement.", "sub": ["Tank", "Tankless"], "tone": "main" },
+    { "name": "Maintenance plans", "blurb": "From $149 a year. HVAC and plumbing care on a schedule.", "sub": ["Essential", "Comfort", "Premium"], "tone": "second" }
+  ],
+  "owner": {
+    "name": "Ryan",
+    "role": "Owner"
+  },
+  "lead": "Leaks, no heat, no cool, or no hot water? R&A handles plumbing, heating, and A/C repairs and installs for homes and businesses in Riverside and across the Inland Empire.",
+  "reviews": [
+    { "name": "Hailie K.", "quote": "I had Ryan with R&A come out to fix my water heater due to my tankless not working right. He was very informative and gave me multiple options." },
+    { "name": "Ahmad A.", "quote": "I couldn't be happier with the service from the moment I called they were professional understanding and incredibly helpful. Showed up on time explained the work clearly and best of all! AFFORDABLE!" },
+    { "name": "Jonathon K.", "quote": "...Ryan was able to properly educate me on why it would be better and more efficient in the long run to go ahead and replace the faucet all together. Service was quick and customer service was impeccable." }
+  ],
+  "faqs": [
+    { "q": "How fast can you get here?", "a": "We offer 24/7 emergency service, 365 days a year. Call (951) 992-6216 for the fastest time." },
+    { "q": "Should I repair or replace my system?", "a": "We'll show you both options and the price of each, so you can decide." },
+    { "q": "How often should I get a tune-up?", "a": "A good rule of thumb is once a year for your AC in spring, and once for your furnace in fall." },
+    { "q": "Do you offer maintenance plans?", "a": "Yes. Plans start at $149 a year. PLANS_LINK" },
+    { "q": "Do you work on water heaters?", "a": "Yes. Tank and tankless, repair and replacement." },
+    { "q": "What should I do if a pipe starts leaking?", "a": "Turn off the water at your main shutoff valve, usually where the water line enters the house, then call us. Shutting it off fast limits the water damage." },
+    { "q": "What areas do you serve?", "a": "Riverside, San Bernardino, and Orange County. See the full city list above. Don't see your city? Call us. If we can get there fast, we'll come." }
+  ]
+}
