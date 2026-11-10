@@ -11,11 +11,12 @@
   - Trust row with the 5 facts Ben approved (license left out: the CSLB name does not match)
   - $99 tune-up callout with a button that opens the quick quote with Tune-ups picked
   - Home Comfort Maintenance Plans section (Essential, Comfort featured, Premium) right after the services
-  - Service areas in 3 county groups; on phones only Riverside County starts open
+  - Service areas: map card (3 counties, logo pin on Riverside), then 3 county dropdowns, all closed
   - Footer email and socials
   Every replacement must match exactly once, or the script stops.
 */
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync, unlinkSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync, unlinkSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -40,6 +41,7 @@ const rx = (re, b, n = 1) => {
 const PHONE = '(951) 992-6216', TEL = 'tel:+19519926216', SMS = 'sms:+19519926216';
 const smsBody = (t) => `${SMS}?&amp;body=${encodeURIComponent(t)}`;
 const icon = (id) => `<svg class="icon" aria-hidden="true"><use href="#${id}"/></svg>`;
+const WIDE = [[480, 320], [768, 512], [1024, 683], [1536, 1024]];
 const srcset = (name, sizes) => sizes.map(([w, h]) => `images/ra/${name}-${w}x${h}.webp ${w}w`).join(', ');
 
 /* ---------- Photos ---------- */
@@ -51,11 +53,9 @@ rep('<title>R&amp;A Plumbing Heating &amp; Air | Riverside HVAC &amp; Plumbing |
 rep('content="R&amp;A Plumbing Heating &amp; Air | Riverside HVAC &amp; Plumbing | 5-Star Service"', 'content="R&amp;A Plumbing Heating &amp; Air | Riverside Plumbing &amp; HVAC"');
 const desc = 'R&amp;A Plumbing Heating &amp; Air: plumbing, heating, and A/C repairs, installs, and maintenance plans for homes and businesses in Riverside. 24/7 emergency service. Call (951) 992-6216.';
 rep('content="R&amp;A Plumbing Heating &amp; Air: plumbing, heating &amp; a/c, and water heaters for homeowners in Riverside. Call (951) 992-6216."', `content="${desc}"`, 2);
-/* Hero image preload: Ryan's photo instead of the stock tech */
-rx(/<link rel="preload" as="image" imagesrcset="images\/photos\/[^"]*" imagesizes="92vw" media="\(max-width: 899px\)" fetchpriority="high">/,
-  `<link rel="preload" as="image" imagesrcset="${srcset('ryan-van-square', [[480, 480], [720, 720], [1024, 1024]])}" imagesizes="92vw" media="(max-width: 899px)" fetchpriority="high">`);
-rx(/<link rel="preload" as="image" imagesrcset="images\/photos\/[^"]*" imagesizes="\(min-width: 1200px\) 522px, 42vw" media="\(min-width: 900px\)" fetchpriority="high">/,
-  `<link rel="preload" as="image" imagesrcset="${srcset('ryan-van-portrait', [[480, 600], [720, 900], [819, 1024]])}" imagesizes="(min-width: 1200px) 522px, 42vw" media="(min-width: 900px)" fetchpriority="high">`);
+/* Hero image preload: Ryan's photo, whole and uncropped (landscape 3:2) */
+rx(/<link rel="preload" as="image" imagesrcset="images\/photos\/[^"]*" imagesizes="92vw" media="\(max-width: 899px\)" fetchpriority="high">\n<link rel="preload" as="image" imagesrcset="images\/photos\/[^"]*" imagesizes="\(min-width: 1200px\) 522px, 42vw" media="\(min-width: 900px\)" fetchpriority="high">/,
+  `<link rel="preload" as="image" imagesrcset="${srcset('ryan-van-wide', WIDE)}" imagesizes="(min-width: 900px) 46vw, 92vw" fetchpriority="high">`);
 
 const css = `
 <style>
@@ -79,7 +79,12 @@ body .on-dark .accent { color: #43A8DE !important; }
 @media (min-width: 900px) { .tpl-bento-rest { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; } .tpl-bento-rest > .tile.ra-wide { min-height: 230px; } }
 .tpl-callout { background: #E9F4FA; border-color: rgb(36 147 207 / .3); }
 .tpl-callout .icon-bubble { color: var(--c-brand); }
-/* Maintenance plans */
+/* Hero: Ryan's photo whole, at its own 3:2 shape (no arch crop) */
+.hero-media .ra-hero-photo { position: relative; aspect-ratio: 3 / 2; border-radius: var(--r-lg, 24px); overflow: hidden; background: #6f7f8c; box-shadow: var(--shadow-3); }
+.hero-media .ra-hero-photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 899px) { .hero-media { max-width: none; } }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .hero-media { max-width: none; } }
+/* Maintenance plans: 3 equal cards, none lifted. Essential silver/white, Comfort blue, Premium navy and gold (his flyer). */
 .ra-plans { background: linear-gradient(180deg, #EEF6FB 0%, #F6F3EF 100%); }
 .ra-plans-head { display: grid; gap: var(--sp-4, 24px); align-items: center; margin-bottom: var(--sp-5, 32px); }
 .ra-plans-head .section-head { margin-bottom: 0; }
@@ -87,37 +92,57 @@ body .on-dark .accent { color: #43A8DE !important; }
 .ra-plans-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (min-width: 900px) { .ra-plans-head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-6, 48px); } }
 .ra-plan-list { display: grid; gap: 16px; list-style: none; margin: 0; padding: 0; }
-@media (min-width: 960px) { .ra-plan-list { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; } .ra-plan.is-featured { transform: translateY(-14px); } }
-.ra-plan { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 14px; padding: 26px 22px 22px; border-radius: var(--r-card, 20px); color: #fff;
-  background: linear-gradient(150deg, var(--c-brand) 0%, #1D7DB2 100%);
-  box-shadow: 0 2px 4px rgb(36 147 207 / .18), 0 14px 30px rgb(36 147 207 / .28), inset 0 1px 0 rgb(255 255 255 / .18); }
-.ra-plan::before { content: ""; position: absolute; right: -60px; top: -60px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgb(255 255 255 / .16), rgb(255 255 255 / 0) 70%); pointer-events: none; }
-.ra-plan.is-featured { background: linear-gradient(150deg, var(--c-second) 0%, var(--c-second-deep) 100%); box-shadow: 0 2px 4px rgb(20 33 61 / .2), 0 22px 44px rgb(20 33 61 / .34), inset 0 1px 0 rgb(255 255 255 / .14); outline: 3px solid #43A8DE; outline-offset: -3px; }
-.ra-plan h3 { margin: 0; color: #fff; font-size: var(--fs-xl, 1.5rem); }
-.ra-plan-price { margin: 0; display: flex; align-items: baseline; gap: 6px; color: #fff; }
+@media (min-width: 960px) { .ra-plan-list { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; } }
+.ra-plan { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 26px 22px 22px; border-radius: var(--r-card, 20px); border: 1px solid transparent; }
+.ra-plan h3 { margin: 0; font-size: var(--fs-xl, 1.5rem); }
+.ra-plan-price { margin: 0; display: flex; align-items: baseline; gap: 6px; }
 .ra-plan-price b { font-family: var(--ff-display); font-size: 2.5rem; line-height: 1; letter-spacing: -.02em; }
-.ra-plan-price span { font-weight: 600; opacity: .92; }
-.ra-plan-tag { margin: 0; font-weight: 600; color: #fff; }
-.ra-plan-group { margin: 4px 0 0; font-size: var(--fs-xs, .78rem); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #fff; opacity: .9; }
-.ra-plan.is-featured .ra-plan-group { color: #8FCBEB; opacity: 1; }
+.ra-plan-price span { font-weight: 600; }
+.ra-plan-tag { margin: 0; font-weight: 600; }
+.ra-plan-group { margin: 4px 0 0; font-size: var(--fs-xs, .78rem); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .ra-plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.ra-plan li { display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; color: #fff; }
+.ra-plan li { display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
 .ra-plan li .icon { flex: none; width: 18px; height: 18px; margin-top: 2px; stroke: currentColor; }
-.ra-plan .btn { margin-top: auto; align-self: stretch; justify-content: center; }
-.ra-plan:not(.is-featured) .btn { --btn-bg: var(--c-navy); --btn-bd: var(--c-navy); --btn-fg: #fff; background: var(--c-navy); border-color: var(--c-navy); color: #fff; }
-.ra-plan-spacer { flex: 1 1 auto; }
-/* Service areas: 3 county groups. Phones: Riverside County open, the others tap to open. */
-.ra-areas { display: grid; gap: 14px; margin-top: var(--sp-4, 24px); }
-@media (min-width: 900px) { .ra-areas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; } }
-.ra-area { border: 1px solid #DCE6EE; border-radius: var(--r-card, 20px); background: #fff; padding: 4px 16px; }
-.ra-area summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 14px 0; font-family: var(--ff-display); font-weight: 800; font-size: var(--fs-md, 1.1rem); color: var(--c-navy); }
+/* Buttons: same place at the bottom of every card; 18.7px bold counts as large text (3:1) */
+.ra-plan .btn { margin-top: auto; align-self: stretch; justify-content: center; font-size: 1.17rem; font-weight: 800; }
+.ra-plan .btn, .ra-plan .btn:hover { color: #fff; --btn-fg: #fff; }
+/* Essential: white card, thin border, navy text, blue checks, blue button */
+.ra-plan--essential { background: #fff; border-color: #CFDCE6; color: var(--c-navy); box-shadow: 0 2px 4px rgb(20 33 61 / .06), 0 14px 30px rgb(20 33 61 / .08); }
+.ra-plan--essential h3, .ra-plan--essential .ra-plan-price, .ra-plan--essential .ra-plan-tag, .ra-plan--essential li { color: var(--c-navy); }
+.ra-plan--essential .ra-plan-group { color: #1B6A97; }
+.ra-plan--essential li .icon { color: #2493CF; }
+.ra-plan--essential .btn { --btn-bg: #2493CF; --btn-bd: #2493CF; background: #2493CF; border-color: #2493CF; }
+.ra-plan--essential .btn:hover { background: #2187BE; border-color: #2187BE; }
+/* Comfort: his blue, one shade deeper so white body text passes 4.5:1; navy button */
+.ra-plan--comfort { background: linear-gradient(150deg, #1D7DB2 0%, #176796 100%); color: #fff; box-shadow: 0 2px 4px rgb(29 125 178 / .18), 0 14px 30px rgb(29 125 178 / .26); }
+.ra-plan--comfort h3, .ra-plan--comfort .ra-plan-price, .ra-plan--comfort .ra-plan-tag, .ra-plan--comfort li, .ra-plan--comfort .ra-plan-group { color: #fff; }
+.ra-plan--comfort .btn { --btn-bg: var(--c-navy); --btn-bd: var(--c-navy); background: var(--c-navy); border-color: var(--c-navy); }
+.ra-plan--comfort .btn:hover { background: #0E1830; border-color: #0E1830; }
+/* Premium: deep navy, gold rim, gold name, price and checks; gold button with near-black text */
+.ra-plan--premium { background: linear-gradient(150deg, #1B2B4F 0%, #14213D 100%); border-color: #E8B04A; color: #E3E9F2; box-shadow: inset 0 0 0 1px #E8B04A, 0 2px 4px rgb(20 33 61 / .18), 0 14px 30px rgb(20 33 61 / .26); }
+.ra-plan--premium h3, .ra-plan--premium .ra-plan-price, .ra-plan--premium .ra-plan-group, .ra-plan--premium li .icon { color: #E8B04A; }
+.ra-plan--premium .ra-plan-tag, .ra-plan--premium li { color: #fff; }
+.ra-plan--premium .btn, .ra-plan--premium .btn:hover { --btn-bg: #E8B04A; --btn-bd: #E8B04A; --btn-fg: #1A1408; background: linear-gradient(180deg, #F0C058, #E0A038); border-color: #E0A038; color: #1A1408; }
+.ra-plan--premium .btn:hover { background: #E0A038; }
+.ra-plan { min-width: 0; }
+@media (max-width: 359px) { .ra-plan { padding: 22px 16px 18px; } .ra-plan .btn { padding-inline: 12px; } .ra-plan .btn .icon { display: none; } }
+/* Service areas: map card, then 3 county dropdowns (all closed) */
+.ra-areas { display: grid; gap: 10px; margin-top: var(--sp-3, 18px); }
+.ra-area { border: 1px solid #DCE6EE; border-radius: 16px; background: #fff; padding: 0 16px; }
+.ra-area summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 52px; padding: 10px 0; font-family: var(--ff-display); font-weight: 800; font-size: var(--fs-md, 1.1rem); color: var(--c-navy); }
 .ra-area summary::-webkit-details-marker { display: none; }
+.ra-area summary:focus-visible { outline: 3px solid var(--c-focus, #2493CF); outline-offset: 4px; border-radius: 8px; }
+.ra-area summary .ra-hq-tag { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px 2px 6px; border-radius: 999px; background: #E9F4FA; color: #1B6A97; font-family: var(--ff-body, inherit); font-size: 12px; font-weight: 700; }
+.ra-area summary .ra-hq-tag .icon { width: 14px; height: 14px; }
+.ra-area .ra-sum { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.ra-area .ra-sum-meta { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 .ra-area summary small { font-family: var(--ff-body, inherit); font-weight: 600; font-size: var(--fs-sm, .9rem); color: var(--c-muted, #5b6474); }
-.ra-area summary .icon { margin-left: auto; width: 20px; height: 20px; transition: transform .2s ease; }
-.ra-area[open] summary .icon { transform: rotate(180deg); }
+.ra-area summary > .icon { margin-left: auto; flex: none; width: 20px; height: 20px; transition: transform .2s ease; }
+.ra-area[open] summary > .icon { transform: rotate(180deg); }
 .ra-area .area-chips { margin: 0 0 16px; }
-@media (min-width: 900px) { .ra-area { padding: 6px 20px; } .ra-area summary { cursor: default; } .ra-area summary .icon { display: none; } }
 .ra-areas-note { margin-top: var(--sp-3, 18px); }
+.svc-region { font-size: 10px; letter-spacing: .12em; color: #5E6B7D; }
+@media (min-width: 900px) { .svc-region { font-size: 12px; } }
 /* Footer socials */
 .ra-socials { display: flex; gap: 10px; margin-top: 14px; padding: 0; list-style: none; }
 .ra-socials a { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgb(255 255 255 / .1); color: #fff; }
@@ -148,14 +173,13 @@ rep(`<li><a href="#services">Services ${icon('i-chevron-right')}</a></li>`, `<li
 rep('<li><a href="#services">Services</a></li>\n        <li><a href="#reviews">Reviews</a></li>\n        <li><a href="#how-it-works">', '<li><a href="#services">Services</a></li>\n        <li><a href="#plans">Maintenance plans</a></li>\n        <li><a href="#reviews">Reviews</a></li>\n        <li><a href="#how-it-works">');
 
 /* ---------- Hero ---------- */
-rep('<h1 id="hero-title">Plumbing, heating &amp; air.</h1>', '<h1 id="hero-title">Plumbing, heating &amp; air. <span class="accent">On time, explained clearly, and affordable.</span></h1>');
+rep('<h1 id="hero-title">Plumbing, heating &amp; air.</h1>', '<h1 id="hero-title">Help that <span class="accent">shows up on time.</span></h1>');
 rep('for homes and businesses in Riverside and across the Inland Empire.', 'for homes and businesses in Riverside, San Bernardino, and Orange County.');
 rep('<p class="hero-fine">Homepage preview by Ben Young Web Design. Photos are placeholders until we add yours.</p>', '<p class="hero-fine">Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.</p>');
-rx(/<picture>\s*<source media="\(max-width: 899px\)" srcset="images\/photos\/[^"]*" sizes="92vw" width="1200" height="1200">\s*<img sizes="\(min-width: 1200px\) 522px, 42vw" src="images\/photos\/[^"]*" srcset="[^"]*" width="1200" height="1500" alt="[^"]*" fetchpriority="high" style="[^"]*">\s*<\/picture>/s,
-  `<picture>
-            <source media="(max-width: 899px)" srcset="${srcset('ryan-van-square', [[480, 480], [720, 720], [1024, 1024]])}" sizes="92vw" width="1024" height="1024">
-            <img sizes="(min-width: 1200px) 522px, 42vw" src="images/ra/ryan-van-portrait-720x900.webp" srcset="${srcset('ryan-van-portrait', [[480, 600], [720, 900], [819, 1024]])}" width="819" height="1024" alt="Ryan, owner of R&amp;A Plumbing Heating &amp; Air, standing with arms crossed in front of his R&amp;A work van" fetchpriority="high" style="object-position:50% 30%;background-color:#6f7f8c">
-          </picture>`);
+rx(/<div class="arch">\s*<picture>\s*<source media="\(max-width: 899px\)" srcset="images\/photos\/[^"]*" sizes="92vw" width="1200" height="1200">\s*<img sizes="\(min-width: 1200px\) 522px, 42vw" src="images\/photos\/[^"]*" srcset="[^"]*" width="1200" height="1500" alt="[^"]*" fetchpriority="high" style="[^"]*">\s*<\/picture>\s*<\/div>/s,
+  `<div class="ra-hero-photo">
+          <img sizes="(min-width: 900px) 46vw, 92vw" src="images/ra/ryan-van-wide-1024x683.webp" srcset="${srcset('ryan-van-wide', WIDE)}" width="1536" height="1024" alt="Ryan, owner of R&amp;A Plumbing Heating &amp; Air, standing with arms crossed beside his R&amp;A work van with the logo, phone number, and services on its side" fetchpriority="high">
+        </div>`);
 
 /* ---------- Trust row: the 5 approved facts (license left out, see the reply to Ben) ---------- */
 rx(/<ul class="trust-list tpl-trust n3">[\s\S]*?<\/ul>/,
@@ -202,7 +226,7 @@ ${plansSection().split('$').join('$$')}`);
 function plansSection() {
   const li = (t) => `<li>${icon('i-check')}<span>${t}</span></li>`;
   const plan = (o) => `
-        <li class="ra-plan${o.featured ? ' is-featured' : ''}">
+        <li class="ra-plan ra-plan--${o.name.toLowerCase()}">
           <h3>${o.name}</h3>
           <p class="ra-plan-price"><b>${o.price}</b><span>/year</span></p>
           <p class="ra-plan-tag">${o.tag}</p>
@@ -210,7 +234,7 @@ function plansSection() {
           <ul>
             ${items.map(li).join('\n            ')}
           </ul>`).join('\n          ')}
-          <a class="btn ${o.featured ? 'btn-primary' : ''}" href="${smsBody(`Hi Ryan, I'd like to hear about the ${o.name.replace('&amp;', '&')} maintenance plan.`)}">${icon('i-message')}Text us about this plan</a>
+          <a class="btn" href="${smsBody(`Hi Ryan, I'd like to hear about the ${o.name.replace('&amp;', '&')} maintenance plan.`)}">${icon('i-message')}Text about ${o.name}</a>
         </li>`;
   return `
   <section class="section ra-plans" id="plans" aria-labelledby="plans-title">
@@ -227,7 +251,7 @@ function plansSection() {
       </div>
       <ul class="ra-plan-list" aria-label="Plans">${[
     plan({ name: 'Essential', price: '$149', tag: 'The basics done right.', groups: [['HVAC', ['Outdoor condenser cleaning (standard)', 'Electrical inspection', 'Compressor amp checks', 'System inspection', 'Ducting &amp; insulation evaluation']]] }),
-    plan({ name: 'Comfort', price: '$299', tag: 'More coverage. More comfort.', featured: true, groups: [
+    plan({ name: 'Comfort', price: '$299', tag: 'More coverage. More comfort.', groups: [
       ['HVAC', ['Chemical-bath condenser cleaning', 'Electrical inspection', 'Compressor amp checks', 'System inspection', 'Ducting &amp; insulation evaluation']],
       ['Plumbing', ['Tank-style water heater flush', 'Whole-home plumbing inspection', 'Water pressure check', 'Drain-flow evaluation']]] }),
     plan({ name: 'Premium', price: '$449', tag: 'Our highest level of care.', groups: [['Everything in Comfort, plus', ['Air filter service (cleaning or replacement allowance)', 'Tankless water heater descaling', 'Water quality screening (basic on-site screening)', 'Whole-home comfort report', 'Free HVAC diagnostics', 'Free plumbing diagnostics']]] }),
@@ -252,15 +276,34 @@ const groups = [
   ['Orange County', ['Anaheim', 'Santa Ana', 'Irvine', 'Huntington Beach', 'Costa Mesa', 'Fullerton', 'Garden Grove', 'Orange', 'Newport Beach', 'Mission Viejo', 'Tustin', 'Laguna Beach', 'Lake Forest', 'Buena Park']],
 ];
 const areasHtml = `<div class="ra-areas">
-${groups.map(([g, cities], i) => `          <details class="ra-area" open${i ? ' data-phone-closed' : ''}>
-            <summary><span>${g}</span><small>${cities.length} cities</small>${icon('i-chevron-down')}</summary>
+${groups.map(([g, cities], i) => `          <details class="ra-area">
+            <summary><span class="ra-sum"><span class="ra-sum-name">${g}</span><span class="ra-sum-meta">${i === 0 ? `<span class="ra-hq-tag">${icon('i-map-pin')}Home base</span>` : ''}<small>${cities.length} cities</small></span></span>${icon('i-chevron-down')}</summary>
             <ul class="area-chips" aria-label="Cities we serve in ${g}">
               ${cities.map((c) => c === 'Riverside' ? `<li class="is-hq">${icon('i-map-pin')}${c}</li>` : `<li>${c}</li>`).join('\n              ')}
             </ul>
           </details>`).join('\n')}
         </div>
         <p class="muted ra-areas-note">Don't see your city? Call us. If we can get there fast, we'll come.</p>`;
+/* The map: built by scripts/build-map.mjs from scripts/maps/ra-plumbing-heating-air.json (cached in scripts/.cache) */
+const mapCfg = join(ROOT, 'scripts', 'maps', 'ra-plumbing-heating-air.json');
+const mapSvg = join(ROOT, 'scripts', '.cache', 'preview-maps', 'ra-plumbing-heating-air.svg');
+const mapPartial = join(ROOT, 'scripts', '.cache', 'preview-maps', 'ra-plumbing-heating-air.html');
+if (!existsSync(mapSvg) || !existsSync(mapPartial)) execFileSync(process.execPath, [join(ROOT, 'scripts', 'build-map.mjs'), mapCfg], { stdio: 'inherit' });
+mkdirSync(join(OUT, 'images', 'map'), { recursive: true });
+/* Served cities in his light blue instead of the default warm tint */
+writeFileSync(join(OUT, 'images', 'map', 'service-area.svg'), readFileSync(mapSvg, 'utf8').split('#F6E3D6').join('#E0F0F8').split('#EDC9B3').join('#B5DAEF'));
+const mapHtml = readFileSync(mapPartial, 'utf8').replace(/^<!--.*?-->\n/, '').trim()
+  .replace('{{root}}scripts/.cache/preview-maps/ra-plumbing-heating-air.svg', 'images/map/service-area.svg')
+  .replace('alt="ALT"', 'alt="Map of Riverside, San Bernardino, and Orange counties, with Riverside as home base. Opens Google Maps."')
+  .replace('<span class="svc-hq-mark"><svg><use href="#logo-mark"/></svg></span>', '<span class="svc-hq-mark tpl-hq tpl-hq-logo"><img src="images/logo-mark.png" alt="" width="32" height="32"></span>');
+if (/#logo-mark|\{\{/.test(mapHtml)) fail('map partial still has a template tag');
 rep('<p class="lead">Based in Riverside, so a tech is never far away.</p>', '<p class="lead">Based in Riverside, serving three counties.</p>');
+rx(/<div class="container">\s*<div>\s*<p class="eyebrow">Service areas<\/p>/, `<div class="container areas-grid">
+      <div class="map-card">
+${mapHtml}
+      </div>
+      <div>
+        <p class="eyebrow">Service areas</p>`);
 rx(/<ul class="area-chips" aria-label="All 1 cities we serve">[\s\S]*?<\/ul>\s*<p class="muted">Just outside Riverside\? Call us\. If we can get there fast, we'll come\.<\/p>/, areasHtml);
 
 rep('365 days a year..', '365 days a year.');
@@ -293,17 +336,11 @@ rep('<script src="js/site.js" defer></script>', `<script src="js/site.js" defer>
       if (input) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles: true })); }
     });
   });
-  var phone = window.matchMedia('(max-width: 899px)');
-  var groups = document.querySelectorAll('.ra-area');
-  var set = function () { groups.forEach(function (d) { d.open = phone.matches ? !d.hasAttribute('data-phone-closed') : true; }); };
-  set();
-  if (phone.addEventListener) phone.addEventListener('change', set);
-  groups.forEach(function (d) { d.querySelector('summary').addEventListener('click', function (e) { if (!phone.matches) e.preventDefault(); }); });
 })();
 </script>`);
 
 /* ---------- Guards ---------- */
-for (const bad of [/Google/i, /Turlock/i, /Greg\b/, /Kenny/, /second opinion/i, /upfront/i, /satisfaction guarantee/i, /Horizon/i, /Claude/i, /—/, /PLANS_LINK/, /\{\{/, /CSLB/]) {
+for (const bad of [/Google(?! Maps)(?!\.com\/maps)/i, /Turlock/i, /Greg\b/, /Kenny/, /second opinion/i, /upfront/i, /satisfaction guarantee/i, /Horizon/i, /Claude/i, /—/, /PLANS_LINK/, /\{\{/, /CSLB/]) {
   const m = html.match(bad); if (m) fail(`leftover "${m[0]}" near: ${html.slice(Math.max(0, m.index - 80), m.index + 80)}`);
 }
 for (const m of html.matchAll(/href="tel:([^"]+)"/g)) if (m[1] !== '+19519926216') fail(`wrong tel link ${m[1]}`);
@@ -318,4 +355,5 @@ writeFileSync(file, html);
 const photoDir = join(OUT, 'images', 'photos');
 let dropped = 0;
 for (const f of readdirSync(photoDir)) if (!html.includes(`images/photos/${f}`)) { unlinkSync(join(photoDir, f)); dropped++; }
+for (const f of readdirSync(join(OUT, 'images', 'ra'))) if (!html.includes(`images/ra/${f}`)) { unlinkSync(join(OUT, 'images', 'ra', f)); dropped++; }
 console.log(`Finished previews/ra-plumbing-heating-air/ (R&A sections added, ${dropped} unused stock photo files dropped).`);

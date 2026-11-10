@@ -9,6 +9,9 @@
       "svg": "images/map/NAME.svg", "partial": "partials/area-map.html", "alt": "..." }
   Optional: "nearby": ["Ceres, CA", "Denair, CA"] adds plain place names (no pin, no shading) for context,
   and "centerOnHq": true frames the map evenly around the home base instead of around all the cities.
+  For a wide region: "pins": "hq" draws only the home-base pin (the other cities still frame the map and get shaded),
+  "places": [{ "name": "Orange County", "lat": 33.7, "lon": -117.8 }] adds plain labels at fixed points (no lookup),
+  "highways": "motorway|trunk" picks which roads to draw, and "zoom": 9 sets the Google Maps zoom.
 
   What it does:
   1. Finds each city with Nominatim (OpenStreetMap's search), one request per second.
@@ -94,7 +97,7 @@ const center = [ilat((y0 + y1) / 2), ilon((x0 + x1) / 2)];
 
 /* ---------- 3. OSM data ---------- */
 const B = bbox.join(',');
-const query = `[out:json][timeout:150];(way["highway"~"^(motorway|trunk|primary)$"](${B});way["waterway"~"^(river|canal)$"](${B});way["natural"="water"]["water"~"^(lake|reservoir|river)$"](${B});relation["boundary"="administrative"]["admin_level"="6"](${B});relation["boundary"="administrative"]["admin_level"="8"](${B}););out geom qt;`;
+const query = `[out:json][timeout:150];(way["highway"~"^(${cfg.highways || 'motorway|trunk|primary'})$"](${B});way["waterway"~"^(river|canal)$"](${B});way["natural"="water"]["water"~"^(lake|reservoir|river)$"](${B});relation["boundary"="administrative"]["admin_level"="6"](${B});relation["boundary"="administrative"]["admin_level"="8"](${B}););out geom qt;`;
 const osmPath = join(CACHE, 'osm-' + createHash('sha1').update(query).digest('hex').slice(0, 12) + '.json');
 let osm;
 if (existsSync(osmPath)) osm = JSON.parse(readFileSync(osmPath, 'utf8'));
@@ -208,7 +211,8 @@ const trunk = lines(ways((t) => t.highway === 'trunk'), 0.7, 3);
 const primary = lines(ways((t) => t.highway === 'primary'), 0.9, 8);
 
 /* ---------- 6. Route shields (one per route, away from the pins) ---------- */
-const pins = framed.map((c) => ({ ...c, x: px(c.lon), y: py(c.lat) }));
+const pins = framed.filter((c) => cfg.pins !== 'hq' || c.hq || c.nearby).map((c) => ({ ...c, x: px(c.lon), y: py(c.lat) }));
+const places = (cfg.places || []).map((c) => ({ ...c, x: px(c.lon), y: py(c.lat) }));
 const shields = [];
 const byRef = new Map();
 for (const w of ways((t) => (t.highway === 'motorway' || t.highway === 'trunk') && t.ref)) {
@@ -292,12 +296,13 @@ for (let pass = 0; pass < 4; pass++) for (const c of order) c.side = Object.keys
 for (const c of pins.filter((p) => !p.nearby)) { const k = costOf(c, c.side); if (k >= 20) console.log(`  note: label for ${c.name} overlaps something (cost ${Math.round(k)})`); }
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const pct = (v, of) => (Math.round((v / of) * 10000) / 100) + '%';
-const gmaps = `https://www.google.com/maps/@?api=1&map_action=map&center=${center[0].toFixed(4)},${center[1].toFixed(4)}&zoom=10`;
+const gmaps = `https://www.google.com/maps/@?api=1&map_action=map&center=${center[0].toFixed(4)},${center[1].toFixed(4)}&zoom=${cfg.zoom || 10}`;
 const pinHtml = pins.map((c) => c.nearby
   ? `    <span class="svc-place" style="left:${pct(c.x, W)};top:${pct(c.y, H)}">${esc(c.name)}</span>`
   : c.hq
   ? `    <span class="svc-pin is-hq" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-hq-mark"><svg><use href="#logo-mark"/></svg></span><span class="svc-pin-label"><strong>${esc(c.name)}</strong><small>${esc(cfg.hqLabel || '')}</small></span></span>`
-  : `    <span class="svc-pin" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-pin-label">${esc(c.name)}</span></span>`).join('\n');
+  : `    <span class="svc-pin" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-pin-label">${esc(c.name)}</span></span>`)
+  .concat(places.map((c) => `    <span class="svc-place svc-region" style="left:${pct(c.x, W)};top:${pct(c.y, H)}">${esc(c.name)}</span>`)).join('\n');
 const partial = `<!-- Built by scripts/build-map.mjs from ${cfgPath.replace(/^.*scripts\//, 'scripts/')}. Edit the config and rebuild instead of editing this file. -->
 <a class="svc-map" href="${esc(gmaps)}" target="_blank" rel="noopener">
   <img src="{{root}}${cfg.svg}" width="${W}" height="${H}" alt="${esc(cfg.alt || 'Map of the cities we serve. Opens Google Maps.')}" loading="lazy" decoding="async">
