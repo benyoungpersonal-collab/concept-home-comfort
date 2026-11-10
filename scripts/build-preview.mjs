@@ -280,12 +280,21 @@ let brandCss = '';
 let brightReport = '';
 let mapColors = null;
 if (brand && brand.toUpperCase() !== '#E4572E') {
-  const strong = darkenUntil(brand, 4.5), deep = darkenUntil(brand, 5.5), hover = darkenUntil(brand, 6), tint = mix(brand, 0.86);
+  /* colors.fill "vivid": one vivid brand color everywhere (fills with white text, headline words, labels, links, icons),
+     instead of darker shades for text. The color is used as given: pick it so white bold text reaches 3:1 on it and it
+     reaches 3:1 on cream (the build checks both). Only the hover state is a little deeper. */
+  const vivid = str(raw.colors && raw.colors.fill).toLowerCase() === 'vivid';
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  if (vivid) {
+    const w = contrastWhite(toRgb(brand)), c = ratio(toRgb(brand), toRgb('#F6F3EF'));
+    if (w < 3 || c < 3) fail(`colors.fill vivid: ${brand} gives white text ${w.toFixed(2)}:1 and ${c.toFixed(2)}:1 on cream; both need 3:1. Use a slightly deeper shade of the same hue.`);
+  }
+  const strong = vivid ? brand : darkenUntil(brand, 4.5), deep = vivid ? brand : darkenUntil(brand, 5.5), hover = vivid ? toHex(darken(toRgb(brand), 0.08)) : darkenUntil(brand, 6), tint = mix(brand, 0.86);
   /* --c-brand-light is the accent color on dark bands, so it is lightened until it reads at 4.5:1 on the navy. */
   const darkBg = toRgb(navy ? darkenUntil(navy, 7) : '#14213D');
-  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
   let lf = 0.55; while (ratio(toRgb(mix(brand, lf)), darkBg) < 4.6 && lf < 0.95) lf += 0.03;
-  const light = mix(brand, lf);
+  const light = vivid ? brand : mix(brand, lf);
+  if (vivid) brightReport = `vivid ${brand} everywhere: white text on it ${contrastWhite(toRgb(brand)).toFixed(2)}:1, on cream ${ratio(toRgb(brand), toRgb('#F6F3EF')).toFixed(2)}:1, on white ${ratio(toRgb(brand), toRgb('#FFFFFF')).toFixed(2)}:1, on navy ${ratio(toRgb(brand), darkBg).toFixed(2)}:1; hover ${hover}`;
   brandCss += `:root{--c-brand:${brand};--c-brand-strong:${strong};--c-brand-deep:${deep};--c-brand-hover:${hover};--c-brand-tint:${tint};--c-brand-light:${light};--c-brand-rgb:${rgbStr(strong)}}`;
   /* site.css has a few warm colors written out (the headline underline, button shadows, soft tints). Every rule that uses
      one is copied here with the brand's own shade, so a blue brand has no orange left on the page. */
@@ -678,6 +687,6 @@ console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
 console.log(`Trust strip (${trust.length}): ${trust.map((t) => t.strong + (t.sub ? ` (${t.sub})` : '')).join(' | ')}`);
 console.log(`Reviews: ${established ? `${data.ratingText} stars from ${reviewCount ?? '?'} Google reviews, ${reviews.length} quote(s) shown` : '3 sample cards, tagged Sample (preview only, never on a live site)'}. FAQ: ${faqList.length} questions${faqs.length ? '' : ' (trade defaults)'}.`);
-if (brightReport) console.log(`Bright fill: ${brightReport}.`);
+if (brightReport) console.log(`Accent: ${brightReport}.`);
 if (confirmList.length) console.log(`Confirm with the owner: ${confirmList.join(', ')}.`);
 console.log(`Preview URL it expects: ${previewUrl}  (Cloudflare project name: byw-${slug})`);
