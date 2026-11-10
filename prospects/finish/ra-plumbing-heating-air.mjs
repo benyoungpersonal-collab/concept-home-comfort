@@ -72,6 +72,7 @@ body .on-dark .accent { color: #43A8DE !important; }
 /* Rating spots: "5-star reviews" */
 .rating-bar-score .rating-bar-count { font-weight: 600; }
 .rating-badge .count { font-weight: 600; }
+@media (max-width: 599px) { .stars5.small.tpl-rated { width: calc(70px * var(--stars, 1)); } }
 /* Services: the heating photo card spans the top of the right column; water heaters and plans sit side by side */
 .tpl-bento-rest > .tile.ra-wide { grid-column: 1 / -1; min-height: 260px; }
 .tpl-bento-rest > .tile:last-child:nth-child(odd) { grid-column: auto; }
