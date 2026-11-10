@@ -294,7 +294,17 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
   const darkBg = toRgb(navy ? darkenUntil(navy, 7) : '#14213D');
   let lf = 0.55; while (ratio(toRgb(mix(brand, lf)), darkBg) < 4.6 && lf < 0.95) lf += 0.03;
   const light = vivid ? brand : mix(brand, lf);
-  if (vivid) brightReport = `vivid ${brand} everywhere: white text on it ${contrastWhite(toRgb(brand)).toFixed(2)}:1, on cream ${ratio(toRgb(brand), toRgb('#F6F3EF')).toFixed(2)}:1, on white ${ratio(toRgb(brand), toRgb('#FFFFFF')).toFixed(2)}:1, on navy ${ratio(toRgb(brand), darkBg).toFixed(2)}:1; hover ${hover}`;
+  /* Vivid mode on navy: accent TEXT (section labels, headline words and their underline, link hovers) uses the template's
+     lighter tint of the brand, tuned to 4.6:1 on navy; icons and fills keep the vivid color. */
+  if (vivid) {
+    const tintOnDark = mix(brand, lf);
+    const site = readFileSync(join(ROOT, 'css', 'site.css'), 'utf8');
+    const m = site.match(/\.accent \{[\s\S]*?background: (url\("data:image\/svg\+xml,[^"]+"\))/);
+    /* On navy the light tint at the cream sections' 45% opacity blends to a dull tan, so the underline is drawn at 80%. */
+    const svg = m ? m[1].replace(/%23E4572E/g, encodeURIComponent(tintOnDark)).replace(/opacity='\.45'/, "opacity='.8'") : '';
+    brandCss += `:root{--c-brand-ondark:${tintOnDark}}.on-dark .eyebrow{color:var(--c-brand-ondark)}.on-dark .accent{color:var(--c-brand-ondark)${svg ? `;background-image:${svg}` : ''}}.rating-bar a:hover{color:var(--c-brand-ondark)}`;
+  }
+  if (vivid) brightReport = `vivid ${brand} everywhere: white text on it ${contrastWhite(toRgb(brand)).toFixed(2)}:1, on cream ${ratio(toRgb(brand), toRgb('#F6F3EF')).toFixed(2)}:1, on white ${ratio(toRgb(brand), toRgb('#FFFFFF')).toFixed(2)}:1, on navy ${ratio(toRgb(brand), darkBg).toFixed(2)}:1; accent text on navy ${mix(brand, lf)} (${ratio(toRgb(mix(brand, lf)), darkBg).toFixed(2)}:1); hover ${hover}`;
   brandCss += `:root{--c-brand:${brand};--c-brand-strong:${strong};--c-brand-deep:${deep};--c-brand-hover:${hover};--c-brand-tint:${tint};--c-brand-light:${light};--c-brand-rgb:${rgbStr(strong)}}`;
   /* site.css has a few warm colors written out (the headline underline, button shadows, soft tints). Every rule that uses
      one is copied here with the brand's own shade, so a blue brand has no orange left on the page. */
