@@ -339,6 +339,125 @@ rep('<script src="js/site.js" defer></script>', `<script src="js/site.js" defer>
 })();
 </script>`);
 
+
+/* ================= Round 3: bolder and cleaner top of page ================= */
+/* Hero photo preload: the banner is full width now */
+rep('imagesizes="(min-width: 900px) 46vw, 92vw" fetchpriority="high">', 'imagesizes="100vw" fetchpriority="high">');
+copyFileSync(join(ROOT, 'prospects', 'logos', 'ra-plumbing-heating-air-bear.png'), join(OUT, 'images', 'logo-bear.png'));
+/* Header (and mobile menu): bear mark on its black rounded square + "R&A" and "PLUMBING · HEATING & AIR" */
+rep(`<a class="logo" href="#main" aria-label="R&amp;A Plumbing Heating &amp; Air, back to top">
+      <img class="logo-img" src="images/logo.webp" alt="" width="463" height="463">
+    </a>`, `<a class="logo ra-logo" href="#main" aria-label="R&amp;A Plumbing Heating &amp; Air, back to top">
+      <img class="ra-logo-mark" src="images/logo-bear.png" alt="" width="96" height="96">
+      <span class="logo-text"><span class="logo-name">R<span class="ra-amp">&amp;</span>A</span><span class="logo-tag">Plumbing <span aria-hidden="true">·</span> Heating &amp; Air</span></span>
+    </a>`, 2);
+/* Hero: photo banner first, then a white card laid over its bottom edge */
+rx(/<section class="hero" aria-labelledby="hero-title">[\s\S]*?<\/section>/, `<section class="hero ra-hero" aria-labelledby="hero-title">
+    <div class="ra-hero-banner">
+      <img sizes="100vw" src="images/ra/ryan-van-wide-1536x1024.webp" srcset="${srcset('ryan-van-wide', WIDE)}" width="1536" height="1024" alt="Ryan, owner of R&amp;A Plumbing Heating &amp; Air, standing with arms crossed beside his R&amp;A work van with the logo, phone number, and services on its side" fetchpriority="high">
+    </div>
+    <div class="container ra-hero-wrap">
+      <div class="hero-copy ra-hero-card">
+        <p class="tpl-pill"><span class="tp-0">Reliable by Nature</span></p>
+        <h1 id="hero-title">Help that<br> <span class="accent">shows up on time.</span></h1>
+        <p class="lead">Leaks, no heat, no cool, or no hot water? R&amp;A handles plumbing, heating, and A/C repairs and installs for homes and businesses in Riverside, San Bernardino, and Orange County.</p>
+        <div class="hero-ctas" data-hide-bar>
+          <a class="btn btn-primary btn-lg" href="tel:+19519926216">${icon('i-phone')}Call now</a>
+          <a class="btn btn-secondary btn-lg" href="#request">${icon('i-calendar')}Request a visit</a>
+        </div>
+        <p class="hero-note">${icon('i-check-circle')}24/7 emergency service, 365 days a year.</p>
+      </div>
+    </div>
+  </section>`);
+/* Trust row: 4 tiles (no 5-star item) */
+rx(/<ul class="trust-list tpl-trust n5">[\s\S]*?<\/ul>/, `<ul class="ra-trust">
+        <li><span class="ra-trust-icon">${icon('i-clock')}</span><span>24/7 emergency service</span></li>
+        <li><span class="ra-trust-icon">${icon('i-home')}</span><span>Residential &amp; commercial</span></li>
+        <li><span class="ra-trust-icon">${icon('i-wrench')}</span><span>Maintenance plans <span class="ra-nowrap">from $149/year</span></span></li>
+        <li><span class="ra-trust-icon">${icon('i-shield')}</span><span>Insured</span></li>
+      </ul>`.split('$').join('$$'));
+rep('</style>\n</head>', `
+/* ---- Round 3 ---- */
+/* Bold blue from the van wrap: pill, accent words on light backgrounds, main buttons on light backgrounds, links */
+:root { --ra-bold: #0078DE; --ra-bold-hover: #0067BF; }
+.accent { color: var(--ra-bold); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%230078DE' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' opacity='.45'/%3E%3C/svg%3E"); }
+.tpl-pill { background: var(--ra-bold); color: #fff; box-shadow: none; }
+.btn-primary, .btn-primary:hover { --btn-bg: var(--ra-bold); --btn-bd: var(--ra-bold); --btn-fg: #fff; --btn-shadow: none; box-shadow: none; }
+.btn-primary:hover { --btn-bg: var(--ra-bold-hover); --btn-bd: var(--ra-bold-hover); }
+.on-dark .btn-primary { --btn-bg: #2493CF; --btn-bd: #2493CF; }
+.on-dark .btn-primary:hover { --btn-bg: #2187BE; --btn-bd: #2187BE; }
+.sb-call { background: var(--ra-bold); }
+.sb-call:hover { background: var(--ra-bold-hover); }
+a, .text-link { color: var(--ra-bold); }
+a:hover { color: var(--ra-bold-hover); }
+/* Header: name next to the bear mark */
+.ra-logo { gap: 12px; }
+.ra-logo-mark { display: block; width: 46px; height: 46px; border-radius: 11px; flex: none; }
+.ra-logo .logo-name { color: var(--c-navy); font-size: 28px; letter-spacing: -.01em; }
+.ra-logo .ra-amp { color: var(--ra-bold); margin: 0 1px; }
+.ra-logo .logo-tag { margin-top: 5px; font-size: 9.5px; letter-spacing: .16em; color: var(--c-muted, #5b6474); white-space: nowrap; }
+@media (min-width: 900px) { .ra-logo-mark { width: 52px; height: 52px; border-radius: 12px; } .ra-logo .logo-name { font-size: 31px; } .ra-logo .logo-tag { font-size: 10.5px; } }
+.site-header.is-compact .ra-logo-mark { width: 42px; height: 42px; }
+/* With the name beside the mark the header is wider: icon-only phone until there is room for its label */
+@media (min-width: 1000px) and (max-width: 1399px) { .header-phone-text { display: none; } .header-phone { padding: 0 2px; } .nav-link { padding: 0 10px; font-size: 14.5px; } }
+@media (min-width: 1000px) and (max-width: 1099px) { .nav-link { padding: 0 7px; font-size: 14px; } .ra-logo .logo-name { font-size: 28px; } .ra-logo .logo-tag { letter-spacing: .12em; } }
+@media (max-width: 359px) { .ra-logo .logo-name { font-size: 25px; } .ra-logo .logo-tag { font-size: 8.5px; letter-spacing: .12em; } }
+/* Hero: edge-to-edge photo banner, then the card */
+.ra-hero { padding: 0; background: #F6F3EF; }
+.ra-hero::before, .hero::before { display: none; content: none; background: none; }
+.ra-hero-banner { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #8a97a3; }
+.ra-hero-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+@media (min-width: 900px) {
+  .ra-hero-banner { aspect-ratio: auto; height: min(50vw, max(720px, 39vw), 760px); }
+  .ra-hero-banner img { object-position: 50% 25%; }
+}
+@media (min-width: 1600px) { .ra-hero-banner img { object-position: 50% 20%; } }
+.ra-hero-wrap { position: relative; z-index: 2; margin-top: -32px; }
+.ra-hero-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; background: #fff; border-radius: 28px 28px 0 0; padding: 32px 20px 44px; }
+.ra-hero-card > * { margin: 0; }
+.ra-hero-card .tpl-pill { margin: 0; }
+.ra-hero-card .hero-ctas { margin: 0; width: 100%; }
+.ra-hero-card .hero-note { margin: 0; }
+.ra-hero h1 { font-size: clamp(2.1rem, calc(11.8vw - 4px), 3.6rem); line-height: 1.04; letter-spacing: -.035em; margin: 0; }
+.ra-hero h1 .accent { white-space: nowrap; padding-bottom: .06em; background-size: 100% .2em; }
+.ra-hero .lead { max-width: 40rem; }
+@media (max-width: 599px) { .container.ra-hero-wrap { width: 100%; max-width: none; } .ra-hero-card { padding: 28px 16px 36px; border-radius: 24px 24px 0 0; } }
+@media (min-width: 600px) { .ra-hero-wrap { margin-top: -48px; } .ra-hero-card { padding: 44px 40px 52px; gap: 24px; } .ra-hero-card .hero-ctas { width: auto; } .ra-hero h1 { font-size: clamp(2.5rem, 7.5vw, 3.6rem); } }
+@media (min-width: 900px) { .ra-hero-wrap { margin-top: -72px; } .ra-hero-card { padding: 56px 64px 64px; gap: 26px; border-radius: 32px 32px 0 0; } .ra-hero h1 { font-size: clamp(3.5rem, 5.6vw, 5rem); } }
+/* No glows or color washes: solid colors everywhere */
+.hero-media::before, .page-hero::before { content: none; display: none; }
+.ra-plans { background: #EEF6FB; }
+.ra-plan--comfort { background: #1D7DB2; box-shadow: 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .1); }
+.ra-plan--premium { background: #14213D; box-shadow: inset 0 0 0 1px #E8B04A, 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .1); }
+.ra-plan--premium .btn, .ra-plan--premium .btn:hover { background: #E8B04A; border-color: #E8B04A; }
+.ra-plan--essential { box-shadow: 0 2px 4px rgb(20 33 61 / .06), 0 12px 24px rgb(20 33 61 / .08); }
+.tpl-bento .tile.tone-main:not(.photo-tile) { background: var(--c-brand-strong); box-shadow: 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .12); }
+.tpl-bento .tile.tone-second:not(.photo-tile) { background: var(--c-second); box-shadow: 0 2px 4px rgb(20 33 61 / .08), 0 12px 24px rgb(20 33 61 / .12); }
+.tpl-bento .tile.tone-main:not(.photo-tile)::before, .tpl-bento .tile.tone-second:not(.photo-tile)::before { content: none; display: none; }
+.estimator.on-dark { background: var(--c-navy); }
+.est-result::before { background: #43A8DE; }
+.hero-pill, .tpl-pill { box-shadow: none; }
+/* Headings: balanced line breaks */
+h1, h2, h3 { text-wrap: balance; }
+@media (min-width: 900px) and (max-width: 1199px) {
+  .tpl-bento-rest { grid-template-columns: minmax(0, 1fr); }
+  .faq-head h2 { font-size: clamp(1.75rem, 2.75vw, 2.4rem); }
+}
+.faq-head h2 .accent { white-space: nowrap; }
+/* Trust row: 4 tiles, bold blue squares, labels centered under; under half the old height at every width */
+.trust { padding: 12px 0; }
+.ra-trust { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
+.ra-trust li { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; color: #fff; font-weight: 700; font-size: 13px; line-height: 1.2; }
+.ra-trust-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--ra-bold); color: #fff; flex: none; }
+.ra-trust-icon .icon { width: 18px; height: 18px; color: #fff; stroke: #fff; }
+.ra-nowrap { white-space: nowrap; }
+@media (max-width: 374px) { .ra-trust { row-gap: 10px; } }
+@media (min-width: 600px) { .trust { padding: 10px 0; } .ra-trust { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; } .ra-trust li { font-size: 13.5px; } .ra-trust-icon { width: 30px; height: 30px; } }
+@media (min-width: 900px) { .trust { padding: 6px 0; } .ra-trust-icon { width: 28px; height: 28px; border-radius: 8px; } .ra-trust-icon .icon { width: 16px; height: 16px; } }
+@media (min-width: 1280px) { .trust { padding: 7px 0; } .ra-trust li { gap: 6px; font-size: 15px; } .ra-trust-icon { width: 30px; height: 30px; } .ra-trust-icon .icon { width: 17px; height: 17px; } }
+</style>
+</head>`);
+
 /* ---------- Guards ---------- */
 for (const bad of [/Google(?! Maps)(?!\.com\/maps)/i, /Turlock/i, /Greg\b/, /Kenny/, /second opinion/i, /upfront/i, /satisfaction guarantee/i, /Horizon/i, /Claude/i, /—/, /PLANS_LINK/, /\{\{/, /CSLB/]) {
   const m = html.match(bad); if (m) fail(`leftover "${m[0]}" near: ${html.slice(Math.max(0, m.index - 80), m.index + 80)}`);
