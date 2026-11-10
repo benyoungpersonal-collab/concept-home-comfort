@@ -1,28 +1,18 @@
 {
   "_note": "Photo registry. Every <img data-photo=\"key\"> in the HTML is built from this file by `node scripts/sync.mjs`, and `python3 scripts/build-images.py` downloads each `src` once and writes the self-hosted WebP files to images/photos/. All photos are free Unsplash or Pexels photos, credited on credits.html. fp = focal point [x, y] from 0 to 1, measured inside box. box = optional [x0, y0, x1, y1] (0 to 1) that trims the source first, e.g. to keep another company's logo out of every crop. Rule: real people only, and no visible logos or business names from other companies.",
-  "tech-marcus": {
-    "id": "32497161",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=3600",
-    "w": 5472,
-    "h": 3648,
-    "box": [
-      0.15,
-      0.0,
-      1.0,
-      0.86
-    ],
+  "pinwheel-hero": {
+    "file": "images/originals/pinwheel-hero.jpg",
+    "site": "Supplied",
+    "w": 3168,
+    "h": 1344,
     "fp": [
-      0.49,
-      0.5
+      0.5,
+      0.55
     ],
-    "color": "#9a9a92",
-    "alt": "Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight",
-    "by": "Kathleen Austin Kuhn",
-    "profile": "https://www.pexels.com/@kathleen-austin-kuhn-2152973960/",
-    "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
-    "use": "Home hero, cooling hero, team, about, preview template hero",
-    "preview": "pexels__32497161.jpg"
+    "color": "#879084",
+    "alt": "Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path",
+    "by": "Ben Young Web Design",
+    "use": "Home hero, cooling hero, showcase hero, link-preview image, preview template HVAC hero"
   },
   "owner-luis": {
     "id": "6050244",
@@ -433,5 +423,4 @@
     "use": "Request a visit form",
     "preview": "pexels__16852512.jpg"
   }
-
 }

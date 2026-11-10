@@ -439,8 +439,8 @@ const hp = raw.heroPhoto && typeof raw.heroPhoto === 'object' && str(raw.heroPho
 const stockHero = trade === 'plumbing'
   ? { files: [[480, 360], [768, 576], [1024, 768], [1536, 1152], [1920, 1440]].map(([w, h]) => ({ file: `hero-plumbing-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-plumbing.jpg',
       alt: 'Plumber smiling while tightening a drain pipe under a bathroom sink', pos: ['70% 45%', '70% 40%', '70% 40%'] }
-  : { files: [[480, 324], [768, 518], [1024, 691], [1536, 1036], [1920, 1295]].map(([w, h]) => ({ file: `hero-hvac-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-hvac.jpg',
-      alt: 'Technician in a gray polo checking an outdoor AC condenser beside a home with a flashlight', pos: ['55% 30%', '55% 25%', '55% 20%'] };
+  : { files: [[480, 204], [768, 326], [1024, 434], [1536, 652], [1920, 815]].map(([w, h]) => ({ file: `hero-hvac-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-hvac.jpg',
+      alt: 'Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path', pos: ['50% 55%', '50% 55%', '50% 60%'] };
 let hero = { ...stockHero, own: false };
 if (hp) {
   const src = resolve(dirname(dataPath), str(hp.src));

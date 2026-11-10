@@ -14,13 +14,16 @@
      scripts/photos.json: self-hosted srcset in images/photos/, focal-point crop, width/height, alt,
      lazy loading, and a loading color. It also writes scripts/image-manifest.json, the list of
      files `python3 scripts/build-images.py` creates.
-  3. Rebuilds the photo credits list between <!-- credits --> and <!-- /credits -->. Only photos
+  3. On the homepage (<html class="... pw-home">), makes sure no two neighboring sections share a background
+     (scripts/section-backgrounds.mjs, the same check as the homepage previews).
+  4. Rebuilds the photo credits list between <!-- credits --> and <!-- /credits -->. Only photos
      that appear on at least one page get a credit, so spares in photos.json stay off the list.
   No dependencies. Node 18+. After it runs, run `python3 scripts/build-images.py` if photos changed.
 */
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { balanceSections } from './section-backgrounds.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SKIP_DIRS = new Set(['partials', 'scripts', 'node_modules', '.git', 'fonts', 'images', 'css', 'js', 'template', 'previews', 'prospects', 'video']);
@@ -77,7 +80,9 @@ function photoSet(key, attrs, file) {
   const p = fpAttr ? { ...base, key, fp: fpAttr.split(',').map(Number), fpOverride: true } : { ...base, key };
   const cropAttr = getAttr(attrs, 'data-crop') || 'orig';
   const widths = (getAttr(attrs, 'data-widths') || '480,800,1200').split(',').map((n) => parseInt(n, 10));
-  if (Math.max(...widths) > 1600) throw new Error(`Photo wider than 1600px in ${file}`);
+  // Cropped photos stop at 1600px; a whole photo used full width (data-crop="orig", like the hero banner) can go to 2400px
+  const maxW = cropAttr === 'orig' ? 2400 : 1600;
+  if (Math.max(...widths) > maxW) throw new Error(`Photo wider than ${maxW}px in ${file}`);
   const box = p.box || [0, 0, 1, 1];
   let rw = p.w * (box[2] - box[0]), rh = p.h * (box[3] - box[1]), crop = false;
   if (cropAttr !== 'orig') { [rw, rh] = cropAttr.split(':').map(Number); crop = true; }
@@ -136,6 +141,8 @@ function credits(used) {
       const utm = '?utm_source=pinwheel_concept&utm_medium=referral';
       const u = p.site === 'Unsplash' ? utm : '';
       const edit = p.edit ? ` ${escHtml(p.edit)}` : '';
+      // A photo Ben supplied himself ("site": "Supplied") has no stock page to link to
+      if (p.site === 'Supplied') return `      <li><strong>${escHtml(p.alt)}</strong><span>Photo supplied by ${escHtml(p.by)}. Used for: ${escHtml(p.use)}.${edit}</span></li>`;
       return `      <li><strong>${escHtml(p.alt)}</strong><span>Photo by <a href="${p.profile}${u}">${escHtml(p.by)}</a> on <a href="${p.page}${u}">${p.site}</a>. Used for: ${escHtml(p.use)}.${edit}</span></li>`;
     });
   return `<!-- credits -->\n    <ul class="credit-list">\n${items.join('\n')}\n    </ul>\n    <!-- /credits -->`;
@@ -182,6 +189,8 @@ for (const file of pages()) {
   html = html.replace(/<link\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildPreload(tag, rel, rootPrefix));
   html = html.replace(/<source\b[^>]*\sdata-photo="[^"]+"[^>]*>/g, (tag) => buildSource(tag, rel, rootPrefix));
   html = html.replace(/<!-- credits -->[\s\S]*?<!-- \/credits -->/g, () => credits(used));
+  // The homepage follows the preview template rule: no two neighboring sections share a background
+  if (/<html[^>]*class="[^"]*\bpw-home\b/.test(html)) html = balanceSections(html).html;
 
   if (html !== before) { writeFileSync(file, html); changed++; console.log(`updated ${rel}`); }
 }

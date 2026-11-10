@@ -8,14 +8,17 @@
   neighbors (white, cream, tint), and only that section changes. Navy sections are never changed (their text is
   white), so the build warns if two navy sections ever touch.
 
-  Used by scripts/build-preview.mjs after the page is filled, and again by any finishing pass that adds sections.
+  Used by scripts/build-preview.mjs after the page is filled, by any finishing pass that adds sections, and by
+  scripts/sync.mjs on the Pinwheel homepage (any page whose <html> has the pw-home class).
 */
 const KEYS = { navy: 'on-dark', white: 'bg-white', tint: 'tpl-bg-tint', cream: '' };
 const keyOf = (cls) => /\bon-dark\b/.test(cls) ? 'navy' : /\btpl-bg-tint\b/.test(cls) ? 'tint' : /\bbg-white\b/.test(cls) ? 'white' : /\bbg-alt\b/.test(cls) ? 'alt' : 'cream';
 
 export function balanceSections(html) {
   const re = /\n {0,2}<(section|footer)\b([^>]*?)class="([^"]*)"([^>]*)>/g;
-  const tags = [...html.matchAll(re)].map((m) => ({ index: m.index, full: m[0], el: m[1], before: m[2], cls: m[3], after: m[4] }));
+  // Page sections only (a section, the hero, the trust row) and the footer; panels like a chat drawer are skipped
+  const tags = [...html.matchAll(re)].map((m) => ({ index: m.index, full: m[0], el: m[1], before: m[2], cls: m[3], after: m[4] }))
+    .filter((t) => t.el === 'footer' || /\b(section|hero|trust)\b/.test(t.cls));
   const keys = tags.map((t) => keyOf(t.cls));
   const changes = [], warnings = [];
   for (let i = 1; i < tags.length; i++) {
