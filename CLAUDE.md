@@ -25,3 +25,14 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 - Before redeploying an existing project, compare the live page with your build. Another session may have deployed newer work.
 - When the deploy finishes, send Ben the live `https://byw-<slug>.pages.dev/` link and a phone screenshot of the deployed page.
 - No zip files unless Ben asks for one.
+
+## Going live
+
+- Sample sites (Pinwheel and any other sample): when a change passes QA, merge it into main right away. Netlify publishes main to https://byw-home-comfort.netlify.app automatically. If you can't merge, say so in one line and Ben will get it merged.
+- Prospect homepage previews: deploy them right away, as described above. If you have to send a zip instead, Ben has Claude chat deploy it from his Mac.
+- Paying clients' live sites: never publish a change until Ben has seen it and says go.
+
+## Files
+
+- Never save anything to Ben's Desktop. Keep test screenshots and check scripts in a qa/ folder kept out of git, and replace them on each run.
+- Photos for previews: Ben puts full-size originals in his Google Drive folder "BYWD Preview Photos". Download them from there, since photos attached in chat get shrunk.
