@@ -1,8 +1,8 @@
 {
  "_note": "Every photo on the Bright Bolt Electric sample. photos.py downloads each src once (cached in scripts/.cache/bright-bolt-electric/), crops it around fp, and writes the files in photos/. People photos are real Unsplash stock, unedited. Photos without people may be edited (paint) or AI-made; edits are listed in 'edit'.",
  "hero": {
-  "id": "UHNdOFqNhNQ",
-  "src": "https://images.unsplash.com/photo-1704475517731-7575f517b800?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=3400",
+  "id": "_aSFmmvS62I",
+  "src": "https://images.unsplash.com/photo-1660330589827-da8ab7dd3c02?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb",
   "out": [
    [
     "hero-src.jpg",
@@ -11,16 +11,32 @@
    ]
   ],
   "people": true,
-  "alt": "Electrician in black work clothes mounting a home EV charger on a wood-sided garage wall beside a white SUV",
-  "by": "Zaptec",
-  "page": "https://unsplash.com/photos/UHNdOFqNhNQ",
   "box": [
-   0,
-   0,
-   0.572,
-   1
+   0.0,
+   0.06,
+   0.745,
+   1.0
   ],
-  "edit": "Cropped only: the right side is trimmed off so the SUV maker badges (taillight and wheel) are out of every crop."
+  "clothes_color": [
+   [
+    0.1376,
+    0.4017,
+    0.1874,
+    0.4909,
+    1.0
+   ],
+   [
+    0.2846,
+    0.24,
+    0.314,
+    0.295,
+    0.42
+   ]
+  ],
+  "edit": "Clothes color only: the brand patch and the red stitched lettering on his cap are recolored to the cap's own navy. Cropped at the top and on the right, nothing else changed.",
+  "alt": "Electrician in a navy work hoodie with his hands inside an open electrical panel beside the meter on a home's exterior wall",
+  "by": "Raze Solar",
+  "page": "https://unsplash.com/photos/_aSFmmvS62I"
  },
  "panel": {
   "id": "kXC6XhVL1e4",

@@ -33,6 +33,30 @@ for key, p in data.items():
             # fill with the median color just left of the area (the same dark panel)
             sample = img.crop((bx[0] - 6, bx[1], bx[0] - 1, bx[3])).resize((1, 1), Image.LANCZOS).getpixel((0, 0))
             d.rectangle(bx, fill=sample)
+    if p.get('clothes_color'):
+        # People photos: clothes color only (CLAUDE.md). Inside each listed area on the clothing, warm-colored pixels
+        # (a brand patch, stitched lettering) take the clothing's own color, measured from the cap fabric beside them,
+        # keeping a little of their light and shade so the fabric still looks like fabric.
+        import colorsys
+        px = img.load()
+        for area in p['clothes_color']:
+            x0, y0, x1, y1 = area[:4]; vmax = area[4] if len(area) > 4 else 1.0  # vmax: only pixels this dark (the fabric, never skin)
+            bx = (int(x0 * W), int(y0 * H), int(x1 * W), int(y1 * H))
+            # reference: the darkest quarter of the area is the cap fabric itself
+            vals = sorted((sum(px[x, y]), px[x, y]) for x in range(bx[0], bx[2], 3) for y in range(bx[1], bx[3], 3))
+            ref = vals[: max(1, len(vals) // 4)]
+            cr, cg, cb = (sum(c[1][i] for c in ref) / len(ref) for i in range(3))
+            ch, cs_, cv = colorsys.rgb_to_hsv(cr / 255, cg / 255, cb / 255)
+            for x in range(bx[0], bx[2]):
+                for y in range(bx[1], bx[3]):
+                    r, g, b = px[x, y]
+                    h_, s_, v_ = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
+                    warm = ((h_ < 0.14 or h_ > 0.88) and s_ > 0.12) or r > b + 2 or r > g + 4
+                    stitch_red = s_ > 0.4 and (h_ < 0.035 or h_ > 0.9)  # saturated pure red thread, never skin tones
+                    if warm and (v_ <= vmax or stitch_red):
+                        nv = cv + (v_ - cv) * 0.18
+                        nr, ng, nb = colorsys.hsv_to_rgb(ch, cs_, max(0, min(1, nv)))
+                        px[x, y] = (round(nr * 255), round(ng * 255), round(nb * 255))
     for name, w, h in p['out']:
         if h == 0:  # the whole photo (trimmed to 'box' if set) at full size, as the source for the hero files
             x0, y0, x1, y1 = p.get('box', [0, 0, 1, 1])
