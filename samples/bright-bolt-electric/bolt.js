@@ -2,7 +2,7 @@
    - Each spot ([data-bolt]) comes in when it crosses a line 10% up from the bottom of the screen, and goes back out
      when it drops below that line again (scrolling back up). The hero spot peeks in right after the page loads.
    - Idle motion (bob, blink, spark, the spot's own move) runs only while the spot is on screen (.is-live).
-   - Tap Bolt for a happy hop with a small spark burst.
+   - Tap Bolt for a happy hop with a small spark burst. At the quick quote he texts: his thumb taps the phone.
    - Reduce motion: he stands in place and nothing moves. Decorative only: every spot is aria-hidden. */
 (function () {
   'use strict';
@@ -29,7 +29,8 @@
   }, { rootMargin: '40px 0px', threshold: 0 });
 
   spots.forEach(function (s) {
-    if (s.hasAttribute('data-bolt-load')) setTimeout(function () { set(s, true); }, 500);
+    /* The hero Bolt waits until the logo Bolt has zoomed in (about 1 second), so they never move at the same time */
+    if (s.hasAttribute('data-bolt-load')) setTimeout(function () { set(s, true); }, d.querySelector('.bb-logo-fx') ? 1250 : 500);
     else inOut.observe(s);
     live.observe(s);
     var hop = s.querySelector('.bolt-hop');

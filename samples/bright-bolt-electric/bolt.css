@@ -78,6 +78,41 @@
 @keyframes bolt-point { 0%, 30%, 100% { transform: translate(0, 0); } 6%, 18% { transform: translate(-5px, 2px); } 12%, 24% { transform: translate(0, 0); } }
 @keyframes bolt-thumb { 0%, 30%, 100% { transform: rotate(0deg) translateY(0); } 7% { transform: rotate(-10deg) translateY(-6px); } 14% { transform: rotate(0deg) translateY(0); } 21% { transform: rotate(-8deg) translateY(-4px); } }
 
+/* Quick quote: his thumb taps the phone screen in short bursts */
+.bolt-svg .b-tap { transform-box: view-box; }
+.bolt.is-in.is-live .b-tap { animation: bolt-tap 1.8s ease-in-out .5s infinite; }
+@keyframes bolt-tap { 0%, 52%, 100% { transform: translate(0, 0); } 8%, 24%, 40% { transform: translate(-1.5px, 3px); } 16%, 32%, 48% { transform: translate(0, 0); } }
+
+/* Typing bubble: three dots first, then the words */
+.bb-typing { position: relative; }
+.bb-dots { position: absolute; left: 16px; top: 50%; display: flex; gap: 5px; transform: translateY(-50%); opacity: 0; }
+.bb-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--c-navy); opacity: .35; }
+.js .bb-typing .bb-msg { opacity: 0; }
+.js .bolt-row.is-in .bb-dots { animation: bb-dots-show 1.45s linear .55s both; }
+.js .bolt-row.is-in .bb-dots i { animation: bb-dot .7s ease-in-out .6s 2; }
+.js .bolt-row.is-in .bb-dots i:nth-child(2) { animation-delay: .72s; }
+.js .bolt-row.is-in .bb-dots i:nth-child(3) { animation-delay: .84s; }
+.js .bolt-row.is-in .bb-msg { animation: bb-msg-in .3s ease-out 2s both; }
+@keyframes bb-dots-show { 0%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes bb-dot { 0%, 60%, 100% { transform: translateY(0); opacity: .35; } 30% { transform: translateY(-4px); opacity: 1; } }
+@keyframes bb-msg-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+
+/* Logo: Bolt zooms in from the left edge, stretched long and thin with a short spark trail, overshoots over the
+   name, snaps back with one small bounce. About 1 second, once per page load. Transform only: nothing shifts. */
+.bb-logo-fx { position: relative; display: block; flex: none; z-index: 5; }
+.bb-trail { position: absolute; top: 36%; right: 64%; width: 110px; height: 28%; border-radius: 99px; pointer-events: none; opacity: 0;
+  background: linear-gradient(90deg, rgb(63 169 255 / 0), rgb(63 169 255 / .55) 45%, rgb(255 214 10 / .95)); transform-origin: 100% 50%; }
+.js .site-header .bb-logo-fx { animation: bb-zoom 1s .15s both; will-change: transform; }
+.js .site-header .bb-trail { animation: bb-trail 1s .15s both; }
+@keyframes bb-zoom {
+  0% { transform: translateX(-100vw) scale(2.6, .4); animation-timing-function: cubic-bezier(.15, .7, .3, 1); }
+  36% { transform: translateX(72px) scale(1.45, .72); animation-timing-function: cubic-bezier(.5, 0, .3, 1); }
+  54% { transform: translateX(-9px) scale(.93, 1.08); animation-timing-function: ease-out; }
+  72% { transform: translateX(3px) scale(1.03, .98); animation-timing-function: ease-in-out; }
+  88%, 100% { transform: none; }
+}
+@keyframes bb-trail { 0% { opacity: .95; transform: scaleX(1.6); } 30% { opacity: .9; transform: scaleX(1); } 44% { opacity: 0; transform: scaleX(.2); } 100% { opacity: 0; } }
+
 /* Tap: a happy hop with a small spark burst */
 .bolt-hop.is-hop { animation: bolt-hop .7s cubic-bezier(.3, .7, .4, 1); }
 .bolt-hop.is-hop .b-hat { animation: bolt-hat .7s ease-out; }
@@ -91,4 +126,7 @@
   .js .bolt .bolt-move, .js .bolt.at-hero .bolt-move, .js .bolt-bubble { opacity: 1; transform: none; transition: none; }
   .bolt-svg *, .bolt-bob, .bolt-hop, .bolt-hop.is-hop { animation: none !important; }
   .bolt.at-hero .bolt-move { transform: translateY(14%) !important; }
+  .js .site-header .bb-logo-fx, .js .site-header .bb-trail, .js .bolt-row.is-in .bb-dots, .js .bolt-row.is-in .bb-msg { animation: none; }
+  .bb-dots { display: none; }
+  .js .bb-typing .bb-msg { opacity: 1; }
 }
