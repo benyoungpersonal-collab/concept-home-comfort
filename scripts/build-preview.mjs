@@ -646,6 +646,12 @@ for (const [i, sv] of services.entries()) {
   }
 }
 if (services.length && services.length < 3) console.warn('note: fewer than 3 services. The photo cards look best with 4 or 8.');
+/* serviceCards: "photo" (the default) or "tiles" (the older bento tiles). A site with a finishing pass written for the
+   tiles (prospects/finish/NAME.mjs) keeps them until that pass is updated and the data file says "photo". */
+const finishPass = existsSync(join(ROOT, 'prospects', 'finish', `${slug}.mjs`));
+let serviceCards = str(raw.serviceCards).toLowerCase() || (finishPass ? 'tiles' : 'photo');
+if (!['photo', 'tiles'].includes(serviceCards)) fail('serviceCards must be "photo" or "tiles"');
+if (finishPass && !str(raw.serviceCards)) console.warn(`note: ${slug} has a finishing pass written for the old service tiles, so it keeps them. Update prospects/finish/${slug}.mjs and set "serviceCards": "photo" to switch.`);
 
 /* Mascot slot: an optional transparent PNG or SVG (mascot) that slides in at 2 or 3 spots with a small idle bob.
    mascotSpots picks the spots (hero, visit, request); all three by default. No mascot file: nothing shows. */
@@ -711,7 +717,7 @@ const data = {
   guaranteeLine: warranty ? `Warranty: ${warranty}` : guarantee ? "Satisfaction guarantee: if something's not right, we'll make it right." : '',
   hours, hasHours: !!hours, headerHours, hasHeaderHours: !!headerHours, email, hasEmail: !!email,
   htmlClass: `fs-${fontStyle}${edge === 'none' ? '' : ` edge-${edge}`}`, edgeClass: edge === 'none' ? '' : ' edge-top edge-bottom', fontPreloads,
-  heroH1: str(raw.h1),
+  heroH1: str(raw.h1), tileCards: serviceCards === 'tiles',
   mascotSrc: mascot ? `images/mascot${mascotExt}` : '', mascotW, mascotH, mascotHero: !!mascot && spots.includes('hero'), mascotVisit: !!mascot && spots.includes('visit'), mascotRequest: !!mascot && spots.includes('request'),
   vanHtml, vanAreas: vanSection === 'areas' && areas.length > 0, vanVisit: vanSection === 'how-it-works' || (vanSection === 'areas' && !areas.length),
 };

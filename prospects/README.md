@@ -177,6 +177,7 @@ Nice to have:
 | `van` | `true` or `{ "section": "how-it-works", "line": "Plumbing · Drains", "phone": false }` | Van drive-in: an outline van in their colors with their name on the side drives in and parks when the section comes into view, and drives back out when you scroll up past it. Default section: service areas |
 | `mascot`, `mascotSpots` | `"logos/name-mascot.png"`, `["hero", "request"]` | Optional mascot (transparent PNG, WebP, or SVG) that slides in beside the hero card, in How a visit works, and by the request form, with a gentle idle bob. No file: nothing shows |
 | `h1` | `"Heating, Air & Plumbing in Tracy, CA"` | Only when the pill does not already name the main services and the area |
+| `serviceCards` | `"photo"` | photo (default) or tiles (the older bento tiles). A site with a finishing pass (prospects/finish/NAME.mjs) keeps the tiles until that pass is updated, and the build says so |
 | service `photo`, `photoAlt` | `"photos/name/water-heater.jpg"` | Their own photo for that service card (4:3 crop). `"photo": false` forces the labeled placeholder |
 | `previewUrl` | `"https://byw-sunrise-comfort.pages.dev/"` | Only if you deploy somewhere other than the default project name |
 

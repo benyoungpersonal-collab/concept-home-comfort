@@ -134,7 +134,29 @@
         <h2 id="services-title">{{{servicesHeadline}}}</h2>
         <p class="lead">{{servicesLead}}</p>
       </div>
-      <div class="pcards">
+      {{#if tileCards}}<div class="tpl-bento">
+        {{#each leadService}}<a class="tile photo-tile tile-lead {{tileTone}}" href="#request" id="{{anchor}}">
+          {{#if isPlumbing}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/pipes-720x540.webp" srcset="images/photos/pipes-480x360.webp 480w, images/photos/pipes-720x540.webp 720w, images/photos/pipes-960x720.webp 960w, images/photos/pipes-1200x900.webp 1200w" width="1200" height="900" alt="New copper water pipes running through an open wall" loading="lazy" decoding="async" style="object-position:50% 50%;background-color:#9c6b45">{{else}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w, images/photos/thermostat-960x720.webp 960w, images/photos/thermostat-1200x900.webp 1200w" width="1200" height="900" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7">{{/if}}
+          <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+          <span class="tpl-photo-text">
+            <span class="tile-kicker{{#if isPlumbing}} warm-k{{/if}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg>{{kicker}}</span>
+            <h3>{{name}}</h3>
+            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
+            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
+          </span>
+        </a>{{/each}}
+        {{#if hasMoreServices}}<div class="tpl-bento-rest">
+          {{#each moreServices}}<a class="tile {{tileTone}}" href="#request" id="{{anchor}}">
+            <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span>
+            <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+            <h3>{{name}}</h3>
+            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
+            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
+          </a>
+          {{/each}}
+        </div>{{/if}}
+      </div>
+      {{else}}<div class="pcards">
         {{#each services}}<article class="pcard" id="{{anchor}}">
           {{{photoHtml}}}
           <span class="pcard-badge" aria-hidden="true"><svg class="icon"><use href="#{{icon}}"/></svg></span>
@@ -146,6 +168,7 @@
         </article>
         {{/each}}
       </div>
+      {{/if}}
       {{#if secondOpinion}}<div class="tpl-callout">
         <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
         <p><strong>Free second opinion</strong><span>Got a big quote from someone else? We'll take a look for free.</span></p>
