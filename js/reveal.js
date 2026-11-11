@@ -9,6 +9,31 @@
    Add data-reveal (or data-reveal="zoom|left|right|up|fade") to include any other element. */
 (function () {
   'use strict';
+  /* Electrical edge (html.edge-bolt): a thin line in the brand color with a soft glow along each lightning edge
+     (css/alive.css), and a small spark that runs along it once when it scrolls into view. The line is drawn even with
+     "reduce motion"; only the spark is skipped. The contour matches the .edge-bolt mask in css/alive.css. */
+  (function edges() {
+    var root = document.documentElement;
+    if (!root.classList.contains('edge-bolt')) return;
+    var D = 'M0 40 50 8 84 40 118 11 154 32 184 44 216 40 242 7 261 15 276 56 352 16 386 56 405 31 420 9 448 15 470 51 536 10 578 13 612 43 662 7 681 15 696 56 754 16 842 48 874 26 900 11 942 32 976 45 1042 13 1084 18 1118 52 1152 14 1200 35 1240 48 1298 6 1332 55 1380 49 1420 11 1440 53';
+    var NS = 'http://www.w3.org/2000/svg';
+    var lines = [];
+    var add = function (sec, where) {
+      var svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'edge-line at-' + where); svg.setAttribute('viewBox', '0 0 1440 64');
+      svg.setAttribute('preserveAspectRatio', 'none'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
+      svg.innerHTML = '<path class="el-line" d="' + D + '"/><path class="el-spark" pathLength="1000" d="' + D + '"/>';
+      sec.appendChild(svg); lines.push(svg);
+    };
+    [].forEach.call(document.querySelectorAll('.edge-top'), function (s) { add(s, 'top'); });
+    [].forEach.call(document.querySelectorAll('.edge-bottom'), function (s) { add(s, 'bottom'); });
+    if (!lines.length || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-sparked'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+    lines.forEach(function (l) { io.observe(l); });
+  })();
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var d = document;

@@ -96,6 +96,27 @@ const css = `<style>
 .rating-bar .tag{margin-left:8px;padding:1px 8px}
 .footer-brand .bb-mark{width:40px;height:40px;border-radius:10px;flex:none}
 @media (min-width:1000px){.pcards{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
+/* Cool light gray instead of cream */
+:root{--c-bg:#F3F5F8;--c-bg-alt:#E9EDF2;--c-bg-fine:#EEF1F5;--c-line:#DDE3EA;--c-line-strong:#C3CCD7}
+.site-header{background:rgb(243 245 248 / .92)}
+/* Header phone icon: blue circle, yellow phone */
+.header-phone .icon-wrap{background:var(--c-brand-deep);color:var(--c-brand)}
+/* Bolt is the logo: header, mobile menu, footer */
+.tpl-logo-mark{width:auto;height:52px;aspect-ratio:192/244;border-radius:0;object-fit:contain}
+@media (min-width:900px){.tpl-logo-mark{height:58px}}
+.site-header.is-compact .tpl-logo-mark{width:auto;height:46px}
+.footer-brand .bb-mark{width:44px;height:56px;border-radius:0;flex:none}
+/* Hero headline on phones: sized to the column so it is always two deliberate lines */
+@media (max-width:599px){.tpl-hero .hero-h{font-size:min(calc((100vw - 32px) / 10.6),3.1rem)}}
+@media (min-width:600px) and (max-width:767px){.tpl-hero .hero-h{font-size:calc((100vw - 120px) / 10.6)}}
+/* Reviews: bold electric blue with a very subtle darker-to-lighter gradient, white text, yellow underline */
+.reviews.bb-blue{background:linear-gradient(165deg,#0A47A8 0%,#0B55C2 55%,#0E5ED2 100%);background-color:#0B55C2}
+.reviews.bb-blue h2,.reviews.bb-blue .rating-line,.reviews.bb-blue .swipe-hint,.reviews.bb-blue .swipe-hint .icon,.reviews.bb-blue .eyebrow{color:#fff}
+.reviews.bb-blue .eyebrow::before{background:var(--c-brand)}
+.reviews.bb-blue h2 .accent{color:#fff;background:linear-gradient(180deg,transparent 84%,var(--c-brand) 84%,var(--c-brand) 98%,transparent 98%) no-repeat 0 0/100% 100%;padding:0}
+.reviews.bb-blue .rating-line>.tag{color:#fff;border-color:rgb(255 255 255 / .65);background:rgb(255 255 255 / .1)}
+.reviews.bb-blue .review-dots button::before{background:rgb(255 255 255 / .55)}
+.reviews.bb-blue .review-dots button[aria-current="true"]::before{background:var(--c-brand)}
 </style>`;
 rep('<link rel="stylesheet" href="css/alive.css">', `<link rel="stylesheet" href="css/alive.css">\n<link rel="stylesheet" href="css/bolt.css">\n${css}`);
 rep('</head>', `${ld}\n</head>`);
@@ -110,15 +131,25 @@ const icons = {
 };
 rep('  <symbol id="i-leaf"', Object.entries(icons).map(([id, d]) => `  <symbol id="${id}" viewBox="0 0 24 24">${d}</symbol>\n`).join('') + '  <symbol id="i-leaf"');
 
+/* ---------- Bolt is the logo ----------
+   The full Bolt sits beside the name in the header, mobile menu, and footer; his head is the favicon and the map pin.
+   In the header he zooms in from the left edge once per page load (css/bolt.css, .bb-logo-fx). */
+writeFileSync(join(OUT, 'images', 'header-mark.svg'), boltSvg({ left: 'rest', right: 'rest', bare: true, viewBox: '14 14 192 244' }).replace(' focusable="false" aria-hidden="true"', ''));
+writeFileSync(join(OUT, 'images', 'logo-mark.svg'), boltSvg({ arms: false, bare: true, viewBox: '44 14 134 134' }).replace(' focusable="false" aria-hidden="true"', ''));
+const LOGO_IMG = '<img class="tpl-logo-mark" src="images/header-mark.svg" alt="" width="96" height="96">';
+rep(LOGO_IMG, '<img class="tpl-logo-mark" src="images/header-mark.svg" alt="" width="76" height="96">', 2);
+html = html.replace('<img class="tpl-logo-mark" src="images/header-mark.svg" alt="" width="76" height="96">',
+  '<span class="bb-logo-fx" aria-hidden="true"><span class="bb-trail"></span><img class="tpl-logo-mark" src="images/header-mark.svg" alt="" width="76" height="96"></span>');
+
 /* ---------- Bolt in 4 spots ---------- */
 const spot = (cls, pose, extra = '') => `<div class="bolt ${cls}" data-bolt${extra} aria-hidden="true"><div class="bolt-move"><div class="bolt-bob"><div class="bolt-hop">${boltSvg(pose)}</div></div></div></div>`;
 /* Hero: peeks in beside the hero card and waves */
 rep('<use href="#i-check-circle"/></svg>A real person answers 7am to 7pm, Monday to Saturday</p>\n', `<use href="#i-check-circle"/></svg>A real person answers 7am to 7pm, Monday to Saturday</p>\n        ${spot('at-hero', { right: 'wave' }, ' data-bolt-load')}\n`);
 /* Services: slides in from the side and points at the cards */
 rep('id="services" aria-labelledby="services-title">\n    <div class="container">\n', `id="services" aria-labelledby="services-title">\n    <div class="container">\n      ${spot('at-services from-right', { left: 'point', right: 'rest' })}\n`);
-/* Quick quote: thumbs up next to the form, with a speech bubble */
+/* Quick quote: holding a phone and texting, a typing bubble, then "We'll text you back!" */
 rep('<p class="tpl-talk">Prefer to talk?<a class="tpl-call-line" href="tel:+12095550187">Call (209) 555-0187</a></p>\n          </div>\n        </div>\n      </div>\n',
-  `<p class="tpl-talk">Prefer to talk?<a class="tpl-call-line" href="tel:+12095550187">Call (209) 555-0187</a></p>\n          </div>\n        </div>\n      </div>\n      <div class="bolt-row" aria-hidden="true"><p class="bolt-bubble">We'll text you back!</p>${spot('at-quote from-below', { right: 'thumb' })}</div>\n`);
+  `<p class="tpl-talk">Prefer to talk?<a class="tpl-call-line" href="tel:+12095550187">Call (209) 555-0187</a></p>\n          </div>\n        </div>\n      </div>\n      <div class="bolt-row" aria-hidden="true"><p class="bolt-bubble bb-typing"><span class="bb-dots"><i></i><i></i><i></i></span><span class="bb-msg">We'll text you back!</span></p>${spot('at-quote from-below', { left: 'hold', right: 'phone', look: 'down' })}</div>\n`);
 /* Footer: waves goodbye */
 rep('      <p><a class="footer-text-link" href="#reviews" target="_blank" rel="noopener">Read our Google reviews</a></p>\n\n    </div>\n',
   `      <p><a class="footer-text-link" href="#reviews">Read the reviews</a></p>\n    </div>\n    <div class="bolt-row footer-bolt" aria-hidden="true"><p class="bolt-bubble">Thanks for stopping by!</p>${spot('at-footer from-right', { right: 'wave' })}</div>\n`);
@@ -133,6 +164,8 @@ html = html.replace(/5\.0 stars from 48 Google reviews\. <a class="text-link" hr
 if (/5\.0 stars/.test(html)) fail('rating line still shows 5.0');
 rep('<svg class="g-mark" role="img" aria-label="Google review"><use href="#g-logo"/></svg>', '<span class="tag">Illustrative</span>', 6);
 rep('aria-label="Customer reviews, scroll sideways for more"', 'aria-label="Illustrative customer reviews, scroll sideways for more"');
+
+rep('<section class="section reviews tpl-bg-tint"', '<section class="section reviews bb-blue"');
 
 /* ---------- Copy ---------- */
 rep('One Call for <span class="accent">Heating and Cooling.</span>', 'One Call for <span class="accent">Every Electrical Job.</span>');
@@ -152,7 +185,7 @@ rep('Preview form. On the live site, this goes straight to your phone.', 'Sample
 rep('<p>Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.</p>',
   '<p>Sample site by Ben Young Web Design. Bright Bolt Electric is a made-up business: the name, phone number, reviews, and ratings are sample data.</p>');
 rep('<span class="logo-initial" aria-hidden="true">B</span>\n        <span class="logo-text"><span class="logo-name">Bright Bolt</span></span>',
-  '<img class="bb-mark" src="images/header-mark.svg" alt="" width="40" height="40">\n        <span class="logo-text"><span class="logo-name">Bright Bolt</span><span class="logo-tag">Electric</span></span>');
+  '<img class="bb-mark" src="images/header-mark.svg" alt="" width="44" height="56">\n        <span class="logo-text"><span class="logo-name">Bright Bolt</span><span class="logo-tag">Electric</span></span>');
 rep('<p>Fully insured.</p>', '<p>Licensed and insured.</p>');
 
 /* ---------- Link preview picture: the homepage on a laptop and a phone (CLAUDE.md, "Link preview picture") ----------
@@ -178,7 +211,7 @@ if (/pinwheel/i.test(html)) fail('mentions Pinwheel');
 if (/\bpreview\b/i.test(html.replace(/<link rel="preload"[^>]*>/g, '').replace(/css\/preview(-late)?\.css/g, ''))) fail('still says "preview" somewhere');
 if (/target="_blank"[^>]*href="#|href="#[^"]*" target="_blank"/.test(html)) fail('an in-page link opens a new tab');
 if ((html.match(/data-bolt[ >]/g) || []).length !== 4) fail('expected Bolt in 4 spots');
-const bubbles = [...html.matchAll(/<p class="bolt-bubble">([^<]+)<\/p>/g)].map((m) => m[1]);
+const bubbles = [...html.matchAll(/<p class="bolt-bubble[^"]*">(?:<span class="bb-dots">(?:<i><\/i>)+<\/span><span class="bb-msg">)?([^<]+)/g)].map((m) => m[1]);
 if (bubbles.length > 2 || bubbles.some((b) => b.split(/\s+/).length > 5)) fail('speech bubbles: 1 or 2, 5 words or fewer');
 if (/tel:(?!\+12095550187)/.test(html) || /sms:(?!\+12095550187)/.test(html)) fail('a call or text link has the wrong number');
 writeFileSync(join(OUT, 'index.html'), html);
@@ -198,8 +231,8 @@ const rows = [
   row('How a visit works', 'visit', PHOTOS.visit.alt, un('visit'), 'Unsplash License (free, commercial use)', 'People photo: real stock or the client\'s own only. Better: their electrician in a solid navy or black work shirt explaining a quote to a homeowner at the panel, 16:9, no logos.'),
   '| Link preview picture (images/og-share-DATE.jpg) | The homepage on a laptop and a phone | Screenshots of this site (scripts/share-image.cjs) | Owned | Not needed: no people, made from the live homepage. Remake it whenever the hero changes. |',
   '| Request a visit: family photo | Mom kissing a baby while dad and their daughter laugh on a green couch | Pexels (from the Pinwheel set, see credits.html) | Pexels License (free, commercial use) | Real stock only (people). A family relaxing at home in a bright living room. |',
-  '| Bolt the mascot (hero, services, quick quote, footer) | Inline SVG drawn for this site (samples/bright-bolt-electric/bolt.mjs) | Ben Young Web Design | Owned | Original drawing. Not AI. |',
-  '| Header mark, favicon, map pin | images/header-mark.svg, drawn for this site | Ben Young Web Design | Owned | Original drawing. |',
+  '| Bolt the mascot (hero, services, quick quote with a phone, footer) | Inline SVG drawn for this site (samples/bright-bolt-electric/bolt.mjs) | Ben Young Web Design | Owned | Original drawing. Not AI. |',
+  '| Logo: Bolt beside the name (header, menu, footer); his head as favicon and map pin | images/header-mark.svg and images/logo-mark.svg, made from bolt.mjs | Ben Young Web Design | Owned | Original drawing. Not AI. |',
 ];
 const md = `# Photo list: Bright Bolt Electric (sample site)
 
