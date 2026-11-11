@@ -1,0 +1,54 @@
+/* fonts.css: the five font styles (per-site setting). Loaded after site.css on Pinwheel and every preview.
+   A style is a class on <html> (or on any wrapper, like the /styles page does):
+     fs-clean     Plus Jakarta Sans ExtraBold headlines, Inter body (site.css default, Pinwheel)
+     fs-bold      Anton headlines in caps, Barlow body, Barlow Condensed caps for nav, labels, and buttons
+     fs-classic   Fraunces headlines, Inter body
+     fs-rugged    Rubik Dirt for big headlines only, Rubik for everything else
+     fs-friendly  Lilita One headlines, Nunito body
+   Every file is self-hosted (fonts/, SIL Open Font License 1.1). A browser only downloads the fonts a page uses.
+   --ff-display: headlines. --ff-body: paragraphs. --ff-ui: nav, eyebrows, pills, and buttons. */
+
+@font-face { font-family: "Anton"; src: url("../fonts/anton-latin-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("../fonts/barlow-latin-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("../fonts/barlow-latin-600.woff2") format("woff2"); font-weight: 500 600; font-display: swap; }
+@font-face { font-family: "Barlow"; src: url("../fonts/barlow-latin-700.woff2") format("woff2"); font-weight: 700 900; font-display: swap; }
+@font-face { font-family: "Barlow Condensed"; src: url("../fonts/barlow-condensed-latin-700.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: "Fraunces"; src: url("../fonts/fraunces-latin-var.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Rubik Dirt"; src: url("../fonts/rubik-dirt-latin-400.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: "Rubik"; src: url("../fonts/rubik-latin-var.woff2") format("woff2"); font-weight: 300 900; font-display: swap; }
+@font-face { font-family: "Lilita One"; src: url("../fonts/lilita-one-latin-400.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: "Nunito"; src: url("../fonts/nunito-latin-var.woff2") format("woff2"); font-weight: 200 1000; font-display: swap; }
+
+:root { --ff-ui: var(--ff-body); }
+/* Set on the style's own element, so the body text switches too (inherited text would keep the font resolved on <body>) */
+.fs-clean, .fs-bold, .fs-classic, .fs-rugged, .fs-friendly { font-family: var(--ff-body); }
+
+/* The UI font follows the style: buttons, section labels, pills, and the nav */
+.btn, .eyebrow, .hero-pill, .tpl-pill, .nav-link, .sb-btn, .tpl-tile-sub { font-family: var(--ff-ui); }
+
+/* The big hero headline is sized so each line fits from a 320px phone up in the clean style. --hero-k scales it for
+   fonts that run wider or narrower, measured line by line (qa: every style fits from 320px to 1440px). */
+.fs-bold { --hero-k: 1.08; } .fs-classic { --hero-k: .93; } .fs-rugged { --hero-k: .85; } .fs-friendly { --hero-k: 1.06; }
+
+/* ---------- Bold ---------- */
+.fs-bold { --ff-display: "Anton", "Arial Narrow", Impact, sans-serif; --ff-body: "Barlow", "Inter Fallback", system-ui, sans-serif; --ff-ui: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif; }
+.fs-bold h1, .fs-bold h2, .fs-bold h3, .fs-bold .hero-h, .fs-bold .logo-name, .fs-bold .mm-links a { font-weight: 400; text-transform: uppercase; letter-spacing: .01em; font-synthesis: none; }
+.fs-bold .hero-h, .fs-bold h2 { line-height: 1.02; }
+.fs-bold .btn, .fs-bold .eyebrow, .fs-bold .nav-link, .fs-bold .hero-pill, .fs-bold .tpl-pill, .fs-bold .sb-btn { text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+.fs-bold .btn { font-size: 1.06em; }
+.fs-bold .nav-link { font-size: 16px; }
+.fs-bold .accent { padding-bottom: .02em; }
+
+/* ---------- Classic ---------- */
+.fs-classic { --ff-display: "Fraunces", Georgia, "Times New Roman", serif; }
+.fs-classic h1, .fs-classic h2, .fs-classic h3, .fs-classic .hero-h { font-weight: 700; letter-spacing: -.02em; font-variation-settings: "opsz" 96, "SOFT" 30; }
+
+/* ---------- Rugged: the dirt texture only on the big headlines ---------- */
+.fs-rugged { --ff-display: "Rubik", system-ui, sans-serif; --ff-body: "Rubik", "Inter Fallback", system-ui, sans-serif; }
+.fs-rugged .hero-h, .fs-rugged h2 { font-family: "Rubik Dirt", "Rubik", Impact, sans-serif; font-weight: 400; letter-spacing: 0; font-synthesis: none; }
+.fs-rugged h3 { font-weight: 700; letter-spacing: -.01em; }
+
+/* ---------- Friendly ---------- */
+.fs-friendly { --ff-display: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif; --ff-body: "Nunito", "Inter Fallback", system-ui, sans-serif; }
+.fs-friendly h1, .fs-friendly h2, .fs-friendly h3, .fs-friendly .hero-h, .fs-friendly .logo-name, .fs-friendly .mm-links a { font-weight: 400; letter-spacing: 0; font-synthesis: none; }
+.fs-friendly .btn, .fs-friendly .eyebrow { font-weight: 800; }

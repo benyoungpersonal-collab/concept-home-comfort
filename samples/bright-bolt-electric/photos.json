@@ -1,0 +1,179 @@
+{
+ "_note": "Every photo on the Bright Bolt Electric sample. photos.py downloads each src once (cached in scripts/.cache/bright-bolt-electric/), crops it around fp, and writes the files in photos/. People photos are real Unsplash stock, unedited. Photos without people may be edited (paint) or AI-made; edits are listed in 'edit'.",
+ "hero": {
+  "id": "UHNdOFqNhNQ",
+  "src": "https://images.unsplash.com/photo-1704475517731-7575f517b800?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=3400",
+  "out": [
+   [
+    "hero-src.jpg",
+    0,
+    0
+   ]
+  ],
+  "people": true,
+  "alt": "Electrician in black work clothes mounting a home EV charger on a wood-sided garage wall beside a white SUV",
+  "by": "Zaptec",
+  "page": "https://unsplash.com/photos/UHNdOFqNhNQ",
+  "box": [
+   0,
+   0,
+   0.572,
+   1
+  ],
+  "edit": "Cropped only: the right side is trimmed off so the SUV maker badges (taillight and wheel) are out of every crop."
+ },
+ "panel": {
+  "id": "kXC6XhVL1e4",
+  "src": "https://images.unsplash.com/photo-1607631697491-61972eecf928?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "out": [
+   [
+    "panel-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "fp": [
+   0.68,
+   0.56
+  ],
+  "zoom": 1.25,
+  "alt": "New residential breaker panel with every circuit labeled, wired and ready to install",
+  "by": "Troy Bridges",
+  "page": "https://unsplash.com/photos/kXC6XhVL1e4"
+ },
+ "ev": {
+  "id": "EKCoj22EC4U",
+  "src": "https://images.unsplash.com/photo-1600490819734-6311c5c6f517?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2400",
+  "out": [
+   [
+    "ev-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "fp": [
+   0.47,
+   0.5
+  ],
+  "zoom": 1.25,
+  "paint": [
+   [
+    0.484,
+    0.41,
+    0.522,
+    0.434
+   ]
+  ],
+  "edit": "The charger maker's small wordmark is painted out (no people in this photo).",
+  "alt": "Wall-mounted Level 2 EV charger on a tan brick wall with the charging cable plugged in",
+  "by": "Evnex Ltd",
+  "page": "https://unsplash.com/photos/EKCoj22EC4U"
+ },
+ "lighting": {
+  "id": "o-uPDNNSsDA",
+  "src": "https://images.unsplash.com/photo-1682888813913-e13f18692019?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "out": [
+   [
+    "lighting-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "fp": [
+   0.5,
+   0.42
+  ],
+  "zoom": 1.0,
+  "alt": "Bright white kitchen with recessed ceiling lights and three pendant lights over a marble island",
+  "by": "unknown",
+  "page": "https://unsplash.com/photos/o-uPDNNSsDA"
+ },
+ "repairs": {
+  "id": "PkHf7BUWbtk",
+  "src": "https://images.unsplash.com/photo-1758101755915-462eddc23f57?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "out": [
+   [
+    "repairs-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "fp": [
+   0.45,
+   0.5
+  ],
+  "zoom": 1.0,
+  "people": true,
+  "alt": "Electrician's gloved hands testing a circuit with meter probes",
+  "by": "Toolmash Expo",
+  "page": "https://unsplash.com/photos/PkHf7BUWbtk"
+ },
+ "rewiring": {
+  "id": "KbG6H_6vK4c",
+  "src": "https://images.unsplash.com/photo-1768321911048-46171ac7d425?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "out": [
+   [
+    "rewiring-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "fp": [
+   0.5,
+   0.56
+  ],
+  "zoom": 1.0,
+  "alt": "New wiring run to metal outlet boxes on open wall studs during a remodel",
+  "by": "unknown",
+  "page": "https://unsplash.com/photos/KbG6H_6vK4c"
+ },
+ "backup": {
+  "id": "ym1FrvYZJN0",
+  "src": "https://images.unsplash.com/photo-1696266530873-30935fa5e549?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "out": [
+   [
+    "backup-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "fp": [
+   0.5,
+   0.56
+  ],
+  "zoom": 1.15,
+  "alt": "Two-story home lit up at night with porch lights, garage lights, and landscape lights on",
+  "by": "Adam Davis",
+  "page": "https://unsplash.com/photos/ym1FrvYZJN0"
+ },
+ "visit": {
+  "id": "SQgFtCh4dms",
+  "src": "https://images.unsplash.com/photo-1583275477830-7e8e9d56d15f?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "out": [
+   [
+    "visit-640x360.webp",
+    640,
+    360
+   ],
+   [
+    "visit-960x540.webp",
+    960,
+    540
+   ],
+   [
+    "visit-1280x720.webp",
+    1280,
+    720
+   ]
+  ],
+  "fp": [
+   0.45,
+   0.45
+  ],
+  "zoom": 1.0,
+  "people": true,
+  "alt": "Electrician in a black T-shirt and cap hanging a pendant light by a big window",
+  "by": "Marcos Paulo Prado",
+  "page": "https://unsplash.com/photos/SQgFtCh4dms"
+ }
+}

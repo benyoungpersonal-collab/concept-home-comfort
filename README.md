@@ -332,6 +332,10 @@ scripts/deploy-preview.sh NAME                     # -> https://byw-NAME.pages.d
 
 `prospects/README.md` has the full list of fields to collect, the exact steps, and the one-time Cloudflare setup. Two test data files are included: `sunrise-comfort.json` (logo, custom colors, 5.0 rating) and `delta-air.json` (no logo, 4.6 rating, most optional fields missing).
 
+## Other sample sites
+
+- **Bright Bolt Electric** (a made-up electrician in Tracy with Bolt, an animated mascot): live at https://byw-home-comfort.netlify.app/bright-bolt-electric/. Served from `bright-bolt-electric/`, built from `samples/bright-bolt-electric/` (see its README).
+
 ---
 
 ## Known limits

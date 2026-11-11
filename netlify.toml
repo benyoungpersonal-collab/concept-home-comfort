@@ -71,6 +71,18 @@
   force = true
 
 [[redirects]]
+  from = "/samples/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/bright-bolt-electric/PHOTO-LIST.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/README.md"
   to = "/404.html"
   status = 404

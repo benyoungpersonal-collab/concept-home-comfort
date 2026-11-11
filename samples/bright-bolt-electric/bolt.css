@@ -1,0 +1,95 @@
+/* bolt.css: Bolt, the Bright Bolt Electric mascot (js/bolt.js adds the classes).
+   Each spot: .bolt > .bolt-move (comes in, goes out) > .bolt-bob (gentle idle bob) > .bolt-hop (tap hop) > svg.
+   Inside the SVG each part moves on its own: eyes blink, arms wave, point, or give a thumbs up, a spark flashes.
+   Only transform and opacity change. Idle motion runs only while the spot is on screen (.is-live).
+   No JavaScript: Bolt simply stands in place. Reduce motion: he stands in place, nothing moves. */
+
+.bolt { --bolt-w: 96px; position: relative; width: var(--bolt-w); flex: none; pointer-events: none; z-index: 3; }
+.bolt .bolt-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.bolt-hop { pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.bolt-move, .bolt-bob, .bolt-hop { transform-origin: 50% 100%; }
+
+/* ---------- Coming in and going out (two-way, like the rest of the page) ---------- */
+.js .bolt .bolt-move { opacity: 0; transition: opacity .45s ease-out, transform .75s cubic-bezier(.2, 1.25, .36, 1); }
+.js .bolt.from-right .bolt-move { transform: translateX(72px) rotate(8deg); }
+.js .bolt.from-left .bolt-move { transform: translateX(-72px) rotate(-8deg); }
+.js .bolt.from-below .bolt-move { transform: translateY(46px) scale(.7); }
+.js .bolt.is-in .bolt-move { opacity: 1; transform: none; }
+.js .bolt:not(.is-in) .bolt-move { transition-duration: .3s, .35s; transition-timing-function: ease-in, ease-in; }
+
+/* Nothing waiting offstage (Bolt, or a card about to glide in from the side) can make the page scroll sideways */
+main, .section, .site-footer { overflow-x: clip; }
+
+/* Hero: he peeks up from behind the hero card, on the left over the wall, clear of the electrician. The spot clips at the card's top edge, so he rises from behind it. */
+.bolt.at-hero { position: absolute; left: 18px; bottom: 100%; --bolt-w: 82px; clip-path: inset(-80px -80px 0 -80px); }
+.js .bolt.at-hero .bolt-move { opacity: 1; transform: translateY(102%); transition: transform .9s cubic-bezier(.2, 1.3, .4, 1); }
+.js .bolt.at-hero.is-in .bolt-move { transform: translateY(14%); }
+
+/* Services: slides in from the right beside the heading and points at the cards */
+.bolt.at-services { float: right; --bolt-w: 78px; margin: -6px -4px 4px 10px; shape-outside: inset(0 0 0 0); }
+/* Quick quote: thumbs up next to the form, with a speech bubble */
+.bolt-row { display: flex; align-items: flex-end; justify-content: flex-end; gap: 6px; margin-top: 18px; }
+.bolt.at-quote { --bolt-w: 84px; }
+/* Footer: waves goodbye */
+.footer-bolt { grid-column: 1 / -1; }
+.bolt.at-footer { --bolt-w: 80px; }
+
+/* Speech bubbles: 2 on the page, 5 words or fewer */
+.bolt-bubble { position: relative; margin-bottom: 52px; padding: 9px 14px; border: 2.5px solid var(--c-navy); border-radius: 16px; background: #fff; color: var(--c-navy);
+  font-family: var(--ff-display); font-size: 16px; line-height: 1.15; white-space: nowrap; box-shadow: 0 4px 0 var(--c-navy); }
+.bolt-bubble::after { content: ""; position: absolute; right: -11px; bottom: 12px; width: 14px; height: 14px; background: #fff; border: 2.5px solid var(--c-navy); border-width: 2.5px 2.5px 0 0; transform: rotate(45deg) skew(10deg, 10deg); border-radius: 0 3px 0 0; }
+.js .bolt-bubble { opacity: 0; transform: translateY(8px) scale(.85); transform-origin: 100% 100%; transition: opacity .3s ease-out, transform .45s cubic-bezier(.34, 1.56, .64, 1); }
+.js .bolt-row.is-in .bolt-bubble { opacity: 1; transform: none; transition-delay: .55s; }
+
+@media (min-width: 600px) {
+  .bolt.at-hero { left: 40px; --bolt-w: 112px; }
+  .bolt.at-services { --bolt-w: 96px; }
+}
+@media (min-width: 900px) {
+  .bolt.at-hero { left: 64px; --bolt-w: 140px; }
+  .services > .container { position: relative; }
+  .bolt.at-services { position: absolute; float: none; right: 2%; top: -6px; margin: 0; --bolt-w: 150px; }
+  .est-grid > .bolt-row { grid-column: 2; grid-row: 1; align-self: end; justify-content: center; margin-top: 0; }
+  .bolt.at-quote { --bolt-w: 128px; }
+  .bolt-bubble { font-size: 18px; margin-bottom: 76px; }
+  .footer-bolt { grid-column: auto; align-self: start; justify-content: flex-start; margin-top: 0; flex-direction: row; }
+  .bolt.at-footer { --bolt-w: 118px; }
+}
+
+/* ---------- Parts that move on their own (SVG, viewBox units) ---------- */
+.bolt-svg .b-eyes, .bolt-svg .b-arm, .bolt-svg .b-spark, .bolt-svg .b-b, .bolt-svg .b-hat { transform-box: view-box; }
+.bolt-svg .b-eyes { transform-origin: 103px 90px; }
+.bolt-svg .b-arm-r { transform-origin: 138px 101px; }
+.bolt-svg .b-arm-l { transform-origin: 60px 124px; }
+.bolt-svg .b-hat { transform-origin: 111px 66px; }
+.bolt-svg .b-spark { transform-origin: 188px 34px; opacity: 0; }
+.bolt-svg .b-b { transform-origin: 110px 130px; opacity: 0; }
+
+/* Idle, only while on screen: bob, blink, a spark now and then, and the spot's own move */
+.bolt.is-in.is-live .bolt-bob { animation: bolt-bob 2.8s ease-in-out infinite; }
+.bolt.is-in.is-live .b-eyes { animation: bolt-blink 4.6s linear .9s infinite; }
+.bolt.is-in.is-live .b-spark { animation: bolt-spark 3.7s ease-out 1.3s infinite; }
+.bolt.is-in.is-live .b-wave { animation: bolt-wave 6s ease-in-out .7s infinite; }
+.bolt.is-in.is-live .b-point { animation: bolt-point 5s ease-in-out .8s infinite; }
+.bolt.is-in.is-live .b-thumb { animation: bolt-thumb 5.5s ease-in-out .8s infinite; }
+@keyframes bolt-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes bolt-blink { 0%, 93%, 100% { transform: scaleY(1); } 95.5% { transform: scaleY(.08); } }
+@keyframes bolt-spark { 0%, 70%, 100% { opacity: 0; transform: scale(.3) rotate(0deg); } 76% { opacity: 1; transform: scale(1.15) rotate(20deg); } 86% { opacity: 1; transform: scale(1) rotate(30deg); } 94% { opacity: 0; transform: scale(.6) rotate(45deg); } }
+@keyframes bolt-wave { 0%, 34%, 100% { transform: rotate(0deg); } 5% { transform: rotate(-22deg); } 10% { transform: rotate(10deg); } 15% { transform: rotate(-22deg); } 20% { transform: rotate(10deg); } 25% { transform: rotate(-16deg); } }
+@keyframes bolt-point { 0%, 30%, 100% { transform: translate(0, 0); } 6%, 18% { transform: translate(-5px, 2px); } 12%, 24% { transform: translate(0, 0); } }
+@keyframes bolt-thumb { 0%, 30%, 100% { transform: rotate(0deg) translateY(0); } 7% { transform: rotate(-10deg) translateY(-6px); } 14% { transform: rotate(0deg) translateY(0); } 21% { transform: rotate(-8deg) translateY(-4px); } }
+
+/* Tap: a happy hop with a small spark burst */
+.bolt-hop.is-hop { animation: bolt-hop .7s cubic-bezier(.3, .7, .4, 1); }
+.bolt-hop.is-hop .b-hat { animation: bolt-hat .7s ease-out; }
+.bolt-hop.is-hop .b-b { animation: bolt-burst .75s ease-out; }
+@keyframes bolt-hop { 0% { transform: translateY(0) scale(1, 1); } 14% { transform: translateY(0) scale(1.08, .9); } 45% { transform: translateY(-26%) scale(.95, 1.06); } 72% { transform: translateY(0) scale(1.06, .93); } 86% { transform: translateY(-3%) scale(1, 1); } 100% { transform: translateY(0) scale(1, 1); } }
+@keyframes bolt-hat { 0%, 20% { transform: none; } 45% { transform: translateY(-14px) rotate(-8deg); } 75% { transform: translateY(0) rotate(3deg); } 100% { transform: none; } }
+@keyframes bolt-burst { 0% { opacity: 0; transform: translate(0, 0) scale(.3); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.1) rotate(60deg); } }
+
+/* Reduce motion: Bolt stands in place, nothing moves */
+@media (prefers-reduced-motion: reduce) {
+  .js .bolt .bolt-move, .js .bolt.at-hero .bolt-move, .js .bolt-bubble { opacity: 1; transform: none; transition: none; }
+  .bolt-svg *, .bolt-bob, .bolt-hop, .bolt-hop.is-hop { animation: none !important; }
+  .bolt.at-hero .bolt-move { transform: translateY(14%) !important; }
+}
