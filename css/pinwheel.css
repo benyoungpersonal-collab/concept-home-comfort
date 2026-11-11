@@ -64,9 +64,10 @@ h1, h2, h3 { text-wrap: balance; }
 .tpl-hero-card > * { margin: 0; }
 .tpl-hero-card .hero-pill, .tpl-hero-card .hero-ctas, .tpl-hero-card .hero-note { margin: 0; }
 .tpl-hero-card .hero-ctas { width: 100%; }
-.tpl-hero-card .next-chip { position: static; transform: none; margin: 0; box-shadow: none; border: 1px solid var(--c-line); width: auto; max-width: 100%; align-items: center; padding: 10px 16px 10px 12px; border-radius: var(--r-pill); white-space: nowrap; line-height: 1.2; }
-.tpl-hero-card .next-chip .live-dot { margin-top: 0; }
-.tpl-hero-card .next-chip strong { display: inline; }
+/* "Next opening" chip: in the quick quote (request) card, right above the form, as a plain pill */
+.request-card .next-chip { position: static; transform: none; margin: 0 0 var(--sp-3); box-shadow: none; border: 1px solid var(--c-line); width: auto; max-width: 100%; align-items: center; padding: 10px 16px 10px 12px; border-radius: var(--r-pill); white-space: nowrap; line-height: 1.2; }
+.request-card .next-chip .live-dot { margin-top: 0; }
+.request-card .next-chip strong { display: inline; }
 /* Headline: "A comfortable home," then "without the runaround." each on one line from 320px up */
 .tpl-hero h1 { font-size: clamp(1.6rem, calc((100vw - 34px) / 10.8), 3.6rem); line-height: 1.06; letter-spacing: -.035em; margin: 0; }
 .tpl-hero h1 .accent { white-space: nowrap; padding-bottom: .06em; background-size: 100% .2em; }
