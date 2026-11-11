@@ -100,7 +100,11 @@ h1, h2, h3 { text-wrap: balance; }
 /* The illustrative stats moved from the trust row into Meet the family, on a light background */
 .pw-team-stats { margin-top: var(--sp-3); padding-top: var(--sp-3); border-top: 1px solid var(--c-line); }
 .pw-team-stats .stat-num { color: var(--c-navy); }
-.pw-team-stats .stat-num em { color: var(--c-brand-deep); }
+.pw-team-stats .stat-num em { color: var(--c-brand); }
+/* Numbers size to the row's own width, so "8,400+" never runs into "97" from 320px to 1440px. The tag sits on its own line. */
+.pw-team-stats { container-type: inline-size; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(16px, 5cqi, 40px); }
+.pw-team-stats .stat-num { font-size: clamp(1.5rem, 9cqi, 3rem); letter-spacing: 0; white-space: nowrap; }
+.pw-team-stats .stats-foot { grid-column: 1 / -1; }
 .pw-team-stats .stat-label { color: var(--c-muted); }
 .pw-team-stats + .team-row { margin-top: var(--sp-3); }
 
@@ -149,3 +153,20 @@ h1, h2, h3 { text-wrap: balance; }
   .site-header .logo-name { font-size: 22px; }
   .site-header .logo-tag { letter-spacing: .1em; font-size: 9px; }
 }
+/* Bold style: uppercase button text runs wider, so a button inside a card wraps instead of poking past it */
+.deal .btn, .pcard .btn, .card .btn { max-width: 100%; white-space: normal; text-align: center; }
+
+/* Explore by service: a small label over four outline pill buttons (icon, name, arrow). 2 by 2 on phones, one row from 760px. */
+.svc-explore { margin-top: var(--sp-4); }
+.svc-explore-label { margin: 0 0 12px; font-family: var(--ff-ui); font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c-muted); }
+.svc-pills { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 10px; }
+.svc-pills li { display: flex; }
+.svc-pill { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 48px; padding: 10px 16px; border: 2px solid var(--c-brand); border-radius: 999px; background: #fff; color: var(--c-navy); font-family: var(--ff-ui); font-size: 16px; font-weight: 700; line-height: 1.15; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease); }
+.svc-pill span { flex: 1; min-width: 0; }
+.svc-pill .icon { width: 20px; height: 20px; flex: none; color: var(--c-brand); }
+.svc-pill .sp-arrow { width: 18px; height: 18px; transition: transform var(--t-fast) var(--ease); }
+.svc-pill:hover { color: var(--c-navy); background: var(--c-brand-tint); transform: translateY(-3px); box-shadow: 0 10px 22px rgb(238 86 0 / .18); }
+.svc-pill:hover .sp-arrow { transform: translateX(3px); }
+.svc-pill:focus-visible { outline: 3px solid var(--c-focus); outline-offset: 3px; }
+@media (min-width: 760px) { .svc-pills { display: flex; flex-wrap: wrap; gap: 12px; } .svc-pills li { flex: 0 0 auto; } .svc-pill { padding: 10px 20px; } }
+@media (prefers-reduced-motion: reduce) { .svc-pill, .svc-pill .sp-arrow { transition: none; } .svc-pill:hover { transform: none; } }

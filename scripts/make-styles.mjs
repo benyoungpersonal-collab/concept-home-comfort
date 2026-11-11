@@ -84,7 +84,7 @@ ${blocks}
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-  const out = makeStylesPage(readFileSync(join(ROOT, 'index.html'), 'utf8'), { name: 'Pinwheel Heating, Air & Plumbing', current: 'clean',
+  const out = makeStylesPage(readFileSync(join(ROOT, 'index.html'), 'utf8'), { name: 'Pinwheel Heating, Air & Plumbing', current: 'bold',
     note: 'Pinwheel is a sample site by Ben Young Web Design. Not linked from the site.' });
   writeFileSync(join(ROOT, 'styles.html'), out);
   console.log('Wrote styles.html (served at /styles). Not linked from any page and not in the sitemap.');

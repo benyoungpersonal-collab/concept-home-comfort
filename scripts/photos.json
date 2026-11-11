@@ -1,5 +1,5 @@
 {
-  "_note": "Photo registry. Every <img data-photo=\"key\"> in the HTML is built from this file by `node scripts/sync.mjs`, and `python3 scripts/build-images.py` downloads each `src` once and writes the self-hosted WebP files to images/photos/. All photos are free Unsplash or Pexels photos, credited on credits.html. fp = focal point [x, y] from 0 to 1, measured inside box. box = optional [x0, y0, x1, y1] (0 to 1) that trims the source first, e.g. to keep another company's logo out of every crop. Rule: real people only, and no visible logos or business names from other companies.",
+  "_note": "Photo registry. Every <img data-photo=\"key\"> in the HTML is built from this file by `node scripts/sync.mjs`, and `python3 scripts/build-images.py` downloads each `src` once and writes the self-hosted WebP files to images/photos/. All photos are free Unsplash or Pexels photos, credited on credits.html. fp = focal point [x, y] from 0 to 1, measured inside box. box = optional [x0, y0, x1, y1] (0 to 1) that trims the source first, e.g. to keep another company's logo out of every crop. Rules: photos with people are real stock (or the client's own), and AI may only change the color of their clothes; photos without people can be AI-made; on Pinwheel, techs wear the same orange; no visible logos or business names from other companies. file = a copy kept in the repo. edit = what was changed (shown in the credits). tone = {exposure, wb: [r, g, b]} gains in linear light, exposure and white balance only, to match a set of photos.",
   "pinwheel-hero": {
     "file": "images/originals/pinwheel-hero.jpg",
     "site": "Supplied",
@@ -441,5 +441,80 @@
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1596394723269-b2cbca4e6313?w=2400&q=85&fm=jpg",
     "profile": "https://unsplash.com/@elimendeinagella"
+  },
+  "pinwheel-drains": {
+    "file": "images/photos/pinwheel-drains.jpg",
+    "site": "Unsplash",
+    "w": 1200,
+    "h": 1200,
+    "fp": [
+      0.45,
+      0.5
+    ],
+    "color": "#7a8f9c",
+    "alt": "Plumber in an orange shirt tightening a drain pipe under a bathroom sink",
+    "by": "Timur Shakerzianov",
+    "user": "shaker_jpg",
+    "page": "https://unsplash.com/photos/a-man-working-on-a-pipe-in-a-wall-c314Gh8dXAo",
+    "profile": "https://unsplash.com/@shaker_jpg",
+    "use": "Drains service card",
+    "edit": "Shirt color changed to Pinwheel orange; exposure and white balance matched to the other service cards.",
+    "tone": {
+      "exposure": 1.2,
+      "wb": [
+        1.04,
+        1.0,
+        0.96
+      ]
+    }
+  },
+  "pinwheel-air-quality": {
+    "file": "images/photos/pinwheel-air-quality.jpg",
+    "site": "Unsplash",
+    "w": 1200,
+    "h": 1200,
+    "fp": [
+      0.55,
+      0.45
+    ],
+    "color": "#c9c7c2",
+    "alt": "Tech in an orange shirt lifting a ceiling return grille to change the air filter",
+    "by": "Birmingham Airduct Cleaning Services",
+    "user": "hadleycummings",
+    "page": "https://unsplash.com/photos/a-person-is-working-on-a-ceiling-air-conditioner-WwzK2S0h6zU",
+    "profile": "https://unsplash.com/@hadleycummings",
+    "use": "Indoor air quality service card",
+    "edit": "Shirt color changed to Pinwheel orange; exposure and white balance matched to the other service cards.",
+    "tone": {
+      "exposure": 0.96,
+      "wb": [
+        1.01,
+        1.0,
+        0.96
+      ]
+    }
+  },
+  "pinwheel-water-heater": {
+    "file": "images/photos/pinwheel-water-heater.jpg",
+    "site": "Supplied",
+    "w": 2400,
+    "h": 1792,
+    "fp": [
+      0.55,
+      0.55
+    ],
+    "color": "#cfc6b8",
+    "alt": "Gray gas water heater on a drip pan in the corner of a clean garage, with copper lines and an expansion tank",
+    "by": "Ben Young Web Design",
+    "use": "Water heaters service card",
+    "edit": "Exposure and white balance matched to the other service cards.",
+    "tone": {
+      "exposure": 0.94,
+      "wb": [
+        0.96,
+        1.0,
+        1.04
+      ]
+    }
   }
 }
