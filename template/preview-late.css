@@ -33,8 +33,10 @@
 .tpl-hero-banner { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #8a97a3; }
 .tpl-hero-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 30%); }
 @media (min-width: 900px) {
-  /* 2:1, about 720px tall on a 1440px screen; on wider screens the height stays near 720px */
-  .tpl-hero-banner { aspect-ratio: auto; height: min(50vw, max(720px, 39vw), 760px); }
+  /* Sized from the screen height, so the card's pill, headline, paragraph, and buttons show in the first screen on
+     laptops (1280x720, 1440x900, 1920x1080): the photo is about 390px tall on a 1440x900 screen, never under 240px or
+     over 760px, and the card overlaps its bottom 140px. Phones keep the 16:9 photo with the card below it. */
+  .tpl-hero-banner { aspect-ratio: auto; height: clamp(240px, calc(100vh - 510px), 760px); height: clamp(240px, calc(100svh - 510px), 760px); }
   .tpl-hero-banner img { object-position: var(--pos-d, 50% 25%); }
 }
 @media (min-width: 1600px) { .tpl-hero-banner img { object-position: var(--pos-w, 50% 20%); } }
@@ -48,7 +50,7 @@
 .tpl-hero .lead { max-width: 40rem; }
 @media (max-width: 599px) { .container.tpl-hero-wrap { width: 100%; max-width: none; } .tpl-hero-card { padding: 28px 16px 36px; border-radius: 24px 24px 0 0; } }
 @media (min-width: 600px) { .tpl-hero-wrap { margin-top: -48px; } .tpl-hero-card { padding: 44px 40px 52px; gap: 24px; } .tpl-hero-card .hero-ctas { width: auto; } .tpl-hero .hero-h { font-size: calc(clamp(2.5rem, 7.5vw, 3.6rem) * var(--hero-k, 1)); } }
-@media (min-width: 900px) { .tpl-hero-wrap { margin-top: -72px; } .tpl-hero-card { padding: 56px 64px 64px; gap: 26px; border-radius: 32px 32px 0 0; } .tpl-hero .hero-h { font-size: calc(clamp(3.5rem, 5.6vw, 5rem) * var(--hero-k, 1)); } }
+@media (min-width: 900px) { .tpl-hero-wrap { margin-top: -140px; } .tpl-hero-card { padding: 44px 64px 56px; gap: 22px; border-radius: 32px 32px 0 0; } .tpl-hero .hero-h { font-size: calc(min(clamp(3.5rem, 5.6vw, 5rem), 8.8vh) * var(--hero-k, 1)); } }
 
 /* ---------- No gradient glows or color washes ---------- */
 .hero::before, .hero-media::before, .page-hero::before { content: none; display: none; }
