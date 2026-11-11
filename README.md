@@ -54,7 +54,7 @@ Why it works: the Altamont Pass windmills are the first thing you see driving ho
 
 Put the pair where the section should sit (the homepage has a comment after the instant estimate showing where), run `node scripts/sync.mjs`, and the section fills in. Remove the pair to turn it off. When Comfort Club or Financing is on, add their links back to the nav and mobile menu in `partials/header.html`. While they are off, nothing on the site links to `membership.html` or `financing.html` (both pages still exist for the showcase).
 
-**`showcase.html`** is the homepage with every optional section on, each tagged "Optional section". It is for walkthrough videos: noindex, not linked from any page, not in the sitemap. Rebuild it after any homepage edit with `node scripts/make-showcase.mjs && node scripts/sync.mjs`.
+**`showcase.html`** is the homepage with every optional section on, each tagged "Optional section". It is for walkthrough videos: noindex, not linked from any page, not in the sitemap. Rebuild it after any homepage edit with `node scripts/make-showcase.mjs && node scripts/make-styles.mjs && node scripts/sync.mjs`.
 
 The other 4 cities (Manteca, Lathrop, Stockton, Livermore) are covered on the homepage map and in the booking form. See [Adding the other 4 city pages](#adding-the-other-4-city-pages).
 
@@ -195,6 +195,11 @@ Write real local copy for each city. Pages that only swap the city name read as 
 ---
 
 ## Features
+
+- **Feels alive (Nov 11):** picture-book scroll motion (zoom, glide, rise, staggered, and two-way: it goes back out when you scroll up past it), a van drive-in under the service areas, soft-curve section edges under the hero and around the navy bands with the crew photo crossing into the estimate band, How a visit works numbers that pop in while the line draws, photo service cards, reviews that auto-advance every 7 seconds with dots, and gradient main buttons. All of it lives in `css/alive.css` and `js/reveal.js`, shared with every homepage preview. "Reduce motion" turns every bit of motion off.
+- **One H1:** the orange pill, "Heating, Air & Plumbing in Tracy, CA". The big headline keeps its look and is a styled paragraph.
+- **Font styles:** `css/fonts.css` has five styles (clean, bold, classic, rugged, friendly), all self-hosted. Pinwheel uses clean. `/styles` (`styles.html`, made by `node scripts/make-styles.mjs`) shows the hero in all five. It is noindex and not linked from the site.
+- **Photo list:** `PHOTO-LIST.md` lists every photo spot, its source and license, and an AI prompt for a better version (`node scripts/photo-list.mjs`). Wording patterns for new sites: `template/COPY-PATTERNS.md`.
 
 - **Google rating bar** at the very top of every page: stars, rating, review count, and "Write a review". Tapping it opens the reviews.
 - **Sticky header** that compacts on scroll. Desktop keeps the call button; on phones the header shows only the logo and menu once the bottom bar is up.
@@ -353,6 +358,10 @@ images/               Open Graph image and app icon
 partials/             shared header, footer, booking, chat, icons
 partials/optional/    optional homepage sections: specials (on), membership and financing (off)
 scripts/make-showcase.mjs  rebuilds showcase.html from index.html with every optional section on
+scripts/make-styles.mjs   writes styles.html (the font style menu at /styles) from index.html
+scripts/photo-list.mjs    writes PHOTO-LIST.md
+scripts/van.mjs           the outline van (partials/van.html for Pinwheel, and every preview with "van")
+css/fonts.css, css/alive.css  font styles; motion, edges, photo cards, van, mascot, gradient buttons
 scripts/build-map.mjs   renders the service-area map from OpenStreetMap data (see "Service-area map")
 scripts/maps/         one map config per site (cities, home base, output paths)
 images/map/           the rendered map SVG

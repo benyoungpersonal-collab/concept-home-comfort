@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js {{htmlClass}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -10,12 +10,13 @@
 <meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="{{{faviconHref}}}" type="{{faviconType}}">
-<link rel="preload" href="fonts/plus-jakarta-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+{{{fontPreloads}}}
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/preview.css">
 <style>{{{pageCss}}}</style>
 <link rel="stylesheet" href="css/preview-late.css">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/alive.css">
 <script>document.documentElement.classList.replace('no-js','js')</script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{titleTag}}">
@@ -100,21 +101,23 @@
       <img sizes="100vw" src="{{heroSrc}}" srcset="{{heroSrcset}}" width="{{heroW}}" height="{{heroH}}" alt="{{heroAlt}}" fetchpriority="high" style="{{heroPosStyle}}">
     </div>
     <div class="container tpl-hero-wrap">
-      <div class="hero-copy tpl-hero-card">
-        <p class="tpl-pill">{{{pillHtml}}}</p>
-        <h1 id="hero-title">{{{heroHeadline}}}</h1>
+      <div class="hero-copy tpl-hero-card has-mascot">
+        {{#if heroH1}}<h1 class="tpl-h1-line">{{heroH1}}</h1>
+        <p class="tpl-pill">{{{pillHtml}}}</p>{{else}}<h1 class="tpl-pill">{{{pillHtml}}}</h1>{{/if}}
+        <p class="h1 hero-h" id="hero-title">{{{heroHeadline}}}</p>
         <p class="lead">{{lead}}</p>
         <div class="hero-ctas" data-hide-bar>
           <a class="btn btn-primary btn-lg" href="tel:{{tel}}"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call now</a>
           <a class="btn btn-secondary btn-lg" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Request a visit</a>
         </div>
         {{#if hasHours}}<p class="hero-note"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>{{hours}}</p>{{/if}}
+        {{#if mascotHero}}<div class="tpl-mascot at-hero" aria-hidden="true"><img src="{{mascotSrc}}" alt="" width="{{mascotW}}" height="{{mascotH}}"></div>{{/if}}
       </div>
     </div>
   </section>
 
   <!-- 2. Trust row: bold icon squares, 2x2 on phones, one row on wider screens -->
-  {{#if hasTrust}}<section class="trust on-dark" aria-label="Why neighbors trust us">
+  {{#if hasTrust}}<section class="trust on-dark{{edgeClass}}" aria-label="Why neighbors trust us">
     <div class="container">
       <ul class="tpl-tiles n{{trustCount}}">
         {{#each trust}}<li><span class="tpl-tile-icon"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span><span>{{strong}}{{#if hasSub}} <span class="{{subClass}}">{{sub}}</span>{{/if}}</span></li>
@@ -131,27 +134,17 @@
         <h2 id="services-title">{{{servicesHeadline}}}</h2>
         <p class="lead">{{servicesLead}}</p>
       </div>
-      <div class="tpl-bento">
-        {{#each leadService}}<a class="tile photo-tile tile-lead {{tileTone}}" href="#request" id="{{anchor}}">
-          {{#if isPlumbing}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/pipes-720x540.webp" srcset="images/photos/pipes-480x360.webp 480w, images/photos/pipes-720x540.webp 720w, images/photos/pipes-960x720.webp 960w, images/photos/pipes-1200x900.webp 1200w" width="1200" height="900" alt="New copper water pipes running through an open wall" loading="lazy" decoding="async" style="object-position:50% 50%;background-color:#9c6b45">{{else}}<img sizes="(min-width: 900px) 600px, 92vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w, images/photos/thermostat-960x720.webp 960w, images/photos/thermostat-1200x900.webp 1200w" width="1200" height="900" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7">{{/if}}
-          <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
-          <span class="tpl-photo-text">
-            <span class="tile-kicker{{#if isPlumbing}} warm-k{{/if}}"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg>{{kicker}}</span>
+      <div class="pcards">
+        {{#each services}}<article class="pcard" id="{{anchor}}">
+          {{{photoHtml}}}
+          <span class="pcard-badge" aria-hidden="true"><svg class="icon"><use href="#{{icon}}"/></svg></span>
+          <div class="pcard-body">
             <h3>{{name}}</h3>
-            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
-            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
-          </span>
-        </a>{{/each}}
-        {{#if hasMoreServices}}<div class="tpl-bento-rest">
-          {{#each moreServices}}<a class="tile {{tileTone}}" href="#request" id="{{anchor}}">
-            <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#{{icon}}"/></svg></span>
-            <span class="tile-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
-            <h3>{{name}}</h3>
-            {{#if blurb}}<p>{{blurb}}</p>{{/if}}
-            {{#if subLine}}<p class="tile-sub">{{subLine}}</p>{{/if}}
-          </a>
-          {{/each}}
-        </div>{{/if}}
+            {{#if line}}<p>{{line}}</p>{{/if}}
+            <a class="btn btn-secondary btn-sm pcard-link" href="#request">{{cta}}<span class="visually-hidden"> for {{nameLower}}</span></a>
+          </div>
+        </article>
+        {{/each}}
       </div>
       {{#if secondOpinion}}<div class="tpl-callout">
         <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></span>
@@ -174,7 +167,8 @@
         </picture>
       </div>
       </div>
-      <div>
+      <div class="has-mascot">
+        {{#if mascotVisit}}<div class="tpl-mascot at-visit" data-reveal="right" aria-hidden="true"><img src="{{mascotSrc}}" alt="" width="{{mascotW}}" height="{{mascotH}}" loading="lazy"></div>{{/if}}
         <p class="eyebrow">How a visit works</p>
         <h2 id="visit-title">Three steps. <span class="accent">No surprises.</span></h2>
         <ol class="visit-steps">
@@ -186,6 +180,7 @@
         <a class="btn btn-primary" href="#request"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a visit</a>
       </div>
     </div>
+    {{#if vanVisit}}{{{vanHtml}}}{{/if}}
   </section>
 
   <!-- 6. Specials (optional: only when the data file has them) -->
@@ -288,7 +283,7 @@
   </section>{{/if}}
 
   <!-- 9. Estimate: a price range with starting prices, a quick quote by text without them -->
-  <section class="section estimator on-dark" id="estimate" aria-labelledby="estimate-title">
+  <section class="section estimator on-dark{{edgeClass}}" id="estimate" aria-labelledby="estimate-title">
     <div class="container est-grid">
       {{#if hasPrices}}<div>
         <div class="section-head">
@@ -415,13 +410,15 @@
         <p class="muted">{{areasNote}}</p>
       </div>
     </div>
+    {{#if vanAreas}}{{{vanHtml}}}{{/if}}
   </section>{{/if}}
 
 </main>
 
   <!-- 13. Request a visit (the one place a family photo appears on the page) -->
   <section class="section request bg-white" id="request" aria-labelledby="request-title">
-    <div class="container request-grid">
+    <div class="container request-grid has-mascot">
+        {{#if mascotRequest}}<div class="tpl-mascot at-request" data-reveal="left" aria-hidden="true"><img src="{{mascotSrc}}" alt="" width="{{mascotW}}" height="{{mascotH}}" loading="lazy"></div>{{/if}}
       <div class="request-photo arch tall">
         <img sizes="(min-width: 900px) 480px, 92vw" src="images/photos/family-baby-720x960.webp" srcset="images/photos/family-baby-480x640.webp 480w, images/photos/family-baby-720x960.webp 720w, images/photos/family-baby-960x1280.webp 960w" width="960" height="1280" alt="Mom kissing a baby while dad and their daughter laugh beside them on a green couch" loading="lazy" decoding="async" style="object-position:50% 40%;background-color:#9aa98c">
       </div>

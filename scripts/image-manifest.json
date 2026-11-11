@@ -288,42 +288,6 @@
   "q": 70
  },
  {
-  "file": "crew-van-1200x457.webp",
-  "key": "crew-van",
-  "w": 1200,
-  "h": 457,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 62
- },
- {
-  "file": "crew-van-1200x675.webp",
-  "key": "crew-van",
-  "w": 1200,
-  "h": 675,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 62
- },
- {
   "file": "crew-van-1200x900-fp50-60.webp",
   "key": "crew-van",
   "w": 1200,
@@ -360,42 +324,6 @@
   "q": 62
  },
  {
-  "file": "crew-van-1600x610.webp",
-  "key": "crew-van",
-  "w": 1600,
-  "h": 610,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 62
- },
- {
-  "file": "crew-van-480x270.webp",
-  "key": "crew-van",
-  "w": 480,
-  "h": 270,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
   "file": "crew-van-480x360-fp50-60.webp",
   "key": "crew-van",
   "w": 480,
@@ -414,42 +342,6 @@
   "q": 70
  },
  {
-  "file": "crew-van-720x274.webp",
-  "key": "crew-van",
-  "w": 720,
-  "h": 274,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
-  "file": "crew-van-720x405.webp",
-  "key": "crew-van",
-  "w": 720,
-  "h": 405,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
   "file": "crew-van-720x540-fp50-60.webp",
   "key": "crew-van",
   "w": 720,
@@ -458,42 +350,6 @@
   "fp": [
    0.5,
    0.6
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
-  "file": "crew-van-960x366.webp",
-  "key": "crew-van",
-  "w": 960,
-  "h": 366,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0.3,
-   1,
-   0.86
-  ],
-  "q": 70
- },
- {
-  "file": "crew-van-960x540.webp",
-  "key": "crew-van",
-  "w": 960,
-  "h": 540,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
   ],
   "box": [
    0,
@@ -1242,42 +1098,6 @@
   "q": 62
  },
  {
-  "file": "plumber-1200x675.webp",
-  "key": "plumber",
-  "w": 1200,
-  "h": 675,
-  "crop": true,
-  "fp": [
-   0.66,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "plumber-480x270.webp",
-  "key": "plumber",
-  "w": 480,
-  "h": 270,
-  "crop": true,
-  "fp": [
-   0.66,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "plumber-480x360.webp",
   "key": "plumber",
   "w": 480,
@@ -1318,24 +1138,6 @@
   "key": "plumber",
   "w": 480,
   "h": 600,
-  "crop": true,
-  "fp": [
-   0.66,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "plumber-720x405.webp",
-  "key": "plumber",
-  "w": 720,
-  "h": 405,
   "crop": true,
   "fp": [
    0.66,
@@ -1408,24 +1210,6 @@
   "key": "plumber",
   "w": 960,
   "h": 1200,
-  "crop": true,
-  "fp": [
-   0.66,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "plumber-960x540.webp",
-  "key": "plumber",
-  "w": 960,
-  "h": 540,
   "crop": true,
   "fp": [
    0.66,

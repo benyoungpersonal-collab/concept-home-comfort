@@ -26,6 +26,8 @@ import { join, dirname, basename, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { balanceSections } from './section-backgrounds.mjs';
+import { vanBlock } from './van.mjs';
+import { makeStylesPage, STYLES } from './make-styles.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dataPath = process.argv[2];
@@ -109,6 +111,16 @@ if (!trade) trade = kinds.has('plumbing') && (kinds.has('heating') || kinds.has(
 if (!TRADES.includes(trade)) fail(`trade must be one of: ${TRADES.join(', ')}`);
 const hvacLike = ['hvac', 'both'].includes(trade), plumbingLike = ['plumbing', 'both'].includes(trade);
 const tradeLabel = str(raw.tradeLabel) || { hvac: 'HVAC', plumbing: 'Plumbing', both: 'HVAC & Plumbing', electrical: 'Electrician', roofing: 'Roofing', landscaping: 'Landscaping', general: 'Home Services' }[trade];
+/* Font style (css/fonts.css) and trade edges (css/alive.css): per-site settings with trade defaults. */
+const FONT_STYLES = STYLES.map((x) => x.key);
+const fontStyle = str(raw.fontStyle).toLowerCase() || 'clean';
+if (!FONT_STYLES.includes(fontStyle)) fail(`fontStyle must be one of: ${FONT_STYLES.join(', ')}`);
+const EDGES = ['curve', 'wave', 'roof', 'grass', 'bolt', 'none'];
+const edge = str(raw.edge).toLowerCase() || { hvac: 'curve', both: 'curve', plumbing: 'wave', roofing: 'roof', general: 'roof', landscaping: 'grass', electrical: 'bolt' }[trade];
+if (!EDGES.includes(edge)) fail(`edge must be one of: ${EDGES.join(', ')}`);
+const FONT_FILES = { clean: ['plus-jakarta-sans-latin-var', 'inter-latin-var'], bold: ['anton-latin-400', 'barlow-latin-400', 'barlow-condensed-latin-700'],
+  classic: ['fraunces-latin-var', 'inter-latin-var'], rugged: ['rubik-dirt-latin-400', 'rubik-latin-var'], friendly: ['lilita-one-latin-400', 'nunito-latin-var'] };
+const fontPreloads = FONT_FILES[fontStyle].map((f) => `<link rel="preload" href="fonts/${f}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n');
 /* An HVAC company that also does water heaters is still HVAC: the pill only names the trades they are. */
 const svcWords = ['heating', 'cooling', 'plumbing'].filter((k) => kinds.has(k) && (k === 'plumbing' ? plumbingLike : hvacLike));
 const svcPhrase = str(raw.pillServices) || (svcWords.length ? cap(listAmp(svcWords)) : services.length ? cap(listAmp(services.slice(0, 2).map((s) => s.nameLower))) : tradeLabel);
@@ -183,7 +195,8 @@ for (const w of [...new Set(cands.map((c) => c.w))].sort((a, b) => a - b)) {
   cur = b;
 }
 if (base.si) { const s = STEPS[base.si]; pillCss = `.tpl-pill{font-size:${s.f}px;padding:6px ${s.pad}px;letter-spacing:${s.ls}em}` + pillCss; }
-const pillHtml = keep.map((t, i) => `<span class="tp-${i}">${esc(t)}</span>`).join('');
+/* The pill is the page's H1, so only the longest tier is real text; the shorter tiers show through CSS (data-t). */
+const pillHtml = keep.map((t, i) => i === 0 ? `<span class="tp-${i}">${esc(t)}</span>` : `<span class="tp-${i}" data-t="${esc(t)}"></span>`).join('');
 const pillFull = keep[cur.ti];
 
 /* Specials, FAQ, locations, estimate */
@@ -522,6 +535,7 @@ const SAMPLE = {
     ['Linda K.', 'Easy to reach, friendly, and the work held up.']],
 };
 const sampleReviews = isNew ? SAMPLE[trade].map(([n, quote]) => ({ name: n, quote, initial: n.charAt(0), hue: hueOf(n) })) : [];
+if (established && reviews.length >= 3 && reviews.length < 6) console.warn(`note: ${reviews.length} review quotes. The reviews auto-advance best with 6 or more real Google reviews, word for word.`);
 if (established && reviews.length < 3) console.warn(`note: ${reviews.length} review quote(s) in the data file. Add 3 short real Google reviews, word for word, so the reviews section shows them.`);
 
 /* ---------- FAQ: their own answers, or defaults for their trade filled from their facts ---------- */
@@ -591,6 +605,76 @@ const menu = [
   { id: 'request', label: 'Request a visit' },
 ].filter(Boolean);
 
+/* ---------- Photo service cards, mascot, van, button gradient ---------- */
+/* Each card: a photo on top, a round icon badge over its corner, the title, one short line, and a button.
+   Photo: services[].photo (their own file), else a matching stock photo (each used once), else a neutral placeholder
+   that says which photo goes there. Every photo spot is listed in prospects/photo-lists/NAME.md with an AI prompt. */
+const PHOTOS = JSON.parse(readFileSync(join(ROOT, 'scripts', 'photos.json'), 'utf8'));
+const STOCK = [[/water heater|tankless/i, null], [/heat pump|mini.?split|ductless/i, 'heat-pump'], [/air quality|duct|filter|purif/i, 'filter'], [/leak/i, 'leak'],
+  [/drain|sewer|clog|rooter/i, 'plumber'], [/repip|pipe|re-pipe/i, 'pipes'], [/heat|furnace|boiler/i, 'cozy'], [/cool|\bac\b|a\/c|air cond/i, 'thermostat'], [/plumb/i, 'plumber']];
+const PROMPT = (svc) => `Realistic photo for a home service website card about "${svc}": the finished work or the equipment in a clean, bright California home, natural daylight, eye level, 4:3. No people, no logos, no brand names, no text.`;
+const photoList = [];
+const usedStock = new Set();
+const ownPhotos = [];
+for (const [i, sv] of services.entries()) {
+  const own = arr(raw.services)[i] && typeof raw.services[i] === 'object' ? raw.services[i].photo : undefined;
+  sv.line = sv.blurb || sv.sub.slice(0, 3).join(', ');
+  sv.cta = 'Get a quote';
+  if (own && own !== false) {
+    const ext = extname(String(own)).toLowerCase();
+    if (!['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) fail(`services[${i}].photo must be a .jpg, .png, or .webp file`);
+    const to = `images/services/${sv.anchor}${ext}`;
+    ownPhotos.push([String(own), to]);
+    sv.photoHtml = `<div class="pcard-photo"><img src="${to}" width="720" height="540" alt="${esc(str(raw.services[i].photoAlt) || sv.name)}" loading="lazy" decoding="async"></div>`;
+    photoList.push({ spot: `Service card: ${sv.name}`, now: `Their photo (${own})`, source: 'Supplied by the business', license: 'Theirs', prompt: PROMPT(sv.name) });
+    continue;
+  }
+  /* The service name decides first (a "Heating" card with heat pumps in its list is still heating), then its sub-services.
+     A water heater card waits for a real or AI photo: no stock water heater passed the photo rules yet. */
+  const pick = (text) => { for (const [re, k] of STOCK) if (re.test(text)) { if (k === null) return null; if (!usedStock.has(k)) return k; } return undefined; };
+  let key = own === false ? null : pick(sv.name);
+  if (key === undefined) key = pick(sv.sub.join(' '));
+  if (key === undefined) key = null;
+  if (key) {
+    usedStock.add(key);
+    const ph = PHOTOS[key];
+    sv.photoHtml = `<div class="pcard-photo"><img sizes="(min-width: 1000px) 285px, (min-width: 700px) 31vw, 46vw" src="images/photos/${key}-720x540.webp" srcset="images/photos/${key}-480x360.webp 480w, images/photos/${key}-720x540.webp 720w" width="720" height="540" alt="${esc(ph.alt)}" loading="lazy" decoding="async" style="object-position:${Math.round(ph.fp[0] * 100)}% ${Math.round(ph.fp[1] * 100)}%;background-color:${ph.color}"></div>`;
+    photoList.push({ spot: `Service card: ${sv.name}`, now: ph.alt, source: `${ph.site}, photo by ${ph.by} (${ph.page})`, license: `${ph.site} License (free for commercial use)`, prompt: PROMPT(sv.name) });
+  } else {
+    sv.photoHtml = `<div class="pcard-photo is-placeholder"><span>Photo: ${esc(sv.name.toLowerCase())}</span></div>`;
+    photoList.push({ spot: `Service card: ${sv.name}`, now: 'Placeholder (labeled)', source: 'None yet', license: 'n/a', prompt: PROMPT(sv.name) });
+  }
+}
+if (services.length && services.length < 3) console.warn('note: fewer than 3 services. The photo cards look best with 4 or 8.');
+
+/* Mascot slot: an optional transparent PNG or SVG (mascot) that slides in at 2 or 3 spots with a small idle bob.
+   mascotSpots picks the spots (hero, visit, request); all three by default. No mascot file: nothing shows. */
+const mascot = str(raw.mascot);
+const mascotExt = mascot ? extname(mascot).toLowerCase() : '';
+if (mascot && !['.png', '.svg', '.webp'].includes(mascotExt)) fail('mascot must be a transparent .png, .webp, or .svg file');
+let mascotW = 200, mascotH = 200;
+if (mascotExt === '.png') { try { const b = readFileSync(resolve(dirname(dataPath), mascot)); mascotW = b.readUInt32BE(16); mascotH = b.readUInt32BE(20); } catch {} }
+const spots = arr(raw.mascotSpots).length ? arr(raw.mascotSpots).map((x) => str(x).toLowerCase()) : ['hero', 'visit', 'request'];
+for (const sp of spots) if (!['hero', 'visit', 'request'].includes(sp)) fail('mascotSpots can only use: hero, visit, request');
+
+/* Van drive-in: "van": true (service areas) or { "section": "areas" | "how-it-works", "line": "...", "phone": false } */
+const vanCfg = raw.van === true ? {} : raw.van && typeof raw.van === 'object' ? raw.van : null;
+const vanSection = vanCfg ? (str(vanCfg.section) || 'areas') : '';
+if (vanCfg && !['areas', 'how-it-works'].includes(vanSection)) fail('van.section must be "areas" or "how-it-works"');
+const vanHtml = vanCfg ? vanBlock({ name: shortName, line: str(vanCfg.line) || logoTagFor(), phone: vanCfg.phone === false ? '' : phonePretty,
+  mark: `<rect width="28" height="28" rx="7" fill="var(--c-brand-strong)"/><text x="14" y="20" text-anchor="middle" font-family="var(--ff-display)" font-weight="800" font-size="16" fill="#fff">${esc(initial)}</text>`,
+  label: `A ${shortName} work van drives in and parks` }) : '';
+function logoTagFor() { return str(raw.logoTag) || str(raw.tagline) || tradeLabel; }
+
+/* Gradient main buttons: from a slightly lighter shade to the full brand color. The lift stops where the button text
+   would drop under 3:1 on the lightest part (bold button text). */
+const btnBase = (() => { const m = brandCss.match(/--c-brand-fill:(#[0-9A-F]{6})/i) || brandCss.match(/--c-brand-strong:(#[0-9A-F]{6})/i); return m ? m[1] : '#D1441C'; })();
+const btnText = (brandCss.match(/--c-on-brand:(#[0-9A-F]{6})/i) || [, '#FFFFFF'])[1];
+const ratioOf = (a, b) => { const [x, y] = [lum(toRgb(a)), lum(toRgb(b))].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+let btnLift = 0; for (const f of [0.14, 0.12, 0.1, 0.08, 0.06, 0.04]) { if (ratioOf(btnText, mix(btnBase, f)) >= 3) { btnLift = f; break; } }
+const btnReport = `buttons ${mix(btnBase, btnLift)} to ${btnBase}: text ${ratioOf(btnText, mix(btnBase, btnLift)).toFixed(2)}:1 at the lightest, ${ratioOf(btnText, btnBase).toFixed(2)}:1 at the full color`;
+brandCss += `:root{--btn-lift:${Math.round(btnLift * 100)}%}`;
+
 const data = {
   name, nameDot: /[.!?]$/.test(name) ? name : name + '.', shortName, tagline, initial, city, year, tel, phonePretty, previewUrl, titleTag, lead,
   metaDescription: str(raw.description) || `${name}: ${serviceSummary} for homeowners in ${areaSummary}. Call ${phonePretty}.`,
@@ -626,6 +710,10 @@ const data = {
   insured, upfront, guarantee: guarantee || !!warranty,
   guaranteeLine: warranty ? `Warranty: ${warranty}` : guarantee ? "Satisfaction guarantee: if something's not right, we'll make it right." : '',
   hours, hasHours: !!hours, headerHours, hasHeaderHours: !!headerHours, email, hasEmail: !!email,
+  htmlClass: `fs-${fontStyle}${edge === 'none' ? '' : ` edge-${edge}`}`, edgeClass: edge === 'none' ? '' : ' edge-top edge-bottom', fontPreloads,
+  heroH1: str(raw.h1),
+  mascotSrc: mascot ? `images/mascot${mascotExt}` : '', mascotW, mascotH, mascotHero: !!mascot && spots.includes('hero'), mascotVisit: !!mascot && spots.includes('visit'), mascotRequest: !!mascot && spots.includes('request'),
+  vanHtml, vanAreas: vanSection === 'areas' && areas.length > 0, vanVisit: vanSection === 'how-it-works' || (vanSection === 'areas' && !areas.length),
 };
 
 /* ---------- 2. Tiny template engine: {{a.b}} escaped, {{{raw}}}, {{#if}} {{else}} {{/if}}, {{#each}} {{this}} {{/each}}, {{> partial}} ---------- */
@@ -706,11 +794,11 @@ if (/(^|[^\w&])#1\b|\bnumber one\b|\bbest in\b/i.test(html)) fail('The page make
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 const copy = (from, to = from) => { mkdirSync(dirname(join(OUT, to)), { recursive: true }); copyFileSync(join(ROOT, from), join(OUT, to)); return 1; };
-const own = { 'css/preview.css': 'template/preview.css', 'css/preview-late.css': 'template/preview-late.css', 'js/preview.js': 'template/preview.js', 'js/reveal.js': 'template/reveal.js' };
+const own = { 'css/preview.css': 'template/preview.css', 'css/preview-late.css': 'template/preview-late.css', 'js/preview.js': 'template/preview.js' };
 let copied = 0;
 const refs = new Set([...html.matchAll(/\b(src|href|poster|imagesrcset|srcset)="([^"]+)"/g)].flatMap((m) => m[2].startsWith('data:') ? [] : (/srcset/.test(m[1]) ? m[2].split(',') : [m[2]]).map((p) => p.trim().split(/\s+/)[0].split('?')[0])));
 for (const ref of refs) {
-  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/header-mark') || ref.startsWith('images/hero/') || ref.startsWith('images/owner') || ref.startsWith('images/truck') || ref === 'images/map/service-area.svg') continue;
+  if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/header-mark') || ref.startsWith('images/hero/') || ref.startsWith('images/owner') || ref.startsWith('images/truck') || ref.startsWith('images/mascot') || ref.startsWith('images/services/') || ref === 'images/map/service-area.svg') continue;
   if (own[ref]) { copied += copy(own[ref], ref); continue; }
   if (!existsSync(join(ROOT, ref))) fail('Referenced file is missing: ' + ref);
   copied += copy(ref);
@@ -729,6 +817,8 @@ if (logoMark) copyOwn(logoMark, markSrc);
 if (headerMark) copyOwn(headerMark, headerMarkSrc);
 if (truck) copyOwn(str(truck.src), `images/truck${truckExt}`);
 if (data.hasOwnerPhoto) copyOwn(ownerPhoto, data.ownerPhotoSrc);
+if (mascot) copyOwn(mascot, data.mascotSrc);
+for (const [from, to] of ownPhotos) copyOwn(from, to);
 if (mapHtml) {
   let svg = readFileSync(mapSvgFile, 'utf8');
   if (mapColors) for (const [a, b] of mapColors) svg = svg.split(a).join(b);
@@ -742,6 +832,25 @@ if (mapHtml) {
   writeFileSync(join(OUT, 'images', 'map', 'service-area.svg'), svg); copied++;
 }
 writeFileSync(join(OUT, 'index.html'), html);
+/* /styles: the same hero in all five font styles, with their colors and buttons (noindex, not linked) */
+const stylesHtml = makeStylesPage(html, { name, current: fontStyle, note: 'Homepage preview by Ben Young Web Design. Not linked from the preview.' });
+if (/claude/i.test(stylesHtml) || /—/.test(stylesHtml)) fail('The styles page mentions Claude or has an em dash.');
+writeFileSync(join(OUT, 'styles.html'), stylesHtml);
+/* Photo list: every photo spot, what is there now, its source and license, and a ready-to-paste AI image prompt */
+{
+  const rows = [
+    { spot: 'Hero banner', now: hero.alt, source: hero.own ? 'Their photo (heroPhoto)' : 'Stock (see credits in the main repo, scripts/photos.json)', license: hero.own ? 'Theirs' : 'Unsplash or Pexels License', prompt: `Realistic wide photo of ${hero.own ? 'the owner beside their work van' : 'a clean home exterior with the equipment this business services'} in ${city}, ${state}, morning light, 2:1. No logos except their own, no text.` },
+    ...photoList,
+    { spot: 'How a visit works (video poster)', now: 'Plumber tightening an outdoor faucet (stock video)', source: 'Pexels video', license: 'Pexels License', prompt: `Short 9 second clip of a technician's gloved hands finishing a repair at a ${trade === 'plumbing' ? 'sink' : 'furnace or AC unit'}, shallow depth of field. No logos, no faces.` },
+    ...(data.hasOwnerPhoto ? [{ spot: 'Meet the family: owner portrait', now: 'Their photo', source: 'Supplied', license: 'Theirs', prompt: 'Use a real photo of the owner. Never AI.' }] : []),
+    { spot: 'Request a visit: family photo', now: 'Family on a green couch (stock)', source: 'Pexels', license: 'Pexels License', prompt: 'Real stock only (people). A family relaxing at home in a bright living room.' },
+    ...(mascot ? [{ spot: 'Mascot (hero, how it works, request)', now: mascot, source: 'Supplied', license: 'Theirs', prompt: 'Transparent PNG, the mascot facing left and right, about 600px tall.' }] : []),
+  ];
+  const md = `# Photo list: ${name}\n\nBuilt by scripts/build-preview.mjs. Every photo spot on the preview, what is there now, where it came from, and a ready-to-paste AI prompt for a better version.\nRules: people photos are real stock or theirs, never AI. Photos without people (equipment, homes, finished work) can be stock or AI-made.\n\n| Spot | Now | Source | License | AI prompt for a better version |\n|---|---|---|---|---|\n`
+    + rows.map((r) => `| ${r.spot} | ${r.now} | ${r.source} | ${r.license} | ${r.prompt} |`).join('\n') + '\n';
+  mkdirSync(join(ROOT, 'prospects', 'photo-lists'), { recursive: true });
+  writeFileSync(join(ROOT, 'prospects', 'photo-lists', `${slug}.md`), md);
+}
 writeFileSync(join(OUT, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/images/*\n  Cache-Control: public, max-age=604800\n');
 writeFileSync(join(OUT, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 
@@ -752,6 +861,8 @@ console.log(`Mode: ${mode}${established ? '' : ' (sample review cards and the pr
 console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}" | 320 phone "${keep[base.ti]}"`);
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
 console.log(`Hero photo: ${hero.own ? 'their own (heroPhoto), og.jpg cut from it' : 'stock ' + (trade === 'plumbing' ? 'plumber' : 'HVAC tech') + ' (add heroPhoto for theirs)'}. Header: ${headerMarkSrc ? 'their mark' : 'initial'} + "${shortName}"${logoTag ? ` / "${logoTag}"` : ''}.`);
+console.log(`Font style: ${fontStyle}. Edges: ${edge}. Van: ${vanSection || 'off'}. Mascot: ${mascot ? spots.join(', ') : 'off'}. ${btnReport}.`);
+console.log(`Styles page: ${previewUrl}styles. Photo list: prospects/photo-lists/${slug}.md (${photoList.filter((r) => /Placeholder/.test(r.now)).length} placeholder card photo(s)).`);
 console.log(`Section backgrounds: ${bal.order.join(' > ')}${bal.changes.length ? ` (changed: ${bal.changes.join('; ')})` : ''}.`);
 console.log(`Trust row (${trust.length}): ${trust.map((t) => t.strong + (t.sub ? ` (${t.sub})` : '')).join(' | ')}`);
 console.log(`Reviews: ${established ? `${data.ratingText} stars from ${reviewCount ?? '?'} Google reviews, ${reviews.length} quote(s) shown` : '3 sample cards, tagged Sample (preview only, never on a live site)'}. FAQ: ${faqList.length} questions${faqs.length ? '' : ' (trade defaults)'}.`);

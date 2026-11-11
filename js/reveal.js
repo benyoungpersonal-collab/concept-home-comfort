@@ -55,6 +55,8 @@
   // Anything already on screen when the page opens shows at once: no flash, no wait.
   var vh = window.innerHeight || d.documentElement.clientHeight;
   var onScreen = function (el) { var r = el.getBoundingClientRect(); return r.top < vh && r.bottom > 0; };
+  // The hidden starting state is set with transitions off, so nothing animates on page load.
+  d.documentElement.classList.add('tpl-no-anim');
   els.forEach(function (el) {
     el.setAttribute('data-m', moveFor(el));
     el.classList.add('tpl-reveal');
@@ -109,4 +111,21 @@
   [].forEach.call(d.querySelectorAll('.visit-steps'), function (ol) { toggleOn(ol, 'tpl-steps-ready', '-12%'); });
   // Van drive-in: drives in from the left and parks; scroll back up past it and it drives back out
   [].forEach.call(d.querySelectorAll('.tpl-van'), function (v) { toggleOn(v, 'tpl-van-ready', '-8%'); });
+  /* A jump straight up (tapping the logo, a "back to top" link) can skip past the line without the observers seeing it,
+     so a light check on scroll sends anything now below the line back out. */
+  var outs = els.concat([].slice.call(d.querySelectorAll('.visit-steps.tpl-steps-ready, .tpl-van.tpl-van-ready')));
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var line = (window.innerHeight || vh) * 0.9;
+      outs.forEach(function (el) {
+        if (!el.classList.contains('is-in') || el.closest('.review-track')) return;
+        if (el.getBoundingClientRect().top > line + 60) { if (el.classList.contains('tpl-reveal')) hide(el); else el.classList.remove('is-in', 'is-drawn'); }
+      });
+    });
+  }, { passive: true });
+  void d.body.offsetHeight; // apply the starting state now, then turn transitions back on
+  requestAnimationFrame(function () { requestAnimationFrame(function () { d.documentElement.classList.remove('tpl-no-anim'); }); });
 })();

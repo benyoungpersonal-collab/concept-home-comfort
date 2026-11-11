@@ -10,6 +10,10 @@
    each width is generated per preview from the text length, so it never wraps and never drops below 12px. */
 .tpl-pill { display: inline-flex; align-items: center; max-width: 100%; margin: 0 0 var(--sp-2); padding: 6px 12px; border-radius: 999px; background: var(--c-brand-strong); color: #fff; font-family: var(--ff-body); font-size: 12px; font-weight: 700; line-height: 1.25; letter-spacing: 0; white-space: nowrap; box-shadow: 0 6px 16px rgb(var(--c-brand-rgb, 209 68 28) / .26), inset 0 1px 0 rgb(255 255 255 / .18); }
 .tpl-pill > span { display: none; }
+/* The pill is the page's H1: only the longest version is real text; shorter versions are drawn from data-t */
+.tpl-pill > span[data-t]::after { content: attr(data-t); }
+/* "h1" in the data file: a small eyebrow-style H1 above the pill (only when the pill does not name the services and area) */
+.tpl-h1-line { margin: 0; font-family: var(--ff-ui, var(--ff-body)); font-size: 13px; font-weight: 700; letter-spacing: .08em; line-height: 1.3; text-transform: uppercase; color: var(--c-brand-deep); }
 
 /* Services: a lead photo tile plus one tile per service, filled from the data file */
 .tpl-bento { display: grid; gap: 12px; }

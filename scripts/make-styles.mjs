@@ -76,7 +76,7 @@ ${sprite}
 <main>
 ${blocks}
 </main>
-<p class="container styles-foot">${esc(note || 'Ben Young Web Design')}</p>
+<footer class="container styles-foot"><p>${esc(note || "Ben Young Web Design")}</p></footer>
 </body>
 </html>
 `;

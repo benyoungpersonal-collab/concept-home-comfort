@@ -11,6 +11,7 @@
    Reduce motion: nothing moves. Only opacity, translate, scale, and rotate animate, so nothing shifts the layout. */
 
 /* ---------- 1. Scroll motion ---------- */
+.tpl-no-anim .tpl-reveal, .tpl-no-anim .tpl-van *, .tpl-no-anim .visit-steps li, .tpl-no-anim .visit-steps li::before, .tpl-no-anim .visit-steps li::after, .tpl-no-anim .visit-steps li > * { transition: none !important; }
 :root { --m-dur: .6s; --m-pop: cubic-bezier(.34, 1.56, .64, 1); --m-glide: cubic-bezier(.2, 1.12, .36, 1); }
 .js .tpl-reveal {
   opacity: 0;
@@ -35,7 +36,7 @@
 .edge-wave { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 34C120 10 240 10 360 34S600 58 720 34 960 10 1080 34 1320 58 1440 34V64H0Z'/%3E%3C/svg%3E"); }
 .edge-roof { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 64 720 4 1440 64Z'/%3E%3C/svg%3E"); }
 .edge-grass { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 64V44L18 20 30 46 46 14 60 44 78 26 92 46 110 8 124 44 142 22 156 46 172 16 186 44 204 28 218 46 236 10 250 44 268 20 282 46 298 14 312 44 330 26 344 46 362 6 376 44 394 22 408 46 424 16 438 44 456 28 470 46 488 12 502 44 520 20 534 46 550 14 564 44 582 26 596 46 614 8 628 44 646 22 660 46 676 16 690 44 708 28 722 46 740 10 754 44 772 20 786 46 802 14 816 44 834 26 848 46 866 6 880 44 898 22 912 46 928 16 942 44 960 28 974 46 992 12 1006 44 1024 20 1038 46 1054 14 1068 44 1086 26 1100 46 1118 8 1132 44 1150 22 1164 46 1180 16 1194 44 1212 28 1226 46 1244 10 1258 44 1276 20 1290 46 1306 14 1320 44 1338 26 1352 46 1370 6 1384 44 1402 22 1416 46 1440 18V64Z'/%3E%3C/svg%3E"); }
-.edge-bolt { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 64V40L150 40 190 12 210 30 250 8 230 40 610 40 650 12 670 30 710 8 690 40 1070 40 1110 12 1130 30 1170 8 1150 40H1440V64Z'/%3E%3C/svg%3E"); }
+.edge-bolt { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 64V46L60 14 120 46 180 14 240 46 300 14 360 46 420 14 480 46 540 14 600 46 660 14 720 46 780 14 840 46 900 14 960 46 1020 14 1080 46 1140 14 1200 46 1260 14 1320 46 1380 14 1440 46V64Z'/%3E%3C/svg%3E"); }
 .edge-top, .edge-bottom { position: relative; }
 .edge-top::before, .edge-bottom::after {
   content: ""; position: absolute; left: 0; right: 0; height: var(--edge-h); z-index: 1; pointer-events: none;
@@ -128,7 +129,7 @@
 .tpl-mascot.at-request { left: -18px; bottom: -10px; --mascot-w: 110px; }
 .has-mascot { position: relative; }
 @media (min-width: 900px) {
-  .tpl-mascot.at-hero { right: auto; left: calc(100% + 24px); top: auto; bottom: 48px; --mascot-w: 170px; }
+  .tpl-mascot.at-hero { right: 56px; top: -130px; --mascot-w: 150px; }
   .tpl-mascot.at-visit { --mascot-w: 120px; top: -30px; }
   .tpl-mascot.at-request { --mascot-w: 150px; left: -40px; }
 }

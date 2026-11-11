@@ -5,7 +5,7 @@
    - No gradient glows or color washes: solid colors
    - Balanced headline line breaks
    - Trust row: bold icon squares, 2x2 on phones, one row on wider screens
-   - Scroll animations (js/reveal.js): fade up once, staggered, never on the hero
+   - Scroll motion lives in css/alive.css and js/reveal.js (shared with Pinwheel)
 */
 
 /* ---------- Header: mark + name ---------- */
@@ -43,12 +43,12 @@
 .tpl-hero-card > * { margin: 0; }
 .tpl-hero-card .tpl-pill, .tpl-hero-card .hero-ctas, .tpl-hero-card .hero-note { margin: 0; }
 .tpl-hero-card .hero-ctas { width: 100%; }
-.tpl-hero h1 { font-size: clamp(2.1rem, calc(11.8vw - 4px), 3.6rem); line-height: 1.04; letter-spacing: -.035em; margin: 0; }
-.tpl-hero h1 .accent { padding-bottom: .06em; background-size: 100% .2em; }
+.tpl-hero .hero-h { font-size: calc(clamp(2.1rem, calc(11.8vw - 4px), 3.6rem) * var(--hero-k, 1)); line-height: 1.04; letter-spacing: -.035em; margin: 0; }
+.tpl-hero .hero-h .accent { padding-bottom: .06em; background-size: 100% .2em; }
 .tpl-hero .lead { max-width: 40rem; }
 @media (max-width: 599px) { .container.tpl-hero-wrap { width: 100%; max-width: none; } .tpl-hero-card { padding: 28px 16px 36px; border-radius: 24px 24px 0 0; } }
-@media (min-width: 600px) { .tpl-hero-wrap { margin-top: -48px; } .tpl-hero-card { padding: 44px 40px 52px; gap: 24px; } .tpl-hero-card .hero-ctas { width: auto; } .tpl-hero h1 { font-size: clamp(2.5rem, 7.5vw, 3.6rem); } }
-@media (min-width: 900px) { .tpl-hero-wrap { margin-top: -72px; } .tpl-hero-card { padding: 56px 64px 64px; gap: 26px; border-radius: 32px 32px 0 0; } .tpl-hero h1 { font-size: clamp(3.5rem, 5.6vw, 5rem); } }
+@media (min-width: 600px) { .tpl-hero-wrap { margin-top: -48px; } .tpl-hero-card { padding: 44px 40px 52px; gap: 24px; } .tpl-hero-card .hero-ctas { width: auto; } .tpl-hero .hero-h { font-size: calc(clamp(2.5rem, 7.5vw, 3.6rem) * var(--hero-k, 1)); } }
+@media (min-width: 900px) { .tpl-hero-wrap { margin-top: -72px; } .tpl-hero-card { padding: 56px 64px 64px; gap: 26px; border-radius: 32px 32px 0 0; } .tpl-hero .hero-h { font-size: calc(clamp(3.5rem, 5.6vw, 5rem) * var(--hero-k, 1)); } }
 
 /* ---------- No gradient glows or color washes ---------- */
 .hero::before, .hero-media::before, .page-hero::before { content: none; display: none; }
@@ -107,9 +107,9 @@ h1, h2, h3 { text-wrap: balance; }
 @media (min-width: 900px) { .trust { padding: 6px 0; } .tpl-tile-icon { width: 28px; height: 28px; border-radius: 8px; } .tpl-tile-icon .icon { width: 16px; height: 16px; } }
 @media (min-width: 1280px) { .trust { padding: 7px 0; } .tpl-tiles li { gap: 6px; font-size: 15px; } .tpl-tile-icon { width: 30px; height: 30px; } .tpl-tile-icon .icon { width: 17px; height: 17px; } }
 
-/* ---------- Scroll animations (js/reveal.js adds the classes, so without JavaScript nothing is hidden) ---------- */
-/* Opacity and transform only: nothing moves the layout. The hero never gets these classes. */
-.tpl-reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; transition-delay: var(--tpl-d, 0ms); }
-.tpl-reveal.tpl-fade { transform: none; }
-.tpl-reveal.is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .tpl-reveal { opacity: 1; transform: none; transition: none; } }
+/* ---------- Scroll motion, edges, photo service cards, van, mascot, gradient buttons: css/alive.css ---------- */
+/* Trade edges: the quick quote or price card sits across the top edge of the navy band on wide screens */
+@media (min-width: 900px) {
+  .estimator.edge-top .est-grid { align-items: start; }
+  .estimator.edge-top .est-side { position: relative; z-index: 4; margin-top: calc(-1 * var(--section-y) - var(--edge-h) - 24px); }
+}
