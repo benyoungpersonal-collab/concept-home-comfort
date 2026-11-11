@@ -1,46 +1,84 @@
-/* reveal.js: sections and cards fade up as they scroll into view, once each, cards a little staggered.
-   - The hero is never touched, so the header, photo, headline and buttons show instantly.
-   - Nothing is hidden until this script runs (no JavaScript: everything stays visible).
-   - "Reduce motion" turns it off. Only opacity and transform change, so nothing shifts the layout.
-   Add data-reveal to any element to include it. */
+/* reveal.js: "picture book" scroll motion, shared by Pinwheel and every homepage preview.
+   - Headings, cards, photos, and buttons come in as they scroll into view, with a mix of moves: photos and cards in a
+     row zoom up from slightly smaller with a tiny overshoot, items in a left or right column glide in from that side,
+     and the rest rise up from the bottom. About 0.6s each, cards in a row a little staggered (css/alive.css).
+   - Scroll back up past something and it goes back out the way it came. Keep scrolling down and it stays put.
+   - The hero, header, and menus are never touched, so the top of the page shows instantly.
+   - Nothing is hidden until this script runs (no JavaScript: everything stays visible). "Reduce motion": no motion.
+   - Also runs How a visit works (numbers pop, the line draws) and the van drive-in.
+   Add data-reveal (or data-reveal="zoom|left|right|up|fade") to include any other element. */
 (function () {
   'use strict';
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var d = document;
   var SEL = [
-    '[data-reveal]', '.section-head', '.faq-head', '.tile', '.tpl-callout', '.visit-media-col', '.visit-steps > li',
-    '.review-card', '.tpl-sample-note', '.tpl-proof > li', '.tpl-review-ask', '.est-grid > *', '.acc-item', '.call-card',
-    '.map-card', '.areas .eyebrow', '.areas h2', '.areas .lead', '.area-chips', '.areas .muted',
-    '.request-photo', '.request-card', '.tpl-tiles > li', '.team-grid > *', '.offer-card', '.member-card', '.feature'
+    '[data-reveal]',
+    '.section .eyebrow', '.section h2', '.section-head .lead', '.section-head .rating-line', '.section-head > p', '.faq-head > *',
+    '.pcard', '.review-card', '.deal', '.acc-item', '.call-card', '.tpl-callout', '.tpl-proof > li', '.tpl-review-ask', '.tpl-sample-note',
+    '.visit-media-col', '.visit .btn', '.tpl-guarantee', '.request-photo', '.request-card', '.owner-figure', '.map-card', '.team-photo .photo', '.team-photo figcaption',
+    '.section .lead', '.pull-quote', '.proof-chips', '.stats', '.team-row > li', '.team .btn-row', '.area-chips', '.areas .muted',
+    '.est-form .q', '.est-form .field', '.est-form > div:last-child', '.est-side', '.tpl-tiles > li', '.offer-card', '.member-card', '.feature',
+    '.bento-foot', '.specials-foot', '.carousel-controls', '.section > .container > .btn', '.section > .container > .btn-row'
   ].join(',');
-  var els = [].slice.call(document.querySelectorAll(SEL)).filter(function (el) {
-    // Skip the hero and header, anything inside a dropdown (it shows when opened), and anything not drawn on this screen size.
-    return !el.closest('.hero') && !el.closest('.site-header') && !el.closest('.mobile-menu') && !el.closest('details') && !el.closest('[data-no-reveal]') && el.getClientRects().length > 0;
-  });
-  var footerLogo = document.querySelector('.site-footer .footer-brand .logo');
-  if (footerLogo) { footerLogo.classList.add('tpl-fade'); els.push(footerLogo); }
-  // Anything already on screen when the page opens shows at once: no flash, no wait.
-  var vh = window.innerHeight || document.documentElement.clientHeight;
-  els = els.filter(function (el) {
+  var skip = function (el) {
+    return el.closest('.hero') || el.closest('.site-header') || el.closest('.mobile-menu') || el.closest('details') || el.closest('dialog') ||
+      el.closest('[data-no-reveal]') || el.closest('.chat-panel') || el.closest('.visit-steps') || el.getClientRects().length === 0;
+  };
+  var els = [].slice.call(d.querySelectorAll(SEL)).filter(function (el) { return !skip(el); });
+  var footerLogo = d.querySelector('.site-footer .footer-brand .logo');
+  if (footerLogo) { footerLogo.setAttribute('data-m', 'fade'); els.push(footerLogo); }
+  // Keep the outermost: a card moves as one piece, not its heading and button separately.
+  els = els.filter(function (el, i) { return els.indexOf(el) === i && !els.some(function (o) { return o !== el && o.contains(el); }); });
+
+  /* Pick the move. Photos and cards in a row zoom up; items in a side column glide in from that side; the rest rise. */
+  var vw = window.innerWidth || d.documentElement.clientWidth;
+  var PHOTO = '.visit-media-col, .request-photo, .owner-figure, .map-card, .team-photo .photo, .est-side, .member-card';
+  var CARD = '.pcard, .review-card, .deal, .tpl-proof > li, .team-row > li, .tpl-tiles > li, .offer-card, .feature, .call-card';
+  var BTN = '.btn, .btn-row, .carousel-controls';
+  var moveFor = function (el) {
+    var set = el.getAttribute('data-reveal');
+    if (set && set !== '' && set !== 'true') return set;
+    if (el.hasAttribute('data-m')) return el.getAttribute('data-m');
+    if (el.matches(CARD)) return 'zoom';
+    if (el.matches(BTN)) return 'zoom';
     var r = el.getBoundingClientRect();
-    return !(r.top < vh && r.bottom > 0 && r.left < window.innerWidth && r.right > 0);
+    if (el.matches(PHOTO)) {
+      // A photo beside text glides in from its side on wide screens; full-width photos zoom
+      if (r.width < vw * 0.6) return (r.left + r.width / 2) < vw / 2 ? 'left' : 'right';
+      return 'zoom';
+    }
+    if (r.width < vw * 0.55 && vw >= 900) return (r.left + r.width / 2) < vw / 2 ? 'left' : 'right';
+    return 'up';
+  };
+
+  // Anything already on screen when the page opens shows at once: no flash, no wait.
+  var vh = window.innerHeight || d.documentElement.clientHeight;
+  var onScreen = function (el) { var r = el.getBoundingClientRect(); return r.top < vh && r.bottom > 0; };
+  els.forEach(function (el) {
+    el.setAttribute('data-m', moveFor(el));
+    el.classList.add('tpl-reveal');
+    if (onScreen(el)) el.classList.add('is-in');
   });
-  els = els.filter(function (el) { return !els.some(function (o) { return o !== el && o.contains(el); }); });
-  els.forEach(function (el) { el.classList.add('tpl-reveal'); });
-  var done = function (el) {
-    // After the fade, drop the classes so the element's own hover transitions run at full speed again.
-    setTimeout(function () { el.classList.remove('tpl-reveal', 'is-in', 'tpl-fade'); el.style.removeProperty('--tpl-d'); }, 700 + (parseInt(el.style.getPropertyValue('--tpl-d'), 10) || 0));
-  };
+
+  /* Stagger: elements that come in together, in reading order, 70ms apart (capped). Going out has no delay. */
   var show = function (list) {
-    list.sort(function (a, b) { var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) || (ra.left - rb.left); });
-    list.forEach(function (el, i) { el.style.setProperty('--tpl-d', Math.min(i * 80, 320) + 'ms'); el.classList.add('is-in'); done(el); });
+    list.sort(function (a, b) { var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (Math.round(ra.top / 40) - Math.round(rb.top / 40)) || (ra.left - rb.left); });
+    list.forEach(function (el, i) { el.style.setProperty('--tpl-d', Math.min(i * 70, 350) + 'ms'); el.classList.add('is-in'); });
   };
+  var hide = function (el) { el.style.setProperty('--tpl-d', '0ms'); el.classList.remove('is-in'); };
+  /* One line across the screen, 10% up from the bottom: above it things are in, below it they are out.
+     Going out only happens when the element drops below that line (scrolling back up), never off the top. */
   var io = new IntersectionObserver(function (entries) {
     var batch = [];
-    entries.forEach(function (e) { if (e.isIntersecting) { batch.push(e.target); io.unobserve(e.target); } });
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { if (!e.target.classList.contains('is-in')) batch.push(e.target); }
+      else if (e.boundingClientRect.top > (e.rootBounds ? e.rootBounds.bottom : vh * 0.9) - 1) hide(e.target);
+    });
     if (batch.length) show(batch);
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-  // Cards in a sideways scroller (reviews) appear with their row, since most of them are off to the side.
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+
+  // Cards in a sideways scroller (reviews) come and go with their row, since most of them are off to the side.
   var tracks = new Map();
   els.forEach(function (el) {
     var track = el.closest('.review-track');
@@ -48,8 +86,27 @@
   });
   tracks.forEach(function (cards, track) {
     var to = new IntersectionObserver(function (entries) {
-      if (entries.some(function (e) { return e.isIntersecting; })) { to.disconnect(); show(cards.slice()); }
-    }, { threshold: 0.12 });
+      entries.forEach(function (e) {
+        if (e.isIntersecting) show(cards.filter(function (c) { return !c.classList.contains('is-in'); }));
+        else if (e.boundingClientRect.top > 0) cards.forEach(hide);
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
     to.observe(track);
   });
+
+  /* Toggle a class as a block crosses the same line (used by the visit steps and the van). */
+  var toggleOn = function (el, readyClass, margin) {
+    el.classList.add(readyClass);
+    if (onScreen(el) && el.getBoundingClientRect().top < vh * 0.9) el.classList.add('is-in', 'is-drawn');
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) e.target.classList.add('is-in', 'is-drawn');
+        else if (e.boundingClientRect.top > 0) e.target.classList.remove('is-in', 'is-drawn');
+      });
+    }, { rootMargin: '0px 0px ' + (margin || '-15%') + ' 0px', threshold: 0 }).observe(el);
+  };
+  // How a visit works: the numbers pop in one after another and the line draws between them
+  [].forEach.call(d.querySelectorAll('.visit-steps'), function (ol) { toggleOn(ol, 'tpl-steps-ready', '-12%'); });
+  // Van drive-in: drives in from the left and parks; scroll back up past it and it drives back out
+  [].forEach.call(d.querySelectorAll('.tpl-van'), function (v) { toggleOn(v, 'tpl-van-ready', '-8%'); });
 })();

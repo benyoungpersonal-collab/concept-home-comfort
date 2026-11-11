@@ -156,11 +156,67 @@
         prev.disabled = track.scrollLeft < 8;
         next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8;
       };
+      /* Dots: one per review, the current one is wide. Tapping a dot scrolls to that review. */
+      var cards = $$('li', track);
+      var dots = null;
+      if (cards.length > 1) {
+        dots = d.createElement('div');
+        dots.className = 'review-dots';
+        dots.setAttribute('role', 'group');
+        dots.setAttribute('aria-label', 'Choose a review');
+        cards.forEach(function (c, i) {
+          var b = d.createElement('button');
+          b.type = 'button';
+          b.setAttribute('aria-label', 'Review ' + (i + 1) + ' of ' + cards.length);
+          b.addEventListener('click', function () { goTo(i); });
+          dots.appendChild(b);
+        });
+        var hint = $('.swipe-hint', wrap);
+        (hint || track).insertAdjacentElement(hint ? 'beforebegin' : 'afterend', dots);
+      }
+      var current = function () {
+        var left = track.getBoundingClientRect().left + parseFloat(getComputedStyle(track).paddingLeft || 0);
+        var best = 0, bestD = Infinity;
+        cards.forEach(function (c, i) { var dd = Math.abs(c.getBoundingClientRect().left - left); if (dd < bestD) { bestD = dd; best = i; } });
+        return best;
+      };
+      var goTo = function (i) {
+        var c = cards[i]; if (!c) return;
+        track.scrollTo({ left: c.getBoundingClientRect().left - cards[0].getBoundingClientRect().left, behavior: reduced() ? 'auto' : 'smooth' });
+      };
+      var markDots = function () {
+        if (!dots) return;
+        var cur = current();
+        $$('button', dots).forEach(function (b, i) { if (i === cur) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+      };
       track.addEventListener('scroll', function () {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        if (!ticking) { ticking = true; requestAnimationFrame(function () { update(); markDots(); }); }
       }, { passive: true });
       window.addEventListener('resize', update);
-      update();
+      update(); markDots();
+
+      /* Auto-advance one card every 7 seconds. Pauses while someone hovers, touches, or tabs into the reviews, and while
+         the section is off screen. Never with "reduce motion". After the last card it goes back to the first. */
+      if (cards.length < 2 || reduced()) return;
+      var paused = 0, visible = false, timer = null;
+      var atEnd = function () { return track.scrollLeft + track.clientWidth > track.scrollWidth - 8; };
+      var tick = function () {
+        if (paused || !visible || d.hidden || reduced()) return;
+        if (atEnd()) goTo(0); else go(1);
+      };
+      var restart = function () { clearInterval(timer); timer = setInterval(tick, 7000); };
+      var hold = function (on) { paused = Math.max(0, paused + (on ? 1 : -1)); if (!paused) restart(); };
+      wrap.addEventListener('mouseenter', function () { hold(true); });
+      wrap.addEventListener('mouseleave', function () { hold(false); });
+      wrap.addEventListener('focusin', function () { hold(true); });
+      wrap.addEventListener('focusout', function (e) { if (!wrap.contains(e.relatedTarget)) hold(false); });
+      var touchTimer = null;
+      wrap.addEventListener('touchstart', function () { if (!touchTimer) hold(true); clearTimeout(touchTimer); touchTimer = 1; }, { passive: true });
+      wrap.addEventListener('touchend', function () { clearTimeout(touchTimer); touchTimer = setTimeout(function () { touchTimer = null; hold(false); }, 4000); }, { passive: true });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) restart(); }, { threshold: 0.35 }).observe(track);
+      } else visible = true;
+      restart();
     });
   }
 

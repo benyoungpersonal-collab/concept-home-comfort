@@ -68,13 +68,13 @@ h1, h2, h3 { text-wrap: balance; }
 .request-card .next-chip { position: static; transform: none; margin: 0 0 var(--sp-3); box-shadow: none; border: 1px solid var(--c-line); width: auto; max-width: 100%; align-items: center; padding: 10px 16px 10px 12px; border-radius: var(--r-pill); white-space: nowrap; line-height: 1.2; }
 .request-card .next-chip .live-dot { margin-top: 0; }
 .request-card .next-chip strong { display: inline; }
-/* Headline: "A comfortable home," then "without the runaround." each on one line from 320px up */
-.tpl-hero h1 { font-size: clamp(1.6rem, calc((100vw - 34px) / 10.8), 3.6rem); line-height: 1.06; letter-spacing: -.035em; margin: 0; }
-.tpl-hero h1 .accent { white-space: nowrap; padding-bottom: .06em; background-size: 100% .2em; }
+/* Headline (the big line, not the H1): "A comfortable home," then "without the runaround." each on one line from 320px up */
+.tpl-hero .hero-h { font-size: calc(clamp(1.6rem, calc((100vw - 34px) / 10.8), 3.6rem) * var(--hero-k, 1)); line-height: 1.06; letter-spacing: -.035em; margin: 0; }
+.tpl-hero .hero-h .accent { white-space: nowrap; padding-bottom: .06em; background-size: 100% .2em; }
 .tpl-hero .lead { max-width: 40rem; }
 @media (max-width: 599px) { .container.tpl-hero-wrap { width: 100%; max-width: none; } .tpl-hero-card { padding: 28px 16px 36px; border-radius: 24px 24px 0 0; } }
-@media (min-width: 600px) { .tpl-hero-wrap { margin-top: -48px; } .tpl-hero-card { padding: 44px 40px 52px; gap: 24px; } .tpl-hero-card .hero-ctas { width: auto; } .tpl-hero h1 { font-size: clamp(2.4rem, 6.4vw, 3.6rem); } }
-@media (min-width: 900px) { .tpl-hero-wrap { margin-top: 0; padding-top: calc(min(50vw, max(720px, 39vw), 760px) / 3); } .tpl-hero-card { width: calc(clamp(3.3rem, 5.2vw, 4.75rem) * 10.62 + 128px); max-width: 100%; padding: 40px 64px 64px; gap: 20px; border-radius: 32px 32px 0 0; } .tpl-hero h1 { font-size: clamp(3.3rem, 5.2vw, 4.75rem); } }
+@media (min-width: 600px) { .tpl-hero-wrap { margin-top: -48px; } .tpl-hero-card { padding: 44px 40px 52px; gap: 24px; } .tpl-hero-card .hero-ctas { width: auto; } .tpl-hero .hero-h { font-size: calc(clamp(2.4rem, 6.4vw, 3.6rem) * var(--hero-k, 1)); } }
+@media (min-width: 900px) { .tpl-hero-wrap { margin-top: 0; padding-top: calc(min(50vw, max(720px, 39vw), 760px) / 3); } .tpl-hero-card { width: calc(clamp(3.3rem, 5.2vw, 4.75rem) * 10.62 + 128px); max-width: 100%; padding: 40px 64px 64px; gap: 20px; border-radius: 32px 32px 0 0; } .tpl-hero .hero-h { font-size: calc(clamp(3.3rem, 5.2vw, 4.75rem) * var(--hero-k, 1)); } }
 
 /* Trust row: bold icon squares, label centered under, 2x2 on phones, one row from 600px */
 .pw-home .trust { padding: 12px 0; }
@@ -117,11 +117,19 @@ h1, h2, h3 { text-wrap: balance; }
 .pw-home .faq-head h2 .accent { white-space: nowrap; }
 @media (min-width: 900px) and (max-width: 1199px) { .pw-home .faq-head h2 { font-size: clamp(1.75rem, 2.75vw, 2.4rem); } }
 
-/* Scroll animations (js/reveal.js adds the classes, so without JavaScript nothing is hidden) */
-.tpl-reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; transition-delay: var(--tpl-d, 0ms); }
-.tpl-reveal.tpl-fade { transform: none; }
-.tpl-reveal.is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .tpl-reveal { opacity: 1; transform: none; transition: none; } }
+/* Scroll motion, edges, photo service cards, the van, and gradient buttons: css/alive.css (shared with every preview).
+   Main buttons: the gradient top is 10% lighter than the orange, so white text stays at 3.15:1 on its lightest part
+   (3.52:1 on the full #EE5600, 3.79:1 at the top of the hover shade). */
+:root { --btn-lift: 10%; }
+
+/* Trade edges (soft curve, html.edge-curve): the crew photo sits across the edge into the navy estimate band */
+.pw-home .pw-crew.edge-overlap { --lap: 44px; margin-bottom: calc(-1 * (var(--section-y) + var(--lap))); }
+.pw-home .estimator.edge-top { padding-top: calc(var(--section-y) + var(--lap, 44px) + var(--edge-h)); }
+@media (min-width: 900px) { .pw-home .pw-crew.edge-overlap { --lap: 72px; } .pw-home .estimator.edge-top { --lap: 72px; } }
+/* Phones: the caption reads above the photo, so only the photo crosses into the navy */
+@media (max-width: 899px) { .pw-home .pw-crew { display: flex; flex-direction: column-reverse; } .pw-home .pw-crew figcaption.cap { margin: 0 0 12px; } }
+/* Van drive-in under the service areas */
+.pw-home .areas .tpl-van { margin-top: var(--sp-5); }
 
 /* Crew-and-van photo (Meet the family): a 4:3 crop that keeps both people head to toe. Phones: photo, then the caption.
    Desktop: the photo on the left at about 60% of the width, the caption on its right, centered top to bottom. */
