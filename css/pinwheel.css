@@ -74,7 +74,7 @@ h1, h2, h3 { text-wrap: balance; }
 .tpl-hero .lead { max-width: 40rem; }
 @media (max-width: 599px) { .container.tpl-hero-wrap { width: 100%; max-width: none; } .tpl-hero-card { padding: 28px 16px 36px; border-radius: 24px 24px 0 0; } }
 @media (min-width: 600px) { .tpl-hero-wrap { margin-top: -48px; } .tpl-hero-card { padding: 44px 40px 52px; gap: 24px; } .tpl-hero-card .hero-ctas { width: auto; } .tpl-hero .hero-h { font-size: calc(clamp(2.4rem, 6.4vw, 3.6rem) * var(--hero-k, 1)); } }
-@media (min-width: 900px) { .tpl-hero-wrap { margin-top: 0; padding-top: calc(min(50vw, max(720px, 39vw), 760px) / 3); } .tpl-hero-card { width: calc(clamp(3.3rem, 5.2vw, 4.75rem) * 10.62 + 128px); max-width: 100%; padding: 40px 64px 64px; gap: 20px; border-radius: 32px 32px 0 0; } .tpl-hero .hero-h { font-size: calc(clamp(3.3rem, 5.2vw, 4.75rem) * var(--hero-k, 1)); } }
+@media (min-width: 900px) { .tpl-hero-wrap { margin-top: 0; padding-top: max(96px, min(calc(min(50vw, max(720px, 39vw), 760px) / 3), calc(100vh - 610px))); } /* short laptop screens (1280x720, 1366x768): the card rises so the buttons stay in the first screen; 900px tall and up unchanged */ .tpl-hero-card { width: calc(clamp(3.3rem, 5.2vw, 4.75rem) * 10.62 + 128px); max-width: 100%; padding: 40px 64px 64px; gap: 20px; border-radius: 32px 32px 0 0; } .tpl-hero .hero-h { font-size: calc(clamp(3.3rem, 5.2vw, 4.75rem) * var(--hero-k, 1)); } }
 
 /* Trust row: bold icon squares, label centered under, 2x2 on phones, one row from 600px */
 .pw-home .trust { padding: 12px 0; }

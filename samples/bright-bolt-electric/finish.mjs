@@ -11,7 +11,7 @@
   the live sample at https://byw-home-comfort.netlify.app/bright-bolt-electric/ :
   - Copies previews/bright-bolt-electric/ to bright-bolt-electric/ (the folder Netlify serves)
   - Colors: electric yellow fills with navy text, navy bands, and a small bright-blue spark accent for labels and links
-  - Bolt the mascot (bolt.mjs, bolt.css, bolt.js) in 4 spots: hero, services, quick quote, footer
+  - Bolt the mascot (bolt.mjs, bolt.css, bolt.js) in 3 spots: services, quick quote, footer (and the logo)
   - 6 reviews tagged "Illustrative", whole-number rating shown as "5", no Google links
   - Electrician copy (services heading, visit steps), a real electrician photo in How a visit works (no plumbing video)
   - Link-preview title, canonical, og and schema URLs on the live address, footer says it is a sample site
@@ -143,8 +143,7 @@ html = html.replace('<img class="tpl-logo-mark" src="images/header-mark.svg" alt
 
 /* ---------- Bolt in 4 spots ---------- */
 const spot = (cls, pose, extra = '') => `<div class="bolt ${cls}" data-bolt${extra} aria-hidden="true"><div class="bolt-move"><div class="bolt-bob"><div class="bolt-hop">${boltSvg(pose)}</div></div></div></div>`;
-/* Hero: peeks in beside the hero card and waves */
-rep('<use href="#i-check-circle"/></svg>A real person answers 7am to 7pm, Monday to Saturday</p>\n', `<use href="#i-check-circle"/></svg>A real person answers 7am to 7pm, Monday to Saturday</p>\n        ${spot('at-hero', { right: 'wave' }, ' data-bolt-load')}\n`);
+/* Hero: no Bolt (the logo Bolt sits right above it) */
 /* Services: slides in from the side and points at the cards */
 rep('id="services" aria-labelledby="services-title">\n    <div class="container">\n', `id="services" aria-labelledby="services-title">\n    <div class="container">\n      ${spot('at-services from-right', { left: 'point', right: 'rest' })}\n`);
 /* Quick quote: holding a phone and texting, a typing bubble, then "We'll text you back!" */
@@ -210,7 +209,7 @@ if (/—/.test(html)) fail('has an em dash');
 if (/pinwheel/i.test(html)) fail('mentions Pinwheel');
 if (/\bpreview\b/i.test(html.replace(/<link rel="preload"[^>]*>/g, '').replace(/css\/preview(-late)?\.css/g, ''))) fail('still says "preview" somewhere');
 if (/target="_blank"[^>]*href="#|href="#[^"]*" target="_blank"/.test(html)) fail('an in-page link opens a new tab');
-if ((html.match(/data-bolt[ >]/g) || []).length !== 4) fail('expected Bolt in 4 spots');
+if ((html.match(/data-bolt[ >]/g) || []).length !== 3) fail('expected Bolt in 3 spots (services, quick quote, footer)');
 const bubbles = [...html.matchAll(/<p class="bolt-bubble[^"]*">(?:<span class="bb-dots">(?:<i><\/i>)+<\/span><span class="bb-msg">)?([^<]+)/g)].map((m) => m[1]);
 if (bubbles.length > 2 || bubbles.some((b) => b.split(/\s+/).length > 5)) fail('speech bubbles: 1 or 2, 5 words or fewer');
 if (/tel:(?!\+12095550187)/.test(html) || /sms:(?!\+12095550187)/.test(html)) fail('a call or text link has the wrong number');
@@ -231,7 +230,7 @@ const rows = [
   row('How a visit works', 'visit', PHOTOS.visit.alt, un('visit'), 'Unsplash License (free, commercial use)', 'People photo: real stock or the client\'s own only. Better: their electrician in a solid navy or black work shirt explaining a quote to a homeowner at the panel, 16:9, no logos.'),
   '| Link preview picture (images/og-share-DATE.jpg) | The homepage on a laptop and a phone | Screenshots of this site (scripts/share-image.cjs) | Owned | Not needed: no people, made from the live homepage. Remake it whenever the hero changes. |',
   '| Request a visit: family photo | Mom kissing a baby while dad and their daughter laugh on a green couch | Pexels (from the Pinwheel set, see credits.html) | Pexels License (free, commercial use) | Real stock only (people). A family relaxing at home in a bright living room. |',
-  '| Bolt the mascot (hero, services, quick quote with a phone, footer) | Inline SVG drawn for this site (samples/bright-bolt-electric/bolt.mjs) | Ben Young Web Design | Owned | Original drawing. Not AI. |',
+  '| Bolt the mascot (services, quick quote with a phone, footer) | Inline SVG drawn for this site (samples/bright-bolt-electric/bolt.mjs) | Ben Young Web Design | Owned | Original drawing. Not AI. |',
   '| Logo: Bolt beside the name (header, menu, footer); his head as favicon and map pin | images/header-mark.svg and images/logo-mark.svg, made from bolt.mjs | Ben Young Web Design | Owned | Original drawing. Not AI. |',
 ];
 const md = `# Photo list: Bright Bolt Electric (sample site)
