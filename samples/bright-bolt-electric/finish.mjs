@@ -245,4 +245,7 @@ Sources and crops: samples/bright-bolt-electric/photos.json. Rebuild: see sample
 ${rows.join('\n')}
 `;
 writeFileSync(join(OUT, 'PHOTO-LIST.md'), md);
+/* The template build also writes prospects/photo-lists/bright-bolt-electric.md; this sample keeps its own list above */
+rmSync(join(ROOT, 'prospects', 'photo-lists', 'bright-bolt-electric.md'), { force: true });
+try { if (!readdirSync(join(ROOT, 'prospects', 'photo-lists')).length) rmSync(join(ROOT, 'prospects', 'photo-lists'), { recursive: true }); } catch {}
 console.log(`finish: wrote bright-bolt-electric/ (${URL})`);
