@@ -139,3 +139,13 @@ h1, h2, h3 { text-wrap: balance; }
   .pw-home .pw-crew { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--sp-6); align-items: center; }
   .pw-home .pw-crew figcaption.cap { margin: 0; text-align: left; max-width: 22rem; }
 }
+
+/* Narrow phones (320px): nothing pokes past the right edge on the inner pages */
+.callout, .panels { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 899px) { .split:not(.section-head) { grid-template-columns: minmax(0, 1fr); } }
+.section:has(.mem-grid) { overflow-x: clip; }
+@media (max-width: 359px) {
+  .header-actions { gap: 4px; }
+  .site-header .logo-name { font-size: 22px; }
+  .site-header .logo-tag { letter-spacing: .1em; font-size: 9px; }
+}
