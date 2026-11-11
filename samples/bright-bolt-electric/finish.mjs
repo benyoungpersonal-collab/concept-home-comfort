@@ -96,6 +96,9 @@ const css = `<style>
 .rating-bar .tag{margin-left:8px;padding:1px 8px}
 .footer-brand .bb-mark{width:40px;height:40px;border-radius:10px;flex:none}
 @media (min-width:1000px){.pcards{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
+/* Hero photo on short laptop screens (1280x720, 1366x768): the strip above the card is shorter, so the photo sits a
+   little lower to keep his face in it; his hands and the open panel stay in the right column at every size */
+@media (min-width:900px) and (max-width:1599px) and (max-height:820px){.tpl-hero-banner img{object-position:50% 88%}}
 /* Cool light gray instead of cream */
 :root{--c-bg:#F3F5F8;--c-bg-alt:#E9EDF2;--c-bg-fine:#EEF1F5;--c-line:#DDE3EA;--c-line-strong:#C3CCD7}
 .site-header{background:rgb(243 245 248 / .92)}
@@ -220,7 +223,7 @@ const row = (spot, k, now, source, license, prompt) => `| ${spot} | ${now} | ${s
 const un = (k) => `Unsplash, photo by ${PHOTOS[k].by === 'unknown' ? 'an Unsplash contributor' : PHOTOS[k].by}: ${PHOTOS[k].page}`;
 const NOPEOPLE = 'No people, no hands, no logos, no brand names, no labels with readable text.';
 const rows = [
-  row('Hero banner', 'hero', PHOTOS.hero.alt, un('hero'), 'Unsplash License (free, commercial use)', 'People photo: real stock or the client\'s own only, never AI. AI may only change a shirt color. Best: their own electrician in a solid navy, black, or light-blue work shirt at a real job in a Tracy-area home, wide 2:1, no other company\'s logos. Note: the SUV\'s taillight carries a tiny maker badge; a client photo would remove it.'),
+  row('Hero banner', 'hero', PHOTOS.hero.alt, `${un('hero')} (${PHOTOS.hero.edit})`, 'Unsplash License (free, commercial use)', 'People photo: real stock or the client\'s own only, never AI. AI may only change clothing color. Best: their own electrician in a solid navy, black, or light-blue work shirt with his hands in an open panel at a Tracy-area home, the work on the right third of a wide frame, no other company\'s logos.'),
   row('Service card: Panel upgrades', 'panel', PHOTOS.panel.alt, un('panel'), 'Unsplash License (free, commercial use)', `Realistic photo of a newly installed 200-amp residential breaker panel in a clean California garage, door open, neat labeled breakers, copper and white wiring tidy, soft daylight, eye level, 4:3. ${NOPEOPLE}`),
   row('Service card: EV charger installs', 'ev', PHOTOS.ev.alt, `${un('ev')} (${PHOTOS.ev.edit})`, 'Unsplash License (free, commercial use)', `Realistic photo of a matte gray Level 2 EV wall charger mounted in a clean, bright two-car garage of a California home, cable neatly coiled on its holder, a white electric car parked beside it, soft daylight, 4:3. ${NOPEOPLE}`),
   row('Service card: Lighting', 'lighting', PHOTOS.lighting.alt, un('lighting'), 'Unsplash License (free, commercial use)', `Realistic photo of a bright living room in a California tract home at dusk with warm recessed ceiling lights on and a modern ceiling fixture, outdoor porch light visible through the window, 4:3. ${NOPEOPLE}`),

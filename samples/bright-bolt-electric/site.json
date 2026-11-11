@@ -45,12 +45,12 @@
   ],
   "heroPhoto": {
     "src": "photos/hero-src.jpg",
-    "alt": "Electrician in black work clothes mounting a home EV charger on a wood-sided garage wall beside a white SUV",
-    "ogAlt": "A Bright Bolt electrician mounting a home EV charger in Tracy, CA.",
+    "alt": "Electrician in a navy work hoodie with his hands inside an open electrical panel beside the meter on a home's outside wall",
+    "ogAlt": "A Bright Bolt electrician working inside an open electrical panel in Tracy, CA.",
     "ogFocusY": 30,
-    "position": "50% 22%",
-    "positionDesktop": "50% 30%",
-    "positionWide": "50% 30%"
+    "position": "50% 30%",
+    "positionDesktop": "50% 100%",
+    "positionWide": "50% 60%"
   },
   "googleRating": 5,
   "reviewCount": 48,
