@@ -156,17 +156,3 @@ h1, h2, h3 { text-wrap: balance; }
 /* Bold style: uppercase button text runs wider, so a button inside a card wraps instead of poking past it */
 .deal .btn, .pcard .btn, .card .btn { max-width: 100%; white-space: normal; text-align: center; }
 
-/* Explore by service: a small label over four outline pill buttons (icon, name, arrow). 2 by 2 on phones, one row from 760px. */
-.svc-explore { margin-top: var(--sp-4); }
-.svc-explore-label { margin: 0 0 12px; font-family: var(--ff-ui); font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c-muted); }
-.svc-pills { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 10px; }
-.svc-pills li { display: flex; }
-.svc-pill { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 48px; padding: 10px 16px; border: 2px solid var(--c-brand); border-radius: 999px; background: #fff; color: var(--c-navy); font-family: var(--ff-ui); font-size: 16px; font-weight: 700; line-height: 1.15; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease); }
-.svc-pill span { flex: 1; min-width: 0; }
-.svc-pill .icon { width: 20px; height: 20px; flex: none; color: var(--c-brand); }
-.svc-pill .sp-arrow { width: 18px; height: 18px; transition: transform var(--t-fast) var(--ease); }
-.svc-pill:hover { color: var(--c-navy); background: var(--c-brand-tint); transform: translateY(-3px); box-shadow: 0 10px 22px rgb(238 86 0 / .18); }
-.svc-pill:hover .sp-arrow { transform: translateX(3px); }
-.svc-pill:focus-visible { outline: 3px solid var(--c-focus); outline-offset: 3px; }
-@media (min-width: 760px) { .svc-pills { display: flex; flex-wrap: wrap; gap: 12px; } .svc-pills li { flex: 0 0 auto; } .svc-pill { padding: 10px 20px; } }
-@media (prefers-reduced-motion: reduce) { .svc-pill, .svc-pill .sp-arrow { transition: none; } .svc-pill:hover { transform: none; } }

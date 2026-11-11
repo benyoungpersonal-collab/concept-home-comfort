@@ -531,5 +531,28 @@
         1.04
       ]
     }
+  },
+  "pinwheel-heating": {
+    "file": "images/photos/pinwheel-heating.jpg",
+    "site": "Supplied",
+    "w": 2400,
+    "h": 1792,
+    "fp": [
+      0.6,
+      0.5
+    ],
+    "color": "#989690",
+    "alt": "Gray high-efficiency gas furnace with white vent pipes in a clean garage utility closet, a technician's tool bag beside it",
+    "by": "Ben Young Web Design",
+    "use": "Heating service card, heating hero",
+    "edit": "AI-made image with no people. Exposure and white balance matched to the other service cards.",
+    "tone": {
+      "exposure": 1.18,
+      "wb": [
+        0.97,
+        1.0,
+        1.04
+      ]
+    }
   }
 }

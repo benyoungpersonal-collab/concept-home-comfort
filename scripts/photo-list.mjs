@@ -20,6 +20,7 @@ const pages = (dir = ROOT) => readdirSync(dir).flatMap((n) => { const f = join(d
 const PEOPLE = new Set(['owner-luis', 'tech-ray', 'tech-jess', 'plumber', 'pinwheel-drains', 'pinwheel-air-quality', 'couple', 'family-couch', 'dad-daughter', 'couple-home', 'crew-van', 'tech-door', 'family-baby', 'filter', 'cozy']);
 const PROMPTS = {
   'pinwheel-water-heater': 'A new white residential tank water heater installed in a clean, bright garage corner of a California home, copper lines and a yellow flex gas line, soft daylight, eye level, 4:3. No people, no logos, no brand names, no labels with text.',
+  'pinwheel-heating': 'Clean, bright photo of a modern gray residential gas furnace with white PVC vent pipes in a tidy garage utility closet, a tool bag on the floor beside it, soft daylight, 4:3. No people, no hands, no logos, no brand names, no labels with text.',
   'pinwheel-hero': 'Wide photo of two clean gray outdoor AC condensers on concrete pads beside a light gray-sided California home, hydrangeas and a garden path, soft morning light, 2.4:1. No logos, no brand badges, no text.',
   thermostat: 'Close-up of a modern round smart thermostat on a white wall showing 72 degrees, soft daylight, shallow depth of field, 4:3. No brand names or logos.',
   'heat-pump': 'A ductless heat pump outdoor unit mounted beside a sunny stucco wall of a California home, clean install with a tidy line set cover, 4:3. No logos or brand names.',
@@ -30,7 +31,6 @@ const PROMPTS = {
   suburb: 'Aerial view of a sunny planned Central Valley neighborhood with tile roofs and backyards, 16:9. No text.',
 };
 const PEOPLE_RULE = 'People photo: real stock or their own photo only. AI may only change the color of their clothes: on Pinwheel, techs wear the same orange. Real job settings, no other company logos.';
-const FURNACE = 'Clean, bright photo of a modern residential gas furnace in a tidy utility closet or garage, front panel on, white or light gray cabinet, ductwork above, soft daylight, 4:3. No people, no hands, no logos, no brand names, no labels with text.';
 
 const spots = new Map();
 for (const f of pages()) {
@@ -52,7 +52,6 @@ for (const [key, where] of spots) {
   const prompt = PEOPLE.has(key) ? PEOPLE_RULE : (PROMPTS[key] || 'Realistic photo of the same subject, no people, no logos, no text.');
   rows.push(`| ${p.use || key} | ${p.alt} | ${pagesList.join(', ')} | ${source} | ${license} | ${prompt} |`);
 }
-rows.push(`| Heating service card (home): wanted | Still the mug photo. Wanted: a real stock photo of a tech's hands at a home furnace, with only the shirt changed to Pinwheel orange. Searched on Nov 11, 2026: Unsplash (furnace repair technician, hvac technician furnace, gas furnace repair, technician working on boiler) and Pexels (hvac technician, heating repair, furnace maintenance, hvac repair, boiler repair, furnace, furnace technician, furnace filter, heater repair, hvac technician indoor, gas heater). Every match was an industrial furnace, a boiler in a workshop, a radiator, or showed a brand logo. | index.html | Not found yet | n/a | ${PEOPLE_RULE} If no stock photo turns up, a no-people furnace photo works too: ${FURNACE} |`);
 rows.push('| How a visit works video and poster (home) | Plumber tightening an outdoor faucet | index.html | Pexels video (see credits.html) | Pexels License | Short 9 second clip of a gloved hand finishing a repair on an outdoor AC unit or a water heater, shallow depth of field. No logos, no faces. |');
 rows.push('| Link preview images (images/og-*.jpg) | Family and A/C unit crops with the Pinwheel logo | every page (og:image) | Cut from the photos above | Same as the photo | Not needed: made from the site photos. |');
 
