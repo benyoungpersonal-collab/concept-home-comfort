@@ -135,9 +135,9 @@ rep('<svg class="g-mark" role="img" aria-label="Google review"><use href="#g-log
 rep('aria-label="Customer reviews, scroll sideways for more"', 'aria-label="Illustrative customer reviews, scroll sideways for more"');
 
 /* ---------- Copy ---------- */
-rep('One call for <span class="accent">heating and cooling.</span>', 'One call for <span class="accent">every electrical job.</span>');
+rep('One Call for <span class="accent">Heating and Cooling.</span>', 'One Call for <span class="accent">Every Electrical Job.</span>');
 rep('Your tech finds the problem and shows you the price. You decide.', 'Your electrician finds the problem and shows you the price. You decide.');
-rep('Three steps. <span class="accent">No surprises.</span>', 'We find it. We price it. <span class="accent">We fix it.</span>');
+rep('Three Steps. <span class="accent">No Surprises.</span>', 'We Find It. We Price It. <span class="accent">We Fix It.</span>');
 
 /* How a visit works: a real electrician on the job instead of the template's plumbing clip */
 const v = PHOTOS.visit;

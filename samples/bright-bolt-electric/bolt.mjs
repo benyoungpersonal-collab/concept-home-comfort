@@ -1,7 +1,7 @@
 /*
   bolt.mjs: Bolt, the Bright Bolt Electric mascot, drawn as inline SVG.
   An original design: a chunky lightning bolt with a face, big eyes, and a smile, in a yellow hard hat, with short
-  arms in blue work gloves and little navy boots. Flat brand colors, thick navy outline, sticker style.
+  arms in blue work gloves. No feet: his body ends in the sharp point of a lightning bolt. Flat brand colors, thick navy outline, sticker style.
 
   Every part is its own group so it can move on its own (css/bolt.css):
     .b-fig (whole body: bob and hop), .b-eyes (blink), .b-hat, .b-arm-l / .b-arm-r (wave, point, thumbs up),
@@ -55,15 +55,11 @@ export function boltSvg({ left = 'rest', right = 'wave' } = {}) {
   return `<svg class="bolt-svg" viewBox="0 0 220 262" width="220" height="262" focusable="false" aria-hidden="true">`
     + `<g class="b-fig">`
     /* sticker border behind everything */
-    + `<g fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-linecap="round"><path d="M92 222v20M104 220v20" stroke-width="16"/><path d="M98 240h-20q-8 0-8 8v2h28zM98 238h20q8 0 8 8v2h-28z" stroke-width="9"/>`
-    + `<path d="M62 58L160 58L128 128L168 128L110 226L84 230L104 152L56 152Z" stroke-width="${SW + 11}"/><path d="M64 60C64 24 158 24 158 60ZM52 59Q111 50 170 59Q173 69 161 69H61Q49 69 52 59Z" stroke-width="${SW + 11}"/></g>`
-    /* legs and boots, behind the body */
-    + `<g class="b-legs"><path d="M92 222v20M104 220v20" stroke="${NAVY}" stroke-width="8" stroke-linecap="round"/>`
-    + `<path d="M98 240h-20q-8 0-8 8v2h28z" fill="${NAVY}"/><path d="M98 238h20q8 0 8 8v2h-28z" fill="${NAVY}"/>`
-    + `<path d="M72 250h26M100 248h26" stroke="${BLUE}" stroke-width="3" stroke-linecap="round"/></g>`
+    + `<g fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-linecap="round">`
+    + `<path d="M62 58L160 58L128 128L168 128L86 248L104 152L56 152Z" stroke-width="${SW + 11}"/><path d="M64 60C64 24 158 24 158 60ZM52 59Q111 50 170 59Q173 69 161 69H61Q49 69 52 59Z" stroke-width="${SW + 11}"/></g>`
     /* the bolt body */
-    + `<path class="b-body" d="M62 58L160 58L128 128L168 128L110 226L84 230L104 152L56 152Z" fill="${Y}" stroke="${NAVY}" stroke-width="${SW}" stroke-linejoin="round"/>`
-    + `<path d="M118 134L156 134L104 214" fill="none" stroke="#FFF3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>`
+    + `<path class="b-body" d="M62 58L160 58L128 128L168 128L86 248L104 152L56 152Z" fill="${Y}" stroke="${NAVY}" stroke-width="${SW}" stroke-linejoin="round"/>`
+    + `<path d="M118 134L154 134L96 222" fill="none" stroke="#FFF3A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>`
     /* face */
     + `<ellipse cx="71" cy="111" rx="6.5" ry="4.5" fill="${CHEEK}"/><ellipse cx="128" cy="110" rx="5.5" ry="4" fill="${CHEEK}"/>`
     + `<g class="b-eyes"><ellipse cx="86" cy="90" rx="12.5" ry="14.5" fill="#fff" stroke="${NAVY}" stroke-width="4.5"/><ellipse cx="119" cy="90" rx="12.5" ry="14.5" fill="#fff" stroke="${NAVY}" stroke-width="4.5"/>`

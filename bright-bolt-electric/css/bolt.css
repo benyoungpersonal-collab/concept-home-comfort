@@ -17,8 +17,7 @@
 .js .bolt.is-in .bolt-move { opacity: 1; transform: none; }
 .js .bolt:not(.is-in) .bolt-move { transition-duration: .3s, .35s; transition-timing-function: ease-in, ease-in; }
 
-/* Nothing waiting offstage (Bolt, or a card about to glide in from the side) can make the page scroll sideways */
-main, .section, .site-footer { overflow-x: clip; }
+/* Sideways scroll: css/alive.css clips main, sections, and the footer, so Bolt can wait offstage safely */
 
 /* Hero: he peeks up from behind the hero card, on the left over the wall, clear of the electrician. The spot clips at the card's top edge, so he rises from behind it. */
 .bolt.at-hero { position: absolute; left: 18px; bottom: 100%; --bolt-w: 82px; clip-path: inset(-80px -80px 0 -80px); }
