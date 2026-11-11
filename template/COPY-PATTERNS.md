@@ -52,8 +52,17 @@ A name makes a plan feel like a membership, not an upsell. Tie the name to the b
 - Follow the name with 3 plain benefits and a price: "Two tune-ups a year, front-of-the-line scheduling, and 15% off repairs. $17 a month."
 - Only use a plan the business actually offers. No plan: leave the section off.
 
+## 7. Title case headlines
+
+Hero headlines and section headings use title case: capitalize each word. Small words stay lowercase unless they come first, come last, start a new sentence, or sit right before a comma: a, an, and, as, at, but, by, for, in, nor, of, on, or, per, the, to, vs, via. Capitalize each part of a hyphenated word. Leave words with their own capitals (EV, CA, HVAC) as they are.
+
+- Examples: "Breaker Keeps Tripping? We'll Fix It Right." / "One Call for Every Electrical Job." / "Close By, So We Get There Fast." / "Straight Answers to Common Questions."
+- Body text, eyebrows, labels, pills, and buttons stay in normal sentence case.
+- Where: the hero headline and every section heading (h1 and h2). The preview build applies it for you (scripts/title-case.mjs); for hand-edited pages run `node scripts/title-case.mjs FILE...`. Sites with all-caps headlines (Pinwheel's bold style) look the same, but the other font styles show it.
+
 ## Quick check before a page goes out
 
 - Does every section answer "why call these people" in the business's own words?
 - Is there one clear next step (call, text, or request) on every screen?
 - Read it out loud. Anything that sounds like a brochure gets rewritten.
+- Headlines in title case, everything else in sentence case.

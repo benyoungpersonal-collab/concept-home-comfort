@@ -28,6 +28,7 @@ import { execFileSync } from 'node:child_process';
 import { balanceSections } from './section-backgrounds.mjs';
 import { vanBlock } from './van.mjs';
 import { makeStylesPage, STYLES } from './make-styles.mjs';
+import { titleCaseHeadings } from './title-case.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dataPath = process.argv[2];
@@ -163,7 +164,7 @@ const countiesFull = counties.length === 0 ? '' : counties.length === 1 ? `${cou
 const countiesShort = counties.length === 1 ? `${counties[0]} County` : listAmp(counties);
 const areaCountText = areas.length > 1 ? `${areas.length} cities${countiesFull ? ` across ${countiesFull}` : ''}` : city;
 
-/* Hero pill: "[their services] in [their counties]", one line, the longest version that fits, never under 12px */
+/* Hero pill: "[their services] in [their counties]", one line, the longest version that fits, 13 to 15px (12px only as a last resort) */
 const pillTiers = [];
 const addTier = (t) => { t = str(t); if (t && !pillTiers.includes(t)) pillTiers.push(t); };
 if (str(raw.pill)) addTier(raw.pill);
@@ -175,26 +176,34 @@ const CW = { ' ': .2368, '!': .3379, '"': .5513, '#': .6489, $: .6548, '%': 1.01
   0: .6743, 1: .4312, 2: .6294, 3: .6455, 4: .6763, 5: .6221, 6: .6494, 7: .5991, 8: .6509, 9: .6494,
   A: .7598, B: .6616, C: .7398, D: .7222, E: .6074, F: .5869, G: .7505, H: .7471, I: .2808, J: .5845, K: .7192, L: .5654, M: .9316, N: .7622, O: .7705, P: .648, Q: .7769, R: .6567, S: .6548, T: .6675, U: .7319, V: .7598, W: 1.0571, X: .7383, Y: .731, Z: .6641,
   a: .5806, b: .6304, c: .5884, d: .6304, e: .5957, f: .3608, g: .6318, h: .6226, i: .2715, j: .2715, k: .5801, l: .2715, m: .9126, n: .6226, o: .6133, p: .6304, q: .6304, r: .4138, s: .5601, t: .3569, u: .6226, v: .5996, w: .8501, x: .5801, y: .6021, z: .5728 };
-const STEPS = [{ f: 12, pad: 12, ls: 0 }, { f: 13, pad: 14, ls: 0.01 }, { f: 14, pad: 16, ls: 0.01 }];
+/* Pill sizes, smallest first: font size, side padding, letter spacing, top and bottom padding */
+/* 13 to 15px normally. 12px is a fallback, used only when no version of the text fits a 320px phone at 13px. */
+const STEPS_ALL = [{ f: 12, pad: 12, ls: 0, v: 6 }, { f: 13, pad: 14, ls: 0, v: 7 }, { f: 14, pad: 16, ls: 0.01, v: 8 }, { f: 15, pad: 19, ls: 0.01, v: 9 }];
 const pillWidth = (t, s) => ([...t].reduce((a, c) => a + (CW[c] ?? 0.8), 0) * s.f + t.length * s.ls * s.f) * 1.03 + 2 * s.pad + 2;
 const PHONE = 288; // hero column on a 320px phone
-const fitsPhone = pillTiers.map((t, i) => ({ t, i })).filter(({ t }) => pillWidth(t, STEPS[0]) <= PHONE);
+const fitsAt = (st) => pillTiers.map((t, i) => ({ t, i })).filter(({ t }) => pillWidth(t, st) <= PHONE);
+const STEPS = fitsAt(STEPS_ALL[1]).length ? STEPS_ALL.slice(1) : STEPS_ALL;
+if (STEPS[0].f === 12) console.warn('note: the hero pill only fits a 320px phone at 12px. A shorter "pillShort" (about 34 characters) lets it use 13px.');
+const fitsPhone = fitsAt(STEPS[0]);
 if (!fitsPhone.length) fail(`The hero pill is too long for a 320px phone. Add a shorter "pillShort" (about 40 characters or less). Tried: ${pillTiers.join(' | ')}`);
 const keep = pillTiers.slice(0, fitsPhone[0].i + 1); // the longest tiers down to the first one that fits a phone
 const cands = keep.flatMap((t, ti) => STEPS.map((s, si) => ({ ti, si, w: Math.ceil(pillWidth(t, s)), score: (keep.length - ti) * 10 + si })));
 const best = (W) => cands.filter((c) => c.w <= W).sort((a, b) => b.score - a.score)[0];
 const base = best(PHONE);
-let pillCss = `.tpl-pill .tp-${base.ti}{display:inline}`;
+/* Show one tier. The real text (tier 0) is never display:none, so screen readers always read the H1. */
+const SHOW = (i) => i === 0 ? '.tpl-pill .tp-0{display:inline;position:static;width:auto;height:auto;overflow:visible;clip-path:none}' : `.tpl-pill .tp-${i}{display:inline}`;
+const HIDE = (n) => (n > 1 ? `${[...Array(n).keys()].slice(1).map((i) => `.tpl-pill .tp-${i}`).join(',')}{display:none}` : '') + '.tpl-pill .tp-0{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}';
+let pillCss = SHOW(base.ti);
 let cur = base;
 for (const w of [...new Set(cands.map((c) => c.w))].sort((a, b) => a - b)) {
   if (w <= PHONE) continue;
   const b = best(w);
   if (b.score === cur.score) continue;
   const s = STEPS[b.si];
-  pillCss += `@container (min-width:${w}px){.tpl-pill{font-size:${s.f}px;padding:${s.f === 12 ? 6 : s.f === 13 ? 6 : 7}px ${s.pad}px;letter-spacing:${s.ls ? s.ls + 'em' : '0'}}${keep.map((t, i) => `.tpl-pill .tp-${i}`).join(',')}{display:none}.tpl-pill .tp-${b.ti}{display:inline}}`;
+  pillCss += `@container (min-width:${w}px){.tpl-pill{font-size:${s.f}px;padding:${s.v}px ${s.pad}px;letter-spacing:${s.ls ? s.ls + 'em' : '0'}}${HIDE(keep.length)}${SHOW(b.ti)}}`;
   cur = b;
 }
-if (base.si) { const s = STEPS[base.si]; pillCss = `.tpl-pill{font-size:${s.f}px;padding:6px ${s.pad}px;letter-spacing:${s.ls}em}` + pillCss; }
+{ const s = STEPS[base.si]; pillCss = `.tpl-pill{font-size:${s.f}px;padding:${s.v}px ${s.pad}px;letter-spacing:${s.ls}em}` + pillCss; }
 /* The pill is the page's H1, so only the longest tier is real text; the shorter tiers show through CSS (data-t). */
 const pillHtml = keep.map((t, i) => i === 0 ? `<span class="tp-${i}">${esc(t)}</span>` : `<span class="tp-${i}" data-t="${esc(t)}"></span>`).join('');
 const pillFull = keep[cur.ti];
@@ -785,7 +794,8 @@ const partial = (p) => {
   return s;
 };
 const tpl = readFileSync(join(ROOT, 'template', 'homepage.html'), 'utf8').replace(/\{\{> ([\w/-]+)\}\}/g, (m, p) => partial(p));
-let html = expand(tpl, data).replace(/[ \t]*<!--[\s\S]*?-->\n?/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n\s*\n(\s*\n)+/g, '\n\n');
+/* Headlines in title case (template/COPY-PATTERNS.md): the hero headline and every section heading. */
+let html = titleCaseHeadings(expand(tpl, data)).replace(/[ \t]*<!--[\s\S]*?-->\n?/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n\s*\n(\s*\n)+/g, '\n\n');
 /* No two neighboring sections share a background (scripts/section-backgrounds.mjs). */
 const bal = balanceSections(html); html = bal.html;
 for (const w of bal.warnings) console.warn('note: ' + w);

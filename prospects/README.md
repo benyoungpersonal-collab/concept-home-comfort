@@ -46,10 +46,11 @@ These apply to every prospect. The build enforces the ones marked **(build)**; t
 **Look and feel** **(build)**
 - Hero: the photo first, edge to edge under the header (16:9 on phones, 2:1 and about 720px tall on desktop, never much taller on wide screens), then a white card with rounded top corners laid over its bottom edge. No rating badge and no preview note in the hero.
 - Header: their mark (`headerMark`, else `logoMark`, else their first letter in a brand-color square) beside their name (`shortName`), with a small-caps line under it (`logoTag`, else `tagline`). An "&" in the name takes the brand color. The name size follows its length, so long names fit from 320px up.
-- No gradient glows or color washes anywhere: solid colors. Only the dark shade behind words on a photo card stays, for contrast.
+- No gradient glows or color washes anywhere: solid colors. Only the dark shade behind words on a photo card stays, for contrast. Two subtle exceptions: main buttons (below) and the hero pill, which goes from a touch darker to its own color and has a soft drop shadow (css/alive.css).
 - Neighboring sections never share a background. Each section is cream (no class), white (`bg-white`), a soft brand tint (`tpl-bg-tint`, the reviews section by default) or navy (`on-dark`), and the build checks every pair in order (scripts/section-backgrounds.mjs): when two neighbors match, only the lower one moves to a light background that differs from both of its neighbors. Navy is never changed. A finishing pass that adds sections runs the same check.
 - Even, tighter spacing between sections: every section has the same top and bottom padding (half of site.css's), the last line in a section adds no extra margin, and the footer starts with the same spacing.
 - Balanced headline line breaks (`text-wrap: balance`), never one word alone on a line.
+- Headlines in title case (the hero headline and every section heading; the build applies it, template/COPY-PATTERNS.md section 7), with clear room under each headline and its underline before the paragraph.
 - Picture-book scroll motion (js/reveal.js, css/alive.css, shared with Pinwheel): headings, cards, photos, and buttons come in as they scroll into view, about 0.6 seconds each, with a mix of moves: photos and cards in a row zoom up from slightly smaller with a tiny overshoot, items in a left or right column glide in from that side, and the rest rise from the bottom. Cards in a row are staggered a little. Scroll back up past something and it goes back out the way it came; keep scrolling down and it stays put. The hero (header, photo, headline, buttons) never moves. "Reduce motion" turns all of it off, nothing is hidden without JavaScript, and only opacity, translate, and scale change, so nothing shifts the layout. Add `data-reveal` (or `data-reveal="zoom|left|right|up"`) to include any other element.
 - One H1: the hero pill ("[their services] in [their area]") is the H1, styled as the pill. The big headline keeps its look but is not the H1. Only the longest pill text is real text; the shorter phone versions are drawn in by CSS. If a custom `pill` does not name the main services and the area, set `h1` (for example "Heating, Air & Plumbing in Tracy, CA") and it shows as a small line above the pill.
 - How a visit works: the step numbers pop in one after another and the line between them draws down (across on screens 1100px and wider).
@@ -184,7 +185,7 @@ Nice to have:
 Rules baked in:
 
 - Title and link preview: `Business Name | Main Service in City, ST`, no og:site_name, og.jpg cut from the hero photo.
-- The hero line is a pill in their brand color: one line on desktop, a shorter version on phones, never under 12px. The build fails if no version fits a 320px phone.
+- The hero line is a pill in their brand color: one line on desktop, a shorter version on phones, 13 to 15px (12px only when no version fits a 320px phone at 13px). The build fails if no version fits a 320px phone.
 - No "#1" or "best" claims, no em dashes, no Claude mentions, and no Pinwheel name or logo. The build stops if it finds any.
 - Photos are real, free-license stock (Pexels, Unsplash), never recolored, with no other company's logo. HVAC previews use the technician at the condenser, plumbing previews the plumber under the sink.
 - Family photos appear only in the request-a-visit section.

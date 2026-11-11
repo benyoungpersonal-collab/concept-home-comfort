@@ -1488,13 +1488,13 @@ legend { padding: 0; }
    The preview template does not carry site-pw, so its look is unchanged until the template is updated. */
 .site-pw .eyebrow::before { content: none; }
 .hero-copy { container-type: inline-size; }
-.hero-pill { display: inline-flex; align-items: center; max-width: 100%; margin: 0 0 var(--sp-2); padding: 6px 12px; border-radius: 999px; background: var(--c-brand-strong); color: #fff; font-family: var(--ff-body); font-size: 12px; font-weight: 700; line-height: 1.25; letter-spacing: 0; white-space: nowrap; box-shadow: 0 6px 16px rgb(209 68 28 / .26), inset 0 1px 0 rgb(255 255 255 / .18); }
+.hero-pill { display: inline-flex; align-items: center; max-width: 100%; margin: 0 0 var(--sp-2); padding: 7px 14px; border-radius: 999px; background: var(--c-brand-strong); color: #fff; font-family: var(--ff-body); font-size: 13px; font-weight: 700; line-height: 1.25; letter-spacing: 0; white-space: nowrap; box-shadow: 0 6px 16px rgb(209 68 28 / .26), inset 0 1px 0 rgb(255 255 255 / .18); }
 .hero-pill .hp-full { display: none; }
 /* Sized to the hero text column, not the window, so it never wraps or clips (one line at 12px or larger) */
-@container (min-width: 320px) { .hero-pill { font-size: 13px; padding: 6px 14px; letter-spacing: .01em; } }
-@container (min-width: 402px) { .hero-pill { font-size: 12px; padding: 6px 13px; letter-spacing: 0; } .hero-pill .hp-full { display: inline; } .hero-pill .hp-short { display: none; } }
-@container (min-width: 440px) { .hero-pill { font-size: 13px; padding: 6px 14px; letter-spacing: .01em; } }
-@container (min-width: 474px) { .hero-pill { font-size: 14px; padding: 7px 16px; } }
+@container (min-width: 320px) { .hero-pill { font-size: 14px; padding: 8px 16px; letter-spacing: .01em; } }
+@container (min-width: 402px) { .hero-pill { font-size: 13px; padding: 7px 15px; letter-spacing: 0; } .hero-pill .hp-full { display: inline; } .hero-pill .hp-short { display: none; } }
+@container (min-width: 440px) { .hero-pill { font-size: 14px; padding: 8px 16px; letter-spacing: .01em; } }
+@container (min-width: 474px) { .hero-pill { font-size: 15px; padding: 9px 19px; } }
 .hero-fine { margin: 14px 0 0; font-size: 12px; line-height: 1.45; color: var(--c-fine); }
 
 /* ---------- Comfort: people at home ---------- */

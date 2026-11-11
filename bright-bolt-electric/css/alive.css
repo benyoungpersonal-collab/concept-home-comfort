@@ -5,7 +5,7 @@
    3. How a visit works: numbers pop in one after another, the connecting line draws across (down on phones)
    4. Photo service cards: photo on top, round icon badge over its corner, title, one line, a button
    5. Van drive-in (per site) and the mascot slot (per site, off unless the site has a mascot file)
-   6. Hero: one small H1 (the pill) and the big headline that keeps its look
+   6. Hero: one small H1 (the pill, with a subtle gradient and a soft shadow) and the big headline that keeps its look
    7. Gradient main buttons (subtle, from a slightly lighter shade to the full brand color)
    8. Review dots
    Reduce motion: nothing moves. Only opacity, translate, scale, and rotate animate, so nothing shifts the layout. */
@@ -27,6 +27,10 @@
 .js .tpl-reveal[data-m="fade"] { translate: none; }
 .js .tpl-reveal.is-in { opacity: 1; translate: none; scale: none; }
 @media (prefers-reduced-motion: reduce) { .js .tpl-reveal, .js .tpl-reveal[data-m] { opacity: 1; translate: none; scale: none; transition: none; } }
+
+/* Nothing waiting offstage (a card about to glide in from the side, or a mascot) can make the page scroll sideways.
+   clip, not hidden: it clips only sideways, so section edges and anything reaching up or down still show. */
+main, .section, .site-footer { overflow-x: clip; }
 
 /* ---------- 2. Trade edges ---------- */
 /* An edged section draws its own background color as a shape over the neighbor: .edge-top reaches up into the
@@ -138,6 +142,17 @@
 /* ---------- 6. Hero: one small H1, the big headline keeps its look ---------- */
 .hero-h { margin: 0; color: var(--c-navy); font-family: var(--ff-display); }
 h1.hero-pill, h1.tpl-pill { color: #fff; }
+/* The hero pill: a very subtle gradient in its own color (a touch darker at the start, its own color at the end, so
+   the text only gains contrast) and a soft drop shadow so it lifts off the card. Works for any brand color. */
+.hero-pill, .tpl-pill { background-image: linear-gradient(100deg, rgb(0 0 0 / .09), rgb(0 0 0 / .03) 55%, rgb(0 0 0 / 0)); box-shadow: 0 8px 18px -6px rgb(20 33 61 / .38), 0 2px 5px rgb(20 33 61 / .14); }
+
+/* Breathing room between a headline (with its underline) and the paragraph under it, in the hero and in section heads */
+.hero-h + .lead { margin-top: 12px; }
+.section h2 + .lead, .section h2 + .rating-line, .section-head h2 + p { margin-top: 24px; }
+@media (min-width: 900px) {
+  .hero-h + .lead { margin-top: 16px; }
+  .section h2 + .lead, .section h2 + .rating-line, .section-head h2 + p { margin-top: 28px; }
+}
 
 /* ---------- 7. Gradient main buttons ---------- */
 /* From a slightly lighter shade (--btn-lift, set per site so white text stays at 3:1 or more on the lightest part)
