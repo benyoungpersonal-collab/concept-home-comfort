@@ -155,6 +155,22 @@ rep('<span class="logo-initial" aria-hidden="true">B</span>\n        <span class
   '<img class="bb-mark" src="images/header-mark.svg" alt="" width="40" height="40">\n        <span class="logo-text"><span class="logo-name">Bright Bolt</span><span class="logo-tag">Electric</span></span>');
 rep('<p>Fully insured.</p>', '<p>Licensed and insured.</p>');
 
+/* ---------- Link preview picture: the homepage on a laptop and a phone (CLAUDE.md, "Link preview picture") ----------
+   Made from the live page with scripts/share-image.cjs into share/og-share-DATE.jpg (newest date wins); this copies it
+   in and points og:image, its size and alt, and twitter:image at it. Remake it whenever the hero changes. */
+{
+  const shares = existsSync(join(HERE, 'share')) ? readdirSync(join(HERE, 'share')).filter((f) => /^og-share-.*\.jpg$/.test(f)).sort() : [];
+  if (!shares.length) console.warn('finish: no link preview picture in samples/bright-bolt-electric/share/, so og:image stays og.jpg');
+  else {
+    const pic = shares[shares.length - 1], imgUrl = `${URL}images/${pic}`, alt = 'Bright Bolt Electric homepage on a laptop and a phone.';
+    copyFileSync(join(HERE, 'share', pic), join(OUT, 'images', pic));
+    rmSync(join(OUT, 'images', 'og.jpg'), { force: true }); // the template's hero crop is not used once the picture is in
+    rep(`<meta property="og:image" content="${URL}images/og.jpg">`, `<meta property="og:image" content="${imgUrl}">`);
+    html = html.replace(/<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${alt}">`);
+    rep('<meta name="twitter:card" content="summary_large_image">', `<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="${imgUrl}">\n<meta name="twitter:image:alt" content="${alt}">`);
+  }
+}
+
 /* ---------- Checks ---------- */
 if (/claude/i.test(html)) fail('mentions Claude');
 if (/—/.test(html)) fail('has an em dash');
@@ -172,7 +188,7 @@ const row = (spot, k, now, source, license, prompt) => `| ${spot} | ${now} | ${s
 const un = (k) => `Unsplash, photo by ${PHOTOS[k].by === 'unknown' ? 'an Unsplash contributor' : PHOTOS[k].by}: ${PHOTOS[k].page}`;
 const NOPEOPLE = 'No people, no hands, no logos, no brand names, no labels with readable text.';
 const rows = [
-  row('Hero banner and link-preview image (og.jpg)', 'hero', PHOTOS.hero.alt, un('hero'), 'Unsplash License (free, commercial use)', 'People photo: real stock or the client\'s own only, never AI. AI may only change a shirt color. Best: their own electrician in a solid navy, black, or light-blue work shirt at a real job in a Tracy-area home, wide 2:1, no other company\'s logos. Note: the SUV\'s taillight carries a tiny maker badge; a client photo would remove it.'),
+  row('Hero banner', 'hero', PHOTOS.hero.alt, un('hero'), 'Unsplash License (free, commercial use)', 'People photo: real stock or the client\'s own only, never AI. AI may only change a shirt color. Best: their own electrician in a solid navy, black, or light-blue work shirt at a real job in a Tracy-area home, wide 2:1, no other company\'s logos. Note: the SUV\'s taillight carries a tiny maker badge; a client photo would remove it.'),
   row('Service card: Panel upgrades', 'panel', PHOTOS.panel.alt, un('panel'), 'Unsplash License (free, commercial use)', `Realistic photo of a newly installed 200-amp residential breaker panel in a clean California garage, door open, neat labeled breakers, copper and white wiring tidy, soft daylight, eye level, 4:3. ${NOPEOPLE}`),
   row('Service card: EV charger installs', 'ev', PHOTOS.ev.alt, `${un('ev')} (${PHOTOS.ev.edit})`, 'Unsplash License (free, commercial use)', `Realistic photo of a matte gray Level 2 EV wall charger mounted in a clean, bright two-car garage of a California home, cable neatly coiled on its holder, a white electric car parked beside it, soft daylight, 4:3. ${NOPEOPLE}`),
   row('Service card: Lighting', 'lighting', PHOTOS.lighting.alt, un('lighting'), 'Unsplash License (free, commercial use)', `Realistic photo of a bright living room in a California tract home at dusk with warm recessed ceiling lights on and a modern ceiling fixture, outdoor porch light visible through the window, 4:3. ${NOPEOPLE}`),
@@ -180,6 +196,7 @@ const rows = [
   row('Service card: Rewiring', 'rewiring', PHOTOS.rewiring.alt, un('rewiring'), 'Unsplash License (free, commercial use)', `Realistic photo of new yellow and white Romex cable neatly stapled along open wood studs to blue outlet boxes in a home remodel, clean subfloor, daylight, eye level, 4:3. ${NOPEOPLE}`),
   row('Service card: Generators and backup power', 'backup', PHOTOS.backup.alt, un('backup'), 'Unsplash License (free, commercial use)', `Realistic photo of a gray home standby generator on a concrete pad beside a stucco California home, with a manual transfer switch box on the wall, green shrubs, late afternoon light, 4:3. ${NOPEOPLE}`),
   row('How a visit works', 'visit', PHOTOS.visit.alt, un('visit'), 'Unsplash License (free, commercial use)', 'People photo: real stock or the client\'s own only. Better: their electrician in a solid navy or black work shirt explaining a quote to a homeowner at the panel, 16:9, no logos.'),
+  '| Link preview picture (images/og-share-DATE.jpg) | The homepage on a laptop and a phone | Screenshots of this site (scripts/share-image.cjs) | Owned | Not needed: no people, made from the live homepage. Remake it whenever the hero changes. |',
   '| Request a visit: family photo | Mom kissing a baby while dad and their daughter laugh on a green couch | Pexels (from the Pinwheel set, see credits.html) | Pexels License (free, commercial use) | Real stock only (people). A family relaxing at home in a bright living room. |',
   '| Bolt the mascot (hero, services, quick quote, footer) | Inline SVG drawn for this site (samples/bright-bolt-electric/bolt.mjs) | Ben Young Web Design | Owned | Original drawing. Not AI. |',
   '| Header mark, favicon, map pin | images/header-mark.svg, drawn for this site | Ben Young Web Design | Owned | Original drawing. |',

@@ -15,6 +15,13 @@ node scripts/build-preview.mjs samples/bright-bolt-electric/site.json  # templat
 node samples/bright-bolt-electric/finish.mjs                           # -> bright-bolt-electric/
 ```
 
+Link preview picture: after a hero change goes live, remake it under a new dated name, then run finish.mjs again
+(it copies the newest `share/og-share-*.jpg` in and points og:image and twitter:image at it):
+
+```bash
+node scripts/share-image.cjs --url https://byw-home-comfort.netlify.app/bright-bolt-electric/ --out samples/bright-bolt-electric/share/og-share-YYYY-MM-DD.jpg
+```
+
 The build is the same template every prospect preview uses (photo-first hero, friendly fonts, zigzag bolt edges,
 trust tiles, photo service cards, picture-book motion, quick quote, FAQ, map). `finish.mjs` adds what only this
 sample has and writes `bright-bolt-electric/PHOTO-LIST.md`. It is a sample site, so it is not deployed to
@@ -31,6 +38,7 @@ Cloudflare like a prospect preview.
 | `bolt.css`, `bolt.js` | Bolt's motion: slides in and back out with the page, blinks, bobs, sparks, and hops when tapped |
 | `finish.mjs` | The finishing pass (colors, Bolt in 4 spots, illustrative reviews, copy, canonical, schema, sample footer) |
 | `mark.svg` | The header mark, favicon, and map pin |
+| `share/` | The link preview picture (homepage on a laptop and a phone), newest date wins |
 
 ## Bolt
 
