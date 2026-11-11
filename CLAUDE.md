@@ -32,6 +32,13 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 - Prospect homepage previews: deploy them right away, as described above. If you have to send a zip instead, Ben has Claude chat deploy it from his Mac.
 - Paying clients' live sites: never publish a change until Ben has seen it and says go.
 
+## Hero photo
+
+- Applies to every site in this repo (Pinwheel, samples, prospect previews, the template).
+- Never shrink or shorten the hero photo to fit the card. To show more of the card, move the card up over the photo or make the card slimmer.
+- On desktop the photo always runs behind the card, edge to edge, down to the next section's edge, with no gap (Pinwheel's layout; the template does this by default).
+- Check the first screen at 1280x720, 1440x900, and 1920x1080: the headline, paragraph, and buttons must show.
+
 ## Link preview picture
 - Every sample site and every new prospect preview gets a link preview picture: its homepage's first screen on a laptop with the phone version over the laptop's front right corner (the thin iPhone-style frame from benyoungwebdesign.com), on a soft gradient in the site's darkest brand color. 1200x630 JPG under 300 KB, no words on it.
 - Make it with `node scripts/share-image.cjs --url LIVE_URL --out images/og-share-YYYY-MM-DD.jpg` (today's date in the name, so phones don't show an old cached picture). For a preview that isn't live yet, point --url at a local server of its folder.

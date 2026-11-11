@@ -448,7 +448,8 @@ const logoTagHtml = esc(logoTag).replace(/ · /g, ' <span aria-hidden="true">·<
 const fixLine = { hvac: 'If it heats or cools, we fix it fast.', plumbing: 'If it runs water, we fix it fast.', both: 'If it heats, cools, or runs water, we fix it fast.' }[trade];
 const leadAreas = areas.length === 0 ? city : areas.length <= 6 ? listWords(areas) : `${areas.slice(0, 6).join(', ')}, and ${areas.length - 6} more cities`;
 const lead = str(raw.lead) || `Fast repair${upfront ? ' and honest, upfront pricing' : ''} for homes in ${leadAreas}. ${fixLine}`;
-const defaultHeadline = trade === 'plumbing' ? accent('Plumbing done right,', 'without the runaround.') : accent('A comfortable home,', 'without the runaround.');
+/* Two deliberate lines, like Pinwheel's, so the slim desktop hero card hugs the longer one */
+const defaultHeadline = trade === 'plumbing' ? `${esc('Plumbing done right,')}<br> <span class="accent">${esc('without the runaround.')}</span>` : `${esc('A comfortable home,')}<br> <span class="accent">${esc('without the runaround.')}</span>`;
 /* Hero headline: headline, plus headlineAccent on its own line in the accent color with the underline. */
 const heroHeadline = str(raw.headline) && str(raw.headlineAccent) ? `${esc(raw.headline)}<br> <span class="accent">${esc(raw.headlineAccent)}</span>` : str(raw.headline) ? esc(raw.headline) : defaultHeadline;
 const servicesLead = str(raw.servicesLead) || `The same trained techs${upfront ? ' and the same upfront pricing' : ''} on every job, big or small.`;

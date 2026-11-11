@@ -1,8 +1,8 @@
 /* alive.css: the "feels alive" layer, shared by Pinwheel and every homepage preview (loaded last).
    1. Picture-book scroll motion (js/reveal.js adds the classes; no JavaScript = everything visible)
    2. Trade edges: SVG section edges that match the trade (per site: html class edge-curve, edge-wave, edge-roof,
-      edge-grass, edge-bolt), used on a few big section changes only. Electrical (edge-bolt) is an uneven lightning
-      edge with a thin glowing line and a spark (js/reveal.js)
+      edge-grass, edge-bolt), used on a few big section changes only. Electrical (edge-bolt) is a lightning bolt laid
+      on its side, traced with a thick yellow stripe and a dark outline, plus a spark (js/reveal.js)
    3. How a visit works: numbers pop in one after another, the connecting line draws across (down on phones)
    4. Photo service cards: photo on top, round icon badge over its corner, title, one line, a button
    5. Van drive-in (per site) and the mascot slot (per site, off unless the site has a mascot file)
@@ -37,12 +37,13 @@ main, .section, .site-footer { overflow-x: clip; }
 /* An edged section draws its own background color as a shape over the neighbor: .edge-top reaches up into the
    section above, .edge-bottom reaches down into the section below. The shape follows the site's edge style. */
 :root { --edge-h: 26px; --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 64C320 6 1120 6 1440 64Z'/%3E%3C/svg%3E"); }
-@media (min-width: 900px) { :root { --edge-h: 52px; } }
+@media (min-width: 900px) { :root { --edge-h: 52px; } .edge-bolt { --edge-h: 84px; } }
 .edge-wave { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 34C120 10 240 10 360 34S600 58 720 34 960 10 1080 34 1320 58 1440 34V64H0Z'/%3E%3C/svg%3E"); }
 .edge-roof { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 64 720 4 1440 64Z'/%3E%3C/svg%3E"); }
 .edge-grass { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 64V44L18 20 30 46 46 14 60 44 78 26 92 46 110 8 124 44 142 22 156 46 172 16 186 44 204 28 218 46 236 10 250 44 268 20 282 46 298 14 312 44 330 26 344 46 362 6 376 44 394 22 408 46 424 16 438 44 456 28 470 46 488 12 502 44 520 20 534 46 550 14 564 44 582 26 596 46 614 8 628 44 646 22 660 46 676 16 690 44 708 28 722 46 740 10 754 44 772 20 786 46 802 14 816 44 834 26 848 46 866 6 880 44 898 22 912 46 928 16 942 44 960 28 974 46 992 12 1006 44 1024 20 1038 46 1054 14 1068 44 1086 26 1100 46 1118 8 1132 44 1150 22 1164 46 1180 16 1194 44 1212 28 1226 46 1244 10 1258 44 1276 20 1290 46 1306 14 1320 44 1338 26 1352 46 1370 6 1384 44 1402 22 1416 46 1440 18V64Z'/%3E%3C/svg%3E"); }
-/* Electrical: an uneven lightning edge (the same contour js/reveal.js traces with a thin line, a glow, and a spark) */
-.edge-bolt { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 40 50 8 84 40 118 11 154 32 184 44 216 40 242 7 261 15 276 56 352 16 386 56 405 31 420 9 448 15 470 51 536 10 578 13 612 43 662 7 681 15 696 56 754 16 842 48 874 26 900 11 942 32 976 45 1042 13 1084 18 1118 52 1152 14 1200 35 1240 48 1298 6 1332 55 1380 49 1420 11 1440 53 V64H0Z'/%3E%3C/svg%3E"); }
+/* Electrical: a lightning bolt laid on its side, a few long angled runs with the short step-back of a real bolt
+   (the same contour js/reveal.js traces with a thick yellow stripe and a dark outline, plus a spark) */
+.edge-bolt { --edge-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'%3E%3Cpath d='M0 6 150 42 108 30 240 60 390 24 348 36 480 4 630 42 588 30 720 60 870 24 828 36 960 4 1110 42 1068 30 1200 60 1350 24 1308 36 1440 4 V64H0Z'/%3E%3C/svg%3E"); --edge-h: 42px; }
 .edge-top, .edge-bottom { position: relative; }
 .edge-top::before, .edge-bottom::after {
   content: ""; position: absolute; left: 0; right: 0; height: var(--edge-h); z-index: 1; pointer-events: none;
@@ -51,17 +52,24 @@ main, .section, .site-footer { overflow-x: clip; }
 }
 .edge-top::before { top: calc(1px - var(--edge-h)); z-index: 3; }
 .edge-bottom::after { bottom: calc(1px - var(--edge-h)); transform: scaleY(-1); }
-/* Electrical edge: js/reveal.js lays a thin line in the brand color with a soft glow along the lightning edge, and a
-   small spark runs along it once when the band scrolls into view. Reduce motion: the line stays, the spark never runs. */
-.edge-line { position: absolute; left: 0; right: 0; width: 100%; height: var(--edge-h); z-index: 4; overflow: visible; pointer-events: none;
-  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--c-brand) 90%, transparent)) drop-shadow(0 0 7px color-mix(in srgb, var(--c-brand) 45%, transparent)); }
+/* Electrical edge: js/reveal.js traces the bolt edge with a thick stripe in the brand color inside a dark outline
+   (like a drawn lightning bolt), and a small spark runs along it once when the band scrolls into view.
+   Reduce motion: the stripe stays, the spark never runs. */
+.edge-line { position: absolute; left: 0; right: 0; width: 100%; height: var(--edge-h); z-index: 4; overflow: visible; pointer-events: none; }
 .edge-line.at-top { top: calc(1px - var(--edge-h)); }
 .edge-line.at-bottom { bottom: calc(1px - var(--edge-h)); transform: scaleY(-1); }
-.edge-line path { fill: none; vector-effect: non-scaling-stroke; stroke-linejoin: miter; stroke-miterlimit: 10; }
-.edge-line .el-line { stroke: var(--c-brand); stroke-width: 2; }
-.edge-line .el-spark { stroke: #fff; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 22 1000; stroke-dashoffset: 22; opacity: 0; }
+.edge-line path { fill: none; vector-effect: non-scaling-stroke; stroke-linejoin: miter; stroke-miterlimit: 12; stroke-linecap: square; }
+.edge-line .el-outline { stroke: var(--c-navy); stroke-width: 11; }
+.edge-line .el-line { stroke: var(--c-brand); stroke-width: 6; }
+@media (min-width: 900px) { .edge-line .el-outline { stroke-width: 15; } .edge-line .el-line { stroke-width: 9; } }
+/* The taller bolt edge reaches into its neighbors: the hero card and the sections above and below a band get matching
+   room, so the edge never covers words or buttons */
+.edge-bolt .tpl-hero-card { padding-bottom: calc(var(--edge-h) + 16px); }
+.edge-bolt .section:has(+ .edge-top) { padding-bottom: calc(var(--section-y, 48px) + var(--edge-h) * .75); }
+.edge-bolt .edge-bottom + .section { padding-top: calc(var(--section-y, 48px) + var(--edge-h) * .75); }
+.edge-line .el-spark { stroke: #fff; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 24 1000; stroke-dashoffset: 24; opacity: 0; filter: drop-shadow(0 0 4px #fff); }
 .edge-line.is-sparked .el-spark { animation: edge-spark 1.15s cubic-bezier(.45, .05, .3, 1) both; }
-@keyframes edge-spark { 0% { stroke-dashoffset: 22; opacity: 1; } 88% { opacity: 1; } 100% { stroke-dashoffset: -1000; opacity: 0; } }
+@keyframes edge-spark { 0% { stroke-dashoffset: 24; opacity: 1; } 88% { opacity: 1; } 100% { stroke-dashoffset: -1000; opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .edge-line .el-spark, .edge-line.is-sparked .el-spark { animation: none; opacity: 0; } }
 
 /* A photo or card that sits across the edge, so the two sections feel connected */
@@ -157,6 +165,8 @@ main, .section, .site-footer { overflow-x: clip; }
 /* ---------- 6. Hero: one small H1, the big headline keeps its look ---------- */
 .hero-h { margin: 0; color: var(--c-navy); font-family: var(--ff-display); }
 h1.hero-pill, h1.tpl-pill { color: #fff; }
+/* Pill text is bold in every font style (the styles set h1 to their display weight; the pill is the h1) */
+.hero-pill, .tpl-pill, h1.hero-pill, h1.tpl-pill { font-weight: 700; }
 /* The hero pill: a very subtle gradient in its own color (a touch darker at the start, its own color at the end, so
    the text only gains contrast) and a soft drop shadow so it lifts off the card. Works for any brand color. */
 .hero-pill, .tpl-pill { background-image: linear-gradient(100deg, rgb(0 0 0 / .09), rgb(0 0 0 / .03) 55%, rgb(0 0 0 / 0)); box-shadow: 0 8px 18px -6px rgb(20 33 61 / .38), 0 2px 5px rgb(20 33 61 / .14); }
