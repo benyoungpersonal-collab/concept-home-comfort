@@ -32,6 +32,14 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 - Prospect homepage previews: deploy them right away, as described above. If you have to send a zip instead, Ben has Claude chat deploy it from his Mac.
 - Paying clients' live sites: never publish a change until Ben has seen it and says go.
 
+## Photos
+
+- Photos with people are real stock photos (Unsplash or Pexels, free license) or the client's own. AI may only change the color of their clothes. Nothing else about a person or the scene is changed or generated.
+- Photos without people (equipment, homes, finished work) can be AI-made.
+- On Pinwheel, techs wear the same orange.
+- To make a set of photos match (like the service cards), adjust exposure and white balance only, with no filters or color tints (the "tone" setting in scripts/photos.json).
+- Note every photo's source in PHOTO-LIST.md (run `node scripts/photo-list.mjs` after photo changes).
+
 ## Files
 
 - Never save anything to Ben's Desktop. Keep test screenshots and check scripts in a qa/ folder kept out of git, and replace them on each run.

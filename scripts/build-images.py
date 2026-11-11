@@ -11,9 +11,10 @@ Run it after `node scripts/sync.mjs` whenever scripts/photos.json changes:
 
 For each file listed in scripts/image-manifest.json it:
   1. downloads the photo's `src` once (cached in scripts/.cache/, not committed),
-  2. trims it to `box` (keeps things like another company's logo out of every crop),
-  3. crops to the size around the focal point `fp`, like a CDN focal-point crop,
-  4. saves WebP (quality 70, or 62 at 1200px and wider).
+  2. applies `tone` if set (exposure and white balance only, to match a set of photos),
+  3. trims it to `box` (keeps things like another company's logo out of every crop),
+  4. crops to the size around the focal point `fp`, like a CDN focal-point crop,
+  5. saves WebP (quality 70, or 62 at 1200px and wider).
 
 Needs Python 3.9+ and Pillow (pip install pillow).
 """
@@ -25,9 +26,25 @@ OUT = os.path.join(ROOT, 'images', 'photos')
 CACHE = os.path.join(ROOT, 'scripts', '.cache')
 
 
+def tone(img, t):
+    """Exposure and white balance only: one gain per channel, applied in linear light (like a camera's
+    exposure and white-balance settings). No curves, filters, or tints. photos.json: "tone": {"exposure": 1.06, "wb": [r, g, b]}."""
+    if not t:
+        return img
+    e = float(t.get('exposure', 1)); wb = t.get('wb', [1, 1, 1])
+    to_lin = [((v / 255 + 0.055) / 1.055) ** 2.4 if v / 255 > 0.04045 else v / 255 / 12.92 for v in range(256)]
+    def to_srgb(x):
+        x = min(max(x, 0.0), 1.0)
+        return round(255 * (1.055 * x ** (1 / 2.4) - 0.055 if x > 0.0031308 else 12.92 * x))
+    lut = []
+    for g in wb:
+        lut += [to_srgb(to_lin[v] * e * float(g)) for v in range(256)]
+    return img.point(lut)
+
+
 def source(key, photo):
-    if photo.get('file'):  # a retouched copy kept in the repo (see photos.json "edit")
-        return Image.open(os.path.join(ROOT, photo['file'])).convert('RGB')
+    if photo.get('file'):  # a copy kept in the repo (see photos.json "edit")
+        return tone(Image.open(os.path.join(ROOT, photo['file'])).convert('RGB'), photo.get('tone'))
     os.makedirs(CACHE, exist_ok=True)
     path = os.path.join(CACHE, f"{key}-{photo['id']}.jpg")
     if not os.path.exists(path):
@@ -35,7 +52,7 @@ def source(key, photo):
         req = urllib.request.Request(photo['src'], headers={'User-Agent': 'Mozilla/5.0 (pinwheel concept build)'})
         with urllib.request.urlopen(req, timeout=60) as r, open(path, 'wb') as f:
             f.write(r.read())
-    return Image.open(path).convert('RGB')
+    return tone(Image.open(path).convert('RGB'), photo.get('tone'))
 
 
 def render(img, spec):
