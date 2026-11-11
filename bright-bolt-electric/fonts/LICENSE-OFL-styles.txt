@@ -1,0 +1,31 @@
+Font licenses for the five font styles (css/fonts.css). All are SIL Open Font License 1.1, self-hosted WOFF2 files from the Fontsource packages of the Google Fonts releases.
+
+=== anton ===
+Copyright 2020 The Anton Project Authors (https://github.com/googlefonts/AntonFont.git)
+
+
+=== barlow ===
+Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)
+=== barlow-condensed ===
+Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)
+=== fraunces ===
+Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)
+
+
+=== rubik-dirt ===
+Copyright 2020 The Rubik Filtered Project Authors (https://github.com/NaN-xyz/Rubik-Filtered)
+
+
+=== rubik ===
+Copyright 2015 The Rubik Project Authors (https://github.com/googlefonts/rubik)
+
+
+=== lilita-one ===
+Copyright (c) 2011 Juan Montoreano (juan@remolacha.biz), with Reserved Font Names "Lilita One"
+
+
+=== nunito ===
+Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)
+
+
+Full license text: see LICENSE-Inter.txt (the same SIL Open Font License 1.1).
