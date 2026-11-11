@@ -18,8 +18,8 @@
     "id": "6050244",
     "site": "Pexels",
     "src": "https://images.pexels.com/photos/6050244/pexels-photo-6050244.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 6000,
-    "h": 4000,
+    "w": 2400,
+    "h": 1600,
     "box": [
       0.18,
       0.0,
@@ -31,24 +31,26 @@
       0.3
     ],
     "color": "#f2c230",
-    "alt": "Smiling owner with a gray beard in a dark work uniform, holding a toolbox and wrenches",
+    "alt": "Smiling owner with a gray beard in an orange work uniform, holding a toolbox and wrenches",
     "by": "Gustavo Fring",
     "profile": "https://www.pexels.com/@gustavo-fring/",
     "page": "https://www.pexels.com/photo/man-smiling-while-holding-wrenches-6050244/",
     "use": "Owner portrait (placeholder for the real owner photo)",
-    "preview": "pexels__6050244.jpg"
+    "preview": "pexels__6050244.jpg",
+    "file": "images/photos/pinwheel-owner-luis.jpg",
+    "edit": "Work uniform color changed to Pinwheel orange (color only; scripts/recolor-clothes.py)."
   },
   "tech-ray": {
     "id": "F4ox6XvbDps",
     "base": "https://images.unsplash.com/photo-1787672357491-d43acdf974cb",
-    "w": 3739,
-    "h": 2819,
+    "w": 2400,
+    "h": 1809,
     "color": "#a88f86",
     "fp": [
       0.45,
       0.36
     ],
-    "alt": "Senior technician in blue work coveralls and a cap, arms crossed and smiling",
+    "alt": "Senior technician in orange work coveralls and a cap, arms crossed and smiling",
     "by": "Divaris Shirichena",
     "user": "divaris",
     "page": "https://unsplash.com/photos/man-in-blue-work-uniform-F4ox6XvbDps",
@@ -56,27 +58,36 @@
     "preview": "tech-friendly__F4ox6XvbDps.jpg",
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1787672357491-d43acdf974cb?w=2400&q=85&fm=jpg",
-    "profile": "https://unsplash.com/@divaris"
+    "profile": "https://unsplash.com/@divaris",
+    "file": "images/photos/pinwheel-tech-ray.jpg",
+    "edit": "Coveralls and cap color changed to Pinwheel orange (color only; scripts/recolor-clothes.py)."
   },
   "tech-jess": {
-    "id": "dYgyzxlHJ58",
-    "base": "https://images.unsplash.com/photo-1618298363483-e31a31f1a1e2",
-    "w": 5304,
-    "h": 6630,
-    "color": "#6f7361",
+    "id": "iY0GFYADmU0",
+    "base": "https://images.unsplash.com/photo-1687462970787-61d953508926",
+    "file": "images/photos/pinwheel-tech-jess.jpg",
+    "w": 1600,
+    "h": 2400,
+    "color": "#8a6a52",
     "fp": [
       0.5,
-      0.42
+      0.46
     ],
-    "alt": "Service tech in a plaid flannel and work overalls smiling from the driver's seat of a work vehicle",
-    "by": "Troy wade",
-    "user": "troymade",
-    "page": "https://unsplash.com/photos/smiling-woman-in-blue-and-black-plaid-shirt-dYgyzxlHJ58",
+    "alt": "Smiling service tech in an orange t-shirt holding a screwdriver in a repair shop",
+    "by": "Darren Richardson",
+    "user": "campfire_guy",
+    "page": "https://unsplash.com/photos/a-woman-holding-a-wrench-in-a-garage-iY0GFYADmU0",
     "use": "Team, review page",
-    "preview": "owner__dYgyzxlHJ58.jpg",
     "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1618298363483-e31a31f1a1e2?w=2400&q=85&fm=jpg",
-    "profile": "https://unsplash.com/@troymade"
+    "src": "https://images.unsplash.com/photo-1687462970787-61d953508926?w=2400&q=90&fm=jpg",
+    "profile": "https://unsplash.com/@campfire_guy",
+    "edit": "Shirt color changed to Pinwheel orange (color only; scripts/recolor-clothes.py).",
+    "box": [
+      0.2,
+      0.14,
+      0.8,
+      0.74
+    ]
   },
   "plumber": {
     "id": "c314Gh8dXAo",
@@ -355,8 +366,8 @@
     "id": "6200780",
     "site": "Pexels",
     "src": "https://images.pexels.com/photos/6200780/pexels-photo-6200780.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 3787,
-    "h": 5680,
+    "w": 2000,
+    "h": 3000,
     "box": [
       0.0,
       0.3,
@@ -368,19 +379,21 @@
       0.5
     ],
     "color": "#b57c45",
-    "alt": "Two technicians in matching red uniforms unloading a white van in a home's driveway",
+    "alt": "Two technicians in matching orange uniforms unloading a white van in a home's driveway",
     "by": "Tima Miroshnichenko",
     "profile": "https://www.pexels.com/@tima-miroshnichenko/",
     "page": "https://www.pexels.com/photo/man-and-woman-in-red-suits-standing-beside-white-van-6200780/",
     "use": "Team",
-    "preview": "pexels__6200780.jpg"
+    "preview": "pexels__6200780.jpg",
+    "file": "images/photos/pinwheel-crew-van.jpg",
+    "edit": "Uniform color changed to Pinwheel orange (color only; scripts/recolor-clothes.py)."
   },
   "tech-door": {
     "id": "8292806",
     "site": "Pexels",
     "src": "https://images.pexels.com/photos/8292806/pexels-photo-8292806.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 4500,
-    "h": 3000,
+    "w": 2400,
+    "h": 1600,
     "box": [
       0.08,
       0.0,
@@ -392,12 +405,14 @@
       0.4
     ],
     "color": "#d6cfc6",
-    "alt": "Homeowner opening her front door to a technician in a light green shirt",
+    "alt": "Homeowner opening her front door to a technician in an orange shirt",
     "by": "RDNE Stock project",
     "profile": "https://www.pexels.com/@rdne/",
     "page": "https://www.pexels.com/photo/a-man-talking-to-a-woman-on-a-doorway-8292806/",
     "use": "How a visit works, contact page",
-    "preview": "pexels__8292806.jpg"
+    "preview": "pexels__8292806.jpg",
+    "file": "images/photos/pinwheel-tech-door.jpg",
+    "edit": "Shirt color changed to Pinwheel orange (color only; scripts/recolor-clothes.py)."
   },
   "family-baby": {
     "id": "16852512",
@@ -448,7 +463,7 @@
     "w": 1200,
     "h": 1200,
     "fp": [
-      0.45,
+      0.62,
       0.5
     ],
     "color": "#7a8f9c",
@@ -457,7 +472,7 @@
     "user": "shaker_jpg",
     "page": "https://unsplash.com/photos/a-man-working-on-a-pipe-in-a-wall-c314Gh8dXAo",
     "profile": "https://unsplash.com/@shaker_jpg",
-    "use": "Drains service card",
+    "use": "Drains service card, plumbing hero",
     "edit": "Shirt color changed to Pinwheel orange; exposure and white balance matched to the other service cards.",
     "tone": {
       "exposure": 1.2,
@@ -474,7 +489,7 @@
     "w": 1200,
     "h": 1200,
     "fp": [
-      0.55,
+      0.5,
       0.45
     ],
     "color": "#c9c7c2",
@@ -483,7 +498,7 @@
     "user": "hadleycummings",
     "page": "https://unsplash.com/photos/a-person-is-working-on-a-ceiling-air-conditioner-WwzK2S0h6zU",
     "profile": "https://unsplash.com/@hadleycummings",
-    "use": "Indoor air quality service card",
+    "use": "Indoor air quality service card, air quality and membership heroes",
     "edit": "Shirt color changed to Pinwheel orange; exposure and white balance matched to the other service cards.",
     "tone": {
       "exposure": 0.96,

@@ -7,6 +7,7 @@ Run it after `node scripts/sync.mjs` whenever scripts/photos.json changes:
 
     python3 scripts/build-images.py           # make any missing files
     python3 scripts/build-images.py --force   # remake every file
+    python3 scripts/build-images.py --keys=tech-ray,crew-van   # remake only these photos' files
     python3 scripts/build-images.py --prune   # also delete files no page uses
 
 For each file listed in scripts/image-manifest.json it:
@@ -75,13 +76,14 @@ def render(img, spec):
 
 def main():
     force, prune = '--force' in sys.argv, '--prune' in sys.argv
+    keys = {k for a in sys.argv if a.startswith('--keys=') for k in a[7:].split(',') if k}
     photos = json.load(open(os.path.join(ROOT, 'scripts', 'photos.json')))
     manifest = json.load(open(os.path.join(ROOT, 'scripts', 'image-manifest.json')))
     os.makedirs(OUT, exist_ok=True)
     cache, made = {}, 0
     for spec in manifest:
         dest = os.path.join(OUT, spec['file'])
-        if os.path.exists(dest) and not force:
+        if os.path.exists(dest) and not (force or spec['key'] in keys):
             continue
         key = spec['key']
         if key not in cache:
