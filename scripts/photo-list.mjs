@@ -53,7 +53,7 @@ for (const [key, where] of spots) {
   rows.push(`| ${p.use || key} | ${p.alt} | ${pagesList.join(', ')} | ${source} | ${license} | ${prompt} |`);
 }
 rows.push('| How a visit works video and poster (home) | Plumber tightening an outdoor faucet | index.html | Pexels video (see credits.html) | Pexels License | Short 9 second clip of a gloved hand finishing a repair on an outdoor AC unit or a water heater, shallow depth of field. No logos, no faces. |');
-rows.push('| Link preview images (images/og-*.jpg) | Family and A/C unit crops with the Pinwheel logo | every page (og:image) | Cut from the photos above | Same as the photo | Not needed: made from the site photos. |');
+rows.push('| Link preview picture (images/og-share-DATE.jpg) | The homepage on a laptop and a phone, made by scripts/share-image.cjs | every page (og:image) | Screenshots of this site | Not needed | Not needed: no people, made from the live homepage. |');
 
 const md = `# PHOTO-LIST.md: Pinwheel Heating, Air & Plumbing
 
