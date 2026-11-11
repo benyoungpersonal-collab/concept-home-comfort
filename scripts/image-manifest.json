@@ -126,168 +126,6 @@
   "q": 70
  },
  {
-  "file": "cozy-1200x1200.webp",
-  "key": "cozy",
-  "w": 1200,
-  "h": 1200,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "cozy-480x360.webp",
-  "key": "cozy",
-  "w": 480,
-  "h": 360,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-480x480.webp",
-  "key": "cozy",
-  "w": 480,
-  "h": 480,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-480x600.webp",
-  "key": "cozy",
-  "w": 480,
-  "h": 600,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-720x540.webp",
-  "key": "cozy",
-  "w": 720,
-  "h": 540,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-720x720.webp",
-  "key": "cozy",
-  "w": 720,
-  "h": 720,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-720x900.webp",
-  "key": "cozy",
-  "w": 720,
-  "h": 900,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-960x1200.webp",
-  "key": "cozy",
-  "w": 960,
-  "h": 1200,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "cozy-960x960.webp",
-  "key": "cozy",
-  "w": 960,
-  "h": 960,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "crew-van-1200x900-fp50-60.webp",
   "key": "crew-van",
   "w": 1200,
@@ -943,6 +781,168 @@
   "crop": true,
   "fp": [
    0.62,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-1200x1200.webp",
+  "key": "pinwheel-heating",
+  "w": 1200,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pinwheel-heating-480x360.webp",
+  "key": "pinwheel-heating",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-480x480.webp",
+  "key": "pinwheel-heating",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-480x600.webp",
+  "key": "pinwheel-heating",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-720x540.webp",
+  "key": "pinwheel-heating",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-720x720.webp",
+  "key": "pinwheel-heating",
+  "w": 720,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-720x900.webp",
+  "key": "pinwheel-heating",
+  "w": 720,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-960x1200.webp",
+  "key": "pinwheel-heating",
+  "w": 960,
+  "h": 1200,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-heating-960x960.webp",
+  "key": "pinwheel-heating",
+  "w": 960,
+  "h": 960,
+  "crop": true,
+  "fp": [
+   0.6,
    0.5
   ],
   "box": [
