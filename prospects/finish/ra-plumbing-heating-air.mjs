@@ -323,6 +323,19 @@ a:hover { color: var(--ra-bold-hover); }
 .reviews.tpl-bg-tint { background: #E8F3FC; }
 /* "shows up on time." stays on one line from 320px up (the headline size is set for it) */
 .tpl-hero h1 .accent { white-space: nowrap; }
+/* Desktop hero (R&A only; phones and tablets keep the template hero). The photo keeps its scale and the same top
+   edge as the template's band (2:1, about 720px on a 1440px screen) but shows down to its own bottom edge. The card
+   hugs its content on the left and starts just under Ryan's shoulders and the van logo (60% of the photo's height),
+   so it covers only his crossed arms and the lower van. The photo is not tall enough to reach the card's bottom, so
+   the buttons and the 24/7 line sit on the page background (Ben chose this over zooming the photo). */
+@media (min-width: 900px) {
+  .tpl-hero { position: relative; isolation: isolate; --ra-band: min(50vw, max(720px, 39vw), 760px); --ra-p: .25; }
+  .tpl-hero .tpl-hero-banner { position: absolute; inset: 0; z-index: 0; height: auto; aspect-ratio: auto; background: none; }
+  .tpl-hero .tpl-hero-banner img { position: absolute; left: 0; top: calc((var(--ra-band) - 66.667vw) * var(--ra-p)); width: 100%; height: auto; object-fit: fill; }
+  .tpl-hero .tpl-hero-wrap { margin-top: 0; padding-top: calc(40.27vw + (var(--ra-band) - 66.667vw) * var(--ra-p)); }
+  .tpl-hero .tpl-hero-card { width: calc(clamp(3.5rem, 5.6vw, 5rem) * 8.3 + 128px); max-width: 100%; }
+}
+@media (min-width: 1600px) { .tpl-hero { --ra-p: .2; } }
 </style>
 </head>`);
 
