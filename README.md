@@ -208,7 +208,7 @@ Write real local copy for each city. Pages that only swap the city name read as 
 - **Contact page** with every location, and a **Specials and discounts** section on the homepage.
 - **Instant estimate** is the highlight band: 3 questions, a real price range, no email needed. Pinwheel has starting prices, so it shows a range. (The template will offer a quick quote request instead when a client has no prices.)
 - **Service areas:** 12 cities across San Joaquin and Alameda counties, every one on the map and in the chip list.
-- **Link preview** for texts: a family photo (different from the hero) and the title `Pinwheel Heating, Air & Plumbing | Tracy HVAC`. The title adds "5-Star Service" only when the Google rating is 5.0 (Pinwheel's is 4.9, so it does not).
+- **Link preview** for texts: the homepage on a laptop and a phone (`images/og-share-2026-11-11.jpg`, made by `node scripts/share-image.cjs`, see CLAUDE.md) and the title `Pinwheel Heating, Air & Plumbing | Tracy HVAC`. The title adds "5-Star Service" only when the Google rating is 5.0 (Pinwheel's is 4.9, so it does not).
 - **Booking demo:** 3 steps, the next 8 open days (no Sundays, today drops off after 4pm), validation, confirmation. Sends nothing.
 - **Demo AI assistant:** scripted answers to 10 common questions, then hands off to a call, text, or booking.
 - **Instant price estimator:** 3 questions, a real price range, no email needed.
