@@ -83,6 +83,12 @@
   force = true
 
 [[redirects]]
+  from = "/sonnys-mechanical/PHOTO-LIST.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/README.md"
   to = "/404.html"
   status = 404

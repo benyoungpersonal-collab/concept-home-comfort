@@ -1,0 +1,23 @@
+
+
+@media (min-width: 900px) {
+  .tpl-hero { --hero-fs: calc(clamp(3rem, 4.3vw, 4rem) * var(--hero-k, 1)); }
+  .tpl-hero-wrap > .tpl-hero-card { padding-inline: 52px; }
+  .tpl-hero-card .lead { max-width: 29rem; }
+}
+
+.reviews .tag-real { background: var(--c-brand-tint, #E6F7FA); border-color: transparent; color: var(--c-brand-deep, #00606F); font-weight: 700; }
+.reviews .review-meta { font-size: .85rem; color: var(--c-muted, #5b6470); margin: 2px 0 0; }
+
+.nowrap { white-space: nowrap; }
+
+.logo-initial { color: var(--c-navy, #0D1B22); }
+.logo.light .logo-initial { color: var(--c-navy, #0D1B22); }
+
+.pcard-body p + .btn { margin-top: auto; }
+.pcard-body p { padding-bottom: 8px; }
+
+@media (min-width: 640px) { .tpl-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .tpl-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+@media (min-width: 900px) { .team-grid.no-photo { grid-template-columns: minmax(0, 1fr); max-width: none; } .team-grid.no-photo > div { max-width: 760px; } }

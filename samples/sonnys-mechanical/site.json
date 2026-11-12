@@ -1,0 +1,172 @@
+{
+  "_comment": "Sonny's Mechanical (Auberry, CA): homepage preview by Ben Young Web Design. Facts come only from CSLB (#1162052, and his earlier #1129931), his BBB profile, his digital business card (brand.contact/sonnysair), and Ben's brief. Built with scripts/build-preview.mjs, then finish.mjs (see README.md in this folder).",
+  "slug": "sonnys-mechanical",
+  "mode": "new",
+  "name": "Sonny's Mechanical",
+  "shortName": "Sonny's Mechanical",
+  "logoTag": "Heating & Air · Auberry, CA",
+  "phone": "(559) 392-0743",
+  "email": "gwayne@sonnysair.com",
+  "city": "Auberry",
+  "state": "CA",
+  "serviceAreas": [
+    "Auberry",
+    "Clovis",
+    "Fresno"
+  ],
+  "trade": "hvac",
+  "tradeLabel": "Heating & Air",
+  "mainService": "Heating & Air Conditioning",
+  "previewUrl": "https://byw-home-comfort.netlify.app/sonnys-mechanical/",
+  "colors": {
+    "brand": "#00B3D1",
+    "fill": "bright",
+    "navy": "#0D1B22",
+    "second": "#0D1B22"
+  },
+  "fontStyle": "classic",
+  "pill": "Heating & Air Conditioning in Auberry, CA",
+  "pillShort": "Heating & Air in Auberry, CA",
+  "headline": "Furnace Out? AC Down?",
+  "headlineAccent": "Call Sonny Direct.",
+  "lead": "Sonny Wayne runs Sonny's Mechanical out of Auberry, and his name is on the license. His promise is printed on his card: transparent, honest, predictable.",
+  "description": "Sonny's Mechanical: heating and air conditioning repair, replacement, and new construction HVAC from Auberry, CA. CSLB #1162052. Call (559) 392-0743.",
+  "license": "CSLB #1162052",
+  "bonded": true,
+  "insured": false,
+  "upfrontPricing": false,
+  "guarantee": false,
+  "secondOpinion": false,
+  "trust": [
+    {
+      "icon": "i-license",
+      "strong": "CSLB #1162052",
+      "sub": "Active C-20 heating and air license"
+    },
+    {
+      "icon": "i-shield",
+      "strong": "Bonded",
+      "sub": "A $25,000 contractor's bond on file"
+    },
+    {
+      "icon": "i-users",
+      "strong": "Workers' comp",
+      "sub": "The crew is covered, not your homeowner's policy"
+    },
+    {
+      "icon": "i-check-circle",
+      "strong": "BBB Accredited",
+      "sub": "A rating, no complaints on file"
+    },
+    {
+      "icon": "i-map-pin",
+      "strong": "Based in Auberry",
+      "sub": "A foothill company, not a valley call center"
+    }
+  ],
+  "servicesLead": "Heating, cooling, and new systems for foothill homes, plus new construction and commercial jobs down the hill.",
+  "services": [
+    {
+      "name": "Heating repair",
+      "blurb": "Furnace quit on a cold night? Call and tell us what it's doing.",
+      "sub": [
+        "Furnace repair",
+        "Heat pump repair",
+        "No-heat calls"
+      ],
+      "icon": "i-flame"
+    },
+    {
+      "name": "AC repair",
+      "blurb": "Running but not cooling, short-cycling, or not turning on at all.",
+      "sub": [
+        "AC repair",
+        "Condenser repair",
+        "Refrigerant checks"
+      ],
+      "icon": "i-snowflake"
+    },
+    {
+      "name": "New systems",
+      "blurb": "When repair stops making sense, a replacement sized for your home.",
+      "sub": [
+        "Furnace replacement",
+        "AC replacement",
+        "Heat pump systems"
+      ],
+      "icon": "i-heatpump"
+    },
+    {
+      "name": "New builds and commercial",
+      "blurb": "HVAC installs for new homes, multi-family, and commercial buildings.",
+      "sub": [
+        "New construction",
+        "Multi-family",
+        "Commercial"
+      ],
+      "icon": "i-home",
+      "photo": "photos/commercial-720x540.webp",
+      "photoAlt": "Row of commercial rooftop condensing units on a flat roof"
+    }
+  ],
+  "heroPhoto": {
+    "src": "photos/hero-src.jpg",
+    "alt": "Heating and air tech in a navy polo shining a flashlight into a home's outdoor AC condenser",
+    "ogAlt": "A heating and air tech checking a home's AC condenser.",
+    "ogFocusY": 40,
+    "position": "70% 40%",
+    "positionDesktop": "62% 35%",
+    "positionWide": "60% 35%"
+  },
+  "owner": {
+    "name": "Sonny Wayne",
+    "role": "President",
+    "story": "George \"Sonny\" Wayne started Sonny's Air Conditioning in 2024 and now runs Sonny's Mechanical out of Auberry. He is the qualifier on the company's CSLB license, so the person who answers for the work is the person whose name is on the card.",
+    "quote": "Specializing in doing the right thing, ALWAYS. Also Air Conditioning."
+  },
+  "unverified": [
+    "Business name as Google shows it (CSLB reads SONNYS MECHANICAL INC)",
+    "Hours (not on the page until he confirms them)",
+    "Towns beyond Auberry, Clovis, and Fresno",
+    "Exact service list (heating repair, AC repair, new systems, new builds and commercial)",
+    "Callers reach Sonny directly at (559) 392-0743",
+    "Email: Ben's brief said gwayne@sonnyair.com, but sonnyair.com has no mail server; his card says Gwayne@sonnysair.com, which does"
+  ],
+  "faqs": [
+    {
+      "q": "My furnace quit on a cold night. Can you come out?",
+      "a": "Call (559) 392-0743 and tell us what it's doing: no heat at all, cold air, a burner that lights and shuts off, or an error light. We'll tell you straight when we can get there."
+    },
+    {
+      "q": "Why is my AC running but not cooling?",
+      "a": "The usual causes are a clogged filter, a frozen indoor coil, a dirty outdoor coil, or low refrigerant. Check the filter and make sure the outdoor unit is clear of weeds and leaves. If it still blows warm, shut it off so it doesn't freeze up, and call us."
+    },
+    {
+      "q": "Why does my heater smell like something burning the first time I turn it on?",
+      "a": "A dusty smell for the first few minutes of the season is normal: dust on the burners or heat strips is burning off. If it lasts, smells electrical, or smells like gas, turn it off. If you smell gas, get everyone out and call your gas company or 911 from outside."
+    },
+    {
+      "q": "How often should I change my air filter?",
+      "a": "Check it every month and change it when it looks gray, usually every 1 to 3 months. With pets, smoke season, or dusty summers, change it more often. A clogged filter is one of the most common reasons a system stops heating or cooling well."
+    },
+    {
+      "q": "Should I repair my old system or replace it?",
+      "a": "A good rule of thumb: if the system is past 15 years old and the repair costs a big share of a new one, replacement is worth pricing. We'll lay out both options and let you decide."
+    },
+    {
+      "q": "Do you do new construction and commercial work?",
+      "a": "Yes. Along with homes, we install HVAC in new construction, multi-family buildings, and commercial buildings."
+    },
+    {
+      "q": "Are you licensed?",
+      "a": "Yes. Sonny's Mechanical holds California contractor license #1162052 (C-20, heating, ventilating, and air conditioning), with a contractor's bond and workers' compensation on file. You can look it up at cslb.ca.gov."
+    },
+    {
+      "q": "What areas do you serve?",
+      "a": "We're based in Auberry and work in Auberry, Clovis, and Fresno. Just outside? Call us. If we can get there fast, we'll come."
+    }
+  ],
+  "mapLabelSide": {
+    "Fresno": "l"
+  }
+}
