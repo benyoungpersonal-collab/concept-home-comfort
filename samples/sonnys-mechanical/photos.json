@@ -1,21 +1,5 @@
 {
  "_note": "Every photo on the Sonny's Mechanical preview. photos.py crops each source around fp and writes the files in photos/. Photos with people are real stock (the one tech photo in How a visit works). Photos without people are AI-made in Canva; their full-size originals are kept in photos/originals/ because the Canva export links expire.",
- "hero": {
-  "local": "originals/hero.jpg",
-  "out": [
-   [
-    "hero-src.jpg",
-    0,
-    0
-   ]
-  ],
-  "people": false,
-  "alt": "Single-story ranch home in the Sierra foothills with an outdoor AC condenser beside it, oak trees and granite boulders around it",
-  "site": "AI (Canva)",
-  "by": "Ben Young Web Design",
-  "page": "Canva folder: Sonny's Mechanical - preview photos",
-  "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\""
- },
  "heating": {
   "local": "originals/heating.jpg",
   "out": [
@@ -116,13 +100,13 @@
    ]
   ],
   "people": false,
-  "alt": "Foothill home at dusk with warm light in the windows, oak trees and granite boulders around it",
+  "alt": "Well-kept suburban home with a green lawn, trimmed shrubs, and an AC condenser beside the house on a sunny day",
   "site": "AI (Canva)",
   "by": "Ben Young Web Design",
   "page": "Canva folder: Sonny's Mechanical - preview photos",
   "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\"",
   "fp": [
-   0.5,
+   0.6,
    0.55
   ]
  },

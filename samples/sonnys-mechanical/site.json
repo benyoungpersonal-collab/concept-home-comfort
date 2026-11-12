@@ -115,15 +115,6 @@
       "photoAlt": "New home under construction with new flex ducts, sheet-metal trunks, and a furnace in the open wood framing"
     }
   ],
-  "heroPhoto": {
-    "src": "photos/hero-src.jpg",
-    "alt": "Single-story ranch home in the Sierra foothills with an outdoor AC condenser beside it, oak trees and granite boulders around it",
-    "ogAlt": "A Sierra foothills home in Auberry with its AC condenser.",
-    "ogFocusY": 50,
-    "position": "62% 50%",
-    "positionDesktop": "60% 45%",
-    "positionWide": "60% 45%"
-  },
   "owner": {
     "name": "George Wayne",
     "role": "President",

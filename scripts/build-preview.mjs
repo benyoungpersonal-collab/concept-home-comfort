@@ -487,7 +487,7 @@ const stockHero = trade === 'plumbing'
   ? { files: [[480, 480], [768, 768], [1024, 1024], [1200, 1200]].map(([w, h]) => ({ file: `pinwheel-drains-hero-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-plumbing.jpg',
       alt: 'Plumber in an orange shirt tightening a drain pipe under a bathroom sink', pos: ['62% 50%', '62% 45%', '62% 45%'] }
   : { files: [[480, 204], [768, 326], [1024, 434], [1600, 679], [2400, 1018]].map(([w, h]) => ({ file: `pinwheel-hero-${w}x${h}-full.webp`, w, h })), dir: 'images/photos', og: 'images/og-hvac.jpg',
-      alt: 'Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path', pos: ['52% 55%', '50% 55%', '50% 55%'] };
+      alt: 'Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path', pos: ['52% 55%', '18% 50%', '0% 50%'] }; // Pinwheel's own crop: both units beside the desktop card
 let hero = { ...stockHero, own: false };
 if (hp) {
   const src = resolve(dirname(dataPath), str(hp.src));
@@ -631,7 +631,7 @@ const menu = [
   specials.length && { id: 'specials', label: 'Specials and discounts' },
   { id: 'reviews', label: 'Reviews' },
   isNew && hasProof && { id: 'proof', label: 'Why us' },
-  hasOwner && { id: 'team', label: 'Meet the family' },
+  hasOwner && { id: 'team', label: 'Meet the owner' },
   { id: 'estimate', label: prices.length ? 'Starting prices' : 'Quick quote' },
   financing && { id: 'financing', label: 'Financing' },
   faqList.length && { id: 'faq', label: 'FAQ' },
@@ -828,6 +828,8 @@ const unfilled = html.match(/\{\{[^}]*\}\}/g);
 if (unfilled) fail('Unfilled template tags: ' + [...new Set(unfilled)].join(' '));
 if (/claude/i.test(html)) fail('The page mentions Claude. Remove that from the data file.');
 if (/—/.test(html)) fail('The page contains an em dash. Replace it in the data file.');
+/* Pinwheel's photos are the stock defaults; in a preview they are served as images/photos/stock-* so no file name says Pinwheel */
+html = html.replace(/images\/photos\/pinwheel-/g, 'images/photos/stock-');
 const pw = html.match(/.{0,60}(?:#logo-mark|Pinwheel).{0,60}/i); if (pw) fail('The page still has a Pinwheel name or logo in it: ' + pw[0]);
 if (/(^|[^\w&])#1\b|\bnumber one\b|\bbest in\b/i.test(html)) fail('The page makes a "#1" or "best" claim. Remove it from the data file.');
 
@@ -841,6 +843,7 @@ const refs = new Set([...html.matchAll(/\b(src|href|poster|imagesrcset|srcset)="
 for (const ref of refs) {
   if (!ref || /^(https?:|tel:|sms:|mailto:|#|data:)/.test(ref) || ref.endsWith('.html') || ref.startsWith('images/logo') || ref.startsWith('images/header-mark') || ref.startsWith('images/hero/') || ref.startsWith('images/owner') || ref.startsWith('images/truck') || ref.startsWith('images/mascot') || ref.startsWith('images/services/') || ref === 'images/map/service-area.svg') continue;
   if (own[ref]) { copied += copy(own[ref], ref); continue; }
+  if (ref.startsWith('images/photos/stock-')) { const from = ref.replace('images/photos/stock-', 'images/photos/pinwheel-'); if (!existsSync(join(ROOT, from))) fail('Referenced file is missing: ' + from); copied += copy(from, ref); continue; }
   if (!existsSync(join(ROOT, ref))) fail('Referenced file is missing: ' + ref);
   copied += copy(ref);
 }
@@ -883,7 +886,7 @@ writeFileSync(join(OUT, 'styles.html'), stylesHtml);
     { spot: 'Hero banner', now: hero.alt, source: hero.own ? 'Their photo (heroPhoto)' : 'Stock (see credits in the main repo, scripts/photos.json)', license: hero.own ? 'Theirs' : 'Unsplash or Pexels License', prompt: `Realistic wide photo of ${hero.own ? 'the owner beside their work van' : 'a clean home exterior with the equipment this business services'} in ${city}, ${state}, morning light, 2:1. No logos except their own, no text.` },
     ...photoList,
     { spot: 'How a visit works (video poster)', now: 'Plumber tightening an outdoor faucet (stock video)', source: 'Pexels video', license: 'Pexels License', prompt: `Short 9 second clip of a technician's gloved hands finishing a repair at a ${trade === 'plumbing' ? 'sink' : 'furnace or AC unit'}, shallow depth of field. No logos, no faces.` },
-    ...(data.hasOwner ? [{ spot: 'Meet the family: owner portrait', now: data.hasOwnerPhoto ? 'Their photo' : `Illustrated placeholder (${ownerGender || 'man'}), "Your photo here"`, source: data.hasOwnerPhoto ? 'Supplied' : 'Drawn in the template', license: data.hasOwnerPhoto ? 'Theirs' : 'Owned', prompt: 'Use a real photo of the owner. Never AI, never a job-site photo.' }] : []),
+    ...(data.hasOwner ? [{ spot: 'Meet the owner: owner portrait', now: data.hasOwnerPhoto ? 'Their photo' : `Illustrated placeholder (${ownerGender || 'man'}), "Your photo here"`, source: data.hasOwnerPhoto ? 'Supplied' : 'Drawn in the template', license: data.hasOwnerPhoto ? 'Theirs' : 'Owned', prompt: 'Use a real photo of the owner. Never AI, never a job-site photo.' }] : []),
     { spot: 'Request a visit: family photo', now: 'Family on a green couch (stock)', source: 'Pexels', license: 'Pexels License', prompt: 'Real stock only (people). A family relaxing at home in a bright living room.' },
     ...(mascot ? [{ spot: 'Mascot (hero, how it works, request)', now: mascot, source: 'Supplied', license: 'Theirs', prompt: 'Transparent PNG, the mascot facing left and right, about 600px tall.' }] : []),
   ];

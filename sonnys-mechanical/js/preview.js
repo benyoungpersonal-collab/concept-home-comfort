@@ -1,19 +1,4 @@
 
-
-(function () {
-  'use strict';
-  if (!('IntersectionObserver' in window)) return;
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('is-shine');
-      io.unobserve(e.target);
-    });
-  }, { threshold: 0.9 });
-  document.querySelectorAll('.btn-primary').forEach(function (b) { io.observe(b); });
-})();
-
 (function () {
   'use strict';
   var form = document.querySelector('[data-price-picker]');
