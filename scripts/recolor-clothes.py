@@ -28,7 +28,7 @@ import numpy as np, cv2
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TARGET = {'L': 32.0, 'spread': 27.0, 'chroma': 50.0, 'hue': 51.5}
+TARGET_DEFAULT = {'L': 32.0, 'spread': 27.0, 'chroma': 50.0, 'hue': 51.5}
 
 
 def poly_mask(shape, polys):
@@ -42,6 +42,8 @@ def poly_mask(shape, polys):
 
 def main(cfg_path):
     cfg = json.load(open(cfg_path))
+    # optional "target": another site's shirt color in the same terms (default: Pinwheel orange)
+    TARGET = {**TARGET_DEFAULT, **cfg.get('target', {})}
     src = Image.open(os.path.join(ROOT, cfg['src'])).convert('RGB')
     rgb = np.asarray(src)
     h, w = rgb.shape[:2]

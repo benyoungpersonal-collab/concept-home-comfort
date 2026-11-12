@@ -1,0 +1,82 @@
+{
+  "_note": "Every photo on the Sonny's Mechanical preview. photos.py reads each source from scripts/.cache/sonnys-mechanical/ (downloading it once), crops it around fp, and writes the files in photos/. People photos are real stock: the only change ever made is the shirt color (recolor-hero.json, CLAUDE.md photo rule).",
+  "hero": {
+    "id": "32497161",
+    "file": "hero-navy.jpg",
+    "src": "https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=3600",
+    "make": "python3 scripts/recolor-clothes.py samples/sonnys-mechanical/recolor-hero.json",
+    "out": [
+      [
+        "hero-src.jpg",
+        2600,
+        0
+      ]
+    ],
+    "box": [
+      0,
+      0,
+      1,
+      0.88
+    ],
+    "people": true,
+    "alt": "Heating and air tech in a navy polo shining a flashlight into a home's outdoor AC condenser",
+    "site": "Pexels",
+    "by": "Pexels contributor (photo 32497161)",
+    "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
+    "edit": "Shirt color only: the gray polo is navy (scripts/recolor-clothes.py, nothing else changed). Cropped at the bottom so the condenser's maker badge is out of every crop."
+  },
+  "ac": {
+    "id": "8RbiLgfqoqQ",
+    "file": "ac-8RbiLgfqoqQ.jpg",
+    "src": "https://images.unsplash.com/photo-1792799881226-e841c0f9c125?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+    "out": [
+      [
+        "visit-640x360.webp",
+        640,
+        360
+      ],
+      [
+        "visit-960x540.webp",
+        960,
+        540
+      ],
+      [
+        "visit-1280x720.webp",
+        1280,
+        720
+      ]
+    ],
+    "fp": [
+      0.5,
+      0.55
+    ],
+    "people": true,
+    "alt": "Tech in a black shirt connecting a refrigerant gauge hose to an outdoor AC unit's service valve",
+    "site": "Unsplash",
+    "by": "Joel Muniz",
+    "page": "https://unsplash.com/photos/8RbiLgfqoqQ",
+    "edit": "None (crop only)."
+  },
+  "commercial": {
+    "id": "8PuhEqdwaN8",
+    "file": "rooftop-8PuhEqdwaN8.jpg",
+    "src": "https://images.unsplash.com/photo-1774290331891-5d759056c68d?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+    "out": [
+      [
+        "commercial-720x540.webp",
+        720,
+        540
+      ]
+    ],
+    "fp": [
+      0.45,
+      0.5
+    ],
+    "people": false,
+    "alt": "Row of commercial rooftop condensing units on a flat roof",
+    "site": "Unsplash",
+    "by": "Carl Wragg",
+    "page": "https://unsplash.com/photos/8PuhEqdwaN8",
+    "edit": "None (crop only)."
+  }
+}
