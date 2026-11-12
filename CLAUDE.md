@@ -41,8 +41,8 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 
 ## Colors
 
-- Buttons and accents use Ridgeline's gold (#D4A531, hover #E0B444) unless the business already has its own brand colors. Never a brown or mustard gold. Pick one rich main color to go with it, like navy, deep teal, charcoal, or forest green. No peach or pastel colors. The template does this when the data file has no `colors.brand`: gold fills with navy text, navy headline words with a gold underline.
-- Check contrast on every button: dark text on gold, never white.
+- Buttons and accents use Ridgeline's gold (#D4A531, hover #E0B444) unless the business already has its own brand colors. Never a brown or mustard gold. Pick one rich main color to go with it, like navy, deep teal, charcoal, or forest green. No peach or pastel colors. The template does this when the data file has no `colors.brand`: gold fills with white text and the soft dark shadow, navy headline words with a gold underline.
+- On every new prospect preview, text and icons on gold are always white with a thin, soft dark text shadow (0 1px 2px, navy at about 45%) so the white reads clearly. Samples (Pinwheel, Bright Bolt) keep their own button text colors.
 - Main buttons get a beveled shine (css/alive.css, shared by Pinwheel, Bright Bolt, and every preview): a subtle gradient, lighter at the top and richer at the bottom, a thin light highlight along the top edge, and a soft shadow underneath. A gentle shine sweeps across each main button every 6 seconds on every screen size, plus on hover on desktop. No sweep with "reduce motion". Each site keeps its own button color. Check button text contrast at the top, middle, and bottom of the gradient.
 - No pause button on hero videos: a tap or click on the video pauses it (js/site.js), and with "reduce motion" on it shows the still image instead.
 

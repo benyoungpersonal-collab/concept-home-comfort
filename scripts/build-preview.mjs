@@ -389,7 +389,8 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
     const navyText = navy ? darkenUntil(navy, 7) : '#14213D';
     const ratioHex = (a, b) => ratio(toRgb(a), toRgb(b));
     const deepenVs = (hexColor, bg, r) => { let rgb = toRgb(hexColor); let n = 0; while (ratio(rgb, toRgb(bg)) < r && n++ < 80) rgb = darken(rgb, 0.015); return toHex(rgb); };
-    const onFill = contrastWhite(toRgb(brand)) >= 4.5 ? '#FFFFFF' : navyText;
+    /* Text on gold is always white with a soft dark shadow (CLAUDE.md); other bright fills keep the 4.5:1 test */
+    const onFill = defaultGold || contrastWhite(toRgb(brand)) >= 4.5 ? '#FFFFFF' : navyText;
     let fillHover = toHex(darken(toRgb(brand), 0.08));
     if (ratioHex(onFill, fillHover) < 4.5) fillHover = brand;
     if (brand.toUpperCase() === '#D4A531' && ratioHex(onFill, '#E0B444') >= 4.5) fillHover = '#E0B444'; // Ridgeline's gold lightens on hover
@@ -447,7 +448,7 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
     collect(cssSite); collect(cssPreview);
     brandCss += emit(cssSite) + emit(cssPreview);
     brandCss += '.accent{color:var(--c-brand-accent)}.on-dark .accent{color:var(--c-brand-light)}';
-    if (defaultGold) brandCss += `:root{--c-brand-strong:${navyText};--c-brand-deep:${navyText};--c-brand-hover:${navyText};--c-brand-accent:${navyText};--c-brand-light:${brand}}.logo-initial,.tpl-logo .logo-initial{color:${navyText}}`;
+    if (defaultGold) brandCss += `:root{--c-brand-strong:${navyText};--c-brand-deep:${navyText};--c-brand-hover:${navyText};--c-brand-accent:${navyText};--c-brand-light:${brand}}.logo-initial,.tpl-logo .logo-initial{color:${navyText}}.btn-primary,.tpl-pill,.tpl-pill span,.sb-call{text-shadow:0 1px 2px rgb(10 42 74 / .45)}.btn-primary .icon,.sb-call .icon,.pcard-badge .icon,.tpl-tile-icon .icon{filter:drop-shadow(0 1px 1px rgb(10 42 74 / .4))}`;
     brandCss += '.tpl-bento .tile.tone-main:not(.photo-tile) h3,.tpl-bento .tile.tone-main:not(.photo-tile) p,.tpl-bento .tile.tone-main:not(.photo-tile) .tile-sub{color:var(--c-on-brand)}'
       + '.tpl-bento .tile.tone-main:not(.photo-tile) .tile-arrow{background:rgb(255 255 255 / .4);color:var(--c-on-brand)}';
     brightReport = `fill ${brand} with ${onFill === '#FFFFFF' ? 'white' : 'navy'} text (${ratioHex(onFill, brand).toFixed(2)}:1), hover ${fillHover} (${ratioHex(onFill, fillHover).toFixed(2)}:1), headline words ${accentLarge} (${ratioHex(accentLarge, '#F6F3EF').toFixed(2)}:1 on cream, ${ratioHex(accentLarge, glow).toFixed(2)}:1 on the hero glow), small text ${deep} (${ratioHex(deep, '#F6F3EF').toFixed(2)}:1 on cream, ${ratioHex(deep, '#FFFFFF').toFixed(2)}:1 on white)`;
