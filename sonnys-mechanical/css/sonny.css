@@ -24,17 +24,17 @@
 
 :root { --sm-gold: #D4A531; --sm-gold-hover: #E0B444; --sm-ink: #0A2A4A;
   --c-brand-strong: #0067BF; --c-brand-deep: #0067BF; --c-brand-hover: #005AA8; --c-brand-light: #D4A531; --btn-lift: 12%; }
-.btn-primary, .btn-primary:hover { --btn-bg: var(--sm-gold); --btn-bd: var(--sm-gold); --btn-fg: var(--sm-ink); color: var(--sm-ink); }
+
+:root { --sm-on-gold: #fff; --sm-gold-shadow: 0 1px 2px rgb(10 42 74 / .45); }
+.btn-primary, .btn-primary:hover { --btn-bg: var(--sm-gold); --btn-bd: var(--sm-gold); --btn-fg: var(--sm-on-gold); color: var(--sm-on-gold); text-shadow: var(--sm-gold-shadow); }
 .btn-primary:hover { --btn-bg: var(--sm-gold-hover); --btn-bd: var(--sm-gold-hover); }
-.btn-primary .icon { color: var(--sm-ink); }
-.tpl-pill, .tpl-pill span, .tpl-pill span::before, .tpl-pill span::after { color: var(--sm-ink); }
+.btn-primary .icon, .sb-call .icon, .pcard-badge .icon, .tpl-tile-icon .icon { color: var(--sm-on-gold); filter: drop-shadow(0 1px 1px rgb(10 42 74 / .4)); }
+.tpl-pill, .tpl-pill span, .tpl-pill span::before, .tpl-pill span::after { color: var(--sm-on-gold); text-shadow: var(--sm-gold-shadow); }
 .tpl-pill { background: var(--sm-gold); }
-.sb-call, .sb-call:hover { background: var(--sm-gold); color: var(--sm-ink); }
-.sb-call .icon { color: var(--sm-ink); }
-.pcard-badge { background: var(--sm-gold); color: var(--sm-ink); }
-.pcard-badge .icon { color: var(--sm-ink); }
-.tpl-tile-icon { background: var(--sm-gold); color: var(--sm-ink); }
-.tpl-tile-icon .icon { color: var(--sm-ink); stroke: var(--sm-ink); }
+.sb-call, .sb-call:hover { background: var(--sm-gold); color: var(--sm-on-gold); text-shadow: var(--sm-gold-shadow); }
+.pcard-badge { background: var(--sm-gold); color: var(--sm-on-gold); }
+.tpl-tile-icon { background: var(--sm-gold); color: var(--sm-on-gold); }
+.tpl-tile-icon .icon { stroke: var(--sm-on-gold); }
 .accent { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23D4A531' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' opacity='.9'/%3E%3C/svg%3E"); }
 .on-dark .accent, .on-dark .eyebrow { color: var(--sm-gold); }
 .logo-initial { background: var(--sm-ink); color: var(--sm-gold); }
