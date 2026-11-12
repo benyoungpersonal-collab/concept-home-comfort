@@ -1,21 +1,5 @@
-/* preview.js: the button shine and the starting-price picker on homepage previews. Loaded after js/site.js.
+/* preview.js: the starting-price picker on homepage previews. Loaded after js/site.js.
    The prices come from the data file and sit on each chip as data-from / data-to. */
-/* Main buttons: a gentle shine sweeps across each one once, the first time it scrolls into view (css/preview-late.css
-   draws it). Hover replays it on desktop in CSS. Nothing runs with "reduce motion". */
-(function () {
-  'use strict';
-  if (!('IntersectionObserver' in window)) return;
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('is-shine');
-      io.unobserve(e.target);
-    });
-  }, { threshold: 0.9 });
-  document.querySelectorAll('.btn-primary').forEach(function (b) { io.observe(b); });
-})();
-
 (function () {
   'use strict';
   var form = document.querySelector('[data-price-picker]');

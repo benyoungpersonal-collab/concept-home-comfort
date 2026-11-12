@@ -31,11 +31,11 @@
 
 /* Colors (CLAUDE.md): the darker blue is the main color, buttons and accents are gold.
    - Blue: R&A's #0078DE, its deeper #0067BF for small blue text (5.1:1 on cream), and deep blue #0A2A4A for the dark bands.
-   - Gold #E3A72F with deep-blue text (6.8:1, 7.5:1 at the gradient's light top) on every main button, the pill, the
+   - Ridgeline's gold #D4A531 (hover #E0B444) with deep-blue text: 5.4:1 at the bevel's darkest point, 7.1:1 at its top on every main button, the pill, the
      sticky Call button, icon badges, and tiles. Headline accent words get a gold underline; on light backgrounds the
      words stay blue so they read (gold text on cream is under 2:1), on the dark bands the words are gold (7.4:1). */
-:root { --sm-gold: #E3A72F; --sm-gold-hover: #D4981F; --sm-ink: #0A2A4A;
-  --c-brand-strong: #0067BF; --c-brand-deep: #0067BF; --c-brand-hover: #005AA8; --c-brand-light: #E3A72F; --btn-lift: 12%; }
+:root { --sm-gold: #D4A531; --sm-gold-hover: #E0B444; --sm-ink: #0A2A4A;
+  --c-brand-strong: #0067BF; --c-brand-deep: #0067BF; --c-brand-hover: #005AA8; --c-brand-light: #D4A531; --btn-lift: 12%; }
 .btn-primary, .btn-primary:hover { --btn-bg: var(--sm-gold); --btn-bd: var(--sm-gold); --btn-fg: var(--sm-ink); color: var(--sm-ink); }
 .btn-primary:hover { --btn-bg: var(--sm-gold-hover); --btn-bd: var(--sm-gold-hover); }
 .btn-primary .icon { color: var(--sm-ink); }
@@ -47,7 +47,7 @@
 .pcard-badge .icon { color: var(--sm-ink); }
 .tpl-tile-icon { background: var(--sm-gold); color: var(--sm-ink); }
 .tpl-tile-icon .icon { color: var(--sm-ink); stroke: var(--sm-ink); }
-.accent { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23E3A72F' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' opacity='.9'/%3E%3C/svg%3E"); }
+.accent { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23D4A531' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' opacity='.9'/%3E%3C/svg%3E"); }
 .on-dark .accent, .on-dark .eyebrow { color: var(--sm-gold); }
 .logo-initial { background: var(--sm-ink); color: var(--sm-gold); }
 .logo.light .logo-initial { background: #fff; color: var(--sm-ink); }

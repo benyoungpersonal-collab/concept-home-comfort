@@ -86,7 +86,7 @@ rep('<li><strong>Fixed and cleaned up</strong><span>When we\'re done, photos of 
 
 /* ---------- Request a visit: a foothill home at dusk instead of the template's family photo ---------- */
 repRe(/<img sizes="\(min-width: 900px\) 480px, 92vw" src="images\/photos\/family-baby-720x960\.webp"[^>]*>/,
-  `<img sizes="(min-width: 900px) 480px, 92vw" src="images/sm/request-720x960.webp" srcset="images/sm/request-480x640.webp 480w, images/sm/request-720x960.webp 720w, images/sm/request-960x1280.webp 960w" width="960" height="1280" alt="${PHOTOS.request.alt}" loading="lazy" decoding="async" style="object-position:50% 55%;background-color:#1d2a3a">`);
+  `<img sizes="(min-width: 900px) 480px, 92vw" src="images/sm/request-720x960.webp" srcset="images/sm/request-480x640.webp 480w, images/sm/request-720x960.webp 720w, images/sm/request-960x1280.webp 960w" width="960" height="1280" alt="${PHOTOS.request.alt}" loading="lazy" decoding="async" style="object-position:60% 55%;background-color:#9fb37f">`);
 for (const f of readdirSync(join(OUT, 'images', 'photos'))) if (f.startsWith('family-baby')) rmSync(join(OUT, 'images', 'photos', f));
 
 /* ---------- Reviews: one real review (BBB) plus 2 illustrative cards ---------- */
@@ -125,8 +125,7 @@ rep('<li class="feature"><span class="icon-bubble"><svg class="icon" aria-hidden
 rep('<span><strong>Owner run</strong><p>Owned and run by George Wayne, right here in Auberry.', '<span><strong>Owner run</strong><p>George Wayne is the license qualifier and runs the company from Auberry.');
 rep('Based in Auberry, serving 3 cities across Fresno County. <a href="#areas">See the map</a>', 'Based in Auberry, working from the foothills down to Clovis and Fresno. <a href="#areas">See the map</a>');
 
-/* ---------- Meet George ---------- */
-rep('Meet the family', 'Meet George', 3);
+/* ---------- Meet the owner (the template label) ---------- */
 rep('<h2 id="team-title">The People Behind <span class="accent">Sonny\'s Mechanical.</span></h2>', '<h2 id="team-title">The Name on <span class="accent">the License.</span></h2>');
 
 /* ---------- Quick quote, FAQ, service areas: only what he has said ---------- */
@@ -191,7 +190,7 @@ for (const dir of ['css', 'js']) for (const f of readdirSync(join(OUT, dir))) {
 
 /* ---------- PHOTO-LIST.md ---------- */
 const rows = [
-  ['Hero (images/hero/*, og.jpg)', 'hero'], ['Service card: Heating repair', 'heating'], ['Service card: AC repair', 'acrepair'],
+  ['Service card: Heating repair', 'heating'], ['Service card: AC repair', 'acrepair'],
   ['Service card: New systems', 'newsystem'], ['Service card: New builds and commercial', 'newbuild'], ['How a visit works (images/sm/visit-*)', 'visit'],
   ['Request a visit (images/sm/request-*)', 'request'],
 ].map(([spot, k]) => { const p = PHOTOS[k]; return [spot, p.alt, p.site === 'AI (Canva)' ? `AI-made in Canva, no people (${p.page})` : `${p.site}, photo by ${p.by}: ${p.page}`, p.site === 'AI (Canva)' ? 'Owned' : `${p.site} License (free for commercial use)`, p.edit]; });
