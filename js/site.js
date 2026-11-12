@@ -785,7 +785,8 @@
   }
 
   /* ---------- Lazy background video ([data-video="video/name"] holds a poster <img>) ----------
-     Loads after the page, muted loop inline, pauses off screen, never plays for reduced motion or Save-Data.
+     Loads after the page, muted loop inline, pauses off screen, never plays for reduced motion or Save-Data (the still
+     image stays). No visible pause button: a tap or click on the video pauses it, and another tap plays it again.
      Add data-video-desktop-only to keep phones on the poster. */
   function initLazyVideos() {
     var frames = $$('[data-video]');
@@ -808,9 +809,16 @@
         });
         v.addEventListener('playing', function () { v.classList.add('is-playing'); });
         frame.appendChild(v);
+        var userPaused = false;
+        var play = function () { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); };
+        frame.addEventListener('click', function (ev) {
+          if (ev.target.closest('a, button')) return;
+          userPaused = !v.paused;
+          if (userPaused) v.pause(); else play();
+        });
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); }
+            if (e.isIntersecting) { if (!userPaused) play(); } else { v.pause(); }
           });
         }, { threshold: 0.2 });
         io.observe(v);
@@ -819,6 +827,29 @@
     };
     var later = function () { setTimeout(start, 800); };
     if (d.readyState === 'complete') later(); else window.addEventListener('load', later);
+  }
+
+  /* ---------- Headline underlines: the underlined words stay on one line (css/site.css), unless the phrase is wider
+     than the heading's line, then it may wrap so nothing runs off the screen ---------- */
+  function initAccentFit() {
+    var accents = $$('h1 .accent, h2 .accent, h3 .accent, .h1 .accent, .hero-h .accent');
+    if (!accents.length) return;
+    var fit = function () {
+      accents.forEach(function (a) {
+        a.classList.toggle('accent-wrap', false);
+        /* the narrowest content box among its block ancestors (a card that hugs its content can grow with the phrase) */
+        var room = Infinity;
+        for (var h = a.parentElement; h && h !== d.body; h = h.parentElement) {
+          var cs = getComputedStyle(h);
+          if (cs.display === 'inline') continue;
+          room = Math.min(room, h.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
+        }
+        if (a.getBoundingClientRect().width > room + 1) a.classList.toggle('accent-wrap', true);
+      });
+    };
+    fit();
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(fit);
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
   }
 
   /* ---------- Phones: hide the Call, Book, Text bar while the hero's own call buttons are on screen ---------- */
@@ -843,6 +874,7 @@
   initCountUp();
   initCarousels();
   initAccordions();
+  initAccentFit();
   initEstimator();
   initFinance();
   initBooking();

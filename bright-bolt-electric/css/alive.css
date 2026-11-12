@@ -179,14 +179,22 @@ h1.hero-pill, h1.tpl-pill { color: #fff; }
   .section h2 + .lead, .section h2 + .rating-line, .section-head h2 + p { margin-top: 28px; }
 }
 
-/* ---------- 7. Gradient main buttons ---------- */
-/* From a slightly lighter shade (--btn-lift, set per site so white text stays at 3:1 or more on the lightest part)
-   to the full brand color, with a soft highlight along the top. Outline buttons stay as they are. */
-.btn-primary, .btn-primary:hover {
-  background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-bg), #fff var(--btn-lift, 10%)) 0%, var(--btn-bg) 100%);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / .3), inset 0 -1px 0 rgb(0 0 0 / .06), 0 2px 6px rgb(20 33 61 / .12);
-}
-.btn-primary:hover { box-shadow: inset 0 1px 0 rgb(255 255 255 / .3), inset 0 -1px 0 rgb(0 0 0 / .06), 0 8px 18px rgb(20 33 61 / .16); }
+/* ---------- 7. Beveled main buttons with a shine (CLAUDE.md) ---------- */
+/* Each site keeps its own button color (--btn-bg). Lighter at the top (--btn-lift, set per site so the text keeps its
+   contrast), richer at the bottom, a thin light line along the top edge, and a soft shadow underneath: slightly raised
+   and polished, not glossy. A gentle shine sweeps across every 6 seconds on every screen size, under the text, and
+   again on hover with a mouse. "Reduce motion": the bevel stays, the sweep never runs. */
+:root .btn-primary, :root .btn-primary:hover { position: relative; overflow: hidden; isolation: isolate;
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn-bg), #fff var(--btn-lift, 10%)) 0%, var(--btn-bg) 55%, color-mix(in srgb, var(--btn-bg), #000 8%) 100%); }
+:root .btn-primary { box-shadow: inset 0 1px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(0 0 0 / .1), 0 1px 2px rgb(20 33 61 / .14), 0 5px 12px rgb(20 33 61 / .12); }
+:root .btn-primary:hover { box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), inset 0 -1px 0 rgb(0 0 0 / .1), 0 2px 3px rgb(20 33 61 / .16), 0 9px 18px rgb(20 33 61 / .16); }
+.btn-primary::after { content: ""; position: absolute; inset: -2px; z-index: -1; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(105deg, transparent 38%, rgb(255 255 255 / .36) 50%, transparent 62%); transform: translateX(-130%);
+  animation: btn-shine 6s cubic-bezier(.4, 0, .2, 1) 1s infinite; }
+@media (hover: hover) and (pointer: fine) { .btn-primary:hover::after { animation: btn-shine-h .8s cubic-bezier(.4, 0, .2, 1) 1 both; } }
+@keyframes btn-shine { 0% { transform: translateX(-130%); } 16%, 100% { transform: translateX(130%); } }
+@keyframes btn-shine-h { from { transform: translateX(-130%); } to { transform: translateX(130%); } }
+@media (prefers-reduced-motion: reduce) { .btn-primary::after { display: none; } }
 
 /* ---------- 8. Review dots ---------- */
 .review-dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; margin: 6px auto 0; padding: 0 var(--gutter, 16px); }

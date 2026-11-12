@@ -284,7 +284,9 @@ const since = num(raw.since); // the year they started (CSLB first issued date i
 const bonded = raw.bonded === true;
 const secondOpinion = raw.secondOpinion === true;
 
-/* Logo and brand colors. The main color comes from colors.brand; with no colors the page keeps Pinwheel's red-orange.
+/* Logo and brand colors. The main color comes from colors.brand. With no brand color, buttons and accents use
+   Ridgeline's gold (#D4A531, hover #E0B444, CLAUDE.md) with navy text, and headline words and small text stay navy, so
+   the gold is never darkened into brown or mustard.
    A light color is darkened step by step until white text on it (and it on white) reads at 4.5:1. */
 const logo = str(raw.logo);
 const logoExt = logo ? extname(logo).toLowerCase() : '';
@@ -318,7 +320,10 @@ if (raw.truckPhoto) console.warn('note: truckPhoto is no longer shown. Use the v
 const truckExt = truck ? extname(str(truck.src)).toLowerCase() : '';
 if (truck && !['.jpg', '.jpeg', '.png', '.webp'].includes(truckExt)) fail('truckPhoto.src must be a .jpg, .png, or .webp file');
 if (truck && !(num(truck.width) && num(truck.height))) fail('truckPhoto needs width and height (in pixels)');
-const brand = str(raw.colors && raw.colors.brand);
+const givenBrand = str(raw.colors && raw.colors.brand);
+const defaultGold = !givenBrand;
+const brand = givenBrand || '#D4A531';
+const fillMode = str(raw.colors && raw.colors.fill).toLowerCase() || (defaultGold ? 'bright' : '');
 const navy = str(raw.colors && raw.colors.navy);
 const second = str(raw.colors && raw.colors.second);
 const hex = /^#[0-9a-fA-F]{6}$/;
@@ -338,7 +343,7 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
   /* colors.fill "vivid": one vivid brand color everywhere (fills with white text, headline words, labels, links, icons),
      instead of darker shades for text. The color is used as given: pick it so white bold text reaches 3:1 on it and it
      reaches 3:1 on cream (the build checks both). Only the hover state is a little deeper. */
-  const vivid = str(raw.colors && raw.colors.fill).toLowerCase() === 'vivid';
+  const vivid = fillMode === 'vivid';
   const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
   if (vivid) {
     const w = contrastWhite(toRgb(brand)), c = ratio(toRgb(brand), toRgb('#F6F3EF'));
@@ -380,13 +385,14 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
      button and the main service cards, instead of a darkened shade. When white text on it is under 4.5:1, text on those
      fills turns navy. Orange headline words use the closest deeper shade of the same color that reaches 3:1 on the cream
      background; smaller orange text keeps the deeper shade above, which reaches 4.5:1. */
-  if (str(raw.colors && raw.colors.fill).toLowerCase() === 'bright') {
+  if (fillMode === 'bright') {
     const navyText = navy ? darkenUntil(navy, 7) : '#14213D';
     const ratioHex = (a, b) => ratio(toRgb(a), toRgb(b));
     const deepenVs = (hexColor, bg, r) => { let rgb = toRgb(hexColor); let n = 0; while (ratio(rgb, toRgb(bg)) < r && n++ < 80) rgb = darken(rgb, 0.015); return toHex(rgb); };
     const onFill = contrastWhite(toRgb(brand)) >= 4.5 ? '#FFFFFF' : navyText;
     let fillHover = toHex(darken(toRgb(brand), 0.08));
     if (ratioHex(onFill, fillHover) < 4.5) fillHover = brand;
+    if (brand.toUpperCase() === '#D4A531' && ratioHex(onFill, '#E0B444') >= 4.5) fillHover = '#E0B444'; // Ridgeline's gold lightens on hover
     /* The hero's soft glow is the brand tint at 55% over cream, the darkest background headline words sit on. */
     const glow = toHex(toRgb('#F6F3EF').map((v, k) => v * 0.45 + toRgb(mix(brand, 0.6))[k] * 0.55));
     const accentLarge = deepenVs(deepenVs(brand, '#F6F3EF', 3), glow, 3);
@@ -441,6 +447,7 @@ if (brand && brand.toUpperCase() !== '#E4572E') {
     collect(cssSite); collect(cssPreview);
     brandCss += emit(cssSite) + emit(cssPreview);
     brandCss += '.accent{color:var(--c-brand-accent)}.on-dark .accent{color:var(--c-brand-light)}';
+    if (defaultGold) brandCss += `:root{--c-brand-strong:${navyText};--c-brand-deep:${navyText};--c-brand-hover:${navyText};--c-brand-accent:${navyText};--c-brand-light:${brand}}.logo-initial,.tpl-logo .logo-initial{color:${navyText}}`;
     brandCss += '.tpl-bento .tile.tone-main:not(.photo-tile) h3,.tpl-bento .tile.tone-main:not(.photo-tile) p,.tpl-bento .tile.tone-main:not(.photo-tile) .tile-sub{color:var(--c-on-brand)}'
       + '.tpl-bento .tile.tone-main:not(.photo-tile) .tile-arrow{background:rgb(255 255 255 / .4);color:var(--c-on-brand)}';
     brightReport = `fill ${brand} with ${onFill === '#FFFFFF' ? 'white' : 'navy'} text (${ratioHex(onFill, brand).toFixed(2)}:1), hover ${fillHover} (${ratioHex(onFill, fillHover).toFixed(2)}:1), headline words ${accentLarge} (${ratioHex(accentLarge, '#F6F3EF').toFixed(2)}:1 on cream, ${ratioHex(accentLarge, glow).toFixed(2)}:1 on the hero glow), small text ${deep} (${ratioHex(deep, '#F6F3EF').toFixed(2)}:1 on cream, ${ratioHex(deep, '#FFFFFF').toFixed(2)}:1 on white)`;
@@ -471,7 +478,8 @@ const fixLine = { hvac: 'If it heats or cools, we fix it fast.', plumbing: 'If i
 const leadAreas = areas.length === 0 ? city : areas.length <= 6 ? listWords(areas) : `${areas.slice(0, 6).join(', ')}, and ${areas.length - 6} more cities`;
 const lead = str(raw.lead) || `Fast repair${upfront ? ' and honest, upfront pricing' : ''} for homes in ${leadAreas}. ${fixLine}`;
 /* Two deliberate lines, like Pinwheel's, so the slim desktop hero card hugs the longer one */
-const defaultHeadline = trade === 'plumbing' ? `${esc('Plumbing done right,')}<br> <span class="accent">${esc('without the runaround.')}</span>` : `${esc('A comfortable home,')}<br> <span class="accent">${esc('without the runaround.')}</span>`;
+/* The underlined part is short so it stays on one line on a 320px phone */
+const defaultHeadline = trade === 'plumbing' ? `${esc('Plumbing done right,')}<br> ${esc('without')} <span class="accent">${esc('the runaround.')}</span>` : `${esc('A comfortable home,')}<br> ${esc('without')} <span class="accent">${esc('the runaround.')}</span>`;
 /* Hero headline: headline, plus headlineAccent on its own line in the accent color with the underline. */
 const heroHeadline = str(raw.headline) && str(raw.headlineAccent) ? `${esc(raw.headline)}<br> <span class="accent">${esc(raw.headlineAccent)}</span>` : str(raw.headline) ? esc(raw.headline) : defaultHeadline;
 const servicesLead = str(raw.servicesLead) || `The same trained techs${upfront ? ' and the same upfront pricing' : ''} on every job, big or small.`;
