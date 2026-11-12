@@ -245,6 +245,28 @@ const hasOwner = !!(owner.name && (owner.story || owner.quote));
 const ownerPhoto = str(o.photo);
 const ownerPhotoExt = ownerPhoto ? extname(ownerPhoto).toLowerCase() : '';
 if (ownerPhoto && !['.jpg', '.jpeg', '.png', '.webp'].includes(ownerPhotoExt)) fail('owner.photo must be a .jpg, .png, or .webp file');
+/* No real owner photo: an illustrated placeholder (never a job-site photo, CLAUDE.md), duotone in the site's colors,
+   with a small wave and a blink, and a "Your photo here" tag. owner.gender "man" or "woman" picks the drawing. */
+const ownerGender = str(o.gender).toLowerCase();
+if (ownerGender && !['man', 'woman'].includes(ownerGender)) fail('owner.gender must be "man" or "woman"');
+const ownerIllustration = (() => {
+  const hair = ownerGender === 'woman'
+    ? '<path class="op-d" d="M72 150c-6-52 22-70 48-70s56 16 50 70l6 64c-24 12-88 12-112 0z"/>'
+    : '';
+  const top = ownerGender === 'woman'
+    ? '<path class="op-d" d="M80 132c4-28 22-40 42-40 22 0 38 14 40 38-14-12-34-18-50-12-12 4-22 10-32 14z"/>'
+    : '<path class="op-d" d="M78 136c-2-30 18-48 44-48 26 0 44 16 42 46-6-14-22-22-42-22-20 0-36 8-44 24z"/>';
+  return `<svg class="tpl-owner-art" viewBox="0 0 240 300" role="img" aria-label="Illustration standing in for a photo of ${esc(owner.name)}">`
+    + hair
+    + '<path class="op-d" d="M26 300c2-58 40-90 94-90s92 32 94 90z"/>'
+    + '<path class="op-l" d="M104 196h32v26l-16 14-16-14z"/>'
+    + '<circle class="op-l" cx="120" cy="146" r="42"/>'
+    + top
+    + '<g class="op-eyes"><ellipse class="op-d" cx="105" cy="148" rx="4.5" ry="5.5"/><ellipse class="op-d" cx="135" cy="148" rx="4.5" ry="5.5"/></g>'
+    + '<path class="op-ds" d="M107 166q13 11 26 0"/>'
+    + '<g class="op-arm"><path class="op-ds op-sleeve" d="M184 236c10-20 18-38 22-62"/><circle class="op-l" cx="208" cy="160" r="15"/></g>'
+    + '</svg>';
+})();
 const team = arr(raw.team).filter((t) => t && str(t.name)).map((t) => ({ name: str(t.name), role: str(t.role), initial: str(t.name).charAt(0).toUpperCase() }));
 const promises = arr(raw.promises).map(str).filter(Boolean);
 
@@ -716,7 +738,7 @@ const data = {
   quoteError: services.length ? 'Pick a service, tell us what is going on, and add your mobile number.' : 'Tell us what is going on and add your mobile number.',
   estimateNav: prices.length ? 'Prices' : 'Quick quote',
   financing, hasFinancing: !!financing, membership, hasMembership: !!membership,
-  owner, hasOwner, hasOwnerPhoto: hasOwner && !!ownerPhoto, ownerPhotoSrc: ownerPhoto ? `images/owner${ownerPhotoExt}` : '', ownerPhotoAlt: str(o.photoAlt) || `${owner.name}, ${owner.role.toLowerCase()} of ${name}`,
+  owner, hasOwner, hasOwnerPhoto: hasOwner && !!ownerPhoto, ownerIllustration, ownerPhotoSrc: ownerPhoto ? `images/owner${ownerPhotoExt}` : '', ownerPhotoAlt: str(o.photoAlt) || `${owner.name}, ${owner.role.toLowerCase()} of ${name}`,
   team, promises, menu,
   faqs: faqList, hasFaqs: faqList.length > 0,
   locations, hasLocations: locations.length > 0, oneLocation: locations.length === 1,
@@ -861,7 +883,7 @@ writeFileSync(join(OUT, 'styles.html'), stylesHtml);
     { spot: 'Hero banner', now: hero.alt, source: hero.own ? 'Their photo (heroPhoto)' : 'Stock (see credits in the main repo, scripts/photos.json)', license: hero.own ? 'Theirs' : 'Unsplash or Pexels License', prompt: `Realistic wide photo of ${hero.own ? 'the owner beside their work van' : 'a clean home exterior with the equipment this business services'} in ${city}, ${state}, morning light, 2:1. No logos except their own, no text.` },
     ...photoList,
     { spot: 'How a visit works (video poster)', now: 'Plumber tightening an outdoor faucet (stock video)', source: 'Pexels video', license: 'Pexels License', prompt: `Short 9 second clip of a technician's gloved hands finishing a repair at a ${trade === 'plumbing' ? 'sink' : 'furnace or AC unit'}, shallow depth of field. No logos, no faces.` },
-    ...(data.hasOwnerPhoto ? [{ spot: 'Meet the family: owner portrait', now: 'Their photo', source: 'Supplied', license: 'Theirs', prompt: 'Use a real photo of the owner. Never AI.' }] : []),
+    ...(data.hasOwner ? [{ spot: 'Meet the family: owner portrait', now: data.hasOwnerPhoto ? 'Their photo' : `Illustrated placeholder (${ownerGender || 'man'}), "Your photo here"`, source: data.hasOwnerPhoto ? 'Supplied' : 'Drawn in the template', license: data.hasOwnerPhoto ? 'Theirs' : 'Owned', prompt: 'Use a real photo of the owner. Never AI, never a job-site photo.' }] : []),
     { spot: 'Request a visit: family photo', now: 'Family on a green couch (stock)', source: 'Pexels', license: 'Pexels License', prompt: 'Real stock only (people). A family relaxing at home in a bright living room.' },
     ...(mascot ? [{ spot: 'Mascot (hero, how it works, request)', now: mascot, source: 'Supplied', license: 'Theirs', prompt: 'Transparent PNG, the mascot facing left and right, about 600px tall.' }] : []),
   ];

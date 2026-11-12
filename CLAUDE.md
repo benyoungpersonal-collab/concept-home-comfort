@@ -39,6 +39,19 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 - On desktop the photo always runs behind the card, edge to edge, down to the next section's edge, with no gap (Pinwheel's layout; the template does this by default).
 - Check the first screen at 1280x720, 1440x900, and 1920x1080: the headline, paragraph, and buttons must show.
 
+## Colors
+
+- Buttons and accents are gold unless the business already has its own brand colors. Pick one rich main color to go with it, like navy, deep teal, charcoal, or forest green. No peach or pastel colors.
+- Check contrast on every button: dark text on gold, never white.
+
+## Owner section
+
+- Never put a job-site photo in the owner section. With no real owner photo, use the illustrated owner placeholder (duotone in the site's colors, a small wave and blink, and a "Your photo here" tag), drawn as a man or a woman to match the owner when we know who it is. The template draws it by default; set `owner.gender` to "man" or "woman" in the data file.
+
+## Remodelers and general contractors
+
+- Never lead a general contractor or remodeling site with a bathroom photo or headline unless the business says bathrooms are their focus.
+
 ## Link preview picture
 - Every sample site and every new prospect preview gets a link preview picture: its homepage's first screen on a laptop with the phone version over the laptop's front right corner (the thin iPhone-style frame from benyoungwebdesign.com), on a soft gradient in the site's darkest brand color. 1200x630 JPG under 300 KB, no words on it.
 - Make it with `node scripts/share-image.cjs --url LIVE_URL --out images/og-share-YYYY-MM-DD.jpg` (today's date in the name, so phones don't show an old cached picture). For a preview that isn't live yet, point --url at a local server of its folder.

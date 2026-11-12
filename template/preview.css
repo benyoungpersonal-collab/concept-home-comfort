@@ -42,8 +42,23 @@
 .tpl-review-ask p { margin: 0; max-width: 52ch; color: var(--c-navy); }
 .tpl-review-ask .g-mark { width: 18px; height: 18px; vertical-align: -3px; margin-right: 6px; }
 
-/* Meet the family without an owner photo: one column with a name card */
+/* Meet the family without an owner photo: the illustrated placeholder (never a job-site photo). Duotone in the
+   site's colors: --op-dark (navy) for hair, eyes, and shirt, --op-light (the brand color) for face and hand, on a soft
+   tint. A small wave every few seconds and a blink; both stop with "reduce motion". */
 .team-grid.no-photo { max-width: 760px; }
+.tpl-owner-ph { --op-dark: var(--c-navy); --op-light: var(--c-brand); max-width: 380px; }
+.tpl-owner-ph .arch { background: var(--c-brand-tint); }
+.tpl-owner-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tpl-owner-art .op-d { fill: var(--op-dark); }
+.tpl-owner-art .op-l { fill: var(--op-light); }
+.tpl-owner-art .op-ds { fill: none; stroke: var(--op-dark); stroke-width: 6; stroke-linecap: round; }
+.tpl-owner-art .op-sleeve { stroke-width: 22; }
+.tpl-owner-art .op-arm { transform-box: view-box; transform-origin: 184px 236px; animation: op-wave 5s ease-in-out infinite; }
+.tpl-owner-art .op-eyes { transform-box: view-box; transform-origin: 120px 148px; animation: op-blink 4.6s infinite; }
+@keyframes op-wave { 0%, 58%, 100% { transform: rotate(0); } 64% { transform: rotate(-14deg); } 70% { transform: rotate(8deg); } 76% { transform: rotate(-12deg); } 82% { transform: rotate(4deg); } }
+@keyframes op-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@media (prefers-reduced-motion: reduce) { .tpl-owner-art .op-arm, .tpl-owner-art .op-eyes { animation: none; } }
+.tpl-owner-ph-tag { position: absolute; top: 14%; right: 8%; z-index: 2; padding: 5px 12px; border-radius: 999px; background: #fff; color: var(--c-navy); font-size: 13px; font-weight: 700; box-shadow: var(--shadow-1); }
 .tpl-owner-card { display: flex; align-items: center; gap: 12px; margin: var(--sp-3) 0; }
 .tpl-owner-card .initial { display: grid; place-items: center; width: 52px; height: 52px; flex: none; border-radius: 50%; background: var(--c-navy); color: #fff; font-family: var(--ff-display); font-weight: 800; font-size: 20px; }
 .tpl-owner-card strong { display: block; font-family: var(--ff-display); color: var(--c-navy); font-size: var(--fs-md); line-height: 1.2; }
