@@ -28,3 +28,8 @@
 
 /* Meet Sonny has no photo yet: one comfortable column instead of a narrow one beside an empty space */
 @media (min-width: 900px) { .team-grid.no-photo { grid-template-columns: minmax(0, 1fr); max-width: none; } .team-grid.no-photo > div { max-width: 760px; } }
+
+/* R&A's blue (#0078DE) is the main color. White text needs 4.5:1, which #0078DE misses by a hair (4.43:1), so
+   button fills, the pill, and small blue text use R&A's own deeper shade (#0067BF, 5.6:1 with white); dark bands use
+   R&A's lighter blue. */
+:root { --c-brand-strong: #0067BF; --c-brand-deep: #0067BF; --c-brand-hover: #005AA8; --c-brand-light: #43A8DE; --btn-lift: 5%; }

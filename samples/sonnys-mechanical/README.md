@@ -17,14 +17,18 @@ Nothing on the page goes past these sources. Anything not confirmed is in `unver
   residential and commercial and multi-family." One review (Delores R., 5 stars, 01/01/2026).
 - His digital business card (brand.contact/sonnysair): "Specializing in doing the right thing, ALWAYS. Also Air
   Conditioning", email Gwayne@sonnysair.com. His old logo reads "Transparent-Honest-Predictable" (colors: black and
-  cyan, used for this preview).
+  cyan). The preview uses R&A's blue (Ben's call).
 - No Google Business Profile could be read from this environment. Business name, hours, towns, and reviews from Google
   still need checking.
+
+## The owner
+
+The owner is George Wayne (CSLB qualifier George David Wayne III). The page calls him George everywhere; the
+business name stays Sonny's Mechanical.
 
 ## Rebuild
 
 ```bash
-python3 scripts/recolor-clothes.py samples/sonnys-mechanical/recolor-hero.json   # hero shirt to navy (needs opencv)
 python3 samples/sonnys-mechanical/photos.py                                      # only when photos.json changes
 node scripts/build-preview.mjs samples/sonnys-mechanical/site.json               # template build -> previews/
 node samples/sonnys-mechanical/finish.mjs                                        # -> sonnys-mechanical/
@@ -41,8 +45,7 @@ node scripts/share-image.cjs --url https://byw-home-comfort.netlify.app/sonnys-m
 | File | What it is |
 |---|---|
 | `site.json` | The data file: name, phone, license, services, colors, hero copy, owner, FAQ, unverified claims |
-| `photos.json`, `photos.py`, `photos/` | Every photo: source, crop, and the files the build uses |
-| `recolor-hero.json` | The hero tech's gray polo to navy (scripts/recolor-clothes.py, clothing color only) |
+| `photos.json`, `photos.py`, `photos/` | Every photo: source, crop, and the files the build uses. `photos/originals/` keeps the full-size AI-made photos (no people), made in Ben's Canva folder "Sonny's Mechanical - preview photos" |
 | `finish.mjs` | The finishing pass (hero lines, visit photo and steps, reviews, proof, Meet Sonny, schema, footer line, clean CSS/JS) |
 | `sonny.css` | The few styles that differ from the template (slimmer desktop hero card, review tags, card buttons) |
 | `share/` | The link preview picture (homepage on a laptop and a phone), newest date wins |

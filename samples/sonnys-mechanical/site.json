@@ -19,8 +19,8 @@
   "mainService": "Heating & Air Conditioning",
   "previewUrl": "https://byw-home-comfort.netlify.app/sonnys-mechanical/",
   "colors": {
-    "brand": "#00B3D1",
-    "fill": "bright",
+    "brand": "#0078DE",
+    "fill": "vivid",
     "navy": "#0D1B22",
     "second": "#0D1B22"
   },
@@ -28,8 +28,8 @@
   "pill": "Heating & Air Conditioning in Auberry, CA",
   "pillShort": "Heating & Air in Auberry, CA",
   "headline": "Furnace Out? AC Down?",
-  "headlineAccent": "Call Sonny Direct.",
-  "lead": "Sonny Wayne runs Sonny's Mechanical out of Auberry, and his name is on the license. His promise is printed on his card: transparent, honest, predictable.",
+  "headlineAccent": "Get an Honest Fix.",
+  "lead": "George Wayne runs Sonny's Mechanical out of Auberry, and his name is on the license. His promise is printed on his card: transparent, honest, predictable.",
   "description": "Sonny's Mechanical: heating and air conditioning repair, replacement, and new construction HVAC from Auberry, CA. CSLB #1162052. Call (559) 392-0743.",
   "license": "CSLB #1162052",
   "bonded": true,
@@ -74,7 +74,9 @@
         "Heat pump repair",
         "No-heat calls"
       ],
-      "icon": "i-flame"
+      "icon": "i-flame",
+      "photo": "photos/heating-720x540.webp",
+      "photoAlt": "Gas furnace in a garage utility closet with its service panel off, a tool bag and a multimeter on the floor"
     },
     {
       "name": "AC repair",
@@ -84,7 +86,9 @@
         "Condenser repair",
         "Refrigerant checks"
       ],
-      "icon": "i-snowflake"
+      "icon": "i-snowflake",
+      "photo": "photos/acrepair-720x540.webp",
+      "photoAlt": "Refrigerant gauges hooked up to an outdoor AC condenser beside a home, an oak tree in the yard"
     },
     {
       "name": "New systems",
@@ -94,7 +98,9 @@
         "AC replacement",
         "Heat pump systems"
       ],
-      "icon": "i-heatpump"
+      "icon": "i-heatpump",
+      "photo": "photos/newsystem-720x540.webp",
+      "photoAlt": "New outdoor heat pump unit on a fresh concrete pad beside a foothill home, granite boulders and oak trees behind"
     },
     {
       "name": "New builds and commercial",
@@ -105,23 +111,23 @@
         "Commercial"
       ],
       "icon": "i-home",
-      "photo": "photos/commercial-720x540.webp",
-      "photoAlt": "Row of commercial rooftop condensing units on a flat roof"
+      "photo": "photos/newbuild-720x540.webp",
+      "photoAlt": "New home under construction with new flex ducts, sheet-metal trunks, and a furnace in the open wood framing"
     }
   ],
   "heroPhoto": {
     "src": "photos/hero-src.jpg",
-    "alt": "Heating and air tech in a navy polo shining a flashlight into a home's outdoor AC condenser",
-    "ogAlt": "A heating and air tech checking a home's AC condenser.",
-    "ogFocusY": 40,
-    "position": "70% 40%",
-    "positionDesktop": "62% 35%",
-    "positionWide": "60% 35%"
+    "alt": "Single-story ranch home in the Sierra foothills with an outdoor AC condenser beside it, oak trees and granite boulders around it",
+    "ogAlt": "A Sierra foothills home in Auberry with its AC condenser.",
+    "ogFocusY": 50,
+    "position": "62% 50%",
+    "positionDesktop": "60% 45%",
+    "positionWide": "60% 45%"
   },
   "owner": {
-    "name": "Sonny Wayne",
+    "name": "George Wayne",
     "role": "President",
-    "story": "George \"Sonny\" Wayne started Sonny's Air Conditioning in 2024 and now runs Sonny's Mechanical out of Auberry. He is the qualifier on the company's CSLB license, so the person who answers for the work is the person whose name is on the card.",
+    "story": "George Wayne started Sonny's Air Conditioning in 2024 and now runs Sonny's Mechanical out of Auberry. He is the qualifier on the company's CSLB license, so the person who answers for the work is the person whose name is on the card.",
     "quote": "Specializing in doing the right thing, ALWAYS. Also Air Conditioning."
   },
   "unverified": [
@@ -129,8 +135,8 @@
     "Hours (not on the page until he confirms them)",
     "Towns beyond Auberry, Clovis, and Fresno",
     "Exact service list (heating repair, AC repair, new systems, new builds and commercial)",
-    "Callers reach Sonny directly at (559) 392-0743",
-    "Email: Ben's brief said gwayne@sonnyair.com, but sonnyair.com has no mail server; his card says Gwayne@sonnysair.com, which does"
+    "Email: Ben's brief said gwayne@sonnyair.com, but sonnyair.com has no mail server; his card says Gwayne@sonnysair.com, which does",
+    "Callers reach George directly at (559) 392-0743"
   ],
   "faqs": [
     {

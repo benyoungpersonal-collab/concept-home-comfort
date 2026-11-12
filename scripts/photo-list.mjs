@@ -17,7 +17,7 @@ const SKIP = new Set(['partials', 'scripts', 'node_modules', '.git', 'fonts', 'i
 const pages = (dir = ROOT) => readdirSync(dir).flatMap((n) => { const f = join(dir, n); return statSync(f).isDirectory() ? (SKIP.has(n) ? [] : pages(f)) : n.endsWith('.html') ? [f] : []; });
 
 /* Photos with people in them: real stock or the client's own only. AI may only change the color of their clothes. */
-const PEOPLE = new Set(['owner-luis', 'tech-ray', 'tech-jess', 'plumber', 'pinwheel-drains', 'pinwheel-air-quality', 'couple', 'family-couch', 'dad-daughter', 'couple-home', 'crew-van', 'tech-door', 'family-baby', 'filter', 'cozy']);
+const PEOPLE = new Set(['owner-luis', 'tech-ray', 'tech-jess', 'pinwheel-drains', 'pinwheel-air-quality', 'couple', 'crew-van', 'tech-door', 'family-baby']);
 const PROMPTS = {
   'pinwheel-water-heater': 'A new white residential tank water heater installed in a clean, bright garage corner of a California home, copper lines and a yellow flex gas line, soft daylight, eye level, 4:3. No people, no logos, no brand names, no labels with text.',
   'pinwheel-heating': 'Clean, bright photo of a modern gray residential gas furnace with white PVC vent pipes in a tidy garage utility closet, a tool bag on the floor beside it, soft daylight, 4:3. No people, no hands, no logos, no brand names, no labels with text.',

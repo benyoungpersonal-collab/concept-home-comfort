@@ -21,3 +21,5 @@
 @media (min-width: 1000px) { .tpl-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 @media (min-width: 900px) { .team-grid.no-photo { grid-template-columns: minmax(0, 1fr); max-width: none; } .team-grid.no-photo > div { max-width: 760px; } }
+
+:root { --c-brand-strong: #0067BF; --c-brand-deep: #0067BF; --c-brand-hover: #005AA8; --c-brand-light: #43A8DE; --btn-lift: 5%; }
