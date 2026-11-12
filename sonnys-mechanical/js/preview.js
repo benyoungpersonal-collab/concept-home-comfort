@@ -1,0 +1,48 @@
+
+
+(function () {
+  'use strict';
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-shine');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.9 });
+  document.querySelectorAll('.btn-primary').forEach(function (b) { io.observe(b); });
+})();
+
+(function () {
+  'use strict';
+  var form = document.querySelector('[data-price-picker]');
+  if (!form) return;
+  var money = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+  var out = document.querySelector('[data-price-output]');
+  var empty = document.querySelector('[data-price-empty]');
+  var low = document.querySelector('[data-price-low]');
+  var high = document.querySelector('[data-price-high]');
+  var forEl = document.querySelector('[data-price-for]');
+  var note = document.querySelector('[data-price-note]');
+  var bar = document.querySelector('[data-price-bar]');
+  var book = document.querySelector('[data-price-book]');
+  var max = 0;
+  form.querySelectorAll('input[data-to]').forEach(function (i) { max = Math.max(max, parseFloat(i.getAttribute('data-to')) || 0); });
+  var show = function () {
+    var i = form.querySelector('input[name="price-service"]:checked');
+    if (!i) return;
+    var from = parseFloat(i.getAttribute('data-from')), to = parseFloat(i.getAttribute('data-to'));
+    low.textContent = money(from);
+    high.textContent = to > from ? money(to) : '';
+    high.previousElementSibling.hidden = !(to > from);
+    forEl.textContent = i.value;
+    var n = i.getAttribute('data-note') || '';
+    note.textContent = n; note.hidden = !n;
+    if (bar && max) { bar.style.left = (from / max * 100) + '%'; bar.style.width = Math.max(4, ((to > from ? to : from) - from) / max * 100) + '%'; }
+    if (book) book.setAttribute('href', '#request');
+    empty.hidden = true; out.hidden = false;
+  };
+  form.addEventListener('change', show);
+  form.addEventListener('submit', function (e) { e.preventDefault(); show(); });
+})();
