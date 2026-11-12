@@ -71,6 +71,12 @@
   force = true
 
 [[redirects]]
+  from = "/workers/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/samples/*"
   to = "/404.html"
   status = 404
@@ -87,6 +93,22 @@
   to = "/404.html"
   status = 404
   force = true
+
+[[redirects]]
+  from = "/sonnys-air-conditioning/PHOTO-LIST.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[headers]]
+  for = "/sonnys-air-conditioning/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/sonnys-air-conditioning/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[redirects]]
   from = "/README.md"

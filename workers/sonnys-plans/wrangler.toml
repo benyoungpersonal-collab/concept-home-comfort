@@ -1,0 +1,24 @@
+name = "sonnys-plans"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+preview_urls = false
+
+[observability]
+enabled = true
+
+[vars]
+ACCOUNT_ID = "34b9cfbf9530067e87053be8b6a339b1"
+BUCKET_NAME = "sonnys-plans"
+PUBLIC_URL = "https://sonnys-plans.byw-video.workers.dev"
+# Preview only: every submission goes to Ben through Resend's test sender, never to George.
+# The recipient (TO_EMAIL) is a Worker secret so the address stays out of the repo.
+FROM_EMAIL = "Sonny's Plans (Preview) <onboarding@resend.dev>"
+ALLOWED_ORIGINS = "https://byw-home-comfort.netlify.app,http://localhost:8765"
+
+[[r2_buckets]]
+binding = "PLANS"
+bucket_name = "sonnys-plans"
+
+# Secrets (set in the dashboard or with `wrangler secret put`, never committed):
+# R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, RESEND_API_KEY, LINK_SECRET, TO_EMAIL
