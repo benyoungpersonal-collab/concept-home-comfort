@@ -11,11 +11,11 @@
   it into the preview Netlify serves at https://byw-home-comfort.netlify.app/sonnys-mechanical/ :
   - Copies previews/sonnys-mechanical/ to sonnys-mechanical/ (the folder Netlify serves)
   - Hero: three deliberate headline lines, a slimmer desktop card so the tech's face stays in view (sonny.css)
-  - How a visit works: a real HVAC photo instead of the template's plumbing video, and steps in Sonny's own terms
+  - How a visit works: a real HVAC photo instead of the template's plumbing video, and steps in his own terms
     (nothing he hasn't said: no arrival-window texts, no photo reports)
   - Reviews: his one real review (BBB, word for word, trimmed with "...") plus 2 cards tagged "Illustrative"
   - Proof: bonded and workers' comp instead of "insured" (CSLB shows a bond and workers' comp, not liability cover)
-  - Meet Sonny instead of Meet the family; copy that only his records support
+  - Meet George (the owner) instead of Meet the family; copy that only his records support
   - Canonical, schema, the link preview picture, the footer preview line, PHOTO-LIST.md
   Every replacement must match the expected number of times, or the script stops.
 */
@@ -48,7 +48,7 @@ for (const f of ['_headers', 'robots.txt', 'styles.html']) rmSync(join(OUT, f), 
 rmSync(join(OUT, 'video'), { recursive: true, force: true });
 for (const f of readdirSync(join(OUT, 'images'))) if (f.startsWith('visit-poster')) rmSync(join(OUT, 'images', f));
 mkdirSync(join(OUT, 'images', 'sm'), { recursive: true });
-for (const [name] of PHOTOS.ac.out) copyFileSync(join(HERE, 'photos', name), join(OUT, 'images', 'sm', name));
+for (const k of ['visit', 'request']) for (const [name] of PHOTOS[k].out) copyFileSync(join(HERE, 'photos', name), join(OUT, 'images', 'sm', name));
 copyFileSync(join(HERE, 'sonny.css'), join(OUT, 'css', 'sonny.css'));
 
 /* ---------- Head: canonical, schema, this preview's CSS ---------- */
@@ -60,7 +60,7 @@ const schema = [{
   description: 'Heating and air conditioning repair, replacement, and new construction HVAC from Auberry, CA. CSLB #1162052 (C-20).',
   address: { '@type': 'PostalAddress', addressLocality: 'Auberry', addressRegion: 'CA', postalCode: '93602', addressCountry: 'US' },
   areaServed: SITE.serviceAreas.map((c) => ({ '@type': 'City', name: `${c}, CA` })),
-  founder: { '@type': 'Person', name: 'George "Sonny" Wayne' },
+  founder: { '@type': 'Person', name: 'George Wayne' },
   hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Heating and air conditioning', itemListElement: SITE.services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name } })) },
 }, {
   '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${URL}#faq`, url: URL,
@@ -69,20 +69,25 @@ const schema = [{
 rep('</head>', `${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s).replace(/</g, '\\u003c')}</script>`).join('\n')}\n</head>`);
 
 /* ---------- Hero: three deliberate lines on every screen ---------- */
-rep('<p class="h1 hero-h" id="hero-title">Furnace Out? AC Down?<br> <span class="accent">Call Sonny Direct.</span></p>',
-  '<p class="h1 hero-h" id="hero-title">Furnace Out?<br> AC Down?<br> <span class="accent">Call Sonny Direct.</span></p>');
+rep('<p class="h1 hero-h" id="hero-title">Furnace Out? AC Down?<br> <span class="accent">Get an Honest Fix.</span></p>',
+  '<p class="h1 hero-h" id="hero-title">Furnace Out?<br> AC Down?<br> <span class="accent">Get an Honest Fix.</span></p>');
 
 /* ---------- How a visit works: a real HVAC photo, steps in his terms ---------- */
 repRe(/<div class="visit-media" data-video="video\/visit">\s*<picture>[\s\S]*?<\/picture>\s*<\/div>/,
   `<div class="visit-media">
-        <img src="images/sm/visit-960x540.webp" srcset="images/sm/visit-640x360.webp 640w, images/sm/visit-960x540.webp 960w, images/sm/visit-1280x720.webp 1280w" sizes="(min-width: 900px) 600px, 92vw" width="1280" height="720" alt="${PHOTOS.ac.alt}" loading="lazy" decoding="async" style="background-color:#6b6f72">
+        <img src="images/sm/visit-960x540.webp" srcset="images/sm/visit-640x360.webp 640w, images/sm/visit-960x540.webp 960w, images/sm/visit-1280x720.webp 1280w" sizes="(min-width: 900px) 600px, 92vw" width="1280" height="720" alt="${PHOTOS.visit.alt}" loading="lazy" decoding="async" style="background-color:#6b6f72">
       </div>`);
 rep('<li><strong>Book in a minute</strong><span>Call, text, or send the form below. We text you an arrival window.</span></li>',
-  '<li><strong>Call or text Sonny</strong><span>Tell him what the system is doing at <a class="nowrap" href="tel:+15593920743">(559) 392-0743</a>, or send the form below.</span></li>');
+  '<li><strong>Call or text George</strong><span>Tell him what the system is doing at <a class="nowrap" href="tel:+15593920743">(559) 392-0743</a>, or send the form below.</span></li>');
 rep('<li><strong>See the price first</strong><span>Your tech finds the problem and shows you the price. You decide.</span></li>',
   '<li><strong>Get a straight answer</strong><span>What\'s wrong, what it takes to fix, and what it costs, before the work starts. You decide.</span></li>');
 rep('<li><strong>Fixed and cleaned up</strong><span>When we\'re done, photos of the finished work go straight to your phone.</span></li>',
-  '<li><strong>Fixed the right way</strong><span>"Specializing in doing the right thing, ALWAYS." That\'s Sonny\'s promise, straight off his card.</span></li>');
+  '<li><strong>Fixed the right way</strong><span>"Specializing in doing the right thing, ALWAYS." That\'s George\'s promise, straight off his card.</span></li>');
+
+/* ---------- Request a visit: a foothill home at dusk instead of the template's family photo ---------- */
+repRe(/<img sizes="\(min-width: 900px\) 480px, 92vw" src="images\/photos\/family-baby-720x960\.webp"[^>]*>/,
+  `<img sizes="(min-width: 900px) 480px, 92vw" src="images/sm/request-720x960.webp" srcset="images/sm/request-480x640.webp 480w, images/sm/request-720x960.webp 720w, images/sm/request-960x1280.webp 960w" width="960" height="1280" alt="${PHOTOS.request.alt}" loading="lazy" decoding="async" style="object-position:50% 55%;background-color:#1d2a3a">`);
+for (const f of readdirSync(join(OUT, 'images', 'photos'))) if (f.startsWith('family-baby')) rmSync(join(OUT, 'images', 'photos', f));
 
 /* ---------- Reviews: one real review (BBB) plus 2 illustrative cards ---------- */
 const card = (initial, hue, name, meta, tag, quote) => `<li class="review-card">
@@ -100,7 +105,7 @@ repRe(/<section class="section reviews tpl-sample-reviews tpl-bg-tint" id="revie
       </div>
       <ul class="tpl-sample-list">
         ${card('D', 192, 'Delores R.', 'BBB review, January 2026', 'Real review', 'My experience with Sonny\'s Air Conditioning has been nothing short of ideal. ... I feel incredibly lucky to have randomly chosen this company ... you truly saved my life!')}
-        ${card('M', 214, 'Mark T.', 'Auberry', 'Illustrative', 'Our furnace quit on a cold night. Sonny told us what failed and what it would cost before he touched anything.')}
+        ${card('M', 214, 'Mark T.', 'Auberry', 'Illustrative', 'Our furnace quit on a cold night. George told us what failed and what it would cost before he touched anything.')}
         ${card('R', 236, 'Rachel P.', 'Clovis', 'Illustrative', 'AC ran all afternoon and blew warm. He found the problem, fixed it, and explained it in plain English.')}
       </ul>
       <p class="tpl-sample-note">Sonny's Mechanical is a new name, so the reviews start here. Your site will make it easy for customers to leave one on Google.</p>
@@ -117,24 +122,24 @@ rep('<span><strong>Licensed</strong><p>CSLB #1162052</p></span></li>',
         <li class="feature"><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><span><strong>Workers' comp</strong><p>Coverage on file with CSLB, so an injury on your property isn't your problem.</p></span></li>`);
 rep('<li class="feature"><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/>', `<li class="feature"><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg></span><span><strong>BBB Accredited</strong><p>An A rating with the Better Business Bureau and no complaints on file.</p></span></li>
         <li class="feature"><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/>`);
-rep('<span><strong>Owner run</strong><p>Owned and run by Sonny Wayne, right here in Auberry.', '<span><strong>Owner run</strong><p>Sonny Wayne is the license qualifier and runs the company from Auberry.');
+rep('<span><strong>Owner run</strong><p>Owned and run by George Wayne, right here in Auberry.', '<span><strong>Owner run</strong><p>George Wayne is the license qualifier and runs the company from Auberry.');
 rep('Based in Auberry, serving 3 cities across Fresno County. <a href="#areas">See the map</a>', 'Based in Auberry, working from the foothills down to Clovis and Fresno. <a href="#areas">See the map</a>');
 
-/* ---------- Meet Sonny ---------- */
-rep('Meet the family', 'Meet Sonny', 3);
+/* ---------- Meet George ---------- */
+rep('Meet the family', 'Meet George', 3);
 rep('<h2 id="team-title">The People Behind <span class="accent">Sonny\'s Mechanical.</span></h2>', '<h2 id="team-title">The Name on <span class="accent">the License.</span></h2>');
 
 /* ---------- Quick quote, FAQ, service areas: only what he has said ---------- */
 rep('<p class="lead">Pick the service, tell us what\'s going on, and we\'ll text you back. No email, no sales call.</p>', '<p class="lead">Pick the service, tell us what\'s going on, and get a text back from Sonny\'s Mechanical.</p>');
 rep('Straight Answers to <span class="accent">Common Questions.</span>', 'Questions Foothill <span class="accent">Homeowners Ask.</span>');
 rep('<h2 id="request-title">Tell Us What\'s Going On. <span class="accent">', '<h2 id="request-title">Tell Us What\'s Going On.<br> <span class="accent">');
-rep('<p><strong>Still wondering about something?</strong> A real person can answer it in a minute.</p>', '<p><strong>Still wondering about something?</strong> Call or text and ask Sonny.</p>');
+rep('<p><strong>Still wondering about something?</strong> A real person can answer it in a minute.</p>', '<p><strong>Still wondering about something?</strong> Call or text and ask George.</p>');
 rep('<h2 id="areas-title">Close By, So We <span class="accent">Get There Fast.</span></h2>', '<h2 id="areas-title">From Auberry <span class="accent">Down to Fresno.</span></h2>');
 rep('<p class="lead">Based in Auberry and serving 3 cities across Fresno County, so a tech is never far away.</p>', '<p class="lead">Based in Auberry, up in the Sierra foothills, and working in homes and buildings from there down to Clovis and Fresno.</p>');
 
 /* ---------- Footer: the preview line ---------- */
 rep('<p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Ben Young Web Design</p>\n    <p>Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.</p>',
-  '<p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Homepage preview for Sonny\'s Mechanical by Ben Young Web Design.</p>\n    <p>Stock photos stand in until we add photos of Sonny\'s own work.</p>');
+  '<p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Homepage preview for Sonny\'s Mechanical by Ben Young Web Design.</p>\n    <p>Sample photos stand in until we add photos of George\'s own work.</p>');
 
 /* ---------- Link preview picture (newest share/og-share-*.jpg) ---------- */
 const shares = existsSync(join(HERE, 'share')) ? readdirSync(join(HERE, 'share')).filter((f) => /^og-share-.*\.jpg$/.test(f)).sort() : [];
@@ -158,7 +163,7 @@ rep('<div class="footer-contact">', '<div class="footer-contact" data-hide-bar>'
 rep('fill%3D%22%23fff%22%3ES%3C', 'fill%3D%22%230D1B22%22%3ES%3C');
 
 /* ---------- Leftover check ---------- */
-for (const bad of [/Pinwheel/i, /Bright Bolt/i, /Ridgeline/i, /Oak &amp; Tule|Oak & Tule/i, /\bTracy\b/, /Concept site/i, /555-/, /placeholder/i, /lorem/i, /\{\{/, /—/, /Sample<\/span>/, /Meet the family/, /[Ii]nsured/]) {
+for (const bad of [/Pinwheel/i, /Bright Bolt/i, /Ridgeline/i, /Oak &amp; Tule|Oak & Tule/i, /\bTracy\b/, /Concept site/i, /555-/, /placeholder/i, /lorem/i, /\{\{/, /—/, /Sample<\/span>/, /Meet the family/, /[Ii]nsured/, /Sonny Wayne/, /Call Sonny/, /\bSonny (told|is|runs|answers)\b/, /ask Sonny/, /Sonny\'s promise/, /Meet Sonny/]) {
   const m = html.match(bad); if (m) fail(`leftover on the page: ${bad} near "${html.slice(Math.max(0, m.index - 60), m.index + 60).replace(/\s+/g, ' ')}"`);
 }
 writeFileSync(join(OUT, 'index.html'), html);
@@ -186,16 +191,12 @@ for (const dir of ['css', 'js']) for (const f of readdirSync(join(OUT, dir))) {
 
 /* ---------- PHOTO-LIST.md ---------- */
 const rows = [
-  ['Hero (images/hero/*, og.jpg)', PHOTOS.hero.alt, `${PHOTOS.hero.site}: ${PHOTOS.hero.page}`, 'Pexels License (free for commercial use)', PHOTOS.hero.edit],
-  ['How a visit works (images/sm/visit-*)', PHOTOS.ac.alt, `${PHOTOS.ac.site}, photo by ${PHOTOS.ac.by}: ${PHOTOS.ac.page}`, 'Unsplash License (free for commercial use)', PHOTOS.ac.edit],
-  ['Service card: New builds and commercial', PHOTOS.commercial.alt, `${PHOTOS.commercial.site}, photo by ${PHOTOS.commercial.by}: ${PHOTOS.commercial.page}`, 'Unsplash License (free for commercial use)', PHOTOS.commercial.edit],
-];
-const shared = JSON.parse(readFileSync(join(ROOT, 'scripts', 'photos.json'), 'utf8'));
-for (const [spot, key] of [['Service card: Heating repair', 'cozy'], ['Service card: AC repair', 'thermostat'], ['Service card: New systems', 'heat-pump'], ['Request a visit', 'family-baby']]) {
-  const p = shared[key]; rows.push([spot, p.alt, `${p.site}, photo by ${p.by}: ${p.page}`, `${p.site} License (free for commercial use)`, 'None (shared template photo)']);
-}
+  ['Hero (images/hero/*, og.jpg)', 'hero'], ['Service card: Heating repair', 'heating'], ['Service card: AC repair', 'acrepair'],
+  ['Service card: New systems', 'newsystem'], ['Service card: New builds and commercial', 'newbuild'], ['How a visit works (images/sm/visit-*)', 'visit'],
+  ['Request a visit (images/sm/request-*)', 'request'],
+].map(([spot, k]) => { const p = PHOTOS[k]; return [spot, p.alt, p.site === 'AI (Canva)' ? `AI-made in Canva, no people (${p.page})` : `${p.site}, photo by ${p.by}: ${p.page}`, p.site === 'AI (Canva)' ? 'Owned' : `${p.site} License (free for commercial use)`, p.edit]; });
 rows.push(['Link preview picture (images/og-share-DATE.jpg)', 'The homepage on a laptop and a phone', 'Screenshots of this page (scripts/share-image.cjs)', 'Owned', 'None']);
-const md = `# Sonny's Mechanical: photo list\n\nEvery photo on https://byw-home-comfort.netlify.app/sonnys-mechanical/ . People photos are real stock; the only change ever made is the color of a shirt (CLAUDE.md). Swap in Sonny's own job photos as soon as he sends them.\n\n| Spot | What is there | Source | License | Edits |\n|---|---|---|---|---|\n${rows.map((r) => `| ${r.join(' | ')} |`).join('\n')}\n`;
+const md = `# Sonny's Mechanical: photo list\n\nEvery photo on https://byw-home-comfort.netlify.app/sonnys-mechanical/ . The one photo with a person (How a visit works) is real stock, unedited. The others have no people and are AI-made in Canva. Swap in George's own job photos as soon as he sends them.\n\n| Spot | What is there | Source | License | Edits |\n|---|---|---|---|---|\n${rows.map((r) => `| ${r.join(' | ')} |`).join('\n')}\n`;
 writeFileSync(join(OUT, 'PHOTO-LIST.md'), md);
 /* The template build also writes prospects/photo-lists/sonnys-mechanical.md; this preview keeps its own list above */
 rmSync(join(ROOT, 'prospects', 'photo-lists', 'sonnys-mechanical.md'), { force: true });

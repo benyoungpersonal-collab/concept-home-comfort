@@ -438,7 +438,7 @@ Real photography and video only (Unsplash and Pexels). No AI-generated people. C
 | Stucco home | Stucco house, tile roof, sun | White stucco, red tile roof, arched entry | Tracy page |
 | Suburb | Newer tidy neighborhood | Aerial of a sunny planned neighborhood | Mountain House page |
 | About hero | Service van | Altamont windmills at sunset (the van showed a RAM badge); "Why Pinwheel" uses our own mark | About |
-| Extras | Supporting shots | Heat pump, cozy mug, filter change, copper pipes, couple at home | Inner pages |
+| Extras | Supporting shots | Heat pump, thermostat, copper pipes, couple at home | Inner pages |
 
 | Video | Tech at work | 9-second muted clip of a plumber tightening an outdoor faucet (Pexels), in a "How a visit works" strip. No free clip of a tech at a home AC unit or furnace was available | Homepage |
 

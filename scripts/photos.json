@@ -89,26 +89,6 @@
       0.74
     ]
   },
-  "plumber": {
-    "id": "c314Gh8dXAo",
-    "base": "https://images.unsplash.com/photo-1676210134188-4c05dd172f89",
-    "w": 5108,
-    "h": 3831,
-    "color": "#6c8fb0",
-    "fp": [
-      0.66,
-      0.5
-    ],
-    "alt": "Plumber smiling while tightening a drain pipe under a bathroom sink",
-    "by": "Timur Shakerzianov",
-    "user": "shaker_jpg",
-    "page": "https://unsplash.com/photos/a-man-working-on-a-pipe-in-a-wall-c314Gh8dXAo",
-    "use": "Drains tile, plumbing hero",
-    "preview": "plumber__c314Gh8dXAo.jpg",
-    "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=2400&q=85&fm=jpg",
-    "profile": "https://unsplash.com/@shaker_jpg"
-  },
   "heat-pump": {
     "id": "_7huNth8Y2s",
     "base": "https://images.unsplash.com/photo-1724488751821-1415f5cf4960",
@@ -129,26 +109,6 @@
     "src": "https://images.unsplash.com/photo-1724488751821-1415f5cf4960?w=2400&q=85&fm=jpg",
     "profile": "https://unsplash.com/@87gi"
   },
-  "cozy": {
-    "id": "3GNesMmbHBo",
-    "base": "https://images.unsplash.com/photo-1586011591237-2772414429d2",
-    "w": 6016,
-    "h": 4016,
-    "color": "#d9c9bf",
-    "fp": [
-      0.5,
-      0.5
-    ],
-    "alt": "Hands holding a warm mug on a chunky knit blanket",
-    "by": "allison christine",
-    "user": "happpyal",
-    "page": "https://unsplash.com/photos/white-ceramic-mug-on-white-knit-textile-3GNesMmbHBo",
-    "use": "Heating hero",
-    "preview": "furnace__3GNesMmbHBo.jpg",
-    "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1586011591237-2772414429d2?w=2400&q=85&fm=jpg",
-    "profile": "https://unsplash.com/@happpyal"
-  },
   "thermostat": {
     "id": "RFAHj4tI37Y",
     "base": "https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3",
@@ -168,26 +128,6 @@
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=2400&q=85&fm=jpg",
     "profile": "https://unsplash.com/@danlefeb"
-  },
-  "filter": {
-    "id": "WwzK2S0h6zU",
-    "base": "https://images.unsplash.com/photo-1737012197886-7d5a52ded45b",
-    "w": 2983,
-    "h": 1677,
-    "color": "#c8c8c6",
-    "fp": [
-      0.6,
-      0.4
-    ],
-    "alt": "Hands lifting a ceiling return grille to change the air filter",
-    "by": "Birmingham Airduct Cleaning Services",
-    "user": "hadleycummings",
-    "page": "https://unsplash.com/photos/a-person-is-working-on-a-ceiling-air-conditioner-WwzK2S0h6zU",
-    "use": "Membership page hero, air quality hero",
-    "preview": "air-quality__WwzK2S0h6zU.jpg",
-    "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1737012197886-7d5a52ded45b?w=2400&q=85&fm=jpg",
-    "profile": "https://unsplash.com/@hadleycummings"
   },
   "pipes": {
     "id": "c5aW5Xy-O7c",
@@ -288,79 +228,6 @@
     "site": "Unsplash",
     "src": "https://images.unsplash.com/photo-1655759738595-418970010986?w=2400&q=85&fm=jpg",
     "profile": "https://unsplash.com/@omarlopez1"
-  },
-  "family-couch": {
-    "id": "39191159",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/39191159/pexels-photo-39191159.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 3840,
-    "h": 2160,
-    "box": [
-      0.0,
-      0.0,
-      1.0,
-      1.0
-    ],
-    "fp": [
-      0.5,
-      0.52
-    ],
-    "color": "#c8b9a6",
-    "alt": "Smiling family of three sitting close together on a gray couch in a bright living room",
-    "by": "Vitaly Gariev",
-    "profile": "https://www.pexels.com/@silverkblack/",
-    "page": "https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/",
-    "use": "Link preview image for texts and social (images/og-family-1200x630.jpg)",
-    "alwaysCredit": true,
-    "preview": "pexels__39191159.jpg"
-  },
-  "dad-daughter": {
-    "id": "4814865",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/4814865/pexels-photo-4814865.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 5510,
-    "h": 3673,
-    "box": [
-      0.0,
-      0.0,
-      1.0,
-      1.0
-    ],
-    "fp": [
-      0.42,
-      0.5
-    ],
-    "color": "#cfc7bc",
-    "alt": "Dad and his laughing daughter building a toy together at the living room table",
-    "by": "Ketut Subiyanto",
-    "profile": "https://www.pexels.com/@ketut-subiyanto/",
-    "page": "https://www.pexels.com/photo/a-father-and-daughter-having-fun-4814865/",
-    "use": "Not currently placed",
-    "preview": "pexels__4814865.jpg"
-  },
-  "couple-home": {
-    "id": "7579046",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/7579046/pexels-photo-7579046.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 5184,
-    "h": 3888,
-    "box": [
-      0.0,
-      0.0,
-      1.0,
-      1.0
-    ],
-    "fp": [
-      0.45,
-      0.62
-    ],
-    "color": "#b9a58f",
-    "alt": "Couple standing arm in arm in the driveway of their stucco home with a red tile roof",
-    "by": "Kindel Media",
-    "profile": "https://www.pexels.com/@kindelmedia/",
-    "page": "https://www.pexels.com/photo/couple-standing-in-front-of-their-house-7579046/",
-    "use": "Not currently placed",
-    "preview": "pexels__7579046.jpg"
   },
   "crew-van": {
     "id": "6200780",

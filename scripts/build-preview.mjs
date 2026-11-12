@@ -459,11 +459,13 @@ const faviconText = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http:/
    scripts/hero-images.py makes the banner sizes (whole photo, the page crops with object-fit) and og.jpg, cut from the
    same photo. Without Python and Pillow, the build falls back to the stock hero and the stock link image. */
 const hp = raw.heroPhoto && typeof raw.heroPhoto === 'object' && str(raw.heroPhoto.src) ? raw.heroPhoto : null;
+/* Stock heroes are Pinwheel's current photos (the old stock set is retired, CLAUDE.md): the two AC units beside a
+   gray-sided home for HVAC, the orange-shirt plumber under the sink for plumbing. */
 const stockHero = trade === 'plumbing'
-  ? { files: [[480, 360], [768, 576], [1024, 768], [1536, 1152], [1920, 1440]].map(([w, h]) => ({ file: `hero-plumbing-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-plumbing.jpg',
-      alt: 'Plumber smiling while tightening a drain pipe under a bathroom sink', pos: ['70% 45%', '70% 40%', '70% 40%'] }
-  : { files: [[480, 204], [768, 326], [1024, 434], [1536, 652], [1920, 815]].map(([w, h]) => ({ file: `hero-hvac-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-hvac.jpg',
-      alt: 'Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path', pos: ['50% 55%', '50% 55%', '50% 60%'] };
+  ? { files: [[480, 480], [768, 768], [1024, 1024], [1200, 1200]].map(([w, h]) => ({ file: `pinwheel-drains-hero-${w}x${h}.webp`, w, h })), dir: 'images/photos', og: 'images/og-plumbing.jpg',
+      alt: 'Plumber in an orange shirt tightening a drain pipe under a bathroom sink', pos: ['62% 50%', '62% 45%', '62% 45%'] }
+  : { files: [[480, 204], [768, 326], [1024, 434], [1600, 679], [2400, 1018]].map(([w, h]) => ({ file: `pinwheel-hero-${w}x${h}-full.webp`, w, h })), dir: 'images/photos', og: 'images/og-hvac.jpg',
+      alt: 'Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path', pos: ['52% 55%', '50% 55%', '50% 55%'] };
 let hero = { ...stockHero, own: false };
 if (hp) {
   const src = resolve(dirname(dataPath), str(hp.src));
@@ -620,8 +622,8 @@ const menu = [
    Photo: services[].photo (their own file), else a matching stock photo (each used once), else a neutral placeholder
    that says which photo goes there. Every photo spot is listed in prospects/photo-lists/NAME.md with an AI prompt. */
 const PHOTOS = JSON.parse(readFileSync(join(ROOT, 'scripts', 'photos.json'), 'utf8'));
-const STOCK = [[/water heater|tankless/i, null], [/heat pump|mini.?split|ductless/i, 'heat-pump'], [/air quality|duct|filter|purif/i, 'filter'], [/leak/i, 'leak'],
-  [/drain|sewer|clog|rooter/i, 'plumber'], [/repip|pipe|re-pipe/i, 'pipes'], [/heat|furnace|boiler/i, 'cozy'], [/cool|\bac\b|a\/c|air cond/i, 'thermostat'], [/plumb/i, 'plumber']];
+const STOCK = [[/water heater|tankless/i, 'pinwheel-water-heater'], [/heat pump|mini.?split|ductless/i, 'heat-pump'], [/air quality|duct|filter|purif/i, 'pinwheel-air-quality'], [/leak/i, 'leak'],
+  [/drain|sewer|clog|rooter/i, 'pinwheel-drains'], [/repip|pipe|re-pipe/i, 'pipes'], [/heat|furnace|boiler/i, 'pinwheel-heating'], [/cool|\bac\b|a\/c|air cond/i, 'thermostat'], [/plumb/i, 'pinwheel-drains']];
 const PROMPT = (svc) => `Realistic photo for a home service website card about "${svc}": the finished work or the equipment in a clean, bright California home, natural daylight, eye level, 4:3. No people, no logos, no brand names, no text.`;
 const photoList = [];
 const usedStock = new Set();
@@ -640,7 +642,7 @@ for (const [i, sv] of services.entries()) {
     continue;
   }
   /* The service name decides first (a "Heating" card with heat pumps in its list is still heating), then its sub-services.
-     A water heater card waits for a real or AI photo: no stock water heater passed the photo rules yet. */
+     Stock card photos are Pinwheel's current ones (scripts/photos.json); the old stock set is retired (CLAUDE.md). */
   const pick = (text) => { for (const [re, k] of STOCK) if (re.test(text)) { if (k === null) return null; if (!usedStock.has(k)) return k; } return undefined; };
   let key = own === false ? null : pick(sv.name);
   if (key === undefined) key = pick(sv.sub.join(' '));
@@ -877,7 +879,7 @@ console.log(`Built previews/${slug}/ (${copied} files copied).`);
 console.log(`Mode: ${mode}${established ? '' : ' (sample review cards and the proof section)'}. Title: ${titleTag}`);
 console.log(`Hero pill: desktop "${pillFull}" | 390 phone "${keep[best(358).ti]}" | 320 phone "${keep[base.ti]}"`);
 if (hidden.length) console.log(`Left out because the data file has no value: ${hidden.join(', ')}.`);
-console.log(`Hero photo: ${hero.own ? 'their own (heroPhoto), og.jpg cut from it' : 'stock ' + (trade === 'plumbing' ? 'plumber' : 'HVAC tech') + ' (add heroPhoto for theirs)'}. Header: ${headerMarkSrc ? 'their mark' : 'initial'} + "${shortName}"${logoTag ? ` / "${logoTag}"` : ''}.`);
+console.log(`Hero photo: ${hero.own ? 'their own (heroPhoto), og.jpg cut from it' : 'stock ' + (trade === 'plumbing' ? 'Pinwheel plumber' : 'Pinwheel AC units') + ' (add heroPhoto for theirs)'}. Header: ${headerMarkSrc ? 'their mark' : 'initial'} + "${shortName}"${logoTag ? ` / "${logoTag}"` : ''}.`);
 console.log(`Font style: ${fontStyle}. Edges: ${edge}. Van: ${vanSection || 'off'}. Mascot: ${mascot ? spots.join(', ') : 'off'}. ${btnReport}.`);
 console.log(`Styles page: ${previewUrl}styles. Photo list: prospects/photo-lists/${slug}.md (${photoList.filter((r) => /Placeholder/.test(r.now)).length} placeholder card photo(s)).`);
 console.log(`Section backgrounds: ${bal.order.join(' > ')}${bal.changes.length ? ` (changed: ${bal.changes.join('; ')})` : ''}.`);

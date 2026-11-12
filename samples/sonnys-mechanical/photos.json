@@ -1,82 +1,161 @@
 {
-  "_note": "Every photo on the Sonny's Mechanical preview. photos.py reads each source from scripts/.cache/sonnys-mechanical/ (downloading it once), crops it around fp, and writes the files in photos/. People photos are real stock: the only change ever made is the shirt color (recolor-hero.json, CLAUDE.md photo rule).",
-  "hero": {
-    "id": "32497161",
-    "file": "hero-navy.jpg",
-    "src": "https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=3600",
-    "make": "python3 scripts/recolor-clothes.py samples/sonnys-mechanical/recolor-hero.json",
-    "out": [
-      [
-        "hero-src.jpg",
-        2600,
-        0
-      ]
-    ],
-    "box": [
-      0,
-      0,
-      1,
-      0.88
-    ],
-    "people": true,
-    "alt": "Heating and air tech in a navy polo shining a flashlight into a home's outdoor AC condenser",
-    "site": "Pexels",
-    "by": "Pexels contributor (photo 32497161)",
-    "page": "https://www.pexels.com/photo/technician-inspecting-outdoor-hvac-unit-32497161/",
-    "edit": "Shirt color only: the gray polo is navy (scripts/recolor-clothes.py, nothing else changed). Cropped at the bottom so the condenser's maker badge is out of every crop."
-  },
-  "ac": {
-    "id": "8RbiLgfqoqQ",
-    "file": "ac-8RbiLgfqoqQ.jpg",
-    "src": "https://images.unsplash.com/photo-1792799881226-e841c0f9c125?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
-    "out": [
-      [
-        "visit-640x360.webp",
-        640,
-        360
-      ],
-      [
-        "visit-960x540.webp",
-        960,
-        540
-      ],
-      [
-        "visit-1280x720.webp",
-        1280,
-        720
-      ]
-    ],
-    "fp": [
-      0.5,
-      0.55
-    ],
-    "people": true,
-    "alt": "Tech in a black shirt connecting a refrigerant gauge hose to an outdoor AC unit's service valve",
-    "site": "Unsplash",
-    "by": "Joel Muniz",
-    "page": "https://unsplash.com/photos/8RbiLgfqoqQ",
-    "edit": "None (crop only)."
-  },
-  "commercial": {
-    "id": "8PuhEqdwaN8",
-    "file": "rooftop-8PuhEqdwaN8.jpg",
-    "src": "https://images.unsplash.com/photo-1774290331891-5d759056c68d?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
-    "out": [
-      [
-        "commercial-720x540.webp",
-        720,
-        540
-      ]
-    ],
-    "fp": [
-      0.45,
-      0.5
-    ],
-    "people": false,
-    "alt": "Row of commercial rooftop condensing units on a flat roof",
-    "site": "Unsplash",
-    "by": "Carl Wragg",
-    "page": "https://unsplash.com/photos/8PuhEqdwaN8",
-    "edit": "None (crop only)."
-  }
+ "_note": "Every photo on the Sonny's Mechanical preview. photos.py crops each source around fp and writes the files in photos/. Photos with people are real stock (the one tech photo in How a visit works). Photos without people are AI-made in Canva; their full-size originals are kept in photos/originals/ because the Canva export links expire.",
+ "hero": {
+  "local": "originals/hero.jpg",
+  "out": [
+   [
+    "hero-src.jpg",
+    0,
+    0
+   ]
+  ],
+  "people": false,
+  "alt": "Single-story ranch home in the Sierra foothills with an outdoor AC condenser beside it, oak trees and granite boulders around it",
+  "site": "AI (Canva)",
+  "by": "Ben Young Web Design",
+  "page": "Canva folder: Sonny's Mechanical - preview photos",
+  "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\""
+ },
+ "heating": {
+  "local": "originals/heating.jpg",
+  "out": [
+   [
+    "heating-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "people": false,
+  "alt": "Gas furnace in a garage utility closet with its service panel off, a tool bag and a multimeter on the floor",
+  "site": "AI (Canva)",
+  "by": "Ben Young Web Design",
+  "page": "Canva folder: Sonny's Mechanical - preview photos",
+  "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\"",
+  "fp": [
+   0.5,
+   0.5
+  ]
+ },
+ "acrepair": {
+  "local": "originals/acrepair.jpg",
+  "out": [
+   [
+    "acrepair-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "people": false,
+  "alt": "Refrigerant gauges hooked up to an outdoor AC condenser beside a home, an oak tree in the yard",
+  "site": "AI (Canva)",
+  "by": "Ben Young Web Design",
+  "page": "Canva folder: Sonny's Mechanical - preview photos",
+  "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\"",
+  "fp": [
+   0.55,
+   0.5
+  ]
+ },
+ "newsystem": {
+  "local": "originals/newsystem.jpg",
+  "out": [
+   [
+    "newsystem-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "people": false,
+  "alt": "New outdoor heat pump unit on a fresh concrete pad beside a foothill home, granite boulders and oak trees behind",
+  "site": "AI (Canva)",
+  "by": "Ben Young Web Design",
+  "page": "Canva folder: Sonny's Mechanical - preview photos",
+  "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\"",
+  "fp": [
+   0.55,
+   0.55
+  ]
+ },
+ "newbuild": {
+  "local": "originals/newbuild.jpg",
+  "out": [
+   [
+    "newbuild-720x540.webp",
+    720,
+    540
+   ]
+  ],
+  "people": false,
+  "alt": "New home under construction with new flex ducts, sheet-metal trunks, and a furnace in the open wood framing",
+  "site": "AI (Canva)",
+  "by": "Ben Young Web Design",
+  "page": "Canva folder: Sonny's Mechanical - preview photos",
+  "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\"",
+  "fp": [
+   0.55,
+   0.5
+  ]
+ },
+ "request": {
+  "local": "originals/request.jpg",
+  "out": [
+   [
+    "request-480x640.webp",
+    480,
+    640
+   ],
+   [
+    "request-720x960.webp",
+    720,
+    960
+   ],
+   [
+    "request-960x1280.webp",
+    960,
+    1280
+   ]
+  ],
+  "people": false,
+  "alt": "Foothill home at dusk with warm light in the windows, oak trees and granite boulders around it",
+  "site": "AI (Canva)",
+  "by": "Ben Young Web Design",
+  "page": "Canva folder: Sonny's Mechanical - preview photos",
+  "edit": "AI-made in Canva (no people), exported from Ben's Canva folder \"Sonny's Mechanical - preview photos\"",
+  "fp": [
+   0.5,
+   0.55
+  ]
+ },
+ "visit": {
+  "id": "8RbiLgfqoqQ",
+  "file": "ac-8RbiLgfqoqQ.jpg",
+  "src": "https://images.unsplash.com/photo-1792799881226-e841c0f9c125?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "out": [
+   [
+    "visit-640x360.webp",
+    640,
+    360
+   ],
+   [
+    "visit-960x540.webp",
+    960,
+    540
+   ],
+   [
+    "visit-1280x720.webp",
+    1280,
+    720
+   ]
+  ],
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "people": true,
+  "alt": "Tech in a black shirt connecting a refrigerant gauge hose to an outdoor AC unit's service valve",
+  "site": "Unsplash",
+  "by": "Joel Muniz",
+  "page": "https://unsplash.com/photos/8RbiLgfqoqQ",
+  "edit": "None (crop only)."
+ }
 }

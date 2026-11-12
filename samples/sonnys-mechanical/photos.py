@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """photos.py: makes the Sonny's Mechanical photo files from photos.json (needs Pillow).
 
-    python3 scripts/recolor-clothes.py samples/sonnys-mechanical/recolor-hero.json   (the hero's navy shirt, once)
     python3 samples/sonnys-mechanical/photos.py
 
-Reads each source from scripts/.cache/sonnys-mechanical/ (downloading it once), crops around the focal point (fp),
+Reads each source from photos/originals/ (the AI-made ones) or scripts/.cache/sonnys-mechanical/ (stock, downloaded once), crops around the focal point (fp),
 and writes the files into photos/. People photos are never edited here: crop and resize only."""
 import json, os, urllib.request
 from PIL import Image
@@ -18,7 +17,7 @@ data = json.load(open(os.path.join(HERE, 'photos.json')))
 
 for key, p in data.items():
     if key.startswith('_'): continue
-    src = os.path.join(CACHE, p['file'])
+    src = os.path.join(HERE, 'photos', p['local']) if p.get('local') else os.path.join(CACHE, p['file'])
     if not os.path.exists(src):
         if p.get('make'): raise SystemExit(f"{key}: run first: {p['make']}")
         print('  downloading', key)

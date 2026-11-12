@@ -52,6 +52,7 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 - On Pinwheel, techs wear the same orange.
 - To make a set of photos match (like the service cards), adjust exposure and white balance only, with no filters or color tints (the "tone" setting in scripts/photos.json).
 - Note every photo's source in PHOTO-LIST.md (run `node scripts/photo-list.mjs` after photo changes).
+- The old stock photo set is retired and deleted (the gray-polo tech with the flashlight at the AC unit, the mug in a sweater, the filter change, the red-shirt plumber, hero-hvac, hero-plumbing, and the unused family shots). Never bring them back. Template defaults are Pinwheel's current photos.
 
 ## Files
 
