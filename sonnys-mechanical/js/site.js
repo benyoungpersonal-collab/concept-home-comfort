@@ -676,9 +676,16 @@
         });
         v.addEventListener('playing', function () { v.classList.add('is-playing'); });
         frame.appendChild(v);
+        var userPaused = false;
+        var play = function () { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); };
+        frame.addEventListener('click', function (ev) {
+          if (ev.target.closest('a, button')) return;
+          userPaused = !v.paused;
+          if (userPaused) v.pause(); else play();
+        });
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); }
+            if (e.isIntersecting) { if (!userPaused) play(); } else { v.pause(); }
           });
         }, { threshold: 0.2 });
         io.observe(v);
@@ -687,6 +694,28 @@
     };
     var later = function () { setTimeout(start, 800); };
     if (d.readyState === 'complete') later(); else window.addEventListener('load', later);
+  }
+
+  
+  function initAccentFit() {
+    var accents = $$('h1 .accent, h2 .accent, h3 .accent, .h1 .accent, .hero-h .accent');
+    if (!accents.length) return;
+    var fit = function () {
+      accents.forEach(function (a) {
+        a.classList.toggle('accent-wrap', false);
+        
+        var room = Infinity;
+        for (var h = a.parentElement; h && h !== d.body; h = h.parentElement) {
+          var cs = getComputedStyle(h);
+          if (cs.display === 'inline') continue;
+          room = Math.min(room, h.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
+        }
+        if (a.getBoundingClientRect().width > room + 1) a.classList.toggle('accent-wrap', true);
+      });
+    };
+    fit();
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(fit);
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
   }
 
   
@@ -711,6 +740,7 @@
   initCountUp();
   initCarousels();
   initAccordions();
+  initAccentFit();
   initEstimator();
   initFinance();
   initBooking();

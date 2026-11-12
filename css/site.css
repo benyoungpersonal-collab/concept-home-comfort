@@ -220,6 +220,8 @@ p, li, .lead { text-wrap: pretty; }
 .on-dark .accent { color: var(--c-brand-light); }
 /* The underlined words in a headline always stay together on one line (never "Than We" / "Can.") */
 h1 .accent, h2 .accent, h3 .accent, .h1 .accent, .hero-h .accent { display: inline-block; white-space: nowrap; }
+/* ...unless the phrase is wider than its line (js/site.js adds .accent-wrap), so it wraps instead of running off the screen */
+.accent.accent-wrap { display: inline; white-space: normal; }
 .accent.cool { color: var(--c-ice-deep); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%238FD3FF' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); }
 .on-dark .accent.cool { color: var(--c-ice); }
 
