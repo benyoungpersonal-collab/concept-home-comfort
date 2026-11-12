@@ -8,7 +8,8 @@ import { titleCaseHtml } from './title-case.mjs';
 const DIR = 'sonnys-air-conditioning';
 const BASE = 'https://byw-home-comfort.netlify.app/sonnys-air-conditioning/';
 const API = 'https://sonnys-plans.byw-video.workers.dev';
-const OG = readOg();
+// Link preview picture (scripts/share-image.cjs). Make a new dated one whenever the hero changes.
+const OG = BASE + 'images/og-share-2026-11-12.jpg';
 const PHONE = '(559) 392-0743';
 const TEL = 'tel:+15593920743';
 const NAME = "Sonny's Air Conditioning";

@@ -14,7 +14,7 @@ PUBLIC_URL = "https://sonnys-plans.byw-video.workers.dev"
 # Preview only: every submission goes to Ben through Resend's test sender, never to George.
 # The recipient (TO_EMAIL) is a Worker secret so the address stays out of the repo.
 FROM_EMAIL = "Sonny's Plans (Preview) <onboarding@resend.dev>"
-ALLOWED_ORIGINS = "https://byw-home-comfort.netlify.app,http://localhost:8765"
+ALLOWED_ORIGINS = "https://byw-home-comfort.netlify.app"
 
 [[r2_buckets]]
 binding = "PLANS"
