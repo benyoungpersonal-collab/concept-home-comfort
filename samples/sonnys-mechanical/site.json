@@ -21,8 +21,8 @@
   "colors": {
     "brand": "#0078DE",
     "fill": "vivid",
-    "navy": "#0D1B22",
-    "second": "#0D1B22"
+    "navy": "#0A2A4A",
+    "second": "#0A2A4A"
   },
   "fontStyle": "classic",
   "pill": "Heating & Air Conditioning in Auberry, CA",
@@ -128,7 +128,8 @@
     "name": "George Wayne",
     "role": "President",
     "story": "George Wayne started Sonny's Air Conditioning in 2024 and now runs Sonny's Mechanical out of Auberry. He is the qualifier on the company's CSLB license, so the person who answers for the work is the person whose name is on the card.",
-    "quote": "Specializing in doing the right thing, ALWAYS. Also Air Conditioning."
+    "quote": "Specializing in doing the right thing, ALWAYS. Also Air Conditioning.",
+    "gender": "man"
   },
   "unverified": [
     "Business name as Google shows it (CSLB reads SONNYS MECHANICAL INC)",

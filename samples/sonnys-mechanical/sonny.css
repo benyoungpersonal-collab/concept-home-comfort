@@ -29,7 +29,27 @@
 /* Meet Sonny has no photo yet: one comfortable column instead of a narrow one beside an empty space */
 @media (min-width: 900px) { .team-grid.no-photo { grid-template-columns: minmax(0, 1fr); max-width: none; } .team-grid.no-photo > div { max-width: 760px; } }
 
-/* R&A's blue (#0078DE) is the main color. White text needs 4.5:1, which #0078DE misses by a hair (4.43:1), so
-   button fills, the pill, and small blue text use R&A's own deeper shade (#0067BF, 5.6:1 with white); dark bands use
-   R&A's lighter blue. */
-:root { --c-brand-strong: #0067BF; --c-brand-deep: #0067BF; --c-brand-hover: #005AA8; --c-brand-light: #43A8DE; --btn-lift: 5%; }
+/* Colors (CLAUDE.md): the darker blue is the main color, buttons and accents are gold.
+   - Blue: R&A's #0078DE, its deeper #0067BF for small blue text (5.1:1 on cream), and deep blue #0A2A4A for the dark bands.
+   - Gold #E3A72F with deep-blue text (6.8:1, 7.5:1 at the gradient's light top) on every main button, the pill, the
+     sticky Call button, icon badges, and tiles. Headline accent words get a gold underline; on light backgrounds the
+     words stay blue so they read (gold text on cream is under 2:1), on the dark bands the words are gold (7.4:1). */
+:root { --sm-gold: #E3A72F; --sm-gold-hover: #D4981F; --sm-ink: #0A2A4A;
+  --c-brand-strong: #0067BF; --c-brand-deep: #0067BF; --c-brand-hover: #005AA8; --c-brand-light: #E3A72F; --btn-lift: 12%; }
+.btn-primary, .btn-primary:hover { --btn-bg: var(--sm-gold); --btn-bd: var(--sm-gold); --btn-fg: var(--sm-ink); color: var(--sm-ink); }
+.btn-primary:hover { --btn-bg: var(--sm-gold-hover); --btn-bd: var(--sm-gold-hover); }
+.btn-primary .icon { color: var(--sm-ink); }
+.tpl-pill, .tpl-pill span, .tpl-pill span::before, .tpl-pill span::after { color: var(--sm-ink); }
+.tpl-pill { background: var(--sm-gold); }
+.sb-call, .sb-call:hover { background: var(--sm-gold); color: var(--sm-ink); }
+.sb-call .icon { color: var(--sm-ink); }
+.pcard-badge { background: var(--sm-gold); color: var(--sm-ink); }
+.pcard-badge .icon { color: var(--sm-ink); }
+.tpl-tile-icon { background: var(--sm-gold); color: var(--sm-ink); }
+.tpl-tile-icon .icon { color: var(--sm-ink); stroke: var(--sm-ink); }
+.accent { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23E3A72F' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke' opacity='.9'/%3E%3C/svg%3E"); }
+.on-dark .accent, .on-dark .eyebrow { color: var(--sm-gold); }
+.logo-initial { background: var(--sm-ink); color: var(--sm-gold); }
+.logo.light .logo-initial { background: #fff; color: var(--sm-ink); }
+.tpl-owner-ph { --op-dark: var(--sm-ink); --op-light: var(--sm-gold); }
+.tpl-owner-ph .arch { background: #DBECFA; }

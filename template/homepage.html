@@ -277,17 +277,19 @@
 
   <!-- 8. Meet the family -->
   {{#if hasOwner}}<section class="section team" id="team" aria-labelledby="team-title">
-    <div class="container team-grid{{#if hasOwnerPhoto}}{{else}} no-photo{{/if}}">
+    <div class="container team-grid">
       {{#if hasOwnerPhoto}}<figure class="owner-figure">
         <div class="arch">
           <img src="{{ownerPhotoSrc}}" width="900" height="1125" alt="{{ownerPhotoAlt}}" loading="lazy" decoding="async" style="object-fit:cover">
         </div>
         <figcaption><strong>{{owner.name}}</strong>{{#if owner.role}}<span>{{owner.role}}</span>{{/if}}</figcaption>
+      </figure>{{else}}<figure class="owner-figure tpl-owner-ph" data-reveal="zoom">
+        <div class="arch">{{{ownerIllustration}}}<span class="tpl-owner-ph-tag">Your photo here</span></div>
+        <figcaption><strong>{{owner.name}}</strong>{{#if owner.role}}<span>{{owner.role}}</span>{{/if}}</figcaption>
       </figure>{{/if}}
       <div>
         <p class="eyebrow">Meet the family</p>
         <h2 id="team-title">The people behind <span class="accent">{{shortName}}.</span></h2>
-        {{#if hasOwnerPhoto}}{{else}}<p class="tpl-owner-card"><span class="initial" aria-hidden="true">{{owner.initial}}</span><span><strong>{{owner.name}}</strong>{{#if owner.role}}<span>{{owner.role}}</span>{{/if}}</span></p>{{/if}}
         {{#if owner.story}}<p class="lead">{{owner.story}}</p>{{/if}}
         {{#if owner.quote}}<blockquote class="pull-quote">
           <p>{{owner.quote}}</p>
