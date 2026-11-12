@@ -43,6 +43,7 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 
 - Buttons and accents are gold unless the business already has its own brand colors. Pick one rich main color to go with it, like navy, deep teal, charcoal, or forest green. No peach or pastel colors.
 - Check contrast on every button: dark text on gold, never white.
+- Main buttons get a beveled shine (template default, template/preview-late.css and template/preview.js): a subtle gradient, lighter at the top and richer at the bottom, a thin light highlight along the top edge, and a soft shadow underneath, so they look slightly raised and polished, not glossy. A gentle shine sweeps across a button once when it first scrolls into view, and again on hover on desktop. No sweep with "reduce motion". Check button text contrast at the top, middle, and bottom of the gradient.
 
 ## Owner section
 
