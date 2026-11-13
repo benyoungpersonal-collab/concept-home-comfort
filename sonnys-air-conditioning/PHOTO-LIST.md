@@ -1,10 +1,10 @@
 # Sonny's Air Conditioning: photo list
 
-Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . All are real stock photos from Unsplash (free license), unedited except for cropping and resizing. No AI images. No photo is used on more than one page. Swap in George's own job photos as soon as he sends them; the Projects page shows sample photos, each labeled "Sample photo."
+Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . All are real stock photos from Unsplash (free license), unedited except for cropping and resizing. People photos are real people, never AI. No AI images. No photo is used on more than one page. Swap in George's own job photos as soon as he sends them; the Projects page shows sample photos, each labeled "Sample photo."
 
 | Page and spot | File | What is there | Source |
 |---|---|---|---|
-| Home hero (full-bleed, behind the text) | tract-aerial | Aerial view of a new housing tract under construction | Scott Blake, https://unsplash.com/photos/IWiiwnmzbjs |
+| Home hero (full-bleed, behind the text) | hero-duct-boot (phones: hero-duct-boot-phone, a tall crop of the same photo on the duct) | Flex duct running into a sheet-metal boot between ceiling joists, black and white | Dash Khatami, https://unsplash.com/photos/dlAWD_oKTQE |
 | Home card: Residential New Construction | framing-two-story | Two-story home in wood framing with scaffolding | Troy Mortier, https://unsplash.com/photos/rxfWPJUUClo |
 | Home card: Housing Tracts and Multi-Family | townhomes | Row of new two-story townhomes with dumpsters out front | Ernie Journeys, https://unsplash.com/photos/JqZlFnJ-KpE |
 | Home card: Commercial New Construction | commercial-steel | Steel frame of a large commercial building with cranes and lifts | david Griffiths, https://unsplash.com/photos/UtgKZUlRV78 |
@@ -23,8 +23,8 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 | Projects: Equipment Changeout | new-units | Row of new outdoor heat pump units beside a new building (no people) | alpha innotec, https://unsplash.com/photos/ypmI48pdWMI |
 | HVAC Tips: the 65 degree myth | thermostat-dial | A finger on the dial of a black wall thermostat reading 63 (no logos) | HUUM, https://unsplash.com/photos/mi95KiB9934 |
 | HVAC Tips: AC removes heat | condenser-rain | Outdoor AC condenser in a green backyard in the rain (no logos) | Sam Jotham Sutharson, https://unsplash.com/photos/gSvCiyLnCeU |
-| HVAC Tips: AC not blowing cold | dusty-filter | Close-up of a dusty, pleated air filter | Evan Marvell, https://unsplash.com/photos/yFzG35IAOko |
-| HVAC Tips: heater smell | furnace-burners | Row of gas burners firing blue inside a furnace | Peter Fly, https://unsplash.com/photos/qHpxnoo-gXg |
+| HVAC Tips: AC not blowing cold | hot-fan | Young woman sitting beside an electric fan in a warm, sunny room | Phạm Trần Hoàn Thịnh, https://unsplash.com/photos/kDy4z0Yf30c |
+| HVAC Tips: heater smell | smell-nose | Woman at home holding her nose | Alexey Demidov, https://unsplash.com/photos/MTVu30K_7Ms |
 | About hero | framing-interior | Bright, sunlit interior of a new home in wood framing | Samuel Cruz, https://unsplash.com/photos/17nDFVkBYK0 |
 
 Not photos:

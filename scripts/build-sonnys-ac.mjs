@@ -10,7 +10,7 @@ const DIR = 'sonnys-air-conditioning';
 const BASE = 'https://byw-home-comfort.netlify.app/sonnys-air-conditioning/';
 const API = 'https://sonnys-plans.byw-video.workers.dev';
 // Link preview picture (scripts/share-image.cjs). Make a new dated one whenever the hero changes.
-const OG = BASE + 'images/og-share-2026-11-13-r4.jpg';
+const OG = BASE + 'images/og-share-2026-11-13-r5.jpg';
 const PHONE = '(559) 392-0743';
 const TEL = 'tel:+15593920743';
 const EMAIL = 'gwayne@sonnysair.com';
@@ -278,11 +278,11 @@ page({
   file: 'index.html',
   title: `${NAME} | HVAC for New Construction and Housing Tracts`,
   desc: `${NAME}: HVAC for general contractors, builders, and developers. New homes, housing tracts, commercial, and changeouts from Merced to Tulare. Based in Clovis. CSLB #1129931. Call ${PHONE}.`,
-  preload: `<link rel="preload" as="image" imagesrcset="${srcset('tract-aerial', [640, 1024, 1600, 2400])}" imagesizes="(max-width: 599px) 270vw, (max-width: 899px) 140vw, 100vw" fetchpriority="high">`,
+  preload: `<link rel="preload" as="image" media="(max-width: 599px)" imagesrcset="${srcset('hero-duct-boot-phone')}" imagesizes="100vw" fetchpriority="high">\n<link rel="preload" as="image" media="(min-width: 600px)" imagesrcset="${srcset('hero-duct-boot', [1024, 1600, 2400])}" imagesizes="100vw" fetchpriority="high">`,
   head: `<script type="application/ld+json">${LD}</script>\n<script type="application/ld+json">${faqLd(HOME_FAQ)}</script>`,
   body: `
 <section class="hero hero-full" aria-labelledby="hero-title">
-  <div class="hero-photo">${img('tract-aerial', 'Aerial view of a new housing tract under construction, with framed homes and fresh roof sheathing along a curving street', { ws: [640, 1024, 1600, 2400], sizes: '(max-width: 599px) 270vw, (max-width: 899px) 140vw, 100vw', eager: true, pos: '--pos:30% 50%;--pos-d:50% 50%', w: 2400, h: 1800 })}</div>
+  <div class="hero-photo"><picture><source media="(max-width: 599px)" srcset="${srcset('hero-duct-boot-phone')}" sizes="100vw">${img('hero-duct-boot', 'Flex duct running into a sheet-metal boot between ceiling joists during an HVAC rough-in', { ws: [1024, 1600, 2400], eager: true, pos: '--pos:50% 50%;--pos-d:62% 50%', w: 2400, h: 1500 })}</picture></div>
   <div class="wrap hero-wrap">
     <div class="hero-copy">
       <p class="eyebrow pill">C-20 HVAC Contractor · Clovis, CA</p>
@@ -533,7 +533,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       </article>
 
       <article class="article rv" id="removes-heat">
-        <p class="eyebrow">How It Works</p>
+        <p class="eyebrow">Myth</p>
         <h2>AC Doesn’t Make Cold. It Removes Heat.</h2>
         ${tipPhoto('condenser-rain', 'Outdoor AC condenser in a green backyard, with rain falling', '--pos:60% 50%')}
         <p class="kicker">An air conditioner moves heat from inside your house to the outside. Cold is what’s left behind.</p>
@@ -547,7 +547,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="not-cold">
         <p class="eyebrow">Troubleshooting</p>
         <h2>Why Isn’t My AC Blowing Cold?</h2>
-        ${tipPhoto('dusty-filter', 'Close-up of a dusty, pleated air filter that needs changing')}
+        ${tipPhoto('hot-fan', 'Young woman sitting beside an electric fan in a warm, sunny room', '--pos:40% 45%')}
         <p class="kicker">Check airflow before charge. Most “it needs more refrigerant” calls turn out to be an airflow problem.</p>
         <p>Go through these in order:</p>
         <ul class="checks">
@@ -562,7 +562,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="heater-smell">
         <p class="eyebrow">Heating</p>
         <h2>Why Does the Heater Smell When It First Turns On?</h2>
-        ${tipPhoto('furnace-burners', 'Row of gas burners firing blue inside a furnace')}
+        ${tipPhoto('smell-nose', 'Woman at home holding her nose at an unpleasant smell', '--pos:50% 40%')}
         <p class="kicker">That dusty, slightly burnt smell the first time you run the heat each fall is usually dust burning off.</p>
         <p>Over the summer, dust settles on the burners, the heat exchanger, or the electric heat strips. The first time they heat up, it burns off. The smell should fade within the first few hours. Opening a window and changing the filter helps.</p>
         <div class="callout warn"><p><b>When it’s not dust:</b> if the smell doesn’t fade, or it smells like burning plastic or hot wiring, turn the system off and call a pro. If you smell gas (like rotten eggs), don’t touch any switches. Get everyone out and call the gas company or 911 from outside.</p></div>
