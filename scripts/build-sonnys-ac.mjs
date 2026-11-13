@@ -403,7 +403,7 @@ ${hero({
     'For builders putting up a whole tract or a multi-family building.', ['Repeat plans, lot after lot', 'Multi-family buildings', 'Ductwork and equipment for every unit', 'Coordinated with the builder and the other trades'])}
     ${detail('commercial', 'commercial-site', 'Large commercial steel frame going up behind a fenced, freshly graded site', '--pos:50% 50%', '03 · Commercial', 'Commercial New Construction.',
     'Heating, ventilation, and air conditioning for new commercial buildings, from your plan set.', ['Heating', 'Ventilation', 'Air conditioning', 'Ductwork', 'Coordinated with your GC and electricians'])}
-    ${detail('installs', 'brazing-line', 'Hands brazing a copper refrigerant line with a torch', '--pos:45% 50%', '04 · Installs and Changeouts', 'Installs and Changeouts.',
+    ${detail('installs', 'condenser-pad', 'Brand-new outdoor AC condenser on a fresh concrete pad beside a newly built home', '--pos:62% 60%', '04 · Installs and Changeouts', 'Installs and Changeouts.',
     'New equipment in, old equipment out.', ['Condensers', 'Furnaces', 'Air handlers', 'Heat pumps'])}
   </div>
 </section>
@@ -551,7 +551,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="not-cold">
         <p class="eyebrow">Troubleshooting</p>
         <h2>Why Isn’t My AC Blowing Cold?</h2>
-        ${tipPhoto('hot-fan', 'Young woman sitting beside an electric fan in a warm, sunny room', '--pos:40% 45%')}
+        ${tipPhoto('dusty-filter', 'Close-up of a clogged, dusty pleated air filter')}
         <p class="kicker">Before you call, check the airflow. Most “my AC isn’t cooling” calls turn out to be an airflow problem, not a refrigerant one.</p>
         <p>Go through these in order:</p>
         <ul class="checks">
@@ -566,7 +566,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="heater-smell">
         <p class="eyebrow">Heating</p>
         <h2>Why Does the Heater Smell When It First Turns On?</h2>
-        ${tipPhoto('smell-nose', 'Woman at home holding her nose at an unpleasant smell', '--pos:50% 40%')}
+        ${tipPhoto('wall-register', 'Metal heating register low on a wall inside a home, beside a door', '--pos:45% 60%')}
         <p class="kicker">That dusty, slightly burnt smell the first time you run the heat each fall is usually dust burning off.</p>
         <p>Over the summer, dust settles on the burners, the heat exchanger, or the electric heat strips. The first time they heat up, it burns off. The smell should fade within the first few hours. Opening a window and changing the filter helps.</p>
         <div class="callout warn"><p><b>When it’s not dust:</b> if the smell doesn’t fade, or it smells like burning plastic or hot wiring, turn the system off and call a pro. If you smell gas (like rotten eggs), don’t touch any switches. Get everyone out and call the gas company or 911 from outside.</p></div>
