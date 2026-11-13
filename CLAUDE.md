@@ -46,6 +46,12 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 - Main buttons get a beveled shine (css/alive.css, shared by Pinwheel, Bright Bolt, and every preview): a subtle gradient, lighter at the top and richer at the bottom, a thin light highlight along the top edge, and a soft shadow underneath. A gentle shine sweeps across each main button every 6 seconds on every screen size, plus on hover on desktop. No sweep with "reduce motion". Each site keeps its own button color. Check button text contrast at the top, middle, and bottom of the gradient.
 - No pause button on hero videos: a tap or click on the video pauses it (js/site.js), and with "reduce motion" on it shows the still image instead.
 
+## Motion (every site)
+
+- On scroll, images slide in from the side of the page they sit on (full-width images just fade up), and text fades up. Subtle and quick (about 0.6 s, 20 to 45 px), once per element, never on loop.
+- With "reduce motion" on, everything shows in place with no motion.
+- Stat numbers can count up from 0 the first time they scroll into view; with "reduce motion" they show the final number.
+
 ## Owner section
 
 - The owner section label is always "Meet the owner."
