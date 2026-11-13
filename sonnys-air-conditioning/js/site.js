@@ -120,7 +120,7 @@
   // ---------- stats count up from 0 the first time they scroll into view ----------
   var nums = document.querySelectorAll('[data-count]');
   if (nums.length && 'IntersectionObserver' in window && !reduce) {
-    var row = nums[0].closest('.facts') || nums[0];
+    var row = nums[0].closest('.facts-strip') || nums[0];
     var started = false;
     nums.forEach(function (n) { n.textContent = '0'; });
     var io3 = new IntersectionObserver(function (entries) {
