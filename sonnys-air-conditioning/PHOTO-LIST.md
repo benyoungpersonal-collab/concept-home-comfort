@@ -14,7 +14,7 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 | Services 01: Residential New Construction | roof-framing | Roof trusses and framing on a new house | Troy Mortier, https://unsplash.com/photos/kkdfOe0iRu8 |
 | Services 02: Housing Tracts and Multi-Family | tract-site | New tract homes beyond a graded lot with a dump truck | Ernie Journeys, https://unsplash.com/photos/TZGjH3-Zmq0 |
 | Services 03: Commercial New Construction | commercial-site | Commercial steel frame behind a fenced, graded site | david Griffiths, https://unsplash.com/photos/TKMIUzz9vD0 |
-| Services 04: Installs and Changeouts | brazing-line | Hands brazing a copper refrigerant line with a torch (no logos) | Julessa Scofield, https://unsplash.com/photos/CdUDlWlH_ss |
+| Services 04: Installs and Changeouts | condenser-pad | New outdoor AC condenser on a fresh concrete pad beside a new home (no readable brand) | Josh Lemmon, https://unsplash.com/photos/x1rFTWcXoOc |
 | Projects: New Home Build | frame-fence | New home in wood framing behind a construction fence | Troy Mortier, https://unsplash.com/photos/nCiRDhiVeP8 |
 | Projects: Housing Tract | tract-homes | New two-story tract homes beside a pile of graded dirt | Troy Mortier, https://unsplash.com/photos/MprGNaVtr04 |
 | Projects: Multi-Family Build | multifamily-build | Multi-story apartment building in framing and sheathing, tower crane | Salvador Rios, https://unsplash.com/photos/3GdHDDtHJ-4 |
@@ -23,8 +23,8 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 | Projects: Equipment Changeout | new-units | Row of new outdoor heat pump units beside a new building (no people) | alpha innotec, https://unsplash.com/photos/ypmI48pdWMI |
 | HVAC Tips: the 65 degree myth | thermostat-dial | A finger on the dial of a black wall thermostat reading 63 (no logos) | HUUM, https://unsplash.com/photos/mi95KiB9934 |
 | HVAC Tips: AC removes heat | condenser-rain | Outdoor AC condenser in a green backyard in the rain (no logos) | Sam Jotham Sutharson, https://unsplash.com/photos/gSvCiyLnCeU |
-| HVAC Tips: AC not blowing cold | hot-fan | Young woman sitting beside an electric fan in a warm, sunny room | Phạm Trần Hoàn Thịnh, https://unsplash.com/photos/kDy4z0Yf30c |
-| HVAC Tips: heater smell | smell-nose | Woman at home holding her nose | Alexey Demidov, https://unsplash.com/photos/MTVu30K_7Ms |
+| HVAC Tips: AC not blowing cold | dusty-filter | Close-up of a dusty, pleated air filter | Evan Marvell, https://unsplash.com/photos/yFzG35IAOko |
+| HVAC Tips: heater smell | wall-register | Metal heating register low on a wall inside a home | Tsuyoshi Kozu, https://unsplash.com/photos/JShS-_84fBA |
 | About hero | framing-interior | Bright, sunlit interior of a new home in wood framing | Samuel Cruz, https://unsplash.com/photos/17nDFVkBYK0 |
 
 Not photos:
