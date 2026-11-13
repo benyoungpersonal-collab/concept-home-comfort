@@ -1,4 +1,4 @@
-// Sonny's Air Conditioning: "Send Your Plans" upload Worker (preview).
+// Sonny's Air Conditioning: "Upload Your Plans" upload Worker (preview).
 //
 // Flow:
 //   1. POST /api/start     The form sends its fields and the list of files (name, size).
@@ -16,7 +16,7 @@ import { AwsClient } from 'aws4fetch';
 
 const MB = 1024 * 1024;
 const MAX_FILES = 20;
-const MAX_FILE_BYTES = 2 * 1024 * MB;
+const MAX_FILE_BYTES = 10 * 1024 * MB;
 const PART_URL_TTL = 12 * 60 * 60;          // presigned part URLs: 12 hours
 const LINK_TTL_DAYS = 90;                   // download links: matches the bucket's 90-day delete rule
 const PROJECT_TYPES = ['New construction', 'Housing tract', 'Install or changeout', 'Other'];
@@ -83,7 +83,7 @@ async function start(body, env, cors) {
     const name = String(f && f.name || '');
     if (!/\.pdf$/i.test(name)) return json({ error: `"${name.slice(0, 80)}" is not a PDF.` }, 400, cors);
     if (!Number.isFinite(size) || size <= 0) return json({ error: `"${name.slice(0, 80)}" looks empty.` }, 400, cors);
-    if (size > MAX_FILE_BYTES) return json({ error: `"${name.slice(0, 80)}" is over 2 GB. Please call us for very large sets.` }, 400, cors);
+    if (size > MAX_FILE_BYTES) return json({ error: `"${name.slice(0, 80)}" is over 10 GB. Please call us for very large sets.` }, 400, cors);
   }
 
   const id = submissionId();

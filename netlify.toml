@@ -153,3 +153,16 @@
   to = "/sonnys-air-conditioning/hvac-tips.html"
   status = 301
   force = true
+
+# Sonny's Air Conditioning: Send Your Plans became Upload Your Plans
+[[redirects]]
+  from = "/sonnys-air-conditioning/send-your-plans.html"
+  to = "/sonnys-air-conditioning/upload-your-plans.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sonnys-air-conditioning/send-your-plans"
+  to = "/sonnys-air-conditioning/upload-your-plans.html"
+  status = 301
+  force = true
