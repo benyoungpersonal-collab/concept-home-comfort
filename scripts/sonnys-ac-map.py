@@ -1,165 +1,232 @@
 #!/usr/bin/env python3
-"""Service area map for the Sonny's Air Conditioning preview, drawn from OpenStreetMap data.
+"""Service area map for the Sonny's Air Conditioning preview, drawn from U.S. Census Bureau TIGER/Line files.
 
-Input: Overpass API JSON (out geom) for the coastline, the six highways, and the city points:
-  coast.json, r99.json, r41.json, r180.json, r152.json, r198.json, r5.json, places.json
-  (queries: way[natural=coastline](bbox); relation[route=road][network=US:CA][ref=NN] -> way(r)(bbox);
-   relation[route=road][network=US:I][ref=5] -> way(r)(bbox); node[place~city|town][name=...](bbox))
-Output: sonnys-air-conditioning/images/service-area-map.svg (inlined into the homepage by build-sonnys-ac.mjs).
-Map data (c) OpenStreetMap contributors, ODbL.
+A light map in Sonny's blues and grays, in the style of Pinwheel's map (scripts/build-map.mjs): the SVG holds
+only shapes (ocean, land, lakes, rivers, county lines, main and local roads, the 2-hour ring), so it stays sharp
+at any size and small. City dots, names, highway shields, and Clovis as home base are HTML on top
+(scripts/sonnys-ac-map.json, read by build-sonnys-ac.mjs), so they use the site's font and stay readable on phones.
 
-Usage: python3 -I scripts/sonnys-ac-map.py OSM_JSON_DIR
+Data (TIGER/Line 2024, public domain), all from https://www2.census.gov/geo/tiger/ :
+  GENZ2024/shp/cb_2024_us_county_500k.zip         land and coastline (cartographic boundary), county lines
+  TIGER2024/PRISECROADS/tl_2024_06_prisecroads.zip  freeways (S1100), highways (S1200 I/U/S), main local roads (S1200 M/C/O)
+  TIGER2024/LINEARWATER/tl_2024_06CCC_linearwater.zip  rivers (H3010 named "... Riv")
+  TIGER2024/AREAWATER/tl_2024_06CCC_areawater.zip      lakes and reservoirs (H2030, H2040)
+  TIGER2024/PLACE/tl_2024_06_place.zip              city points (internal points)
+  CCC = the counties in the frame: 019 027 029 031 039 043 047 053 069 079 085 087 099 107
+Output: sonnys-air-conditioning/images/service-area-map.svg and scripts/sonnys-ac-map.json.
+
+Usage: pip install pyshp; python3 -I scripts/sonnys-ac-map.py TIGER_DIR
 """
-import json, math, os, sys
+import json, math, os, sys, glob
+import shapefile  # pyshp
 
 SRC = sys.argv[1]
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'sonnys-air-conditioning', 'images', 'service-area-map.svg')
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT_SVG = os.path.join(HERE, '..', 'sonnys-air-conditioning', 'images', 'service-area-map.svg')
+OUT_JSON = os.path.join(HERE, 'sonnys-ac-map.json')
 
-LAT_TOP, LAT_BOT, LON_L, LON_R = 37.46, 35.12, -122.02, -118.78
-K = 270  # px per degree of latitude
-KX = K * math.cos(math.radians(36.3))
-W = round((LON_R - LON_L) * KX)
-H = round((LAT_TOP - LAT_BOT) * K)
+T, B, L, R = 37.46, 35.27, -121.98, -118.86
+W = 800
+KX = W / (R - L)
+K = KX / math.cos(math.radians((T + B) / 2))
+H = round((T - B) * K)
+BOX = (L - .1, B - .1, R + .1, T + .1)
 
-def P(lat, lon):
-    return ((lon - LON_L) * KX, (LAT_TOP - lat) * K)
+def P(lon, lat):
+    return ((lon - L) * KX, (T - lat) * K)
 
-def load(name):
-    with open(os.path.join(SRC, name)) as f:
-        return json.load(f)['elements']
+def hits(bbox):
+    return not (bbox[2] < BOX[0] or bbox[0] > BOX[2] or bbox[3] < BOX[1] or bbox[1] > BOX[3])
+
+def parts_of(shape):
+    idx = list(shape.parts) + [len(shape.points)]
+    return [shape.points[idx[i]:idx[i + 1]] for i in range(len(idx) - 1)]
+
+def read(pattern, keep):
+    """Yield (record, list of parts as [(lon, lat)]) for shapes in the frame that pass keep(record)."""
+    for f in sorted(glob.glob(os.path.join(SRC, pattern))):
+        for sr in shapefile.Reader(f).iterShapeRecords():
+            if not sr.shape.points or not hits(sr.shape.bbox) or not keep(sr.record): continue
+            yield sr.record, parts_of(sr.shape)
 
 def dp(pts, tol):
-    """Douglas-Peucker simplification."""
-    if len(pts) < 3:
-        return pts
-    (x1, y1), (x2, y2) = pts[0], pts[-1]
-    dx, dy = x2 - x1, y2 - y1
-    L = math.hypot(dx, dy) or 1e-9
-    best, idx = -1, 0
-    for i in range(1, len(pts) - 1):
-        x, y = pts[i]
-        d = abs(dy * x - dx * y + x2 * y1 - y2 * x1) / L
-        if d > best:
-            best, idx = d, i
-    if best > tol:
-        return dp(pts[:idx + 1], tol)[:-1] + dp(pts[idx:], tol)
-    return [pts[0], pts[-1]]
+    """Douglas-Peucker, iterative."""
+    if len(pts) < 3: return pts
+    keep = [False] * len(pts); keep[0] = keep[-1] = True
+    stack = [(0, len(pts) - 1)]
+    while stack:
+        a, b = stack.pop()
+        (x1, y1), (x2, y2) = pts[a], pts[b]
+        dx, dy = x2 - x1, y2 - y1; ln = math.hypot(dx, dy) or 1e-9
+        best, idx = -1, -1
+        for i in range(a + 1, b):
+            x, y = pts[i]
+            d = abs(dy * x - dx * y + x2 * y1 - y2 * x1) / ln
+            if d > best: best, idx = d, i
+        if best > tol: keep[idx] = True; stack += [(a, idx), (idx, b)]
+    return [p for p, k in zip(pts, keep) if k]
 
-def path_d(lines, tol=0.6):
-    out = []
-    for pts in lines:
-        s = dp(pts, tol)
-        if len(s) < 2:
-            continue
-        out.append('M' + ' '.join(f'{x:.1f},{y:.1f}' for x, y in s))
-    return ''.join(out)
-
-def inside(x, y, m=60):
-    return -m <= x <= W + m and -m <= y <= H + m
-
-def clip_lines(geoms):
-    """Project and split lines where they leave the (padded) frame."""
+M = 8
+def clip(parts):
+    """Project lines and split them where they leave the (padded) frame."""
     lines = []
-    for g in geoms:
+    for g in parts:
         cur = []
-        for pt in g:
-            x, y = P(pt['lat'], pt['lon'])
-            if inside(x, y):
-                cur.append((x, y))
-            elif cur:
-                cur.append((x, y)); lines.append(cur); cur = []
-        if len(cur) > 1:
-            lines.append(cur)
+        for lon, lat in g:
+            x, y = P(lon, lat)
+            if -M <= x <= W + M and -M <= y <= H + M: cur.append((x, y))
+            elif cur: cur.append((x, y)); lines.append(cur); cur = []
+        if len(cur) > 1: lines.append(cur)
     return lines
 
-# ---------- coastline: join ways into chains, keep the main one, close it into an ocean shape ----------
-ways = [e['geometry'] for e in load('coast.json') if e.get('geometry')]
-key = lambda p: (round(p['lat'], 6), round(p['lon'], 6))
-chains = [list(w) for w in ways]
-merged = True
-while merged:
-    merged = False
-    starts = {}
-    for i, c in enumerate(chains):
-        starts.setdefault(key(c[0]), i)
-    for i, c in enumerate(chains):
-        j = starts.get(key(c[-1]))
-        if j is not None and j != i:
-            chains[i] = c + chains[j][1:]
-            chains.pop(j)
-            merged = True
-            break
+def rel(lines, tol, min_len=0.0, closed=False):
+    """Path data with relative moves on a 0.1 px grid (small and exact)."""
+    out = []
+    for pts in lines:
+        s = dp(pts, tol) if not closed or len(pts) < 8 else dp(pts[:len(pts) // 2 + 1], tol) + dp(pts[len(pts) // 2:], tol)[1:]
+        if len(s) < 2: continue
+        if min_len and sum(math.hypot(s[i][0] - s[i - 1][0], s[i][1] - s[i - 1][1]) for i in range(1, len(s))) < min_len: continue
+        q = [(round(x * 10), round(y * 10)) for x, y in s]
+        prev = q[0]; parts = []
+        for x, y in q[1:]:
+            dx, dy = x - prev[0], y - prev[1]
+            if dx or dy: parts.append(f'{dx / 10:g} {dy / 10:g}')
+            prev = (x, y)
+        if not parts: continue
+        out.append(f'M{q[0][0] / 10:g} {q[0][1] / 10:g}l' + ' '.join(parts).replace(' -', '-') + ('z' if closed else ''))
+    return ''.join(out)
 
-def in_view(c):
-    return sum(1 for p in c if LAT_BOT - .1 <= p['lat'] <= LAT_TOP + .1 and LON_L - .1 <= p['lon'] <= LON_R)
+def polys(parts, min_area=0):
+    """Project polygon rings (no clipping; the SVG viewport crops them)."""
+    out = []
+    for g in parts:
+        pts = [P(lon, lat) for lon, lat in g]
+        xs = [x for x, _ in pts]; ys = [y for _, y in pts]
+        if (max(xs) - min(xs)) * (max(ys) - min(ys)) < min_area: continue
+        out.append(pts)
+    return out
 
-main = max(chains, key=in_view)
-pts = [P(p['lat'], p['lon']) for p in main if LAT_BOT - .25 <= p['lat'] <= LAT_TOP + .25 and p['lon'] <= -120.4]
-pts = dp(pts, 0.8)
-coast_d = 'M' + ' '.join(f'{x:.1f},{y:.1f}' for x, y in pts)
-ocean_d = coast_d + f' L-40,{pts[-1][1]:.1f} L-40,{pts[0][1]:.1f} Z'
-other_coast = [c for c in chains if c is not main and in_view(c) > 2]
-other_d = path_d(clip_lines(other_coast), 0.5)
+# ---------- land and county lines (cartographic boundary file: clipped to the shoreline) ----------
+land = []
+for rec, parts in read('cb_2024_us_county_500k.zip', lambda r: r['STATEFP'] == '06'):
+    land += polys(parts)
+# County lines are the edges two counties share; coast edges belong to one county only.
+edges = {}
+def kq(p): return (round(p[0], 1), round(p[1], 1))
+for ring in land:
+    for a, b in zip(ring, ring[1:]):
+        e = tuple(sorted((kq(a), kq(b))))
+        if e[0] != e[1]: edges[e] = edges.get(e, 0) + 1
+shared = [(a, b) for (a, b), n in edges.items() if n >= 2]
+adj = {}
+for a, b in shared: adj.setdefault(a, []).append(b); adj.setdefault(b, []).append(a)
+used = set(); county_lines = []
+def take(a, b): used.add((a, b)); used.add((b, a))
+for a, b in shared:
+    if (a, b) in used: continue
+    line = [a, b]; take(a, b)
+    for front in (False, True):
+        while True:
+            tip, prev = (line[0], line[1]) if front else (line[-1], line[-2])
+            nxt = [n for n in adj.get(tip, []) if n != prev and (tip, n) not in used]
+            if len(adj.get(tip, [])) != 2 or not nxt: break
+            take(tip, nxt[0])
+            if front: line.insert(0, nxt[0])
+            else: line.append(nxt[0])
+    county_lines.append(line)
+county_lines = [l for l in county_lines if any(-M <= x <= W + M and -M <= y <= H + M for x, y in l)]
 
-# ---------- highways ----------
-ROUTES = [('5', 'r5.json', 'I-5', (36.47, -120.47)), ('99', 'r99.json', '99', (36.42, -119.47)),
-          ('41', 'r41.json', '41', (35.78, -120.22)), ('180', 'r180.json', '180', (36.735, -120.32)),
-          ('152', 'r152.json', '152', (37.055, -120.58)), ('198', 'r198.json', '198', (36.31, -120.02))]
-roads, shields = [], []
-for ref, fn, label, target in ROUTES:
-    geoms = [e['geometry'] for e in load(fn) if e.get('geometry')]
-    lines = clip_lines(geoms)
-    roads.append(f'<path class="m-road m-r{ref}" d="{path_d(lines, 1.0)}"/>')
-    tx, ty = P(*target)
-    bx, by = min((p for l in lines for p in l), key=lambda p: (p[0] - tx) ** 2 + (p[1] - ty) ** 2)
-    w = 18 + 11.5 * len(label)
-    shields.append(f'<g class="m-shield{" m-i" if ref == "5" else ""}" transform="translate({bx:.1f},{by:.1f})">'
-                   f'<rect x="{-w / 2:.1f}" y="-13" width="{w:.1f}" height="26" rx="6"/><text y="6.5" text-anchor="middle">{label}</text></g>')
+# ---------- roads ----------
+freeway, highway, local, refs = [], [], [], {}
+for rec, parts in read('tl_2024_06_prisecroads.zip', lambda r: True):
+    m, t = rec['MTFCC'], rec['RTTYP']
+    if m == 'S1100': freeway += parts
+    elif t in ('I', 'U', 'S'): highway += parts
+    else: local += parts
+    name = rec['FULLNAME'] or ''
+    for pre, net in (('I- ', 'I'), ('US Hwy ', 'US'), ('State Hwy ', 'CA'), ('State Rte ', 'CA')):
+        if name.startswith(pre):
+            num = name[len(pre):].split(' ')[0]
+            if num.isdigit():
+                for g in parts: refs.setdefault((net, num), []).extend(g)
+freeway, highway, local = clip(freeway), clip(highway), clip(local)
 
-# ---------- cities (OSM place nodes) ----------
-places = {e['tags']['name']: (e['lat'], e['lon']) for e in load('places.json')}
-LABEL = {  # side of the dot for each label (None = dot only)
-    'Merced': 'r', 'Chowchilla': None, 'Madera': 'l', 'Fresno': 'b', 'Clovis': 'hq', 'Sanger': None, 'Kerman': None,
-    'Selma': None, 'Reedley': 'r', 'Kingsburg': None, 'Dinuba': None, 'Hanford': 'b', 'Lemoore': None, 'Visalia': 'r',
-    'Tulare': 'r', 'Los Banos': 'l', 'Firebaugh': None, 'Coalinga': 'l', 'Paso Robles': 'r'}
-cities = []
-for name, side in LABEL.items():
-    lat, lon = places[name]
-    x, y = P(lat, lon)
-    if side == 'hq':
-        cx, cy = x, y
-        continue
-    cities.append(f'<circle class="m-dot" cx="{x:.1f}" cy="{y:.1f}" r="5"/>')
-    if side == 'r':
-        cities.append(f'<text x="{x + 11:.1f}" y="{y + 7:.1f}">{name}</text>')
-    elif side == 'l':
-        cities.append(f'<text x="{x - 11:.1f}" y="{y + 7:.1f}" text-anchor="end">{name}</text>')
-    elif side == 'b':
-        cities.append(f'<text x="{x:.1f}" y="{y + 29:.1f}" text-anchor="middle">{name}</text>')
+# ---------- water ----------
+rivers = []
+for rec, parts in read('tl_2024_06*_linearwater.zip', lambda r: r['MTFCC'] == 'H3010' and (r['FULLNAME'] or '').endswith(' Riv')):
+    rivers += parts
+rivers = clip(rivers)
+lakes = []
+for rec, parts in read('tl_2024_06*_areawater.zip', lambda r: r['MTFCC'] in ('H2030', 'H2040') and r['AWATER'] > 1_500_000):
+    lakes += polys(parts, 12)
 
-R = 1.62 * K  # about 2 hours of driving from Clovis, drawn as a simple ring
-ring_lx, ring_ly = cx - R * .32, cy + R - 16
-ox, oy = P(35.55, -121.95)
+# ---------- places ----------
+places = {}
+for f in glob.glob(os.path.join(SRC, 'tl_2024_06_place.zip')):
+    for rec in shapefile.Reader(f).iterRecords():
+        places.setdefault(rec['NAME'], (float(rec['INTPTLON']), float(rec['INTPTLAT'])))
+places['Paso Robles'] = places['El Paso de Robles (Paso Robles)']  # its legal name in TIGER
+HQ = places['Clovis']
+SERVED = ['Merced', 'Chowchilla', 'Madera', 'Fresno', 'Sanger', 'Kerman', 'Selma', 'Reedley', 'Kingsburg', 'Dinuba',
+          'Hanford', 'Lemoore', 'Visalia', 'Tulare', 'Los Banos', 'Firebaugh', 'Coalinga', 'Paso Robles']
+MINOR = {'Chowchilla', 'Sanger', 'Kerman', 'Selma', 'Kingsburg', 'Dinuba', 'Lemoore', 'Firebaugh', 'Reedley'}
+CONTEXT = ['Salinas', 'Hollister', 'King City', 'Porterville', 'Delano', 'Oakhurst', 'Bakersfield']
+SIDE = {'Merced': 'r', 'Chowchilla': 'r', 'Madera': 'l', 'Fresno': 'b', 'Sanger': 'r', 'Kerman': 'l', 'Selma': 'l',
+        'Reedley': 'r', 'Kingsburg': 'l', 'Dinuba': 'r', 'Hanford': 'b', 'Lemoore': 'l', 'Visalia': 'r', 'Tulare': 'r',
+        'Los Banos': 'l', 'Firebaugh': 'l', 'Coalinga': 'l', 'Paso Robles': 'r'}
+pct = lambda v, of: round(v / of * 100, 2)
+pins = []
+for n in SERVED:
+    x, y = P(*places[n])
+    pins.append({'name': n, 'x': pct(x, W), 'y': pct(y, H), 'side': SIDE.get(n, 'r'), 'minor': n in MINOR})
+context = []
+for n in CONTEXT:
+    if n not in places: print('no context place', n); continue
+    x, y = P(*places[n])
+    if 20 < x < W - 20 and 12 < y < H - 12: context.append({'name': n, 'x': pct(x, W), 'y': pct(y, H)})
+hx, hy = P(*HQ)
 
-svg = f'''<svg class="area-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" aria-labelledby="map-title map-desc">
-<title id="map-title">Service area map</title>
-<desc id="map-desc">Map of the San Joaquin Valley and the Central Coast built from OpenStreetMap data. Clovis is home base. The service area runs from Merced to Tulare along Highway 99 and west toward the coast as far as Paso Robles, about two hours from Clovis. Highways 99, 41, 180, 152, 198, and Interstate 5 are shown.</desc>
-<defs><radialGradient id="m-reach"><stop offset="0" stop-color="#19A9E6" stop-opacity=".26"/><stop offset=".8" stop-color="#19A9E6" stop-opacity=".09"/><stop offset="1" stop-color="#19A9E6" stop-opacity=".03"/></radialGradient></defs>
-<rect class="m-land" width="{W}" height="{H}"/>
-<path class="m-ocean" d="{ocean_d}"/>
-<path class="m-coast" d="{coast_d}"/>
-{f'<path class="m-coast" d="{other_d}"/>' if other_d else ''}
-<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{R:.1f}" fill="url(#m-reach)"/>
-<circle class="m-ring" cx="{cx:.1f}" cy="{cy:.1f}" r="{R:.1f}"/>
-<g class="m-roads">{''.join(roads)}</g>
-<g class="m-shields">{''.join(shields)}</g>
-<g class="m-cities">{''.join(cities)}</g>
-<circle class="m-hq-ring" cx="{cx:.1f}" cy="{cy:.1f}" r="12"/><circle class="m-hq-dot" cx="{cx:.1f}" cy="{cy:.1f}" r="6.5"/>
-<text class="m-hq" x="{cx + 19:.1f}" y="{cy - 4:.1f}">Clovis</text><text class="m-hq-sub" x="{cx + 19:.1f}" y="{cy + 17:.1f}">Home base</text>
-<text class="m-ring-label" x="{ring_lx:.1f}" y="{ring_ly:.1f}" text-anchor="middle">About 2 hours from Clovis</text>
-<text class="m-water" x="{ox:.1f}" y="{oy:.1f}">Pacific</text><text class="m-water" x="{ox:.1f}" y="{oy + 24:.1f}">Ocean</text>
+# ---------- highway shields: one per route, at the route point nearest a chosen spot ----------
+SHIELD_AT = {('I', '5'): (36.58, -120.48), ('CA', '99'): (36.47, -119.52), ('CA', '41'): (35.98, -119.95),
+             ('CA', '180'): (36.74, -120.42), ('CA', '152'): (37.07, -120.66), ('CA', '198'): (36.27, -120.08),
+             ('US', '101'): (36.06, -121.10), ('CA', '46'): (35.70, -120.13), ('CA', '33'): (36.97, -120.62),
+             ('CA', '65'): (35.60, -119.10), ('CA', '43'): (35.98, -119.55)}
+shields = []
+for key, (la, lo) in SHIELD_AT.items():
+    pts = refs.get(key)
+    if not pts: print('no road for shield', key); continue
+    blo, bla = min(pts, key=lambda p: (p[1] - la) ** 2 + ((p[0] - lo) * math.cos(math.radians(la))) ** 2)
+    x, y = P(blo, bla)
+    shields.append({'net': key[0], 'ref': key[1], 'x': pct(x, W), 'y': pct(y, H)})
+
+# ---------- labels and the 2-hour ring ----------
+RING = 1.62 * K
+COUNTIES = [('Merced', 37.20, -120.75), ('Madera', 37.17, -119.95), ('Fresno', 36.45, -120.35), ('Kings', 35.93, -119.72),
+            ('Tulare', 35.88, -118.99), ('Monterey', 36.15, -121.35), ('San Benito', 36.62, -121.05), ('San Luis Obispo', 35.40, -120.55)]
+county_labels = [{'name': n, 'x': pct(P(lo, la)[0], W), 'y': pct(P(lo, la)[1], H)} for n, la, lo in COUNTIES]
+ox, oy = P(-121.72, 35.75)
+rx, ry = P(-120.2, 35.48)
+
+svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
+<rect width="{W}" height="{H}" fill="#C6DDEC"/>
+<path d="{rel(land, 0.35, closed=True)}" fill="#EEF3F7" stroke="#EEF3F7" stroke-width=".6"/>
+<circle cx="{hx:.1f}" cy="{hy:.1f}" r="{RING:.1f}" fill="#0097D7" fill-opacity=".07"/>
+<path d="{rel(lakes, 0.4, closed=True)}" fill="#C6DDEC"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="{rel(rivers, 0.5, 4)}" stroke="#8DBEDD" stroke-width="1.3" vector-effect="non-scaling-stroke"/>
+<path d="{rel(county_lines, 0.6, 3)}" stroke="#9AA9B8" stroke-width="1.1" stroke-dasharray="5 4" vector-effect="non-scaling-stroke"/>
+<path d="{rel(local, 0.6, 3)}" stroke="#CCD6E0" stroke-width=".8" vector-effect="non-scaling-stroke"/>
+<defs><path id="hwy" d="{rel(highway, 0.5, 2)}" vector-effect="non-scaling-stroke"/><path id="fwy" d="{rel(freeway, 0.5, 2)}" vector-effect="non-scaling-stroke"/></defs>
+<use href="#hwy" stroke="#AFBDCB" stroke-width="2.6"/><use href="#hwy" stroke="#FFFFFF" stroke-width="1.4"/>
+<use href="#fwy" stroke="#8597AA" stroke-width="3.8"/><use href="#fwy" stroke="#FFFFFF" stroke-width="2.2"/>
+<circle cx="{hx:.1f}" cy="{hy:.1f}" r="{RING:.1f}" stroke="#0097D7" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="7 6" vector-effect="non-scaling-stroke"/>
+</g>
 </svg>
 '''
-with open(OUT, 'w') as f:
-    f.write(svg)
-print('wrote', OUT, W, 'x', H, round(len(svg) / 1024, 1), 'KB')
+with open(OUT_SVG, 'w') as f: f.write(svg)
+meta = {'w': W, 'h': H, 'hq': {'name': 'Clovis', 'x': pct(hx, W), 'y': pct(hy, H)}, 'pins': pins, 'context': context,
+        'shields': shields, 'counties': county_labels, 'ocean': {'x': pct(ox, W), 'y': pct(oy, H)}, 'ring': {'x': pct(rx, W), 'y': pct(ry, H)},
+        'gmaps': f'https://www.google.com/maps/@?api=1&map_action=map&center={HQ[1]:.4f},{HQ[0]:.4f}&zoom=8'}
+with open(OUT_JSON, 'w') as f: json.dump(meta, f, indent=1)
+print('wrote', OUT_SVG, f'{W}x{H}', round(len(svg) / 1024, 1), 'KB;', len(pins), 'pins,', len(shields), 'shields,', len(context), 'context,',
+      len(county_lines), 'county lines,', len(lakes), 'lakes')
