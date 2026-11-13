@@ -244,22 +244,7 @@ const faqList = (items, open = 0) => `<div class="faq">${items.map(([q, a], i) =
 
 const CITIES = ['Merced', 'Chowchilla', 'Madera', 'Fresno', 'Clovis', 'Sanger', 'Kerman', 'Selma', 'Reedley', 'Kingsburg', 'Dinuba', 'Hanford', 'Lemoore', 'Visalia', 'Tulare'];
 const COAST = ['Los Banos', 'Firebaugh', 'Coalinga', 'Paso Robles'];
-/* Service area map: a light SVG of shapes (scripts/sonnys-ac-map.py, OpenStreetMap data) with HTML labels on top,
-   so names and shields use the site's font and stay readable on phones. */
-const MAPD = JSON.parse(readFileSync('scripts/sonnys-ac-map.json', 'utf8'));
-const at = (o) => `left:${o.x}%;top:${o.y}%`;
-const MAP = `<a class="svc-map" href="${MAPD.gmaps.replace(/&/g, '&amp;')}" target="_blank" rel="noopener">
-  <img src="images/service-area-map.svg?v=4" width="${MAPD.w}" height="${MAPD.h}" alt="Map of the San Joaquin Valley and the Central Coast from OpenStreetMap data. Clovis is home base. The service area runs from Merced to Tulare along Highway 99 and west toward the coast as far as Paso Robles, about two hours from Clovis. Opens Google Maps." loading="lazy" decoding="async">
-  <span class="map-layer" aria-hidden="true">
-    ${MAPD.counties.map((c) => `<span class="m-county" style="${at(c)}">${c.name}</span>`).join('')}
-    <span class="m-ocean" style="${at(MAPD.ocean)}">Pacific<br>Ocean</span>
-    ${MAPD.context.map((c) => `<span class="m-ctx" style="${at(c)}">${c.name}</span>`).join('')}
-    ${MAPD.shields.map((h) => `<span class="m-shield is-${h.net.toLowerCase()}" style="${at(h)}">${h.ref}</span>`).join('')}
-    ${MAPD.pins.map((c) => `<span class="m-pin${c.minor ? ' minor' : ''}" data-side="${c.side}" style="${at(c)}"><b>${c.name}</b></span>`).join('')}
-    <span class="m-ring" style="${at(MAPD.ring)}">About 2 hours from Clovis</span>
-    <span class="m-hq" style="${at(MAPD.hq)}"><i>${MARK()}</i><b>Clovis<small>Home base</small></b></span>
-  </span>
-</a>`;
+const MAP = readFileSync(`${DIR}/images/service-area-map.svg`, 'utf8').trim();
 
 // ================= HOME =================
 const HOME_FAQ = [
@@ -345,7 +330,7 @@ page({
   <div class="wrap area-grid">
     <div>
       <p class="eyebrow rv">Service Area</p>
-      <figure class="area-map card rv-side">${MAP}<figcaption><span>Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a>. Tap the map to open Google Maps.</span><span>Map is approximate.</span></figcaption></figure>
+      <figure class="area-map card rv-side">${MAP}<figcaption><span>Map data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a></span><span>Map is approximate.</span></figcaption></figure>
     </div>
     <div class="area-text rv">
       <h2 id="area-title">Merced to Tulare, and Out Toward the Coast.</h2>
