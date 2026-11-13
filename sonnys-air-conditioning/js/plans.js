@@ -1,4 +1,4 @@
-/* Sonny's Air Conditioning: Send Your Plans form.
+/* Sonny's Air Conditioning: Upload Your Plans form.
    Files go straight from the browser to Cloudflare R2 through short-lived signed links from the
    sonnys-plans Worker (workers/sonnys-plans). Large plan sets are sent in parts, four at a time,
    with retries, and one progress bar for the whole upload. */
@@ -8,7 +8,7 @@
   if (!form) return;
 
   var API = form.getAttribute('data-api');
-  var MAX_FILES = 20, MAX_BYTES = 2 * 1024 * 1024 * 1024, PARALLEL = 4, RETRIES = 4;
+  var MAX_FILES = 20, MAX_BYTES = 10 * 1024 * 1024 * 1024, PARALLEL = 4, RETRIES = 4;
 
   var dropEl = form.querySelector('[data-drop]');
   var input = form.querySelector('input[type="file"]');
@@ -53,14 +53,14 @@
     Array.prototype.forEach.call(fl, function (f) {
       var isPdf = /\.pdf$/i.test(f.name) || f.type === 'application/pdf';
       if (!isPdf) { skipped.push(f.name + ' (not a PDF)'); return; }
-      if (f.size > MAX_BYTES) { skipped.push(f.name + ' (over 2 GB)'); return; }
+      if (f.size > MAX_BYTES) { skipped.push(f.name + ' (over 10 GB, call us)'); return; }
       if (!f.size) { skipped.push(f.name + ' (empty)'); return; }
       if (files.some(function (x) { return x.name === f.name && x.size === f.size; })) return;
       if (files.length >= MAX_FILES) { skipped.push(f.name + ' (20 files max)'); return; }
       files.push({ file: f, name: f.name, size: f.size });
     });
     render();
-    showError(skipped.length ? 'Skipped: ' + skipped.join(', ') + '. Plans need to be PDFs, up to 2 GB each.' : '');
+    showError(skipped.length ? 'Skipped: ' + skipped.join(', ') + '. Plans need to be PDF files.' : '');
   }
 
   input.addEventListener('change', function () { addFiles(input.files); input.value = ''; });
@@ -235,7 +235,7 @@
       form.classList.remove('is-uploading');
       prog.classList.remove('on');
       files.forEach(function (f) { if (f.el) f.el.classList.remove('done'); });
-      var msg = err && err.server ? err.message : 'The upload stopped (' + (err && err.message || 'network error') + '). Check your connection and press Send Your Plans again, or call (559) 392-0743.';
+      var msg = err && err.server ? err.message : 'The upload stopped (' + (err && err.message || 'network error') + '). Check your connection and press Upload Your Plans again, or call (559) 392-0743.';
       showError(msg);
     });
   });
