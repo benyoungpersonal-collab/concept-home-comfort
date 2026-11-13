@@ -222,7 +222,9 @@
       form.hidden = true;
       done.classList.add('on');
       var n = done.querySelector('[data-done-count]');
-      if (n) n.textContent = hasFiles ? (files.length === 1 ? 'Your plan set is' : 'All ' + files.length + ' files are') + ' in, and George has your details.' : 'George has your project details.';
+      if (n) n.textContent = hasFiles ? (files.length === 1 ? 'Your plan set is' : 'All ' + files.length + ' files are') + ' in, and our team has your details.' : 'Our team has your project details.';
+      var nx = done.querySelector('[data-done-next]');
+      if (nx && !hasFiles) nx.textContent = 'We’ll look over the details and call you.';
       done.scrollIntoView({ block: 'start', behavior: 'smooth' });
       done.focus({ preventScroll: true });
     }).catch(function (err) {

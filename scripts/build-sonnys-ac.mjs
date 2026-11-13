@@ -10,7 +10,7 @@ const DIR = 'sonnys-air-conditioning';
 const BASE = 'https://byw-home-comfort.netlify.app/sonnys-air-conditioning/';
 const API = 'https://sonnys-plans.byw-video.workers.dev';
 // Link preview picture (scripts/share-image.cjs). Make a new dated one whenever the hero changes.
-const OG = BASE + 'images/og-share-2026-11-13-r3.jpg';
+const OG = BASE + 'images/og-share-2026-11-13-r4.jpg';
 const PHONE = '(559) 392-0743';
 const TEL = 'tel:+15593920743';
 const EMAIL = 'gwayne@sonnysair.com';
@@ -68,7 +68,6 @@ const SERVICES = [
   ['housing-tracts', 'Housing Tracts and Multi-Family'],
   ['commercial', 'Commercial New Construction'],
   ['installs', 'Installs and Changeouts'],
-  ['your-team', 'Working With Your Team'],
 ];
 const NAV = [['index.html', 'Home'], ['services.html', 'Services'], ['projects.html', 'Projects'], ['about.html', 'About'], ['hvac-tips.html', 'HVAC Tips']];
 
@@ -124,7 +123,7 @@ function footer() {
     <p class="footer-verse"><q>By the grace of God I am what I am.</q> <cite>1 Corinthians 15:10</cite></p>
     <div class="footer-bottom">
       <p class="concept-pill"><b aria-hidden="true">BY</b>Website preview for ${NAME} by Ben Young Web Design.</p>
-      <p>Sample photos stand in until we add photos of George’s own work.</p>
+      <p>Sample photos stand in until we add photos of our own work.</p>
     </div>
   </div>
 </footer>
@@ -234,7 +233,7 @@ function plainHero({ eyebrow, h1, lead, cls = '' }) {
 const cta = (h = 'Got a Project Coming Up?') => `<section class="section cta" aria-labelledby="cta-title">
   <div class="wrap cta-inner">
     <div class="rv"><p class="eyebrow">Let’s Get You Going</p><h2 id="cta-title">${h}</h2><p class="lead">You can send your plans or give us a call. Hours are 6 am to 6 pm.</p></div>
-    <div class="cta-side rv" style="--d:120ms" data-hide-bar>${btnPlans()}${btnCall()}<p class="fine">Or email George at <a href="mailto:${EMAIL}">${EMAIL}</a>.</p></div>
+    <div class="cta-side rv" style="--d:120ms" data-hide-bar>${btnPlans()}${btnCall()}<p class="fine">Or email us at <a href="mailto:${EMAIL}">${EMAIL}</a>.</p></div>
   </div>
 </section>`;
 
@@ -264,13 +263,13 @@ page({
   file: 'index.html',
   title: `${NAME} | HVAC for New Construction and Housing Tracts`,
   desc: `${NAME}: HVAC for general contractors, builders, and developers. New homes, housing tracts, commercial, and changeouts from Merced to Tulare. Based in Clovis. CSLB #1129931. Call ${PHONE}.`,
-  preload: `<link rel="preload" as="image" media="(max-width: 599px)" imagesrcset="${srcset('tract-aerial-phone')}" imagesizes="100vw" fetchpriority="high">\n<link rel="preload" as="image" media="(min-width: 600px)" imagesrcset="${srcset('tract-aerial', [640, 1024, 1600, 2400])}" imagesizes="100vw" fetchpriority="high">`,
+  preload: `<link rel="preload" as="image" imagesrcset="${srcset('tract-aerial', [640, 1024, 1600, 2400])}" imagesizes="(max-width: 599px) 270vw, (max-width: 899px) 140vw, 100vw" fetchpriority="high">`,
   head: `<script type="application/ld+json">${LD}</script>\n<script type="application/ld+json">${faqLd(HOME_FAQ)}</script>`,
   body: `
-<section class="hero hero-glass" aria-labelledby="hero-title">
-  <div class="hero-photo"><picture><source media="(max-width: 599px)" srcset="${srcset('tract-aerial-phone')}" sizes="100vw">${img('tract-aerial', 'Aerial view of a new housing tract under construction, with framed homes and fresh roof sheathing along a curving street', { ws: [640, 1024, 1600, 2400], eager: true, pos: '--pos:30% 35%;--pos-d:50% 50%', w: 2400, h: 1800 })}</picture></div>
+<section class="hero hero-full" aria-labelledby="hero-title">
+  <div class="hero-photo">${img('tract-aerial', 'Aerial view of a new housing tract under construction, with framed homes and fresh roof sheathing along a curving street', { ws: [640, 1024, 1600, 2400], sizes: '(max-width: 599px) 270vw, (max-width: 899px) 140vw, 100vw', eager: true, pos: '--pos:30% 50%;--pos-d:50% 50%', w: 2400, h: 1800 })}</div>
   <div class="wrap hero-wrap">
-    <div class="hero-card">
+    <div class="hero-copy">
       <p class="eyebrow pill">C-20 HVAC Contractor · Clovis, CA</p>
       <h1 id="hero-title"><span>Transparent.</span> <span>Honest.</span> <span>Predictable.</span></h1>
       <p class="hero-quote">Specializing in doing the right thing, ALWAYS.<br class="br-desk"> Also Air Conditioning.</p>
@@ -281,14 +280,12 @@ page({
   </div>
 </section>
 
-<section class="stats-sec" aria-label="At a glance">
-  <div class="wrap">
-    <ul class="facts">
-      <li class="card rv"><b><span data-count="20">20</span>+</b><span>Years of air conditioning experience.</span></li>
-      <li class="card rv" style="--d:90ms"><b>C-20</b><span>State-licensed HVAC contractor.</span></li>
-      <li class="card rv" style="--d:180ms"><b><span data-count="2">2</span> hrs</b><span>Service radius from Clovis.</span></li>
-    </ul>
-  </div>
+<section class="stat-strip" aria-label="At a glance">
+  <ul class="wrap facts-strip">
+    <li><b><span data-count="20">20</span>+</b> Years in AC</li>
+    <li><b>C-20</b> Licensed</li>
+    <li><b>Merced</b> to <b>Tulare</b></li>
+  </ul>
 </section>
 
 <section class="section svc-sec" id="services" aria-labelledby="svc-title">
@@ -311,7 +308,7 @@ page({
     <div class="section-head rv"><p class="eyebrow">How It Works</p><h2 id="steps-title">How a Job Gets Started.</h2></div>
     <ol class="steps">
       <li class="card rv"><span class="num" aria-hidden="true">01</span><h3>Send Us Your Plans.</h3><p><a href="${UPLOAD}">Upload the plan set</a>, any size. Rather talk first? Call <a href="${TEL}" class="nowrap">${PHONE}</a>.</p></li>
-      <li class="card rv" style="--d:100ms"><span class="num" aria-hidden="true">02</span><h3>We Go Over Them.</h3><p>George reviews the plans, calls you with any questions, and sends a quote.</p></li>
+      <li class="card rv" style="--d:100ms"><span class="num" aria-hidden="true">02</span><h3>We Go Over Them.</h3><p>We go over the plans, call you with any questions, and send a quote.</p></li>
       <li class="card rv" style="--d:200ms"><span class="num" aria-hidden="true">03</span><h3>We’ll Get You Going.</h3><p>Once you’re good with the quote, we get to work.</p></li>
     </ol>
   </div>
@@ -323,7 +320,7 @@ page({
     <div class="band-copy rv">
       <p class="eyebrow">Who We Are</p>
       <h2 id="band-title">20+ Years in the Trade.</h2>
-      <p class="lead">George has been in air conditioning for more than 20 years. About two years ago he started Sonny’s, based in Clovis.</p>
+      <p class="lead">Sonny’s is led by George, who has more than 20 years in air conditioning. He started the company about two years ago in Clovis, and our crew takes jobs from Merced to Tulare, and out toward the coast.</p>
       <a class="btn btn-ghost" href="about.html">About Sonny’s ${I.arrow}</a>
     </div>
   </div>
@@ -393,8 +390,16 @@ ${hero({
     'Heating, ventilation, and air conditioning for new commercial buildings, from your plan set.', ['Heating', 'Ventilation', 'Air conditioning', 'Ductwork', 'Coordinated with your GC and electricians'])}
     ${detail('installs', 'brazing-line', 'Hands brazing a copper refrigerant line with a torch', '--pos:45% 50%', '04 · Installs and Changeouts', 'Installs and Changeouts.',
     'New equipment in, old equipment out.', ['Condensers', 'Furnaces', 'Air handlers', 'Heat pumps'])}
-    ${detail('your-team', 'blueprints', 'Hands working over a set of construction plans with an architect’s scale ruler and a rolled plan sheet', '--pos:50% 40%', '05 · Working With Your Team', 'Working With Your Team.',
-    'We work off your plans and right alongside your crew.', ['Reading blueprints and plan sets', 'Coordinating with builders', 'Electricians', 'Project managers'])}
+  </div>
+</section>
+<section class="section section-alt crew-band" id="your-team" aria-labelledby="crew-title">
+  <div class="wrap crew-grid">
+    <div class="rv">
+      <p class="eyebrow">Your Crew and Ours</p>
+      <h2 id="crew-title">How We Work With Your Crew.</h2>
+      <p class="lead">We work off your plans and right alongside your crew.</p>
+    </div>
+    <ul class="crew-list rv" style="--d:100ms">${['Reading blueprints and plan sets', 'Coordinating with builders', 'Electricians', 'Project managers'].map((x) => `<li>${I.check}<span>${x}</span></li>`).join('')}</ul>
   </div>
 </section>
 ${cta('Have Plans Ready?')}
@@ -415,7 +420,7 @@ page({
 ${plainHero({ eyebrow: 'Projects', h1: 'Projects.', lead: 'New homes, tracts, multi-family, commercial, and changeouts from Merced to Tulare.' })}
 <section class="section tight" aria-label="Sample project photos">
   <div class="wrap">
-    <p class="notice">${I.info}<span>Sample photos for now. George’s real jobs go here as soon as his photos come in.</span></p>
+    <p class="notice">${I.info}<span>Sample photos for now. Photos of our own jobs go here soon.</span></p>
     <div class="proj-grid">
       ${proj('frame-fence', 'New home in wood framing behind a construction fence', '--pos:50% 55%', 'New Home Build', 0)}
       ${proj('tract-homes', 'New two-story tract homes beside a pile of graded dirt', '--pos:45% 50%', 'Housing Tract', 80)}
@@ -479,6 +484,8 @@ const TIPS_FAQ = [
   ['Do you work on new construction?', `Yes, that’s most of our work. <a href="${UPLOAD}">Upload your plans</a> or call <a href="${TEL}" class="nowrap">${PHONE}</a>.`],
 ];
 
+const tipPhoto = (n, alt, pos = '') => `<figure class="tip-photo card">${img(n, alt, { sizes: '(min-width: 1000px) 704px, 100vw', pos })}</figure>`;
+
 if (existsSync(`${DIR}/education.html`)) unlinkSync(`${DIR}/education.html`);
 if (existsSync(`${DIR}/send-your-plans.html`)) unlinkSync(`${DIR}/send-your-plans.html`);
 page({
@@ -487,7 +494,7 @@ page({
   desc: 'Plain HVAC tips for homeowners: the thermostat-at-65 myth, how AC removes heat, why your AC is not blowing cold, why a heater smells when it first turns on, and common questions.',
   head: `<script type="application/ld+json">${faqLd(TIPS_FAQ)}</script>`,
   body: `
-${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<br> Do Yourself.', lead: 'Short, plain answers to the questions homeowners ask most. Try these first. Most take a few minutes.' })}
+${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<br> Do Yourself.', lead: 'Short, easy answers to the questions homeowners ask most. Try these first. Most take a few minutes.' })}
 <section class="section tips-sec" aria-label="Tips">
   <div class="wrap edu-layout">
     <nav class="toc" aria-label="On this page">
@@ -504,6 +511,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="thermostat">
         <p class="eyebrow">Myth</p>
         <h2>Setting It to 65 Won’t Cool the House Faster.</h2>
+        ${tipPhoto('thermostat-dial', 'A finger turning the dial on a black wall thermostat set to 63', '--pos:45% 45%')}
         <p class="kicker">Most AC systems run at one speed. Turning the thermostat way down doesn’t make the air come out any colder.</p>
         <p>The thermostat is a switch, not a gas pedal. Set it to 74 or 65 and the system blows the same air at the same rate. The lower number just keeps it running longer, past where you wanted it, and you pay for every extra minute.</p>
         <p>Set it where you want the house to end up and leave it there. On the hottest afternoons it can take a while to catch up. That’s normal.</p>
@@ -512,6 +520,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="removes-heat">
         <p class="eyebrow">How It Works</p>
         <h2>AC Doesn’t Make Cold. It Removes Heat.</h2>
+        ${tipPhoto('condenser-rain', 'Outdoor AC condenser in a green backyard, with rain falling', '--pos:60% 50%')}
         <p class="kicker">An air conditioner moves heat from inside your house to the outside. Cold is what’s left behind.</p>
         <p>Refrigerant picks up heat at the indoor coil, carries it through the copper lines, and lets it go at the outdoor unit. That’s why the air coming off the outdoor unit feels hot. Two things follow from that:</p>
         <ul class="checks">
@@ -523,6 +532,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="not-cold">
         <p class="eyebrow">Troubleshooting</p>
         <h2>Why Isn’t My AC Blowing Cold?</h2>
+        ${tipPhoto('dusty-filter', 'Close-up of a dusty, pleated air filter that needs changing')}
         <p class="kicker">Check airflow before charge. Most “it needs more refrigerant” calls turn out to be an airflow problem.</p>
         <p>Go through these in order:</p>
         <ul class="checks">
@@ -537,6 +547,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <article class="article rv" id="heater-smell">
         <p class="eyebrow">Heating</p>
         <h2>Why Does the Heater Smell When It First Turns On?</h2>
+        ${tipPhoto('furnace-burners', 'Row of gas burners firing blue inside a furnace')}
         <p class="kicker">That dusty, slightly burnt smell the first time you run the heat each fall is usually dust burning off.</p>
         <p>Over the summer, dust settles on the burners, the heat exchanger, or the electric heat strips. The first time they heat up, it burns off. The smell should fade within the first few hours. Opening a window and changing the filter helps.</p>
         <div class="callout warn"><p><b>When it’s not dust:</b> if the smell doesn’t fade, or it smells like burning plastic or hot wiring, turn the system off and call a pro. If you smell gas (like rotten eggs), don’t touch any switches. Get everyone out and call the gas company or 911 from outside.</p></div>
@@ -625,8 +636,8 @@ ${plainHero({ eyebrow: 'Plan Upload', h1: 'Upload Your Plans.', lead: 'Tell us a
       <div class="done-card card" data-done tabindex="-1" role="status">
         <div class="ok">${I.check}</div>
         <h2>Got It. Thank You.</h2>
-        <p class="lead" data-done-count>George has your details.</p>
-        <p>He’ll go through the plans and call you. Need to add something? Call <a href="${TEL}">${PHONE}</a>, 6 am to 6 pm.</p>
+        <p class="lead" data-done-count>Your plan set is in, and our team has your details.</p>
+        <p><span data-done-next>We’ll go through the plans and call you.</span> Need to add something? Call <a href="${TEL}">${PHONE}</a>, 6 am to 6 pm.</p>
       </div>
     </div>
     <aside class="form-aside card rv" style="--d:120ms" aria-label="Contact and next steps">
@@ -634,7 +645,7 @@ ${plainHero({ eyebrow: 'Plan Upload', h1: 'Upload Your Plans.', lead: 'Tell us a
         <li><b>Rather talk first?</b><a class="big" href="${TEL}">${PHONE}</a></li>
         <li><b>Email</b><a href="mailto:${EMAIL}">${EMAIL}</a></li>
         <li><b>Hours</b><span>6 am to 6 pm</span></li>
-        <li><b>What happens next</b><span>George reviews the plans, calls with any questions, and sends a quote.</span></li>
+        <li><b>What happens next</b><span>We review the plans, call with any questions, and send a quote.</span></li>
         <li><b>Where we work</b><span>About two hours from Clovis: Merced to Tulare, and out toward the coast.</span></li>
         <li>${LICENSE}</li>
       </ul>
