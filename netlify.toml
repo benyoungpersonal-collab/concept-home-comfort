@@ -140,3 +140,16 @@
   to = "/cooling.html"
   status = 301
   force = true
+
+# Sonny's Air Conditioning: Education was renamed HVAC Tips
+[[redirects]]
+  from = "/sonnys-air-conditioning/education.html"
+  to = "/sonnys-air-conditioning/hvac-tips.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sonnys-air-conditioning/education"
+  to = "/sonnys-air-conditioning/hvac-tips.html"
+  status = 301
+  force = true
