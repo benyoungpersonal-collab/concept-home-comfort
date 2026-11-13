@@ -84,7 +84,7 @@ function header(page) {
   return `<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="${NAME}, home">${MARK_ANIM}${WORD}</a>
+    <a class="brand" href="./" aria-label="${NAME}, home">${MARK_ANIM}${WORD}</a>
     <nav class="nav" aria-label="Main">${links}</nav>
     <div class="header-cta"><a class="header-phone" href="${TEL}">${PHONE}</a>${btnPlans()}</div>
     <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-menu-open>${I.menu}</button>
@@ -92,7 +92,7 @@ function header(page) {
 </header>
 <dialog class="menu" id="menu" aria-label="Menu" data-menu>
   <div class="wrap">
-    <div class="menu-top"><a class="brand" href="index.html" aria-label="${NAME}, home">${MARK()}${WORD}</a><button class="menu-btn" type="button" aria-label="Close menu" data-menu-close>${I.close}</button></div>
+    <div class="menu-top"><a class="brand" href="./" aria-label="${NAME}, home">${MARK()}${WORD}</a><button class="menu-btn" type="button" aria-label="Close menu" data-menu-close>${I.close}</button></div>
     <ul class="menu-links">${mlinks}</ul>
     <div class="btn-row">${btnPlans()}${btnCall()}</div>
     <p class="fine menu-fine">Hours: 6 am to 6 pm. Based in Clovis, CA.<br><a href="mailto:${EMAIL}">${EMAIL}</a></p>
@@ -264,16 +264,16 @@ page({
   file: 'index.html',
   title: `${NAME} | HVAC for New Construction and Housing Tracts`,
   desc: `${NAME}: HVAC for general contractors, builders, and developers. New homes, housing tracts, commercial, and changeouts from Merced to Tulare. Based in Clovis. CSLB #1129931. Call ${PHONE}.`,
-  preload: heroPreload('tract-aerial', [640, 1024, 1600, 2400]),
+  preload: `<link rel="preload" as="image" media="(max-width: 599px)" imagesrcset="${srcset('tract-aerial-phone')}" imagesizes="100vw" fetchpriority="high">\n<link rel="preload" as="image" media="(min-width: 600px)" imagesrcset="${srcset('tract-aerial', [640, 1024, 1600, 2400])}" imagesizes="100vw" fetchpriority="high">`,
   head: `<script type="application/ld+json">${LD}</script>\n<script type="application/ld+json">${faqLd(HOME_FAQ)}</script>`,
   body: `
 <section class="hero hero-glass" aria-labelledby="hero-title">
-  <div class="hero-photo">${img('tract-aerial', 'Aerial view of a new housing tract under construction, with framed homes and fresh roof sheathing along a curving street', { ws: [640, 1024, 1600, 2400], eager: true, pos: '--pos:38% 50%;--pos-d:50% 50%', w: 2400, h: 1800 })}</div>
+  <div class="hero-photo"><picture><source media="(max-width: 599px)" srcset="${srcset('tract-aerial-phone')}" sizes="100vw">${img('tract-aerial', 'Aerial view of a new housing tract under construction, with framed homes and fresh roof sheathing along a curving street', { ws: [640, 1024, 1600, 2400], eager: true, pos: '--pos:30% 35%;--pos-d:50% 50%', w: 2400, h: 1800 })}</picture></div>
   <div class="wrap hero-wrap">
     <div class="hero-card">
       <p class="eyebrow pill">C-20 HVAC Contractor · Clovis, CA</p>
       <h1 id="hero-title"><span>Transparent.</span> <span>Honest.</span> <span>Predictable.</span></h1>
-      <p class="hero-quote">Specializing in doing the right thing, ALWAYS. Also Air Conditioning.</p>
+      <p class="hero-quote">Specializing in doing the right thing, ALWAYS.<br class="br-desk"> Also Air Conditioning.</p>
       <p class="lead">The HVAC sub for general contractors, builders, and developers. New homes, housing tracts, and installs from Merced to Tulare. 20+ years in air conditioning.</p>
       <div class="btn-row" data-hide-bar>${btnPlans()}${btnCall()}</div>
       ${LICENSE}
@@ -295,7 +295,7 @@ page({
   <div class="wrap">
     <div class="split-head">
       <div class="rv"><p class="eyebrow">What We Do</p><h2 id="svc-title">Built for Builders.</h2></div>
-      <p class="lead rv" style="--d:100ms">New homes, whole tracts, commercial buildings, and equipment swaps.</p>
+      <p class="lead rv" style="--d:100ms">New homes, whole tracts, commercial buildings, and changeouts.</p>
     </div>
     <div class="svc-grid">
       ${svcCard('services.html#new-construction', 'framing-two-story', 'Two-story home in wood framing with scaffolding on a new construction site', '--pos:40% 50%', '01', 'Residential New Construction', 'Full systems for new homes, built from your plan set.', 0)}
@@ -322,8 +322,8 @@ page({
   <div class="wrap">
     <div class="band-copy rv">
       <p class="eyebrow">Who We Are</p>
-      <h2 id="band-title">George’s Company.</h2>
-      <p class="lead">George started Sonny’s about two years ago and runs it out of Clovis.</p>
+      <h2 id="band-title">20+ Years in the Trade.</h2>
+      <p class="lead">George has been in air conditioning for more than 20 years. About two years ago he started Sonny’s, based in Clovis.</p>
       <a class="btn btn-ghost" href="about.html">About Sonny’s ${I.arrow}</a>
     </div>
   </div>
@@ -391,10 +391,10 @@ ${hero({
     'For builders putting up a whole tract or a multi-family building.', ['Repeat plans, lot after lot', 'Multi-family buildings', 'Ductwork and equipment for every unit', 'Coordinated with the builder and the other trades'])}
     ${detail('commercial', 'commercial-site', 'Large commercial steel frame going up behind a fenced, freshly graded site', '--pos:50% 50%', '03 · Commercial', 'Commercial New Construction.',
     'Heating, ventilation, and air conditioning for new commercial buildings, from your plan set.', ['Heating', 'Ventilation', 'Air conditioning', 'Ductwork', 'Coordinated with your GC and electricians'])}
-    ${detail('installs', 'condenser-home', 'Outdoor AC condenser on the side of a house with a wood fence', '--pos:50% 60%', '04 · Installs and Changeouts', 'Installs and Changeouts.',
+    ${detail('installs', 'brazing-line', 'Hands brazing a copper refrigerant line with a torch', '--pos:45% 50%', '04 · Installs and Changeouts', 'Installs and Changeouts.',
     'New equipment in, old equipment out.', ['Condensers', 'Furnaces', 'Air handlers', 'Heat pumps'])}
     ${detail('your-team', 'blueprints', 'Hands working over a set of construction plans with an architect’s scale ruler and a rolled plan sheet', '--pos:50% 40%', '05 · Working With Your Team', 'Working With Your Team.',
-    '', ['Reading blueprints and plan sets', 'Coordinating with builders', 'Electricians', 'Project managers'])}
+    'We work off your plans and right alongside your crew.', ['Reading blueprints and plan sets', 'Coordinating with builders', 'Electricians', 'Project managers'])}
   </div>
 </section>
 ${cta('Have Plans Ready?')}
@@ -421,7 +421,7 @@ ${plainHero({ eyebrow: 'Projects', h1: 'Projects.', lead: 'New homes, tracts, mu
       ${proj('tract-homes', 'New two-story tract homes beside a pile of graded dirt', '--pos:45% 50%', 'Housing Tract', 80)}
       ${proj('multifamily-build', 'Multi-story apartment building in wood framing and sheathing, with a tower crane', '--pos:40% 50%', 'Multi-Family Build', 160)}
       ${proj('rooftop-towers', 'Commercial rooftop with three cooling towers, red piping, and a crane', '--pos:50% 50%', 'Commercial Rooftop', 0)}
-      ${proj('framing-scaffold', 'Two-story wood framing with scaffolding against a blue sky', '--pos:50% 50%', 'Two-Story Framing', 80)}
+      ${proj('sheathed-framing', 'New multi-story wood framing with OSB sheathing against a blue sky', '--pos:50% 60%', 'Framing and Sheathing', 80)}
       ${proj('new-units', 'Row of new outdoor heat pump units on a lawn beside a new building', '--pos:50% 55%', 'Equipment Changeout', 160)}
     </div>
   </div>
@@ -450,7 +450,7 @@ ${hero({
     <div class="rv">
       <p class="eyebrow">Meet the owner</p>
       <h2 id="owner-title">Meet George.</h2>
-      <p class="lead" style="margin-top:20px">Sonny’s is George’s company. He works out of Clovis and takes jobs from Merced to Tulare, and out toward the coast.</p>
+      <p class="lead" style="margin-top:20px">George has been in air conditioning for more than 20 years. About two years ago he started Sonny’s in Clovis, and he takes jobs from Merced to Tulare, and out toward the coast.</p>
       <ul class="timeline">
         <li><b>20+ years</b><span>In air conditioning.</span></li>
         <li><b>2</b><span>Years running his own company.</span></li>

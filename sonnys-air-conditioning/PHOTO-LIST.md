@@ -4,7 +4,7 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 
 | Page and spot | File | What is there | Source |
 |---|---|---|---|
-| Home hero | tract-aerial | Aerial view of a new housing tract under construction | Scott Blake, https://unsplash.com/photos/IWiiwnmzbjs |
+| Home hero | tract-aerial (phones: tract-aerial-phone, a crop of the same photo framed on the houses) | Aerial view of a new housing tract under construction | Scott Blake, https://unsplash.com/photos/IWiiwnmzbjs |
 | Home card: Residential New Construction | framing-two-story | Two-story home in wood framing with scaffolding | Troy Mortier, https://unsplash.com/photos/rxfWPJUUClo |
 | Home card: Housing Tracts and Multi-Family | townhomes | Row of new two-story townhomes with dumpsters out front | Ernie Journeys, https://unsplash.com/photos/JqZlFnJ-KpE |
 | Home card: Commercial New Construction | commercial-steel | Steel frame of a large commercial building with cranes and lifts | david Griffiths, https://unsplash.com/photos/UtgKZUlRV78 |
@@ -14,13 +14,13 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 | Services 01: Residential New Construction | roof-framing | Roof trusses and framing on a new house | Troy Mortier, https://unsplash.com/photos/kkdfOe0iRu8 |
 | Services 02: Housing Tracts and Multi-Family | tract-site | New tract homes beyond a graded lot with a dump truck | Ernie Journeys, https://unsplash.com/photos/TZGjH3-Zmq0 |
 | Services 03: Commercial New Construction | commercial-site | Commercial steel frame behind a fenced, graded site | david Griffiths, https://unsplash.com/photos/TKMIUzz9vD0 |
-| Services 04: Installs and Changeouts | condenser-home | Outdoor AC condenser beside a house with a wood fence | Sally, https://unsplash.com/photos/CvgVJxsI4Fg |
+| Services 04: Installs and Changeouts | brazing-line | Hands brazing a copper refrigerant line with a torch (no logos) | Julessa Scofield, https://unsplash.com/photos/CdUDlWlH_ss |
 | Services 05: Working With Your Team | blueprints | Hands over construction plans with an architect's scale | Daniel McCullough, https://unsplash.com/photos/-FPFq_trr2Y |
 | Projects: New Home Build | frame-fence | New home in wood framing behind a construction fence | Troy Mortier, https://unsplash.com/photos/nCiRDhiVeP8 |
 | Projects: Housing Tract | tract-homes | New two-story tract homes beside a pile of graded dirt | Troy Mortier, https://unsplash.com/photos/MprGNaVtr04 |
 | Projects: Multi-Family Build | multifamily-build | Multi-story apartment building in framing and sheathing, tower crane | Salvador Rios, https://unsplash.com/photos/3GdHDDtHJ-4 |
 | Projects: Commercial Rooftop | rooftop-towers | Commercial rooftop with cooling towers, red piping, and a crane | pipe gil, https://unsplash.com/photos/_Jm8ylFEH0s |
-| Projects: Two-Story Framing | framing-scaffold | Two-story wood framing with scaffolding | Troy Mortier, https://unsplash.com/photos/pb2rODOfXz8 |
+| Projects: Framing and Sheathing | sheathed-framing | New multi-story wood framing with OSB sheathing | Kier in Sight Archives, https://unsplash.com/photos/Fz-FzC5t0Q8 |
 | Projects: Equipment Changeout | new-units | Row of new outdoor heat pump units beside a new building (no people) | alpha innotec, https://unsplash.com/photos/ypmI48pdWMI |
 | About hero | framing-interior | Bright, sunlit interior of a new home in wood framing | Samuel Cruz, https://unsplash.com/photos/17nDFVkBYK0 |
 
