@@ -82,7 +82,8 @@ h3 { font-size: clamp(1.45rem, 5.4vw, 1.8rem); line-height: 1.1; }
 .site-header { position: sticky; top: 0; z-index: 50; height: var(--header-h); background: rgb(10 18 28 / .9); -webkit-backdrop-filter: saturate(140%) blur(14px); backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid var(--line-soft); }
 .site-header .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); flex: none; }
-.brand-mark { width: 54px; height: auto; aspect-ratio: 506 / 341; overflow: visible; }
+.brand-mark { width: 54px; height: auto; aspect-ratio: 506 / 341; overflow: hidden; }
+.brand-mark.lg { overflow: visible; }
 .brand-word { width: 200px; height: auto; aspect-ratio: 1184 / 74; }
 @media (min-width: 900px) { .brand-mark { width: 64px; } .brand-word { width: 236px; } }
 @media (max-width: 379px) { .brand-word { width: 168px; } .brand-mark { width: 46px; } }
@@ -128,6 +129,7 @@ h3 { font-size: clamp(1.45rem, 5.4vw, 1.8rem); line-height: 1.1; }
 /* ---------- hero (inner pages): photo runs full behind the card on desktop ---------- */
 .hero { position: relative; isolation: isolate; background: var(--ink-900); }
 .hero-photo { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--media-bg); }
+.hero-photo picture { display: block; width: 100%; height: 100%; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
 .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(6 11 18 / .22), rgb(6 11 18 / 0) 30%, rgb(6 11 18 / 0) 70%, rgb(10 18 28 / .5)); pointer-events: none; }
 .hero-wrap { position: relative; z-index: 2; margin-top: -40px; }
@@ -537,3 +539,8 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 @media (max-width: 459px) { .eyebrow.pill { font-size: 12px; letter-spacing: .1em; padding: 7px 12px 6px 10px; gap: 7px; white-space: nowrap; } }
 @media (max-width: 599px) { .hero-glass .hero-wrap { padding-top: 20vh; } .hero-glass h1 { font-size: clamp(2.7rem, 13vw, 4rem); } }
 @media (max-width: 599px) { .about-hero .hero-card { padding-bottom: 8px; } .about-hero + .section { padding-top: 32px; } }
+/* phones: the photo runs behind the top of the card at a natural scale, so the framed houses read */
+@media (max-width: 599px) {
+  .hero-glass .hero-photo { bottom: auto; height: calc(20vh + 170px); }
+  .hero-glass .hero-photo::after { background: linear-gradient(180deg, rgb(6 11 18 / .1) 0%, rgb(6 11 18 / 0) 35%, rgb(10 18 28 / .55) 78%, var(--ink-900) 100%); }
+}
