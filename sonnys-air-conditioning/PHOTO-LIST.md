@@ -29,7 +29,7 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 
 Not photos:
 - Owner placeholder (About): a plain head-and-shoulders silhouette in George's blues, with a "Your photo here" tag.
-- Service area map (Home, images/service-area-map.svg plus HTML labels): drawn from OpenStreetMap data (c) OpenStreetMap contributors, ODbL, by scripts/sonnys-ac-map.py.
+- Service area map (Home, images/service-area-map.svg plus HTML labels): drawn from U.S. Census Bureau TIGER/Line 2024 files (public domain) by scripts/sonnys-ac-map.py: roads, rivers, lakes, county lines, coastline, and city points.
 - Logo (images/logo-*.svg): George's logo from his design.com brand page. logo-on-dark.svg drops the thin black outline on the lettering for the dark background; logo-original.svg is unchanged. The header intro animates his own logo paths and ends on the unchanged artwork.
 - Link preview picture (images/og-share-*.jpg): screenshots of the homepage (scripts/share-image.cjs).
 
