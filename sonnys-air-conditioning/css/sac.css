@@ -210,8 +210,14 @@ h3 { font-size: clamp(1.45rem, 5.4vw, 1.8rem); line-height: 1.1; }
 .facts-strip li + li::before { content: ""; position: absolute; left: -3px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--blue-hi); }
 .facts-strip b { color: var(--white); font: 700 1.3em/1 var(--ff-head); letter-spacing: .02em; font-variant-numeric: tabular-nums; }
 .facts-strip b span { font: inherit; }
-@media (max-width: 519px) { .facts-strip { padding: 12px 0; } .facts-strip li { padding: 0 10px; font-size: 12.5px; letter-spacing: .06em; gap: 5px; } }
-@media (max-width: 389px) { .facts-strip li { padding: 0 7px; font-size: 11.5px; letter-spacing: .04em; } }
+/* phones: three columns (value over label), thin dividers, never a dot starting a line */
+@media (max-width: 599px) {
+  .facts-strip { display: grid; grid-template-columns: repeat(3, 1fr); padding: 14px 0; gap: 0; }
+  .facts-strip li { flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0 6px; text-align: center; white-space: normal; font-size: 11.5px; letter-spacing: .08em; line-height: 1.2; }
+  .facts-strip li + li::before { left: 0; top: 10%; width: 1px; height: 80%; margin: 0; border-radius: 0; background: var(--line); }
+  .facts-strip > li > b { font-size: 1.75em; }
+  .facts-strip li span b { font: inherit; color: var(--steel-300); letter-spacing: inherit; }
+}
 @media (min-width: 900px) { .facts-strip { padding: 18px 0; } .facts-strip li { padding: 0 34px; font-size: 16px; } }
 .svc-sec { padding-top: 64px; }
 @media (min-width: 900px) { .section.svc-sec { padding-top: 96px; } }
@@ -569,8 +575,9 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .crew-band h2 { margin-bottom: 18px; }
 .crew-band .lead { margin: 0; }
 .crew-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-@media (min-width: 600px) { .crew-list { grid-template-columns: 1fr 1fr; } }
-.crew-list li { display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: var(--card-bg); border: 1px solid var(--card-line); border-radius: var(--r); box-shadow: var(--card-shadow); color: var(--white); font-weight: 700; line-height: 1.35; }
+.crew-list li { display: flex; align-items: flex-start; gap: 16px; padding: 20px 22px; background: var(--card-bg); border: 1px solid var(--card-line); border-radius: var(--r); box-shadow: var(--card-shadow); }
+.crew-list h3 { margin: 3px 0 6px; font-size: 1.32rem; }
+.crew-list p { margin: 0; color: var(--steel-300); font-size: 16px; line-height: 1.5; }
 .crew-list svg { flex: none; width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: rgb(0 151 215 / .16); stroke: var(--cyan); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
 /* HVAC Tips photos */

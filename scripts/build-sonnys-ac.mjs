@@ -297,9 +297,9 @@ page({
 
 <section class="stat-strip" aria-label="At a glance">
   <ul class="wrap facts-strip">
-    <li><b><span data-count="20">20</span>+</b> Years in AC</li>
-    <li><b>C-20</b> Licensed</li>
-    <li><b>Merced</b> to <b>Tulare</b></li>
+    <li><b><span data-count="20">20</span>+</b> <span>Years in AC</span></li>
+    <li><b>C-20</b> <span>Licensed</span></li>
+    <li><b>Merced</b> <span>to <b>Tulare</b></span></li>
   </ul>
 </section>
 
@@ -414,7 +414,11 @@ ${hero({
       <h2 id="crew-title">How We Work With Your Crew.</h2>
       <p class="lead">We work off your plans and right alongside your crew.</p>
     </div>
-    <ul class="crew-list rv" style="--d:100ms">${['Reading blueprints and plan sets', 'Coordinating with builders', 'Electricians', 'Project managers'].map((x) => `<li>${I.check}<span>${x}</span></li>`).join('')}</ul>
+    <ul class="crew-list rv" style="--d:100ms">${[
+      ['We Start With Your Plans.', 'We read your blueprints and plan sets first, so the HVAC is laid out for the build.'],
+      ['We Stay on Your Schedule.', 'We coordinate with your builder and project manager on timing.'],
+      ['We Work With Your Trades.', 'We work right alongside your electricians and the other trades on site.'],
+    ].map(([t, x]) => `<li>${I.check}<div><h3>${t}</h3><p>${x}</p></div></li>`).join('')}</ul>
   </div>
 </section>
 ${cta('Have Plans Ready?')}
@@ -548,7 +552,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
         <p class="eyebrow">Troubleshooting</p>
         <h2>Why Isn’t My AC Blowing Cold?</h2>
         ${tipPhoto('hot-fan', 'Young woman sitting beside an electric fan in a warm, sunny room', '--pos:40% 45%')}
-        <p class="kicker">Check airflow before charge. Most “it needs more refrigerant” calls turn out to be an airflow problem.</p>
+        <p class="kicker">Before you call, check the airflow. Most “my AC isn’t cooling” calls turn out to be an airflow problem, not a refrigerant one.</p>
         <p>Go through these in order:</p>
         <ul class="checks">
           <li><b>Clogged filter.</b><p>Pull the filter and hold it up to a light. If you can’t see through it, replace it. It’s the most common cause by far.</p></li>
