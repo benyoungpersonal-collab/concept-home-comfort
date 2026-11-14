@@ -459,7 +459,7 @@ a.svc:hover .more svg { transform: translateX(4px); }
 .field.has-err .err { display: block; }
 fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-@media (min-width: 700px) { .types { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 700px) { .types { grid-template-columns: repeat(3, 1fr); } }
 .types label { position: relative; margin: 0; }
 .types input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
 .types span { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 10px 12px; border-radius: 10px; border: 1.5px solid #2E4560; background: var(--ink-900); color: var(--steel-200); font-weight: 700; font-size: 15.5px; line-height: 1.25; text-align: center; transition: border-color .2s ease, background .2s ease, color .2s ease; }
