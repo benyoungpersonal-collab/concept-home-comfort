@@ -19,7 +19,10 @@ const MAX_FILES = 20;
 const MAX_FILE_BYTES = 10 * 1024 * MB;
 const PART_URL_TTL = 12 * 60 * 60;          // presigned part URLs: 12 hours
 const LINK_TTL_DAYS = 90;                   // download links: matches the bucket's 90-day delete rule
-const PROJECT_TYPES = ['New construction', 'Housing tract', 'Install or changeout', 'Other'];
+// Must match the Project type options on upload-your-plans.html (scripts/build-sonnys-ac.mjs, PROJECT_TYPES there).
+const PROJECT_TYPES = ['Residential new construction', 'Housing tract', 'Multi-family', 'Commercial new construction',
+  'Tenant improvement (TI)', 'Restaurant kitchen or hood', 'Exposed spiral ductwork', 'Install or changeout', 'Other',
+  'New construction']; // last one: the old option, still accepted from pages opened before the update
 
 export default {
   async fetch(request, env) {

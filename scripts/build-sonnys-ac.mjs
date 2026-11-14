@@ -63,22 +63,30 @@ const I = {
 const btnPlans = (cls = '') => `<a class="btn btn-primary ${cls}" href="${UPLOAD}">${I.upload}Upload Your Plans</a>`;
 const btnCall = (cls = 'btn-ghost') => `<a class="btn ${cls}" href="${TEL}">${I.phone}Call ${PHONE}</a>`;
 
+// George's own list from the Nov 11 call, construction first. Same 8, same order, everywhere they show.
 const SERVICES = [
   ['new-construction', 'Residential New Construction'],
-  ['housing-tracts', 'Housing Tracts and Multi-Family'],
+  ['housing-tracts', 'Housing Tracts'],
+  ['multi-family', 'Multi-Family'],
   ['commercial', 'Commercial New Construction'],
+  ['tenant-improvements', 'Tenant Improvements (TI)'],
+  ['kitchens', 'Commercial Kitchens and Restaurants'],
+  ['spiral-duct', 'Exposed Spiral Ductwork'],
   ['installs', 'Installs and Changeouts'],
 ];
+// Must match PROJECT_TYPES in workers/sonnys-plans/src/index.js.
+const PROJECT_TYPES = ['Residential new construction', 'Housing tract', 'Multi-family', 'Commercial new construction',
+  'Tenant improvement (TI)', 'Restaurant kitchen or hood', 'Exposed spiral ductwork', 'Install or changeout', 'Other'];
 const NAV = [['index.html', 'Home'], ['services.html', 'Services'], ['projects.html', 'Projects'], ['about.html', 'About'], ['hvac-tips.html', 'HVAC Tips']];
 
 function header(page) {
   const cur = (h) => (h === page ? ' aria-current="page"' : '');
   const links = NAV.map(([h, t]) => h === 'services.html'
     ? `<div class="nav-dd${page === h ? ' is-current' : ''}"><button type="button" aria-expanded="false" aria-controls="dd-services">Services${I.chev}</button>
-      <ul class="nav-dd-menu" id="dd-services">${SERVICES.map(([id, t2]) => `<li><a href="services.html#${id}">${t2}</a></li>`).join('')}<li class="all"><a href="services.html">All services</a></li></ul></div>`
+      <ul class="nav-dd-menu" id="dd-services">${SERVICES.map(([id, t2]) => `<li><a href="services.html#${id}">${t2}</a></li>`).join('')}<li class="all"><a href="services.html">All Services</a></li></ul></div>`
     : `<a href="${h}"${cur(h)}>${t}</a>`).join('');
   const mlinks = NAV.map(([h, t]) => h === 'services.html'
-    ? `<li><details><summary>Services${I.chev}</summary><ul class="menu-sub"><li><a href="services.html"${cur(h)}>All services</a></li>${SERVICES.map(([id, t2]) => `<li><a href="services.html#${id}">${t2}</a></li>`).join('')}</ul></details></li>`
+    ? `<li><details><summary>Services${I.chev}</summary><ul class="menu-sub">${SERVICES.map(([id, t2]) => `<li><a href="services.html#${id}">${t2}</a></li>`).join('')}<li><a href="services.html"${cur(h)}>All Services</a></li></ul></details></li>`
     : `<li><a href="${h}"${cur(h)}>${t}</a></li>`).join('') + `<li><a href="${UPLOAD}"${cur(UPLOAD)}>Upload Your Plans</a></li>`;
   return `<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
@@ -138,7 +146,7 @@ const LD = JSON.stringify({
   telephone: '+1-559-392-0743', email: EMAIL, slogan: 'Transparent. Honest. Predictable.',
   address: { '@type': 'PostalAddress', addressLocality: 'Clovis', addressRegion: 'CA', addressCountry: 'US' },
   areaServed: ['Merced', 'Madera', 'Fresno', 'Clovis', 'Visalia', 'Hanford', 'Tulare'].map((c) => ({ '@type': 'City', name: c + ', CA' })),
-  description: 'HVAC contractor for general contractors, builders, and developers: residential new construction, housing tracts and multi-family, commercial new construction, and installs and changeouts. CSLB #1129931 (C-20).',
+  description: 'HVAC contractor for general contractors, builders, and developers: residential new construction, housing tracts, multi-family, commercial new construction, tenant improvements (TI), commercial kitchens and restaurants (Type I hoods, stainless backsplashes), exposed spiral ductwork, and installs and changeouts. CSLB #1129931 (C-20).',
 });
 const faqLd = (items) => JSON.stringify({
   '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -263,7 +271,7 @@ const MAP = `<a class="svc-map" href="${MAPD.gmaps.replace(/&/g, '&amp;')}" targ
 
 // ================= HOME =================
 const HOME_FAQ = [
-  ['Who do you work with?', 'General contractors, builders, and developers. New homes, tracts, multi-family, commercial, and changeouts.'],
+  ['Who do you work with?', 'General contractors, builders, and developers. New homes, tracts, multi-family, commercial, TI, restaurant kitchens and hoods, and changeouts.'],
   ['How do I send you plans?', `Upload them on the <a href="${UPLOAD}">plans page</a>. Any size, up to 20 files at a time. Or call <a href="${TEL}" class="nowrap">${PHONE}</a> and we’ll figure it out.`],
   ['What areas do you cover?', 'Anywhere about two hours from Clovis: up to Merced, down to Tulare, and west toward the coast.'],
   ['Do you do changeouts?', 'Yes. We pull the old equipment and set the new.'],
@@ -276,8 +284,8 @@ const svcCard = (href, photo, alt, pos, num, h3, p, d) => `<a class="svc card rv
 
 page({
   file: 'index.html',
-  title: `${NAME} | HVAC for New Construction and Housing Tracts`,
-  desc: `${NAME}: HVAC for general contractors, builders, and developers. New homes, housing tracts, commercial, and changeouts from Merced to Tulare. Based in Clovis. CSLB #1129931. Call ${PHONE}.`,
+  title: `${NAME} | HVAC for New Construction, Tracts, Commercial, and TI`,
+  desc: `${NAME}: HVAC for general contractors, builders, and developers. New homes, housing tracts, multi-family, commercial, TI, restaurant kitchens and hoods, and changeouts from Merced to Tulare. Based in Clovis. CSLB #1129931. Call ${PHONE}.`,
   preload: `<link rel="preload" as="image" media="(max-width: 599px)" imagesrcset="${srcset('hero-duct-boot-phone')}" imagesizes="100vw" fetchpriority="high">\n<link rel="preload" as="image" media="(min-width: 600px)" imagesrcset="${srcset('hero-duct-boot', [1024, 1600, 2400])}" imagesizes="100vw" fetchpriority="high">`,
   head: `<script type="application/ld+json">${LD}</script>\n<script type="application/ld+json">${faqLd(HOME_FAQ)}</script>`,
   body: `
@@ -288,7 +296,7 @@ page({
       <p class="eyebrow pill">C-20 HVAC Contractor · Clovis, CA</p>
       <h1 id="hero-title"><span>Transparent.</span> <span>Honest.</span> <span>Predictable.</span></h1>
       <p class="hero-quote">Specializing in doing the right thing, ALWAYS.<br class="br-desk"> Also Air Conditioning.</p>
-      <p class="lead">The HVAC sub for general contractors, builders, and developers. New homes, housing tracts, and installs from Merced to Tulare. 20+ years in air conditioning.</p>
+      <p class="lead">The HVAC sub for general contractors, builders, and developers. New homes, housing tracts, commercial, and TI work from Merced to Tulare. 20+ years in air conditioning.</p>
       <div class="btn-row" data-hide-bar>${btnPlans()}${btnCall()}</div>
       ${LICENSE}
     </div>
@@ -307,14 +315,15 @@ page({
   <div class="wrap">
     <div class="split-head">
       <div class="rv"><p class="eyebrow">What We Do</p><h2 id="svc-title">Built for Builders.</h2></div>
-      <p class="lead rv" style="--d:100ms">New homes, whole tracts, commercial buildings, and changeouts.</p>
+      <p class="lead rv" style="--d:100ms">New homes, tracts, multi-family, commercial, TI, and restaurant kitchens.</p>
     </div>
     <div class="svc-grid">
       ${svcCard('services.html#new-construction', 'framing-two-story', 'Two-story home in wood framing with scaffolding on a new construction site', '--pos:40% 50%', '01', 'Residential New Construction', 'Full systems for new homes, built from your plan set.', 0)}
-      ${svcCard('services.html#housing-tracts', 'townhomes', 'Row of new two-story townhomes with dumpsters out front on a construction site', '--pos:40% 50%', '02', 'Housing Tracts and Multi-Family', 'Same plans, lot after lot.', 80)}
-      ${svcCard('services.html#commercial', 'commercial-steel', 'Steel frame of a large commercial building going up, with cranes and lifts', '--pos:50% 50%', '03', 'Commercial New Construction', 'New commercial buildings, from your plan set.', 160)}
-      ${svcCard('services.html#installs', 'condenser-lineset', 'Technician connecting a refrigerant hose to the service valve on an outdoor AC condenser', '--pos:55% 50%', '04', 'Installs and Changeouts', 'New equipment in, old equipment out.', 240)}
+      ${svcCard('services.html#housing-tracts', 'townhomes', 'Row of new two-story townhomes with dumpsters out front on a construction site', '--pos:40% 50%', '02', 'Housing Tracts', 'Same plans, lot after lot.', 80)}
+      ${svcCard('services.html#commercial', 'commercial-steel', 'Steel frame of a large commercial building going up, with cranes and lifts', '--pos:50% 50%', '04', 'Commercial New Construction', 'New commercial buildings, from your plan set.', 160)}
+      ${svcCard('services.html#kitchens', 'kitchen-fryers', 'Stainless steel fryers under a commercial kitchen hood with a stainless backsplash', '--pos:50% 40%', '06', 'Commercial Kitchens and Restaurants', 'Type I hoods, stainless backsplashes, and restaurant AC.', 240)}
     </div>
+    <a class="text-link rv" href="services.html">See All Services ${I.arrow}</a>
   </div>
 </section>
 
@@ -380,30 +389,38 @@ const detail = (id, photo, alt, pos, eyebrow, h2, p, items) => `<article class="
     <p class="eyebrow">${eyebrow}</p>
     <h2>${h2}</h2>
     ${p ? `<p class="lead">${p}</p>` : ''}
-    <ul class="svc-list">${items.map((x) => `<li>${x}</li>`).join('')}</ul>
+    ${items.length ? `<ul class="svc-list">${items.map((x) => `<li>${x}</li>`).join('')}</ul>` : ''}
   </div>
 </article>`;
 
 page({
   file: 'services.html',
   title: `Services | ${NAME}`,
-  desc: `Residential and commercial new construction HVAC, housing tracts and multi-family, and installs and changeouts for builders and general contractors. ${NAME}, Clovis, CA. ${PHONE}.`,
+  desc: `HVAC for builders and general contractors: residential new construction, housing tracts, multi-family, commercial new construction, tenant improvements (TI), commercial kitchens and restaurants, exposed spiral ductwork, and installs and changeouts. ${NAME}, Clovis, CA. ${PHONE}.`,
   preload: heroPreload('framing-sky', [640, 1024, 1600]),
   body: `
 ${hero({
     photo: 'framing-sky', alt: 'Wood framing of a new building against a clear blue sky, with scaffolding along the top floor',
     pos: '--pos:30% 50%;--pos-d:50% 45%', eyebrow: 'Services', h1: 'Full HVAC for<br> New Construction.',
-    lead: 'Homes, tracts, multi-family, and commercial buildings, plus changeouts. For builders, GCs, and developers.',
+    lead: 'Homes, tracts, multi-family, commercial, TI, and restaurant kitchens, plus changeouts. For builders, GCs, and developers.',
   })}
 <section class="section" aria-label="Services">
   <div class="wrap">
     ${detail('new-construction', 'roof-framing', 'Roof trusses and wood framing on a new house against a blue sky', '--pos:50% 40%', '01 · New Construction', 'Residential New Construction.',
     'Full HVAC systems for new homes, from your plan set.', ['Ductwork', 'Condensers', 'Air handlers', 'Furnaces', 'Heat pumps'])}
-    ${detail('housing-tracts', 'tract-site', 'New tract homes going up beyond a graded dirt lot with a dump truck', '--pos:62% 50%', '02 · Tracts and Multi-Family', 'Housing Tracts and Multi-Family.',
-    'For builders putting up a whole tract or a multi-family building.', ['Repeat plans, lot after lot', 'Multi-family buildings', 'Ductwork and equipment for every unit', 'Coordinated with the builder and the other trades'])}
-    ${detail('commercial', 'commercial-site', 'Large commercial steel frame going up behind a fenced, freshly graded site', '--pos:50% 50%', '03 · Commercial', 'Commercial New Construction.',
-    'Heating, ventilation, and air conditioning for new commercial buildings, from your plan set.', ['Heating', 'Ventilation', 'Air conditioning', 'Ductwork', 'Coordinated with your GC and electricians'])}
-    ${detail('installs', 'condenser-pad', 'Brand-new outdoor AC condenser on a fresh concrete pad beside a newly built home', '--pos:62% 60%', '04 · Installs and Changeouts', 'Installs and Changeouts.',
+    ${detail('housing-tracts', 'tract-site', 'New tract homes going up beyond a graded dirt lot with a dump truck', '--pos:62% 50%', '02 · Housing Tracts', 'Housing Tracts.',
+    'For builders putting up a whole tract.', ['Repeat plans, lot after lot', 'Coordinated with the builder and the other trades'])}
+    ${detail('multi-family', 'multifamily-frame', 'Multi-story residential building in concrete and steel stud framing against a blue sky', '--pos:50% 55%', '03 · Multi-Family', 'Multi-Family.',
+    'For builders putting up a multi-family building.', ['Ductwork and equipment for every unit'])}
+    ${detail('commercial', 'commercial-site', 'Large commercial steel frame going up behind a fenced, freshly graded site', '--pos:50% 50%', '04 · Commercial', 'Commercial New Construction.',
+    'Heating, ventilation, and air conditioning for new commercial buildings, from your plan set.', ['Heating', 'Ventilation', 'Air conditioning', 'Ductwork', 'Exposed spiral ductwork', 'Coordinated with your GC and electricians'])}
+    ${detail('tenant-improvements', 'ti-ceiling', 'Exposed spiral ductwork and round diffusers under a dark open ceiling in a commercial space', '--pos:40% 50%', '05 · Tenant Improvements', 'Tenant Improvements (TI).',
+    'HVAC for build-outs and remodels of commercial spaces, from your plans.', ['Ductwork', 'Equipment', 'Exposed spiral ductwork', 'Coordinated with your GC'])}
+    ${detail('kitchens', 'kitchen-line', 'Restaurant cook line under a stainless steel exhaust hood, with a stainless backsplash', '--pos:50% 40%', '06 · Kitchens and Restaurants', 'Commercial Kitchens and Restaurants.',
+    '', ['Type I kitchen hoods', 'Stainless backsplashes', 'Restaurant air conditioning', 'Coordinated with your GC'])}
+    ${detail('spiral-duct', 'spiral-duct', 'Large runs of exposed spiral ductwork with elbows, below a glass roof', '--pos:40% 50%', '07 · Spiral Duct', 'Exposed Spiral Ductwork.',
+    'Spiral duct run exposed, for commercial spaces, restaurants, and TI work.', [])}
+    ${detail('installs', 'condenser-pad', 'Brand-new outdoor AC condenser on a fresh concrete pad beside a newly built home', '--pos:62% 60%', '08 · Installs and Changeouts', 'Installs and Changeouts.',
     'New equipment in, old equipment out.', ['Condensers', 'Furnaces', 'Air handlers', 'Heat pumps'])}
   </div>
 </section>
@@ -434,9 +451,9 @@ const proj = (photo, alt, pos, h3, d) => `<figure class="proj card rv" style="--
 page({
   file: 'projects.html',
   title: `Projects | ${NAME}`,
-  desc: `Projects from ${NAME}: new homes, housing tracts, multi-family, commercial, and changeouts from Merced to Tulare.`,
+  desc: `Projects from ${NAME}: new homes, tracts, multi-family, commercial, TI, restaurant kitchens, and changeouts from Merced to Tulare.`,
   body: `
-${plainHero({ eyebrow: 'Projects', h1: 'Projects.', lead: 'New homes, tracts, multi-family, commercial, and changeouts from Merced to Tulare.' })}
+${plainHero({ eyebrow: 'Projects', h1: 'Projects.', lead: 'New homes, tracts, multi-family, commercial, TI, restaurant kitchens, and changeouts from Merced to Tulare.' })}
 <section class="section tight" aria-label="Sample project photos">
   <div class="wrap">
     <p class="notice">${I.info}<span>Sample photos for now. Photos of our own jobs go here soon.</span></p>
@@ -447,6 +464,8 @@ ${plainHero({ eyebrow: 'Projects', h1: 'Projects.', lead: 'New homes, tracts, mu
       ${proj('rooftop-towers', 'Commercial rooftop with three cooling towers, red piping, and a crane', '--pos:50% 50%', 'Commercial Rooftop', 0)}
       ${proj('sheathed-framing', 'New multi-story wood framing with OSB sheathing against a blue sky', '--pos:50% 60%', 'Framing and Sheathing', 80)}
       ${proj('new-units', 'Row of new outdoor heat pump units on a lawn beside a new building', '--pos:50% 55%', 'Equipment Changeout', 160)}
+      ${proj('kitchen-hood', 'Stainless steel exhaust hood over a commercial kitchen line, with ladles and strainers hanging below', '--pos:30% 30%', 'Restaurant Kitchen Hood', 0)}
+      ${proj('spiral-ceiling', 'Exposed spiral ductwork with a round diffuser branching across a dark commercial ceiling', '--pos:60% 50%', 'Tenant Improvement', 80)}
     </div>
   </div>
 </section>
@@ -581,7 +600,7 @@ ${plainHero({ cls: 'tips-hero', eyebrow: 'HVAC Tips', h1: 'Small Fixes You Can<b
       <div class="edu-end card rv">
         <p class="eyebrow">For Builders and Contractors</p>
         <h2>Got a Big Project? We Can Handle It.</h2>
-        <p class="lead">New homes, housing tracts, commercial buildings, or a batch of changeouts.</p>
+        <p class="lead">New homes, housing tracts, commercial and TI work, restaurant kitchens, or a batch of changeouts.</p>
         ${btnPlans()}
       </div>
     </div>
@@ -600,7 +619,7 @@ const field = (name, label, { type = 'text', req = true, auto = '', ph = '', mod
 page({
   file: UPLOAD,
   title: `Upload Your Plans | ${NAME}`,
-  desc: `Upload your plan set to ${NAME}. PDF plan sets of any size. New construction, housing tracts, commercial, installs and changeouts.`,
+  desc: `Upload your plan set to ${NAME}. PDF plan sets of any size. New homes, housing tracts, multi-family, commercial, TI, restaurant kitchens and hoods, exposed spiral ductwork, installs and changeouts.`,
   scripts: '<script src="js/plans.js" defer></script>',
   body: `
 ${plainHero({ eyebrow: 'Plan Upload', h1: 'Upload Your Plans.', lead: 'Tell us about the job and upload the PDF plan set. Any size, up to 20 files at a time.' })}
@@ -620,7 +639,7 @@ ${plainHero({ eyebrow: 'Plan Upload', h1: 'Upload Your Plans.', lead: 'Tell us a
         <fieldset class="field">
           <legend>Project type</legend>
           <div class="types">
-            ${['New construction', 'Housing tract', 'Install or changeout', 'Other'].map((t) => `<label><input type="radio" name="type" value="${t}" required><span>${t}</span></label>`).join('')}
+            ${PROJECT_TYPES.map((t) => `<label><input type="radio" name="type" value="${t}" required><span>${t}</span></label>`).join('')}
           </div>
           <p class="err">Please pick a project type.</p>
         </fieldset>

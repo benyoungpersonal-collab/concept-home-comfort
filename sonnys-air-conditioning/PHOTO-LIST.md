@@ -6,15 +6,19 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 |---|---|---|---|
 | Home hero (full-bleed, behind the text) | hero-duct-boot (phones: hero-duct-boot-phone, a tall crop of the same photo on the duct) | Flex duct running into a sheet-metal boot between ceiling joists, black and white | Dash Khatami, https://unsplash.com/photos/dlAWD_oKTQE |
 | Home card: Residential New Construction | framing-two-story | Two-story home in wood framing with scaffolding | Troy Mortier, https://unsplash.com/photos/rxfWPJUUClo |
-| Home card: Housing Tracts and Multi-Family | townhomes | Row of new two-story townhomes with dumpsters out front | Ernie Journeys, https://unsplash.com/photos/JqZlFnJ-KpE |
+| Home card: Housing Tracts | townhomes | Row of new two-story townhomes with dumpsters out front | Ernie Journeys, https://unsplash.com/photos/JqZlFnJ-KpE |
 | Home card: Commercial New Construction | commercial-steel | Steel frame of a large commercial building with cranes and lifts | david Griffiths, https://unsplash.com/photos/UtgKZUlRV78 |
-| Home card: Installs and Changeouts | condenser-lineset | Technician connecting a refrigerant hose to an outdoor AC condenser | Joel Muniz, https://unsplash.com/photos/8RbiLgfqoqQ |
+| Home card: Commercial Kitchens and Restaurants | kitchen-fryers | Stainless fryers under a commercial kitchen hood with a stainless backsplash (no people) | Ceba Solutions, https://unsplash.com/photos/j6X4yr-Wf9w |
 | Home "Who We Are" band | crew-framing | Worker in a hard hat on the top plate of a framed wall | Josh Olalde, https://unsplash.com/photos/X1P1_EDNnok |
 | Services hero | framing-sky | Wood framing against a clear blue sky | Troy Mortier, https://unsplash.com/photos/HyXaImG33-U |
 | Services 01: Residential New Construction | roof-framing | Roof trusses and framing on a new house | Troy Mortier, https://unsplash.com/photos/kkdfOe0iRu8 |
-| Services 02: Housing Tracts and Multi-Family | tract-site | New tract homes beyond a graded lot with a dump truck | Ernie Journeys, https://unsplash.com/photos/TZGjH3-Zmq0 |
-| Services 03: Commercial New Construction | commercial-site | Commercial steel frame behind a fenced, graded site | david Griffiths, https://unsplash.com/photos/TKMIUzz9vD0 |
-| Services 04: Installs and Changeouts | condenser-pad | New outdoor AC condenser on a fresh concrete pad beside a new home (no readable brand) | Josh Lemmon, https://unsplash.com/photos/x1rFTWcXoOc |
+| Services 02: Housing Tracts | tract-site | New tract homes beyond a graded lot with a dump truck | Ernie Journeys, https://unsplash.com/photos/TZGjH3-Zmq0 |
+| Services 03: Multi-Family | multifamily-frame | Multi-story residential building in concrete and steel stud framing | Tolu Olubode, https://unsplash.com/photos/PlBsJ5MybGc |
+| Services 04: Commercial New Construction | commercial-site | Commercial steel frame behind a fenced, graded site | david Griffiths, https://unsplash.com/photos/TKMIUzz9vD0 |
+| Services 05: Tenant Improvements | ti-ceiling | Exposed spiral ductwork and round diffusers under a dark open commercial ceiling | yanmin yang, https://unsplash.com/photos/5Qq47df2H6c |
+| Services 06: Commercial Kitchens and Restaurants | kitchen-line | Restaurant cook line under a stainless exhaust hood with a stainless backsplash (no people) | Joshua Ferrer, https://unsplash.com/photos/Rk38tVPmk1c |
+| Services 07: Exposed Spiral Ductwork | spiral-duct | Large runs of exposed spiral duct with elbows below a glass roof | Compagnons, https://unsplash.com/photos/yZmHFF-g-W0 |
+| Services 08: Installs and Changeouts | condenser-pad | New outdoor AC condenser on a fresh concrete pad beside a new home (no readable brand) | Josh Lemmon, https://unsplash.com/photos/x1rFTWcXoOc |
 | Projects: New Home Build | frame-fence | New home in wood framing behind a construction fence | Troy Mortier, https://unsplash.com/photos/nCiRDhiVeP8 |
 | Projects: Housing Tract | tract-homes | New two-story tract homes beside a pile of graded dirt | Troy Mortier, https://unsplash.com/photos/MprGNaVtr04 |
 | Projects: Multi-Family Build | multifamily-build | Multi-story apartment building in framing and sheathing, tower crane | Salvador Rios, https://unsplash.com/photos/3GdHDDtHJ-4 |
@@ -25,6 +29,8 @@ Every photo on https://byw-home-comfort.netlify.app/sonnys-air-conditioning/ . A
 | HVAC Tips: AC removes heat | condenser-rain | Outdoor AC condenser in a green backyard in the rain (no logos) | Sam Jotham Sutharson, https://unsplash.com/photos/gSvCiyLnCeU |
 | HVAC Tips: AC not blowing cold | dusty-filter | Close-up of a dusty, pleated air filter | Evan Marvell, https://unsplash.com/photos/yFzG35IAOko |
 | HVAC Tips: heater smell | wall-register | Metal heating register low on a wall inside a home | Tsuyoshi Kozu, https://unsplash.com/photos/JShS-_84fBA |
+| Projects: Restaurant Kitchen Hood | kitchen-hood | Stainless exhaust hood over a commercial kitchen line, utensils hanging below (no people) | Ceba Solutions, https://unsplash.com/photos/XtYpcpVLVnc |
+| Projects: Tenant Improvement | spiral-ceiling | Exposed spiral ductwork and a round diffuser across a dark commercial ceiling | Quilia, https://unsplash.com/photos/aVPRyb9F_J4 |
 | About hero | framing-interior | Bright, sunlit interior of a new home in wood framing | Samuel Cruz, https://unsplash.com/photos/17nDFVkBYK0 |
 
 Not photos:
