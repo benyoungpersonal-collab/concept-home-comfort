@@ -510,8 +510,8 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .done-card h2 { font-size: clamp(2rem, 6.4vw, 2.8rem); margin-bottom: 14px; }
 .form-aside { padding: 6px 24px 8px; }
 .aside-list { list-style: none; margin: 0; padding: 0; }
-.aside-list li { padding: 18px 0; border-bottom: 1px solid var(--line); }
-.aside-list li:last-child { border-bottom: 0; }
+.aside-list > li { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.aside-list > li:last-child { border-bottom: 0; }
 .aside-list b { display: block; color: var(--white); margin-bottom: 4px; }
 .aside-list span, .aside-list a { color: var(--steel-300); font-size: 16px; word-break: break-word; }
 .aside-list a.big { color: var(--white); font: 700 1.7rem/1.2 var(--ff-head); text-decoration: none; }
