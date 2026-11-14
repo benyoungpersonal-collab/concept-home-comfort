@@ -374,7 +374,7 @@ a.svc:hover .more svg { transform: translateX(4px); }
 .notice svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--cyan); stroke-width: 2; margin-top: 1px; }
 .proj-grid { display: grid; gap: 18px; }
 @media (min-width: 700px) { .proj-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; } }
-@media (min-width: 1080px) { .proj-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1080px) { .proj-grid { grid-template-columns: repeat(4, 1fr); } }
 .proj { overflow: hidden; margin: 0; }
 .proj-media { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--media-bg); }
 .proj-media img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
