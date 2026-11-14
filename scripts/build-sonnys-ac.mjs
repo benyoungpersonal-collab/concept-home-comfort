@@ -320,8 +320,8 @@ page({
     <div class="svc-grid">
       ${svcCard('services.html#new-construction', 'framing-two-story', 'Two-story home in wood framing with scaffolding on a new construction site', '--pos:40% 50%', '01', 'Residential New Construction', 'Full systems for new homes, built from your plan set.', 0)}
       ${svcCard('services.html#housing-tracts', 'townhomes', 'Row of new two-story townhomes with dumpsters out front on a construction site', '--pos:40% 50%', '02', 'Housing Tracts', 'Same plans, lot after lot.', 80)}
-      ${svcCard('services.html#commercial', 'commercial-steel', 'Steel frame of a large commercial building going up, with cranes and lifts', '--pos:50% 50%', '04', 'Commercial New Construction', 'New commercial buildings, from your plan set.', 160)}
-      ${svcCard('services.html#kitchens', 'kitchen-fryers', 'Stainless steel fryers under a commercial kitchen hood with a stainless backsplash', '--pos:50% 40%', '06', 'Commercial Kitchens and Restaurants', 'Type I hoods, stainless backsplashes, and restaurant AC.', 240)}
+      ${svcCard('services.html#commercial', 'commercial-steel', 'Steel frame of a large commercial building going up, with cranes and lifts', '--pos:50% 50%', '03', 'Commercial New Construction', 'New commercial buildings, from your plan set.', 160)}
+      ${svcCard('services.html#kitchens', 'kitchen-fryers', 'Stainless steel fryers under a commercial kitchen hood with a stainless backsplash', '--pos:50% 40%', '04', 'Commercial Kitchens and Restaurants', 'Type I hoods, stainless backsplashes, and restaurant AC.', 240)}
     </div>
     <a class="text-link rv" href="services.html">See All Services ${I.arrow}</a>
   </div>
@@ -344,7 +344,7 @@ page({
     <div class="band-copy rv">
       <p class="eyebrow">Who We Are</p>
       <h2 id="band-title">20+ Years in the Trade.</h2>
-      <p class="lead">Sonny’s is led by George, who has more than 20 years in air conditioning. He started the company about two years ago in Clovis, and our crew takes jobs from Merced to Tulare, and out toward the coast.</p>
+      <p class="lead">Sonny’s is led by an owner with more than 20 years in air conditioning. He started the company about two years ago in Clovis, and our crew takes jobs from Merced to Tulare, and out toward the coast.</p>
       <a class="btn btn-ghost" href="about.html">About Sonny’s ${I.arrow}</a>
     </div>
   </div>
