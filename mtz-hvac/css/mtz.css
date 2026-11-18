@@ -1,0 +1,285 @@
+/* mtz.css: MTZ HVAC Services layer on top of site.css, home.css, fonts.css, and alive.css.
+   Colors: gold #D4A531 (hover #E0B444) for buttons and accents, deep navy #102A43 as the main color.
+   Text and icons on gold are white with a thin soft navy shadow. Headline words on light backgrounds are navy with a
+   gold underline; on dark backgrounds and on the hero photo they are gold. */
+
+:root {
+  --c-gold: #D4A531; --c-gold-hover: #E0B444;
+  --c-brand: #D4A531; --c-brand-strong: #D4A531; --c-brand-hover: #E0B444; --c-brand-deep: #102A43;
+  --c-brand-tint: #FBF4E2; --c-brand-light: #E8C463;
+  --c-navy: #102A43; --c-navy-2: #183A5A; --c-navy-3: #244B6E;
+  --c-on-dark-soft: #D5DEE8;
+  --gold-shadow: 0 1px 2px rgb(16 42 67 / .45);
+  --btn-lift: 7%;
+}
+
+/* ---------- Buttons and fills on gold: white text and icons with a soft navy shadow ---------- */
+.btn-primary { --btn-bg: var(--c-gold); --btn-bd: var(--c-gold); --btn-fg: #fff; color: #fff; text-shadow: var(--gold-shadow); }
+.btn-primary:hover { --btn-bg: var(--c-gold-hover); --btn-bd: var(--c-gold-hover); color: #fff; }
+.btn-primary .icon, .sb-call .icon, .pcard-badge .icon, .tpl-tile-icon .icon, .mtz-step-n, .confirm-icon .icon { filter: drop-shadow(0 1px 1px rgb(16 42 67 / .4)); }
+.sb-call, .site-pw .sb-call { background: var(--c-gold); color: #fff; text-shadow: var(--gold-shadow); }
+.sb-call:hover, .site-pw .sb-call:hover { background: var(--c-gold-hover); color: #fff; }
+.header-phone .icon-wrap { color: var(--c-navy); }
+.pcard-badge, .tpl-tile-icon { text-shadow: var(--gold-shadow); }
+
+/* Headline words: navy with a gold underline on light backgrounds, gold on navy */
+.accent { color: var(--c-navy); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23D4A531' stroke-width='4.5' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 100% .3em; background-position: left bottom; background-repeat: no-repeat; }
+.on-dark .accent { color: var(--c-brand-light); }
+.eyebrow { color: var(--c-navy); }
+.eyebrow::before { background: var(--c-gold); }
+a { color: var(--c-navy); }
+a:hover { color: var(--c-navy-3); }
+.tag { color: var(--c-navy); }
+
+/* ---------- Header: logo, language toggle ---------- */
+.mtz .logo-name { font-size: 27px; letter-spacing: .03em; line-height: .95; }
+.mtz .logo-tag { margin-top: 3px; font-family: var(--ff-ui); font-size: 10.5px; letter-spacing: .12em; }
+.mtz .logo-mark { width: 42px; height: 42px; }
+.mtz .logo:hover .logo-mark { transform: none; }
+.mtz .site-header.is-compact .logo-mark { width: 38px; height: 38px; }
+@media (max-width: 374px) { .mtz .site-header .logo-tag { font-size: 9px; letter-spacing: .08em; } .mtz .site-header .logo-name { font-size: 24px; } }
+
+/* Logo entrance, once per page load (about 1.5 s): the flame and the snowflake swing in from opposite sides, meet,
+   and settle with a tiny bounce. Replaces the base spin. Off with reduced motion. */
+.mtz .site-header .logo-mark { animation: none; }
+.mtz-mark-flame, .mtz-mark-snow { transform-box: view-box; transform-origin: 24px 30px; }
+@keyframes mtz-flame-in {
+  0% { transform: translateX(-26px) rotate(-38deg); opacity: 0; }
+  20% { opacity: 1; }
+  55% { transform: translateX(3px) rotate(6deg); }
+  72% { transform: translateX(-1.5px) rotate(-3deg); }
+  86% { transform: translateX(.6px) rotate(1deg); }
+  100% { transform: none; }
+}
+@keyframes mtz-snow-in {
+  0% { transform: translateX(26px) rotate(60deg); opacity: 0; }
+  20% { opacity: 1; }
+  55% { transform: translateX(-3px) rotate(-8deg); }
+  72% { transform: translateX(1.5px) rotate(3deg); }
+  86% { transform: translateX(-.6px) rotate(-1deg); }
+  100% { transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mtz-mark-flame { animation: mtz-flame-in 1.5s cubic-bezier(.3, .7, .3, 1) .2s both; }
+  .mtz-mark-snow { animation: mtz-snow-in 1.5s cubic-bezier(.3, .7, .3, 1) .2s both; }
+}
+
+.mtz-lang { display: inline-flex; align-items: center; gap: 2px; font-family: var(--ff-ui); font-weight: 700; font-size: 15px; letter-spacing: .06em; color: var(--c-navy); }
+.mtz-lang > span { opacity: .45; }
+.mtz-lang-btn { min-width: 40px; min-height: 40px; padding: 0 6px; border: 0; border-radius: 10px; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; cursor: pointer; opacity: .62; }
+.mtz-lang-btn:hover { opacity: 1; background: rgb(16 42 67 / .06); }
+.mtz-lang-btn[aria-pressed="true"] { opacity: 1; text-decoration: underline; text-decoration-color: var(--c-gold); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.mtz .site-header:not(.is-compact) .header-actions > .mtz-lang { color: #fff; text-shadow: 0 1px 3px rgb(0 0 0 / .4); }
+.mtz .site-header:not(.is-compact) .mtz-lang-btn:hover { background: rgb(255 255 255 / .14); }
+@media (max-width: 899px) { .mtz .header-actions > .mtz-lang { font-size: 14px; } .mtz .header-actions > .mtz-lang .mtz-lang-btn { min-width: 34px; padding: 0 4px; } }
+@media (max-width: 359px) { .mtz .header-actions > .mtz-lang { display: none; } }
+.mtz-lang-mm { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; padding: 10px 12px; border-radius: 14px; background: #fff; border: 1px solid var(--c-line); font-size: 16px; }
+.mtz-lang-mm .mtz-lang-label { margin-right: auto; font-family: var(--ff-body); font-weight: 600; letter-spacing: 0; color: var(--c-muted); }
+.mtz-lang-mm .mtz-lang-btn { min-height: 44px; padding: 0 12px; border: 1px solid var(--c-line); opacity: 1; text-transform: none; letter-spacing: .02em; }
+.mtz-lang-mm .mtz-lang-btn[aria-pressed="true"] { background: var(--c-navy); border-color: var(--c-navy); color: #fff; text-decoration: none; }
+/* Desktop nav: a little tighter so the toggle, phone, and button fit from 1000px */
+@media (min-width: 1000px) and (max-width: 1239px) { .mtz .nav-link { padding-inline: 9px; } .mtz .header-phone-text small { display: none; } }
+@media (min-width: 1000px) and (max-width: 1119px) { .mtz .header-phone-text { display: none; } }
+
+/* ---------- 1. Hero ---------- */
+.mtz-hero .mtz-hero-blur { position: absolute; inset: -6%; width: 112%; height: 112%; max-width: none; object-fit: cover; object-position: 50% 50%; filter: saturate(1.05); }
+.mtz-hero .mtz-hero-pic { position: absolute; inset: 0; display: block; }
+.mtz-hero .mtz-hero-pic img { position: absolute; display: block; max-width: none; object-fit: cover; }
+.mtz-hero .hero-h .accent { color: var(--c-gold); text-shadow: 0 0 .28em rgb(0 0 0 / .55), 0 0 .12em rgb(0 0 0 / .45), 0 2px 3px rgb(0 0 0 / .5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23D4A531' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 100% .2em; }
+.mtz-hero .pw-pill .icon, .mtz-hero .pw-chip .icon, .mtz-hero .pw-stars { color: var(--c-gold); }
+.mtz-hero .hero-ctas .btn-primary { text-shadow: var(--gold-shadow); }
+/* Phones: square crop of the family at the top (faces in the top part), words and buttons under their chins */
+@media (max-width: 599px) {
+  .mtz-hero { padding-top: calc(76vw + 4px); }
+  .mtz-hero .mtz-hero-blur { display: none; }
+  .mtz-hero .mtz-hero-pic img { top: 0; left: 0; width: 100%; height: auto; aspect-ratio: 960 / 950;
+    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); }
+  .mtz-hero .pw-ohero-photo::after { background: linear-gradient(to bottom, rgb(0 0 0 / .14) 0, rgb(0 0 0 / .16) 62vw, rgb(0 0 0 / .52) 78vw, rgb(0 0 0 / .7) 98vw, rgb(0 0 0 / .74) 100%); }
+  .mtz-hero .hero-h { font-size: calc((100vw - 32px) / 7.9); }
+  html[lang="es"] .mtz-hero .hero-h { font-size: calc((100vw - 32px) / 8.6); }
+  .mtz-hero .hero-ctas { grid-template-columns: 1fr; }
+}
+/* Tablets: the whole photo across the top, words below */
+@media (min-width: 600px) and (max-width: 899px) {
+  .mtz-hero { padding-top: calc(56vw + 8px); }
+  .mtz-hero .mtz-hero-blur { display: none; }
+  .mtz-hero .mtz-hero-pic img { top: 0; left: 0; width: 100%; height: auto; aspect-ratio: 3 / 2;
+    -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); }
+}
+/* Desktop: the family fills the right part of the hero, top to bottom; on the left, a soft blur of the same photo
+   under the words. The edge between them fades, so it reads as one photo. Faces always stay right of the words. */
+@media (min-width: 900px) {
+  .mtz-hero .mtz-hero-pic img { top: 0; bottom: 0; right: 0; left: 46%; width: 54%; height: 100%; object-position: 52% 40%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, rgb(0 0 0 / .55) 50px, #000 120px); mask-image: linear-gradient(to right, transparent 0, rgb(0 0 0 / .55) 50px, #000 120px); }
+  .mtz-hero .pw-ohero-copy { max-width: min(600px, calc(48vw - max(var(--gutter), (100vw - var(--max)) / 2))); }
+}
+@media (min-width: 1600px) { .mtz-hero .mtz-hero-pic img { left: 48%; width: 52%; } }
+
+/* ---------- 2. Trust badges ---------- */
+.mtz .trust { background: var(--c-navy); }
+.mtz .tpl-tile-icon { background: var(--c-gold); }
+
+/* ---------- 3. Services: 3 across on desktop ---------- */
+@media (min-width: 1000px) { .mtz .pcards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; } }
+.mtz .pcard-link { gap: 6px; }
+.mtz .pcard-link .icon { width: 16px; height: 16px; }
+.mtz .pcard-body h3 { color: var(--c-navy); }
+
+/* ---------- 4. Book Online ---------- */
+.mtz-book .section-head { margin-bottom: var(--sp-3); }
+.mtz-book-grid { display: grid; gap: var(--sp-5); align-items: start; }
+@media (min-width: 1000px) { .mtz-book-grid { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--sp-6); } .mtz-book-aside { position: sticky; top: calc(var(--header-h) + 24px); margin-top: 128px; } }
+.mtz-book-card { padding: clamp(18px, 3vw, 32px); border-radius: 24px; background: #fff; border: 1px solid var(--c-line); box-shadow: 0 2px 4px rgb(16 42 67 / .04), 0 18px 40px -12px rgb(16 42 67 / .2); }
+.mtz-form { display: grid; gap: 22px; }
+.mtz-step { margin: 0; padding: 0; border: 0; min-width: 0; }
+.mtz-step legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; padding: 0; font-family: var(--ff-display); font-size: clamp(1.15rem, 1.05rem + .4vw, 1.35rem); text-transform: uppercase; letter-spacing: .01em; color: var(--c-navy); line-height: 1.15; }
+.mtz-step-n { display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--c-gold); color: #fff; font-family: var(--ff-display); font-size: 17px; text-shadow: var(--gold-shadow); }
+.mtz-req { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; background: var(--c-brand-tint); border: 1px solid #EBD9A6; color: var(--c-navy); font-family: var(--ff-body); font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: none; line-height: 1.3; }
+.mtz-chips { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }
+.mtz-chips-svc { grid-template-columns: repeat(auto-fill, minmax(min(100%, 136px), 1fr)); }
+@media (min-width: 560px) { .mtz-chips-svc { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
+@media (max-width: 559px) { .mtz-chips-svc .mtz-chip > span { padding: 10px; gap: 7px; font-size: 14px; } }
+.mtz-days { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mtz-windows { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.mtz-windows .mtz-chip { grid-column: span 2; }
+.mtz-windows .mtz-chip:nth-child(4) { grid-column: 2 / span 2; }
+@media (min-width: 560px) {
+  .mtz-days { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .mtz-windows { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .mtz-windows .mtz-chip, .mtz-windows .mtz-chip:nth-child(4) { grid-column: auto; }
+}
+@media (min-width: 1000px) and (max-width: 1199px) { .mtz-windows { grid-template-columns: repeat(6, minmax(0, 1fr)); } .mtz-windows .mtz-chip { grid-column: span 2; } .mtz-windows .mtz-chip:nth-child(4) { grid-column: 2 / span 2; } }
+.mtz-day > span { padding-inline: 4px; }
+.mtz-chip { position: relative; display: block; cursor: pointer; }
+.mtz-chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.mtz-chip > span { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; height: 100%; padding: 10px 12px; border-radius: 14px; border: 1.5px solid var(--c-line-strong); background: #fff; color: var(--c-navy); font-weight: 700; font-size: var(--fs-sm); line-height: 1.2; text-align: center; transition: border-color .15s, background-color .15s, box-shadow .15s; }
+.mtz-chips-svc .mtz-chip > span { justify-content: flex-start; text-align: left; }
+.mtz-chip > span .icon { width: 20px; height: 20px; flex: none; color: var(--c-navy); }
+.mtz-chip:hover > span { border-color: var(--c-navy); }
+.mtz-chip input:checked + span { border-color: var(--c-navy); background: var(--c-navy); color: #fff; box-shadow: 0 6px 14px -6px rgb(16 42 67 / .5); }
+.mtz-chip input:checked + span .icon { color: var(--c-gold); }
+.mtz-chip input:focus-visible + span { outline: 3px solid var(--c-focus); outline-offset: 2px; }
+.mtz-chip input:disabled + span { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
+.mtz-chip input:disabled { cursor: not-allowed; }
+.mtz-chip-wide { grid-column: 1 / -1; }
+.mtz-day > span { flex-direction: column; gap: 2px; min-height: 64px; }
+.mtz-day-dow { font-size: 11px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; opacity: .8; white-space: nowrap; }
+.mtz-day-date { font-size: 15.5px; white-space: nowrap; }
+.mtz-day-fallback .input { width: 100%; }
+.js .mtz-day-fallback.is-replaced { display: none; }
+.mtz-fields { display: grid; gap: 12px; }
+@media (min-width: 640px) { .mtz-fields { grid-template-columns: 1fr 1fr; } .mtz-field-wide { grid-column: 1 / -1; } }
+.mtz-fields label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.mtz-step.is-invalid .mtz-chip > span { border-color: #B42318; }
+.mtz-field-err { margin: 8px 0 0; color: #B42318; font-weight: 600; font-size: var(--fs-sm); }
+.mtz-form [aria-invalid="true"] { border-color: #B42318; }
+.mtz-summary { padding: 16px 18px; border-radius: 16px; background: var(--c-brand-tint); border: 1px solid #EBD9A6; }
+.mtz-summary-title { margin: 0 0 8px; font-family: var(--ff-ui); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--c-navy); }
+.mtz-summary-list { display: grid; gap: 6px; margin: 0; }
+.mtz-summary-list > div { display: flex; justify-content: space-between; gap: 12px; }
+.mtz-summary-list dt { color: var(--c-muted); font-weight: 600; }
+.mtz-summary-list dd { margin: 0; color: var(--c-navy); font-weight: 700; text-align: right; }
+.mtz-thanks { padding: 12px 4px; text-align: center; }
+.mtz-thanks .confirm-icon { display: grid; place-items: center; width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 50%; background: var(--c-gold); color: #fff; }
+.mtz-thanks .confirm-icon .icon { width: 30px; height: 30px; stroke-width: 2.6; }
+.mtz-thanks h3 { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem); color: var(--c-navy); }
+.mtz-thanks-lead { font-size: var(--fs-md); font-weight: 600; color: var(--c-navy); }
+.mtz-thanks-sum { margin: 12px auto 0; max-width: 30rem; padding: 12px 16px; border-radius: 14px; background: var(--c-brand-tint); color: var(--c-navy); font-weight: 600; }
+.mtz-book-alt { margin: 14px 0 0; text-align: center; font-weight: 600; color: var(--c-navy); }
+.mtz-book-alt a { font-weight: 700; white-space: nowrap; }
+.mtz-aside-photo { margin: 0; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-2); aspect-ratio: 4 / 3; }
+.mtz-aside-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mtz-aside-list { display: grid; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+.mtz-aside-list li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 16px; background: #fff; border: 1px solid var(--c-line); font-weight: 600; color: var(--c-navy); line-height: 1.4; }
+.mtz-aside-list .icon { width: 22px; height: 22px; flex: none; color: var(--c-gold); }
+
+/* ---------- 5. Fall Heating Special ---------- */
+.mtz-special { background: var(--c-bg); }
+.mtz-special-grid { display: grid; gap: var(--sp-4); align-items: center; }
+@media (min-width: 900px) { .mtz-special-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-6); } }
+.mtz-special-photo { margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 4 / 3; box-shadow: var(--shadow-2); }
+.mtz-special-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mtz-coupon { position: relative; padding: clamp(22px, 3vw, 34px); border-radius: 24px; background: #fff; border: 2px dashed #E3CC8A; }
+.mtz-coupon .eyebrow { display: inline-flex; align-items: center; gap: 8px; }
+.mtz-coupon .eyebrow::before { display: none; }
+.mtz-coupon .eyebrow .icon { width: 20px; height: 20px; color: var(--c-gold); }
+.mtz-coupon h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 6px; }
+.mtz-price { color: var(--c-navy); background: var(--c-brand-tint); padding: 0 .2em; border-radius: 10px; box-shadow: inset 0 -.18em 0 var(--c-gold); }
+.mtz-coupon-tag { margin: 0 0 12px; }
+.mtz-checks { display: grid; gap: 10px; margin: 14px 0 22px; padding: 0; list-style: none; }
+.mtz-checks li { display: flex; gap: 10px; align-items: flex-start; font-weight: 600; color: var(--c-navy); line-height: 1.4; }
+.mtz-checks .icon { width: 22px; height: 22px; flex: none; color: var(--c-gold); }
+.mtz-coupon .fine { margin: 14px 0 0; }
+
+/* ---------- 6. How it works ---------- */
+@media (min-width: 900px) { .mtz .visit-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: var(--sp-6); } }
+.mtz-how-photo { border-radius: 24px; overflow: hidden; aspect-ratio: 4 / 3; }
+.mtz-how-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- 7. Meet the owner: illustrated placeholder (template), drawn as Jair ---------- */
+.tpl-owner-ph { --op-dark: var(--c-navy); --op-light: var(--c-gold); max-width: 380px; }
+.tpl-owner-ph .arch { position: relative; background: var(--c-brand-tint); }
+.tpl-owner-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tpl-owner-art .op-d { fill: var(--op-dark); }
+.tpl-owner-art .op-l { fill: var(--op-light); }
+.tpl-owner-art .op-ds { fill: none; stroke: var(--op-dark); stroke-width: 6; stroke-linecap: round; }
+.tpl-owner-art .op-ds.op-thin { stroke-width: 4.5; }
+.tpl-owner-art .op-ls { fill: none; stroke: var(--op-light); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.tpl-owner-art .op-sleeve { stroke-width: 22; }
+.tpl-owner-art .op-arm { transform-box: view-box; transform-origin: 184px 236px; animation: op-wave 5s ease-in-out infinite; }
+.tpl-owner-art .op-eyes { transform-box: view-box; transform-origin: 120px 148px; animation: op-blink 4.6s infinite; }
+@keyframes op-wave { 0%, 58%, 100% { transform: rotate(0); } 64% { transform: rotate(-14deg); } 70% { transform: rotate(8deg); } 76% { transform: rotate(-12deg); } 82% { transform: rotate(4deg); } }
+@keyframes op-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@media (prefers-reduced-motion: reduce) { .tpl-owner-art .op-arm, .tpl-owner-art .op-eyes { animation: none; } }
+.tpl-owner-ph-tag { position: absolute; top: 9%; left: 50%; transform: translateX(-50%); white-space: nowrap; z-index: 2; padding: 5px 12px; border-radius: 999px; background: #fff; color: var(--c-navy); font-size: 13px; font-weight: 700; box-shadow: var(--shadow-1); }
+.mtz .team { background: var(--c-bg); }
+.mtz-signoff { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; margin: 4px 0 18px; font-weight: 700; color: var(--c-navy); }
+.mtz-sig { font-family: "Brush Script MT", "Segoe Script", cursive; font-size: 2.1rem; font-weight: 400; color: var(--c-navy); line-height: 1; transform: rotate(-4deg); }
+.mtz .proof-chips .icon { color: var(--c-gold); }
+
+/* ---------- 8. Reviews ---------- */
+.mtz-h-tag { vertical-align: middle; margin-left: 6px; font-family: var(--ff-body); font-size: 12px; text-transform: none; letter-spacing: .02em; transform: translateY(-.3em); }
+.mtz .reviews { background: var(--c-brand-tint); }
+
+/* ---------- 9. FAQ ---------- */
+.mtz-call-card { overflow: hidden; }
+.mtz-call-photo { display: block; width: calc(100% + 2 * var(--sp-3)); max-width: none; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin: calc(-1 * var(--sp-3)) calc(-1 * var(--sp-3)) var(--sp-2); }
+
+/* ---------- 10. Service areas ---------- */
+.mtz .areas { background: var(--c-bg); }
+.mtz .area-chips li.is-hq { background: var(--c-navy); border-color: var(--c-navy); color: #fff; }
+.mtz .area-chips li.is-hq .icon { width: 16px; height: 16px; color: var(--c-gold); }
+.mtz .area-chips li.is-hq small { margin-left: 2px; padding: 1px 8px; border-radius: 999px; background: var(--c-gold); color: #fff; font-size: 11px; font-weight: 700; text-shadow: var(--gold-shadow); }
+.mtz .svc-hq-mark { box-shadow: 0 0 0 2px var(--c-gold), 0 4px 10px rgb(16 42 67 / .3); }
+.mtz .svc-hq-mark svg { width: 24px; height: 24px; }
+
+/* ---------- 11. Footer ---------- */
+.mtz .site-footer { background: var(--c-navy); }
+.mtz-foot-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 760px) { .mtz .mtz-foot-links { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; } }
+@media (min-width: 1100px) { .mtz .pw-foot-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); } }
+.mtz-foot-gap { margin-top: var(--sp-3); }
+.mtz .hours { grid-template-columns: auto; gap: 0; }
+.mtz .hours dt { margin-top: 8px; }
+.mtz .hours dt:first-child { margin-top: 0; }
+.mtz .hours dd { margin: 0; }
+.mtz .footer-brand .icon, .mtz .pw-foot-license .icon { color: var(--c-gold); }
+.mtz .site-footer a.big .icon { color: var(--c-gold); }
+.mtz-foot-bottom { grid-template-columns: 1fr; }
+@media (min-width: 900px) { .mtz .mtz-foot-bottom { grid-template-columns: auto 1fr auto; } .mtz .mtz-credits { text-align: center; } }
+
+/* ---------- Spanish: wait for the switch before showing words, so English never flashes ---------- */
+html.lang-es-pending body { opacity: 0; }
+html.lang-es-pending body { animation: mtz-show 0s 1.2s forwards; }
+@keyframes mtz-show { to { opacity: 1; } }
+
+/* Narrow phones: room for the logo, EN | ES, and the menu button side by side */
+@media (max-width: 409px) {
+  .mtz .site-header .logo { gap: 8px; }
+  .mtz .site-header .logo-mark { width: 38px; height: 38px; }
+  .mtz .site-header .logo-tag { font-size: 8.6px; letter-spacing: .05em; }
+  .mtz .header-actions { gap: 2px; }
+  .mtz .header-actions > .mtz-lang { gap: 0; font-size: 13.5px; }
+  .mtz .header-actions > .mtz-lang .mtz-lang-btn { min-width: 30px; padding: 0 3px; }
+}
