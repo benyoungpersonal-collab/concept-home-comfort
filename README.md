@@ -157,7 +157,7 @@ Keep each under about 2 MB, and update the video credit on `credits.html`.
 |---|---|
 | Business name, logo, "since 2010" | Everywhere |
 | Phone (209) 555-0142 | Every `tel:` and `sms:` link, JSON-LD |
-| License CSLB #000000 | Footer, About, trust strip, JSON-LD |
+| Licensed California contractor (no license number; never invent one) | Footer, About, trust strip, FAQ |
 | Street addresses (Tracy shop, Manteca yard) | Footer, Contact page, JSON-LD |
 | Email hello@pinwheel-example.com | Contact page |
 | Specials (the four offers and their terms) | Home |

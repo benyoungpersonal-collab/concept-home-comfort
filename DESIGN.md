@@ -16,7 +16,7 @@ This is the plan. Tokens, wireframes, and every word of copy were written before
 | Why the name | The Altamont Pass windmills are the first thing you see coming home to Tracy. A pinwheel is moving air, which is the whole job. Two warm blades and two cool blades make it a heating and cooling mark. |
 | Name check | "Delta Breeze Heating & Air" is a real HVAC company in Oakley, CA, about 30 miles from Tracy, and another "Delta Breeze" operates in Orangevale. Too close, so we did not use it. Web searches found no "Pinwheel" heating, air, or plumbing business. Ben should still confirm before showing it widely (web search is not a trademark search). |
 | Phone | (209) 555-0142. Calls use `tel:+12095550142`. Text uses `sms:+12095550142`. |
-| License | CSLB #000000 (placeholder) |
+| License | Licensed California contractor (no number shown; never invent one) |
 | Address | Street address placeholder, Tracy, CA 95376 |
 | Hours | Mon to Sat, 7am to 7pm. Emergency line 24/7. |
 | Cities | Tracy (home base), Mountain House, Manteca, Lathrop, Stockton, Livermore |
@@ -270,7 +270,7 @@ Word target for homepage body copy: 700 to 900 (reviews, nav, and footer not cou
 - Photo chip: Next opening today, 2 to 5 pm
 
 **Trust strip**
-- Licensed: CSLB #000000
+- Licensed and insured (no license number shown; never invent one)
 - Insured: Bonded and fully covered
 - Family owned: Local since 2010
 - Upfront pricing: Your price before we start
@@ -359,7 +359,7 @@ Pricing model (sample): base for 1,500 to 2,500 sq ft. AC only $6,800 to $9,200.
 3. Will I know the price before you start? Yes. You approve the full price in writing before we pick up a tool. No hourly surprises.
 4. Should I repair or replace my AC? Under 10 years old, a repair usually wins. Past 15 years, or when a repair costs more than a third of a new system, replacing often saves money. Our repair-or-replace helper gives you a quick answer.
 5. Do you offer financing? Yes. Most homeowners qualify for monthly payments on new systems, water heaters, and repipes.
-6. Are you licensed and insured? Yes. California license CSLB #000000 (placeholder), with full liability and workers' comp coverage.
+6. Are you licensed and insured? Yes. We're a licensed California contractor, with full liability and workers' comp coverage.
 7. Do you work on all brands? Yes. We service every major brand of AC, furnace, heat pump, and water heater.
 8. Do you serve my area? We cover Tracy, Mountain House, Manteca, Lathrop, Stockton, and Livermore. Close by but not listed? Call and ask.
 
