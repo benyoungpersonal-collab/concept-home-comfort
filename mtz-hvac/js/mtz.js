@@ -156,34 +156,45 @@
 
   if (form) {
     buildDays(); syncWindows(); summary();
-    form.addEventListener('change', function (e) {
-      if (e.target.name === 'day_pick') syncWindows();
-      var st = e.target.closest('.mtz-step');
-      if (st && e.target.type === 'radio') { st.classList.remove('is-invalid'); var er = $('[data-err-for]', st); if (er) er.hidden = true; }
-      if (e.target.getAttribute('aria-invalid') === 'true' && e.target.value.trim()) e.target.setAttribute('aria-invalid', 'false');
-      summary();
-    });
-    form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid') === 'true' && e.target.value.trim()) e.target.setAttribute('aria-invalid', 'false'); });
+    /* Checks (the form is novalidate): a step that is missing gets an orange outline, a short message under it, and a
+       quick shake. Each message goes away as soon as its step is filled. aria-invalid tells screen readers. */
+    var STEPS = [
+      { key: 'service', box: function () { return $('[data-step="service"]', form); }, ok: function () { return !!$('input[name="service"]:checked', form); }, focus: function () { return $('input[name="service"]', form); } },
+      { key: 'day', box: function () { return $('[data-step="day"]', form); }, ok: function () { return !!$('input[name="day_pick"]:checked', form) || (!$('input[name="day_pick"]', form) && fallbackInput && fallbackInput.value.trim() !== ''); }, focus: function () { return $('input[name="day_pick"]', form) || fallbackInput; } },
+      { key: 'window', box: function () { return $('[data-step="window"]', form); }, ok: function () { return !!$('input[name="window"]:checked', form); }, focus: function () { return $('input[name="window"]:not(:disabled)', form); } },
+      { key: 'name', box: function () { return $('[data-field="name"]', form); }, ok: function () { return form.elements.name.value.trim().length > 0; }, focus: function () { return form.elements.name; } },
+      { key: 'phone', box: function () { return $('[data-field="phone"]', form); }, ok: function () { return (form.elements.phone.value.match(/\d/g) || []).length >= 7; }, focus: function () { return form.elements.phone; } },
+      { key: 'address', box: function () { return $('[data-field="address"]', form); }, ok: function () { return form.elements.address.value.trim().length > 2; }, focus: function () { return form.elements.address; } }
+    ];
+    var mark = function (st, bad) {
+      var box = st.box(), msg = $('[data-err-for="' + st.key + '"]', form);
+      if (box) box.classList.toggle('is-invalid', bad);
+      if (msg) msg.hidden = !bad;
+      var group = box && box.querySelector('[role="radiogroup"]');
+      var field = form.elements[st.key];
+      if (group) group.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      if (field && field.setAttribute) field.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      if (group && bad) group.setAttribute('aria-describedby', 'err-' + st.key);
+    };
+    var recheck = function () { STEPS.forEach(function (st) { var box = st.box(); if (box && box.classList.contains('is-invalid') && st.ok()) mark(st, false); }); };
+    form.addEventListener('change', function (e) { if (e.target.name === 'day_pick') syncWindows(); recheck(); summary(); });
+    form.addEventListener('input', recheck);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var bad = null, err = $('[data-error]', form), fail = $('[data-fail]', form);
-      [['service', 'service'], ['day', 'day_pick'], ['window', 'window']].forEach(function (pair) {
-        var ok = !!$('input[name="' + pair[1] + '"]:checked', form);
-        var st = $('[data-step="' + pair[0] + '"]', form);
-        st.classList.toggle('is-invalid', !ok);
-        $('[data-err-for="' + pair[0] + '"]', st).hidden = ok;
-        if (!ok && !bad) bad = $('input[name="' + pair[1] + '"]:not(:disabled)', form);
-      });
-      ['name', 'phone', 'address'].forEach(function (n) {
-        var f = form.elements[n];
-        var ok = f.value.trim() !== '' && f.checkValidity();
-        f.setAttribute('aria-invalid', ok ? 'false' : 'true');
-        if (!ok && !bad) bad = f;
-      });
+      var fail = $('[data-fail]', form), first = null;
+      STEPS.forEach(function (st) { var bad = !st.ok(); mark(st, bad); if (bad && !first) first = st; });
       if (fail) fail.hidden = true;
-      if (bad) { err.hidden = false; bad.focus(); return; }
-      err.hidden = true;
+      if (first) {
+        var box = first.box();
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var top = box.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+        box.classList.remove('is-shaking'); void box.offsetWidth; box.classList.add('is-shaking');
+        setTimeout(function () { box.classList.remove('is-shaking'); }, 500);
+        var f = first.focus(); if (f) setTimeout(function () { f.focus({ preventScroll: true }); }, reduce ? 0 : 350);
+        return;
+      }
       var sum = summary();
       var btn = $('button[type="submit"]', form), btnText = btn.innerHTML;
       btn.disabled = true;
@@ -195,7 +206,7 @@
         .then(function () { btn.disabled = false; btn.innerHTML = btnText; });
     });
 
-    /* "Book this" links: pick the service, then the browser jumps to #book */
+    /* "Book this service" and the special's button: pick the service, then the browser jumps to #book */
     d.addEventListener('click', function (e) {
       var a = e.target.closest('[data-book-service]');
       if (a) pickService(a.getAttribute('data-book-service'));
@@ -204,7 +215,9 @@
     if (q) pickService(decodeURIComponent(q[1].replace(/\+/g, ' ')));
     if (/[?&]sent=1\b/.test(window.location.search)) showThanks(null);
 
+    window.MTZ_pickService = pickService;
     window.MTZ_onLang = function () {
+      if (window.MTZ_onPanelLang) window.MTZ_onPanelLang();
       buildDays(); syncWindows(); summary();
       if (thanks && !thanks.hidden && thanks._sum) { var s = summaryFromValues(thanks._sum); $('[data-thanks-sum]', thanks).textContent = s; }
     };
@@ -228,6 +241,54 @@
     var top = thanks.closest('.mtz-book-card').getBoundingClientRect().top + window.scrollY - 110;
     if (Math.abs(window.scrollY - top) > 40) window.scrollTo({ top: top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
+
+  /* ---------- Learn more: a detail panel for each service (a centered modal on desktop, a bottom sheet on phones).
+     Close with X, Esc, or a tap outside. Focus stays inside while it is open and goes back to the card after. ---------- */
+  (function () {
+    var dlg = $('[data-svc-panel]'); if (!dlg || typeof dlg.showModal !== 'function') return;
+    var opener = null, current = null;
+    var fill = function () {
+      if (!current) return;
+      var data = (window.MTZ_SERVICES || {})[current]; if (!data) return;
+      var t = data[root.lang === 'es' ? 'es' : 'en'];
+      var li = function (x) { return '<li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>' + x + '</span></li>'; };
+      $('[data-panel-title]', dlg).textContent = t.name;
+      $('[data-panel-desc]', dlg).textContent = t.desc;
+      $('[data-panel-inc]', dlg).innerHTML = t.inc.map(li).join('');
+      $('[data-panel-signs]', dlg).innerHTML = t.signs.map(li).join('');
+      var img = $('[data-panel-img]', dlg);
+      img.src = 'images/photos/mtz-' + current + '-960x720.webp'; img.alt = t.alt;
+    };
+    window.MTZ_onPanelLang = fill;
+    d.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-learn]'); if (!b) return;
+      e.preventDefault(); opener = b; current = b.getAttribute('data-learn'); fill();
+      dlg.showModal(); dlg.querySelector('.mtz-panel-scroll').scrollTop = 0;
+      $('[data-panel-close]', dlg).focus();
+    });
+    var close = function () { if (dlg.open) dlg.close(); };
+    $('[data-panel-close]', dlg).addEventListener('click', close);
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); }); // tap on the dimmed backdrop
+    dlg.addEventListener('close', function () { if (opener && !dlg._booking) opener.focus({ preventScroll: true }); dlg._booking = false; });
+    /* Focus trap (dialog.showModal keeps focus in the page's top layer; this also wraps Tab at both ends) */
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var f = $$('a[href], button:not([disabled])', dlg).filter(function (x) { return x.offsetParent !== null; });
+      if (!f.length) return;
+      if (e.shiftKey && d.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && d.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    });
+    $('[data-panel-book]', dlg).addEventListener('click', function (e) {
+      e.preventDefault();
+      var data = (window.MTZ_SERVICES || {})[current];
+      dlg._booking = true; close();
+      if (data && window.MTZ_pickService) window.MTZ_pickService(data.value);
+      var book = $('#book'); var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (book) { window.scrollTo({ top: book.getBoundingClientRect().top + window.scrollY - 70, behavior: reduce ? 'auto' : 'smooth' }); history.replaceState(null, '', '#book'); }
+      var r = data && $$('input[name="service"]').filter(function (x) { return x.value === data.value; })[0];
+      if (r) setTimeout(function () { r.focus({ preventScroll: true }); }, reduce ? 0 : 500);
+    });
+  })();
 
   /* ---------- How it works: the line draws as the section scrolls by; each card comes alive when the line reaches it ---------- */
   (function () {
