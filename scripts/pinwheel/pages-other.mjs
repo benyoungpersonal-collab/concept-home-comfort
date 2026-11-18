@@ -407,7 +407,7 @@ export const about = (ph) => ({
     `  <section class="section bg-white" id="owner" aria-labelledby="owner-title">
     <div class="container">
       <div class="split pw-split pw-owner">
-        <figure class="photo owner-figure"><img data-photo="owner-luis" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 92vw" alt=""><figcaption><strong>Luis Ortega</strong>Owner and master tech</figcaption></figure>
+        <figure class="photo owner-figure"><img data-photo="pw-owner" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 92vw" alt=""><figcaption><strong>Luis Ortega</strong>Owner and master tech</figcaption></figure>
         <div>
           <p class="eyebrow">Meet the owner</p>
           <h2 id="owner-title">A Price First, Then <span class="accent">the Work.</span></h2>

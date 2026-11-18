@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/fonts.css?v=20261111">
 <link rel="stylesheet" href="css/alive.css?v=20261111">
 <script>document.documentElement.classList.replace('no-js','js')</script>
-<script src="js/pinwheel.js?v=20261121" defer></script>
+<script src="js/pinwheel.js?v=20261123" defer></script>
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
@@ -519,8 +519,8 @@
     <div class="container team-grid">
       <figure class="owner-figure">
         <div class="arch">
-          <!-- REAL OWNER PHOTO GOES HERE: swap "owner-luis" in scripts/photos.json (or this img) for the owner's own portrait. -->
-          <img data-photo="owner-luis" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 88vw" src="images/photos/owner-luis-640x800.webp" srcset="images/photos/owner-luis-400x500.webp 400w, images/photos/owner-luis-640x800.webp 640w, images/photos/owner-luis-900x1125.webp 900w" width="900" height="1125" alt="Smiling owner with a gray beard in an orange work uniform, holding a toolbox and wrenches" loading="lazy" decoding="async" style="object-position:42% 30%;background-color:#f2c230">
+          <!-- REAL OWNER PHOTO GOES HERE: swap "pw-owner" in scripts/photos.json (or this img) for the owner's own portrait. -->
+          <img data-photo="pw-owner" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 88vw" src="images/photos/pw-owner-640x800.webp" srcset="images/photos/pw-owner-400x500.webp 400w, images/photos/pw-owner-640x800.webp 640w, images/photos/pw-owner-900x1125.webp 900w" width="900" height="1125" alt="Smiling owner in a gray work shirt standing in the shop bay" loading="lazy" decoding="async" style="object-position:45% 30%;background-color:#918888">
         </div>
         <figcaption><strong>Luis Ortega</strong><span>Owner and master tech</span></figcaption>
       </figure>
@@ -952,7 +952,7 @@
     <div class="chat-suggest" data-chat-suggest aria-label="Suggested questions" role="group"></div>
     <form class="chat-form" data-chat-form>
       <label class="visually-hidden" for="chat-input">Ask a question</label>
-      <input class="input" id="chat-input" type="text" placeholder="Ask about service, prices, or areas" autocomplete="off" maxlength="200">
+      <input class="input" id="chat-input" type="text" data-hint="Ask about service, prices, or areas" autocomplete="off" maxlength="200">
       <button class="chat-send" type="submit" aria-label="Send question"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button>
     </form>
   </section>

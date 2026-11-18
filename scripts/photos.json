@@ -65,31 +65,30 @@
     "by": "Ben Young Web Design",
     "use": "Cooling page hero, AC repair service card, preview template HVAC hero"
   },
-  "owner-luis": {
-    "id": "6050244",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/6050244/pexels-photo-6050244.jpeg?auto=compress&cs=tinysrgb&w=3000",
-    "w": 2400,
-    "h": 1600,
+  "pw-owner": {
+    "id": "udEWM2jLBVg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1586447751596-6c2050a0d335?q=90&fm=jpg",
+    "base": "https://images.unsplash.com/photo-1586447751596-6c2050a0d335",
+    "w": 2298,
+    "h": 3430,
     "box": [
-      0.18,
       0.0,
-      0.78,
-      1.0
+      0.0,
+      1.0,
+      0.7
     ],
     "fp": [
-      0.42,
+      0.45,
       0.3
     ],
-    "color": "#f2c230",
-    "alt": "Smiling owner with a gray beard in an orange work uniform, holding a toolbox and wrenches",
-    "by": "Gustavo Fring",
-    "profile": "https://www.pexels.com/@gustavo-fring/",
-    "page": "https://www.pexels.com/photo/man-smiling-while-holding-wrenches-6050244/",
-    "use": "Owner portrait (placeholder for the real owner photo)",
-    "preview": "pexels__6050244.jpg",
-    "file": "images/photos/pinwheel-owner-luis.jpg",
-    "edit": "Work uniform color changed to Pinwheel orange (color only; scripts/recolor-clothes.py)."
+    "color": "#918888",
+    "alt": "Smiling owner in a gray work shirt standing in the shop bay",
+    "by": "Jarred Ray",
+    "user": "jarredray",
+    "profile": "https://unsplash.com/@jarredray",
+    "page": "https://unsplash.com/photos/man-in-gray-button-up-shirt-and-black-pants-standing-near-black-and-red-power-tool-udEWM2jLBVg",
+    "use": "Owner portrait (homepage Meet the owner, About page)"
   },
   "tech-ray": {
     "id": "F4ox6XvbDps",

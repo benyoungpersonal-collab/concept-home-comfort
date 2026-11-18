@@ -324,60 +324,6 @@
   "q": 70
  },
  {
-  "file": "owner-luis-400x500.webp",
-  "key": "owner-luis",
-  "w": 400,
-  "h": 500,
-  "crop": true,
-  "fp": [
-   0.42,
-   0.3
-  ],
-  "box": [
-   0.18,
-   0,
-   0.78,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "owner-luis-640x800.webp",
-  "key": "owner-luis",
-  "w": 640,
-  "h": 800,
-  "crop": true,
-  "fp": [
-   0.42,
-   0.3
-  ],
-  "box": [
-   0.18,
-   0,
-   0.78,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "owner-luis-900x1125.webp",
-  "key": "owner-luis",
-  "w": 900,
-  "h": 1125,
-  "crop": true,
-  "fp": [
-   0.42,
-   0.3
-  ],
-  "box": [
-   0.18,
-   0,
-   0.78,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "pinwheel-air-quality-1200x1200.webp",
   "key": "pinwheel-air-quality",
   "w": 1200,
@@ -3614,6 +3560,60 @@
    0,
    1,
    1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-owner-400x500.webp",
+  "key": "pw-owner",
+  "w": 400,
+  "h": 500,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.3
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   0.7
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-owner-640x800.webp",
+  "key": "pw-owner",
+  "w": 640,
+  "h": 800,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.3
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   0.7
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-owner-900x1125.webp",
+  "key": "pw-owner",
+  "w": 900,
+  "h": 1125,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.3
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   0.7
   ],
   "q": 70
  },
