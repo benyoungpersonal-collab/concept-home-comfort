@@ -20,6 +20,16 @@
   ],
   "sites": [
     {
+      "id": "mtz-hvac",
+      "name": "MTZ HVAC Services",
+      "dir": "mtz-hvac",
+      "path": "/mtz-hvac/",
+      "live": "https://byw-home-comfort.netlify.app/mtz-hvac/",
+      "imageDir": "images",
+      "html": ["index.html"],
+      "phone": { "top": ["#book .eyebrow", "#book h2"], "bottom": "#book [data-step=\"day\"] .mtz-days", "align": "top", "_note": "Shows the Book Online heading with the service and day picks." }
+    },
+    {
       "id": "pinwheel",
       "name": "Pinwheel Heating, Air & Plumbing",
       "dir": ".",
