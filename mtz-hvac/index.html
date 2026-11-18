@@ -24,18 +24,18 @@
 <script src="js/mtz.js?v=20261118" defer></script>
 <script src="js/site.js?v=20261118" defer></script>
 <script src="js/reveal.js?v=20261118" defer></script>
-<link rel="preload" as="image" imagesrcset="images/photos/mtz-family-sq-480x475.webp 480w, images/photos/mtz-family-sq-720x712.webp 720w, images/photos/mtz-family-sq-960x950.webp 960w" imagesizes="100vw" media="(max-width: 599px)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="images/photos/mtz-family-1080x720.webp 1080w, images/photos/mtz-family-1620x1080.webp 1620w, images/photos/mtz-family-2400x1600.webp 2400w" imagesizes="(min-width: 900px) 60vw, 100vw" media="(min-width: 600px)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="images/photos/mtz-mom-son-tall-480x931-full.webp 480w, images/photos/mtz-mom-son-tall-640x1242-full.webp 640w, images/photos/mtz-mom-son-tall-840x1630-full.webp 840w" imagesizes="100vw" media="(max-width: 599px)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="images/photos/mtz-mom-son-768x508-full.webp 768w, images/photos/mtz-mom-son-1024x678-full.webp 1024w, images/photos/mtz-mom-son-1600x1059-full.webp 1600w, images/photos/mtz-mom-son-2400x1588-full.webp 2400w" imagesizes="100vw" media="(min-width: 600px)" fetchpriority="high">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MTZ HVAC Services | Heating Repair &amp; Tune-Ups in Riverside, CA">
 <meta property="og:description" content="Heating repair, furnace tune-ups, and AC service across Riverside. Book online in about a minute.">
 <meta property="og:url" content="https://byw-home-comfort.netlify.app/mtz-hvac/">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image" content="https://byw-home-comfort.netlify.app/mtz-hvac/images/og-share-2026-11-18.jpg">
+<meta property="og:image" content="https://byw-home-comfort.netlify.app/mtz-hvac/images/og-share-2026-11-18-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MTZ HVAC Services homepage on a laptop and a phone.">
-<meta name="twitter:image" content="https://byw-home-comfort.netlify.app/mtz-hvac/images/og-share-2026-11-18.jpg">
+<meta name="twitter:image" content="https://byw-home-comfort.netlify.app/mtz-hvac/images/og-share-2026-11-18-v2.jpg">
 <meta name="twitter:image:alt" content="MTZ HVAC Services homepage on a laptop and a phone.">
 <script type="application/ld+json">
 {
@@ -55,12 +55,13 @@
 </head>
 <body class="has-sticky-bar">
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
-  <!-- MTZ mark: a gold flame and a white snowflake side by side on a navy badge -->
+  <!-- MTZ mark: navy badge, thermostat dial ring with tick marks (cool blue to ember), geometric flame -->
   <symbol id="logo-mark" viewBox="0 0 48 48">
+    <defs><linearGradient id="ring-s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5BB8F0"/><stop offset=".55" stop-color="#9A7FB0"/><stop offset="1" stop-color="#E04A2F"/></linearGradient></defs>
     <rect x="1" y="1" width="46" height="46" rx="12" fill="#102A43"/>
-    <rect x="3.5" y="3.5" width="41" height="41" rx="9.5" fill="none" stroke="#D4A531" stroke-opacity=".55" stroke-width="1.5"/>
-    <g transform="translate(5.5 9.5) scale(1.25)"><path d="M12 21a6 6 0 0 0 6-6c0-4.5-3.6-6.6-5-11.5-2.3 2.6-3.2 4.8-3.3 7.2-.8-.7-1.4-1.8-1.6-3C6.8 9.9 6 12.3 6 15a6 6 0 0 0 6 6Z" fill="#D4A531"/><path d="M12 21a2.6 2.6 0 0 1-2.6-2.6c0-1.8 1.5-2.8 2.6-4.6 1.1 1.8 2.6 2.8 2.6 4.6A2.6 2.6 0 0 1 12 21Z" fill="#FBE7A6"/></g>
-    <g transform="translate(23.5 12.5) scale(.86)" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.8 4.3 12 6.5l2.2-2.2M9.8 19.7 12 17.5l2.2 2.2M17.57 6.25l-.81 3 3 .81M17.57 17.75l-.81-3 3-.81M6.43 6.25l.81 3-3 .81M6.43 17.75l.81-3-3-.81"/></g>
+    <g fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"><path d="M24 4.6v2.6M24 40.8v2.6M4.6 24h2.6M40.8 24h2.6M10.3 10.3l1.8 1.8M35.9 35.9l1.8 1.8M10.3 37.7l1.8-1.8M35.9 12.1l1.8-1.8"/></g>
+    <circle class="mtz-ring" cx="24" cy="24" r="14.5" fill="none" stroke="url(#ring-s)" stroke-width="2.6" stroke-linecap="round" pathLength="100" transform="rotate(-90 24 24)"/>
+    <g class="mtz-flame"><path d="M24 12.6c3.7 4.4 7.3 7.9 7.3 12.6a7.3 7.3 0 0 1-14.6 0c0-2.8 1.3-4.8 3-6.5.2 2 1 3.2 2.4 4C21.6 19.7 22.3 16.3 24 12.6Z" fill="#E04A2F"/><path d="M24 22.6c1.8 2.1 3.1 3.5 3.1 5.3a3.1 3.1 0 0 1-6.2 0c0-1.8 1.3-3.2 3.1-5.3Z" fill="#fff"/></g>
   </symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3.5h3.3l1.9 4.7-2.4 1.5a11.5 11.5 0 0 0 6.5 6.5l1.5-2.4 4.7 1.9v3.3a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3 5.5a2 2 0 0 1 2-2Z"/></symbol>
   <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8.5 14.5l2 2 4-4"/></symbol>
@@ -102,10 +103,12 @@
   <div class="container header-inner">
     <a class="logo" href="./" aria-label="MTZ HVAC Services, home">
       <svg class="logo-mark mtz-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <defs><linearGradient id="ring-h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5BB8F0"/><stop offset=".55" stop-color="#9A7FB0"/><stop offset="1" stop-color="#E04A2F"/></linearGradient></defs>
         <rect x="1" y="1" width="46" height="46" rx="12" fill="#102A43"/>
-        <rect x="3.5" y="3.5" width="41" height="41" rx="9.5" fill="none" stroke="#D4A531" stroke-opacity=".55" stroke-width="1.5"/>
-        <g class="mtz-mark-flame"><g transform="translate(5.5 9.5) scale(1.25)"><path d="M12 21a6 6 0 0 0 6-6c0-4.5-3.6-6.6-5-11.5-2.3 2.6-3.2 4.8-3.3 7.2-.8-.7-1.4-1.8-1.6-3C6.8 9.9 6 12.3 6 15a6 6 0 0 0 6 6Z" fill="#D4A531"/><path d="M12 21a2.6 2.6 0 0 1-2.6-2.6c0-1.8 1.5-2.8 2.6-4.6 1.1 1.8 2.6 2.8 2.6 4.6A2.6 2.6 0 0 1 12 21Z" fill="#FBE7A6"/></g></g>
-        <g class="mtz-mark-snow"><g transform="translate(23.5 12.5) scale(.86)" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.8 4.3 12 6.5l2.2-2.2M9.8 19.7 12 17.5l2.2 2.2M17.57 6.25l-.81 3 3 .81M17.57 17.75l-.81-3 3-.81M6.43 6.25l.81 3-3 .81M6.43 17.75l.81-3-3-.81"/></g></g>
+    <g fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"><path d="M24 4.6v2.6M24 40.8v2.6M4.6 24h2.6M40.8 24h2.6M10.3 10.3l1.8 1.8M35.9 35.9l1.8 1.8M10.3 37.7l1.8-1.8M35.9 12.1l1.8-1.8"/></g>
+    <circle class="mtz-ring" cx="24" cy="24" r="14.5" fill="none" stroke="url(#ring-h)" stroke-width="2.6" stroke-linecap="round" pathLength="100" transform="rotate(-90 24 24)"/>
+    <circle class="mtz-ring-sweep" cx="24" cy="24" r="14.5" fill="none" stroke="#E04A2F" stroke-width="2.6" stroke-linecap="round" pathLength="100" transform="rotate(-90 24 24)" opacity="0"/>
+    <g class="mtz-flame"><path d="M24 12.6c3.7 4.4 7.3 7.9 7.3 12.6a7.3 7.3 0 0 1-14.6 0c0-2.8 1.3-4.8 3-6.5.2 2 1 3.2 2.4 4C21.6 19.7 22.3 16.3 24 12.6Z" fill="#E04A2F"/><path d="M24 22.6c1.8 2.1 3.1 3.5 3.1 5.3a3.1 3.1 0 0 1-6.2 0c0-1.8 1.3-3.2 3.1-5.3Z" fill="#fff"/></g>
       </svg>
       <span class="logo-text" aria-hidden="true"><span class="logo-name">MTZ</span> <span class="logo-tag">HVAC Services <span>·</span> Riverside, CA</span></span>
     </a>
@@ -167,16 +170,12 @@
 
 <main id="main">
 
-  <!-- 1. Hero: full-photo overlay. Desktop: the family on the right, words on the left over a soft blur
-       of the same photo. Phones: faces in the top part, words below. No text ever covers a face. -->
+  <!-- 1. Hero: full-photo overlay. Desktop: mom and son on the right, words on the left. Phones: faces in the top part, words below. No text ever covers a face. -->
   <section class="hero pw-ohero mtz-hero" aria-labelledby="hero-title">
-    <div class="pw-ohero-photo mtz-hero-photo">
-      <img class="mtz-hero-blur" src="images/photos/mtz-family-blur.webp" width="300" height="200" alt="" aria-hidden="true">
-      <picture class="mtz-hero-pic">
-        <source media="(max-width: 599px)" srcset="images/photos/mtz-family-sq-480x475.webp 480w, images/photos/mtz-family-sq-720x712.webp 720w, images/photos/mtz-family-sq-960x950.webp 960w" sizes="100vw" width="960" height="950">
-        <img src="images/photos/mtz-family-1620x1080.webp" srcset="images/photos/mtz-family-1080x720.webp 1080w, images/photos/mtz-family-1620x1080.webp 1620w, images/photos/mtz-family-2400x1600.webp 2400w" sizes="(min-width: 900px) 60vw, 100vw" width="2400" height="1600" alt="Smiling mom, dad, and young son snuggled together on a chunky knit blanket in a warm, softly lit room" data-i18n-attr="alt:heroAlt" fetchpriority="high">
-      </picture>
-    </div>
+    <picture class="pw-ohero-photo">
+      <source media="(max-width: 599px)" srcset="images/photos/mtz-mom-son-tall-480x931-full.webp 480w, images/photos/mtz-mom-son-tall-640x1242-full.webp 640w, images/photos/mtz-mom-son-tall-840x1630-full.webp 840w" sizes="100vw" width="840" height="1630">
+      <img sizes="100vw" src="images/photos/mtz-mom-son-1024x678-full.webp" srcset="images/photos/mtz-mom-son-768x508-full.webp 768w, images/photos/mtz-mom-son-1024x678-full.webp 1024w, images/photos/mtz-mom-son-1600x1059-full.webp 1600w, images/photos/mtz-mom-son-2400x1588-full.webp 2400w" width="2400" height="1588" alt="Smiling mom and young son relaxing together on a gray couch at home" data-i18n-attr="alt:heroAlt" fetchpriority="high" style="object-position:68% 40%;background-color:#5b5d5e">
+    </picture>
     <div class="container pw-ohero-wrap">
       <div class="hero-copy pw-ohero-copy">
         <h1 class="hero-pill pw-pill"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg><span data-i18n="heroPill">Heating &amp; Air Conditioning in Riverside, CA</span></h1>
@@ -276,12 +275,20 @@
   <!-- 4. Book Online: the star of the page. A working Netlify form named mtz-booking. -->
   <section class="section mtz-book tpl-bg-tint" id="book" aria-labelledby="book-title">
     <div class="container mtz-book-grid">
-      <div class="mtz-book-main">
+      <div class="mtz-book-intro">
         <div class="section-head">
           <p class="eyebrow" data-i18n="bookEyebrow">Book online</p>
           <h2 id="book-title" data-i18n="bookH">Book Your Visit in <span class="accent">About a Minute.</span></h2>
           <p class="lead" data-i18n="bookLead">Pick what you need, a day, and a 2-hour arrival window. We'll text you to confirm.</p>
         </div>
+        <ul class="mtz-book-points">
+          <li><span class="mtz-pt-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span data-i18n="a1">You pick a 2-hour window, so you're not stuck home all day.</span></li>
+          <li><span class="mtz-pt-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span data-i18n="a2">We text you to confirm, and again when we're on the way.</span></li>
+          <li><span class="mtz-pt-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span data-i18n="a3">You see the price before any work starts.</span></li>
+        </ul>
+        <p class="mtz-book-alt mtz-book-alt-intro"><span data-i18n="ratherTalk">Rather talk? Call or text</span> <a href="tel:+19519064017">(951) 906-4017</a>.</p>
+      </div>
+      <div class="mtz-book-main">
         <div class="mtz-book-card">
           <form class="mtz-form" name="mtz-booking" method="POST" action="/mtz-hvac/?sent=1#book" data-netlify="true" netlify-honeypot="bot-field" data-mtz-booking novalidate>
             <input type="hidden" name="form-name" value="mtz-booking">
@@ -362,18 +369,7 @@
             <p class="mtz-thanks-sum" data-thanks-sum></p>
           </div>
         </div>
-        <p class="mtz-book-alt"><span data-i18n="ratherTalk">Rather talk? Call or text</span> <a href="tel:+19519064017">(951) 906-4017</a>.</p>
-      </div>
-      <aside class="mtz-book-aside" aria-label="What happens after you book" data-i18n-attr="aria-label:asideAria">
-        <figure class="mtz-aside-photo" data-reveal="right">
-          <img src="images/photos/mtz-living-room-720x540.webp" srcset="images/photos/mtz-living-room-480x360.webp 480w, images/photos/mtz-living-room-720x540.webp 720w, images/photos/mtz-living-room-960x720.webp 960w" sizes="(min-width: 1000px) 400px, 92vw" width="960" height="720" alt="Cozy living room at dusk with a knit blanket on the sofa, a warm lamp, and two mugs of cocoa" data-i18n-attr="alt:livingAlt" loading="lazy" decoding="async">
-        </figure>
-        <ul class="mtz-aside-list">
-          <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span data-i18n="a1">You pick a 2-hour window, so you're not stuck home all day.</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg><span data-i18n="a2">We text you to confirm, and again when we're on the way.</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg><span data-i18n="a3">You see the price before any work starts.</span></li>
-        </ul>
-      </aside>
+        </div>
     </div>
   </section>
 
@@ -381,12 +377,13 @@
   <section class="section mtz-special" id="special" aria-labelledby="special-title">
     <div class="container mtz-special-grid">
       <figure class="mtz-special-photo" data-reveal="left">
-        <img src="images/photos/mtz-furnace-tuneup-720x540.webp" srcset="images/photos/mtz-furnace-tuneup-480x360.webp 480w, images/photos/mtz-furnace-tuneup-720x540.webp 720w, images/photos/mtz-furnace-tuneup-960x720.webp 960w" sizes="(min-width: 900px) 520px, 92vw" width="960" height="720" alt="Furnace in a clean garage with a new air filter, a carbon monoxide meter, and a checklist ready for a tune-up" data-i18n-attr="alt:specialAlt" loading="lazy" decoding="async">
+        <img src="images/photos/mtz-tech-720x540.webp" srcset="images/photos/mtz-tech-480x360.webp 480w, images/photos/mtz-tech-720x540.webp 720w, images/photos/mtz-tech-960x720.webp 960w" sizes="(min-width: 900px) 520px, 92vw" width="960" height="720" alt="HVAC technician hooking up a gauge and refrigerant tank to an outdoor heat pump" data-i18n-attr="alt:specialAlt" loading="lazy" decoding="async">
       </figure>
       <div class="mtz-coupon">
         <p class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg><span data-i18n="spEyebrow">Fall heating special</span></p>
-        <h2 id="special-title"><span data-i18n="spH">Furnace Tune-Up</span> <span class="mtz-price">$89</span></h2>
-        <p class="mtz-coupon-tag"><span class="tag" data-i18n="illustrative">Illustrative</span></p>
+        <h2 id="special-title"><span data-i18n="spH">Furnace Tune-Up</span></h2>
+        <p class="mtz-price-badge" aria-label="$89"><span class="mtz-price-cur">$</span>89</p>
+        <p class="mtz-coupon-tag"><span class="tag on-dark" data-i18n="illustrative">Illustrative</span></p>
         <p data-i18n="spLead">Get your furnace ready before the cold nights hit. Here's what we check:</p>
         <ul class="mtz-checks">
           <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span data-i18n="ck1">Burners, cleaned and checked for a steady flame</span></li>
@@ -395,30 +392,49 @@
           <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span data-i18n="ck4">Air filter, checked and changed if it's dirty</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span data-i18n="ck5">Carbon monoxide, tested for your family's safety</span></li>
         </ul>
-        <a class="btn btn-primary btn-lg" href="#book" data-book-service="Furnace Tune-Up"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span data-i18n="spBtn">Book the tune-up</span></a>
+        <a class="btn btn-white btn-lg mtz-btn-coupon" href="#book" data-book-service="Furnace Tune-Up"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span data-i18n="spBtn">Book the tune-up</span></a>
         <p class="fine" data-i18n="spFine">One per home. If we find anything that needs a repair, we'll show you the price first.</p>
       </div>
     </div>
   </section>
 
   <!-- 6. How It Works -->
-  <section class="section visit bg-white" id="how" aria-labelledby="how-title">
-    <div class="container visit-grid">
-      <div class="visit-media-col">
-        <div class="visit-media mtz-how-photo">
-          <img src="images/photos/mtz-van-720x540.webp" srcset="images/photos/mtz-van-480x360.webp 480w, images/photos/mtz-van-720x540.webp 720w, images/photos/mtz-van-960x720.webp 960w" sizes="(min-width: 900px) 560px, 92vw" width="960" height="720" alt="Navy service van parked in the driveway of a stucco home with a tile roof" data-i18n-attr="alt:vanAlt" loading="lazy" decoding="async">
-        </div>
-      </div>
-      <div>
+  <section class="section mtz-how bg-white" id="how" aria-labelledby="how-title" data-how>
+    <div class="container">
+      <div class="section-head mtz-how-head">
         <p class="eyebrow" data-i18n="howEyebrow">How it works</p>
         <h2 id="how-title" data-i18n="howH">Three Easy Steps. <span class="accent">No Surprises.</span></h2>
-        <ol class="visit-steps">
-          <li><strong data-i18n="h1t">Book Online or Call</strong><span data-i18n="h1p">Pick your service, day, and 2-hour window online in about a minute, or give us a call.</span></li>
-          <li><strong data-i18n="h2t">We Show Up on Time</strong><span data-i18n="h2p">We text to confirm your window and again when we're on the way, so you're not left waiting.</span></li>
-          <li><strong data-i18n="h3t">Upfront Price, Then We Fix It</strong><span data-i18n="h3p">We find the problem and tell you the price before any work starts. You decide, and then we get it done.</span></li>
-        </ol>
-        <a class="btn btn-primary" href="#book"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span data-i18n="bookOnline">Book Online</span></a>
       </div>
+      <div class="mtz-steps-wrap">
+        <div class="mtz-steps-line" aria-hidden="true"><span></span></div>
+        <ol class="mtz-steps">
+          <li class="mtz-stepcard" data-stepcard>
+            <span class="mtz-step-num" aria-hidden="true">1</span>
+            <span class="mtz-step-art" aria-hidden="true">
+              <svg viewBox="0 0 64 64" class="art-cal"><rect x="10" y="14" width="44" height="40" rx="7" class="a-fill"/><rect x="10" y="14" width="44" height="40" rx="7" class="a-line"/><path d="M10 26h44" class="a-line"/><path d="M22 9v10M42 9v10" class="a-line"/><path d="M23 40l7 7 13-14" class="a-check" pathLength="1"/></svg>
+            </span>
+            <h3 data-i18n="h1t">Book Online or Call</h3>
+            <p data-i18n="h1p">Pick your service, day, and 2-hour window online in about a minute, or give us a call.</p>
+          </li>
+          <li class="mtz-stepcard" data-stepcard>
+            <span class="mtz-step-num" aria-hidden="true">2</span>
+            <span class="mtz-step-art" aria-hidden="true">
+              <svg viewBox="0 0 64 64" class="art-clock"><circle cx="32" cy="33" r="21" class="a-fill"/><path d="M32 12a21 21 0 0 1 18.2 10.5" class="a-window" pathLength="1"/><circle cx="32" cy="33" r="21" class="a-line"/><path d="M32 33V21" class="a-line a-hand"/><path d="M32 33l8 5" class="a-line a-min"/><circle cx="32" cy="33" r="2.6" class="a-dot"/></svg>
+            </span>
+            <h3 data-i18n="h2t">We Show Up on Time</h3>
+            <p data-i18n="h2p">We text to confirm your window and again when we're on the way, so you're not left waiting.</p>
+          </li>
+          <li class="mtz-stepcard" data-stepcard>
+            <span class="mtz-step-num" aria-hidden="true">3</span>
+            <span class="mtz-step-art" aria-hidden="true">
+              <span class="mtz-flip"><svg viewBox="0 0 64 64" class="art-tag"><path d="M12 30V14a3 3 0 0 1 3-3h16l22 22a3 3 0 0 1 0 4.2L37.2 53a3 3 0 0 1-4.2 0L12.9 32.1A3 3 0 0 1 12 30Z" class="a-fill"/><path d="M12 30V14a3 3 0 0 1 3-3h16l22 22a3 3 0 0 1 0 4.2L37.2 53a3 3 0 0 1-4.2 0L12.9 32.1A3 3 0 0 1 12 30Z" class="a-line"/><circle cx="21" cy="20" r="3.2" class="a-line"/><text x="35" y="40" class="a-q">?</text><text x="35" y="40" class="a-price">$</text></svg></span>
+            </span>
+            <h3 data-i18n="h3t">Upfront Price, Then We Fix It</h3>
+            <p data-i18n="h3p">We find the problem and tell you the price before any work starts. You decide, and then we get it done.</p>
+          </li>
+        </ol>
+      </div>
+      <p class="mtz-how-cta"><a class="btn btn-primary btn-lg" href="#book"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span data-i18n="bookOnline">Book Online</span></a></p>
     </div>
   </section>
 
@@ -440,7 +456,7 @@
             <path class="op-ds op-thin" d="M109 169q11 7 22 0"/>
             <path class="op-ls" d="M99 210l21 25-7 9-21-21zM141 210l-21 25 7 9 21-21z"/>
             <path class="op-ls" d="M120 238v26"/><circle class="op-l" cx="120" cy="248" r="2.6"/><circle class="op-l" cx="120" cy="259" r="2.6"/>
-            <g transform="translate(150 246) scale(.9)"><path class="op-l" d="M12 21a6 6 0 0 0 6-6c0-4.5-3.6-6.6-5-11.5-2.3 2.6-3.2 4.8-3.3 7.2-.8-.7-1.4-1.8-1.6-3C6.8 9.9 6 12.3 6 15a6 6 0 0 0 6 6Z"/></g>
+            <g transform="translate(150 246) scale(.9)"><path class="op-e" d="M12 21a6 6 0 0 0 6-6c0-4.5-3.6-6.6-5-11.5-2.3 2.6-3.2 4.8-3.3 7.2-.8-.7-1.4-1.8-1.6-3C6.8 9.9 6 12.3 6 15a6 6 0 0 0 6 6Z"/></g>
             <g class="op-arm"><path class="op-ds op-sleeve" d="M184 236c10-20 18-38 22-62"/><circle class="op-l" cx="208" cy="160" r="15"/></g>
           </svg>
           <span class="tpl-owner-ph-tag" data-i18n="photoHere">Your photo here</span>
@@ -462,12 +478,12 @@
   </section>
 
   <!-- 8. Reviews: swipeable cards, illustrative -->
-  <section class="section reviews tpl-bg-tint" id="reviews" aria-labelledby="reviews-title" data-carousel>
+  <section class="section reviews on-dark mtz-reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
     <div class="container">
       <div class="section-head split">
         <div>
           <p class="eyebrow" data-i18n="revEyebrow">Reviews</p>
-          <h2 id="reviews-title"><span data-i18n="revH">Don't Take Our <span class="accent">Word for It.</span></span> <span class="tag mtz-h-tag" data-i18n="sampleReviews">Sample reviews</span></h2>
+          <h2 id="reviews-title"><span data-i18n="revH">Don't Take Our <span class="accent">Word for It.</span></span> <span class="tag on-dark mtz-h-tag" data-i18n="sampleReviews">Sample reviews</span></h2>
         </div>
         <div class="carousel-controls">
           <button class="round-btn" type="button" data-prev aria-label="Previous reviews" data-i18n-attr="aria-label:revPrev"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
@@ -493,7 +509,7 @@
           <p class="review-text" data-i18n="rv3">Jair told me the price before he started, and that is exactly what I paid. No surprises and no pressure to buy anything else.</p>
         </li>
         <li class="review-card">
-          <div class="review-top"><span class="avatar" style="--h:35" aria-hidden="true">C</span><div><p class="review-name">Chris T.</p><p class="review-meta">Riverside · <span data-i18n="homeowner">Homeowner</span></p></div></div>
+          <div class="review-top"><span class="avatar" style="--h:230" aria-hidden="true">C</span><div><p class="review-name">Chris T.</p><p class="review-meta">Riverside · <span data-i18n="homeowner">Homeowner</span></p></div></div>
           <span class="stars5" role="img" aria-label="5 out of 5 stars" data-i18n-attr="aria-label:stars5"></span>
           <p class="review-text" data-i18n="rv4">Our fall tune-up caught a dirty flame sensor before it left us without heat. He wore shoe covers and cleaned up everything when he was done.</p>
         </li>
@@ -546,7 +562,7 @@
         </div>
       </div>
       <div class="card call-card mtz-call-card">
-        <img class="mtz-call-photo" src="images/photos/mtz-street-640x360.webp" srcset="images/photos/mtz-street-640x360.webp 640w, images/photos/mtz-street-960x540.webp 960w" sizes="(min-width: 900px) 360px, 92vw" width="960" height="540" alt="Quiet Riverside street with stucco homes, tile roofs, and palm trees at sunset" data-i18n-attr="alt:streetAlt" loading="lazy" decoding="async">
+        <img class="mtz-call-photo" src="images/photos/mtz-thermostat-hand-640x360.webp" srcset="images/photos/mtz-thermostat-hand-640x360.webp 640w, images/photos/mtz-thermostat-hand-960x540.webp 960w" sizes="(min-width: 900px) 360px, 92vw" width="960" height="540" alt="Homeowner pressing the dial on a wall thermostat set to 25 degrees" data-i18n-attr="alt:streetAlt" loading="lazy" decoding="async">
         <p><strong data-i18n="ccH">Still have a question?</strong> <span data-i18n="ccP">Call or text us. A real person will answer it.</span></p>
         <a class="btn btn-primary" href="tel:+19519064017"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="callNum">Call (951) 906-4017</span></a>
       </div>
@@ -596,15 +612,15 @@
   <g class="van-body">
     <g stroke="#0A1B2C" stroke-width="3" stroke-linecap="round"><line x1="56" y1="22" x2="232" y2="22"/><line x1="72" y1="22" x2="72" y2="30"/><line x1="216" y1="22" x2="216" y2="30"/><line x1="100" y1="17" x2="100" y2="22"/><line x1="130" y1="17" x2="130" y2="22"/><line x1="160" y1="17" x2="160" y2="22"/><line x1="190" y1="17" x2="190" y2="22"/><line x1="86" y1="17" x2="204" y2="17"/></g>
     <path d="M30 160Q20 160 20 150V44Q20 30 34 30H292Q304 30 312 38L354 90 398 98Q414 101 416 118L417 150Q417 160 407 160H384A30 30 0 0 0 324 160H136A30 30 0 0 0 76 160Z" fill="#102A43" stroke="#0A1B2C" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M22 114H415L416 126H22Z" fill="#D4A531"/>
+    <path d="M22 114H415L416 126H22Z" fill="#E04A2F"/>
     <path d="M266 42H300Q306 42 310 47L340 86Q342 90 337 90H266Q262 90 262 86V46Q262 42 266 42Z" fill="#DCEBF5" stroke="#0A1B2C" stroke-width="3" stroke-linejoin="round"/>
     <line x1="256" y1="34" x2="256" y2="158" stroke="#0A1B2C" stroke-width="2.5"/>
-    <rect x="266" y="98" width="16" height="5" rx="2.5" fill="#D4A531"/>
-    <rect x="398" y="104" width="14" height="8" rx="3" fill="#FBE7A6" stroke="#0A1B2C" stroke-width="2"/>
+    <rect x="266" y="98" width="16" height="5" rx="2.5" fill="#E04A2F"/>
+    <rect x="398" y="104" width="14" height="8" rx="3" fill="#F4F7FA" stroke="#0A1B2C" stroke-width="2"/>
     <rect x="394" y="146" width="26" height="9" rx="4" fill="#0A1B2C"/>
     <g transform="translate(40 44)"><svg width="44" height="44" viewBox="0 0 48 48"><use href="#logo-mark"/></svg></g>
     <text x="162" y="76" text-anchor="middle" font-family="var(--ff-display)" font-size="36" letter-spacing="1" fill="#fff">MTZ</text>
-    <text x="162" y="94" text-anchor="middle" font-family="var(--ff-ui)" font-weight="700" font-size="11.5" letter-spacing="1.8" fill="#E8C463">HVAC SERVICES</text>
+    <text x="162" y="94" text-anchor="middle" font-family="var(--ff-ui)" font-weight="700" font-size="11.5" letter-spacing="1.8" fill="#FF7A5C">HVAC SERVICES</text>
     <text x="162" y="109" text-anchor="middle" font-family="var(--ff-body)" font-weight="700" font-size="12.5" fill="#fff">(951) 906-4017</text>
   </g>
   <g class="van-wheel"><circle cx="106" cy="160" r="25" fill="#0A1B2C"/><circle cx="106" cy="160" r="12" fill="#D9DFEA"/><line x1="106" y1="160" x2="117.0" y2="160.0" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="106" y1="160" x2="109.4" y2="170.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="106" y1="160" x2="97.1" y2="166.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="106" y1="160" x2="97.1" y2="153.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="106" y1="160" x2="109.4" y2="149.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><circle cx="106" cy="160" r="3.2" fill="#0A1B2C"/></g><g class="van-wheel"><circle cx="354" cy="160" r="25" fill="#0A1B2C"/><circle cx="354" cy="160" r="12" fill="#D9DFEA"/><line x1="354" y1="160" x2="365.0" y2="160.0" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="354" y1="160" x2="357.4" y2="170.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="354" y1="160" x2="345.1" y2="166.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="354" y1="160" x2="345.1" y2="153.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><line x1="354" y1="160" x2="357.4" y2="149.5" stroke="#0A1B2C" stroke-width="2.5" stroke-linecap="round"/><circle cx="354" cy="160" r="3.2" fill="#0A1B2C"/></g>
@@ -615,50 +631,60 @@
 
 </main>
 
-<footer class="site-footer on-dark pw-footer">
-  <div class="container pw-foot-grid">
-    <div class="footer-brand">
+<footer class="site-footer on-dark mtz-footer">
+  <div class="container mtz-foot-grid">
+    <div class="mtz-foot-brand">
       <a class="logo light" href="./" aria-label="MTZ HVAC Services, home">
         <svg class="logo-mark" aria-hidden="true"><use href="#logo-mark"/></svg>
         <span class="logo-text" aria-hidden="true"><span class="logo-name">MTZ</span> <span class="logo-tag">HVAC Services <span>·</span> Riverside, CA</span></span>
       </a>
-      <p data-i18n="ftDesc">Heating repair, furnace tune-ups, and AC service for homes in Riverside and nearby cities.</p>
-      <a class="big" href="tel:+19519064017"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>(951) 906-4017</a>
-      <p><a class="footer-text-link" href="sms:+19519064017" data-i18n="ftText">You can text us at the same number</a></p>
-      <p class="pw-foot-license"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg><span data-i18n="ftLicense">Licensed C-20 HVAC Contractor · Lic. #1163605</span></p>
+      <p class="mtz-foot-desc" data-i18n="ftDesc">Heating repair, furnace tune-ups, and AC service for homes in Riverside and nearby cities.</p>
+      <p class="mtz-foot-license"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg><span data-i18n="ftLicense">Licensed C-20 HVAC Contractor · Lic. #1163605</span></p>
+      <a class="mtz-foot-phone" href="tel:+19519064017"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>(951) 906-4017</a>
+      <a class="mtz-foot-book" href="#book"><span data-i18n="bookOnline">Book Online</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
     </div>
-    <div class="pw-foot-links mtz-foot-links">
-      <nav aria-label="Services" data-i18n-attr="aria-label:navServices">
-        <p class="footer-title" data-i18n="navServices">Services</p>
-        <ul class="footer-links">
-          <li><a href="#book" data-book-service="Heating Repair" data-i18n="sv1">Heating Repair</a></li>
-          <li><a href="#book" data-book-service="Furnace Tune-Up" data-i18n="sv2">Furnace Tune-Ups</a></li>
-          <li><a href="#book" data-book-service="AC Repair" data-i18n="sv3">AC Repair</a></li>
-          <li><a href="#book" data-book-service="AC Tune-Up" data-i18n="sv4">AC Tune-Ups</a></li>
-          <li><a href="#book" data-book-service="New System Install" data-i18n="sv5">New System Installs</a></li>
-          <li><a href="#book" data-book-service="Thermostats &amp; Air Quality" data-i18n="sv6">Thermostats &amp; Air Quality</a></li>
-        </ul>
-      </nav>
-      <div>
-        <p class="footer-title" data-i18n="ftHours">Hours</p>
-        <dl class="hours">
-          <dt data-i18n="ftMonSat">Mon to Sat</dt><dd data-i18n="ftTime">7am to 7pm</dd>
-          <dt data-i18n="ftEmerg">Emergency calls</dt><dd data-i18n="ftByPhone">By phone</dd>
-        </dl>
-        <p class="footer-title mtz-foot-gap" data-i18n="ftCompany">Company</p>
-        <ul class="footer-links">
-          <li><a href="#book" data-i18n="bookOnline">Book Online</a></li>
-          <li><a href="#special" data-i18n="navSpecial">Specials</a></li>
-          <li><a href="#owner" data-i18n="navOwner">Meet the Owner</a></li>
-          <li><a href="#faq" data-i18n="navFaq">FAQ</a></li>
-          <li><a href="#areas" data-i18n="navAreasLong">Service Areas</a></li>
-        </ul>
-      </div>
+    <nav class="mtz-foot-col" aria-label="Services" data-i18n-attr="aria-label:navServices">
+      <p class="mtz-foot-title" data-i18n="navServices">Services</p>
+      <ul>
+        <li><a href="#book" data-book-service="Heating Repair" data-i18n="sv1">Heating Repair</a></li>
+        <li><a href="#book" data-book-service="Furnace Tune-Up" data-i18n="sv2">Furnace Tune-Ups</a></li>
+        <li><a href="#book" data-book-service="AC Repair" data-i18n="sv3">AC Repair</a></li>
+        <li><a href="#book" data-book-service="AC Tune-Up" data-i18n="sv4">AC Tune-Ups</a></li>
+        <li><a href="#book" data-book-service="New System Install" data-i18n="sv5">New System Installs</a></li>
+        <li><a href="#book" data-book-service="Thermostats &amp; Air Quality" data-i18n="sv6">Thermostats &amp; Air Quality</a></li>
+      </ul>
+    </nav>
+    <nav class="mtz-foot-col" aria-label="Company" data-i18n-attr="aria-label:ftCompany">
+      <p class="mtz-foot-title" data-i18n="ftCompany">Company</p>
+      <ul>
+        <li><a href="#owner" data-i18n="navOwner">Meet the Owner</a></li>
+        <li><a href="#reviews" data-i18n="navReviews">Reviews</a></li>
+        <li><a href="#special" data-i18n="navSpecial">Specials</a></li>
+        <li><a href="#how" data-i18n="navHow">How It Works</a></li>
+        <li><a href="#areas" data-i18n="navAreasLong">Service Areas</a></li>
+      </ul>
+    </nav>
+    <div class="mtz-foot-col">
+      <p class="mtz-foot-title" data-i18n="ftHelp">Help</p>
+      <ul>
+        <li><a href="#book" data-i18n="bookOnline">Book Online</a></li>
+        <li><a href="sms:+19519064017" data-i18n="ftTextUs">Text Us</a></li>
+        <li><a href="#faq" data-i18n="navFaq">FAQ</a></li>
+      </ul>
+      <p class="mtz-foot-title mtz-foot-title-gap" data-i18n="ftHours">Hours</p>
+      <dl class="mtz-hours">
+        <div><dt data-i18n="ftMonSat">Mon to Sat</dt><dd data-i18n="ftTime">7am to 7pm</dd></div>
+        <div><dt data-i18n="ftSun">Sunday</dt><dd data-i18n="ftClosed">Closed</dd></div>
+        <div><dt data-i18n="ftEmerg">Emergency calls</dt><dd data-i18n="ftByPhone">By phone</dd></div>
+      </dl>
     </div>
   </div>
-  <div class="container footer-bottom mtz-foot-bottom">
+  <div class="container mtz-foot-serving">
+    <p><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg><span data-i18n="ftServing">Serving Riverside, Moreno Valley, Corona, Jurupa Valley, Norco, Eastvale, Perris, and Grand Terrace.</span></p>
+  </div>
+  <div class="container mtz-foot-bottom">
     <p>© 2026 MTZ HVAC Services</p>
-    <p class="mtz-credits"><span data-i18n="credits">Family photo by</span> <a href="https://unsplash.com/photos/a-family-sitting-on-a-couch-T-qNefXNUGw" rel="noopener" target="_blank">Daria Trofimova</a> <span data-i18n="creditsOn">on</span> <a href="https://unsplash.com/" rel="noopener" target="_blank">Unsplash</a>.</p>
+    <p class="mtz-credits"><span data-i18n="credits">Photos by</span> <a href="https://unsplash.com/photos/mother-and-son-smiling-on-a-couch-tSwr_HGh0kQ" rel="noopener" target="_blank">Vitaly Gariev</a>, <a href="https://unsplash.com/photos/technician-servicing-outdoor-air-conditioning-unit-L5sEqpQukJI" rel="noopener" target="_blank">Joel Muniz</a>, <span data-i18n="creditsAnd">and</span> <a href="https://unsplash.com/photos/finger-pressing-button-on-digital-thermostat-display-Ymp_8DatASs" rel="noopener" target="_blank">HUUM</a> <span data-i18n="creditsOn">on</span> <a href="https://unsplash.com/" rel="noopener" target="_blank">Unsplash</a>.</p>
     <p data-i18n="siteBy">Site by Ben Young Web Design</p>
   </div>
 </footer>

@@ -229,6 +229,26 @@
     if (Math.abs(window.scrollY - top) > 40) window.scrollTo({ top: top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
 
+  /* ---------- How it works: the line draws as the section scrolls by; each card comes alive when the line reaches it ---------- */
+  (function () {
+    var sec = $('[data-how]'); if (!sec) return;
+    var wrap = $('.mtz-steps-wrap', sec), cards = $$('[data-stepcard]', sec);
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduce.matches) { wrap.style.setProperty('--draw', 1); cards.forEach(function (c) { c.classList.add('is-on'); }); return; }
+    var ticking = false;
+    var update = function () {
+      ticking = false;
+      var r = wrap.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (r.height * 0.9)));
+      wrap.style.setProperty('--draw', p.toFixed(3));
+      var n = cards.length;
+      cards.forEach(function (c, i) { if (p >= (i / (n - 1)) * 0.92 + 0.02) c.classList.add('is-on'); });
+    };
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
   /* ---------- Start: Spanish if the visitor picked it before (or ?lang=es) ---------- */
   var wanted = /[?&]lang=es\b/.test(window.location.search) ? 'es' : (/[?&]lang=en\b/.test(window.location.search) ? 'en' : store.get('mtz-lang'));
   if (wanted === 'es') applyLang('es', false); else root.classList.remove('lang-es-pending');

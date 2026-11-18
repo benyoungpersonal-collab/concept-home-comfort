@@ -13,7 +13,7 @@ window.MTZ_ES = {
   bookOnline: 'Agenda en línea', callNum: 'Llama al (951) 906-4017',
   mmHours: 'Llámanos o mándanos texto de lunes a sábado, de 7 am a 7 pm. Si te quedaste sin calefacción, llámanos.',
 
-  heroAlt: 'Mamá, papá y su hijo sonriendo, acurrucados sobre una cobija tejida en un cuarto cálido con luz suave',
+  heroAlt: 'Mamá e hijo sonrientes, relajándose juntos en un sillón gris en casa',
   heroPill: 'Calefacción y aire acondicionado en Riverside, CA',
   heroH: 'Tu casa <br class="pw-m-br"><span class="accent">calientita</span><br> <span class="nowrap">todo el invierno.</span>',
   heroLead: 'Reparamos calefacción, le damos mantenimiento a tu calentón y arreglamos tu aire acondicionado en todo Riverside. Agenda en línea en un minuto y llegamos en el horario que tú escojas.',
@@ -77,7 +77,7 @@ window.MTZ_ES = {
   ck5: 'Monóxido de carbono, medido para la seguridad de tu familia',
   spBtn: 'Agenda el mantenimiento',
   spFine: 'Uno por casa. Si encontramos algo que necesite reparación, primero te decimos el precio.',
-  specialAlt: 'Calentón en un garaje limpio con un filtro nuevo, un medidor de monóxido de carbono y una lista de revisión, listo para el mantenimiento',
+  specialAlt: 'Técnico de HVAC conectando un manómetro y un tanque de refrigerante a una bomba de calor exterior',
 
   howEyebrow: 'Cómo funciona',
   howH: 'Tres pasos fáciles. <span class="accent">Sin sorpresas.</span>',
@@ -120,7 +120,7 @@ window.MTZ_ES = {
   fq6: '¿Tienen licencia y seguro?',
   fa6: 'Sí. MTZ HVAC Services es contratista HVAC C-20 con licencia en California, número 1163605, y puedes buscar nuestra licencia en la página del CSLB. Pídenos el certificado de seguro y te lo mandamos antes de tu visita.',
   ccH: '¿Te quedó alguna duda?', ccP: 'Llámanos o mándanos texto. Te contesta una persona de verdad.',
-  streetAlt: 'Calle tranquila de Riverside con casas de estuco, techos de teja y palmeras al atardecer',
+  streetAlt: 'Persona presionando el control de un termostato de pared marcado en 25 grados',
 
   arEyebrow: 'Zonas de servicio',
   arH: 'Estamos en Riverside, <span class="accent">cerca de ti.</span>',
@@ -135,7 +135,13 @@ window.MTZ_ES = {
   ftText: 'También puedes mandarnos texto al mismo número',
   ftLicense: 'Contratista HVAC C-20 con licencia · Lic. #1163605',
   ftHours: 'Horario', ftMonSat: 'Lun a sáb', ftTime: '7 am a 7 pm', ftEmerg: 'Emergencias', ftByPhone: 'Por teléfono', ftCompany: 'Compañía',
-  credits: 'Foto de la familia por', creditsOn: 'en',
+  credits: 'Fotos de', creditsOn: 'en',
   siteBy: 'Sitio por Ben Young Web Design',
+  creditsAnd: 'y',
+  ftHelp: 'Ayuda',
+  ftTextUs: 'Mándanos texto',
+  ftSun: 'Domingo',
+  ftClosed: 'Cerrado',
+  ftServing: 'Damos servicio en Riverside, Moreno Valley, Corona, Jurupa Valley, Norco, Eastvale, Perris y Grand Terrace.',
   quick: 'Contacto rápido', sbHours: 'Llama o manda texto de 7 am a 7 pm', sbCall: 'Llamar', sbBook: 'Agendar', sbText: 'Texto'
 };
