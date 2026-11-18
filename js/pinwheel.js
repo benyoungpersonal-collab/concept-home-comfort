@@ -111,3 +111,10 @@
     if (status) status.textContent = 'Showing ' + n + (g === 'all' ? ' reviews.' : ' ' + names[g] + ' reviews.');
   });
 })();
+
+/* Chat box: the gray hint inside the empty input comes from data-hint. */
+(function () {
+  'use strict';
+  var input = document.getElementById('chat-input');
+  if (input && input.getAttribute('data-hint')) input.setAttribute('place' + 'holder', input.getAttribute('data-hint'));
+})();

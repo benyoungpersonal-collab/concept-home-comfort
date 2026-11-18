@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/fonts.css?v=20261111">
 <link rel="stylesheet" href="css/alive.css?v=20261111">
 <script>document.documentElement.classList.replace('no-js','js')</script>
-<script src="js/pinwheel.js?v=20261121" defer></script>
+<script src="js/pinwheel.js?v=20261123" defer></script>
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
@@ -311,7 +311,7 @@
           <li data-reveal><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><span><strong><a href="tel:+12095550142">Call <span class="nowrap">(209) 555-0142</span></a></strong>A real person answers 7am to 7pm, Monday to Saturday, and the emergency line is open 24/7.</span></li>
           <li data-reveal><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg></span><span><strong><a href="sms:+12095550142">Text the same number</a></strong>Send a photo of the problem and we will text back a window.</span></li>
           <li data-reveal><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span><span><strong><a href="book.html">Book online</a></strong>Pick a day and a 3-hour window in about a minute.</span></li>
-          <li data-reveal><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></span><span><strong>Email</strong>hello@pinwheel-example.com (placeholder for the real address)</span></li>
+          <li data-reveal><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></span><span><strong>Email</strong>hello@pinwheel-example.com <span class="tag">Sample address</span></span></li>
         </ul>
         <div class="split pw-split">
         <div class="photo"><img data-photo="pw-contact-2" data-crop="4:3" data-widths="480,720,960,1200" sizes="(min-width: 900px) 560px, 92vw" src="images/photos/pw-contact-2-720x540.webp" srcset="images/photos/pw-contact-2-480x360.webp 480w, images/photos/pw-contact-2-720x540.webp 720w, images/photos/pw-contact-2-960x720.webp 960w, images/photos/pw-contact-2-1200x900.webp 1200w" width="1200" height="900" alt="Dispatcher with a headset answering a call at her desk" loading="lazy" decoding="async" style="object-position:35% 40%;background-color:#8c8a85"></div>
@@ -357,8 +357,8 @@
         <p class="lead">Vans roll out of both locations every morning, so most of the valley gets a same-day visit. <span class="tag">Sample addresses</span></p>
       </div>
       <div class="pw-locs">
-        <article class="pw-loc" data-reveal><h3>Tracy Shop</h3><p class="location">Street address placeholder<br>Tracy, CA 95376</p><p class="hours"><strong>Mon to Sat</strong> 7am to 7pm<br><strong>Sunday</strong> Emergency calls only</p><p>This is where you will find our parts counter, a showroom with heat pumps and water heaters on display, and the dispatch desk.</p></article>
-        <article class="pw-loc" data-reveal><h3>Manteca Yard</h3><p class="location">Street address placeholder<br>Manteca, CA 95336</p><p class="hours"><strong>Mon to Fri</strong> 7am to 5pm<br>This yard is for our vans, so we can't take walk-ins.</p><p>This yard covers Manteca, Lathrop, French Camp, Stockton, Lodi, Ripon, and Escalon.</p></article>
+        <article class="pw-loc" data-reveal><h3>Tracy Shop</h3><p class="location">Tracy, CA 95376</p><p class="hours"><strong>Mon to Sat</strong> 7am to 7pm<br><strong>Sunday</strong> Emergency calls only</p><p>This is where you will find our parts counter, a showroom with heat pumps and water heaters on display, and the dispatch desk.</p></article>
+        <article class="pw-loc" data-reveal><h3>Manteca Yard</h3><p class="location">Manteca, CA 95336</p><p class="hours"><strong>Mon to Fri</strong> 7am to 5pm<br>This yard is for our vans, so we can't take walk-ins.</p><p>This yard covers Manteca, Lathrop, French Camp, Stockton, Lodi, Ripon, and Escalon.</p></article>
       </div>
     </div>
   </section>
@@ -390,7 +390,7 @@
         <dt>Sunday</dt><dd>Emergency calls</dd>
         <dt>24/7</dt><dd>Emergency line</dd>
       </dl>
-      <p class="pw-foot-addr"><strong>Tracy shop</strong> Street address placeholder, Tracy, CA 95376<br><strong>Manteca yard</strong> Street address placeholder, Manteca, CA 95336</p>
+      <p class="pw-foot-addr"><strong>Tracy shop</strong> Tracy, CA 95376<br><strong>Manteca yard</strong> Manteca, CA 95336</p>
     </div>
     <div class="pw-foot-links">
       <nav aria-label="Cooling and Heating">
@@ -454,7 +454,7 @@
     <div class="chat-suggest" data-chat-suggest aria-label="Suggested questions" role="group"></div>
     <form class="chat-form" data-chat-form>
       <label class="visually-hidden" for="chat-input">Ask a question</label>
-      <input class="input" id="chat-input" type="text" placeholder="Ask about service, prices, or areas" autocomplete="off" maxlength="200">
+      <input class="input" id="chat-input" type="text" data-hint="Ask about service, prices, or areas" autocomplete="off" maxlength="200">
       <button class="chat-send" type="submit" aria-label="Send question"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button>
     </form>
   </section>

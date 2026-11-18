@@ -403,25 +403,25 @@ export const about = (ph) => ({
   jsonld: [crumbLd('about.html', crumbs(['About']))],
   body: (R) => [
     hero(R, { photo: ph('about-team'), crumbs: crumbs(['About']), pill: 'Family owned in Tracy since 2010', title: '<span class="accent">About Us</span> in Tracy, CA.',
-      lead: 'Luis and Carmen Ortega started Pinwheel in 2010 with one van, one phone, and a simple idea: treat every home like it belongs to family.' }),
+      lead: 'Luis\'s dad started Pinwheel in 2010 with one van, one phone, and a simple idea: treat every home like it belongs to family. Today Luis and Carmen Ortega run it the same way.' }),
     `  <section class="section bg-white" id="owner" aria-labelledby="owner-title">
     <div class="container">
       <div class="split pw-split pw-owner">
-        <figure class="photo owner-figure"><img data-photo="owner-luis" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 92vw" alt=""><figcaption><strong>Luis Ortega</strong>Owner and master tech</figcaption></figure>
+        <figure class="photo owner-figure"><img data-photo="pw-owner" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 92vw" alt=""><figcaption><strong>Luis Ortega</strong>Owner and master tech</figcaption></figure>
         <div>
           <p class="eyebrow">Meet the owner</p>
           <h2 id="owner-title">A Price First, Then <span class="accent">the Work.</span></h2>
-          <p class="lead">My dad fixed swamp coolers all over Tracy in the eighties. I rode along in summer and learned that people remember how you treat them more than what you fixed.</p>
-          <p>We started Pinwheel in 2010 because too many neighbors were hearing the price after the work instead of before it. Carmen and I wanted a company where the price comes first, the tech shows up when he said he would, and the owner's cell number is on the side of the van.</p>
-          <p>Back then, Carmen and I wrote four promises on a whiteboard in our garage. We still read them at every Monday meeting. We are bigger now, with 14 trained techs and 12 cities across two counties, but the whiteboard has not changed.</p>
-          <p>If we ever miss the mark, call or text me at ${PHONE}. I read every message.</p>
+          <p class="lead">My dad started Pinwheel in 2010 with one van and his name on the side. I grew up riding along on his calls, and I learned early that people remember how you treat them more than what you fixed.</p>
+          <p>He started it because too many neighbors were hearing the price after the work instead of before it. He wanted a company where the price comes first, the tech shows up when he said he would, and the owner's cell number is on the side of the van. Carmen and I took over the day-to-day a few years ago, and we have kept every one of those rules.</p>
+          <p>Back then, Dad wrote four promises on a whiteboard in our garage. We still read them at every Monday meeting. We are bigger now, with 14 trained techs and 12 cities across two counties, but the whiteboard has not changed.</p>
+          <p>If something isn't right, text me at ${PHONE}. I read every message.</p>
           <p class="fine">Names and photos are illustrative.</p>
         </div>
       </div>
     </div>
   </section>`,
-    sec({ id: 'name', inner: split({ photo: ph('turbines'), id: 'name-title', reverse: true, eyebrow: 'Why "Pinwheel"?', h2: 'Named for the Hills <span class="accent">on the Way Home.</span>',
-      lead: 'Drive east over the Altamont and the hills are covered in turning blades. For anyone who grew up in Tracy, those windmills mean you are almost home.',
+    sec({ id: 'name', inner: split({ photo: ph('about-street'), id: 'name-title', reverse: true, eyebrow: 'Why "Pinwheel"?', h2: 'Named for the Street <span class="accent">Luis Grew Up On.</span>',
+      lead: 'Every summer on the Tracy street where Luis grew up, kids stuck paper pinwheels in the front lawns, and they spun all evening in the Delta breeze. When his dad needed a name for the company in 2010, that was the picture in his head.',
       paras: ['A pinwheel is moving air, and moving air is our whole job. Two warm blades stand for heating and two cool blades for cooling, and they all turn around one steady center. That center is the promise we make to every family we work for.'] }) }),
     sec({ id: 'how', cls: 'bg-white', eyebrow: 'How we work', h2: 'Our Four <span class="accent">Promises.</span>',
       lead: 'These are the promises on the whiteboard. Every tech learns them on day one.',
@@ -430,7 +430,7 @@ export const about = (ph) => ({
       inner: `<div class="pw-team">
         <figure class="pw-team-photo" data-reveal><img data-photo="tech-ray" data-crop="4:3" data-widths="480,720,960" sizes="(min-width: 900px) 520px, 92vw" alt=""><figcaption><strong>Ray</strong>Install lead, 22 years with tools in hand</figcaption></figure>
         <ul class="pw-people">
-          ${[['Luis', 'Owner and master tech, 24 years'], ['Carmen', 'Co-owner, runs the office'], ['Marcus', 'Lead HVAC tech, 12 years'], ['Andre', 'Plumbing lead, 15 years'], ['Jess', 'Service tech, 5 years'], ['Diego', 'Service tech, 7 years'], ['Tanya', 'Dispatch, the voice on the phone'], ['+7', 'And seven more techs and installers']].map(([n, r], i) => `<li data-reveal><span class="avatar" style="--h:${(i * 47) % 360}" aria-hidden="true">${n.startsWith('+') ? n : n[0]}</span><span><strong>${n.startsWith('+') ? 'And seven more' : n}</strong>${n.startsWith('+') ? 'Techs, installers, and our dispatch team' : r}</span></li>`).join('\n          ')}
+          ${[['Luis', 'Owner and master tech, on the trucks since he was a kid'], ['Carmen', 'Co-owner, runs the office'], ['Marcus', 'Lead HVAC tech, 12 years'], ['Andre', 'Plumbing lead, 15 years'], ['Jess', 'Service tech, 5 years'], ['Diego', 'Service tech, 7 years'], ['Tanya', 'Dispatch, the voice on the phone'], ['+7', 'And seven more techs and installers']].map(([n, r], i) => `<li data-reveal><span class="avatar" style="--h:${(i * 47) % 360}" aria-hidden="true">${n.startsWith('+') ? n : n[0]}</span><span><strong>${n.startsWith('+') ? 'And seven more' : n}</strong>${n.startsWith('+') ? 'Techs, installers, and our dispatch team' : r}</span></li>`).join('\n          ')}
         </ul>
       </div>` }),
     `  <section class="section bg-white" id="van" aria-labelledby="van-title">
@@ -601,7 +601,7 @@ export const contact = (ph) => ({
           <li data-reveal><span class="icon-bubble">${ic('i-phone')}</span><span><strong><a href="${TEL}">Call ${PHONE}</a></strong>A real person answers 7am to 7pm, Monday to Saturday, and the emergency line is open 24/7.</span></li>
           <li data-reveal><span class="icon-bubble cool">${ic('i-message')}</span><span><strong><a href="${SMS}">Text the same number</a></strong>Send a photo of the problem and we will text back a window.</span></li>
           <li data-reveal><span class="icon-bubble navy">${ic('i-calendar')}</span><span><strong><a href="${R}book.html">Book online</a></strong>Pick a day and a 3-hour window in about a minute.</span></li>
-          <li data-reveal><span class="icon-bubble">${ic('i-send')}</span><span><strong>Email</strong>hello@pinwheel-example.com (placeholder for the real address)</span></li>
+          <li data-reveal><span class="icon-bubble">${ic('i-send')}</span><span><strong>Email</strong>hello@pinwheel-example.com ${tag('Sample address')}</span></li>
         </ul>
         ${split({ photo: ph('contact-2'), id: 'dispatch-title', eyebrow: 'Dispatch', h2: 'The Voice on <span class="accent">the Phone.</span>', lead: 'Tanya and our dispatch team answer every call from our Tracy shop. They know the techs, the neighborhoods, and the schedule.', paras: ['If you call during a busy summer afternoon, you still get a person, not a menu. They can usually give you an arrival window before you hang up.'] })}
       </div>
@@ -621,8 +621,8 @@ export const contact = (ph) => ({
   </section>`,
     sec({ id: 'locations', eyebrow: 'Locations', h2: 'Two Shops, <span class="accent">One Number.</span>', lead: `Vans roll out of both locations every morning, so most of the valley gets a same-day visit. ${tag('Sample addresses')}`,
       inner: `<div class="pw-locs">
-        <article class="pw-loc" data-reveal><h3>Tracy Shop</h3><p class="location">Street address placeholder<br>Tracy, CA 95376</p><p class="hours"><strong>Mon to Sat</strong> 7am to 7pm<br><strong>Sunday</strong> Emergency calls only</p><p>This is where you will find our parts counter, a showroom with heat pumps and water heaters on display, and the dispatch desk.</p></article>
-        <article class="pw-loc" data-reveal><h3>Manteca Yard</h3><p class="location">Street address placeholder<br>Manteca, CA 95336</p><p class="hours"><strong>Mon to Fri</strong> 7am to 5pm<br>This yard is for our vans, so we can't take walk-ins.</p><p>This yard covers Manteca, Lathrop, French Camp, Stockton, Lodi, Ripon, and Escalon.</p></article>
+        <article class="pw-loc" data-reveal><h3>Tracy Shop</h3><p class="location">Tracy, CA 95376</p><p class="hours"><strong>Mon to Sat</strong> 7am to 7pm<br><strong>Sunday</strong> Emergency calls only</p><p>This is where you will find our parts counter, a showroom with heat pumps and water heaters on display, and the dispatch desk.</p></article>
+        <article class="pw-loc" data-reveal><h3>Manteca Yard</h3><p class="location">Manteca, CA 95336</p><p class="hours"><strong>Mon to Fri</strong> 7am to 5pm<br>This yard is for our vans, so we can't take walk-ins.</p><p>This yard covers Manteca, Lathrop, French Camp, Stockton, Lodi, Ripon, and Escalon.</p></article>
       </div>` }),
     areasStrip(R),
   ].join('\n\n'),

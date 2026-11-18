@@ -245,7 +245,7 @@ export const linkCards = (R, items) => `<ul class="pw-links">${items.map((c) =>
 export const serviceLd = (o) => ({
   '@type': 'Service', name: o.name, serviceType: o.type || o.name, description: o.desc,
   provider: { '@type': 'HVACBusiness', '@id': SITE + '#business', name: NAME, telephone: '+1-209-555-0142',
-    address: { '@type': 'PostalAddress', streetAddress: 'Street address placeholder', addressLocality: 'Tracy', addressRegion: 'CA', postalCode: '95376', addressCountry: 'US' } },
+    address: { '@type': 'PostalAddress', addressLocality: 'Tracy', addressRegion: 'CA', postalCode: '95376', addressCountry: 'US' } },
   areaServed: CITIES.map((c) => `${c.name}, CA`), url: SITE + o.file,
 });
 export const crumbLd = (file, trail) => ({ '@type': 'BreadcrumbList', itemListElement: trail.map(([t, href], i) => ({ '@type': 'ListItem', position: i + 1, name: plain(t), item: SITE + (href || file) })) });

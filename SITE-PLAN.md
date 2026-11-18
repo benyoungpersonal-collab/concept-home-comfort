@@ -99,7 +99,7 @@ for the existing owner photo there), and `review.html` keeps its photo because t
 | instant-estimate.html | estimate-hero |
 | book.html | book-hero |
 | reviews.html | reviews-hero |
-| about.html | about-team (hero), owner-luis (existing), turbines (existing, the name story), tech-ray (existing), about-van |
+| about.html | about-team (hero), pw-owner (new owner portrait), about-street (golden-hour street, the name story), tech-ray (existing), about-van |
 | service-areas.html | areas-hero (plus the existing drawn map) |
 | service-areas/tracy.html | stucco-home (existing) |
 | service-areas/mountain-house.html | suburb (existing) |
