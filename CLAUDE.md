@@ -63,8 +63,8 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 
 ## Link preview picture
 - Every sample site and every new prospect preview gets a link preview picture: its homepage's first screen on a laptop with the phone version over the laptop's front right corner (the thin iPhone-style frame from benyoungwebdesign.com), on a soft gradient in the site's darkest brand color. 1200x630 JPG under 300 KB, no words on it.
-- Make it with `node scripts/share-image.cjs --url LIVE_URL --out images/og-share-YYYY-MM-DD.jpg` (today's date in the name, so phones don't show an old cached picture). For a preview that isn't live yet, point --url at a local server of its folder.
-- Point the pages at it with the same script: `node scripts/share-image.cjs --tags-only --image-url FULL_LIVE_URL_OF_THE_JPG --name "Business Name" --html *.html`. It sets og:image, og:image:width, og:image:height, og:image:alt ("Business Name homepage on a laptop and a phone."), twitter:image, and twitter:image:alt.
+- The phone shows the Services section (headline plus the first two photo cards, or as much as fits in full), not the top of the page: page only, no status bar, no bottom call bar, chat, or demo tags.
+- Make it with `node scripts/share-image.cjs --site ID` (or `--site all`). Each site, and which section its phone shows, is listed in `scripts/share-image.json`; add new previews there. It names the file with today's date (adds -v2, -v3), so phones don't show an old cached picture, and sets og:image, og:image:width, og:image:height, og:image:alt ("Business Name homepage on a laptop and a phone."), twitter:image, and twitter:image:alt on the site's pages. Previews keep it in `prospects/share/<slug>/` so every rebuild uses it. Client sites only get the picture (qa/share/) for Ben to see first.
 - Remake it, under a new dated name, whenever a site's hero changes. After it goes live, open the live page and confirm the picture loads from the live address.
 
 ## Photos

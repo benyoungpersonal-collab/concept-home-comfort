@@ -25,6 +25,7 @@ import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, rmSyn
 import { join, dirname, basename, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { balanceSections } from './section-backgrounds.mjs';
 import { vanBlock } from './van.mjs';
 import { makeStylesPage, STYLES } from './make-styles.mjs';
@@ -883,6 +884,14 @@ if (mapHtml) {
   });
   mkdirSync(join(OUT, 'images', 'map'), { recursive: true });
   writeFileSync(join(OUT, 'images', 'map', 'service-area.svg'), svg); copied++;
+}
+/* Link preview picture (laptop + phone) from scripts/share-image.cjs, kept in prospects/share/SLUG/: the newest one wins
+   over og.jpg. Make or remake it with: node scripts/share-image.cjs --site ID (scripts/share-image.json). */
+const shareDir = join(ROOT, 'prospects', 'share', slug);
+const shareJpg = existsSync(shareDir) ? readdirSync(shareDir).filter((f) => /^og-share-.*\.jpg$/.test(f)).sort((a, b) => a.localeCompare(b, 'en', { numeric: true })).pop() : null;
+if (shareJpg) {
+  copyFileSync(join(shareDir, shareJpg), join(OUT, 'images', shareJpg)); copied++;
+  html = createRequire(import.meta.url)('./share-image.cjs').shareTags(html, `${previewUrl}images/${shareJpg}`, name);
 }
 writeFileSync(join(OUT, 'index.html'), html);
 /* /styles: the same hero in all five font styles, with their colors and buttons (noindex, not linked) */
