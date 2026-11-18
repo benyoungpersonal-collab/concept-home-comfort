@@ -497,5 +497,740 @@
     "use": "Business image in the homepage's structured data (images/og-family-1200x630.jpg)",
     "alwaysCredit": true,
     "preview": "pexels__39191159.jpg"
+  },
+  "pw-services": {
+    "id": "MwrTpnOn8fA",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1581579746581-3954f2a31e7a?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTZ8fHJlcGFpcm1hbiUyMGhvbWVvd25lcnxlbnwwfDB8fHwxNzk1MDI3NDYxfDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.66,
+      0.45
+    ],
+    "color": "#a59080",
+    "alt": "Technician in a navy shirt working on a wall outlet while a boy plays on the rug nearby",
+    "by": "CDC",
+    "page": "https://unsplash.com/photos/man-in-blue-shirt-and-blue-denim-jeans-sitting-on-brown-wooden-table-MwrTpnOn8fA",
+    "profile": "https://unsplash.com/@cdc",
+    "use": "Services hero",
+    "user": "cdc",
+    "base": "https://images.unsplash.com/photo-1581579746581-3954f2a31e7a"
+  },
+  "pw-svc-cooling": {
+    "id": "JsPkVrHMQoo",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1718203862467-c33159fdc504?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8Y2VudHJhbCUyMGFpciUyMGNvbmRpdGlvbmVyJTIwY29uZGVuc2VyfGVufDB8MHx8fDE3OTUwMjcxODJ8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.35,
+      0.5
+    ],
+    "color": "#302e27",
+    "alt": "Outdoor mini-split unit mounted on a dark painted wall",
+    "by": "Everett Pachmann",
+    "page": "https://unsplash.com/photos/a-white-air-conditioner-sitting-on-top-of-a-brick-wall-JsPkVrHMQoo",
+    "profile": "https://unsplash.com/@everettp",
+    "use": "Services page, Cooling card",
+    "user": "everettp",
+    "base": "https://images.unsplash.com/photo-1718203862467-c33159fdc504"
+  },
+  "pw-svc-heating": {
+    "id": "Ymp_8DatASs",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1774876549246-dfa8eae5d9f5?w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.5,
+      0.45
+    ],
+    "color": "#bfbbb4",
+    "alt": "Finger pressing the button on a wall thermostat",
+    "by": "HUUM",
+    "page": "https://unsplash.com/photos/finger-pressing-button-on-digital-thermostat-display-Ymp_8DatASs",
+    "profile": "https://unsplash.com/@huumsauna",
+    "use": "Services page, Heating card",
+    "user": "huumsauna",
+    "base": "https://images.unsplash.com/photo-1774876549246-dfa8eae5d9f5"
+  },
+  "pw-svc-plumbing": {
+    "id": "34295402",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/34295402/pexels-photo-34295402.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.45,
+      0.5
+    ],
+    "color": "#7c7f82",
+    "alt": "Chrome kitchen faucet over a round steel sink",
+    "by": "Zulfugar Karimov",
+    "page": "https://www.pexels.com/photo/34295402/",
+    "profile": "https://www.pexels.com/photo/34295402/",
+    "use": "Services page, Plumbing card"
+  },
+  "pw-svc-air": {
+    "id": "MMXtw3AJXmk",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1702534554606-9567319a22a9?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTN8fGNlaWxpbmclMjBhaXIlMjB2ZW50fGVufDB8MHx8fDE3OTUwMjc2Njd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1416,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#b7b7b7",
+    "alt": "White air return grille on a ceiling",
+    "by": "Tinky 小天",
+    "page": "https://unsplash.com/photos/a-close-up-of-a-vent-in-a-wall-MMXtw3AJXmk",
+    "profile": "https://unsplash.com/@amtinky",
+    "use": "Services page, Air Quality card",
+    "user": "amtinky",
+    "base": "https://images.unsplash.com/photo-1702534554606-9567319a22a9"
+  },
+  "pw-cooling": {
+    "id": "ZqPT0y0nzWw",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1765947388552-b33db4895cfd?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Nnx8c3VidXJiYW4lMjBob3VzZSUyMGFpciUyMGNvbmRpdGlvbmVyfGVufDB8MHx8fDE3OTUwMjcxMjV8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.62,
+      0.5
+    ],
+    "color": "#8f8677",
+    "alt": "Stucco homes with palm trees and wall-mounted cooling units along a driveway",
+    "by": "Samuel Lopez Cruz",
+    "page": "https://unsplash.com/photos/driveway-leading-to-a-modern-house-with-palm-trees-ZqPT0y0nzWw",
+    "profile": "https://unsplash.com/@fotogugu",
+    "use": "Cooling hero",
+    "user": "fotogugu",
+    "base": "https://images.unsplash.com/photo-1765947388552-b33db4895cfd"
+  },
+  "pw-ac-repair": {
+    "id": "8RbiLgfqoqQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1792799881226-e841c0f9c125?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8N3x8aHZhYyUyMHRlY2huaWNpYW4lMjBob3VzZXxlbnwwfDB8fHwxNzk1MDI2OTY4fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.35,
+      0.5
+    ],
+    "color": "#7a7268",
+    "alt": "Technician's hands connecting a gauge hose to an outdoor AC unit's refrigerant line",
+    "by": "Joel Muniz",
+    "page": "https://unsplash.com/photos/technician-servicing-outdoor-air-conditioning-unit-8RbiLgfqoqQ",
+    "profile": "https://unsplash.com/@jmuniz",
+    "use": "AC Repair hero",
+    "user": "jmuniz",
+    "base": "https://images.unsplash.com/photo-1792799881226-e841c0f9c125"
+  },
+  "pw-ac-install": {
+    "id": "x1rFTWcXoOc",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1792628953895-5d46f431b402?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8N3x8YmFja3lhcmR8ZW58MHx8fHwxNzk1MDI3NzA2fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1605,
+    "fp": [
+      0.78,
+      0.6
+    ],
+    "color": "#8d9573",
+    "alt": "Newly installed AC condenser on a concrete pad beside a fenced backyard lawn",
+    "by": "Josh Lemmon",
+    "page": "https://unsplash.com/photos/backyard-with-wooden-fence-and-patio-x1rFTWcXoOc",
+    "profile": "https://unsplash.com/@wolfie_website",
+    "use": "AC Installation hero",
+    "user": "wolfie_website",
+    "base": "https://images.unsplash.com/photo-1792628953895-5d46f431b402"
+  },
+  "pw-heating": {
+    "id": "yVUl3T-ss0c",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1626376010408-a07721b24f91?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjF8fGhlYXRpbmclMjB0ZWNobmljaWFuJTIwcmVwYWlyfGVufDB8MHx8fDE3OTUwMjc2MDl8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1601,
+    "fp": [
+      0.4,
+      0.4
+    ],
+    "color": "#8f785f",
+    "alt": "Hands adjusting the burner assembly inside a gas heating unit",
+    "by": "Corey Young",
+    "page": "https://unsplash.com/photos/person-holding-silver-and-gold-round-analog-watch-yVUl3T-ss0c",
+    "profile": "https://unsplash.com/@corey_untitled",
+    "use": "Furnace Repair & Replacement hero",
+    "user": "corey_untitled",
+    "base": "https://images.unsplash.com/photo-1626376010408-a07721b24f91"
+  },
+  "pw-heating-2": {
+    "id": "qHpxnoo-gXg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1639866496281-573747d7051f?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8OHx8Ymx1ZSUyMGdhcyUyMGZsYW1lJTIwYnVybmVyfGVufDB8MHx8fDE3OTUwMjcyNTN8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#1a1817",
+    "alt": "Blue gas flames on a furnace burner",
+    "by": "Peter Fly",
+    "page": "https://unsplash.com/photos/a-group-of-people-standing-in-front-of-a-green-and-red-flame-qHpxnoo-gXg",
+    "profile": "https://unsplash.com/@peter_fly",
+    "use": "Furnace page, what we check",
+    "user": "peter_fly",
+    "base": "https://images.unsplash.com/photo-1639866496281-573747d7051f"
+  },
+  "pw-heat-pumps": {
+    "id": "Qk-EBWUIqBQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1721045030396-a6af775ba1f7?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTZ8fGFpciUyMHB1cmlmaWVyJTIwbGl2aW5nJTIwcm9vbXxlbnwwfDB8fHwxNzk1MDI3MTI1fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.38,
+      0.4
+    ],
+    "color": "#a4a39d",
+    "alt": "Bright living room with a ductless heat pump head mounted high on the wall",
+    "by": "Lisa Anna",
+    "page": "https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-ceiling-fan-Qk-EBWUIqBQ",
+    "profile": "https://unsplash.com/@lisaanna195",
+    "use": "Heat Pumps hero",
+    "user": "lisaanna195",
+    "base": "https://images.unsplash.com/photo-1721045030396-a6af775ba1f7"
+  },
+  "pw-plumbing": {
+    "id": "jaP5ClBdIyU",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1749532125405-70950966b0e5?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Mnx8cGx1bWJlcnxlbnwwfDB8fHwxNzk1MDI3MTIzfDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.6,
+      0.4
+    ],
+    "color": "#7c796f",
+    "alt": "Plumber in navy overalls carrying a toolbox into a bathroom",
+    "by": "bhagya laxmi",
+    "page": "https://unsplash.com/photos/a-plumber-repairs-plumbing-in-a-bathroom-jaP5ClBdIyU",
+    "profile": "https://unsplash.com/@bhagya_laxmi",
+    "use": "Plumbing hero",
+    "user": "bhagya_laxmi",
+    "base": "https://images.unsplash.com/photo-1749532125405-70950966b0e5"
+  },
+  "pw-water-heaters": {
+    "id": "19980200",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/19980200/pexels-photo-19980200.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.42,
+      0.6
+    ],
+    "color": "#c0bbb6",
+    "alt": "Tidy laundry room with shelves and a tank water heater",
+    "by": "Alex Tyson",
+    "page": "https://www.pexels.com/photo/19980200/",
+    "profile": "https://www.pexels.com/photo/19980200/",
+    "use": "Water Heaters hero"
+  },
+  "pw-drains": {
+    "id": "gANwOwFcAQ4",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1700174542278-4f8fc5ab6565?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8N3x8c2luayUyMGRyYWlufGVufDB8MHx8fDE3OTUwMjczNjJ8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#969794",
+    "alt": "Close-up of a stainless steel sink drain",
+    "by": "Giorgio Trovato",
+    "page": "https://unsplash.com/photos/a-stainless-steel-sink-with-a-strainer-in-it-gANwOwFcAQ4",
+    "profile": "https://unsplash.com/@giorgiotrovato",
+    "use": "Drains & Sewer hero",
+    "user": "giorgiotrovato",
+    "base": "https://images.unsplash.com/photo-1700174542278-4f8fc5ab6565"
+  },
+  "pw-leak": {
+    "id": "YU8bHfrz79g",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1767455529565-2f5f816e18d7?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Mjd8fHdhdGVyJTIwbGVhayUyMHBpcGV8ZW58MHwwfHx8MTc5NTAyNzM2MHwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1602,
+    "fp": [
+      0.55,
+      0.4
+    ],
+    "color": "#273236",
+    "alt": "Water dripping from a corroded copper pipe joint",
+    "by": "Liana S",
+    "page": "https://unsplash.com/photos/icicles-dripping-from-a-golden-pipe-outdoors-YU8bHfrz79g",
+    "profile": "https://unsplash.com/@cherstve_pechivo",
+    "use": "Leak Repair & Repiping hero",
+    "user": "cherstve_pechivo",
+    "base": "https://images.unsplash.com/photo-1767455529565-2f5f816e18d7"
+  },
+  "pw-repipe": {
+    "id": "x3rBMsh4JcQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1768321913976-be576fce5763?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjZ8fHBsdW1iaW5nJTIwcGlwZXMlMjB3YWxsfGVufDB8MHx8fDE3OTUwMjczNjF8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1800,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#6e6759",
+    "alt": "Open stud walls during a remodel with new pipe runs",
+    "by": "Olek Buzunov",
+    "page": "https://unsplash.com/photos/interior-construction-with-exposed-pipes-and-framing-x3rBMsh4JcQ",
+    "profile": "https://unsplash.com/@olek_bznv_photo",
+    "use": "Leak Repair & Repiping, repipe section",
+    "user": "olek_bznv_photo",
+    "base": "https://images.unsplash.com/photo-1768321913976-be576fce5763"
+  },
+  "pw-air-quality": {
+    "id": "iXHXLPIYrtA",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1558317374-1dec81130f2b?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTd8fGFpciUyMHB1cmlmaWVyfGVufDB8MHx8fDE3OTUwMjc1MjV8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.62,
+      0.6
+    ],
+    "color": "#9a8b82",
+    "alt": "White air purifier on a wood floor beside a desk",
+    "by": "Kowon vn",
+    "page": "https://unsplash.com/photos/white-electronic-device-iXHXLPIYrtA",
+    "profile": "https://unsplash.com/@kowon",
+    "use": "Indoor Air Quality hero",
+    "user": "kowon",
+    "base": "https://images.unsplash.com/photo-1558317374-1dec81130f2b"
+  },
+  "pw-emergency": {
+    "id": "ZiXYaWNvWy0",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1790612829394-a6bf0f9c641a?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjF8fHN1YnVyYmFuJTIwaG91c2UlMjBuaWdodHxlbnwwfDB8fHwxNzk1MDI3NTI3fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1350,
+    "fp": [
+      0.45,
+      0.5
+    ],
+    "color": "#47484d",
+    "alt": "Two-story home at dusk with porch lights on",
+    "by": "WindowSeat Photography",
+    "page": "https://unsplash.com/photos/scarecrow-in-front-yard-at-dusk-ZiXYaWNvWy0",
+    "profile": "https://unsplash.com/@windowseatphotography",
+    "use": "24/7 Emergency hero",
+    "user": "windowseatphotography",
+    "base": "https://images.unsplash.com/photo-1790612829394-a6bf0f9c641a"
+  },
+  "pw-emergency-2": {
+    "id": "EANeCVt4H_4",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1678200019631-8b730090f517?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTl8fHZhbHZlJTIwaGFuZGxlfGVufDB8MHx8fDE3OTUwMjczNjF8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.3,
+      0.4
+    ],
+    "color": "#53522c",
+    "alt": "Yellow-handled water shutoff valve on a pipe",
+    "by": "Thomas Kinto",
+    "page": "https://unsplash.com/photos/a-close-up-of-a-yellow-handlebar-on-a-bike-EANeCVt4H_4",
+    "profile": "https://unsplash.com/@thomaskinto",
+    "use": "Emergency page, shut off the water",
+    "user": "thomaskinto",
+    "base": "https://images.unsplash.com/photo-1678200019631-8b730090f517"
+  },
+  "pw-comfort-club": {
+    "id": "Aq8ljLz12gk",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1649083048381-520a5b3d91ff?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8YWlyJTIwcHVyaWZpZXIlMjBsaXZpbmclMjByb29tfGVufDB8MHx8fDE3OTUwMjcxMjV8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.4,
+      0.6
+    ],
+    "color": "#c2bebc",
+    "alt": "Bright living room with white walls, wood floors, and a ceiling vent",
+    "by": "Bailey Alexander",
+    "page": "https://unsplash.com/photos/a-living-room-with-white-furniture-and-wood-floors-Aq8ljLz12gk",
+    "profile": "https://unsplash.com/@baileyal3xander",
+    "use": "Comfort Club hero",
+    "user": "baileyal3xander",
+    "base": "https://images.unsplash.com/photo-1649083048381-520a5b3d91ff"
+  },
+  "pw-specials": {
+    "id": "9lipzfFG3G4",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1758522487600-e1bfadd12485?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTF8fGhhcHB5JTIwY291cGxlJTIwYXQlMjBob21lfGVufDB8MHx8fDE3OTUwMjczMDd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1350,
+    "fp": [
+      0.6,
+      0.35
+    ],
+    "color": "#7b837f",
+    "alt": "Couple laughing together in their kitchen",
+    "by": "Vitaly Gariev",
+    "page": "https://unsplash.com/photos/couple-dancing-and-singing-in-the-kitchen-9lipzfFG3G4",
+    "profile": "https://unsplash.com/@silverkblack",
+    "use": "Specials hero",
+    "user": "silverkblack",
+    "base": "https://images.unsplash.com/photo-1758522487600-e1bfadd12485"
+  },
+  "pw-estimate": {
+    "id": "rMLc_cIu_IU",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1762810981576-1b07f76af9d2?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTd8fHN0dWNjbyUyMGhvdXNlJTIwZnJvbnQlMjB5YXJkfGVufDB8MHx8fDE3OTUwMjcyNzd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1601,
+    "fp": [
+      0.45,
+      0.55
+    ],
+    "color": "#92a09c",
+    "alt": "Single-story white home with a paver driveway and a green lawn",
+    "by": "RETRATO INMOBILIARIO",
+    "page": "https://unsplash.com/photos/modern-house-with-a-paved-driveway-and-garage-rMLc_cIu_IU",
+    "profile": "https://unsplash.com/@retratoinmobiliario",
+    "use": "Instant Estimate hero",
+    "user": "retratoinmobiliario",
+    "base": "https://images.unsplash.com/photo-1762810981576-1b07f76af9d2"
+  },
+  "pw-book": {
+    "id": "_bILufSltJM",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1758523418008-447600d20dff?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8d29tYW4lMjBvbiUyMHBob25lJTIwa2l0Y2hlbnxlbnwwfDB8fHwxNzk1MDI3MzA2fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1350,
+    "fp": [
+      0.7,
+      0.35
+    ],
+    "color": "#837250",
+    "alt": "Couple in their kitchen, the husband on the phone with a tablet in front of him",
+    "by": "Vitaly Gariev",
+    "page": "https://unsplash.com/photos/couple-in-kitchen-woman-chopping-lettuce-man-on-phone-_bILufSltJM",
+    "profile": "https://unsplash.com/@silverkblack",
+    "use": "Book Online hero",
+    "user": "silverkblack",
+    "base": "https://images.unsplash.com/photo-1758523418008-447600d20dff"
+  },
+  "pw-faq": {
+    "id": "L0rCfOSyUlQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1790597035898-95815872211e?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTF8fGN1c3RvbWVyJTIwc2VydmljZSUyMGhlYWRzZXR8ZW58MHwwfHx8MTc5NTAyNzMwN3wy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1350,
+    "fp": [
+      0.68,
+      0.4
+    ],
+    "color": "#667b7b",
+    "alt": "Man on the phone at his desk at home, looking at a laptop",
+    "by": "Vitaly Gariev",
+    "page": "https://unsplash.com/photos/man-talking-on-phone-in-workspace-L0rCfOSyUlQ",
+    "profile": "https://unsplash.com/@silverkblack",
+    "use": "FAQ hero",
+    "user": "silverkblack",
+    "base": "https://images.unsplash.com/photo-1790597035898-95815872211e"
+  },
+  "pw-reviews": {
+    "id": "1El98zbDWzA",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1586986422389-e500f0ed9f65?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjB8fHRlY2huaWNpYW4lMjBjdXN0b21lciUyMGhhbmRzaGFrZSUyMGhvbWV8ZW58MHwwfHx8MTc5NTAyNzY2OXwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.42,
+      0.4
+    ],
+    "color": "#718292",
+    "alt": "Homeowner shaking hands with a visitor on her front porch",
+    "by": "Hannah Bechtel",
+    "page": "https://unsplash.com/photos/man-in-white-dress-shirt-standing-beside-woman-in-gray-cardigan-1El98zbDWzA",
+    "profile": "https://unsplash.com/@hbechtel",
+    "use": "Reviews hero",
+    "user": "hbechtel",
+    "base": "https://images.unsplash.com/photo-1586986422389-e500f0ed9f65"
+  },
+  "pw-about-van": {
+    "id": "6195893",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/6195893/pexels-photo-6195893.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.32,
+      0.5
+    ],
+    "color": "#7c7b72",
+    "alt": "Technician in a Pinwheel orange uniform stepping out of a white van in a driveway",
+    "by": "Tima Miroshnichenko",
+    "page": "https://www.pexels.com/photo/6195893/",
+    "profile": "https://www.pexels.com/@tima-miroshnichenko/",
+    "use": "About page, the van",
+    "file": "images/photos/pinwheel-about-van.jpg",
+    "edit": "Uniform color changed to Pinwheel orange (color only; scripts/recolor-clothes.py)."
+  },
+  "pw-about-team": {
+    "id": "AWxWjmNSoNU",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1548838670-cb67b43a6adb?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8d29ya2VycyUyMGluJTIwdW5pZm9ybSUyMHRlYW18ZW58MHwwfHx8MTc5NTAyNzQ2Mnwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1602,
+    "fp": [
+      0.5,
+      0.35
+    ],
+    "color": "#b47d5b",
+    "alt": "Four team members in orange work uniforms standing together",
+    "by": "Michaël NANDONG",
+    "page": "https://unsplash.com/photos/two-women-and-men-standing-in-front-white-concrete-wall-AWxWjmNSoNU",
+    "profile": "https://unsplash.com/@nandong",
+    "use": "About page, the team",
+    "user": "nandong",
+    "base": "https://images.unsplash.com/photo-1548838670-cb67b43a6adb"
+  },
+  "pw-areas": {
+    "id": "CNV8ytt7WD8",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1765106893273-980e5bf89a7c?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8OXx8YWVyaWFsJTIwdmlldyUyMHN1YnVyYmFuJTIwbmVpZ2hib3Job29kfGVufDB8MHx8fDE3OTUwMjcyNzZ8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1350,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#5a6a58",
+    "alt": "Aerial view of curving streets in a suburban neighborhood",
+    "by": "Ahnaf Tahsin",
+    "page": "https://unsplash.com/photos/aerial-view-of-a-suburban-neighborhood-with-winding-streets-CNV8ytt7WD8",
+    "profile": "https://unsplash.com/@_ahnaf_rafi__",
+    "use": "Service Areas hero",
+    "user": "_ahnaf_rafi__",
+    "base": "https://images.unsplash.com/photo-1765106893273-980e5bf89a7c"
+  },
+  "pw-manteca": {
+    "id": "uZQGEo9DGe8",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1692133188474-8c5591e6a6a8?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MzB8fHN0dWNjbyUyMGhvdXNlJTIwZnJvbnQlMjB5YXJkfGVufDB8MHx8fDE3OTUwMjcyNzd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1601,
+    "fp": [
+      0.45,
+      0.5
+    ],
+    "color": "#9ca9ab",
+    "alt": "Single-story stucco home with a two-car garage and a wide driveway",
+    "by": "Brian Wangenheim",
+    "page": "https://unsplash.com/photos/a-house-with-a-garage-in-the-middle-of-a-driveway-uZQGEo9DGe8",
+    "profile": "https://unsplash.com/@brianwangenheim",
+    "use": "Manteca page hero",
+    "user": "brianwangenheim",
+    "base": "https://images.unsplash.com/photo-1692133188474-8c5591e6a6a8"
+  },
+  "pw-lathrop": {
+    "id": "SBeSUc7X00o",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1627317973631-39e09a7f5456?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjZ8fG5ldyUyMGNvbnN0cnVjdGlvbiUyMGhvbWVzJTIwbmVpZ2hib3Job29kfGVufDB8MHx8fDE3OTUwMjc2Njd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1350,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#9bafae",
+    "alt": "Two-story homes along a waterfront walking path",
+    "by": "E Mens",
+    "page": "https://unsplash.com/photos/white-and-brown-house-near-green-trees-under-blue-sky-during-daytime-SBeSUc7X00o",
+    "profile": "https://unsplash.com/@kwakus",
+    "use": "Lathrop page hero",
+    "user": "kwakus",
+    "base": "https://images.unsplash.com/photo-1627317973631-39e09a7f5456"
+  },
+  "pw-stockton": {
+    "id": "NIgOBV07nXs",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1647157825867-dde35935639a?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTl8fHN0dWNjbyUyMGhvdXNlJTIwZnJvbnQlMjB5YXJkfGVufDB8MHx8fDE3OTUwMjcyNzd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#7e7d6f",
+    "alt": "Craftsman-style home with a front porch and palm trees",
+    "by": "Sean Foster",
+    "page": "https://unsplash.com/photos/a-blue-house-with-palm-trees-in-front-of-it-NIgOBV07nXs",
+    "profile": "https://unsplash.com/@fosterious",
+    "use": "Stockton page hero",
+    "user": "fosterious",
+    "base": "https://images.unsplash.com/photo-1647157825867-dde35935639a"
+  },
+  "pw-livermore": {
+    "id": "15hCN--UQzQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1790793047545-cad88508bcd0?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTN8fGNhbGlmb3JuaWElMjBzdWJ1cmJhbiUyMHN0cmVldHxlbnwwfDB8fHwxNzk1MDI3Mjc2fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#645e49",
+    "alt": "Neighborhood homes below green and golden hills",
+    "by": "Kellen Riggin",
+    "page": "https://unsplash.com/photos/suburban-street-in-valley-below-hills-15hCN--UQzQ",
+    "profile": "https://unsplash.com/@kalaniparker",
+    "use": "Livermore page hero",
+    "user": "kalaniparker",
+    "base": "https://images.unsplash.com/photo-1790793047545-cad88508bcd0"
+  },
+  "pw-resources": {
+    "id": "ltFewVxAb4A",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1758598306174-78795a972fe1?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8OXx8d29tYW4lMjByZWFkaW5nJTIwdGFibGV0JTIwbGl2aW5nJTIwcm9vbXxlbnwwfDB8fHwxNzk1MDI3NTI2fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1350,
+    "fp": [
+      0.55,
+      0.45
+    ],
+    "color": "#6e7574",
+    "alt": "Woman relaxing on a gray couch reading on a tablet",
+    "by": "Vitaly Gariev",
+    "page": "https://unsplash.com/photos/woman-wearing-headphones-uses-tablet-on-couch-ltFewVxAb4A",
+    "profile": "https://unsplash.com/@silverkblack",
+    "use": "Resources hero",
+    "user": "silverkblack",
+    "base": "https://images.unsplash.com/photo-1758598306174-78795a972fe1"
+  },
+  "pw-article-ac": {
+    "id": "gSvCiyLnCeU",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1651474738521-efacfb201039?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8NHx8Y2VudHJhbCUyMGFpciUyMGNvbmRpdGlvbmVyJTIwY29uZGVuc2VyfGVufDB8MHx8fDE3OTUwMjcxODJ8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1882,
+    "fp": [
+      0.62,
+      0.6
+    ],
+    "color": "#373d23",
+    "alt": "Outdoor AC condenser beside green shrubs",
+    "by": "Sam Jotham Sutharson",
+    "page": "https://unsplash.com/photos/a-solar-panel-on-a-roof-gSvCiyLnCeU",
+    "profile": "https://unsplash.com/@jothamsutharson",
+    "use": "Article: Repair or Replace? 6 Signs Your AC Is Done",
+    "user": "jothamsutharson",
+    "base": "https://images.unsplash.com/photo-1651474738521-efacfb201039"
+  },
+  "pw-article-wh": {
+    "id": "C-oYJoIfgCs",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1620653713380-7a34b773fef8?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8d2F0ZXIlMjBoZWF0ZXJ8ZW58MHwwfHx8MTc5NTAyNzEyNHwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 2160,
+    "fp": [
+      0.5,
+      0.4
+    ],
+    "color": "#94918c",
+    "alt": "Hand using a wrench on the fittings on top of a water heater",
+    "by": "Marian Florinel Condruz",
+    "page": "https://unsplash.com/photos/person-holding-yellow-and-gray-hand-tool-C-oYJoIfgCs",
+    "profile": "https://unsplash.com/@gottapics",
+    "use": "Article: Why Is My Water Heater Making That Noise?",
+    "user": "gottapics",
+    "base": "https://images.unsplash.com/photo-1620653713380-7a34b773fef8"
+  },
+  "pw-privacy": {
+    "id": "XcVm8mn7NUM",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1560184897-ae75f418493e?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8ZnJvbnQlMjBkb29yJTIwaG91c2UlMjBwb3JjaHxlbnwwfDB8fHwxNzk1MDI3MzA1fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.35,
+      0.5
+    ],
+    "color": "#818887",
+    "alt": "Front porch with a dark front door, lantern, and wicker chairs",
+    "by": "Francesca Tosolini",
+    "page": "https://unsplash.com/photos/blue-porch-with-wicker-furniture-XcVm8mn7NUM",
+    "profile": "https://unsplash.com/@fromitaly",
+    "use": "Privacy hero",
+    "user": "fromitaly",
+    "base": "https://images.unsplash.com/photo-1560184897-ae75f418493e"
+  },
+  "pw-notfound": {
+    "id": "_3voFj12KTQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1777245144143-fca70f22adf5?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Mjd8fGNhbGlmb3JuaWElMjBzdWJ1cmJhbiUyMHN0cmVldHxlbnwwfDB8fHwxNzk1MDI3Mjc2fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.5,
+      0.6
+    ],
+    "color": "#6f797d",
+    "alt": "Curving suburban road past two-story homes",
+    "by": "Sam",
+    "page": "https://unsplash.com/photos/suburban-street-with-houses-on-a-hill-_3voFj12KTQ",
+    "profile": "https://unsplash.com/@samtakespictures",
+    "use": "Page not found (404) hero",
+    "user": "samtakespictures",
+    "base": "https://images.unsplash.com/photo-1777245144143-fca70f22adf5"
+  },
+  "pw-credits": {
+    "id": "lLDh9JppH2c",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8YWlyJTIwcHVyaWZpZXIlMjBsaXZpbmclMjByb29tfGVufDB8MHx8fDE3OTUwMjcxMjV8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.4,
+      0.6
+    ],
+    "color": "#998e7d",
+    "alt": "Cozy living room with a gray sofa and a wood coffee table",
+    "by": "Francesca Tosolini",
+    "page": "https://unsplash.com/photos/brown-couch-with-two-white-throw-pillows-lLDh9JppH2c",
+    "profile": "https://unsplash.com/@fromitaly",
+    "use": "Photo credits hero",
+    "user": "fromitaly",
+    "base": "https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa"
+  },
+  "pw-contact-2": {
+    "id": "8204317",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/8204317/pexels-photo-8204317.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 2400,
+    "h": 1602,
+    "fp": [
+      0.35,
+      0.4
+    ],
+    "color": "#8c8a85",
+    "alt": "Dispatcher with a headset answering a call at her desk",
+    "by": "Kampus Production",
+    "page": "https://www.pexels.com/photo/8204317/",
+    "profile": "https://www.pexels.com/@kampus/",
+    "use": "Contact page, a real person answers"
   }
 }

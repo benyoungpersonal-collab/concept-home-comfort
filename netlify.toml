@@ -141,6 +141,32 @@
   status = 301
   force = true
 
+# Pinwheel: the old plan page is now the Comfort Club page
+[[redirects]]
+  from = "/membership.html"
+  to = "/comfort-club.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/membership"
+  to = "/comfort-club.html"
+  status = 301
+  force = true
+
+# Pinwheel 404: missed addresses at the top level already get /404.html (Netlify's default). These two rules give
+# missed addresses inside Pinwheel's own folders the same page. They only apply when no file matches (no force),
+# and they never touch the other sites' folders.
+[[redirects]]
+  from = "/service-areas/*"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/resources/*"
+  to = "/404.html"
+  status = 404
+
 # Sonny's Air Conditioning: Education was renamed HVAC Tips
 [[redirects]]
   from = "/sonnys-air-conditioning/education.html"
