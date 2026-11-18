@@ -156,3 +156,87 @@ h1, h2, h3 { text-wrap: balance; }
 /* Bold style: uppercase button text runs wider, so a button inside a card wraps instead of poking past it */
 .deal .btn, .pcard .btn, .card .btn { max-width: 100%; white-space: normal; text-align: center; }
 
+
+/* ---------- 4. Homepage hero: full-photo overlay (like Oak & Tule and Ridgeline) ----------
+   The photo fills the hero edge to edge, one even see-through black layer sits over it, and the words and buttons sit
+   on top. The header is see-through over the photo and turns solid on scroll (is-compact, js/site.js).
+   Phones (under 600px): a tall crop (pinwheel-family-tall) sized to the screen width, so both faces always land in the
+   top part; the text starts below the boy's chin (85.7% of the width down) and sits at the bottom of the hero.
+   600px and up: the wide crop (pinwheel-family, right edge trimmed) keeps both faces right of 58% of the width; the
+   text column stays left of 53%. Rule: no text, pill, chip, or button ever covers their faces. */
+.pw-home .site-header { margin-bottom: calc(-1 * var(--header-h)); }
+.pw-home .site-header:not(.is-compact) { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; box-shadow: none; }
+.pw-home .site-header.is-compact { background: rgb(255 255 255 / .97); }
+.pw-home .site-header:not(.is-compact) .logo, .pw-home .site-header:not(.is-compact) .logo:hover { color: #fff; }
+.pw-home .site-header:not(.is-compact) .logo-tag { color: rgb(255 255 255 / .86); }
+.pw-home .site-header:not(.is-compact) .logo-text { text-shadow: 0 1px 3px rgb(0 0 0 / .35); }
+.pw-home .site-header:not(.is-compact) .menu-toggle { background: rgb(255 255 255 / .14); border-color: rgb(255 255 255 / .5); color: #fff; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+@media (min-width: 1000px) {
+  .pw-home .site-header:not(.is-compact) .nav-link { color: #fff; text-shadow: 0 1px 3px rgb(0 0 0 / .35); }
+  .pw-home .site-header:not(.is-compact) .nav-link:hover, .pw-home .site-header:not(.is-compact) .nav-link[aria-expanded="true"] { background: rgb(255 255 255 / .14); color: #fff; }
+  .pw-home .site-header:not(.is-compact) .header-phone, .pw-home .site-header:not(.is-compact) .header-phone:hover { color: #fff; }
+  .pw-home .site-header:not(.is-compact) .header-phone:hover { background: rgb(255 255 255 / .12); }
+  .pw-home .site-header:not(.is-compact) .header-phone .icon-wrap { background: rgb(255 255 255 / .16); color: #fff; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .3); }
+  .pw-home .site-header:not(.is-compact) .header-phone-text small { color: rgb(255 255 255 / .9); }
+  .pw-home .site-header:not(.is-compact) .header-phone-text { text-shadow: 0 1px 3px rgb(0 0 0 / .35); }
+}
+
+.pw-ohero { position: relative; isolation: isolate; overflow: hidden; background: #0b0b0c; color: #fff; padding: 0; }
+.pw-ohero-photo { position: absolute; inset: 0; z-index: -1; display: block; overflow: hidden; }
+.pw-ohero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 72% 30%; }
+/* One even black layer over the whole photo */
+.pw-ohero-photo::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / .55); }
+.pw-ohero-wrap { position: relative; }
+.pw-ohero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.pw-ohero-copy > * { margin: 0 !important; }
+.pw-ohero .hero-h { color: #fff; text-shadow: 0 2px 14px rgb(0 0 0 / .35), 0 1px 2px rgb(0 0 0 / .3); line-height: 1; letter-spacing: .005em; }
+.pw-ohero .hero-h .accent { color: var(--c-brand); padding-bottom: .1em; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23EE5600' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 100% .2em; background-position: left bottom; background-repeat: no-repeat; text-shadow: 0 0 .28em rgb(0 0 0 / .6), 0 0 .12em rgb(0 0 0 / .5), 0 2px 3px rgb(0 0 0 / .5); }
+/* The orange line carries a soft dark halo, so Pinwheel orange holds 3:1 or better over the photo */
+.pw-ohero .lead { color: #fff; max-width: 34rem; text-shadow: 0 1px 3px rgb(0 0 0 / .55), 0 0 18px rgb(0 0 0 / .3); }
+/* Frosted glass: the pill, the chip, and the Book Online button */
+.pw-glass, .btn-glass { background: rgb(255 255 255 / .14); border: 1px solid rgb(255 255 255 / .32); color: #fff; -webkit-backdrop-filter: blur(12px) saturate(1.2); backdrop-filter: blur(12px) saturate(1.2); }
+.pw-ohero .hero-pill.pw-glass { background-color: rgb(255 255 255 / .14); background-image: none; box-shadow: none; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .3); }
+.pw-ohero .hero-note.pw-glass { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: var(--r-pill); font-size: 14px; font-weight: 600; line-height: 1.3; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .3); }
+.pw-ohero .hero-note .icon { flex: none; color: #fff; }
+.btn-glass { --btn-bg: rgb(255 255 255 / .14); --btn-fg: #fff; --btn-bd: rgb(255 255 255 / .42); --btn-shadow: 0 6px 16px rgb(0 0 0 / .18); text-shadow: 0 1px 2px rgb(0 0 0 / .3); }
+.btn-glass:hover { --btn-bg: rgb(255 255 255 / .24); --btn-bd: rgb(255 255 255 / .7); color: #fff; }
+.pw-ohero .hero-ctas .btn-primary { text-shadow: 0 1px 2px rgb(20 33 61 / .35); }
+.pw-m-br { display: none; }
+
+/* Phones: tall photo, faces on top, all the words and buttons in the lower part */
+@media (max-width: 599px) {
+  .pw-ohero { min-height: calc(100svh - 45px); display: flex; flex-direction: column; justify-content: flex-end; padding: calc(85.7vw + 14px) 0 22px; }
+  .pw-ohero-photo img { position: absolute; top: 0; left: 0; height: auto; aspect-ratio: 840 / 1630; object-fit: cover;
+    -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); }
+  /* Slightly darker toward the bottom, so the buttons stand out */
+  .pw-ohero-photo::after { background: linear-gradient(to bottom, rgb(0 0 0 / .38) 0%, rgb(0 0 0 / .45) 38%, rgb(0 0 0 / .7) 58%, rgb(0 0 0 / .82) 100%); }
+  .pw-ohero-copy { gap: 14px; }
+  .pw-ohero .hero-pill { font-size: 13px; }
+  .pw-ohero .hero-h { font-size: calc((100vw - 32px) / 7.6); }
+  .pw-m-br { display: inline; }
+  .pw-ohero .hero-h { line-height: 1.04; }
+  /* Phones: "Comfortable" / "All Year." on two lines, with the swoosh under the last one only */
+  .pw-ohero .hero-h .accent { display: inline; white-space: normal; background: none; padding-bottom: 0; }
+  .pw-ohero .hero-h .pw-acc-last { display: inline-block; padding-bottom: .1em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23EE5600' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat left bottom / 100% .2em; }
+  .pw-ohero .lead { font-size: 16px; line-height: 1.5; }
+  .pw-ohero .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+  .pw-ohero .hero-ctas .btn { padding: 0 12px; min-height: 52px; }
+  .pw-ohero .hero-note.pw-glass { font-size: 13px; padding: 8px 14px 8px 10px; }
+}
+/* Tablets: the wide photo at 160% of the screen width, slid left so the faces sit in the top middle; the words below */
+@media (min-width: 600px) and (max-width: 899px) {
+  .pw-ohero { min-height: min(calc(100svh - 45px), 1000px); display: flex; flex-direction: column; justify-content: flex-end; padding: calc(62vw + 24px) 0 40px; }
+  .pw-ohero-photo img { position: absolute; top: 0; left: -58.7%; width: 160%; max-width: none; height: auto; aspect-ratio: 3264 / 2160;
+    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); }
+  .pw-ohero-photo::after { background: linear-gradient(to bottom, rgb(0 0 0 / .42) 0%, rgb(0 0 0 / .45) 45%, rgb(0 0 0 / .62) 65%, rgb(0 0 0 / .8) 100%); }
+  .pw-ohero .hero-h { font-size: clamp(3rem, 8vw, 4.25rem); }
+  .pw-ohero .lead { font-size: 18px; }
+}
+/* Desktop: wide photo, text on the left, faces on the right */
+@media (min-width: 900px) {
+  .pw-ohero { min-height: max(600px, calc(100vh - 45px)); display: flex; align-items: center; padding: calc(var(--header-h) + 28px) 0 56px; }
+  .pw-ohero-copy { gap: 20px; max-width: min(640px, calc(53vw - max(var(--gutter), (100vw - var(--max)) / 2))); container-type: inline-size; }
+  .pw-ohero .hero-h { font-size: min(9.2cqi, 4.75rem); }
+  .pw-ohero .lead { font-size: 19px; }
+}
+@media (min-width: 900px) and (max-height: 760px) { .pw-ohero-copy { gap: 16px; } .pw-ohero .lead { font-size: 17.5px; } }

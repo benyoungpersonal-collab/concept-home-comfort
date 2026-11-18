@@ -20,7 +20,7 @@ must(/<meta property="og:title" content="[^"]*">/, '<meta property="og:title" co
 must(/<meta property="og:url" content="[^"]*">/, '<meta property="og:url" content="https://byw-home-comfort.netlify.app/showcase.html">');
 must(/<body class="has-sticky-bar">/, '<body class="has-sticky-bar is-showcase">');
 // a quiet note right under the header (outside the header partial, so sync leaves it alone)
-must(/(<!-- \/partial:header -->\n)/, '$1<aside class="showcase-note" aria-label="About this page"><p><b>Showcase page.</b> Every optional section is on. The live sample homepage is index.html.</p></aside>\n');
+must(/(<!-- partial:header -->\n)/, '<aside class="showcase-note" aria-label="About this page"><p><b>Showcase page.</b> Every optional section is on. The live sample homepage is index.html.</p></aside>\n$1'); // above the rating strip, so the see-through header never covers it
 // the membership and financing sections go where the homepage comment says they would
 must(/  <!-- Optional sections: Comfort Club and Financing are OFF on this page\.[\s\S]*?-->\n/,
   '  <!-- Optional sections, all ON for the showcase -->\n  <!-- partial:optional-membership -->\n  <!-- /partial:optional-membership -->\n\n  <!-- partial:optional-financing -->\n  <!-- /partial:optional-financing -->\n');

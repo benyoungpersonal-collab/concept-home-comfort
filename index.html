@@ -16,20 +16,21 @@
 <link rel="preload" href="fonts/barlow-latin-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/barlow-condensed-latin-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css?v=20261111">
-<link rel="stylesheet" href="css/pinwheel.css?v=20261114">
+<link rel="stylesheet" href="css/pinwheel.css?v=20261118">
 <link rel="stylesheet" href="css/fonts.css?v=20261111">
 <link rel="stylesheet" href="css/alive.css?v=20261111">
 <script>document.documentElement.classList.replace('no-js','js')</script>
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
-<meta property="og:image" content="https://byw-home-comfort.netlify.app/images/og-share-2026-11-11-v2.jpg">
+<meta property="og:image" content="https://byw-home-comfort.netlify.app/images/og-share-2026-11-18.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Pinwheel Heating, Air &amp; Plumbing homepage on a laptop and a phone.">
-<meta name="twitter:image" content="https://byw-home-comfort.netlify.app/images/og-share-2026-11-11-v2.jpg">
+<meta name="twitter:image" content="https://byw-home-comfort.netlify.app/images/og-share-2026-11-18.jpg">
 <meta name="twitter:image:alt" content="Pinwheel Heating, Air &amp; Plumbing homepage on a laptop and a phone.">
-<link rel="preload" as="image" data-photo="pinwheel-hero" data-crop="orig" data-widths="480,768,1024,1600,2400" imagesrcset="images/photos/pinwheel-hero-480x204-full.webp 480w, images/photos/pinwheel-hero-768x326-full.webp 768w, images/photos/pinwheel-hero-1024x434-full.webp 1024w, images/photos/pinwheel-hero-1600x679-full.webp 1600w, images/photos/pinwheel-hero-2400x1018-full.webp 2400w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" data-photo="pinwheel-family-tall" data-crop="orig" data-widths="480,640,840" imagesrcset="images/photos/pinwheel-family-tall-480x931-full.webp 480w, images/photos/pinwheel-family-tall-640x1242-full.webp 640w, images/photos/pinwheel-family-tall-840x1630-full.webp 840w" imagesizes="100vw" media="(max-width: 599px)" fetchpriority="high">
+<link rel="preload" as="image" data-photo="pinwheel-family" data-crop="orig" data-widths="768,1024,1600,2400" imagesrcset="images/photos/pinwheel-family-768x508-full.webp 768w, images/photos/pinwheel-family-1024x678-full.webp 1024w, images/photos/pinwheel-family-1600x1059-full.webp 1600w, images/photos/pinwheel-family-2400x1588-full.webp 2400w" imagesizes="100vw" media="(min-width: 600px)" fetchpriority="high">
 <meta property="og:title" content="Pinwheel Heating, Air &amp; Plumbing | AC &amp; Heating Repair in Tracy, CA">
 <meta property="og:description" content="Same-day heating, AC, and plumbing repair for Tracy homeowners. See the price before we start.">
 <meta property="og:url" content="https://byw-home-comfort.netlify.app/">
@@ -314,21 +315,24 @@
 
 <main id="main">
 
-  <!-- 3. Hero: the photo edge to edge, then a white card laid over its bottom edge (template default) -->
-  <section class="hero tpl-hero" aria-labelledby="hero-title">
-    <div class="tpl-hero-banner">
-      <img data-photo="pinwheel-hero" data-crop="orig" data-widths="480,768,1024,1600,2400" data-eager sizes="100vw" src="images/photos/pinwheel-hero-768x326-full.webp" srcset="images/photos/pinwheel-hero-480x204-full.webp 480w, images/photos/pinwheel-hero-768x326-full.webp 768w, images/photos/pinwheel-hero-1024x434-full.webp 1024w, images/photos/pinwheel-hero-1600x679-full.webp 1600w, images/photos/pinwheel-hero-2400x1018-full.webp 2400w" width="2400" height="1018" alt="Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path" fetchpriority="high" style="object-position:50% 55%;background-color:#879084">
-    </div>
-    <div class="container tpl-hero-wrap">
-      <div class="hero-copy tpl-hero-card">
-        <h1 class="hero-pill">Heating, Air &amp; Plumbing in Tracy, CA</h1>
-        <p class="h1 hero-h" id="hero-title">A Comfortable Home,<br> <span class="accent">Without the Runaround.</span></p>
-        <p class="lead">Same-day repair and honest, upfront pricing for homes in Tracy, Mountain House, Manteca, Lathrop, Stockton, Livermore, and 6 more cities. If it heats, cools, or runs water, we fix it fast.</p>
+  <!-- 3. Hero: the photo fills the hero edge to edge under a see-through header, with one even black layer over it
+       (darker toward the bottom on phones) and the words and buttons on top. Desktop: wide crop, faces on the right,
+       text on the left. Phones: a tall crop with both faces at the top and the text in the lower part. -->
+  <section class="hero pw-ohero" aria-labelledby="hero-title">
+    <picture class="pw-ohero-photo">
+      <source data-photo="pinwheel-family-tall" data-crop="orig" data-widths="480,640,840" media="(max-width: 599px)" srcset="images/photos/pinwheel-family-tall-480x931-full.webp 480w, images/photos/pinwheel-family-tall-640x1242-full.webp 640w, images/photos/pinwheel-family-tall-840x1630-full.webp 840w" sizes="100vw" width="840" height="1630">
+      <img data-photo="pinwheel-family" data-crop="orig" data-widths="768,1024,1600,2400" data-eager sizes="100vw" src="images/photos/pinwheel-family-1024x678-full.webp" srcset="images/photos/pinwheel-family-768x508-full.webp 768w, images/photos/pinwheel-family-1024x678-full.webp 1024w, images/photos/pinwheel-family-1600x1059-full.webp 1600w, images/photos/pinwheel-family-2400x1588-full.webp 2400w" width="2400" height="1588" alt="Smiling mom and young son relaxing together on a gray couch at home" fetchpriority="high" style="object-position:68% 40%;background-color:#5b5d5e">
+    </picture>
+    <div class="container pw-ohero-wrap">
+      <div class="hero-copy pw-ohero-copy">
+        <h1 class="hero-pill pw-glass">Heating, Air &amp; Plumbing in Tracy, CA</h1>
+        <p class="h1 hero-h" id="hero-title">Keep Your Family<br> <span class="accent">Comfortable<br class="pw-m-br"> <span class="pw-acc-last">All&nbsp;Year.</span></span></p>
+        <p class="lead">AC out, heater down, or no hot water? We fix it the same day, with honest, upfront pricing. Serving Tracy, Mountain House, Manteca, Lathrop, Stockton, Livermore, and 6 more cities.</p>
         <div class="hero-ctas" data-hide-bar>
-          <a class="btn btn-primary btn-lg" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call now</a>
-          <a class="btn btn-secondary btn-lg" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
+          <a class="btn btn-primary btn-lg" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call Now</a>
+          <a class="btn btn-glass btn-lg" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book Online</a>
         </div>
-        <p class="hero-note"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>A real person answers 7am to 7pm. Emergency line 24/7.</p>
+        <p class="hero-note pw-glass"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>A real person answers 7am to 7pm.<br class="pw-m-br"> Emergency line 24/7.</p>
       </div>
     </div>
   </section>
@@ -356,7 +360,7 @@
       </div>
       <div class="pcards">
         <article class="pcard">
-          <div class="pcard-photo"><img data-photo="thermostat" data-crop="4:3" data-widths="480,720" sizes="(min-width: 1000px) 285px, (min-width: 700px) 31vw, 46vw" src="images/photos/thermostat-720x540.webp" srcset="images/photos/thermostat-480x360.webp 480w, images/photos/thermostat-720x540.webp 720w" width="720" height="540" alt="Smart thermostat on a white wall set to 63 degrees" loading="lazy" decoding="async" style="object-position:60% 50%;background-color:#c9c9c7"></div>
+          <div class="pcard-photo"><img data-photo="pinwheel-hero" data-crop="4:3" data-widths="480,720" sizes="(min-width: 1000px) 285px, (min-width: 700px) 31vw, 46vw" src="images/photos/pinwheel-hero-720x540.webp" srcset="images/photos/pinwheel-hero-480x360.webp 480w, images/photos/pinwheel-hero-720x540.webp 720w" width="720" height="540" alt="Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path" loading="lazy" decoding="async" style="object-position:50% 55%;background-color:#879084"></div>
           <span class="pcard-badge" aria-hidden="true"><svg class="icon"><use href="#i-snowflake"/></svg></span>
           <div class="pcard-body">
             <h3>AC repair</h3>

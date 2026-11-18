@@ -31,7 +31,7 @@ export function makeStylesPage(html, { name, current = 'clean', note = '' }) {
     .replace(/<link rel="preload" as="image"[^>]*>\n?/g, '');
   const htmlClass = ((html.match(/<html[^>]*class="([^"]*)"/) || [])[1] || '').split(/\s+/).filter((c) => c && !/^fs-/.test(c)).join(' ');
   const sprite = (html.match(/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" style="position:absolute;width:0[\s\S]*?<\/svg>/) || [''])[0];
-  const heroSrc = html.match(/<section class="hero tpl-hero[\s\S]*?<\/section>/);
+  const heroSrc = html.match(/<section class="hero (?:tpl-hero|pw-ohero)[\s\S]*?<\/section>/); // the card hero (template) or Pinwheel's full-photo hero
   if (!heroSrc) throw new Error('make-styles: no hero section found');
   const hero = (i) => heroSrc[0]
     .replace(/^<section ([^>]*?) ?aria-labelledby="hero-title"/, '<div $1')
