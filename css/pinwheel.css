@@ -184,59 +184,139 @@ h1, h2, h3 { text-wrap: balance; }
 .pw-ohero { position: relative; isolation: isolate; overflow: hidden; background: #0b0b0c; color: #fff; padding: 0; }
 .pw-ohero-photo { position: absolute; inset: 0; z-index: -1; display: block; overflow: hidden; }
 .pw-ohero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 72% 30%; }
-/* One even black layer over the whole photo */
-.pw-ohero-photo::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / .55); }
+/* A light even layer over the whole photo, so the room and faces stay bright and warm, and a soft darker fade only
+   behind the words and buttons (.pw-ohero-copy::before), so every word still reads clearly */
+.pw-ohero-photo::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / .2); }
 .pw-ohero-wrap { position: relative; }
-.pw-ohero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.pw-ohero-copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.pw-ohero-copy::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
 .pw-ohero-copy > * { margin: 0 !important; }
 .pw-ohero .hero-h { color: #fff; text-shadow: 0 2px 14px rgb(0 0 0 / .35), 0 1px 2px rgb(0 0 0 / .3); line-height: 1; letter-spacing: .005em; }
+/* Only "Comfortable" is orange, with the swoosh under it */
 .pw-ohero .hero-h .accent { color: var(--c-brand); padding-bottom: .1em; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23EE5600' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 100% .2em; background-position: left bottom; background-repeat: no-repeat; text-shadow: 0 0 .28em rgb(0 0 0 / .6), 0 0 .12em rgb(0 0 0 / .5), 0 2px 3px rgb(0 0 0 / .5); }
-/* The orange line carries a soft dark halo, so Pinwheel orange holds 3:1 or better over the photo */
-.pw-ohero .lead { color: #fff; max-width: 34rem; text-shadow: 0 1px 3px rgb(0 0 0 / .55), 0 0 18px rgb(0 0 0 / .3); }
-/* Frosted glass: the pill, the chip, and the Book Online button */
+/* The orange word carries a soft dark halo, so Pinwheel orange holds 3:1 or better over the photo */
+.pw-ohero .lead { color: #fff; max-width: 34rem; font-weight: 600; text-wrap: pretty; text-shadow: 0 1px 3px rgb(0 0 0 / .6), 0 0 18px rgb(0 0 0 / .35); }
+/* Frosted glass: the Book Online button */
 .pw-glass, .btn-glass { background: rgb(255 255 255 / .14); border: 1px solid rgb(255 255 255 / .32); color: #fff; -webkit-backdrop-filter: blur(12px) saturate(1.2); backdrop-filter: blur(12px) saturate(1.2); }
-.pw-ohero .hero-pill.pw-glass { background-color: rgb(255 255 255 / .14); background-image: none; box-shadow: none; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .3); }
-.pw-ohero .hero-note.pw-glass { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: var(--r-pill); font-size: 14px; font-weight: 600; line-height: 1.3; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .3); }
-.pw-ohero .hero-note .icon { flex: none; color: #fff; }
 .btn-glass { --btn-bg: rgb(255 255 255 / .14); --btn-fg: #fff; --btn-bd: rgb(255 255 255 / .42); --btn-shadow: 0 6px 16px rgb(0 0 0 / .18); text-shadow: 0 1px 2px rgb(0 0 0 / .3); }
 .btn-glass:hover { --btn-bg: rgb(255 255 255 / .24); --btn-bd: rgb(255 255 255 / .7); color: #fff; }
 .pw-ohero .hero-ctas .btn-primary { text-shadow: 0 1px 2px rgb(20 33 61 / .35); }
+
+/* The pill (the page's H1) and the two chips under the buttons: frosted glass like Ridgeline's, see-through with a
+   soft blur of the photo behind, a thin light border, and a faint top highlight. Icons and stars in Pinwheel orange. */
+.pw-ohero .pw-pill, .pw-chip {
+  border: 1px solid rgb(255 255 255 / .38); background: rgb(18 20 22 / .62); color: #fff;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 6px 18px -8px rgb(0 0 0 / .5); text-shadow: 0 1px 2px rgb(0 0 0 / .55);
+}
+@supports ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .pw-ohero .pw-pill, .pw-chip { background: rgb(255 255 255 / .08); -webkit-backdrop-filter: blur(14px) saturate(1.4) brightness(.46); backdrop-filter: blur(14px) saturate(1.4) brightness(.46); }
+}
+.pw-ohero .hero-pill.pw-pill { display: inline-flex; align-items: center; gap: 8px; width: fit-content; max-width: 100%; padding: 7px 14px; border-radius: 18px;
+  font-family: var(--ff-body); font-size: clamp(.9375rem, .9143rem + .0952vw, 1rem); font-weight: 600; letter-spacing: 0; line-height: 1.3; text-transform: none; text-wrap: balance; }
+.pw-pill .icon { width: 14px; height: 14px; color: var(--c-brand); }
+.pw-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+.pw-chip { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 7px; min-height: 34px; padding: 7px 13px; border-radius: 999px;
+  font-family: var(--ff-body); font-size: clamp(.8125rem, .7893rem + .0952vw, .875rem); font-weight: 500; line-height: 1.2; }
+.pw-chip strong { font-weight: 700; }
+.pw-chip .icon { width: 18px; height: 18px; color: var(--c-brand); }
+.pw-stars { display: inline-flex; gap: 1px; color: var(--c-brand); }
+.pw-stars svg { width: 12px; height: 12px; }
+.pw-chip-note { padding: 2px 6px; border-radius: 999px; background: rgb(255 255 255 / .22); font-size: .6875rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; text-shadow: none; }
 .pw-m-br { display: none; }
 
-/* Phones: tall photo, faces on top, all the words and buttons in the lower part */
+/* Phones: tall photo with both faces at the top, the words and buttons right under the boy's chin (82.5% of the
+   width down). The photo stays light over the faces and darkens only where the words sit. */
 @media (max-width: 599px) {
-  .pw-ohero { min-height: calc(100svh - 45px); display: flex; flex-direction: column; justify-content: flex-end; padding: calc(85.7vw + 14px) 0 22px; }
+  .pw-ohero { display: flex; flex-direction: column; justify-content: flex-start; padding: calc(84vw + 6px) 0 26px; }
   .pw-ohero-photo img { position: absolute; top: 0; left: 0; height: auto; aspect-ratio: 840 / 1630; object-fit: cover;
     -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); }
-  /* Slightly darker toward the bottom, so the buttons stand out */
-  .pw-ohero-photo::after { background: linear-gradient(to bottom, rgb(0 0 0 / .38) 0%, rgb(0 0 0 / .45) 38%, rgb(0 0 0 / .7) 58%, rgb(0 0 0 / .82) 100%); }
-  .pw-ohero-copy { gap: 14px; }
-  .pw-ohero .hero-pill { font-size: 13px; }
-  .pw-ohero .hero-h { font-size: calc((100vw - 32px) / 7.6); }
+  .pw-ohero-photo::after { background: linear-gradient(to bottom, rgb(0 0 0 / .12) 0, rgb(0 0 0 / .14) 62vw, rgb(0 0 0 / .56) 84vw, rgb(0 0 0 / .7) 104vw, rgb(0 0 0 / .74) 100%); }
+  .pw-ohero-copy::before { inset: -4px -16px -10px; border-radius: 28px; background: rgb(8 10 14 / .22); box-shadow: 0 18px 40px 10px rgb(8 10 14 / .22); }
+  .pw-ohero-copy { gap: 13px; }
+  .pw-ohero .hero-pill.pw-pill { gap: 6px; padding: 7px 11px; font-size: max(13px, min(15px, calc((100vw - 82px) / 22.6))); letter-spacing: -.005em; }
+  .pw-ohero .hero-h { font-size: calc((100vw - 32px) / 7.6); line-height: 1.04; }
   .pw-m-br { display: inline; }
-  .pw-ohero .hero-h { line-height: 1.04; }
-  /* Phones: "Comfortable" / "All Year." on two lines, with the swoosh under the last one only */
-  .pw-ohero .hero-h .accent { display: inline; white-space: normal; background: none; padding-bottom: 0; }
-  .pw-ohero .hero-h .pw-acc-last { display: inline-block; padding-bottom: .1em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23EE5600' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat left bottom / 100% .2em; }
-  .pw-ohero .lead { font-size: 16px; line-height: 1.5; }
+  .pw-ohero .lead { font-size: 17px; line-height: 1.45; }
   .pw-ohero .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
   .pw-ohero .hero-ctas .btn { padding: 0 12px; min-height: 52px; }
-  .pw-ohero .hero-note.pw-glass { font-size: 13px; padding: 8px 14px 8px 10px; }
+  .pw-chips { gap: 8px; }
 }
+@media (min-width: 375px) and (max-width: 599px) { .pw-ohero .hero-pill.pw-pill { white-space: nowrap; } }
 /* Tablets: the wide photo at 160% of the screen width, slid left so the faces sit in the top middle; the words below */
 @media (min-width: 600px) and (max-width: 899px) {
-  .pw-ohero { min-height: min(calc(100svh - 45px), 1000px); display: flex; flex-direction: column; justify-content: flex-end; padding: calc(62vw + 24px) 0 40px; }
+  .pw-ohero { display: flex; flex-direction: column; justify-content: flex-start; padding: calc(62vw + 24px) 0 40px; }
   .pw-ohero-photo img { position: absolute; top: 0; left: -58.7%; width: 160%; max-width: none; height: auto; aspect-ratio: 3264 / 2160;
     -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); }
-  .pw-ohero-photo::after { background: linear-gradient(to bottom, rgb(0 0 0 / .42) 0%, rgb(0 0 0 / .45) 45%, rgb(0 0 0 / .62) 65%, rgb(0 0 0 / .8) 100%); }
+  .pw-ohero-photo::after { background: linear-gradient(to bottom, rgb(0 0 0 / .12) 0, rgb(0 0 0 / .14) 45vw, rgb(0 0 0 / .5) 62vw, rgb(0 0 0 / .7) 100%); }
+  .pw-ohero-copy::before { inset: -6px -20px -10px; border-radius: 32px; background: rgb(8 10 14 / .22); box-shadow: 0 18px 44px 12px rgb(8 10 14 / .22); }
   .pw-ohero .hero-h { font-size: clamp(3rem, 8vw, 4.25rem); }
-  .pw-ohero .lead { font-size: 18px; }
+  .pw-ohero .lead { font-size: 19px; }
 }
 /* Desktop: wide photo, text on the left, faces on the right */
 @media (min-width: 900px) {
-  .pw-ohero { min-height: max(600px, calc(100vh - 45px)); display: flex; align-items: center; padding: calc(var(--header-h) + 28px) 0 56px; }
+  .pw-ohero { min-height: max(600px, 100vh); display: flex; align-items: center; padding: calc(var(--header-h) + 28px) 0 56px; }
   .pw-ohero-copy { gap: 20px; max-width: min(640px, calc(53vw - max(var(--gutter), (100vw - var(--max)) / 2))); container-type: inline-size; }
   .pw-ohero .hero-h { font-size: min(9.2cqi, 4.75rem); }
-  .pw-ohero .lead { font-size: 19px; }
+  .pw-ohero .lead { font-size: 20px; }
+  /* The fade: a dark band from the left edge to just past the words, soft at its top, bottom, and right end,
+     so it never reaches the faces on the right */
+  .pw-ohero-copy::before { top: -72px; bottom: -72px; left: -100vw; right: -36px;
+    background: linear-gradient(to right, rgb(8 10 14 / .62) 0, rgb(8 10 14 / .55) calc(100% - 230px), rgb(8 10 14 / 0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 72px, #000 calc(100% - 72px), transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 72px, #000 calc(100% - 72px), transparent 100%); }
 }
-@media (min-width: 900px) and (max-height: 760px) { .pw-ohero-copy { gap: 16px; } .pw-ohero .lead { font-size: 17.5px; } }
+@media (min-width: 900px) and (max-height: 760px) { .pw-ohero-copy { gap: 16px; } .pw-ohero .lead { font-size: 18.5px; } }
+
+/* ---------- 5. Trust badges: 4 across on desktop; on phones a clean 2x2 of soft rounded tiles ---------- */
+@media (max-width: 599px) {
+  .pw-home .trust { padding: 16px 0; }
+  .tpl-tiles.n4 { grid-auto-rows: 1fr; gap: 10px; }
+  .tpl-tiles.n4 li { justify-content: center; gap: 8px; padding: 14px 10px; border-radius: 16px; background: rgb(255 255 255 / .07); border: 1px solid rgb(255 255 255 / .13); font-size: 14px; }
+}
+
+/* ---------- 6. Logo: the pinwheel spins 3 full turns once per page load, fast at first, then slows through the
+   third turn and eases into its resting spot (about 2 seconds). Never with "reduce motion". ---------- */
+@keyframes pw-logo-spin {
+  0% { transform: rotate(0deg); animation-timing-function: linear; }
+  52% { transform: rotate(720deg); animation-timing-function: cubic-bezier(.3, .49, .3, 1); }
+  100% { transform: rotate(1080deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .site-header .logo-mark { transform-origin: 50% 50%; animation: pw-logo-spin 2.1s .25s both; }
+  .site-header .logo:hover .logo-mark { animation: none; }
+}
+
+/* ---------- 7. Phones: the header slides out of view while scrolling down and slides back in (0.5 s) while
+   scrolling up (js/pinwheel.js adds .pw-hdr-hidden). Desktop keeps it in place. ---------- */
+@media (max-width: 899px) {
+  .js .site-header { transition: transform .5s cubic-bezier(.22, .61, .36, 1), box-shadow var(--t-med) var(--ease), border-color var(--t-med), background-color .35s var(--ease); will-change: transform; }
+  .js .site-header.pw-hdr-hidden { transform: translateY(calc(-100% - 12px)); box-shadow: none; }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) { .js .site-header { transition: none; } }
+
+/* ---------- 8. Phones: a slim hours line on top of the Call, Book, Text bar (it slides with the bar) ---------- */
+.sb-hours { position: absolute; left: 0; right: 0; bottom: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; margin: 0;
+  min-height: 28px; padding: 5px 12px; background: var(--c-navy); color: #fff; font-family: var(--ff-body); font-size: 13px; font-weight: 600; line-height: 1.2; letter-spacing: .01em; text-align: center; white-space: nowrap; }
+.sb-hours .icon { width: 14px; height: 14px; color: var(--c-brand); }
+.js .sticky-bar.is-waiting { transform: translateY(calc(100% + 34px)); }
+@media (max-width: 359px) { .sb-hours { font-size: 12px; gap: 4px; padding: 5px 8px; } .sb-hours .icon { display: none; } }
+@media (max-width: 899px) {
+  .has-sticky-bar .site-footer { padding-bottom: calc(var(--sp-4) + var(--bar-h) + var(--safe-b) + 28px); }
+  .has-sticky-bar .chat-panel { bottom: calc(var(--bar-h) + var(--safe-b) + 36px); }
+}
+
+/* ---------- 9. Readability: body text one step bigger and one step heavier on every Pinwheel page ----------
+   Same Barlow, under its own name so Pinwheel can use the Medium (500) cut for paragraphs without changing any other
+   site that shares fonts.css. Every text size token moves up one step (about 1px), body weight 400 to 500. */
+@font-face { font-family: "Barlow PW"; src: url("../fonts/barlow-latin-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Barlow PW"; src: url("../fonts/barlow-latin-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Barlow PW"; src: url("../fonts/barlow-latin-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Barlow PW"; src: url("../fonts/barlow-latin-700.woff2") format("woff2"); font-weight: 700 900; font-display: swap; }
+.fs-bold.site-pw {
+  --ff-body: "Barlow PW", "Barlow", "Inter Fallback", system-ui, sans-serif;
+  --fs-xs: clamp(.8125rem, .7893rem + .0952vw, .875rem);
+  --fs-sm: clamp(.9375rem, .9143rem + .0952vw, 1rem);
+  --fs-base: clamp(1.0625rem, 1.0393rem + .0952vw, 1.125rem);
+  --fs-md: clamp(1.1875rem, 1.1411rem + .1905vw, 1.3125rem);
+  --lh-body: 1.6;
+}
+.site-pw body { font-weight: 500; }
