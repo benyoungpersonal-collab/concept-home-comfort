@@ -1,0 +1,76 @@
+{
+  "_readme": [
+    "Sites for scripts/share-image.cjs (link preview picture: laptop + phone). One entry per site.",
+    "dir: the folder that is served (the script runs its own local server of the repo root). path: the page under the repo root.",
+    "live: the site's live address; the picture's URL is live + imageDir + file name.",
+    "imageDir: where the JPG goes, relative to the site's folder (dir). html: pages to point at it (folder/*.html patterns).",
+    "phone.top: the first thing the phone shows under the site header (several selectors: the highest one wins).",
+    "phone.bottom: the last thing that must show in full (it fails the run if it does not fit).",
+    "phone.align: center (default) splits the spare room above and below without showing the section above; top puts phone.top just under the header; bottom puts phone.bottom just above the screen's lower edge.",
+    "phone.hideBelow: true (default) hides everything below phone.bottom, so the next row of cards never peeks in cut off.",
+    "The raw phone shot is saved to qa/share/<id>/phone.png for checking.",
+    "client: true means a paying client's live site: the picture goes to qa/share/ and no page is changed. Ben sees it first.",
+    "preview: a prospect preview built by scripts/build-preview.mjs. The picture is also saved to prospects/share/<slug>/ so every rebuild uses it."
+  ],
+  "hide": [
+    ".sticky-bar", ".call-bar", ".mobile-bar", ".bottom-bar",
+    ".chat", ".chat-launcher", ".chat-panel",
+    "[class*=cookie]", "[id*=cookie]", "[class*=consent]",
+    ".demo-tag", ".tag-demo"
+  ],
+  "sites": [
+    {
+      "id": "pinwheel",
+      "name": "Pinwheel Heating, Air & Plumbing",
+      "dir": ".",
+      "path": "/",
+      "live": "https://byw-home-comfort.netlify.app/",
+      "imageDir": "images",
+      "html": ["*.html", "resources/*.html", "service-areas/*.html"],
+      "phone": { "top": ["#services .eyebrow", "#services h2"], "bottom": "#services .pcard:nth-of-type(2)" }
+    },
+    {
+      "id": "bright-bolt",
+      "name": "Bright Bolt Electric",
+      "dir": "bright-bolt-electric",
+      "path": "/bright-bolt-electric/",
+      "live": "https://byw-home-comfort.netlify.app/bright-bolt-electric/",
+      "imageDir": "images",
+      "html": ["*.html"],
+      "phone": { "top": ["#services .bolt.at-services svg", "#services .eyebrow", "#services h2"], "bottom": "#services .pcard:nth-of-type(2)" }
+    },
+    {
+      "id": "ra",
+      "name": "R&A Plumbing Heating & Air",
+      "dir": "previews/ra-plumbing-heating-air",
+      "path": "/previews/ra-plumbing-heating-air/",
+      "live": "https://byw-ra-plumbing-heating-air.pages.dev/",
+      "imageDir": "images",
+      "html": ["index.html"],
+      "preview": "ra-plumbing-heating-air",
+      "phone": { "top": ["#services .eyebrow", "#services h2"], "bottom": "#services .tile-lead", "_note": "Its cards are tall, so headline + the big photo card is what fits." }
+    },
+    {
+      "id": "horizon",
+      "name": "Horizon Heating and Air Conditioning",
+      "dir": "previews/horizon-heating-air",
+      "path": "/previews/horizon-heating-air/",
+      "live": "https://byw-horizon-heating-air.pages.dev/",
+      "imageDir": "images",
+      "html": ["index.html"],
+      "preview": "horizon-heating-air",
+      "phone": { "top": ["#services .eyebrow", "#services h2"], "bottom": "#services .pcard:nth-of-type(2)" }
+    },
+    {
+      "id": "sonnys-ac",
+      "name": "Sonny's Air Conditioning",
+      "dir": "sonnys-air-conditioning",
+      "path": "/sonnys-air-conditioning/",
+      "live": "https://byw-home-comfort.netlify.app/sonnys-air-conditioning/",
+      "imageDir": "images",
+      "html": ["*.html"],
+      "client": true,
+      "phone": { "top": ["#services .eyebrow", "#services h2"], "bottom": "#services .svc.card" }
+    }
+  ]
+}

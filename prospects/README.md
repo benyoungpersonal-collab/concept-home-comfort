@@ -62,7 +62,7 @@ These apply to every prospect. The build enforces the ones marked **(build)**; t
 - Photo list: every build writes `prospects/photo-lists/NAME.md` with every photo spot, what is there, its source and license, and a ready-to-paste AI prompt for a better version.
 - Wording: follow template/COPY-PATTERNS.md (fear-busting promise, 3-step verbs, trust points with reasons, neighbor reviews intro, FAQs the way customers ask, a named plan). Always original lines in their voice.
 - The preview note ("Homepage preview by Ben Young Web Design. Some photos are placeholders until we add yours.") is in the footer only.
-- Link preview: the title is `Business Name | Main Service in City, ST` (`mainService`, else the trade default like "Plumbing & HVAC Repair"; `state`, default CA). There is no og:site_name, because iMessage drops the part of the title that matches it. og.jpg (1200x630) is cut from the hero photo, and its alt text is `heroPhoto.ogAlt`.
+- Link preview: the title is `Business Name | Main Service in City, ST` (`mainService`, else the trade default like "Plumbing & HVAC Repair"; `state`, default CA). There is no og:site_name, because iMessage drops the part of the title that matches it. og.jpg (1200x630) is cut from the hero photo, and its alt text is `heroPhoto.ogAlt`. Once `node scripts/share-image.cjs --site ID` has made the laptop-and-phone picture (kept in `prospects/share/<slug>/`), the build uses the newest one instead.
 
 **Trust row** **(build)**
 - Tiles: a bold brand-color square with a white icon and the label centered under it, on navy. 2x2 on phones, one row from 600px up.
