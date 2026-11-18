@@ -1,0 +1,40 @@
+<section class="section bg-alt" id="calculator" aria-labelledby="calc-title">
+    <div class="container fin-grid">
+      <div class="fin-head">
+        <p class="eyebrow">Payment calculator</p>
+        <h2 id="calc-title">What Would It Cost <span class="accent">Each Month?</span></h2>
+        <p class="lead">Slide to your project cost and pick a term. The payment updates as you go.</p>
+      </div>
+      <form class="calc" data-finance data-apr="7.99" method="dialog" aria-label="Monthly payment calculator">
+        <span class="tag">Example only</span>
+        <div class="calc-head">
+          <label for="calc-amount">Project cost</label>
+          <output class="amount" for="calc-amount" data-amount-out>$12,000</output>
+        </div>
+        <input class="range" id="calc-amount" type="range" min="3000" max="25000" step="500" value="12000" data-amount aria-valuetext="$12,000">
+        <div class="range-scale" aria-hidden="true"><span>$3,000</span><span>$25,000</span></div>
+        <fieldset>
+          <legend>Term</legend>
+          <div class="chips-grid four">
+            <label class="chip"><input type="radio" name="term" value="36"><span>36 mo</span></label>
+            <label class="chip"><input type="radio" name="term" value="60"><span>60 mo</span></label>
+            <label class="chip"><input type="radio" name="term" value="84"><span>84 mo</span></label>
+            <label class="chip"><input type="radio" name="term" value="120" checked><span>120 mo</span></label>
+          </div>
+        </fieldset>
+        <div class="calc-result" aria-live="polite">
+          <p class="label">Estimated monthly payment</p>
+          <p class="calc-payment"><span data-payment>$146</span><small>/mo</small></p>
+          <p class="fine">at 7.99% APR for <span data-term-out>120</span> months</p>
+        </div>
+        <p class="fine">This is only an example. The 7.99% APR is for illustration. Real rates and terms depend on credit approval.</p>
+      </form>
+      <div class="fin-rest">
+        <ol class="steps-row stack">
+          <li><strong>Check your options</strong><span>The application is short, takes about 2 minutes, and uses a soft credit check.</span></li>
+          <li><strong>Pick your plan</strong><span>Choose the term and payment that fit your budget.</span></li>
+          <li><strong>We install</strong><span>Most systems go in within a day or two of approval.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>

@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" class="no-js fs-bold site-pw">
+<html lang="en" class="no-js fs-bold site-pw pw-ov">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Photo Credits and Thanks | Pinwheel (Concept)</title>
-<meta name="description" content="Photo credits for the Pinwheel concept site. Real photography and video from Unsplash and Pexels creators, open-source fonts, and an MIT-licensed QR code library.">
+<title>Photo Credits | Pinwheel Heating, Air & Plumbing, Tracy, CA</title>
+<meta name="description" content="Photo, video, type, and code credits for the Pinwheel Heating, Air &amp; Plumbing concept site. Sample site.">
 <!-- partial:head -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#14213D">
@@ -16,11 +16,11 @@
 <link rel="preload" href="fonts/barlow-latin-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/barlow-condensed-latin-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css?v=20261111">
-<link rel="stylesheet" href="css/pinwheel.css?v=20261119">
+<link rel="stylesheet" href="css/pinwheel.css?v=20261122">
 <link rel="stylesheet" href="css/fonts.css?v=20261111">
 <link rel="stylesheet" href="css/alive.css?v=20261111">
 <script>document.documentElement.classList.replace('no-js','js')</script>
-<script src="js/pinwheel.js?v=20261119" defer></script>
+<script src="js/pinwheel.js?v=20261121" defer></script>
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
@@ -30,9 +30,12 @@
 <meta property="og:image:alt" content="Pinwheel Heating, Air &amp; Plumbing homepage on a laptop and a phone.">
 <meta name="twitter:image" content="https://byw-home-comfort.netlify.app/images/og-share-2026-11-18-v2.jpg">
 <meta name="twitter:image:alt" content="Pinwheel Heating, Air &amp; Plumbing homepage on a laptop and a phone.">
-<meta property="og:title" content="Credits | Pinwheel (concept site)">
-<meta property="og:description" content="Photo credits and thanks. A concept site by Ben Young Web Design.">
+<link rel="preload" as="image" data-photo="pw-credits" data-crop="4:5" data-widths="480,720,960" imagesrcset="images/photos/pw-credits-480x600.webp 480w, images/photos/pw-credits-720x900.webp 720w, images/photos/pw-credits-960x1200.webp 960w" imagesizes="100vw" media="(max-width: 599px)" fetchpriority="high">
+<link rel="preload" as="image" data-photo="pw-credits" data-crop="orig" data-widths="1024,1600,2400" imagesrcset="images/photos/pw-credits-1024x683-full.webp 1024w, images/photos/pw-credits-1600x1067-full.webp 1600w, images/photos/pw-credits-2400x1600-full.webp 2400w" imagesizes="100vw" media="(min-width: 600px)" fetchpriority="high">
+<meta property="og:title" content="Photo Credits | Pinwheel">
+<meta property="og:description" content="Photo, video, type, and code credits for the Pinwheel Heating, Air &amp; Plumbing concept site. Sample site.">
 <meta property="og:url" content="https://byw-home-comfort.netlify.app/credits.html">
+<link rel="canonical" href="https://byw-home-comfort.netlify.app/credits.html">
 </head>
 <body class="has-sticky-bar">
 <!-- partial:sprite -->
@@ -132,55 +135,77 @@
       <ul class="nav-list">
         <li>
           <button class="nav-link" type="button" aria-expanded="false" aria-controls="panel-services" data-panel-toggle>Services <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="nav-panel" id="panel-services" hidden>
-            <div class="panel-grid">
-              <a class="panel-link" href="heating.html" data-nav="heating.html">
-                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>
-                <span><strong>Heating</strong><span>We repair furnaces, put in heat pumps and mini-splits, and do yearly tune-ups.</span></span>
-              </a>
-              <a class="panel-link" href="cooling.html" data-nav="cooling.html">
-                <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg></span>
-                <span><strong>Cooling</strong><span>We fix ACs, install new systems, and seal ducts before valley summers hit.</span></span>
-              </a>
-              <a class="panel-link" href="plumbing.html" data-nav="plumbing.html">
-                <span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg></span>
-                <span><strong>Plumbing</strong><span>We handle water heaters, clogged drains, leaks, and whole-home repipes.</span></span>
-              </a>
-              <a class="panel-link" href="air-quality.html" data-nav="air-quality.html">
-                <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg></span>
-                <span><strong>Indoor air quality</strong><span>We clean ducts and add filters and purifiers that help in smoke season.</span></span>
-              </a>
+          <div class="nav-panel pw-mega" id="panel-services" hidden>
+            <div class="pw-mega-grid">
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg></span>Cooling</p>
+              <ul><li><a class="pw-mega-link" href="ac-repair.html" data-nav="ac-repair.html"><strong>AC Repair</strong><span>Same-day fixes for warm air, noises, and ice.</span></a></li><li><a class="pw-mega-link" href="ac-installation.html" data-nav="ac-installation.html"><strong>AC Installation & Replacement</strong><span>New systems sized with a real load calculation.</span></a></li><li><a class="pw-mega-link" href="cooling.html" data-nav="cooling.html"><strong>Cooling Overview</strong><span>Tune-ups, ducts, thermostats, and our repair-or-replace helper.</span></a></li></ul>
             </div>
-            <p class="panel-foot">Not sure what you need? <a href="index.html#services">See all services</a></p>
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>Heating</p>
+              <ul><li><a class="pw-mega-link" href="heating.html" data-nav="heating.html"><strong>Furnace Repair & Replacement</strong><span>No heat, short cycling, or a furnace near the end.</span></a></li><li><a class="pw-mega-link" href="heat-pumps.html" data-nav="heat-pumps.html"><strong>Heat Pumps</strong><span>One quiet system that heats and cools.</span></a></li></ul>
+            </div>
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg></span>Plumbing</p>
+              <ul><li><a class="pw-mega-link" href="water-heaters.html" data-nav="water-heaters.html"><strong>Water Heaters</strong><span>Tank and tankless repair and replacement.</span></a></li><li><a class="pw-mega-link" href="drains.html" data-nav="drains.html"><strong>Drains & Sewer</strong><span>Clogs, main lines, and camera inspections.</span></a></li><li><a class="pw-mega-link" href="leak-repair.html" data-nav="leak-repair.html"><strong>Leak Repair & Repiping</strong><span>Hidden leaks found and whole homes repiped.</span></a></li><li><a class="pw-mega-link" href="plumbing.html" data-nav="plumbing.html"><strong>Plumbing Overview</strong><span>Fixtures, softeners, gas lines, and more.</span></a></li></ul>
+            </div>
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg></span>Air Quality</p>
+              <ul><li><a class="pw-mega-link" href="air-quality.html" data-nav="air-quality.html"><strong>Indoor Air Quality</strong><span>Filters, purifiers, and duct cleaning for smoke season.</span></a></li></ul>
+            </div>
+            </div>
+            <div class="pw-mega-foot">
+              <a class="pw-mega-emergency" href="emergency.html" data-nav="emergency.html"><span class="pw-mega-em-icon"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg></span><span><strong>24/7 Emergency Service</strong><span>A real person answers day and night.</span></span></a>
+              <a class="pw-mega-all" href="services.html" data-nav="services.html">See all services <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
           </div>
         </li>
-        <li><a class="nav-link" href="index.html#estimate">Instant estimate</a></li>
+        <li><a class="nav-link" href="instant-estimate.html" data-nav="instant-estimate.html">Instant Estimate</a></li>
+        <li><a class="nav-link" href="comfort-club.html" data-nav="comfort-club.html">Comfort Club</a></li>
+        <li><a class="nav-link" href="specials.html" data-nav="specials.html">Specials</a></li>
         <li>
           <button class="nav-link" type="button" aria-expanded="false" aria-controls="panel-areas" data-panel-toggle>Service Areas <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="nav-panel narrow" id="panel-areas" hidden>
-            <div class="panel-grid">
-              <a class="panel-link" href="service-areas/tracy.html" data-nav="service-areas/tracy.html">
-                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
-                <span><strong>Tracy</strong><span>Tracy has been our home base since 2010.</span></span>
-              </a>
-              <a class="panel-link" href="service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">
-                <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
-                <span><strong>Mountain House</strong><span>We can usually reach any village the same day.</span></span>
-              </a>
-            </div>
-            <p class="panel-foot">We also cover 10 more cities across San Joaquin and Alameda counties. <a href="index.html#areas">See every service area</a></p>
+          <div class="nav-panel pw-areas-panel" id="panel-areas" hidden>
+            <ul class="pw-areas-list"><li><a class="pw-area-link" href="service-areas/tracy.html" data-nav="service-areas/tracy.html">Tracy</a></li><li><a class="pw-area-link" href="service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">Mountain House</a></li><li><a class="pw-area-link" href="service-areas/manteca.html" data-nav="service-areas/manteca.html">Manteca</a></li><li><a class="pw-area-link" href="service-areas/lathrop.html" data-nav="service-areas/lathrop.html">Lathrop</a></li><li><a class="pw-area-link" href="service-areas/stockton.html" data-nav="service-areas/stockton.html">Stockton</a></li><li><a class="pw-area-link" href="service-areas/livermore.html" data-nav="service-areas/livermore.html">Livermore</a></li><li><a class="pw-area-link" href="service-areas.html#french-camp">French Camp</a></li><li><a class="pw-area-link" href="service-areas.html#lodi">Lodi</a></li><li><a class="pw-area-link" href="service-areas.html#ripon">Ripon</a></li><li><a class="pw-area-link" href="service-areas.html#escalon">Escalon</a></li><li><a class="pw-area-link" href="service-areas.html#pleasanton">Pleasanton</a></li><li><a class="pw-area-link" href="service-areas.html#dublin">Dublin</a></li></ul>
+            <p class="panel-foot"><a class="" href="service-areas.html" data-nav="service-areas.html">See the map and every service area</a></p>
           </div>
         </li>
-        <li><a class="nav-link" href="about.html" data-nav="about.html">About</a></li>
+        <li>
+          <button class="nav-link" type="button" aria-expanded="false" aria-controls="panel-about" data-panel-toggle>About <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="nav-panel narrow" id="panel-about" hidden>
+            <div class="panel-grid">
+              <a class="panel-link" href="about.html" data-nav="about.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span>
+                <span><strong>About Us</strong><span>Meet the owner, the team, and the van.</span></span>
+              </a>
+              <a class="panel-link" href="reviews.html" data-nav="reviews.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+                <span><strong>Reviews</strong><span>What Tracy-area neighbors say about us.</span></span>
+              </a>
+              <a class="panel-link" href="faq.html" data-nav="faq.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg></span>
+                <span><strong>FAQ</strong><span>Straight answers on cooling, heating, plumbing, and price.</span></span>
+              </a>
+              <a class="panel-link" href="financing.html" data-nav="financing.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-dollar"/></svg></span>
+                <span><strong>Financing</strong><span>Monthly payments on new systems and big repairs.</span></span>
+              </a>
+              <a class="panel-link" href="resources.html" data-nav="resources.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></span>
+                <span><strong>Resources</strong><span>Plain guides for homeowners.</span></span>
+              </a>
+            </div>
+          </div>
+        </li>
         <li><a class="nav-link" href="contact.html" data-nav="contact.html">Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">
-      <a class="header-phone" href="tel:+12095550142" aria-label="Call (209) 555-0142">
+      <a class="header-phone" href="tel:+12095550142" aria-label="Call or text us (209) 555-0142">
         <span class="icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
-        <span class="header-phone-text" aria-hidden="true"><small>Call or text, 7am to 7pm</small><span>(209) 555-0142</span></span>
+        <span class="header-phone-text" aria-hidden="true"><small>Call or text us</small><span>(209) 555-0142</span></span>
       </a>
-      <a class="btn btn-primary btn-sm header-book" href="#book" data-book>Book Online</a>
+      <a class="btn btn-primary btn-sm header-book" href="book.html">Book Online</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-open><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
   </div>
@@ -196,44 +221,62 @@
   <nav class="mm-body" aria-label="Mobile">
     <div class="mm-group">
       <p class="mm-group-title">Services</p>
-      <ul class="mm-links">
-        <li><a href="heating.html" data-nav="heating.html">Heating <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="cooling.html" data-nav="cooling.html">Cooling <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="plumbing.html" data-nav="plumbing.html">Plumbing <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="air-quality.html" data-nav="air-quality.html">Indoor air quality <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="index.html#estimate">Instant estimate <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="index.html#specials">Specials and discounts <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-      </ul>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg></span>Cooling<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="ac-repair.html" data-nav="ac-repair.html">AC Repair <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="ac-installation.html" data-nav="ac-installation.html">AC Installation & Replacement <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="cooling.html" data-nav="cooling.html">Cooling Overview <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>Heating<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="heating.html" data-nav="heating.html">Furnace Repair & Replacement <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="heat-pumps.html" data-nav="heat-pumps.html">Heat Pumps <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg></span>Plumbing<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="water-heaters.html" data-nav="water-heaters.html">Water Heaters <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="drains.html" data-nav="drains.html">Drains & Sewer <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="leak-repair.html" data-nav="leak-repair.html">Leak Repair & Repiping <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="plumbing.html" data-nav="plumbing.html">Plumbing Overview <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg></span>Air Quality<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="air-quality.html" data-nav="air-quality.html">Indoor Air Quality <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <ul class="mm-links"><li><a href="emergency.html" data-nav="emergency.html">24/7 Emergency Service <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="services.html" data-nav="services.html">All services <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
     </div>
     <div class="mm-group">
-      <p class="mm-group-title">Company</p>
-      <ul class="mm-links">
-        <li><a href="about.html" data-nav="about.html">About us <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="index.html#reviews">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="contact.html" data-nav="contact.html">Contact and locations <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="service-areas/tracy.html" data-nav="service-areas/tracy.html">Tracy <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">Mountain House <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-      </ul>
+      <ul class="mm-links mm-top"><li><a href="instant-estimate.html" data-nav="instant-estimate.html">Instant Estimate <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="comfort-club.html" data-nav="comfort-club.html">Comfort Club <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="specials.html" data-nav="specials.html">Specials <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>Service Areas<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="service-areas.html" data-nav="service-areas.html">All service areas <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas/tracy.html" data-nav="service-areas/tracy.html">Tracy <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">Mountain House <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas/manteca.html" data-nav="service-areas/manteca.html">Manteca <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas/lathrop.html" data-nav="service-areas/lathrop.html">Lathrop <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas/stockton.html" data-nav="service-areas/stockton.html">Stockton <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas/livermore.html" data-nav="service-areas/livermore.html">Livermore <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas.html#french-camp">French Camp <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas.html#lodi">Lodi <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas.html#ripon">Ripon <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas.html#escalon">Escalon <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas.html#pleasanton">Pleasanton <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="service-areas.html#dublin">Dublin <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span>About<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="about.html" data-nav="about.html">About Us <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="reviews.html" data-nav="reviews.html">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="faq.html" data-nav="faq.html">FAQ <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="financing.html" data-nav="financing.html">Financing <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="resources.html" data-nav="resources.html">Resources <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <ul class="mm-links mm-top"><li><a href="contact.html" data-nav="contact.html">Contact <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
     </div>
     <div class="mm-cta">
       <a class="btn btn-primary btn-lg" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call (209) 555-0142</a>
-      <a class="btn btn-navy btn-lg" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
+      <a class="btn btn-navy btn-lg" href="book.html"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
     </div>
     <p class="mm-hours">We answer Monday to Saturday, 7am to 7pm, and the emergency line is open 24/7.</p>
   </nav>
 </dialog>
 <!-- /partial:header -->
-
 <main id="main">
-  <section class="page-hero" aria-labelledby="page-title">
-    <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Credits</li></ol></nav>
-      <h1 id="page-title">Photo Credits <span class="accent">and Thanks.</span></h1>
-      <p class="lead">Every person on this site is real photography, free for commercial use under the Unsplash and Pexels licenses. No AI-generated people. Thank you to these photographers.</p>
+  <section class="hero pw-phero pw-phero-short" aria-labelledby="page-title">
+    <picture class="pw-phero-photo">
+      <source data-photo="pw-credits" data-crop="4:5" data-widths="480,720,960" media="(max-width: 599px)" srcset="images/photos/pw-credits-480x600.webp 480w, images/photos/pw-credits-720x900.webp 720w, images/photos/pw-credits-960x1200.webp 960w" sizes="100vw" width="960" height="1200">
+      <img data-photo="pw-credits" data-crop="orig" data-widths="1024,1600,2400" data-eager sizes="100vw" src="images/photos/pw-credits-1600x1067-full.webp" srcset="images/photos/pw-credits-1024x683-full.webp 1024w, images/photos/pw-credits-1600x1067-full.webp 1600w, images/photos/pw-credits-2400x1600-full.webp 2400w" width="2400" height="1600" alt="Cozy living room with a gray sofa and a wood coffee table" fetchpriority="high" style="object-position:40% 60%;background-color:#998e7d">
+    </picture>
+    <div class="container pw-phero-wrap">
+      <div class="pw-phero-copy">
+        <nav class="pw-crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Credits</li></ol></nav>
+        <p class="hero-pill pw-pill"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Thanks to these photographers</p>
+        <h1 class="pw-phero-h" id="page-title">Photo <span class="accent">Credits</span> and Thanks.</h1>
+        <p class="lead">Every person on this site is real photography, free for commercial use under the Unsplash and Pexels licenses. No AI-generated people. Thank you to these photographers.</p>
+        
+      </div>
     </div>
   </section>
 
-  <section class="section-tight" aria-labelledby="photos-title">
+  <section class="section bg-white" aria-labelledby="photos-title">
     <div class="container">
       <h2 id="photos-title" class="h3 credits-h">Photography</h2>
     <!-- credits -->
@@ -259,6 +302,45 @@
       <li><strong>Gray gas water heater on a drip pan in the corner of a clean garage, with copper lines and an expansion tank</strong><span>Photo supplied by Ben Young Web Design. Used for: Water heaters service card. Exposure and white balance matched to the other service cards.</span></li>
       <li><strong>Gray high-efficiency gas furnace with white vent pipes in a clean garage utility closet, a technician's tool bag beside it</strong><span>Photo supplied by Ben Young Web Design. Used for: Heating service card, heating hero. AI-made image with no people. Exposure and white balance matched to the other service cards.</span></li>
       <li><strong>Smiling family of three sitting close together on a gray couch in a bright living room</strong><span>Photo by <a href="https://www.pexels.com/@silverkblack/">Vitaly Gariev</a> on <a href="https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/">Pexels</a>. Used for: Business image in the homepage's structured data (images/og-family-1200x630.jpg).</span></li>
+      <li><strong>Technician in a navy shirt working on a wall outlet while a boy plays on the rug nearby</strong><span>Photo by <a href="https://unsplash.com/@cdc?utm_source=pinwheel_concept&utm_medium=referral">CDC</a> on <a href="https://unsplash.com/photos/man-in-blue-shirt-and-blue-denim-jeans-sitting-on-brown-wooden-table-MwrTpnOn8fA?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Services hero.</span></li>
+      <li><strong>Outdoor mini-split unit mounted on a dark painted wall</strong><span>Photo by <a href="https://unsplash.com/@everettp?utm_source=pinwheel_concept&utm_medium=referral">Everett Pachmann</a> on <a href="https://unsplash.com/photos/a-white-air-conditioner-sitting-on-top-of-a-brick-wall-JsPkVrHMQoo?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Services page, Cooling card.</span></li>
+      <li><strong>Finger pressing the button on a wall thermostat</strong><span>Photo by <a href="https://unsplash.com/@huumsauna?utm_source=pinwheel_concept&utm_medium=referral">HUUM</a> on <a href="https://unsplash.com/photos/finger-pressing-button-on-digital-thermostat-display-Ymp_8DatASs?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Services page, Heating card.</span></li>
+      <li><strong>Chrome kitchen faucet over a round steel sink</strong><span>Photo by <a href="https://www.pexels.com/photo/34295402/">Zulfugar Karimov</a> on <a href="https://www.pexels.com/photo/34295402/">Pexels</a>. Used for: Services page, Plumbing card.</span></li>
+      <li><strong>White air return grille on a ceiling</strong><span>Photo by <a href="https://unsplash.com/@amtinky?utm_source=pinwheel_concept&utm_medium=referral">Tinky 小天</a> on <a href="https://unsplash.com/photos/a-close-up-of-a-vent-in-a-wall-MMXtw3AJXmk?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Services page, Air Quality card.</span></li>
+      <li><strong>Stucco homes with palm trees and wall-mounted cooling units along a driveway</strong><span>Photo by <a href="https://unsplash.com/@fotogugu?utm_source=pinwheel_concept&utm_medium=referral">Samuel Lopez Cruz</a> on <a href="https://unsplash.com/photos/driveway-leading-to-a-modern-house-with-palm-trees-ZqPT0y0nzWw?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Cooling hero.</span></li>
+      <li><strong>Technician's hands connecting a gauge hose to an outdoor AC unit's refrigerant line</strong><span>Photo by <a href="https://unsplash.com/@jmuniz?utm_source=pinwheel_concept&utm_medium=referral">Joel Muniz</a> on <a href="https://unsplash.com/photos/technician-servicing-outdoor-air-conditioning-unit-8RbiLgfqoqQ?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: AC Repair hero.</span></li>
+      <li><strong>Newly installed AC condenser on a concrete pad beside a fenced backyard lawn</strong><span>Photo by <a href="https://unsplash.com/@wolfie_website?utm_source=pinwheel_concept&utm_medium=referral">Josh Lemmon</a> on <a href="https://unsplash.com/photos/backyard-with-wooden-fence-and-patio-x1rFTWcXoOc?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: AC Installation hero.</span></li>
+      <li><strong>Hands adjusting the burner assembly inside a gas heating unit</strong><span>Photo by <a href="https://unsplash.com/@corey_untitled?utm_source=pinwheel_concept&utm_medium=referral">Corey Young</a> on <a href="https://unsplash.com/photos/person-holding-silver-and-gold-round-analog-watch-yVUl3T-ss0c?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Furnace Repair &amp; Replacement hero.</span></li>
+      <li><strong>Blue gas flames on a furnace burner</strong><span>Photo by <a href="https://unsplash.com/@peter_fly?utm_source=pinwheel_concept&utm_medium=referral">Peter Fly</a> on <a href="https://unsplash.com/photos/a-group-of-people-standing-in-front-of-a-green-and-red-flame-qHpxnoo-gXg?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Furnace page, what we check.</span></li>
+      <li><strong>Bright living room with a ductless heat pump head mounted high on the wall</strong><span>Photo by <a href="https://unsplash.com/@lisaanna195?utm_source=pinwheel_concept&utm_medium=referral">Lisa Anna</a> on <a href="https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-ceiling-fan-Qk-EBWUIqBQ?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Heat Pumps hero.</span></li>
+      <li><strong>Plumber in navy overalls carrying a toolbox into a bathroom</strong><span>Photo by <a href="https://unsplash.com/@bhagya_laxmi?utm_source=pinwheel_concept&utm_medium=referral">bhagya laxmi</a> on <a href="https://unsplash.com/photos/a-plumber-repairs-plumbing-in-a-bathroom-jaP5ClBdIyU?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Plumbing hero.</span></li>
+      <li><strong>Tidy laundry room with shelves and a tank water heater</strong><span>Photo by <a href="https://www.pexels.com/photo/19980200/">Alex Tyson</a> on <a href="https://www.pexels.com/photo/19980200/">Pexels</a>. Used for: Water Heaters hero.</span></li>
+      <li><strong>Close-up of a stainless steel sink drain</strong><span>Photo by <a href="https://unsplash.com/@giorgiotrovato?utm_source=pinwheel_concept&utm_medium=referral">Giorgio Trovato</a> on <a href="https://unsplash.com/photos/a-stainless-steel-sink-with-a-strainer-in-it-gANwOwFcAQ4?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Drains &amp; Sewer hero.</span></li>
+      <li><strong>Water dripping from a corroded copper pipe joint</strong><span>Photo by <a href="https://unsplash.com/@cherstve_pechivo?utm_source=pinwheel_concept&utm_medium=referral">Liana S</a> on <a href="https://unsplash.com/photos/icicles-dripping-from-a-golden-pipe-outdoors-YU8bHfrz79g?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Leak Repair &amp; Repiping hero.</span></li>
+      <li><strong>Open stud walls during a remodel with new pipe runs</strong><span>Photo by <a href="https://unsplash.com/@olek_bznv_photo?utm_source=pinwheel_concept&utm_medium=referral">Olek Buzunov</a> on <a href="https://unsplash.com/photos/interior-construction-with-exposed-pipes-and-framing-x3rBMsh4JcQ?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Leak Repair &amp; Repiping, repipe section.</span></li>
+      <li><strong>White air purifier on a wood floor beside a desk</strong><span>Photo by <a href="https://unsplash.com/@kowon?utm_source=pinwheel_concept&utm_medium=referral">Kowon vn</a> on <a href="https://unsplash.com/photos/white-electronic-device-iXHXLPIYrtA?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Indoor Air Quality hero.</span></li>
+      <li><strong>Two-story home at dusk with porch lights on</strong><span>Photo by <a href="https://unsplash.com/@windowseatphotography?utm_source=pinwheel_concept&utm_medium=referral">WindowSeat Photography</a> on <a href="https://unsplash.com/photos/scarecrow-in-front-yard-at-dusk-ZiXYaWNvWy0?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: 24/7 Emergency hero.</span></li>
+      <li><strong>Yellow-handled water shutoff valve on a pipe</strong><span>Photo by <a href="https://unsplash.com/@thomaskinto?utm_source=pinwheel_concept&utm_medium=referral">Thomas Kinto</a> on <a href="https://unsplash.com/photos/a-close-up-of-a-yellow-handlebar-on-a-bike-EANeCVt4H_4?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Emergency page, shut off the water.</span></li>
+      <li><strong>Bright living room with white walls, wood floors, and a ceiling vent</strong><span>Photo by <a href="https://unsplash.com/@baileyal3xander?utm_source=pinwheel_concept&utm_medium=referral">Bailey Alexander</a> on <a href="https://unsplash.com/photos/a-living-room-with-white-furniture-and-wood-floors-Aq8ljLz12gk?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Comfort Club hero.</span></li>
+      <li><strong>Couple laughing together in their kitchen</strong><span>Photo by <a href="https://unsplash.com/@silverkblack?utm_source=pinwheel_concept&utm_medium=referral">Vitaly Gariev</a> on <a href="https://unsplash.com/photos/couple-dancing-and-singing-in-the-kitchen-9lipzfFG3G4?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Specials hero.</span></li>
+      <li><strong>Single-story white home with a paver driveway and a green lawn</strong><span>Photo by <a href="https://unsplash.com/@retratoinmobiliario?utm_source=pinwheel_concept&utm_medium=referral">RETRATO INMOBILIARIO</a> on <a href="https://unsplash.com/photos/modern-house-with-a-paved-driveway-and-garage-rMLc_cIu_IU?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Instant Estimate hero.</span></li>
+      <li><strong>Couple in their kitchen, the husband on the phone with a tablet in front of him</strong><span>Photo by <a href="https://unsplash.com/@silverkblack?utm_source=pinwheel_concept&utm_medium=referral">Vitaly Gariev</a> on <a href="https://unsplash.com/photos/couple-in-kitchen-woman-chopping-lettuce-man-on-phone-_bILufSltJM?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Book Online hero.</span></li>
+      <li><strong>Man on the phone at his desk at home, looking at a laptop</strong><span>Photo by <a href="https://unsplash.com/@silverkblack?utm_source=pinwheel_concept&utm_medium=referral">Vitaly Gariev</a> on <a href="https://unsplash.com/photos/man-talking-on-phone-in-workspace-L0rCfOSyUlQ?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: FAQ hero.</span></li>
+      <li><strong>Homeowner shaking hands with a visitor on her front porch</strong><span>Photo by <a href="https://unsplash.com/@hbechtel?utm_source=pinwheel_concept&utm_medium=referral">Hannah Bechtel</a> on <a href="https://unsplash.com/photos/man-in-white-dress-shirt-standing-beside-woman-in-gray-cardigan-1El98zbDWzA?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Reviews hero.</span></li>
+      <li><strong>Technician in a Pinwheel orange uniform stepping out of a white van in a driveway</strong><span>Photo by <a href="https://www.pexels.com/@tima-miroshnichenko/">Tima Miroshnichenko</a> on <a href="https://www.pexels.com/photo/6195893/">Pexels</a>. Used for: About page, the van. Uniform color changed to Pinwheel orange (color only; scripts/recolor-clothes.py).</span></li>
+      <li><strong>Four team members in orange work uniforms standing together</strong><span>Photo by <a href="https://unsplash.com/@nandong?utm_source=pinwheel_concept&utm_medium=referral">Michaël NANDONG</a> on <a href="https://unsplash.com/photos/two-women-and-men-standing-in-front-white-concrete-wall-AWxWjmNSoNU?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: About page, the team.</span></li>
+      <li><strong>Aerial view of curving streets in a suburban neighborhood</strong><span>Photo by <a href="https://unsplash.com/@_ahnaf_rafi__?utm_source=pinwheel_concept&utm_medium=referral">Ahnaf Tahsin</a> on <a href="https://unsplash.com/photos/aerial-view-of-a-suburban-neighborhood-with-winding-streets-CNV8ytt7WD8?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Service Areas hero.</span></li>
+      <li><strong>Single-story stucco home with a two-car garage and a wide driveway</strong><span>Photo by <a href="https://unsplash.com/@brianwangenheim?utm_source=pinwheel_concept&utm_medium=referral">Brian Wangenheim</a> on <a href="https://unsplash.com/photos/a-house-with-a-garage-in-the-middle-of-a-driveway-uZQGEo9DGe8?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Manteca page hero.</span></li>
+      <li><strong>Two-story homes along a waterfront walking path</strong><span>Photo by <a href="https://unsplash.com/@kwakus?utm_source=pinwheel_concept&utm_medium=referral">E Mens</a> on <a href="https://unsplash.com/photos/white-and-brown-house-near-green-trees-under-blue-sky-during-daytime-SBeSUc7X00o?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Lathrop page hero.</span></li>
+      <li><strong>Craftsman-style home with a front porch and palm trees</strong><span>Photo by <a href="https://unsplash.com/@fosterious?utm_source=pinwheel_concept&utm_medium=referral">Sean Foster</a> on <a href="https://unsplash.com/photos/a-blue-house-with-palm-trees-in-front-of-it-NIgOBV07nXs?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Stockton page hero.</span></li>
+      <li><strong>Neighborhood homes below green and golden hills</strong><span>Photo by <a href="https://unsplash.com/@kalaniparker?utm_source=pinwheel_concept&utm_medium=referral">Kellen Riggin</a> on <a href="https://unsplash.com/photos/suburban-street-in-valley-below-hills-15hCN--UQzQ?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Livermore page hero.</span></li>
+      <li><strong>Woman relaxing on a gray couch reading on a tablet</strong><span>Photo by <a href="https://unsplash.com/@silverkblack?utm_source=pinwheel_concept&utm_medium=referral">Vitaly Gariev</a> on <a href="https://unsplash.com/photos/woman-wearing-headphones-uses-tablet-on-couch-ltFewVxAb4A?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Resources hero.</span></li>
+      <li><strong>Outdoor AC condenser beside green shrubs</strong><span>Photo by <a href="https://unsplash.com/@jothamsutharson?utm_source=pinwheel_concept&utm_medium=referral">Sam Jotham Sutharson</a> on <a href="https://unsplash.com/photos/a-solar-panel-on-a-roof-gSvCiyLnCeU?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Article: Repair or Replace? 6 Signs Your AC Is Done.</span></li>
+      <li><strong>Hand using a wrench on the fittings on top of a water heater</strong><span>Photo by <a href="https://unsplash.com/@gottapics?utm_source=pinwheel_concept&utm_medium=referral">Marian Florinel Condruz</a> on <a href="https://unsplash.com/photos/person-holding-yellow-and-gray-hand-tool-C-oYJoIfgCs?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Article: Why Is My Water Heater Making That Noise?.</span></li>
+      <li><strong>Front porch with a dark front door, lantern, and wicker chairs</strong><span>Photo by <a href="https://unsplash.com/@fromitaly?utm_source=pinwheel_concept&utm_medium=referral">Francesca Tosolini</a> on <a href="https://unsplash.com/photos/blue-porch-with-wicker-furniture-XcVm8mn7NUM?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Privacy hero.</span></li>
+      <li><strong>Curving suburban road past two-story homes</strong><span>Photo by <a href="https://unsplash.com/@samtakespictures?utm_source=pinwheel_concept&utm_medium=referral">Sam</a> on <a href="https://unsplash.com/photos/suburban-street-with-houses-on-a-hill-_3voFj12KTQ?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Page not found (404) hero.</span></li>
+      <li><strong>Cozy living room with a gray sofa and a wood coffee table</strong><span>Photo by <a href="https://unsplash.com/@fromitaly?utm_source=pinwheel_concept&utm_medium=referral">Francesca Tosolini</a> on <a href="https://unsplash.com/photos/brown-couch-with-two-white-throw-pillows-lLDh9JppH2c?utm_source=pinwheel_concept&utm_medium=referral">Unsplash</a>. Used for: Photo credits hero.</span></li>
+      <li><strong>Dispatcher with a headset answering a call at her desk</strong><span>Photo by <a href="https://www.pexels.com/@kampus/">Kampus Production</a> on <a href="https://www.pexels.com/photo/8204317/">Pexels</a>. Used for: Contact page, a real person answers.</span></li>
     </ul>
     <!-- /credits -->
       <h2 id="video-title" class="h3 credits-h">Video</h2>
@@ -282,6 +364,7 @@
     </div>
   </section>
 
+  
   <section class="section-tight" aria-labelledby="concept-title">
     <div class="container">
       <div class="callout">
@@ -289,71 +372,54 @@
           <h2 id="concept-title">About This Concept</h2>
           <p>Pinwheel Heating, Air &amp; Plumbing is a fictional business. The reviews, names, numbers, prices, and address are sample data. Concept by Ben Young Web Design.</p>
         </div>
-        <a class="btn btn-primary btn-lg" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Back to the homepage</a>
       </div>
     </div>
   </section>
 </main>
-
-<!-- partial:cta -->
-<section class="cta-band" aria-labelledby="cta-title">
-  <div class="container cta-inner">
-    <div>
-      <h2 id="cta-title">Need Help Today? <span class="line">A Real Person Picks Up.</span></h2>
-      <p>You can call, text, or book online, and we'll confirm your arrival window within minutes.</p>
-    </div>
-    <div class="cta-actions">
-      <a class="btn btn-white btn-lg" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call (209) 555-0142</a>
-      <a class="btn btn-navy btn-lg" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
-      <a class="btn btn-ghost btn-lg" href="sms:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Text us</a>
-    </div>
-  </div>
-</section>
-<!-- /partial:cta -->
 <!-- partial:footer -->
-<footer class="site-footer on-dark">
-  <div class="container footer-grid">
+<footer class="site-footer on-dark pw-footer">
+  <div class="container pw-foot-grid">
     <div class="footer-brand">
       <a class="logo light" href="index.html">
         <svg class="logo-mark" aria-hidden="true"><use href="#logo-mark-light"/></svg>
         <span class="logo-text"><span class="logo-name">Pinwheel</span> <span class="logo-tag">Heating <span aria-hidden="true">·</span> Air <span aria-hidden="true">·</span> Plumbing</span></span>
       </a>
       <p>We're a family-owned heating, air, and plumbing company serving San Joaquin and Alameda counties since 2010.</p>
-      <p>We're a licensed California contractor, bonded and insured.</p>
-    </div>
-    <nav aria-label="Services">
-      <p class="footer-title">Services</p>
-      <ul class="footer-links">
-        <li><a href="heating.html">Heating</a></li>
-        <li><a href="cooling.html">Cooling</a></li>
-        <li><a href="plumbing.html">Plumbing</a></li>
-        <li><a href="air-quality.html">Indoor air quality</a></li>
-      </ul>
-    </nav>
-    <nav aria-label="Company">
-      <p class="footer-title">Company</p>
-      <ul class="footer-links">
-        <li><a href="about.html">About us</a></li>
-        <li><a href="index.html#reviews">Reviews</a></li>
-        <li><a href="contact.html">Contact and locations</a></li>
-        <li><a href="index.html#specials">Specials</a></li>
-        <li><a href="service-areas/tracy.html">Tracy</a></li>
-        <li><a href="service-areas/mountain-house.html">Mountain House</a></li>
-        <li><a href="credits.html">Photo credits</a></li>
-      </ul>
-    </nav>
-    <div class="footer-contact">
-      <p class="footer-title">Contact</p>
+      <p class="pw-foot-license"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg><span>We're a licensed California contractor, bonded and insured.</span></p>
       <a class="big" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>(209) 555-0142</a>
       <p><a class="footer-text-link" href="sms:+12095550142">You can text us at the same number</a></p>
-      <p><strong>Tracy shop</strong><br>Street address placeholder<br>Tracy, CA 95376</p>
-      <p><strong>Manteca yard</strong><br>Street address placeholder<br>Manteca, CA 95336</p>
       <dl class="hours">
         <dt>Mon to Sat</dt><dd>7am to 7pm</dd>
         <dt>Sunday</dt><dd>Emergency calls</dd>
         <dt>24/7</dt><dd>Emergency line</dd>
       </dl>
-      <p><a class="footer-text-link" href="contact.html">All locations and service areas</a></p>
+      <p class="pw-foot-addr"><strong>Tracy shop</strong> Street address placeholder, Tracy, CA 95376<br><strong>Manteca yard</strong> Street address placeholder, Manteca, CA 95336</p>
+    </div>
+    <div class="pw-foot-links">
+      <nav aria-label="Cooling and Heating">
+        <p class="footer-title">Cooling &amp; Heating</p>
+        <ul class="footer-links"><li><a href="ac-repair.html">AC Repair</a></li><li><a href="ac-installation.html">AC Installation</a></li><li><a href="cooling.html">Cooling Overview</a></li><li><a href="heating.html">Furnace Repair</a></li><li><a href="heat-pumps.html">Heat Pumps</a></li><li><a href="air-quality.html">Indoor Air Quality</a></li></ul>
+      </nav>
+      <nav aria-label="Plumbing">
+        <p class="footer-title">Plumbing</p>
+        <ul class="footer-links"><li><a href="plumbing.html">Plumbing Overview</a></li><li><a href="water-heaters.html">Water Heaters</a></li><li><a href="drains.html">Drains &amp; Sewer</a></li><li><a href="leak-repair.html">Leak Repair &amp; Repiping</a></li><li><a href="emergency.html">24/7 Emergency</a></li><li><a href="services.html">All Services</a></li></ul>
+      </nav>
+      <nav aria-label="Plans and Tools">
+        <p class="footer-title">Plans &amp; Tools</p>
+        <ul class="footer-links"><li><a href="instant-estimate.html">Instant Estimate</a></li><li><a href="comfort-club.html">Comfort Club</a></li><li><a href="specials.html">Specials</a></li><li><a href="financing.html">Financing</a></li><li><a href="book.html">Book Online</a></li></ul>
+      </nav>
+      <nav aria-label="Company">
+        <p class="footer-title">Company</p>
+        <ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="review.html">Write a Review</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </nav>
+      <nav aria-label="Service Areas">
+        <p class="footer-title">Service Areas</p>
+        <ul class="footer-links"><li><a href="service-areas.html">All Service Areas</a></li><li><a href="service-areas/tracy.html">Tracy</a></li><li><a href="service-areas/mountain-house.html">Mountain House</a></li><li><a href="service-areas/manteca.html">Manteca</a></li><li><a href="service-areas/lathrop.html">Lathrop</a></li><li><a href="service-areas/stockton.html">Stockton</a></li><li><a href="service-areas/livermore.html">Livermore</a></li></ul>
+      </nav>
+      <nav aria-label="Guides and Info">
+        <p class="footer-title">Guides &amp; Info</p>
+        <ul class="footer-links"><li><a href="resources.html">Resources</a></li><li><a href="resources/ac-repair-or-replace.html">Repair or Replace Your AC?</a></li><li><a href="resources/water-heater-noise.html">Water Heater Noises</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="credits.html">Photo Credits</a></li><li><a href="sample-report.html">Sample Monthly Report</a></li></ul>
+      </nav>
     </div>
   </div>
   <div class="container footer-bottom">
@@ -367,7 +433,7 @@
 <nav class="sticky-bar" aria-label="Quick contact">
   <p class="sb-hours"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Call or text 7am to 7pm <span aria-hidden="true">·</span> Emergency line 24/7</p>
   <a class="sb-btn sb-call" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
-  <a class="sb-btn sb-book" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book</a>
+  <a class="sb-btn sb-book" href="book.html"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book</a>
   <a class="sb-btn sb-text" href="sms:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Text</a>
 </nav>
 <!-- /partial:stickybar -->
@@ -397,102 +463,7 @@
   </section>
 </div>
 <!-- /partial:chat -->
-<!-- partial:booking -->
-<dialog class="booking" id="book" aria-labelledby="booking-title">
-  <form class="booking-form" method="dialog" data-booking novalidate>
-    <div class="booking-head">
-      <p class="eyebrow">Book online <span class="tag">Demo</span></p>
-      <h2 id="booking-title" tabindex="-1">Book Your Visit</h2>
-      <button class="dialog-close" type="button" aria-label="Close booking" data-booking-close><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
-      <ol class="steps" data-steps aria-label="Booking progress">
-        <li class="is-active" aria-current="step">Service</li>
-        <li>Time</li>
-        <li>Details</li>
-      </ol>
-    </div>
-    <div class="booking-body">
-      <fieldset class="step" data-step="1">
-        <legend>What do you need?</legend>
-        <div class="chips-grid">
-          <label class="chip"><input type="radio" name="service" value="AC repair"><span><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg>AC repair</span></label>
-          <label class="chip"><input type="radio" name="service" value="Heating repair"><span><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg>Heating repair</span></label>
-          <label class="chip"><input type="radio" name="service" value="Furnace tune-up"><span><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg>Tune-up</span></label>
-          <label class="chip"><input type="radio" name="service" value="Heat pump"><span><svg class="icon" aria-hidden="true"><use href="#i-heatpump"/></svg>Heat pump</span></label>
-          <label class="chip"><input type="radio" name="service" value="Water heater"><span><svg class="icon" aria-hidden="true"><use href="#i-waterheater"/></svg>Water heater</span></label>
-          <label class="chip"><input type="radio" name="service" value="Drain cleaning"><span><svg class="icon" aria-hidden="true"><use href="#i-drain"/></svg>Drain cleaning</span></label>
-          <label class="chip"><input type="radio" name="service" value="Leak repair"><span><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg>Leak repair</span></label>
-          <label class="chip"><input type="radio" name="service" value="Repiping quote"><span><svg class="icon" aria-hidden="true"><use href="#i-pipes"/></svg>Repiping quote</span></label>
-          <label class="chip"><input type="radio" name="service" value="New system quote"><span><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg>New system quote</span></label>
-          <label class="chip"><input type="radio" name="service" value="Air quality"><span><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg>Air quality</span></label>
-        </div>
-        <p class="form-error" data-error role="alert" hidden>Pick a service to keep going.</p>
-      </fieldset>
-      <fieldset class="step" data-step="2" hidden>
-        <legend>Pick a day and time</legend>
-        <div class="chips-grid four" data-days></div>
-        <fieldset>
-          <legend class="sub-legend">Arrival window</legend>
-          <div class="chips-grid" data-windows>
-            <label class="chip"><input type="radio" name="window" value="8 to 11am" data-start="8"><span>Morning<small>8 to 11am</small></span></label>
-            <label class="chip"><input type="radio" name="window" value="11am to 2pm" data-start="11"><span>Midday<small>11am to 2pm</small></span></label>
-            <label class="chip"><input type="radio" name="window" value="2 to 5pm" data-start="14"><span>Afternoon<small>2 to 5pm</small></span></label>
-            <label class="chip"><input type="radio" name="window" value="5 to 7pm" data-start="17"><span>Evening<small>5 to 7pm</small></span></label>
-          </div>
-        </fieldset>
-        <p class="form-error" data-error role="alert" hidden>Pick a day and an arrival window.</p>
-      </fieldset>
-      <fieldset class="step" data-step="3" hidden>
-        <legend>Where should we come?</legend>
-        <div class="field">
-          <label for="bk-name">Your name</label>
-          <input class="input" id="bk-name" name="name" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="bk-phone">Mobile number</label>
-          <input class="input" id="bk-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="bk-phone-hint">
-          <span class="hint" id="bk-phone-hint">We text to confirm your window. This demo sends nothing.</span>
-        </div>
-        <div class="field">
-          <label for="bk-city">City</label>
-          <select class="select" id="bk-city" name="city" required>
-            <option value="">Choose your city</option>
-            <option>Tracy</option>
-            <option>Mountain House</option>
-            <option>Manteca</option>
-            <option>Lathrop</option>
-            <option>French Camp</option>
-            <option>Stockton</option>
-            <option>Lodi</option>
-            <option>Ripon</option>
-            <option>Escalon</option>
-            <option>Livermore</option>
-            <option>Pleasanton</option>
-            <option>Dublin</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="bk-notes">Anything we should know? (optional)</label>
-          <textarea class="textarea" id="bk-notes" name="notes" rows="3"></textarea>
-        </div>
-        <p class="form-error" data-error role="alert" hidden>Add your name, a phone number, and your city.</p>
-      </fieldset>
-      <div class="demo-confirm" data-booking-done tabindex="-1" hidden>
-        <div class="confirm-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div>
-        <h3>You're on the schedule</h3>
-        <p class="confirm-summary">Here's the request the owner would get:</p>
-        <ul class="confirm-list" data-summary></ul>
-        <p class="demo-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>This is a demo. On a live site, this goes straight to the owner's phone.</p>
-      </div>
-    </div>
-    <div class="booking-foot">
-      <button class="btn btn-secondary" type="button" data-back hidden>Back</button>
-      <button class="btn btn-primary" type="button" data-next>Next</button>
-      <button class="btn btn-primary" type="submit" data-submit hidden>Book my visit</button>
-      <button class="btn btn-navy" type="button" data-done hidden>Done</button>
-    </div>
-  </form>
-</dialog>
-<!-- /partial:booking -->
 <script src="js/site.js?v=20261111" defer></script>
+<script src="js/reveal.js?v=20261111" defer></script>
 </body>
 </html>

@@ -170,8 +170,11 @@ for (const f of readdirSync(join(ROOT, 'template')).filter((f) => f.endsWith('.h
 }
 
 let changed = 0;
+// Pages that must stay exactly as they are (Ben asked that the sample monthly report never change)
+const FROZEN = new Set(['sample-report.html']);
 for (const file of pages()) {
   const rel = relative(ROOT, file).split(sep).join('/');
+  if (FROZEN.has(rel)) continue;
   const depth = rel.split('/').length - 1;
   // 404.html is served at any missing URL, so its links must be root-absolute
   const rootPrefix = rel === '404.html' ? '/' : '../'.repeat(depth);

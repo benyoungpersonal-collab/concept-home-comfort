@@ -1,0 +1,68 @@
+<div class="helper-block" id="repair-or-replace">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow">Repair or replace?</p>
+          <h2 id="helper-title">Get a Straight Answer in <span class="accent">Four Taps.</span></h2>
+          <p class="lead">Answer four quick questions, and we will tell you what we would do if it were our own house.</p>
+        </div>
+        <form class="helper-form" data-helper method="dialog" novalidate>
+          <fieldset class="q">
+            <legend><span class="q-num" aria-hidden="true">1</span>How old is your system?</legend>
+            <div class="chips-grid four">
+              <label class="chip"><input type="radio" name="age" value="0"><span>Under 8 years</span></label>
+              <label class="chip"><input type="radio" name="age" value="1"><span>8 to 12 years</span></label>
+              <label class="chip"><input type="radio" name="age" value="2"><span>13 to 17 years</span></label>
+              <label class="chip"><input type="radio" name="age" value="3"><span>18 or more</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="q-num" aria-hidden="true">2</span>What is the repair quote?</legend>
+            <div class="chips-grid">
+              <label class="chip"><input type="radio" name="quote" value="0"><span>Under $500</span></label>
+              <label class="chip"><input type="radio" name="quote" value="1"><span>$500 to $1,500</span></label>
+              <label class="chip"><input type="radio" name="quote" value="2"><span>$1,500 to $3,000</span></label>
+              <label class="chip"><input type="radio" name="quote" value="3"><span>Over $3,000</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="q-num" aria-hidden="true">3</span>Any comfort problems?</legend>
+            <div class="chips-grid">
+              <label class="chip"><input type="radio" name="comfort" value="0"><span>No, it's comfortable</span></label>
+              <label class="chip"><input type="radio" name="comfort" value="1"><span>Some rooms hot or cold</span></label>
+              <label class="chip"><input type="radio" name="comfort" value="2"><span>It runs all the time</span></label>
+              <label class="chip"><input type="radio" name="comfort" value="3"><span>Noisy or sticky air</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="q">
+            <legend><span class="q-num" aria-hidden="true">4</span>How are your energy bills?</legend>
+            <div class="chips-grid">
+              <label class="chip"><input type="radio" name="bills" value="0"><span>About normal</span></label>
+              <label class="chip"><input type="radio" name="bills" value="1"><span>A little higher</span></label>
+              <label class="chip"><input type="radio" name="bills" value="2"><span>Way up this year</span></label>
+            </div>
+          </fieldset>
+          <div>
+            <button class="btn btn-primary btn-lg btn-submit" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>Get my answer</button>
+            <p class="form-error" data-error role="alert" hidden>Answer all 4 questions to see our take.</p>
+          </div>
+        </form>
+      </div>
+      <div class="helper-side">
+        <div class="helper-result" data-helper-result aria-live="polite">
+          <div class="est-empty" data-helper-empty>
+            <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-gauge"/></svg></span>
+            <p><strong>Your answer shows up here.</strong></p>
+            <p>You'll get a plain answer, not a sales pitch.</p>
+          </div>
+          <div data-helper-output hidden>
+            <p class="verdict-label">Our take</p>
+            <p class="verdict-title" data-verdict-title>Repair it.</p>
+            <div class="score-bar" aria-hidden="true"><span data-score-dot></span></div>
+            <div class="score-scale" aria-hidden="true"><span>Repair</span><span>Plan ahead</span><span>Replace</span></div>
+            <p data-verdict-text></p>
+            <a class="btn btn-primary btn-block" href="book.html?service=New+system+quote" data-helper-cta><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a free in-home quote</a>
+            <p class="fine">This is a quick guide, not a diagnosis. A tech confirms everything on site.</p>
+          </div>
+        </div>
+      </div>
+</div>

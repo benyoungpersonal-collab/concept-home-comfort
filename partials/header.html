@@ -10,55 +10,77 @@
       <ul class="nav-list">
         <li>
           <button class="nav-link" type="button" aria-expanded="false" aria-controls="panel-services" data-panel-toggle>Services <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="nav-panel" id="panel-services" hidden>
-            <div class="panel-grid">
-              <a class="panel-link" href="{{root}}heating.html" data-nav="heating.html">
-                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>
-                <span><strong>Heating</strong><span>We repair furnaces, put in heat pumps and mini-splits, and do yearly tune-ups.</span></span>
-              </a>
-              <a class="panel-link" href="{{root}}cooling.html" data-nav="cooling.html">
-                <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg></span>
-                <span><strong>Cooling</strong><span>We fix ACs, install new systems, and seal ducts before valley summers hit.</span></span>
-              </a>
-              <a class="panel-link" href="{{root}}plumbing.html" data-nav="plumbing.html">
-                <span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg></span>
-                <span><strong>Plumbing</strong><span>We handle water heaters, clogged drains, leaks, and whole-home repipes.</span></span>
-              </a>
-              <a class="panel-link" href="{{root}}air-quality.html" data-nav="air-quality.html">
-                <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg></span>
-                <span><strong>Indoor air quality</strong><span>We clean ducts and add filters and purifiers that help in smoke season.</span></span>
-              </a>
+          <div class="nav-panel pw-mega" id="panel-services" hidden>
+            <div class="pw-mega-grid">
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg></span>Cooling</p>
+              <ul><li><a class="pw-mega-link" href="{{root}}ac-repair.html" data-nav="ac-repair.html"><strong>AC Repair</strong><span>Same-day fixes for warm air, noises, and ice.</span></a></li><li><a class="pw-mega-link" href="{{root}}ac-installation.html" data-nav="ac-installation.html"><strong>AC Installation & Replacement</strong><span>New systems sized with a real load calculation.</span></a></li><li><a class="pw-mega-link" href="{{root}}cooling.html" data-nav="cooling.html"><strong>Cooling Overview</strong><span>Tune-ups, ducts, thermostats, and our repair-or-replace helper.</span></a></li></ul>
             </div>
-            <p class="panel-foot">Not sure what you need? <a href="{{root}}index.html#services">See all services</a></p>
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>Heating</p>
+              <ul><li><a class="pw-mega-link" href="{{root}}heating.html" data-nav="heating.html"><strong>Furnace Repair & Replacement</strong><span>No heat, short cycling, or a furnace near the end.</span></a></li><li><a class="pw-mega-link" href="{{root}}heat-pumps.html" data-nav="heat-pumps.html"><strong>Heat Pumps</strong><span>One quiet system that heats and cools.</span></a></li></ul>
+            </div>
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg></span>Plumbing</p>
+              <ul><li><a class="pw-mega-link" href="{{root}}water-heaters.html" data-nav="water-heaters.html"><strong>Water Heaters</strong><span>Tank and tankless repair and replacement.</span></a></li><li><a class="pw-mega-link" href="{{root}}drains.html" data-nav="drains.html"><strong>Drains & Sewer</strong><span>Clogs, main lines, and camera inspections.</span></a></li><li><a class="pw-mega-link" href="{{root}}leak-repair.html" data-nav="leak-repair.html"><strong>Leak Repair & Repiping</strong><span>Hidden leaks found and whole homes repiped.</span></a></li><li><a class="pw-mega-link" href="{{root}}plumbing.html" data-nav="plumbing.html"><strong>Plumbing Overview</strong><span>Fixtures, softeners, gas lines, and more.</span></a></li></ul>
+            </div>
+            <div class="pw-mega-col">
+              <p class="pw-mega-title"><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg></span>Air Quality</p>
+              <ul><li><a class="pw-mega-link" href="{{root}}air-quality.html" data-nav="air-quality.html"><strong>Indoor Air Quality</strong><span>Filters, purifiers, and duct cleaning for smoke season.</span></a></li></ul>
+            </div>
+            </div>
+            <div class="pw-mega-foot">
+              <a class="pw-mega-emergency" href="{{root}}emergency.html" data-nav="emergency.html"><span class="pw-mega-em-icon"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg></span><span><strong>24/7 Emergency Service</strong><span>A real person answers day and night.</span></span></a>
+              <a class="pw-mega-all" href="{{root}}services.html" data-nav="services.html">See all services <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
           </div>
         </li>
-        <li><a class="nav-link" href="{{root}}index.html#estimate">Instant estimate</a></li>
+        <li><a class="nav-link" href="{{root}}instant-estimate.html" data-nav="instant-estimate.html">Instant Estimate</a></li>
+        <li><a class="nav-link" href="{{root}}comfort-club.html" data-nav="comfort-club.html">Comfort Club</a></li>
+        <li><a class="nav-link" href="{{root}}specials.html" data-nav="specials.html">Specials</a></li>
         <li>
           <button class="nav-link" type="button" aria-expanded="false" aria-controls="panel-areas" data-panel-toggle>Service Areas <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="nav-panel narrow" id="panel-areas" hidden>
-            <div class="panel-grid">
-              <a class="panel-link" href="{{root}}service-areas/tracy.html" data-nav="service-areas/tracy.html">
-                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
-                <span><strong>Tracy</strong><span>Tracy has been our home base since 2010.</span></span>
-              </a>
-              <a class="panel-link" href="{{root}}service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">
-                <span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
-                <span><strong>Mountain House</strong><span>We can usually reach any village the same day.</span></span>
-              </a>
-            </div>
-            <p class="panel-foot">We also cover 10 more cities across San Joaquin and Alameda counties. <a href="{{root}}index.html#areas">See every service area</a></p>
+          <div class="nav-panel pw-areas-panel" id="panel-areas" hidden>
+            <ul class="pw-areas-list"><li><a class="pw-area-link" href="{{root}}service-areas/tracy.html" data-nav="service-areas/tracy.html">Tracy</a></li><li><a class="pw-area-link" href="{{root}}service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">Mountain House</a></li><li><a class="pw-area-link" href="{{root}}service-areas/manteca.html" data-nav="service-areas/manteca.html">Manteca</a></li><li><a class="pw-area-link" href="{{root}}service-areas/lathrop.html" data-nav="service-areas/lathrop.html">Lathrop</a></li><li><a class="pw-area-link" href="{{root}}service-areas/stockton.html" data-nav="service-areas/stockton.html">Stockton</a></li><li><a class="pw-area-link" href="{{root}}service-areas/livermore.html" data-nav="service-areas/livermore.html">Livermore</a></li><li><a class="pw-area-link" href="{{root}}service-areas.html#french-camp">French Camp</a></li><li><a class="pw-area-link" href="{{root}}service-areas.html#lodi">Lodi</a></li><li><a class="pw-area-link" href="{{root}}service-areas.html#ripon">Ripon</a></li><li><a class="pw-area-link" href="{{root}}service-areas.html#escalon">Escalon</a></li><li><a class="pw-area-link" href="{{root}}service-areas.html#pleasanton">Pleasanton</a></li><li><a class="pw-area-link" href="{{root}}service-areas.html#dublin">Dublin</a></li></ul>
+            <p class="panel-foot"><a class="" href="{{root}}service-areas.html" data-nav="service-areas.html">See the map and every service area</a></p>
           </div>
         </li>
-        <li><a class="nav-link" href="{{root}}about.html" data-nav="about.html">About</a></li>
+        <li>
+          <button class="nav-link" type="button" aria-expanded="false" aria-controls="panel-about" data-panel-toggle>About <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="nav-panel narrow" id="panel-about" hidden>
+            <div class="panel-grid">
+              <a class="panel-link" href="{{root}}about.html" data-nav="about.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span>
+                <span><strong>About Us</strong><span>Meet the owner, the team, and the van.</span></span>
+              </a>
+              <a class="panel-link" href="{{root}}reviews.html" data-nav="reviews.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
+                <span><strong>Reviews</strong><span>What Tracy-area neighbors say about us.</span></span>
+              </a>
+              <a class="panel-link" href="{{root}}faq.html" data-nav="faq.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg></span>
+                <span><strong>FAQ</strong><span>Straight answers on cooling, heating, plumbing, and price.</span></span>
+              </a>
+              <a class="panel-link" href="{{root}}financing.html" data-nav="financing.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-dollar"/></svg></span>
+                <span><strong>Financing</strong><span>Monthly payments on new systems and big repairs.</span></span>
+              </a>
+              <a class="panel-link" href="{{root}}resources.html" data-nav="resources.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></span>
+                <span><strong>Resources</strong><span>Plain guides for homeowners.</span></span>
+              </a>
+            </div>
+          </div>
+        </li>
         <li><a class="nav-link" href="{{root}}contact.html" data-nav="contact.html">Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">
-      <a class="header-phone" href="tel:+12095550142" aria-label="Call (209) 555-0142">
+      <a class="header-phone" href="tel:+12095550142" aria-label="Call or text us (209) 555-0142">
         <span class="icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
-        <span class="header-phone-text" aria-hidden="true"><small>Call or text, 7am to 7pm</small><span>(209) 555-0142</span></span>
+        <span class="header-phone-text" aria-hidden="true"><small>Call or text us</small><span>(209) 555-0142</span></span>
       </a>
-      <a class="btn btn-primary btn-sm header-book" href="#book" data-book>Book Online</a>
+      <a class="btn btn-primary btn-sm header-book" href="{{root}}book.html">Book Online</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-open><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
   </div>
@@ -74,28 +96,39 @@
   <nav class="mm-body" aria-label="Mobile">
     <div class="mm-group">
       <p class="mm-group-title">Services</p>
-      <ul class="mm-links">
-        <li><a href="{{root}}heating.html" data-nav="heating.html">Heating <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}cooling.html" data-nav="cooling.html">Cooling <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}plumbing.html" data-nav="plumbing.html">Plumbing <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}air-quality.html" data-nav="air-quality.html">Indoor air quality <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}index.html#estimate">Instant estimate <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}index.html#specials">Specials and discounts <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-      </ul>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-snowflake"/></svg></span>Cooling<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="{{root}}ac-repair.html" data-nav="ac-repair.html">AC Repair <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}ac-installation.html" data-nav="ac-installation.html">AC Installation & Replacement <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}cooling.html" data-nav="cooling.html">Cooling Overview <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>Heating<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="{{root}}heating.html" data-nav="heating.html">Furnace Repair & Replacement <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}heat-pumps.html" data-nav="heat-pumps.html">Heat Pumps <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-droplet"/></svg></span>Plumbing<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="{{root}}water-heaters.html" data-nav="water-heaters.html">Water Heaters <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}drains.html" data-nav="drains.html">Drains & Sewer <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}leak-repair.html" data-nav="leak-repair.html">Leak Repair & Repiping <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}plumbing.html" data-nav="plumbing.html">Plumbing Overview <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-wind"/></svg></span>Air Quality<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="{{root}}air-quality.html" data-nav="air-quality.html">Indoor Air Quality <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <ul class="mm-links"><li><a href="{{root}}emergency.html" data-nav="emergency.html">24/7 Emergency Service <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}services.html" data-nav="services.html">All services <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
     </div>
     <div class="mm-group">
-      <p class="mm-group-title">Company</p>
-      <ul class="mm-links">
-        <li><a href="{{root}}about.html" data-nav="about.html">About us <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}index.html#reviews">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}contact.html" data-nav="contact.html">Contact and locations <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}service-areas/tracy.html" data-nav="service-areas/tracy.html">Tracy <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-        <li><a href="{{root}}service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">Mountain House <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li>
-      </ul>
+      <ul class="mm-links mm-top"><li><a href="{{root}}instant-estimate.html" data-nav="instant-estimate.html">Instant Estimate <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}comfort-club.html" data-nav="comfort-club.html">Comfort Club <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}specials.html" data-nav="specials.html">Specials <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble cool"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>Service Areas<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="{{root}}service-areas.html" data-nav="service-areas.html">All service areas <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas/tracy.html" data-nav="service-areas/tracy.html">Tracy <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas/mountain-house.html" data-nav="service-areas/mountain-house.html">Mountain House <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas/manteca.html" data-nav="service-areas/manteca.html">Manteca <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas/lathrop.html" data-nav="service-areas/lathrop.html">Lathrop <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas/stockton.html" data-nav="service-areas/stockton.html">Stockton <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas/livermore.html" data-nav="service-areas/livermore.html">Livermore <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas.html#french-camp">French Camp <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas.html#lodi">Lodi <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas.html#ripon">Ripon <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas.html#escalon">Escalon <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas.html#pleasanton">Pleasanton <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}service-areas.html#dublin">Dublin <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <details class="mm-acc">
+        <summary><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span>About<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+        <ul class="mm-links"><li><a href="{{root}}about.html" data-nav="about.html">About Us <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}reviews.html" data-nav="reviews.html">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}faq.html" data-nav="faq.html">FAQ <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}financing.html" data-nav="financing.html">Financing <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}resources.html" data-nav="resources.html">Resources <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+      </details>
+      <ul class="mm-links mm-top"><li><a href="{{root}}contact.html" data-nav="contact.html">Contact <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
     </div>
     <div class="mm-cta">
       <a class="btn btn-primary btn-lg" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call (209) 555-0142</a>
-      <a class="btn btn-navy btn-lg" href="#book" data-book><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
+      <a class="btn btn-navy btn-lg" href="{{root}}book.html"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
     </div>
     <p class="mm-hours">We answer Monday to Saturday, 7am to 7pm, and the emergency line is open 24/7.</p>
   </nav>
