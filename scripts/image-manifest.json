@@ -882,6 +882,78 @@
   "q": 70
  },
  {
+  "file": "pw-about-street-1200x900.webp",
+  "key": "pw-about-street",
+  "w": 1200,
+  "h": 900,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pw-about-street-480x360.webp",
+  "key": "pw-about-street",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-about-street-720x540.webp",
+  "key": "pw-about-street",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-about-street-960x720.webp",
+  "key": "pw-about-street",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pw-about-team-1024x684-full.webp",
   "key": "pw-about-team",
   "w": 1024,
@@ -5228,78 +5300,6 @@
   "fp": [
    0.6,
    0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "turbines-1200x900.webp",
-  "key": "turbines",
-  "w": 1200,
-  "h": 900,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "turbines-480x360.webp",
-  "key": "turbines",
-  "w": 480,
-  "h": 360,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "turbines-720x540.webp",
-  "key": "turbines",
-  "w": 720,
-  "h": 540,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "turbines-960x720.webp",
-  "key": "turbines",
-  "w": 960,
-  "h": 720,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.55
   ],
   "box": [
    0,

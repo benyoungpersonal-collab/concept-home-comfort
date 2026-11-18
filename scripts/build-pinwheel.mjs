@@ -19,7 +19,7 @@ import { GROUPS, CITIES, ABOUT_MENU, PHONE, TEL, SMS, SITE } from './pinwheel/si
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const photos = JSON.parse(readFileSync(join(ROOT, 'scripts/photos.json'), 'utf8'));
 
-/* Photo slot -> photos.json key. Slots without a registered photo yet fall back to a placeholder (and are listed). */
+/* Photo slot -> photos.json key. Slots without a registered photo yet fall back to a stand-in photo (and are listed). */
 const PHOTO = {
   'services-hero': 'pw-services', 'svc-cooling': 'pw-svc-cooling', 'svc-heating': 'pw-svc-heating', 'svc-plumbing': 'pw-svc-plumbing', 'svc-air': 'pw-svc-air',
   'cooling-hero': 'pw-cooling', 'ac-repair-hero': 'pw-ac-repair', 'ac-install-hero': 'pw-ac-install',
@@ -31,7 +31,7 @@ const PHOTO = {
   'faq-hero': 'pw-faq', 'resources-hero': 'pw-resources', 'article-ac-hero': 'pw-article-ac', 'article-wh-hero': 'pw-article-wh',
   'privacy-hero': 'pw-privacy', 'notfound-hero': 'pw-notfound', 'credits-hero': 'pw-credits', 'contact-2': 'pw-contact-2',
   // existing photos that move to (or stay on) one inner page
-  thermostat: 'thermostat', couple: 'couple', turbines: 'turbines', 'tech-door': 'tech-door', 'stucco-home': 'stucco-home', suburb: 'suburb',
+  thermostat: 'thermostat', couple: 'couple', turbines: 'turbines', 'tech-door': 'tech-door', 'stucco-home': 'stucco-home', suburb: 'suburb', 'about-street': 'pw-about-street',
 };
 const missing = new Set();
 const ph = (slot) => { const k = PHOTO[slot] || slot; if (photos[k]) return k; missing.add(slot); return 'stucco-home'; };
@@ -180,7 +180,7 @@ const footer = `<footer class="site-footer on-dark pw-footer">
         <dt>Sunday</dt><dd>Emergency calls</dd>
         <dt>24/7</dt><dd>Emergency line</dd>
       </dl>
-      <p class="pw-foot-addr"><strong>Tracy shop</strong> Street address placeholder, Tracy, CA 95376<br><strong>Manteca yard</strong> Street address placeholder, Manteca, CA 95336</p>
+      <p class="pw-foot-addr"><strong>Tracy shop</strong> Tracy, CA 95376<br><strong>Manteca yard</strong> Manteca, CA 95336</p>
     </div>
     <div class="pw-foot-links">
 ${footCols.map(([t, links]) => `      <nav aria-label="${t.replace('&amp;', 'and')}">
@@ -209,5 +209,5 @@ ${files.map((f) => `  <url><loc>${SITE}${f === 'index.html' ? '' : f}</loc><last
 `);
 
 console.log(`Wrote ${pages.length} pages, the header and footer partials, and sitemap.xml (${files.length} URLs).`);
-if (missing.size) console.log(`Photo slots still on a placeholder: ${[...missing].join(', ')}`);
+if (missing.size) console.log(`Photo slots still on a stand-in photo: ${[...missing].join(', ')}`);
 export { PHOTO };

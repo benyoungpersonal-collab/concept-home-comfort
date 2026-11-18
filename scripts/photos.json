@@ -1232,5 +1232,24 @@
     "page": "https://www.pexels.com/photo/8204317/",
     "profile": "https://www.pexels.com/@kampus/",
     "use": "Contact page, a real person answers"
+  },
+  "pw-about-street": {
+    "id": "sDyXOlpCrAY",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1616113364365-b6013f3dad25?w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.55,
+      0.5
+    ],
+    "color": "#6f6a5f",
+    "alt": "Curving neighborhood street at golden hour, with tile-roof homes, green lawns, and big shade trees",
+    "by": "Nikola Knezevic",
+    "page": "https://unsplash.com/photos/cars-parked-on-side-of-the-road-during-daytime-sDyXOlpCrAY",
+    "profile": "https://unsplash.com/@nknezevic",
+    "use": "About page, why we are named Pinwheel",
+    "user": "nknezevic",
+    "base": "https://images.unsplash.com/photo-1616113364365-b6013f3dad25"
   }
 }
