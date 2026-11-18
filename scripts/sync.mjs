@@ -136,7 +136,7 @@ function buildPreload(tag, file, root) {
 
 function credits(used) {
   const items = Object.entries(photos)
-    .filter(([k]) => !k.startsWith('_') && used.has(k))
+    .filter(([k, p]) => !k.startsWith('_') && used.has(k) && !p.creditAs) // a second crop of a credited photo (creditAs) is listed once
     .map(([, p]) => {
       const utm = '?utm_source=pinwheel_concept&utm_medium=referral';
       const u = p.site === 'Unsplash' ? utm : '';

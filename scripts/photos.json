@@ -1,5 +1,56 @@
 {
   "_note": "Photo registry. Every <img data-photo=\"key\"> in the HTML is built from this file by `node scripts/sync.mjs`, and `python3 scripts/build-images.py` downloads each `src` once and writes the self-hosted WebP files to images/photos/. All photos are free Unsplash or Pexels photos, credited on credits.html. fp = focal point [x, y] from 0 to 1, measured inside box. box = optional [x0, y0, x1, y1] (0 to 1) that trims the source first, e.g. to keep another company's logo out of every crop. Rules: photos with people are real stock (or the client's own), and AI may only change the color of their clothes; photos without people can be AI-made; on Pinwheel, techs wear the same orange; no visible logos or business names from other companies. file = a copy kept in the repo. edit = what was changed (shown in the credits). tone = {exposure, wb: [r, g, b]} gains in linear light, exposure and white balance only, to match a set of photos.",
+  "pinwheel-family": {
+    "id": "tSwr_HGh0kQ",
+    "base": "https://images.unsplash.com/photo-1758598737810-7489fde716af",
+    "w": 3840,
+    "h": 2160,
+    "color": "#5b5d5e",
+    "alt": "Smiling mom and young son relaxing together on a gray couch at home",
+    "by": "Vitaly Gariev",
+    "user": "silverkblack",
+    "page": "https://unsplash.com/photos/mother-and-son-smiling-on-a-couch-tSwr_HGh0kQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1758598737810-7489fde716af?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb",
+    "profile": "https://unsplash.com/@silverkblack",
+    "fp": [
+      0.68,
+      0.4
+    ],
+    "box": [
+      0,
+      0,
+      0.85,
+      1
+    ],
+    "use": "Home hero, link-preview image"
+  },
+  "pinwheel-family-tall": {
+    "id": "tSwr_HGh0kQ",
+    "base": "https://images.unsplash.com/photo-1758598737810-7489fde716af",
+    "w": 3840,
+    "h": 2160,
+    "color": "#5b5d5e",
+    "alt": "Smiling mom and young son relaxing together on a gray couch at home",
+    "by": "Vitaly Gariev",
+    "user": "silverkblack",
+    "page": "https://unsplash.com/photos/mother-and-son-smiling-on-a-couch-tSwr_HGh0kQ",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1758598737810-7489fde716af?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb",
+    "profile": "https://unsplash.com/@silverkblack",
+    "fp": [
+      0.5,
+      0
+    ],
+    "box": [
+      0.4674,
+      0.2454,
+      0.6862,
+      1
+    ],
+    "use": "Home hero (phone crop)",
+    "creditAs": "pinwheel-family"
+  },
   "pinwheel-hero": {
     "file": "images/originals/pinwheel-hero.jpg",
     "site": "Supplied",
@@ -12,7 +63,7 @@
     "color": "#879084",
     "alt": "Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path",
     "by": "Ben Young Web Design",
-    "use": "Home hero, cooling hero, showcase hero, link-preview image, preview template HVAC hero"
+    "use": "Cooling page hero, AC repair service card, preview template HVAC hero"
   },
   "owner-luis": {
     "id": "6050244",
@@ -421,5 +472,30 @@
         1.04
       ]
     }
+  },
+  "family-couch": {
+    "id": "39191159",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/39191159/pexels-photo-39191159.jpeg?auto=compress&cs=tinysrgb&w=3000",
+    "w": 3840,
+    "h": 2160,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fp": [
+      0.5,
+      0.52
+    ],
+    "color": "#c8b9a6",
+    "alt": "Smiling family of three sitting close together on a gray couch in a bright living room",
+    "by": "Vitaly Gariev",
+    "profile": "https://www.pexels.com/@silverkblack/",
+    "page": "https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/",
+    "use": "Business image in the homepage's structured data (images/og-family-1200x630.jpg)",
+    "alwaysCredit": true,
+    "preview": "pexels__39191159.jpg"
   }
 }

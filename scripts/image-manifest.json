@@ -792,6 +792,132 @@
   "q": 70
  },
  {
+  "file": "pinwheel-family-1024x678-full.webp",
+  "key": "pinwheel-family",
+  "w": 1024,
+  "h": 678,
+  "crop": false,
+  "fp": [
+   0.68,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   0.85,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-family-1600x1059-full.webp",
+  "key": "pinwheel-family",
+  "w": 1600,
+  "h": 1059,
+  "crop": false,
+  "fp": [
+   0.68,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   0.85,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pinwheel-family-2400x1588-full.webp",
+  "key": "pinwheel-family",
+  "w": 2400,
+  "h": 1588,
+  "crop": false,
+  "fp": [
+   0.68,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   0.85,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pinwheel-family-768x508-full.webp",
+  "key": "pinwheel-family",
+  "w": 768,
+  "h": 508,
+  "crop": false,
+  "fp": [
+   0.68,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   0.85,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-family-tall-480x931-full.webp",
+  "key": "pinwheel-family-tall",
+  "w": 480,
+  "h": 931,
+  "crop": false,
+  "fp": [
+   0.5,
+   0
+  ],
+  "box": [
+   0.4674,
+   0.2454,
+   0.6862,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-family-tall-640x1242-full.webp",
+  "key": "pinwheel-family-tall",
+  "w": 640,
+  "h": 1242,
+  "crop": false,
+  "fp": [
+   0.5,
+   0
+  ],
+  "box": [
+   0.4674,
+   0.2454,
+   0.6862,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-family-tall-840x1630-full.webp",
+  "key": "pinwheel-family-tall",
+  "w": 840,
+  "h": 1630,
+  "crop": false,
+  "fp": [
+   0.5,
+   0
+  ],
+  "box": [
+   0.4674,
+   0.2454,
+   0.6862,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pinwheel-heating-1200x1200.webp",
   "key": "pinwheel-heating",
   "w": 1200,
@@ -954,24 +1080,6 @@
   "q": 70
  },
  {
-  "file": "pinwheel-hero-1024x434-full.webp",
-  "key": "pinwheel-hero",
-  "w": 1024,
-  "h": 434,
-  "crop": false,
-  "fp": [
-   0.5,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "pinwheel-hero-1200x1200.webp",
   "key": "pinwheel-hero",
   "w": 1200,
@@ -990,47 +1098,11 @@
   "q": 62
  },
  {
-  "file": "pinwheel-hero-1600x679-full.webp",
-  "key": "pinwheel-hero",
-  "w": 1600,
-  "h": 679,
-  "crop": false,
-  "fp": [
-   0.5,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "pinwheel-hero-2400x1018-full.webp",
-  "key": "pinwheel-hero",
-  "w": 2400,
-  "h": 1018,
-  "crop": false,
-  "fp": [
-   0.5,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "pinwheel-hero-480x204-full.webp",
+  "file": "pinwheel-hero-480x360.webp",
   "key": "pinwheel-hero",
   "w": 480,
-  "h": 204,
-  "crop": false,
+  "h": 360,
+  "crop": true,
   "fp": [
    0.5,
    0.55
@@ -1080,6 +1152,24 @@
   "q": 70
  },
  {
+  "file": "pinwheel-hero-720x540.webp",
+  "key": "pinwheel-hero",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pinwheel-hero-720x720.webp",
   "key": "pinwheel-hero",
   "w": 720,
@@ -1103,24 +1193,6 @@
   "w": 720,
   "h": 900,
   "crop": true,
-  "fp": [
-   0.5,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pinwheel-hero-768x326-full.webp",
-  "key": "pinwheel-hero",
-  "w": 768,
-  "h": 326,
-  "crop": false,
   "fp": [
    0.5,
    0.55
