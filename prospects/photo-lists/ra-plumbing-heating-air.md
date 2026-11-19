@@ -1,0 +1,14 @@
+# Photo list: R&A Plumbing Heating & Air
+
+Built by scripts/build-preview.mjs. Every photo spot on the preview, what is there now, where it came from, and a ready-to-paste AI prompt for a better version.
+Rules: people photos are real stock or theirs, never AI. Photos without people (equipment, homes, finished work) can be stock or AI-made.
+
+| Spot | Now | Source | License | AI prompt for a better version |
+|---|---|---|---|---|
+| Hero banner | Ryan, owner of R&A Plumbing Heating & Air, standing with arms crossed beside his R&A work van with the logo, phone number, and services on its side | Their photo (heroPhoto) | Theirs | Realistic wide photo of the owner beside their work van in Riverside, CA, morning light, 2:1. No logos except their own, no text. |
+| Service card: Plumbing | Plumber in an orange shirt tightening a drain pipe under a bathroom sink | Unsplash, photo by Timur Shakerzianov (https://unsplash.com/photos/a-man-working-on-a-pipe-in-a-wall-c314Gh8dXAo) | Unsplash License (free for commercial use) | Realistic photo for a home service website card about "Plumbing": the finished work or the equipment in a clean, bright California home, natural daylight, eye level, 4:3. No people, no logos, no brand names, no text. |
+| Service card: Heating & A/C | Gray high-efficiency gas furnace with white vent pipes in a clean garage utility closet, a technician's tool bag beside it | Supplied, photo by Ben Young Web Design (undefined) | Supplied License (free for commercial use) | Realistic photo for a home service website card about "Heating & A/C": the finished work or the equipment in a clean, bright California home, natural daylight, eye level, 4:3. No people, no logos, no brand names, no text. |
+| Service card: Water heaters | Gray gas water heater on a drip pan in the corner of a clean garage, with copper lines and an expansion tank | Supplied, photo by Ben Young Web Design (undefined) | Supplied License (free for commercial use) | Realistic photo for a home service website card about "Water heaters": the finished work or the equipment in a clean, bright California home, natural daylight, eye level, 4:3. No people, no logos, no brand names, no text. |
+| Service card: Maintenance plans | Placeholder (labeled) | None yet | n/a | Realistic photo for a home service website card about "Maintenance plans": the finished work or the equipment in a clean, bright California home, natural daylight, eye level, 4:3. No people, no logos, no brand names, no text. |
+| How a visit works (video poster) | Plumber tightening an outdoor faucet (stock video) | Pexels video | Pexels License | Short 9 second clip of a technician's gloved hands finishing a repair at a furnace or AC unit, shallow depth of field. No logos, no faces. |
+| Request a visit: family photo | Family on a green couch (stock) | Pexels | Pexels License | Real stock only (people). A family relaxing at home in a bright living room. |
