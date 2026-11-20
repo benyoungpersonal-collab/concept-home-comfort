@@ -24,10 +24,10 @@ const photos = JSON.parse(readFileSync(join(ROOT, 'scripts/photos.json'), 'utf8'
 const PHOTO = {
   'services-hero': 'pw-services', 'svc-cooling': 'pw-svc-cooling', 'svc-heating': 'pw-svc-heating', 'svc-plumbing': 'pw-svc-plumbing', 'svc-air': 'pw-svc-air',
   'cooling-hero': 'pw-pj-ac-side-yard', 'ac-repair-hero': 'pw-ac-repair', 'ac-install-hero': 'pw-ac-install',
-  'heating-hero': 'pw-heating', 'heating-2': 'pw-heating-2', 'heat-pumps-hero': 'pw-heat-pumps', 'plumbing-hero': 'pw-plumbing',
+  'heating-hero': 'pw-heating', 'heating-2': 'pw-heating-2', 'heat-pumps-hero': 'pw-heat-pumps', 'plumbing-hero': 'pinwheel-water-heater',
   'water-heaters-hero': 'pw-water-heaters', 'drains-hero': 'pw-drains', 'leak-hero': 'pw-leak', 'repipe-2': 'pw-repipe',
   'air-quality-hero': 'pw-air-quality', 'emergency-hero': 'pw-emergency', 'emergency-2': 'pw-emergency-2', 'comfort-club-hero': 'pw-comfort-club',
-  'specials-hero': 'pw-specials', 'estimate-hero': 'pw-estimate', 'book-hero': 'pw-book', 'reviews-hero': 'pw-reviews', 'about-van': 'pw-about-van', 'about-team': 'pw-about-team',
+  'specials-hero': 'pw-specials', 'estimate-hero': 'pw-estimate', 'book-hero': 'pw-book', 'reviews-hero': 'pw-reviews', 'about-van': 'pw-about-van', 'about-team': 'suburb',
   'areas-hero': 'pw-areas', 'manteca-hero': 'pw-manteca', 'lathrop-hero': 'pw-lathrop', 'stockton-hero': 'pw-stockton', 'livermore-hero': 'pw-livermore',
   'faq-hero': 'pw-faq', 'resources-hero': 'pw-resources', 'article-ac-hero': 'pw-article-ac', 'article-wh-hero': 'pw-article-wh',
   'privacy-hero': 'pw-privacy', 'notfound-hero': 'pw-notfound', 'credits-hero': 'pw-credits', 'contact-2': 'pw-contact-2',

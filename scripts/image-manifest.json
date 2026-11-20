@@ -258,13 +258,13 @@
   "h": 240,
   "crop": true,
   "fp": [
-   0.6,
-   0.6
+   0.3,
+   0.75
   ],
   "box": [
    0,
-   0,
-   1,
+   0.3,
+   0.7,
    1
   ],
   "q": 70
@@ -276,13 +276,13 @@
   "h": 360,
   "crop": true,
   "fp": [
-   0.6,
-   0.6
+   0.3,
+   0.75
   ],
   "box": [
    0,
-   0,
-   1,
+   0.3,
+   0.7,
    1
   ],
   "q": 70
@@ -294,13 +294,13 @@
   "h": 360,
   "crop": true,
   "fp": [
-   0.6,
-   0.6
+   0.3,
+   0.75
   ],
   "box": [
    0,
-   0,
-   1,
+   0.3,
+   0.7,
    1
   ],
   "q": 70
@@ -312,13 +312,13 @@
   "h": 480,
   "crop": true,
   "fp": [
-   0.6,
-   0.6
+   0.3,
+   0.75
   ],
   "box": [
    0,
-   0,
-   1,
+   0.3,
+   0.7,
    1
   ],
   "q": 70
@@ -330,13 +330,13 @@
   "h": 540,
   "crop": true,
   "fp": [
-   0.6,
-   0.6
+   0.3,
+   0.75
   ],
   "box": [
    0,
-   0,
-   1,
+   0.3,
+   0.7,
    1
   ],
   "q": 70
@@ -990,6 +990,60 @@
   "q": 70
  },
  {
+  "file": "pinwheel-water-heater-1024x765-full.webp",
+  "key": "pinwheel-water-heater",
+  "w": 1024,
+  "h": 765,
+  "crop": false,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-water-heater-1600x1195-full.webp",
+  "key": "pinwheel-water-heater",
+  "w": 1600,
+  "h": 1195,
+  "crop": false,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pinwheel-water-heater-2400x1792-full.webp",
+  "key": "pinwheel-water-heater",
+  "w": 2400,
+  "h": 1792,
+  "crop": false,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
   "file": "pinwheel-water-heater-480x360.webp",
   "key": "pinwheel-water-heater",
   "w": 480,
@@ -1008,10 +1062,64 @@
   "q": 70
  },
  {
+  "file": "pinwheel-water-heater-480x600.webp",
+  "key": "pinwheel-water-heater",
+  "w": 480,
+  "h": 600,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pinwheel-water-heater-720x540.webp",
   "key": "pinwheel-water-heater",
   "w": 720,
   "h": 540,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-water-heater-760x950.webp",
+  "key": "pinwheel-water-heater",
+  "w": 760,
+  "h": 950,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-water-heater-960x1200.webp",
+  "key": "pinwheel-water-heater",
+  "w": 960,
+  "h": 1200,
   "crop": true,
   "fp": [
    0.55,
@@ -1160,114 +1268,6 @@
   "fp": [
    0.55,
    0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-about-team-1024x684-full.webp",
-  "key": "pw-about-team",
-  "w": 1024,
-  "h": 684,
-  "crop": false,
-  "fp": [
-   0.5,
-   0.35
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-about-team-1600x1068-full.webp",
-  "key": "pw-about-team",
-  "w": 1600,
-  "h": 1068,
-  "crop": false,
-  "fp": [
-   0.5,
-   0.35
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "pw-about-team-2400x1602-full.webp",
-  "key": "pw-about-team",
-  "w": 2400,
-  "h": 1602,
-  "crop": false,
-  "fp": [
-   0.5,
-   0.35
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "pw-about-team-480x600.webp",
-  "key": "pw-about-team",
-  "w": 480,
-  "h": 600,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.35
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-about-team-760x950.webp",
-  "key": "pw-about-team",
-  "w": 760,
-  "h": 950,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.35
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-about-team-960x1200.webp",
-  "key": "pw-about-team",
-  "w": 960,
-  "h": 1200,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.35
   ],
   "box": [
    0,
@@ -4014,20 +4014,74 @@
   "q": 70
  },
  {
-  "file": "pw-owner-400x500.webp",
+  "file": "pw-owner-320x320.webp",
   "key": "pw-owner",
-  "w": 400,
-  "h": 500,
+  "w": 320,
+  "h": 320,
   "crop": true,
   "fp": [
-   0.45,
+   0.52,
    0.3
   ],
   "box": [
    0,
    0,
    1,
-   0.7
+   0.62
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-owner-400x500.webp",
+  "key": "pw-owner",
+  "w": 400,
+  "h": 500,
+  "crop": true,
+  "fp": [
+   0.52,
+   0.3
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   0.62
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-owner-480x480.webp",
+  "key": "pw-owner",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.52,
+   0.3
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   0.62
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-owner-640x640.webp",
+  "key": "pw-owner",
+  "w": 640,
+  "h": 640,
+  "crop": true,
+  "fp": [
+   0.52,
+   0.3
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   0.62
   ],
   "q": 70
  },
@@ -4038,14 +4092,14 @@
   "h": 800,
   "crop": true,
   "fp": [
-   0.45,
+   0.52,
    0.3
   ],
   "box": [
    0,
    0,
    1,
-   0.7
+   0.62
   ],
   "q": 70
  },
@@ -4056,14 +4110,14 @@
   "h": 1125,
   "crop": true,
   "fp": [
-   0.45,
+   0.52,
    0.3
   ],
   "box": [
    0,
    0,
    1,
-   0.7
+   0.62
   ],
   "q": 70
  },
@@ -5191,114 +5245,6 @@
   "crop": true,
   "fp": [
    0.3,
-   0.4
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-plumbing-1024x683-full.webp",
-  "key": "pw-plumbing",
-  "w": 1024,
-  "h": 683,
-  "crop": false,
-  "fp": [
-   0.6,
-   0.4
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-plumbing-1600x1067-full.webp",
-  "key": "pw-plumbing",
-  "w": 1600,
-  "h": 1067,
-  "crop": false,
-  "fp": [
-   0.6,
-   0.4
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "pw-plumbing-2400x1600-full.webp",
-  "key": "pw-plumbing",
-  "w": 2400,
-  "h": 1600,
-  "crop": false,
-  "fp": [
-   0.6,
-   0.4
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 62
- },
- {
-  "file": "pw-plumbing-480x600.webp",
-  "key": "pw-plumbing",
-  "w": 480,
-  "h": 600,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.4
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-plumbing-760x950.webp",
-  "key": "pw-plumbing",
-  "w": 760,
-  "h": 950,
-  "crop": true,
-  "fp": [
-   0.6,
-   0.4
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pw-plumbing-960x1200.webp",
-  "key": "pw-plumbing",
-  "w": 960,
-  "h": 1200,
-  "crop": true,
-  "fp": [
-   0.6,
    0.4
   ],
   "box": [
@@ -7020,74 +6966,20 @@
   "q": 70
  },
  {
-  "file": "tech-jess-320x320.webp",
-  "key": "tech-jess",
-  "w": 320,
-  "h": 320,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.46
-  ],
-  "box": [
-   0.2,
-   0.14,
-   0.8,
-   0.74
-  ],
-  "q": 70
- },
- {
-  "file": "tech-jess-480x480.webp",
-  "key": "tech-jess",
-  "w": 480,
-  "h": 480,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.46
-  ],
-  "box": [
-   0.2,
-   0.14,
-   0.8,
-   0.74
-  ],
-  "q": 70
- },
- {
-  "file": "tech-jess-640x640.webp",
-  "key": "tech-jess",
-  "w": 640,
-  "h": 640,
-  "crop": true,
-  "fp": [
-   0.5,
-   0.46
-  ],
-  "box": [
-   0.2,
-   0.14,
-   0.8,
-   0.74
-  ],
-  "q": 70
- },
- {
   "file": "tech-ray-480x360.webp",
   "key": "tech-ray",
   "w": 480,
   "h": 360,
   "crop": true,
   "fp": [
-   0.45,
-   0.36
+   0.48,
+   0.4
   ],
   "box": [
    0,
    0,
    1,
-   1
+   0.58
   ],
   "q": 70
  },
@@ -7098,14 +6990,14 @@
   "h": 540,
   "crop": true,
   "fp": [
-   0.45,
-   0.36
+   0.48,
+   0.4
   ],
   "box": [
    0,
    0,
    1,
-   1
+   0.58
   ],
   "q": 70
  },
@@ -7116,14 +7008,14 @@
   "h": 720,
   "crop": true,
   "fp": [
-   0.45,
-   0.36
+   0.48,
+   0.4
   ],
   "box": [
    0,
    0,
    1,
-   1
+   0.58
   ],
   "q": 70
  },

@@ -66,51 +66,52 @@
     "use": "Cooling page hero, AC repair service card, preview template HVAC hero"
   },
   "pw-owner": {
-    "id": "udEWM2jLBVg",
-    "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1586447751596-6c2050a0d335?q=90&fm=jpg",
-    "base": "https://images.unsplash.com/photo-1586447751596-6c2050a0d335",
-    "w": 2298,
-    "h": 3430,
-    "box": [
-      0.0,
-      0.0,
-      1.0,
-      0.7
-    ],
+    "id": "5990922",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/5990922/pexels-photo-5990922.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 2400,
+    "h": 3600,
     "fp": [
-      0.45,
+      0.52,
       0.3
     ],
-    "color": "#918888",
-    "alt": "Smiling owner in a gray work shirt standing in the shop bay",
-    "by": "Jarred Ray",
-    "user": "jarredray",
-    "profile": "https://unsplash.com/@jarredray",
-    "page": "https://unsplash.com/photos/man-in-gray-button-up-shirt-and-black-pants-standing-near-black-and-red-power-tool-udEWM2jLBVg",
-    "use": "Owner portrait (homepage Meet the owner, About page)"
+    "color": "#847d72",
+    "alt": "Luis Ortega, owner of Pinwheel, smiling in a black shirt in a bright kitchen",
+    "by": "Kampus Production",
+    "page": "https://www.pexels.com/photo/5990922/",
+    "profile": "https://www.pexels.com/@kampus/",
+    "use": "Owner portrait (homepage Meet the owner, About page, review page)",
+    "box": [
+      0,
+      0,
+      1,
+      0.62
+    ]
   },
   "tech-ray": {
-    "id": "F4ox6XvbDps",
-    "base": "https://images.unsplash.com/photo-1787672357491-d43acdf974cb",
-    "w": 2400,
-    "h": 1809,
-    "color": "#a88f86",
-    "fp": [
-      0.45,
-      0.36
-    ],
-    "alt": "Senior technician in orange work coveralls and a cap, arms crossed and smiling",
-    "by": "Divaris Shirichena",
-    "user": "divaris",
-    "page": "https://unsplash.com/photos/man-in-blue-work-uniform-F4ox6XvbDps",
-    "use": "Team, about",
-    "preview": "tech-friendly__F4ox6XvbDps.jpg",
+    "id": "P_V1Mbpq2YE",
     "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1787672357491-d43acdf974cb?w=2400&q=85&fm=jpg",
-    "profile": "https://unsplash.com/@divaris",
-    "file": "images/photos/pinwheel-tech-ray.jpg",
-    "edit": "Coveralls and cap color changed to Pinwheel orange (color only; scripts/recolor-clothes.py)."
+    "src": "https://images.unsplash.com/photo-1764084051711-45a3b7c84c06?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8OXx8bWlkZGxlJTIwYWdlZCUyMG1hbiUyMGJsYWNrJTIwcG9sbyUyMHNtaWxpbmd8ZW58MHx8fHwxNzk1MjA1Mzg0fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 3600,
+    "fp": [
+      0.48,
+      0.4
+    ],
+    "color": "#36414e",
+    "alt": "Ray, install lead, smiling in a dark navy polo",
+    "by": "Sophie Paterson",
+    "page": "https://unsplash.com/photos/a-smiling-man-in-a-dark-polo-shirt-and-jeans-P_V1Mbpq2YE",
+    "profile": "https://unsplash.com/@patersophie",
+    "use": "About page, the team",
+    "user": "patersophie",
+    "base": "https://images.unsplash.com/photo-1764084051711-45a3b7c84c06",
+    "box": [
+      0,
+      0,
+      1,
+      0.58
+    ]
   },
   "tech-jess": {
     "id": "iY0GFYADmU0",
@@ -140,24 +141,27 @@
     ]
   },
   "heat-pump": {
-    "id": "_7huNth8Y2s",
-    "base": "https://images.unsplash.com/photo-1724488751821-1415f5cf4960",
-    "w": 4176,
-    "h": 2349,
-    "color": "#1f5f7a",
+    "id": "4119844",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/4119844/pexels-photo-4119844.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 2400,
+    "h": 1600,
     "fp": [
-      0.6,
-      0.6
+      0.3,
+      0.75
     ],
-    "alt": "Ductless heat pump outdoor unit in bright sun beside a teal wall",
-    "by": "yanagi",
-    "user": "87gi",
-    "page": "https://unsplash.com/photos/a-air-conditioner-sitting-outside-of-a-building-_7huNth8Y2s",
-    "use": "Heating page, ductless section",
-    "preview": "heat-pump___7huNth8Y2s.jpg",
-    "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1724488751821-1415f5cf4960?w=2400&q=85&fm=jpg",
-    "profile": "https://unsplash.com/@87gi"
+    "color": "#727d7f",
+    "alt": "Outdoor heat pump unit beside a sided two-story home with a white fence",
+    "by": "Curtis Adams",
+    "page": "https://www.pexels.com/photo/4119844/",
+    "profile": "https://www.pexels.com/@curtis-adams-1694007/",
+    "use": "Homepage Services, heat pump card",
+    "box": [
+      0,
+      0.3,
+      0.7,
+      1
+    ]
   },
   "thermostat": {
     "id": "RFAHj4tI37Y",

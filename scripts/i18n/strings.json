@@ -8738,9 +8738,10 @@
  "About Pinwheel | Family-Owned Heating, AC & Plumbing in Tracy, CA": [
   "about.html"
  ],
- "Four team members in orange work uniforms standing together": [
+ "Aerial view of a sunny planned neighborhood with tile roofs, backyard pools, and a roundabout": [
   "about.html",
-  "credits.html"
+  "credits.html",
+  "service-areas/mountain-house.html"
  ],
  "Breadcrumb": [
   "about.html",
@@ -8778,16 +8779,17 @@
   "specials.html",
   "water-heaters.html"
  ],
- "Smiling owner in a gray work shirt standing in the shop bay": [
+ "Luis Ortega, owner of Pinwheel, smiling in a black shirt in a bright kitchen": [
   "about.html",
   "credits.html",
-  "index.html"
+  "index.html",
+  "review.html"
  ],
  "Curving neighborhood street at golden hour, with tile-roof homes, green lawns, and big shade trees": [
   "about.html",
   "credits.html"
  ],
- "Senior technician in orange work coveralls and a cap, arms crossed and smiling": [
+ "Ray, install lead, smiling in a dark navy polo": [
   "about.html",
   "credits.html"
  ],
@@ -10316,6 +10318,9 @@
  "Photography": [
   "credits.html"
  ],
+ "Some equipment photos are AI-made samples.": [
+  "credits.html"
+ ],
  "Smiling mom and young son relaxing together on a gray couch at home": [
   "credits.html",
   "index.html"
@@ -10330,24 +10335,23 @@
  "Photo supplied by Ben Young Web Design. Used for: Cooling page hero, AC repair service card, preview template HVAC hero.": [
   "credits.html"
  ],
- "Photo by <a href=\"https://unsplash.com/@jarredray?utm_source=pinwheel_concept&amp;utm_medium=referral\">Jarred Ray</a> on <a href=\"https://unsplash.com/photos/man-in-gray-button-up-shirt-and-black-pants-standing-near-black-and-red-power-tool-udEWM2jLBVg?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Owner portrait (homepage Meet the owner, About page).": [
+ "Photo by <a href=\"https://www.pexels.com/@kampus/\">Kampus Production</a> on <a href=\"https://www.pexels.com/photo/5990922/\">Pexels</a>. Used for: Owner portrait (homepage Meet the owner, About page, review page).": [
   "credits.html"
  ],
- "Photo by <a href=\"https://unsplash.com/@divaris?utm_source=pinwheel_concept&amp;utm_medium=referral\">Divaris Shirichena</a> on <a href=\"https://unsplash.com/photos/man-in-blue-work-uniform-F4ox6XvbDps?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Team, about. Coveralls and cap color changed to Pinwheel orange (color only; scripts/recolor-clothes.py).": [
+ "Photo by <a href=\"https://unsplash.com/@patersophie?utm_source=pinwheel_concept&amp;utm_medium=referral\">Sophie Paterson</a> on <a href=\"https://unsplash.com/photos/a-smiling-man-in-a-dark-polo-shirt-and-jeans-P_V1Mbpq2YE?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: About page, the team.": [
   "credits.html"
  ],
  "Smiling service tech in an orange t-shirt holding a screwdriver in a repair shop": [
-  "credits.html",
-  "review.html"
+  "credits.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@campfire_guy?utm_source=pinwheel_concept&amp;utm_medium=referral\">Darren Richardson</a> on <a href=\"https://unsplash.com/photos/a-woman-holding-a-wrench-in-a-garage-iY0GFYADmU0?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Team, review page. Shirt color changed to Pinwheel orange (color only; scripts/recolor-clothes.py).": [
   "credits.html"
  ],
- "Ductless heat pump outdoor unit in bright sun beside a teal wall": [
+ "Outdoor heat pump unit beside a sided two-story home with a white fence": [
   "credits.html",
   "index.html"
  ],
- "Photo by <a href=\"https://unsplash.com/@87gi?utm_source=pinwheel_concept&amp;utm_medium=referral\">yanagi</a> on <a href=\"https://unsplash.com/photos/a-air-conditioner-sitting-outside-of-a-building-_7huNth8Y2s?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Heating page, ductless section.": [
+ "Photo by <a href=\"https://www.pexels.com/@curtis-adams-1694007/\">Curtis Adams</a> on <a href=\"https://www.pexels.com/photo/4119844/\">Pexels</a>. Used for: Homepage Services, heat pump card.": [
   "credits.html"
  ],
  "New copper water pipes running through an open wall": [
@@ -10358,10 +10362,6 @@
  ],
  "Photo by <a href=\"https://unsplash.com/@ubeyonroad?utm_source=pinwheel_concept&amp;utm_medium=referral\">ubeyonroad</a> on <a href=\"https://unsplash.com/photos/a-white-stucco-house-with-a-red-tile-roof-lx-FLZx3iQk?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Tracy page.": [
   "credits.html"
- ],
- "Aerial view of a sunny planned neighborhood with tile roofs, backyard pools, and a roundabout": [
-  "credits.html",
-  "service-areas/mountain-house.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@aviosly?utm_source=pinwheel_concept&amp;utm_medium=referral\">Avi Waxman</a> on <a href=\"https://unsplash.com/photos/white-and-red-houses-f9qZuKoZYoY?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Mountain House page.": [
   "credits.html"
@@ -10409,7 +10409,8 @@
   "credits.html"
  ],
  "Gray gas water heater on a drip pan in the corner of a clean garage, with copper lines and an expansion tank": [
-  "credits.html"
+  "credits.html",
+  "plumbing.html"
  ],
  "Photo supplied by Ben Young Web Design. Used for: Water heaters service card. Exposure and white balance matched to the other service cards.": [
   "credits.html"
@@ -10493,13 +10494,6 @@
  "Photo by <a href=\"https://unsplash.com/@lisaanna195?utm_source=pinwheel_concept&amp;utm_medium=referral\">Lisa Anna</a> on <a href=\"https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-ceiling-fan-Qk-EBWUIqBQ?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Heat Pumps hero.": [
   "credits.html"
  ],
- "Plumber in navy overalls carrying a toolbox into a bathroom": [
-  "credits.html",
-  "plumbing.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@bhagya_laxmi?utm_source=pinwheel_concept&amp;utm_medium=referral\">bhagya laxmi</a> on <a href=\"https://unsplash.com/photos/a-plumber-repairs-plumbing-in-a-bathroom-jaP5ClBdIyU?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Plumbing hero.": [
-  "credits.html"
- ],
  "Tidy laundry room with shelves and a tank water heater": [
   "credits.html",
   "water-heaters.html"
@@ -10577,9 +10571,6 @@
   "reviews.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@hbechtel?utm_source=pinwheel_concept&amp;utm_medium=referral\">Hannah Bechtel</a> on <a href=\"https://unsplash.com/photos/man-in-white-dress-shirt-standing-beside-woman-in-gray-cardigan-1El98zbDWzA?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Reviews hero.": [
-  "credits.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@nandong?utm_source=pinwheel_concept&amp;utm_medium=referral\">Michaël NANDONG</a> on <a href=\"https://unsplash.com/photos/two-women-and-men-standing-in-front-white-concrete-wall-AWxWjmNSoNU?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: About page, the team.": [
   "credits.html"
  ],
  "Aerial view of curving streets in a suburban neighborhood": [

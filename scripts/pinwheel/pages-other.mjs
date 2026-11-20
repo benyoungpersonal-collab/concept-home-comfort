@@ -644,6 +644,7 @@ export const credits = (ph) => ({
     `  <section class="section bg-white" aria-labelledby="photos-title">
     <div class="container">
       <h2 id="photos-title" class="h3 credits-h">Photography</h2>
+      <p class="credits-ai">Some equipment photos are AI-made samples.</p>
     <!-- credits -->
     <!-- /credits -->
       ${block('credits-rest.html')}
