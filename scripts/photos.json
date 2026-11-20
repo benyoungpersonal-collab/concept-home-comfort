@@ -23,7 +23,7 @@
       0.85,
       1
     ],
-    "use": "Home hero, link-preview image"
+    "use": "Older showcase page"
   },
   "pinwheel-family-tall": {
     "id": "tSwr_HGh0kQ",
@@ -48,7 +48,7 @@
       0.6862,
       1
     ],
-    "use": "Home hero (phone crop)",
+    "use": "Older showcase page (phone crop)",
     "creditAs": "pinwheel-family"
   },
   "pinwheel-hero": {
@@ -352,7 +352,7 @@
     "by": "Dasha Halepova",
     "profile": "https://www.pexels.com/@dasha-halepova-566202699/",
     "page": "https://www.pexels.com/photo/couple-sitting-on-couch-with-children-16852512/",
-    "use": "Request a visit form",
+    "use": "Older showcase page",
     "preview": "pexels__16852512.jpg"
   },
   "leak": {
@@ -493,7 +493,7 @@
     "by": "Vitaly Gariev",
     "profile": "https://www.pexels.com/@silverkblack/",
     "page": "https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/",
-    "use": "Business image in the homepage's structured data (images/og-family-1200x630.jpg)",
+    "use": "Business image in the site's structured data (images/og-family-1200x630.jpg)",
     "alwaysCredit": true,
     "preview": "pexels__39191159.jpg"
   },
@@ -855,23 +855,23 @@
     "base": "https://images.unsplash.com/photo-1678200019631-8b730090f517"
   },
   "pw-comfort-club": {
-    "id": "Aq8ljLz12gk",
+    "id": "3cAMUE3YAO8",
     "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1649083048381-520a5b3d91ff?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8YWlyJTIwcHVyaWZpZXIlMjBsaXZpbmclMjByb29tfGVufDB8MHx8fDE3OTUwMjcxMjV8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
-    "w": 2400,
-    "h": 1600,
+    "src": "https://images.unsplash.com/photo-1601758003122-53c40e686a19?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8aGFwcHklMjBjb3VwbGUlMjBhdCUyMGhvbWV8ZW58MHwwfHx8MTc5NTAyNzMwN3wy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 8256,
+    "h": 5504,
     "fp": [
-      0.4,
-      0.6
+      0.5,
+      0.45
     ],
-    "color": "#c2bebc",
-    "alt": "Bright living room with white walls, wood floors, and a ceiling vent",
-    "by": "Bailey Alexander",
-    "page": "https://unsplash.com/photos/a-living-room-with-white-furniture-and-wood-floors-Aq8ljLz12gk",
-    "profile": "https://unsplash.com/@baileyal3xander",
+    "color": "#9c9688",
+    "alt": "Two women laughing on a bed with their fluffy dog in a bright bedroom",
+    "by": "Chewy",
+    "page": "https://unsplash.com/photos/woman-in-white-long-sleeve-shirt-sitting-on-bed-beside-brown-dog-3cAMUE3YAO8",
+    "profile": "https://unsplash.com/@chewy",
     "use": "Comfort Club hero",
-    "user": "baileyal3xander",
-    "base": "https://images.unsplash.com/photo-1649083048381-520a5b3d91ff"
+    "user": "chewy",
+    "base": "https://images.unsplash.com/photo-1601758003122-53c40e686a19"
   },
   "pw-specials": {
     "id": "9lipzfFG3G4",
@@ -1197,23 +1197,23 @@
     "base": "https://images.unsplash.com/photo-1777245144143-fca70f22adf5"
   },
   "pw-credits": {
-    "id": "lLDh9JppH2c",
+    "id": "i1ZyJN2ft7s",
     "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8YWlyJTIwcHVyaWZpZXIlMjBsaXZpbmclMjByb29tfGVufDB8MHx8fDE3OTUwMjcxMjV8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
-    "w": 2400,
-    "h": 1600,
+    "src": "https://images.unsplash.com/photo-1781578724586-55ed76e1757f?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTR8fHN0dWNjbyUyMGhvdXNlJTIwZnJvbnQlMjB5YXJkfGVufDB8MHx8fDE3OTUwMjcyNzd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 4032,
+    "h": 3024,
     "fp": [
-      0.4,
-      0.6
+      0.5,
+      0.55
     ],
-    "color": "#998e7d",
-    "alt": "Cozy living room with a gray sofa and a wood coffee table",
-    "by": "Francesca Tosolini",
-    "page": "https://unsplash.com/photos/brown-couch-with-two-white-throw-pillows-lLDh9JppH2c",
-    "profile": "https://unsplash.com/@fromitaly",
+    "color": "#929a8e",
+    "alt": "Single-story stucco home with a white two-car garage and a shade tree",
+    "by": "Sartori Holdings LLC",
+    "page": "https://unsplash.com/photos/a-suburban-house-with-a-white-garage-and-green-tree-i1ZyJN2ft7s",
+    "profile": "https://unsplash.com/@sartoriholdings",
     "use": "Photo credits hero",
-    "user": "fromitaly",
-    "base": "https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa"
+    "user": "sartoriholdings",
+    "base": "https://images.unsplash.com/photo-1781578724586-55ed76e1757f"
   },
   "pw-contact-2": {
     "id": "8204317",
@@ -1250,5 +1250,221 @@
     "use": "About page, why we are named Pinwheel",
     "user": "nknezevic",
     "base": "https://images.unsplash.com/photo-1616113364365-b6013f3dad25"
+  },
+  "pw-home-hero": {
+    "id": "34558045",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/34558045/pexels-photo-34558045.jpeg?auto=compress&cs=tinysrgb&w=4000",
+    "w": 6641,
+    "h": 4427,
+    "fp": [
+      0.78,
+      0.4
+    ],
+    "color": "#9e9a98",
+    "alt": "Technician in a black polo adjusting a wall thermostat in a bright home",
+    "by": "HONG SON",
+    "page": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
+    "profile": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
+    "use": "Homepage hero"
+  },
+  "pw-ba-before": {
+    "id": "JBw9IlbHhVY",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1550998251-1e18917c975c?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8NDN8fGFpciUyMGNvbmRpdGlvbmVyJTIwdGVjaG5pY2lhbnxlbnwwfHx8fDE3OTUxNDY0Njd8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1600,
+    "fp": [
+      0.35,
+      0.5
+    ],
+    "color": "#989791",
+    "alt": "Old, grimy outdoor AC unit on a stained wall",
+    "by": "Vladislav Nikonov",
+    "page": "https://unsplash.com/photos/white-air-condenser-unit-JBw9IlbHhVY",
+    "profile": "https://unsplash.com/@memtor",
+    "use": "Homepage projects, before",
+    "user": "memtor",
+    "base": "https://images.unsplash.com/photo-1550998251-1e18917c975c",
+    "file": "images/photos/pinwheel-ba-before.jpg",
+    "edit": "Brand label and a shop sticker removed (no people in the photo)."
+  },
+  "pw-ba-after": {
+    "id": "GPVQqep5QNw",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1722131646940-b821a6cc6252?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjR8fGNlbnRyYWwlMjBhaXIlMjBjb25kaXRpb25lcnxlbnwwfHx8fDE3OTUxNDY2NzN8Mg&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 2400,
+    "h": 1597,
+    "fp": [
+      0.55,
+      0.5
+    ],
+    "color": "#98746f",
+    "alt": "New, clean outdoor AC unit on a painted brick wall",
+    "by": "Jonny Clow",
+    "page": "https://unsplash.com/photos/a-air-conditioner-mounted-to-the-side-of-a-building-GPVQqep5QNw",
+    "profile": "https://unsplash.com/@jonnyclow",
+    "use": "Homepage projects, after",
+    "user": "jonnyclow",
+    "base": "https://images.unsplash.com/photo-1722131646940-b821a6cc6252",
+    "file": "images/photos/pinwheel-ba-after.jpg",
+    "edit": "Brand name removed from the badge (no people in the photo)."
+  },
+  "pw-pj-ac-1": {
+    "id": "PBOnNFQssS8",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1761072124769-86d08736a3e5?ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 4032,
+    "h": 3024,
+    "fp": [
+      0.5,
+      0.55
+    ],
+    "color": "#7b776c",
+    "alt": "Two new outdoor AC units on concrete pads beside a brick home",
+    "by": "hvac mktg guys",
+    "page": "https://unsplash.com/photos/PBOnNFQssS8",
+    "profile": "https://unsplash.com/@hvacmktgguys",
+    "use": "Projects, AC installs",
+    "user": "hvacmktgguys",
+    "base": "https://images.unsplash.com/photo-1761072124769-86d08736a3e5"
+  },
+  "pw-pj-ac-2": {
+    "id": "k0onCXQ07H8",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1792630862573-ad495551bb59?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjR8fGhvdXNlfGVufDB8fHx8MTc5NTE0NjUzNHwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 6068,
+    "h": 4052,
+    "fp": [
+      0.5,
+      0.55
+    ],
+    "color": "#787e6c",
+    "alt": "Back of a single-story home with a white deck and a new AC unit beside it",
+    "by": "Josh Lemmon",
+    "page": "https://unsplash.com/photos/wooden-deck-on-grey-house-k0onCXQ07H8",
+    "profile": "https://unsplash.com/@wolfie_website",
+    "use": "Projects, AC installs",
+    "user": "wolfie_website",
+    "base": "https://images.unsplash.com/photo-1792630862573-ad495551bb59"
+  },
+  "pw-pj-ac-3": {
+    "id": "BVwwFteA2PM",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1792628953678-4225d4e10a5f?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTF8fGhvdXNlfGVufDB8fHx8MTc5NTE0NjUzNHwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 8311,
+    "h": 5540,
+    "fp": [
+      0.5,
+      0.55
+    ],
+    "color": "#8e9787",
+    "alt": "Backyard of a white two-story home with a new fence, lawn, and AC unit",
+    "by": "Josh Lemmon",
+    "page": "https://unsplash.com/photos/white-house-with-fenced-backyard-BVwwFteA2PM",
+    "profile": "https://unsplash.com/@wolfie_website",
+    "use": "Projects, AC installs",
+    "user": "wolfie_website",
+    "base": "https://images.unsplash.com/photo-1792628953678-4225d4e10a5f",
+    "q": 48
+  },
+  "pw-pj-hp-1": {
+    "id": "xgyj76nllvg",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1611048268249-7e0d5eb808a2?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTF8fG1pbmklMjBzcGxpdCUyMGFpciUyMGNvbmRpdGlvbmVyJTIwbGl2aW5nJTIwcm9vbXxlbnwwfDB8fHwxNzk1MDI3MjU0fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 6048,
+    "h": 4024,
+    "fp": [
+      0.75,
+      0.4
+    ],
+    "color": "#a59183",
+    "alt": "Living room with a ductless heat pump head mounted high on the wall",
+    "by": "Huy Nguyen",
+    "page": "https://unsplash.com/photos/black-flat-screen-tv-on-brown-wooden-tv-rack-xgyj76nllvg",
+    "profile": "https://unsplash.com/@huynguyen_pch",
+    "use": "Projects, heat pumps and mini-splits",
+    "user": "huynguyen_pch",
+    "base": "https://images.unsplash.com/photo-1611048268249-7e0d5eb808a2"
+  },
+  "pw-pj-hp-2": {
+    "id": "75UkcFlN2Xc",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1697462247834-7d55761daea3?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8OXx8ZHVjdGxlc3MlMjBhaXIlMjBjb25kaXRpb25lciUyMHJvb218ZW58MHx8fHwxNzk1MTQ2NTI3fDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 3000,
+    "h": 2000,
+    "fp": [
+      0.3,
+      0.4
+    ],
+    "color": "#8c8577",
+    "alt": "Bright dining area with a mini-split head above tall windows",
+    "by": "Clay Banks",
+    "page": "https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-wooden-floor-75UkcFlN2Xc",
+    "profile": "https://unsplash.com/@claybanks",
+    "use": "Projects, heat pumps and mini-splits",
+    "user": "claybanks",
+    "base": "https://images.unsplash.com/photo-1697462247834-7d55761daea3"
+  },
+  "pw-pj-ducts-1": {
+    "id": "o0BuMg6qgyY",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1780590105333-11af9647816d?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjR8fGR1Y3R3b3JrfGVufDB8fHx8MTc5NTE0NjUyNnwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 3456,
+    "h": 3456,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#32312e",
+    "alt": "Flexible duct running down from metal ductwork",
+    "by": "Yanping Ma",
+    "page": "https://unsplash.com/photos/a-flexible-metallic-duct-with-wires-in-a-cluttered-area-o0BuMg6qgyY",
+    "profile": "https://unsplash.com/@maro_of_sengu",
+    "use": "Projects, ductwork",
+    "user": "maro_of_sengu",
+    "base": "https://images.unsplash.com/photo-1780590105333-11af9647816d"
+  },
+  "pw-pj-ducts-2": {
+    "id": "LI2rpZB12ms",
+    "site": "Unsplash",
+    "src": "https://images.unsplash.com/photo-1770816306659-adcf99a11aeb?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTJ8fGFpciUyMHZlbnQlMjBjZWlsaW5nfGVufDB8fHx8MTc5NTE0NjY3Mnwy&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 4191,
+    "h": 2794,
+    "fp": [
+      0.4,
+      0.5
+    ],
+    "color": "#3c3738",
+    "alt": "Round supply diffuser with its spiral duct, seen from below",
+    "by": "Tim Schmidbauer",
+    "page": "https://unsplash.com/photos/circular-metal-vent-with-attached-ductwork-LI2rpZB12ms",
+    "profile": "https://unsplash.com/@timschmidbauer",
+    "use": "Projects, ductwork",
+    "user": "timschmidbauer",
+    "base": "https://images.unsplash.com/photo-1770816306659-adcf99a11aeb"
+  },
+  "pw-home-hero-phone": {
+    "id": "34558045",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/34558045/pexels-photo-34558045.jpeg?auto=compress&cs=tinysrgb&w=4000",
+    "w": 6641,
+    "h": 4427,
+    "fp": [
+      0.66,
+      0.3
+    ],
+    "color": "#9e9a98",
+    "alt": "Technician in a black polo adjusting a wall thermostat in a bright home",
+    "by": "HONG SON",
+    "page": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
+    "profile": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
+    "use": "Homepage hero, phone crop",
+    "box": [
+      0.35,
+      0.24,
+      1.0,
+      1.0
+    ]
   }
 }

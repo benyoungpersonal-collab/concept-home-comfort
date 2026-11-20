@@ -68,12 +68,13 @@ const manifest = new Map();
 function photoUrl(p, w, h, crop, root) {
   const fpTag = p.fpOverride ? `-fp${Math.round(p.fp[0] * 100)}-${Math.round(p.fp[1] * 100)}` : '';
   const name = `${p.key}-${w}x${h}${crop ? '' : '-full'}${fpTag}.webp`;
-  manifest.set(name, { file: name, key: p.key, w, h, crop, fp: p.fp, box: p.box || [0, 0, 1, 1], q: w >= 1200 ? 62 : 70 });
+  manifest.set(name, { file: name, key: p.key, w, h, crop, fp: p.fp, box: p.box || [0, 0, 1, 1], q: p.q || (w >= 1200 ? 62 : 70) }); // photos.json "q" overrides quality for busy photos (grass, gravel)
   return `${root}images/photos/${name}`;
 }
 
 function photoSet(key, attrs, file) {
-  const base = photos[key];
+  // PW_STANDIN=1 (local previews only): a photo that is not registered yet borrows a stand-in so the layout can be checked
+  const base = photos[key] || (process.env.PW_STANDIN ? photos['stucco-home'] : null);
   if (!base) throw new Error(`Unknown photo "${key}" in ${file}`);
   // data-fp="x,y" overrides the focal point for one placement (for example, a hero that needs room for cards)
   const fpAttr = getAttr(attrs, 'data-fp');
@@ -195,6 +196,8 @@ for (const file of pages()) {
   // The homepage follows the preview template rule: no two neighboring sections share a background
   if (/<html[^>]*class="[^"]*\bpw-home\b/.test(html)) html = balanceSections(html).html;
 
+  // Free Quote links jump to the page's own quote form; a page without one links to the homepage form (works without JS too)
+  if (!/\sid="quote"/.test(html)) html = html.replace(/href="#quote"((?:\s+data-[a-z-]+(?:="[^"]*")?)*?\s+data-home="([^"]+)")/g, 'href="$2"$1');
   if (html !== before) { writeFileSync(file, html); changed++; console.log(`updated ${rel}`); }
 }
 const list = [...manifest.values()].sort((a, b) => a.file.localeCompare(b.file));

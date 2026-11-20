@@ -1,19 +1,21 @@
 /* pages-services.mjs: the service pages. Each one follows the same layout (SITE-PLAN.md):
    hero, Signs You Need, what we do on the visit, upfront pricing, 3 reviews, FAQ, Comfort Club, Book plus Call,
    and the service areas strip. Sample data for a fictional business. */
-import { hero, sec, checklist, steps, prices, reviewsSection, reviewsFor, faqSection, faqLd, club, bookCall, areasStrip,
+import { hero, sec, checklist, steps, prices, reviewsSection, reviewsFor, faqSection, faqLd, club, areasStrip,
   split, serviceLd, crumbLd, heroPreload, callBtn, bookBtn, ic, tag } from './components.mjs';
 import { PHONE } from './site-data.mjs';
+import { subServices } from './blocks.mjs';
 
 export function servicePage(o, ph) {
   const photo = ph(o.photo);
   const trail = [['Home', 'index.html'], ['Services', 'services.html'], ...(o.parent ? [o.parent] : []), [o.short || o.name]];
   return {
-    file: o.file, title: o.titleTag, desc: o.desc, ogTitle: o.og,
+    file: o.file, title: o.titleTag, desc: o.desc, ogTitle: o.og, quoteService: o.quote,
     preload: heroPreload(photo, o.fpPhone),
     jsonld: [serviceLd({ name: o.name, type: o.type, desc: o.desc, file: o.file }), faqLd(o.faq), crumbLd(o.file, trail)],
     body: (R) => [
-      hero(R, { photo, fpPhone: o.fpPhone, crumbs: trail, pill: o.pill, title: o.h1, lead: o.lead, service: o.service }),
+      hero(R, { photo, fpPhone: o.fpPhone, crumbs: trail, pill: o.pill, title: o.h1, lead: o.lead, quoteService: o.quote }),
+      subServices(R, { h2: o.subsH2, lead: o.subsLead, items: o.subs, page: o.file }),
       sec({ id: 'signs', cls: 'bg-white', eyebrow: 'Signs to watch for', h2: o.signsH2, lead: o.signsLead,
         inner: checklist(o.signs) + (o.signsAfter || '') }),
       o.second ? sec({ id: 'more', inner: split({ ...o.second, photo: o.second.photo ? ph(o.second.photo) : null, id: 'more-title' }) }) : '',
@@ -25,7 +27,6 @@ export function servicePage(o, ph) {
       reviewsSection(R, reviewsFor(o.reviews)),
       faqSection(R, o.faq, { h2: o.faqH2, cls: 'bg-white', prefix: o.file.replace('.html', '') }),
       club(R),
-      bookCall(R, o.service),
       areasStrip(R),
     ].join('\n\n'),
   };
@@ -33,13 +34,14 @@ export function servicePage(o, ph) {
 
 export const SERVICE_PAGES = [
   {
-    file: 'ac-repair.html', name: 'AC Repair', type: 'Air conditioner repair', photo: 'ac-repair-hero', second: {
+    file: 'ac-repair.html', quote: 'No cooling', subsH2: 'What We <span class="accent">Fix.</span>', subs: [['Warm air from the vents', 'Capacitors, contactors, and refrigerant leaks.'], ['Outdoor fan not spinning', 'Fan motors and blades, usually same day.'], ['Frozen coils and lines', 'Airflow, filters, and low refrigerant.'], ['Water leaking inside', 'Clogged drain lines and cracked pans.'], ['Short cycling', 'Thermostats, sensors, and oversized units.'], ['Loud or strange noises', 'Bearings, loose panels, and failing motors.']],
+    name: 'AC Repair', type: 'Air conditioner repair', photo: 'ac-repair-hero', second: {
       eyebrow: 'On the van', h2: 'Most Parts Ride <span class="accent">With Us.</span>',
       lead: 'Capacitors, contactors, fan motors, and the common refrigerant fittings are already on the van, so most AC repairs get done in one visit.',
       paras: ['If a part has to be ordered, we tell you the day it arrives and come back on the first open slot. In a heat wave, we will leave a portable fan or two and check on you the next morning.'] },
     parent: ['Cooling', 'cooling.html'],
     titleTag: 'AC Repair in Tracy, CA | Same-Day Service | Pinwheel',
-    desc: 'Same-day AC repair in Tracy, Mountain House, Manteca, and nearby cities. Upfront prices, parts on the van, and a real person on the phone. Sample site.',
+    desc: 'Same-day AC repair in Tracy, Mountain House, Manteca, and nearby cities. Upfront prices, parts on the van, and a real person on the phone.',
     og: 'AC Repair in Tracy, CA', pill: 'Cooling service in Tracy, CA', service: 'AC repair',
     h1: '<span class="accent">AC Repair</span> in Tracy, CA.',
     lead: 'When your AC quits in July, we usually get a tech to your door the same day. Most repairs are done in one visit, and you see the price in writing before we touch anything.',
@@ -51,14 +53,15 @@ export const SERVICE_PAGES = [
     faq: [['How fast can you get here?', 'Most homes in Tracy, Mountain House, Lathrop, and Manteca get a same-day visit. Stockton and Livermore are usually the same day or the next morning.'], ['Is it worth repairing an older AC?', 'Under 10 years old, a repair usually makes sense. Past 15 years, or when a repair costs more than a third of a new system, replacing often saves money. Our <a href="cooling.html#repair-or-replace">repair-or-replace helper</a> gives you a quick answer.'], ['Do you work on every brand?', 'Yes. We service every major brand of central AC, heat pump, and ductless system.'], ['Do you charge more on weekends?', 'Evenings and Sundays carry an after-hours fee, and we tell you the amount before anyone drives over. Comfort Club members never pay it.']],
   },
   {
-    file: 'ac-installation.html', name: 'AC Installation & Replacement', short: 'AC Installation', type: 'Air conditioner installation and replacement', photo: 'ac-install-hero',
+    file: 'ac-installation.html', quote: 'New system', subsH2: 'New Systems, <span class="accent">Sized Right.</span>', subs: [['Central AC replacement', 'A new condenser and coil, matched to your furnace.'], ['AC and furnace together', 'A matched system with one warranty.'], ['Heat pump systems', 'One system that heats and cools.'], ['Ductless mini-splits', 'For additions, garages, and hot rooms.'], ['Permits and inspection', 'We pull the permit and meet the inspector.'], ['Rebates and financing', 'We find your rebates and show the monthly cost.']],
+    name: 'AC Installation & Replacement', short: 'AC Installation', type: 'Air conditioner installation and replacement', photo: 'ac-install-hero',
     parent: ['Cooling', 'cooling.html'],
     titleTag: 'AC Installation & Replacement in Tracy, CA | Pinwheel',
-    desc: 'New AC systems for Tracy-area homes, sized with a real load calculation and installed in a day. Upfront pricing, permits, and rebates handled. Sample site.',
+    desc: 'New AC systems for Tracy-area homes, sized with a real load calculation and installed in a day. Upfront pricing, permits, and rebates handled.',
     og: 'AC Installation & Replacement in Tracy, CA', pill: 'Cooling service in Tracy, CA', service: 'New system quote',
     h1: '<span class="accent">AC Installation</span> in Tracy, CA.',
     lead: 'We size every new system with a real load calculation, install most of them in one day, and handle the permit and the rebate paperwork. You get a written price with a few options and no pressure.',
-    signsH2: 'Signs It May Be Time for a <span class="accent">New AC.</span>', signsLead: 'One of these alone does not mean you need a new system. Two or three together usually do.',
+    signsH2: 'Signs It\'s Time for a <span class="accent">New AC.</span>', signsLead: 'One of these alone does not mean you need a new system. Two or three together usually do.',
     signs: ['Your system is more than 15 years old', 'It still uses R-22 refrigerant, which is no longer made', 'A repair quote is more than a third of a new system', 'You have called for repairs two summers in a row', 'Some rooms stay hot no matter what you set', 'Your summer bills keep climbing year after year', 'The outdoor unit is loud enough to hear indoors', 'You are adding a room or finishing a garage'],
     signsAfter: `<p class="pw-more"><a class="btn btn-secondary" href="instant-estimate.html">${ic('i-calculator')}See a price range in seconds</a></p>`,
     visit: [['We measure your home', 'We look at square footage, windows, insulation, attic ducts, and how the sun hits your house, then run a real load calculation.'], ['You pick from clear options', 'You get a written quote with a few systems side by side, the rebates each one qualifies for, and the monthly payment if you want financing.'], ['We install it in a day', 'Most installs take one day. We protect your floors, pull the permit, and haul the old system away.'], ['We test it and meet the inspector', 'We check airflow and refrigerant charge, set up your thermostat, and meet the city inspector so you do not have to.']],
@@ -68,12 +71,13 @@ export const SERVICE_PAGES = [
     faq: [['How long does an install take?', 'Most replacements take one day. A new system in a home with no existing ducts can take two or three.'], ['What size AC do I need?', 'It depends on more than square feet. Windows, insulation, the attic, and the sun all matter. We run a real load calculation, because an oversized unit short cycles and never dries the air.'], ['Do you offer financing?', 'Yes. Most new systems qualify for monthly payments. See the <a href="financing.html">financing page</a> for an example payment.'], ['What warranty comes with it?', 'Most systems come with a 10-year parts warranty, and we add a 2-year labor warranty on every install we do.']],
   },
   {
-    file: 'heating.html', name: 'Furnace Repair & Replacement', short: 'Furnace Repair', type: 'Furnace repair and replacement', photo: 'heating-hero', second: { photo: 'heating-2',
+    file: 'heating.html', quote: 'No heat', subsH2: 'What We <span class="accent">Fix.</span>', subs: [['No heat or cold air', 'Igniters, flame sensors, and gas valves.'], ['Furnace shuts off early', 'Pressure switches, filters, and overheating.'], ['Carbon monoxide checks', 'Every visit, before anything else.'], ['Blower and motor repair', 'Weak airflow and noisy blowers.'], ['Furnace replacement', 'High-efficiency furnaces, installed in a day.'], ['Boilers and wall heaters', 'Older homes in Stockton, Lodi, and Tracy.']],
+    name: 'Furnace Repair & Replacement', short: 'Furnace Repair', type: 'Furnace repair and replacement', photo: 'heating-hero', second: { photo: 'heating-2',
       eyebrow: 'Safety first', h2: 'Every Visit Includes a <span class="accent">CO Check.</span>',
       lead: 'Every heating visit includes a carbon monoxide test and a close look at the igniter, flame sensor, and heat exchanger.',
       paras: ['If your furnace is near the end, we will say so plainly and show you what we found, on camera when we can. Then you decide whether to repair it or replace it.'] },
     titleTag: 'Furnace Repair & Replacement in Tracy, CA | Pinwheel',
-    desc: 'Furnace repair and replacement in Tracy and nearby cities. Same-day heating repairs, carbon monoxide checks on every visit, and upfront prices. Sample site.',
+    desc: 'Furnace repair and replacement in Tracy and nearby cities. Same-day heating repairs, carbon monoxide checks on every visit, and upfront prices.',
     og: 'Furnace Repair & Replacement in Tracy, CA', pill: 'Heating service in Tracy, CA', service: 'Heating repair',
     h1: '<span class="accent">Furnace Repair</span> in Tracy, CA.',
     lead: 'No heat on a cold morning? Most furnace repairs are finished the same day, every visit includes a carbon monoxide check, and you approve the price before we start.',
@@ -85,14 +89,15 @@ export const SERVICE_PAGES = [
     faq: [['Why does my furnace keep shutting off?', 'Short cycling is usually a dirty filter, a clogged flame sensor, or an overheating heat exchanger. The first two are quick fixes. The third is a safety issue, so call the same day.'], ['Should I replace my furnace with a heat pump?', 'Often, yes. Valley winters are mild, so a heat pump heats efficiently and replaces your AC at the same time. See our <a href="heat-pumps.html">heat pump page</a>, and we will show you the numbers for both options.'], ['How often should a furnace be serviced?', 'Once a year, in the fall. A tune-up catches cracked heat exchangers and failing igniters before they leave you cold on a December morning.'], ['Do you work on older homes with boilers?', 'Yes. We service and replace boilers and radiant systems, which still heat many of the older homes in Stockton, Lodi, and downtown Tracy.']],
   },
   {
-    file: 'heat-pumps.html', name: 'Heat Pumps', type: 'Heat pump installation and repair', photo: 'heat-pumps-hero',
+    file: 'heat-pumps.html', quote: 'New system', subsH2: 'Heat Pumps, <span class="accent">Start to Finish.</span>', subs: [['Whole-home heat pumps', 'Replaces your AC and furnace with one system.'], ['Ductless mini-splits', 'One room, an addition, or a garage.'], ['Multi-zone systems', 'Two to four rooms on one outdoor unit.'], ['Heat pump repair', 'Defrost problems, icing, and weak heat.'], ['Rebate paperwork', 'We tell you what you qualify for and file it.'], ['Yearly tune-ups', 'Coils, refrigerant, and defrost checks.']],
+    name: 'Heat Pumps', type: 'Heat pump installation and repair', photo: 'heat-pumps-hero',
     parent: ['Heating', 'heating.html'],
     titleTag: 'Heat Pump Installation & Repair in Tracy, CA | Pinwheel',
-    desc: 'Heat pumps and ductless mini-splits for Tracy-area homes. One quiet system that heats and cools, with rebates we help you claim. Sample site.',
+    desc: 'Heat pumps and ductless mini-splits for Tracy-area homes. One quiet system that heats and cools, with rebates we help you claim.',
     og: 'Heat Pumps in Tracy, CA', pill: 'Heating and cooling in Tracy, CA', service: 'Heat pump',
     h1: '<span class="accent">Heat Pumps</span> in Tracy, CA.',
     lead: 'A heat pump heats your home in January and cools it in July with one quiet system. Our mild valley winters are exactly where heat pumps work best, and we help you claim the rebates.',
-    signsH2: 'Signs a Heat Pump Is a <span class="accent">Good Fit.</span>', signsLead: 'A heat pump is not right for every home. These are the signs it probably is for yours.',
+    signsH2: 'Is a Heat Pump <span class="accent">Right for You?</span>', signsLead: 'A heat pump is not right for every home. These are the signs it probably is for yours.',
     signs: ['Your AC and furnace are both more than 12 years old', 'You want to lower or drop your winter gas bill', 'You are adding a room, an ADU, or a garage gym', 'One bedroom never warms up or cools down', 'You have solar panels or plan to add them', 'Your existing heat pump runs constantly in winter', 'Ice builds up on your heat pump and does not clear', 'You want one system to maintain instead of two'],
     visit: [['We look at your whole system', 'We check your ducts, electrical panel, and insulation to see whether a ducted heat pump or a ductless system fits best.'], ['You compare real numbers', 'Your quote shows the cost, the rebates, and what we expect your yearly bills to be with each option.'], ['We install it cleanly', 'We mount units carefully, run tidy line sets, and protect your floors and walls.'], ['We teach you the settings', 'We set up the thermostat or remote with you, so you know how to get the most out of it.']],
     prices: [['Heat pump repair visit', '$79', 'Waived when you go ahead with the repair.'], ['Ductless mini-split, one zone', '$4,200', 'For one room, an addition, or a garage.'], ['Two-zone ductless system', '$7,600', 'Two rooms on one outdoor unit.'], ['Whole-home heat pump', '$12,400', 'Before rebates. Most homes qualify for some.']],
@@ -100,13 +105,14 @@ export const SERVICE_PAGES = [
     faq: [['Does a heat pump work in our winters?', 'Yes. Our winters are mild, and modern heat pumps heat well even on the coldest valley mornings.'], ['Will it lower my bills?', 'Most homes see a lower winter gas bill, and many see lower summer bills too because new heat pumps are efficient. We show you an estimate before you decide.'], ['Do I need new ductwork?', 'Usually not. A ducted heat pump uses your existing ducts if they are in good shape. Ductless systems need no ducts at all.'], ['Can you help with rebates?', 'Yes. We tell you which rebates your system qualifies for and fill out most of the paperwork for you.']],
   },
   {
-    file: 'water-heaters.html', name: 'Water Heaters', type: 'Water heater repair and replacement', photo: 'water-heaters-hero', second: { reverse: true,
-      eyebrow: 'Tank or tankless?', h2: 'Both Are Good. It Depends on <span class="accent">Your Home.</span>',
+    file: 'water-heaters.html', quote: 'Plumbing problem', subsH2: 'What We <span class="accent">Fix.</span>', subs: [['No hot water', 'Thermostats, elements, burners, and pilots.'], ['Leaking tanks', 'Valves, fittings, and same-day replacement.'], ['Noisy heaters', 'Flushes that clear hard-water sediment.'], ['Tank replacement', '40 and 50-gallon tanks, usually in stock.'], ['Tankless installs', 'Gas and electric, with yearly flushes.'], ['Code upgrades', 'Seismic straps, expansion tanks, and permits.']],
+    name: 'Water Heaters', type: 'Water heater repair and replacement', photo: 'water-heaters-hero', second: { reverse: true,
+      eyebrow: 'Tank or tankless?', h2: 'Both Work. <span class="accent">Your Home Decides.</span>',
       lead: 'A tank costs less and swaps in fast. Tankless lasts longer and never runs out of hot water, but it costs more up front and may need a bigger gas line.',
       paras: ['We look at your budget, your space, and how much hot water your family uses, then tell you plainly which one we would put in our own house.'] },
     parent: ['Plumbing', 'plumbing.html'],
     titleTag: 'Water Heater Repair & Replacement in Tracy, CA | Pinwheel',
-    desc: 'Water heater repair, flushes, and same-day replacement in Tracy and nearby cities. Tank and tankless, with upfront prices. Sample site.',
+    desc: 'Water heater repair, flushes, and same-day replacement in Tracy and nearby cities. Tank and tankless, with upfront prices.',
     og: 'Water Heaters in Tracy, CA', pill: 'Plumbing service in Tracy, CA', service: 'Water heater',
     h1: '<span class="accent">Water Heaters</span> in Tracy, CA.',
     lead: 'No hot water, a leak, or a heater that sounds like popcorn? We repair and flush both tank and tankless heaters, and most replacements are done the same day with the old one hauled away.',
@@ -118,10 +124,11 @@ export const SERVICE_PAGES = [
     faq: [['How long does a water heater last here?', 'Eight to twelve years for a tank, and longer for tankless with a yearly flush. Valley water is hard, so a yearly flush makes a real difference.'], ['Why is my water heater making noise?', 'Usually sediment at the bottom of the tank. A flush often quiets it down. Our guide, <a href="resources/water-heater-noise.html">Why Is My Water Heater Making That Noise?</a>, explains each sound.'], ['Can you replace it the same day?', 'Most of the time, yes. We keep common 40 and 50-gallon tanks in stock.'], ['Do I need a permit?', 'Yes. A new water heater needs a city permit. We pull it and meet the inspector for you.']],
   },
   {
-    file: 'drains.html', name: 'Drains & Sewer', type: 'Drain cleaning and sewer line repair', photo: 'drains-hero',
+    file: 'drains.html', quote: 'Plumbing problem', subsH2: 'What We <span class="accent">Clear.</span>', subs: [['Kitchen and bath drains', 'Slow sinks, tubs, and showers.'], ['Main line clogs', 'Backups in more than one drain at once.'], ['Camera inspections', 'You get the video of your line.'], ['Hydro jetting', 'Grease and root buildup, cleared to the wall.'], ['Sewer line repair', 'Spot repairs and full replacements.'], ['Trenchless options', 'New line through one or two small openings.']],
+    name: 'Drains & Sewer', type: 'Drain cleaning and sewer line repair', photo: 'drains-hero',
     parent: ['Plumbing', 'plumbing.html'],
     titleTag: 'Drain Cleaning & Sewer Line Repair in Tracy, CA | Pinwheel',
-    desc: 'Drain cleaning, main line clogs, camera inspections, and sewer line repair in Tracy and nearby cities. Upfront prices. Sample site.',
+    desc: 'Drain cleaning, main line clogs, camera inspections, and sewer line repair in Tracy and nearby cities. Upfront prices.',
     og: 'Drains & Sewer in Tracy, CA', pill: 'Plumbing service in Tracy, CA', service: 'Drain cleaning',
     h1: '<span class="accent">Drains &amp; Sewer</span> in Tracy, CA.',
     lead: 'We clear slow sinks, backed-up showers, and main line clogs, and we run a camera down the line when a clog keeps coming back. You see the price and the video before we dig.',
@@ -133,13 +140,14 @@ export const SERVICE_PAGES = [
     faq: [['Should I use drain cleaner from the store?', 'We do not recommend it. It can damage older pipes and rarely clears the whole clog. A cable or jetting clears it properly.'], ['Why does my clog keep coming back?', 'Usually roots, grease buildup, or a sagging section of pipe. A camera inspection shows us which one, so we fix the cause instead of the symptom.'], ['Can you fix a sewer line without digging up the yard?', 'Often, yes. Trenchless lining or pipe bursting can replace a damaged line through one or two small openings.'], ['Do you charge more on weekends?', 'Evenings and Sundays carry an after-hours fee, and we tell you the amount before anyone drives over.']],
   },
   {
-    file: 'leak-repair.html', name: 'Leak Repair & Repiping', short: 'Leak Repair', type: 'Leak detection, leak repair, and repiping', photo: 'leak-hero', second: { photo: 'repipe-2',
+    file: 'leak-repair.html', quote: 'Plumbing problem', subsH2: 'What We <span class="accent">Fix.</span>', subs: [['Leak detection', 'Listening gear and thermal cameras.'], ['Slab leaks', 'Reroutes that skip breaking the floor.'], ['Pinhole leaks', 'Copper and galvanized pipe repair.'], ['Whole-home repipes', 'PEX for most homes, water on every night.'], ['Fixture leaks', 'Toilets, faucets, and shutoff valves.'], ['Drywall patching', 'We patch and texture every opening.']],
+    name: 'Leak Repair & Repiping', short: 'Leak Repair', type: 'Leak detection, leak repair, and repiping', photo: 'leak-hero', second: { photo: 'repipe-2',
       eyebrow: 'Repiping', h2: 'One Repipe Fixes <span class="accent">All Three.</span>',
       lead: 'Many older homes still have galvanized steel pipes. They rust from the inside, which means low pressure, rusty water, and pinhole leaks.',
       paras: ['A repipe fixes all three at once. We map the job, protect your floors, keep your water on every night, and patch every access hole before we leave.'] },
     parent: ['Plumbing', 'plumbing.html'],
     titleTag: 'Leak Repair & Repiping in Tracy, CA | Pinwheel',
-    desc: 'Leak detection, slab leak repair, and whole-home repiping in Tracy and nearby cities. We find leaks with listening gear and patch cleanly. Sample site.',
+    desc: 'Leak detection, slab leak repair, and whole-home repiping in Tracy and nearby cities. We find leaks with listening gear and patch cleanly.',
     og: 'Leak Repair & Repiping in Tracy, CA', pill: 'Plumbing service in Tracy, CA', service: 'Leak repair',
     h1: '<span class="accent">Leak Repair</span> in Tracy, CA.',
     lead: 'We find hidden leaks with listening gear and thermal cameras, fix them with as little drywall work as possible, and repipe whole homes when the old pipes are done.',
@@ -151,9 +159,10 @@ export const SERVICE_PAGES = [
     faq: [['How do I know if I have a slab leak?', 'Warm spots on the floor, the sound of running water, and a water bill that jumped are the usual signs. A leak detection visit confirms it.'], ['Do I need to repipe the whole house?', 'Not always. If your pipes are galvanized or you keep getting pinhole leaks, a repipe usually costs less than chasing leaks. We tell you plainly which one makes sense.'], ['Will you make a mess of my walls?', 'We cut the smallest openings we can, and patching and texture are part of the quote.'], ['How long does a repipe take?', 'Most single-story homes take two to three days, and your water is back on every night.']],
   },
   {
-    file: 'air-quality.html', name: 'Indoor Air Quality', type: 'Indoor air quality: filters, purifiers, duct cleaning', photo: 'air-quality-hero',
+    file: 'air-quality.html', quote: 'Tune-up', subsH2: 'What We <span class="accent">Install.</span>', subs: [['Better filters', 'MERV 13 media cabinets for smoke and pollen.'], ['Whole-home purifiers', 'Installed in the duct, every room covered.'], ['Duct cleaning', 'For pets, remodels, and dusty homes.'], ['Duct sealing', 'Stops dusty attic air from leaking in.'], ['Humidifiers', 'Less static and dry skin in winter.'], ['Smart thermostats', 'Set it from your phone and save power.']],
+    name: 'Indoor Air Quality', type: 'Indoor air quality: filters, purifiers, duct cleaning', photo: 'air-quality-hero',
     titleTag: 'Indoor Air Quality in Tracy, CA | Filters, Purifiers, Duct Cleaning | Pinwheel',
-    desc: 'Better filters, whole-home purifiers, duct cleaning, and humidity control for Tracy-area homes, especially during wildfire smoke season. Sample site.',
+    desc: 'Better filters, whole-home purifiers, duct cleaning, and humidity control for Tracy-area homes, especially during wildfire smoke season.',
     og: 'Indoor Air Quality in Tracy, CA', pill: 'Air quality service in Tracy, CA', service: 'Air quality check',
     h1: '<span class="accent">Indoor Air Quality</span> in Tracy, CA.',
     lead: 'Wildfire smoke reaches Tracy most summers, and valley dust is here all year. We clean ducts and install better filters and whole-home purifiers, so the air inside your home stays clean.',

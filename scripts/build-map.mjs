@@ -20,7 +20,8 @@
   3. Renders a light SVG in the site's colors (no labels in the image, so it stays crisp
      and small) and an HTML partial with a pin and label for every city, Tracy as home
      base, a tap-through to Google Maps, and the "© OpenStreetMap contributors" credit.
-  Labels are placed automatically to avoid collisions; "labelSide" in the config overrides one
+  "labelOnly": ["Manteca", ...] keeps a dot for every city but a label only on these (TEMPLATE-PLAYBOOK: with 2 or more
+  counties, label up to 8 main cities plus home base). Labels are placed automatically to avoid collisions; "labelSide" in the config overrides one
   (r, l, t, b, tr, tl, br, bl).
   Responses are cached in scripts/.cache/, so a rebuild works offline and does not
   hit the OSM servers again. Delete the cache files to refresh the data.
@@ -301,7 +302,7 @@ const pinHtml = pins.map((c) => c.nearby
   ? `    <span class="svc-place" style="left:${pct(c.x, W)};top:${pct(c.y, H)}">${esc(c.name)}</span>`
   : c.hq
   ? `    <span class="svc-pin is-hq" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-hq-mark"><svg><use href="#logo-mark"/></svg></span><span class="svc-pin-label"><strong>${esc(c.name)}</strong><small>${esc(cfg.hqLabel || '')}</small></span></span>`
-  : `    <span class="svc-pin" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-pin-label">${esc(c.name)}</span></span>`)
+  : `    <span class="svc-pin${cfg.labelOnly && !cfg.labelOnly.includes(c.name) ? ' is-minor' : ''}" data-side="${c.side}" style="left:${pct(c.x, W)};top:${pct(c.y, H)}"><span class="svc-pin-label">${esc(c.name)}</span></span>`)
   .concat(places.map((c) => `    <span class="svc-place svc-region" style="left:${pct(c.x, W)};top:${pct(c.y, H)}">${esc(c.name)}</span>`)).join('\n');
 const partial = `<!-- Built by scripts/build-map.mjs from ${cfgPath.replace(/^.*scripts\//, 'scripts/')}. Edit the config and rebuild instead of editing this file. -->
 <a class="svc-map" href="${esc(gmaps)}" target="_blank" rel="noopener">

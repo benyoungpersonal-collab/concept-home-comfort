@@ -14,6 +14,7 @@ import { shell, ic } from './pinwheel/components.mjs';
 import { SERVICE_PAGES, servicePage } from './pinwheel/pages-services.mjs';
 import * as O from './pinwheel/pages-other.mjs';
 import { cityPages, areasHub } from './pinwheel/pages-areas.mjs';
+import { home, projectsPage } from './pinwheel/pages-home.mjs';
 import { GROUPS, CITIES, ABOUT_MENU, PHONE, TEL, SMS, SITE } from './pinwheel/site-data.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -29,7 +30,7 @@ const PHOTO = {
   'specials-hero': 'pw-specials', 'estimate-hero': 'pw-estimate', 'book-hero': 'pw-book', 'reviews-hero': 'pw-reviews', 'about-van': 'pw-about-van', 'about-team': 'pw-about-team',
   'areas-hero': 'pw-areas', 'manteca-hero': 'pw-manteca', 'lathrop-hero': 'pw-lathrop', 'stockton-hero': 'pw-stockton', 'livermore-hero': 'pw-livermore',
   'faq-hero': 'pw-faq', 'resources-hero': 'pw-resources', 'article-ac-hero': 'pw-article-ac', 'article-wh-hero': 'pw-article-wh',
-  'privacy-hero': 'pw-privacy', 'notfound-hero': 'pw-notfound', 'credits-hero': 'pw-credits', 'contact-2': 'pw-contact-2',
+  'home-hero': 'pw-home-hero', 'home-hero-phone': 'pw-home-hero-phone', 'privacy-hero': 'pw-privacy', 'notfound-hero': 'pw-notfound', 'credits-hero': 'pw-credits', 'contact-2': 'pw-contact-2',
   // existing photos that move to (or stay on) one inner page
   thermostat: 'thermostat', couple: 'couple', turbines: 'turbines', 'tech-door': 'tech-door', 'stucco-home': 'stucco-home', suburb: 'suburb', 'about-street': 'pw-about-street',
 };
@@ -37,6 +38,7 @@ const missing = new Set();
 const ph = (slot) => { const k = PHOTO[slot] || slot; if (photos[k]) return k; missing.add(slot); return 'stucco-home'; };
 
 const pages = [
+  home(ph), projectsPage(ph),
   ...SERVICE_PAGES.map((o) => servicePage(o, ph)),
   O.services(ph), O.cooling(ph), O.plumbing(ph), O.emergency(ph), O.comfortClub(ph), O.financing(ph), O.specials(ph), O.estimate(ph), O.book(ph),
   O.reviews(ph), O.about(ph), O.faq(ph), O.resources(ph), ...O.articles(ph), O.contact(ph), O.credits(ph), O.privacy(ph), O.notFound(ph),
@@ -81,7 +83,6 @@ ${mega}
             </div>
           </div>
         </li>
-        <li>${nl('instant-estimate.html', 'Instant Estimate', 'nav-link')}</li>
         <li>${nl('comfort-club.html', 'Comfort Club', 'nav-link')}</li>
         <li>${nl('specials.html', 'Specials', 'nav-link')}</li>
         <li>
@@ -106,11 +107,14 @@ ${ABOUT_MENU.map((m) => `              <a class="panel-link" href="{{root}}${m.f
       </ul>
     </nav>
     <div class="header-actions">
+      <div class="pw-lang" role="group" aria-label="Language / Idioma" translate="no">
+        <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button><span class="pw-lang-sep" aria-hidden="true">/</span><button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+      </div>
       <a class="header-phone" href="${TEL}" aria-label="Call or text us ${PHONE}">
         <span class="icon-wrap">${ic('i-phone')}</span>
         <span class="header-phone-text" aria-hidden="true"><small>Call or text us</small><span>${PHONE}</span></span>
       </a>
-      <a class="btn btn-primary btn-sm header-book" href="{{root}}book.html">Book Online</a>
+      <a class="btn btn-primary btn-sm header-book" href="#quote" data-quote-link data-home="{{root}}index.html#quote">Free Quote</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-open>${ic('i-menu')}</button>
     </div>
   </div>
@@ -146,7 +150,7 @@ ${GROUPS.map((g) => `      <details class="mm-acc">
     </div>
     <div class="mm-cta">
       <a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
-      <a class="btn btn-navy btn-lg" href="{{root}}book.html">${ic('i-calendar')}Book online</a>
+      <a class="btn btn-navy btn-lg" href="#quote" data-quote-link data-home="{{root}}index.html#quote" data-menu-close>${ic('i-send')}Get My Free Quote</a>
     </div>
     <p class="mm-hours">We answer Monday to Saturday, 7am to 7pm, and the emergency line is open 24/7.</p>
   </nav>
@@ -160,7 +164,7 @@ const footCols = [
   ['Cooling &amp; Heating', [['ac-repair.html', 'AC Repair'], ['ac-installation.html', 'AC Installation'], ['cooling.html', 'Cooling Overview'], ['heating.html', 'Furnace Repair'], ['heat-pumps.html', 'Heat Pumps'], ['air-quality.html', 'Indoor Air Quality']]],
   ['Plumbing', [['plumbing.html', 'Plumbing Overview'], ['water-heaters.html', 'Water Heaters'], ['drains.html', 'Drains &amp; Sewer'], ['leak-repair.html', 'Leak Repair &amp; Repiping'], ['emergency.html', '24/7 Emergency'], ['services.html', 'All Services']]],
   ['Plans &amp; Tools', [['instant-estimate.html', 'Instant Estimate'], ['comfort-club.html', 'Comfort Club'], ['specials.html', 'Specials'], ['financing.html', 'Financing'], ['book.html', 'Book Online']]],
-  ['Company', [['about.html', 'About Us'], ['reviews.html', 'Reviews'], ['review.html', 'Write a Review'], ['faq.html', 'FAQ'], ['contact.html', 'Contact']]],
+  ['Company', [['about.html', 'About Us'], ['projects.html', 'Projects'], ['reviews.html', 'Reviews'], ['review.html', 'Write a Review'], ['faq.html', 'FAQ'], ['contact.html', 'Contact']]],
   ['Service Areas', [['service-areas.html', 'All Service Areas'], ...CITIES.filter((c) => c.file).map((c) => [c.file, c.name])]],
   ['Guides &amp; Info', [['resources.html', 'Resources'], ['resources/ac-repair-or-replace.html', 'Repair or Replace Your AC?'], ['resources/water-heater-noise.html', 'Water Heater Noises'], ['privacy.html', 'Privacy'], ['credits.html', 'Photo Credits'], ['sample-report.html', 'Sample Monthly Report']]],
 ];
@@ -184,15 +188,16 @@ const footer = `<footer class="site-footer on-dark pw-footer">
     </div>
     <div class="pw-foot-links">
 ${footCols.map(([t, links]) => `      <nav aria-label="${t.replace('&amp;', 'and')}">
-        <p class="footer-title">${t}</p>
-        <ul class="footer-links">${links.map(([f, l]) => fl(f, l)).join('')}</ul>
+        <details class="pw-foot-col" data-foot-col>
+          <summary class="footer-title">${t}<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+          <ul class="footer-links">${links.map(([f, l]) => fl(f, l)).join('')}</ul>
+        </details>
       </nav>`).join('\n')}
     </div>
   </div>
   <div class="container footer-bottom">
     <p class="concept-pill on-dark"><b aria-hidden="true">BY</b>Concept site by Ben Young Web Design. Sample data.</p>
     <p>Pinwheel Heating, Air &amp; Plumbing is a fictional business. Reviews, names, numbers, and prices on this site are illustrative. © 2026</p>
-    <p>Concept by Ben Young Web Design.</p>
   </div>
 </footer>
 `;
@@ -200,7 +205,7 @@ writeFileSync(join(ROOT, 'partials/footer.html'), footer);
 
 /* ---------- sitemap.xml ---------- */
 const today = new Date().toISOString().slice(0, 10);
-const files = ['index.html', ...pages.map((p) => p.file).filter((f) => f !== '404.html'), 'review.html', 'sample-report.html'];
+const files = [...pages.map((p) => p.file).filter((f) => f !== '404.html'), 'review.html', 'sample-report.html'];
 const pri = (f) => f === 'index.html' ? '1.0' : /^(services|ac-|heating|heat-pumps|plumbing|water-heaters|drains|leak-repair|air-quality|cooling|emergency)/.test(f) ? '0.9' : f.startsWith('service-areas') ? '0.8' : '0.6';
 writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
