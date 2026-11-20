@@ -1430,5 +1430,185 @@
     "use": "Projects, ductwork",
     "user": "timschmidbauer",
     "base": "https://images.unsplash.com/photo-1770816306659-adcf99a11aeb"
+  },
+  "pw-explainer-furnace-before": {
+    "file": "images/photos/pw-explainer-furnace-before.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1280,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#898177",
+    "alt": "Old 20-year-old gas furnace in a garage corner with taped, cracked duct seams, a rusty vent pipe, a dusty side filter, and sooty burners",
+    "by": "Ben Young Web Design",
+    "use": "Repair or Replace before photo (homepage)",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-explainer-furnace-after": {
+    "file": "images/photos/pw-explainer-furnace-after.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1280,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#8c8983",
+    "alt": "The same garage corner with a new gray high-efficiency furnace, sealed ducts, and new white PVC venting",
+    "by": "Ben Young Web Design",
+    "use": "Repair or Replace after photo (homepage)",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-projects-ac-before": {
+    "file": "images/photos/pw-projects-ac-before.jpg",
+    "site": "Supplied",
+    "w": 1536,
+    "h": 1024,
+    "fp": [
+      0.42,
+      0.55
+    ],
+    "color": "#827561",
+    "alt": "Rusty, leaf-covered 20-year-old AC unit on a cracked pad beside a stucco wall",
+    "by": "Ben Young Web Design",
+    "use": "Projects before and after slider (homepage, Projects page)",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-projects-ac-after": {
+    "file": "images/photos/pw-projects-ac-after.jpg",
+    "site": "Supplied",
+    "w": 1536,
+    "h": 1024,
+    "fp": [
+      0.42,
+      0.55
+    ],
+    "color": "#737166",
+    "alt": "New gray AC unit on a fresh concrete pad by the same stucco wall, with new wiring and mulch",
+    "by": "Ben Young Web Design",
+    "use": "Projects before and after slider (homepage, Projects page)",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-ac-side-yard": {
+    "file": "images/photos/pw-pj-ac-side-yard.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.48,
+      0.55
+    ],
+    "color": "#7e7a75",
+    "alt": "New gray AC unit on a concrete pad in a gravel side yard next to a stucco home",
+    "by": "Ben Young Web Design",
+    "use": "AC Installs project card, Cooling page hero",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-ac-pair": {
+    "file": "images/photos/pw-pj-ac-pair.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.52,
+      0.55
+    ],
+    "color": "#797e73",
+    "alt": "Two new matching AC units on concrete pads beside a gray-sided home",
+    "by": "Ben Young Web Design",
+    "use": "AC Installs project card, Projects page hero",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-furnace-attic": {
+    "file": "images/photos/pw-pj-furnace-attic.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#786151",
+    "alt": "New furnace on a wood platform in an attic, with insulated ducts and white PVC vent pipes",
+    "by": "Ben Young Web Design",
+    "use": "Furnaces project card",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-furnace-closet": {
+    "file": "images/photos/pw-pj-furnace-closet.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.47,
+      0.5
+    ],
+    "color": "#9e968c",
+    "alt": "New gray furnace with a clean filter in a hallway closet, louvered doors open",
+    "by": "Ben Young Web Design",
+    "use": "Furnaces project card",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-furnace-garage": {
+    "file": "images/photos/pw-pj-furnace-garage.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.55,
+      0.5
+    ],
+    "color": "#808182",
+    "alt": "New gray furnace beside a water heater on a raised garage platform",
+    "by": "Ben Young Web Design",
+    "use": "Furnaces project card",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-ducts-attic": {
+    "file": "images/photos/pw-pj-ducts-attic.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.5,
+      0.45
+    ],
+    "color": "#937163",
+    "alt": "New insulated flex ducts running from a sheet-metal plenum across an attic floor",
+    "by": "Ben Young Web Design",
+    "use": "Ductwork project card, Cooling page split photo",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-ducts-plenum": {
+    "file": "images/photos/pw-pj-ducts-plenum.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.5,
+      0.45
+    ],
+    "color": "#88847d",
+    "alt": "New sheet-metal supply plenum hung from a garage ceiling with a sealed flex duct collar",
+    "by": "Ben Young Web Design",
+    "use": "Ductwork project card",
+    "edit": "AI-made sample image with no people."
+  },
+  "pw-pj-ducts-register": {
+    "file": "images/photos/pw-pj-ducts-register.jpg",
+    "site": "Supplied",
+    "w": 1024,
+    "h": 1024,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#ababa7",
+    "alt": "New white ceiling supply register in a bright living room",
+    "by": "Ben Young Web Design",
+    "use": "Ductwork project card",
+    "edit": "AI-made sample image with no people."
   }
 }

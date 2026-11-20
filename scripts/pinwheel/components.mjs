@@ -3,7 +3,7 @@
    fills the shared header, footer, and bar, and builds every photo's srcset from scripts/photos.json. */
 import { SITE, NAME, PHONE, TEL, SMS, CITIES, REVIEWS, STATS } from './site-data.mjs';
 import { quoteBlock } from './blocks.mjs';
-export const OG_IMAGE = 'https://byw-home-comfort.netlify.app/images/og-share-2026-11-20.jpg';
+export const OG_IMAGE = 'https://byw-home-comfort.netlify.app/images/og-share-2026-11-20-v2.jpg';
 
 export const ic = (id, cls = 'icon') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 const attr = (s) => String(s).replace(/&(?![a-z]+;|#\d+;)/g, '&amp;').replace(/"/g, '&quot;');

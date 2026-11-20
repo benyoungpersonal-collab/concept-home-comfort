@@ -154,7 +154,7 @@ h1, h2, h3 { text-wrap: balance; }
   .site-header .logo-tag { letter-spacing: .1em; font-size: 9px; }
 }
 /* Bold style: uppercase button text runs wider, so a button inside a card wraps instead of poking past it */
-.deal .btn, .pcard .btn, .card .btn { max-width: 100%; white-space: normal; text-align: center; }
+.deal .btn, .pcard .btn, .card .btn, .pw-side-card .btn { max-width: 100%; white-space: normal; text-align: center; }
 
 
 /* ---------- 4. Homepage hero: full-photo overlay (like Oak & Tule and Ridgeline) ----------
@@ -242,6 +242,7 @@ h1, h2, h3 { text-wrap: balance; }
   .pw-chips { gap: 8px; }
 }
 @media (min-width: 375px) and (max-width: 599px) { .pw-ohero .hero-pill.pw-pill { white-space: nowrap; } }
+html[lang="es"] .pw-ohero .hero-pill.pw-pill { white-space: normal; }
 /* Tablets: the wide photo at 160% of the screen width, slid left so the faces sit in the top middle; the words below */
 @media (min-width: 600px) and (max-width: 899px) {
   .pw-ohero { display: flex; flex-direction: column; justify-content: flex-start; padding: calc(62vw + 24px) 0 40px; }
@@ -915,15 +916,20 @@ h1, h2, h3 { text-wrap: balance; }
 .pw-x-checks .icon, .pw-x-after .icon { flex: none; width: 16px; height: 16px; margin-top: 3px; color: var(--c-brand-deep); }
 .pw-x-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .pw-x-card { min-width: 0; }
-.pw-x-frame { position: relative; border-radius: 20px; overflow: hidden; background: #1b1f27; box-shadow: var(--shadow-2); }
+.pw-x-frame { position: relative; border-radius: 20px; overflow: hidden; background: #0b1019; box-shadow: var(--shadow-2); }
 .pw-x-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
 .pw-x-track::-webkit-scrollbar { display: none; }
 .pw-x-track:focus-visible { outline: 3px solid var(--c-brand); outline-offset: -3px; }
-.pw-x-slide { position: relative; flex: 0 0 100%; min-width: 0; margin: 0; scroll-snap-align: start; aspect-ratio: 4 / 5; }
-.pw-x-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.pw-x-slide::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgb(9 13 22 / .9) 0%, rgb(9 13 22 / .75) 34%, rgb(9 13 22 / .2) 56%, rgb(9 13 22 / 0) 66%); }
+/* The photo keeps its full 4:5 frame (no crop), so marker spots match the photo; the caption sits below on dark and overlaps only the floor. */
+.pw-x-slide { position: relative; flex: 0 0 100%; min-width: 0; margin: 0; scroll-snap-align: start; display: flex; flex-direction: column; background: #0b1019; }
+.pw-x-pic { position: relative; aspect-ratio: 4 / 5; }
+.pw-x-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* The after slide has no markers and a shorter caption: its photo grows to fill the slide so no empty band is left. */
+.pw-x-slide + .pw-x-slide .pw-x-pic { aspect-ratio: auto; flex: 1 1 auto; min-height: 0; }
+.pw-x-slide + .pw-x-slide .pw-x-cap { flex: none; margin-top: -120px; }
+.pw-x-pic::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, #0b1019 0%, rgb(11 16 25 / .88) 13%, rgb(11 16 25 / .35) 24%, rgb(11 16 25 / 0) 31%); }
 .pw-x-mark { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--c-brand-deep); border: 2px solid #fff; color: #fff; font-family: var(--ff-ui); font-weight: 600; font-size: 12px; line-height: 1; box-shadow: 0 2px 6px rgb(0 0 0 / .35); }
-.pw-x-cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 16px 18px 18px; color: #fff; }
+.pw-x-cap { position: relative; z-index: 2; flex: 1; margin-top: -26%; padding: 0 18px 18px; color: #fff; }
 .pw-x-cap-label { margin: 0 0 6px; font-family: var(--ff-ui); font-weight: 700; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-brand-light); }
 .pw-x-list { list-style: none; display: grid; gap: 5px; margin: 0 0 8px; padding: 0; }
 .pw-x-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; line-height: 1.35; }
@@ -933,7 +939,7 @@ h1, h2, h3 { text-wrap: balance; }
 .pw-x-after { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; margin: 0; padding: 0; }
 .pw-x-after li { color: #fff; font-size: 14px; }
 .pw-x-after .icon { color: var(--c-brand-light); }
-.pw-x-go { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0; border: 0; background: none; color: #fff; font-family: var(--ff-ui); font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.pw-x-go { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0; border: 0; background: none; color: #fff; font-family: var(--ff-ui); font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .pw-x-go .icon { width: 16px; height: 16px; }
 .pw-x-top { position: absolute; z-index: 3; top: 14px; left: 14px; display: grid; gap: 8px; justify-items: start; pointer-events: none; }
 .pw-x-status { display: flex; align-items: center; gap: 8px; }
@@ -948,7 +954,7 @@ h1, h2, h3 { text-wrap: balance; }
 .pw-x-strip .icon { flex: none; width: 22px; height: 22px; color: var(--c-brand-deep); }
 .pw-x-src { margin: 0; color: var(--c-fine); font-size: 13px; }
 @media (min-width: 1000px) { .pw-x-src { grid-column: 1 / -1; } }
-@media (max-width: 599px) { .pw-x-ctas .btn { width: 100%; } .pw-x-slide { aspect-ratio: 3 / 4.4; } .pw-x-list li, .pw-x-line, .pw-x-after li { font-size: 13.5px; } }
+@media (max-width: 599px) { .pw-x-ctas .btn { width: 100%; } .pw-x-list li, .pw-x-line, .pw-x-after li { font-size: 13.5px; } }
 /* Round prev/next arrows on photos (desktop; phones swipe) */
 .pw-arrow { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1.5px solid rgb(255 255 255 / .7); border-radius: 50%; background: rgb(20 33 61 / .72); color: #fff; box-shadow: 0 2px 8px rgb(0 0 0 / .25); cursor: pointer; }
 .pw-arrow .icon { width: 18px; height: 18px; }
@@ -1152,11 +1158,12 @@ html.pw-es-wait body { visibility: hidden; }
 
 /* Standing rule 2: every button has white text. Tab bars are navy with white text; the picked tab is orange. */
 .pw-pb .pw-qtabs { background: var(--c-navy); }
-.pw-pb .pw-qtabs button { color: rgb(255 255 255 / .88); }
+.pw-pb .pw-qtabs button { min-height: 44px; border: 0; border-radius: 999px; background: transparent; color: #fff; font-family: var(--ff-ui); font-weight: 700; cursor: pointer; }
+.pw-pb .pw-qtabs button:hover { background: rgb(255 255 255 / .1); }
 .pw-pb .pw-qtabs [aria-selected="true"] { --btn-bg: var(--c-brand-deep); color: #fff; }
 .pw-pb .pw-filter-btn { border-color: transparent; background: var(--c-navy); color: #fff; }
 .pw-pb .pw-filter-btn[aria-pressed="true"] { background: var(--c-brand-deep); color: #fff; }
-.pw-pb .pw-filter-btn span { background: rgb(255 255 255 / .18); color: #fff; }
+.pw-pb .pw-filter-btn span { background: rgb(0 0 0 / .22); color: #fff; }
 .pw-pb .pw-filter-btn .icon { color: #fff; }
 /* Standing rule 7: small checks in one block, orange, no bright green */
 .site-pw .checklist .icon, .site-pw .feature li .icon, .site-pw .est-includes .icon, .site-pw .pw-side-list .icon, .site-pw .proof-chips .icon { width: 17px; height: 17px; color: var(--c-brand-deep); }
@@ -1168,3 +1175,5 @@ html.pw-es-wait body { visibility: hidden; }
 @media (max-width: 899px) and (hover: hover) { .pw-pgal-arrows { display: flex; } }
 /* Standing rule 12: no orphan word at the end of a headline */
 .site-pw :is(h1, h2, h3, .h1, .hero-h) { text-wrap: balance; }
+/* Spanish tagline ("Calefacción · Aire · Plomería") is longer than the English one: keep the header inside 320px phones */
+@media (max-width: 359px) { html[lang="es"] .site-header .logo-tag { letter-spacing: .04em; font-size: 8.5px; } }

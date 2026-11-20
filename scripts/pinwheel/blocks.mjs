@@ -93,7 +93,7 @@ export function servicesBlock(R) {
    right with a before/after pair from the same garage (stacked on phones). The BEFORE/AFTER pill, the 01 / 02 counter,
    the dots, and the round prev/next arrows sit on the photo. The before photo has 4 small numbered markers on the
    matching spots; marker spots are set in X_MARKS as % of the photo (left, top). ---------- */
-export const X_MARKS = [[24, 18], [70, 12], [83, 47], [58, 64]];
+export const X_MARKS = [[47, 21.5], [66, 15], [38, 63], [53, 70.5]];
 export function explainer(R) {
   const checks = ['Full system test, inside and out', 'Repair and replace prices side by side', 'Carbon monoxide check on every furnace', 'Rebate and financing help on new systems', 'Nothing starts until you say yes'];
   const before = [
@@ -121,8 +121,10 @@ export function explainer(R) {
         <div class="pw-x-frame">
           <div class="pw-x-track" data-x-track tabindex="0" role="region" aria-label="Before and after photos" aria-roledescription="carousel">
             <figure class="pw-x-slide" aria-label="Before, 1 of 2">
-              <img data-photo="pw-explainer-furnace-before" data-crop="4:5" data-widths="480,720,960,1200" sizes="(min-width: 1000px) 560px, 92vw" alt="">
-              ${X_MARKS.map(([l, t], i) => `<span class="pw-x-mark" style="left:${l}%;top:${t}%" aria-hidden="true">${n2(i)}</span>`).join('')}
+              <div class="pw-x-pic">
+                <img data-photo="pw-explainer-furnace-before" data-crop="4:5" data-widths="480,720,1024" sizes="(min-width: 1000px) 560px, 92vw" alt="">
+                ${X_MARKS.map(([l, t], i) => `<span class="pw-x-mark" style="left:${l}%;top:${t}%" aria-hidden="true">${n2(i)}</span>`).join('')}
+              </div>
               <figcaption class="pw-x-cap">
                 <p class="pw-x-cap-label">Inside a 20-year-old system</p>
                 <ol class="pw-x-list">${before.map(([b, t], i) => `<li><span class="pw-x-n" aria-hidden="true">${n2(i)}</span><span><strong>${b}:</strong> ${t}</span></li>`).join('')}</ol>
@@ -131,7 +133,7 @@ export function explainer(R) {
               </figcaption>
             </figure>
             <figure class="pw-x-slide" aria-label="After, 2 of 2">
-              <img data-photo="pw-explainer-furnace-after" data-crop="4:5" data-widths="480,720,960,1200" sizes="(min-width: 1000px) 560px, 92vw" alt="">
+              <div class="pw-x-pic"><img data-photo="pw-explainer-furnace-after" data-crop="4:5" data-widths="480,720,1024" sizes="(min-width: 1000px) 560px, 92vw" alt=""></div>
               <figcaption class="pw-x-cap">
                 <p class="pw-x-cap-label">After · Same garage, new system</p>
                 <p class="pw-x-line">Sealed ducts, clean venting, and a furnace that runs 90% efficient or better.</p>
