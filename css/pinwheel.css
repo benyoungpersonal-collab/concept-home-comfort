@@ -845,6 +845,8 @@ h1, h2, h3 { text-wrap: balance; }
 @media (max-width: 599px) {
   /* Phones: the face sits just under the header and the words start below it (no text over faces) */
   .pw-hhero { min-height: max(620px, 100svh); padding-top: calc(var(--header-h, 72px) + 150px); }
+  /* The photo is a fixed 4:5 box at the top (face just under the header), fading into the dark below the words */
+  .pw-hhero-photo { bottom: auto; height: 125vw; -webkit-mask-image: linear-gradient(#000 72%, transparent); mask-image: linear-gradient(#000 72%, transparent); }
   .pw-hhero-photo img { object-position: 50% 0; }
   .pw-hhero .pw-pill { display: none; }
   .pw-hhero-h { font-size: clamp(2.5rem, calc((100vw - 32px) / 7.4), 3.2rem); }
