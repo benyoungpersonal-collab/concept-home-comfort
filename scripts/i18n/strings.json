@@ -4220,10 +4220,10 @@
  "The page you were looking for has moved or never existed. Let us get you back on the right road.": [
   "404.html"
  ],
- "⟦s⟧Back to home": [
+ "⟦s⟧Back to Home": [
   "404.html"
  ],
- "⟦s⟧Book online": [
+ "⟦s⟧Book Online": [
   "404.html",
   "resources/ac-repair-or-replace.html",
   "resources/water-heater-noise.html",
@@ -4708,82 +4708,6 @@
   "water-heaters.html",
   "(script)"
  ],
- "Pick your city": [
-  "404.html",
-  "about.html",
-  "ac-installation.html",
-  "ac-repair.html",
-  "air-quality.html",
-  "book.html",
-  "comfort-club.html",
-  "contact.html",
-  "cooling.html",
-  "credits.html",
-  "drains.html",
-  "emergency.html",
-  "faq.html",
-  "financing.html",
-  "heat-pumps.html",
-  "heating.html",
-  "index.html",
-  "instant-estimate.html",
-  "leak-repair.html",
-  "plumbing.html",
-  "privacy.html",
-  "projects.html",
-  "resources.html",
-  "resources/ac-repair-or-replace.html",
-  "resources/water-heater-noise.html",
-  "reviews.html",
-  "service-areas.html",
-  "service-areas/lathrop.html",
-  "service-areas/livermore.html",
-  "service-areas/manteca.html",
-  "service-areas/mountain-house.html",
-  "service-areas/stockton.html",
-  "service-areas/tracy.html",
-  "services.html",
-  "specials.html",
-  "water-heaters.html"
- ],
- "Somewhere else nearby": [
-  "404.html",
-  "about.html",
-  "ac-installation.html",
-  "ac-repair.html",
-  "air-quality.html",
-  "book.html",
-  "comfort-club.html",
-  "contact.html",
-  "cooling.html",
-  "credits.html",
-  "drains.html",
-  "emergency.html",
-  "faq.html",
-  "financing.html",
-  "heat-pumps.html",
-  "heating.html",
-  "index.html",
-  "instant-estimate.html",
-  "leak-repair.html",
-  "plumbing.html",
-  "privacy.html",
-  "projects.html",
-  "resources.html",
-  "resources/ac-repair-or-replace.html",
-  "resources/water-heater-noise.html",
-  "reviews.html",
-  "service-areas.html",
-  "service-areas/lathrop.html",
-  "service-areas/livermore.html",
-  "service-areas/manteca.html",
-  "service-areas/mountain-house.html",
-  "service-areas/stockton.html",
-  "service-areas/tracy.html",
-  "services.html",
-  "specials.html",
-  "water-heaters.html"
- ],
  "What's Going On?": [
   "404.html",
   "about.html",
@@ -5012,7 +4936,7 @@
   "specials.html",
   "water-heaters.html"
  ],
- "Repair or replace check": [
+ "System check": [
   "404.html",
   "about.html",
   "ac-installation.html",
@@ -8187,7 +8111,7 @@
  "<span class=\"accent\">About Us</span> in Tracy, CA.": [
   "about.html"
  ],
- "Luis's dad started Pinwheel in 2010 with one van, one phone, and a simple idea: treat every home like it belongs to family. Today Luis and Carmen Ortega run it the same way.": [
+ "Hi, I'm Luis Ortega. I started Pinwheel in 2010 with one van.": [
   "about.html"
  ],
  "⟦s⟧Call <span class=\"nowrap\">(209) 555-0142</span>": [
@@ -8222,30 +8146,24 @@
   "specials.html",
   "water-heaters.html"
  ],
- "<strong>Luis Ortega</strong>Owner and master tech": [
+ "<strong>Luis Ortega</strong>Owner": [
   "about.html"
  ],
  "Meet the owner": [
   "about.html",
   "index.html"
  ],
- "A Price First, Then <span class=\"accent\">the Work.</span>": [
-  "about.html"
+ "Family Owned in Tracy <span class=\"accent\">Since 2010.</span>": [
+  "about.html",
+  "index.html"
  ],
- "My dad started Pinwheel in 2010 with one van and his name on the side. I grew up riding along on his calls, and I learned early that people remember how you treat them more than what you fixed.": [
-  "about.html"
+ "Hi, I'm Luis Ortega. I started Pinwheel in 2010 with one van. Today my wife, Carmen, runs the office, and our 14 techs cover Tracy and the towns around it. I still look over every new install before we call it done.": [
+  "about.html",
+  "index.html"
  ],
- "He started it because too many neighbors were hearing the price after the work instead of before it. He wanted a company where the price comes first, the tech shows up when he said he would, and the owner's cell number is on the side of the van. Carmen and I took over the day-to-day a few years ago, and we have kept every one of those rules.": [
-  "about.html"
- ],
- "Back then, Dad wrote four promises on a whiteboard in our garage. We still read them at every Monday meeting. We are bigger now, with 14 trained techs and 12 cities across two counties, but the whiteboard has not changed.": [
-  "about.html"
- ],
- "If something isn't right, text me at <span class=\"nowrap\">(209) 555-0142</span>. I read every message.": [
-  "about.html"
- ],
- "Names and photos are illustrative.": [
-  "about.html"
+ "Illustrative owner story": [
+  "about.html",
+  "index.html"
  ],
  "Why \"Pinwheel\"?": [
   "about.html"
@@ -8253,7 +8171,7 @@
  "Named for Luis's <span class=\"accent\">Childhood Street.</span>": [
   "about.html"
  ],
- "Every summer on the Tracy street where Luis grew up, kids stuck paper pinwheels in the front lawns, and they spun all evening in the Delta breeze. When his dad needed a name for the company in 2010, that was the picture in his head.": [
+ "Every summer on the Tracy street where Luis grew up, kids stuck paper pinwheels in the front lawns, and they spun all evening in the Delta breeze. When he needed a name for the company in 2010, that was the picture in his head.": [
   "about.html"
  ],
  "A pinwheel is moving air, and moving air is our whole job. Two warm blades stand for heating and two cool blades for cooling, and they all turn around one steady center. That center is the promise we make to every family we work for.": [
@@ -8266,7 +8184,7 @@
  "Four Promises on <span class=\"accent\">Every Job.</span>": [
   "about.html"
  ],
- "Dad wrote these on the whiteboard. Every tech learns them on day one.": [
+ "Every tech learns them on day one.": [
   "about.html"
  ],
  "Price Before Any Work": [
@@ -8308,7 +8226,7 @@
  "<strong>Ray</strong>Install lead, 22 years with tools in hand": [
   "about.html"
  ],
- "<strong>Luis</strong>Owner and master tech, on the trucks since he was a kid": [
+ "<strong>Luis</strong>Owner": [
   "about.html"
  ],
  "<strong>Carmen</strong>Co-owner, runs the office": [
@@ -8400,7 +8318,7 @@
   "specials.html",
   "water-heaters.html"
  ],
- "See every service area⟦s⟧": [
+ "See Every Service Area⟦s⟧": [
   "about.html",
   "ac-installation.html",
   "ac-repair.html",
@@ -8448,7 +8366,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8481,7 +8398,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8514,7 +8430,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8547,7 +8462,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8580,7 +8494,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8613,7 +8526,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8646,7 +8558,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8679,7 +8590,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8712,7 +8622,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8745,7 +8654,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8778,7 +8686,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -8811,7 +8718,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -9060,7 +8966,7 @@
  "You are adding a room or finishing a garage": [
   "ac-installation.html"
  ],
- "⟦s⟧See a price range in seconds": [
+ "⟦s⟧See a Price Range in Seconds": [
   "ac-installation.html"
  ],
  "What we do on the visit": [
@@ -9250,7 +9156,7 @@
   "reviews.html",
   "service-areas/stockton.html"
  ],
- "Read all reviews⟦s⟧": [
+ "Read All Reviews⟦s⟧": [
   "ac-installation.html",
   "ac-repair.html",
   "air-quality.html",
@@ -9258,6 +9164,7 @@
   "emergency.html",
   "heat-pumps.html",
   "heating.html",
+  "index.html",
   "leak-repair.html",
   "service-areas/lathrop.html",
   "service-areas/livermore.html",
@@ -9267,14 +9174,28 @@
   "service-areas/tracy.html",
   "water-heaters.html"
  ],
- "Common <span class=\"accent\">Questions.</span>": [
+ "You've Got Questions. <span class=\"accent\">We've Got Answers.</span>": [
   "ac-installation.html",
   "ac-repair.html",
   "air-quality.html",
+  "comfort-club.html",
+  "cooling.html",
   "drains.html",
+  "emergency.html",
+  "faq.html",
+  "financing.html",
   "heat-pumps.html",
   "heating.html",
+  "index.html",
+  "instant-estimate.html",
   "leak-repair.html",
+  "plumbing.html",
+  "service-areas/lathrop.html",
+  "service-areas/livermore.html",
+  "service-areas/manteca.html",
+  "service-areas/mountain-house.html",
+  "service-areas/stockton.html",
+  "service-areas/tracy.html",
   "water-heaters.html"
  ],
  "Still wondering about something? <a href=\"faq.html\">See every question</a> or call <span class=\"nowrap\">(209) 555-0142</span>.": [
@@ -9393,9 +9314,7 @@
  ],
  "Newly installed AC condenser on a concrete pad beside a fenced backyard lawn": [
   "ac-installation.html",
-  "credits.html",
-  "index.html",
-  "projects.html"
+  "credits.html"
  ],
  "Google review": [
   "ac-installation.html",
@@ -9879,7 +9798,7 @@
  "Pick a service, a day, and a 3-hour arrival window. A real person confirms your visit by text, usually within minutes.": [
   "book.html"
  ],
- "⟦s⟧Start booking": [
+ "⟦s⟧Start Booking": [
   "book.html"
  ],
  "Book a visit": [
@@ -9948,7 +9867,7 @@
   "book.html",
   "comfort-club.html"
  ],
- "⟦s⟧Book my visit": [
+ "⟦s⟧Book My Visit": [
   "book.html"
  ],
  "You Are on the Schedule.": [
@@ -10030,7 +9949,7 @@
  "⟦s⟧No overtime fees": [
   "comfort-club.html"
  ],
- "Join now": [
+ "Join Now": [
   "comfort-club.html"
  ],
  "Does it pay for itself?": [
@@ -10090,9 +10009,6 @@
  "⟦s⟧Rather talk it over? Call <span class=\"nowrap\">(209) 555-0142</span>.": [
   "comfort-club.html"
  ],
- "Comfort Club <span class=\"accent\">Questions.</span>": [
-  "comfort-club.html"
- ],
  "Can I cancel anytime?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
   "comfort-club.html"
  ],
@@ -10145,7 +10061,7 @@
  "<strong><a href=\"sms:+12095550142\">Text the same number</a></strong>Send a photo of the problem and we will text back a window.": [
   "contact.html"
  ],
- "<strong><a href=\"book.html\">Book online</a></strong>Pick a day and a 3-hour window in about a minute.": [
+ "<strong><a href=\"book.html\">Book Online</a></strong>Pick a day and a 3-hour window in about a minute.": [
   "contact.html"
  ],
  "<strong>Email</strong>hello@pinwheel-example.com <span class=\"tag\">Illustrative</span>": [
@@ -10169,7 +10085,7 @@
  "Tell us what is going on and we will text you back during business hours.": [
   "contact.html"
  ],
- "⟦s⟧Send request": [
+ "⟦s⟧Send Request": [
   "contact.html"
  ],
  "Locations": [
@@ -10255,7 +10171,7 @@
  "That is why so many summer calls end with a coil cleaning and a new capacitor, not a whole new system. We also do spring tune-ups, seal and insulate attic ducts, and set up smart thermostats with schedules that trim the afternoon peak.": [
   "cooling.html"
  ],
- "⟦s⟧Book a spring tune-up": [
+ "⟦s⟧Book a Spring Tune-Up": [
   "cooling.html"
  ],
  "Repair or replace?": [
@@ -10324,7 +10240,7 @@
  "Way up this year": [
   "cooling.html"
  ],
- "⟦s⟧Get my answer": [
+ "⟦s⟧Get My Answer": [
   "cooling.html"
  ],
  "Answer all 4 questions to see our take.": [
@@ -10351,14 +10267,7 @@
  "Replace": [
   "cooling.html"
  ],
- "⟦s⟧Book a free in-home quote": [
-  "cooling.html",
-  "instant-estimate.html"
- ],
  "This is a quick guide, not a diagnosis. A tech confirms everything on site.": [
-  "cooling.html"
- ],
- "Cooling <span class=\"accent\">Questions.</span>": [
   "cooling.html"
  ],
  "How often should my AC be serviced?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
@@ -10385,13 +10294,12 @@
  "Cooling & AC Services in Tracy, CA | Pinwheel": [
   "cooling.html"
  ],
- "Stucco homes with palm trees and wall-mounted cooling units along a driveway": [
+ "White stucco home with a red clay tile roof and an arched front entry on a sunny day": [
   "cooling.html",
-  "credits.html"
- ],
- "Smart thermostat on a white wall set to 63 degrees": [
-  "cooling.html",
-  "credits.html"
+  "credits.html",
+  "index.html",
+  "projects.html",
+  "service-areas/tracy.html"
  ],
  "Credits": [
   "credits.html"
@@ -10409,9 +10317,10 @@
   "credits.html"
  ],
  "Smiling mom and young son relaxing together on a gray couch at home": [
-  "credits.html"
+  "credits.html",
+  "index.html"
  ],
- "Photo by <a href=\"https://unsplash.com/@silverkblack?utm_source=pinwheel_concept&amp;utm_medium=referral\">Vitaly Gariev</a> on <a href=\"https://unsplash.com/photos/mother-and-son-smiling-on-a-couch-tSwr_HGh0kQ?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Older showcase page.": [
+ "Photo by <a href=\"https://unsplash.com/@silverkblack?utm_source=pinwheel_concept&amp;utm_medium=referral\">Vitaly Gariev</a> on <a href=\"https://unsplash.com/photos/mother-and-son-smiling-on-a-couch-tSwr_HGh0kQ?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Home hero.": [
   "credits.html"
  ],
  "Two gray outdoor A/C units on concrete pads beside a gray-sided home, with hydrangeas and a garden path": [
@@ -10436,13 +10345,9 @@
  ],
  "Ductless heat pump outdoor unit in bright sun beside a teal wall": [
   "credits.html",
-  "index.html",
-  "projects.html"
+  "index.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@87gi?utm_source=pinwheel_concept&amp;utm_medium=referral\">yanagi</a> on <a href=\"https://unsplash.com/photos/a-air-conditioner-sitting-outside-of-a-building-_7huNth8Y2s?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Heating page, ductless section.": [
-  "credits.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@danlefeb?utm_source=pinwheel_concept&amp;utm_medium=referral\">Dan LeFebvre</a> on <a href=\"https://unsplash.com/photos/gray-nest-thermostat-displaying-at-63-RFAHj4tI37Y?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: AC repair tile, cooling, air quality.": [
   "credits.html"
  ],
  "New copper water pipes running through an open wall": [
@@ -10450,10 +10355,6 @@
  ],
  "Photo by <a href=\"https://unsplash.com/@sparkledump?utm_source=pinwheel_concept&amp;utm_medium=referral\">Kelsey Todd</a> on <a href=\"https://unsplash.com/photos/a-pair-of-copper-pipes-sitting-on-top-of-a-wall-c5aW5Xy-O7c?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Repiping section.": [
   "credits.html"
- ],
- "White stucco home with a red clay tile roof and an arched front entry on a sunny day": [
-  "credits.html",
-  "service-areas/tracy.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@ubeyonroad?utm_source=pinwheel_concept&amp;utm_medium=referral\">ubeyonroad</a> on <a href=\"https://unsplash.com/photos/a-white-stucco-house-with-a-red-tile-roof-lx-FLZx3iQk?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Tracy page.": [
   "credits.html"
@@ -10502,8 +10403,7 @@
  ],
  "Tech in an orange shirt lifting a ceiling return grille to change the air filter": [
   "credits.html",
-  "index.html",
-  "projects.html"
+  "index.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@hadleycummings?utm_source=pinwheel_concept&amp;utm_medium=referral\">Birmingham Airduct Cleaning Services</a> on <a href=\"https://unsplash.com/photos/a-person-is-working-on-a-ceiling-air-conditioner-WwzK2S0h6zU?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Indoor air quality service card, air quality and membership heroes. Shirt color changed to Pinwheel orange; exposure and white balance matched to the other service cards.": [
   "credits.html"
@@ -10516,8 +10416,7 @@
  ],
  "Gray high-efficiency gas furnace with white vent pipes in a clean garage utility closet, a technician's tool bag beside it": [
   "credits.html",
-  "index.html",
-  "projects.html"
+  "index.html"
  ],
  "Photo supplied by Ben Young Web Design. Used for: Heating service card, heating hero. AI-made image with no people. Exposure and white balance matched to the other service cards.": [
   "credits.html"
@@ -10528,11 +10427,11 @@
  "Photo by <a href=\"https://www.pexels.com/@silverkblack/\">Vitaly Gariev</a> on <a href=\"https://www.pexels.com/photo/happy-family-sitting-on-couch-in-modern-living-room-39191159/\">Pexels</a>. Used for: Business image in the site's structured data (images/og-family-1200x630.jpg).": [
   "credits.html"
  ],
- "Technician in a navy shirt working on a wall outlet while a boy plays on the rug nearby": [
+ "Technician in a blue shirt checking an outdoor AC unit with pressure gauges": [
   "credits.html",
   "services.html"
  ],
- "Photo by <a href=\"https://unsplash.com/@cdc?utm_source=pinwheel_concept&amp;utm_medium=referral\">CDC</a> on <a href=\"https://unsplash.com/photos/man-in-blue-shirt-and-blue-denim-jeans-sitting-on-brown-wooden-table-MwrTpnOn8fA?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Services hero.": [
+ "Photo by <a href=\"https://unsplash.com/@jmuniz?utm_source=pinwheel_concept&amp;utm_medium=referral\">Joel Muniz</a> on <a href=\"https://unsplash.com/photos/technician-servicing-outdoor-air-conditioning-unit-L5sEqpQukJI?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Services hero.": [
   "credits.html"
  ],
  "Outdoor mini-split unit mounted on a dark painted wall": [
@@ -10546,8 +10445,6 @@
  ],
  "Finger pressing the button on a wall thermostat": [
   "credits.html",
-  "index.html",
-  "projects.html",
   "services.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@huumsauna?utm_source=pinwheel_concept&amp;utm_medium=referral\">HUUM</a> on <a href=\"https://unsplash.com/photos/finger-pressing-button-on-digital-thermostat-display-Ymp_8DatASs?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Services page, Heating card.": [
@@ -10562,14 +10459,9 @@
  ],
  "White air return grille on a ceiling": [
   "credits.html",
-  "index.html",
-  "projects.html",
   "services.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@amtinky?utm_source=pinwheel_concept&amp;utm_medium=referral\">Tinky 小天</a> on <a href=\"https://unsplash.com/photos/a-close-up-of-a-vent-in-a-wall-MMXtw3AJXmk?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Services page, Air Quality card.": [
-  "credits.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@fotogugu?utm_source=pinwheel_concept&amp;utm_medium=referral\">Samuel Lopez Cruz</a> on <a href=\"https://unsplash.com/photos/driveway-leading-to-a-modern-house-with-palm-trees-ZqPT0y0nzWw?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Cooling hero.": [
   "credits.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@jmuniz?utm_source=pinwheel_concept&amp;utm_medium=referral\">Joel Muniz</a> on <a href=\"https://unsplash.com/photos/technician-servicing-outdoor-air-conditioning-unit-8RbiLgfqoqQ?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: AC Repair hero.": [
@@ -10580,18 +10472,14 @@
  ],
  "Hands adjusting the burner assembly inside a gas heating unit": [
   "credits.html",
-  "heating.html",
-  "index.html",
-  "projects.html"
+  "heating.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@corey_untitled?utm_source=pinwheel_concept&amp;utm_medium=referral\">Corey Young</a> on <a href=\"https://unsplash.com/photos/person-holding-silver-and-gold-round-analog-watch-yVUl3T-ss0c?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Furnace Repair &amp; Replacement hero.": [
   "credits.html"
  ],
  "Blue gas flames on a furnace burner": [
   "credits.html",
-  "heating.html",
-  "index.html",
-  "projects.html"
+  "heating.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@peter_fly?utm_source=pinwheel_concept&amp;utm_medium=referral\">Peter Fly</a> on <a href=\"https://unsplash.com/photos/a-group-of-people-standing-in-front-of-a-green-and-red-flame-qHpxnoo-gXg?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Furnace page, what we check.": [
   "credits.html"
@@ -10774,51 +10662,12 @@
  "Photo by <a href=\"https://unsplash.com/@nknezevic?utm_source=pinwheel_concept&amp;utm_medium=referral\">Nikola Knezevic</a> on <a href=\"https://unsplash.com/photos/cars-parked-on-side-of-the-road-during-daytime-sDyXOlpCrAY?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: About page, why we are named Pinwheel.": [
   "credits.html"
  ],
- "Technician in a black polo adjusting a wall thermostat in a bright home": [
-  "credits.html",
-  "index.html"
- ],
- "Photo by <a href=\"https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/\">HONG SON</a> on <a href=\"https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/\">Pexels</a>. Used for: Homepage hero.": [
-  "credits.html"
- ],
- "Old, grimy outdoor AC unit on a stained wall": [
-  "credits.html",
-  "index.html",
-  "projects.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@memtor?utm_source=pinwheel_concept&amp;utm_medium=referral\">Vladislav Nikonov</a> on <a href=\"https://unsplash.com/photos/white-air-condenser-unit-JBw9IlbHhVY?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Homepage projects, before. Brand label and a shop sticker removed (no people in the photo).": [
-  "credits.html"
- ],
- "New, clean outdoor AC unit on a painted brick wall": [
-  "credits.html",
-  "index.html",
-  "projects.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@jonnyclow?utm_source=pinwheel_concept&amp;utm_medium=referral\">Jonny Clow</a> on <a href=\"https://unsplash.com/photos/a-air-conditioner-mounted-to-the-side-of-a-building-GPVQqep5QNw?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Homepage projects, after. Brand name removed from the badge (no people in the photo).": [
-  "credits.html"
- ],
  "Two new outdoor AC units on concrete pads beside a brick home": [
   "credits.html",
   "index.html",
   "projects.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@hvacmktgguys?utm_source=pinwheel_concept&amp;utm_medium=referral\">hvac mktg guys</a> on <a href=\"https://unsplash.com/photos/PBOnNFQssS8?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Projects, AC installs.": [
-  "credits.html"
- ],
- "Back of a single-story home with a white deck and a new AC unit beside it": [
-  "credits.html",
-  "index.html",
-  "projects.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@wolfie_website?utm_source=pinwheel_concept&amp;utm_medium=referral\">Josh Lemmon</a> on <a href=\"https://unsplash.com/photos/wooden-deck-on-grey-house-k0onCXQ07H8?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Projects, AC installs.": [
-  "credits.html"
- ],
- "Backyard of a white two-story home with a new fence, lawn, and AC unit": [
-  "credits.html",
-  "index.html",
-  "projects.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@wolfie_website?utm_source=pinwheel_concept&amp;utm_medium=referral\">Josh Lemmon</a> on <a href=\"https://unsplash.com/photos/white-house-with-fenced-backyard-BVwwFteA2PM?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Projects, AC installs.": [
   "credits.html"
  ],
  "Living room with a ductless heat pump head mounted high on the wall": [
@@ -10835,25 +10684,6 @@
   "projects.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@claybanks?utm_source=pinwheel_concept&amp;utm_medium=referral\">Clay Banks</a> on <a href=\"https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-wooden-floor-75UkcFlN2Xc?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Projects, heat pumps and mini-splits.": [
-  "credits.html"
- ],
- "Flexible duct running down from metal ductwork": [
-  "credits.html",
-  "index.html",
-  "projects.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@maro_of_sengu?utm_source=pinwheel_concept&amp;utm_medium=referral\">Yanping Ma</a> on <a href=\"https://unsplash.com/photos/a-flexible-metallic-duct-with-wires-in-a-cluttered-area-o0BuMg6qgyY?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Projects, ductwork.": [
-  "credits.html"
- ],
- "Round supply diffuser with its spiral duct, seen from below": [
-  "credits.html",
-  "index.html",
-  "projects.html"
- ],
- "Photo by <a href=\"https://unsplash.com/@timschmidbauer?utm_source=pinwheel_concept&amp;utm_medium=referral\">Tim Schmidbauer</a> on <a href=\"https://unsplash.com/photos/circular-metal-vent-with-attached-ductwork-LI2rpZB12ms?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Projects, ductwork.": [
-  "credits.html"
- ],
- "Photo by <a href=\"https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/\">HONG SON</a> on <a href=\"https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/\">Pexels</a>. Used for: Homepage hero, phone crop.": [
   "credits.html"
  ],
  "Video": [
@@ -11114,10 +10944,10 @@
  "A real person answers our emergency line day and night. We talk you through what to shut off, then send the nearest tech.": [
   "emergency.html"
  ],
- "⟦s⟧Call <span class=\"nowrap\">(209) 555-0142</span> now": [
+ "⟦s⟧Call <span class=\"nowrap\">(209) 555-0142</span> Now": [
   "emergency.html"
  ],
- "What counts as an emergency": [
+ "What Counts as an Emergency": [
   "emergency.html",
   "services.html"
  ],
@@ -11237,9 +11067,6 @@
   "emergency.html",
   "reviews.html"
  ],
- "Emergency <span class=\"accent\">Questions.</span>": [
-  "emergency.html"
- ],
  "Do you really answer at night?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
   "emergency.html"
  ],
@@ -11268,9 +11095,6 @@
   "faq.html"
  ],
  "These are the questions we hear most on the phone. If yours is not here, call or text us and a real person will answer it.": [
-  "faq.html"
- ],
- "Answers by <span class=\"accent\">Topic.</span>": [
   "faq.html"
  ],
  "Repair or Replace": [
@@ -11407,7 +11231,7 @@
  "You should not have to wait for a perfect month to replace a system. You can spread the cost into monthly payments and apply right on the visit.": [
   "financing.html"
  ],
- "⟦s⟧Estimate my payment": [
+ "⟦s⟧Estimate My Payment": [
   "financing.html"
  ],
  "Payment calculator": [
@@ -11516,9 +11340,6 @@
   "financing.html"
  ],
  "We Install": [
-  "financing.html"
- ],
- "Financing <span class=\"accent\">Questions.</span>": [
   "financing.html"
  ],
  "Will checking my options hurt my credit?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
@@ -11913,10 +11734,10 @@
  "⟦s⟧Heating, Air &amp; Plumbing in Tracy, CA": [
   "index.html"
  ],
- "Fixed Right.<br> On Time.<br> Price <span class=\"accent\">Up Front.</span>": [
+ "Keep Your Family<br> <span class=\"accent\">Comfortable</span><br class=\"pw-m-br\"> All&nbsp;Year.": [
   "index.html"
  ],
- "Heating, air conditioning, and plumbing repair, tune-ups, and new systems in Tracy and nearby. Licensed techs, a price before any work, and real people who answer the phone.": [
+ "AC out, heater down, or no hot water? We fix it the same day, with honest, upfront pricing. Serving Tracy, Mountain House, Manteca, Lathrop, Stockton, Livermore, and 6 more cities.": [
   "index.html"
  ],
  "16+ Years in HVAC": [
@@ -12039,75 +11860,98 @@
  "See All Services⟦s⟧": [
   "index.html"
  ],
- "System check": [
+ "Specialized service": [
   "index.html"
  ],
- "Repair or Replace? <span class=\"accent\">Here's What We Check.</span>": [
+ "Repair or Replace? We'll Show You <span class=\"accent\">Both Prices.</span>": [
+  "index.html"
+ ],
+ "A furnace or AC over 15 years old can look fine and still cost you every month. Before you pay for a big repair, we test the whole system and show you what it needs.": [
+  "index.html"
+ ],
+ "<strong>Best for systems 15 years or older</strong>, or any time a repair quote feels high. You see the repair price and the replace price side by side, in writing.": [
+  "index.html"
+ ],
+ "Full system test, inside and out": [
+  "index.html"
+ ],
+ "Repair and replace prices side by side": [
+  "index.html"
+ ],
+ "Carbon monoxide check on every furnace": [
+  "index.html"
+ ],
+ "Rebate and financing help on new systems": [
+  "index.html"
+ ],
+ "Nothing starts until you say yes": [
+  "index.html"
+ ],
+ "⟦s⟧Book a System Check": [
+  "index.html"
+ ],
+ "More Questions About Repair or Replace⟦s⟧": [
+  "index.html"
+ ],
+ "Inside a 20-year-old system": [
+  "index.html"
+ ],
+ "<strong>Leaky ducts:</strong> up to 30% of your air never reaches your rooms": [
+  "index.html"
+ ],
+ "<strong>Rusty vent pipe:</strong> exhaust can leak into the garage": [
+  "index.html"
+ ],
+ "<strong>Clogged filter:</strong> the system works harder and costs more to run": [
+  "index.html"
+ ],
+ "<strong>Sooty burners:</strong> a sign it isn't burning clean, and a carbon monoxide risk": [
+  "index.html"
+ ],
+ "An older furnace can be as low as 56% efficient. New ones run 90% or better.": [
+  "index.html"
+ ],
+ "Swipe to See the After ⟦s⟧": [
+  "index.html"
+ ],
+ "After · Same garage, new system": [
+  "index.html"
+ ],
+ "Sealed ducts, clean venting, and a furnace that runs 90% efficient or better.": [
+  "index.html"
+ ],
+ "Duct seams sealed with mastic": [
+  "index.html"
+ ],
+ "New PVC venting, no rust": [
+  "index.html"
+ ],
+ "Clean filter, easy to reach": [
+  "index.html"
+ ],
+ "Carbon monoxide test passed": [
   "index.html"
  ],
  "Before": [
   "index.html",
   "projects.html"
  ],
- "After": [
-  "index.html",
-  "projects.html"
- ],
- "A System 15+ Years Old": [
+ "You see both prices before we touch anything.": [
   "index.html"
  ],
- "<strong>Worn parts:</strong> more breakdowns on the hottest and coldest days.": [
+ "Sources: U.S. Department of Energy; ENERGY STAR. AI-made sample photos.": [
   "index.html"
- ],
- "<strong>Old efficiency:</strong> an older furnace can be as low as 56% efficient.": [
-  "index.html"
- ],
- "<strong>Leaky ducts:</strong> up to 30% of your air never reaches your rooms.": [
-  "index.html"
- ],
- "<strong>Heat exchanger cracks:</strong> a carbon monoxide risk.": [
-  "index.html"
- ],
- "Older systems tend to quit when you need them most, and they cost more to run every month.": [
-  "index.html"
- ],
- "Swipe to See the After⟦s⟧": [
-  "index.html"
- ],
- "What We Do": [
-  "index.html"
- ],
- "<strong>We test the whole system:</strong> outdoor unit, furnace, ducts, and safety.": [
-  "index.html"
- ],
- "<strong>Two prices, side by side:</strong> you see the repair price and the replace price.": [
-  "index.html"
- ],
- "<strong>90% efficient or better:</strong> new systems waste far less of what you pay for.": [
-  "index.html"
- ],
- "<strong>You choose:</strong> nothing starts until you say yes.": [
-  "index.html"
- ],
- "⟦s⟧Book a System Check": [
-  "index.html"
- ],
- "More questions about repair or replace⟦s⟧": [
-  "index.html"
- ],
- "Sources: U.S. Department of Energy; ENERGY STAR.": [
-  "index.html"
- ],
- "Before and after": [
-  "index.html",
-  "projects.html"
  ],
  "Our Work, <span class=\"accent\">Old to New.</span>": [
   "index.html",
   "projects.html"
  ],
- "Drag the slider to compare a worn-out unit with a new one. Swipe each card for more. <span class=\"tag\">Illustrative photos</span>": [
+ "Same wall, same house: a 20-year-old AC next to the new one that replaced it. Swipe each card for more. <span class=\"tag\">AI-made sample photos</span>": [
   "index.html"
+ ],
+ "After": [
+  "index.html",
+  "projects.html"
  ],
  "AC Installs": [
   "index.html",
@@ -12131,22 +11975,10 @@
  "Luis Ortega": [
   "index.html"
  ],
- "Owner and master tech": [
+ "Owner": [
   "index.html"
  ],
- "Local Owners Who Still <span class=\"accent\">Answer the Phone.</span>": [
-  "index.html"
- ],
- "Luis's dad started Pinwheel in 2010 with one van. Luis grew up riding along, and today he and Carmen run it with 14 trained techs.": [
-  "index.html"
- ],
- "If something isn't right, text me. I read every message.": [
-  "index.html"
- ],
- "Luis Ortega, owner": [
-  "index.html"
- ],
- "Meet the whole team⟦s⟧": [
+ "More About Us⟦s⟧": [
   "index.html"
  ],
  "You see the price and say yes before we pick up a tool.": [
@@ -12199,9 +12031,6 @@
   "leak-repair.html",
   "reviews.html"
  ],
- "Read All Reviews⟦s⟧": [
-  "index.html"
- ],
  "Home base": [
   "index.html",
   "service-areas.html"
@@ -12227,6 +12056,9 @@
  "9 cities": [
   "index.html"
  ],
+ "⟦s⟧Tracy <span class=\"visually-hidden\">(home base)</span>": [
+  "index.html"
+ ],
  "Alameda County": [
   "index.html",
   "service-areas.html"
@@ -12237,18 +12069,9 @@
  "Just outside these cities? Call us.": [
   "index.html"
  ],
- "⟦s⟧Check My Area": [
-  "index.html"
- ],
- "Checking <strong data-area-name=\"\"></strong>": [
-  "index.html"
- ],
  "Questions": [
   "index.html",
   "privacy.html"
- ],
- "Questions We Hear <span class=\"accent\">Every Week.</span>": [
-  "index.html"
  ],
  "See All Questions⟦s⟧": [
   "index.html"
@@ -12277,10 +12100,19 @@
  "Our services": [
   "index.html"
  ],
- "A worn system 15 or more years old": [
+ "Before and after photos": [
   "index.html"
  ],
- "A new, clean system with sealed ducts": [
+ "Before, 1 of 2": [
+  "index.html"
+ ],
+ "After, 2 of 2": [
+  "index.html"
+ ],
+ "Previous photo": [
+  "index.html"
+ ],
+ "Next photo": [
   "index.html"
  ],
  "Drag to compare before and after": [
@@ -12294,13 +12126,37 @@
   "index.html",
   "projects.html"
  ],
+ "Previous AC Installs photo": [
+  "index.html"
+ ],
+ "Next AC Installs photo": [
+  "index.html"
+ ],
  "Furnaces photos": [
+  "index.html"
+ ],
+ "Previous Furnaces photo": [
+  "index.html"
+ ],
+ "Next Furnaces photo": [
   "index.html"
  ],
  "Heat Pumps and Mini-Splits photos": [
   "index.html"
  ],
+ "Previous Heat Pumps and Mini-Splits photo": [
+  "index.html"
+ ],
+ "Next Heat Pumps and Mini-Splits photo": [
+  "index.html"
+ ],
  "Ductwork photos": [
+  "index.html"
+ ],
+ "Previous Ductwork photo": [
+  "index.html"
+ ],
+ "Next Ductwork photo": [
   "index.html"
  ],
  "Google": [
@@ -12356,7 +12212,7 @@
  "Answer 3 quick questions and see a real price range for a new AC, furnace, or heat pump in seconds. We will not ask for your email or phone number.": [
   "instant-estimate.html"
  ],
- "⟦s⟧Start my estimate": [
+ "⟦s⟧Start My Estimate": [
   "instant-estimate.html"
  ],
  "Instant estimate": [
@@ -12368,7 +12224,7 @@
  "Answer 3 quick questions and see a real price range in seconds. We won't ask for your email or phone number, and nobody calls to sell you.": [
   "instant-estimate.html"
  ],
- "Pick one answer for each question, then choose Get my price.": [
+ "Pick one answer for each question, then choose Get My Price.": [
   "instant-estimate.html"
  ],
  "<span class=\"q-num\" aria-hidden=\"true\">1</span>How big is your home (sq ft)?": [
@@ -12402,7 +12258,7 @@
  "<span class=\"q-num\" aria-hidden=\"true\">3</span>How old is your current system?": [
   "instant-estimate.html"
  ],
- "⟦s⟧Get my price": [
+ "⟦s⟧Get My Price": [
   "instant-estimate.html"
  ],
  "Answer all 3 questions to see your price range.": [
@@ -12459,9 +12315,8 @@
  "Ready for an <span class=\"accent\">Exact Price?</span>": [
   "instant-estimate.html"
  ],
- "Book a free in-home quote": [
-  "instant-estimate.html",
-  "(script)"
+ "Book a Free In-Home Quote": [
+  "instant-estimate.html"
  ],
  "We measure your home and give you options in writing, with no pressure.": [
   "instant-estimate.html"
@@ -12476,9 +12331,6 @@
   "instant-estimate.html"
  ],
  "Up to $2,000 off qualifying new systems with rebates.": [
-  "instant-estimate.html"
- ],
- "Estimate <span class=\"accent\">Questions.</span>": [
   "instant-estimate.html"
  ],
  "How accurate is this estimate?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
@@ -12740,9 +12592,6 @@
  "Call us. Our emergency line answers 24/7.": [
   "plumbing.html"
  ],
- "Plumbing <span class=\"accent\">Questions.</span>": [
-  "plumbing.html"
- ],
  "Do you charge more for evenings and weekends?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
   "plumbing.html"
  ],
@@ -12827,10 +12676,13 @@
  "New AC units, furnaces, heat pumps, and ductwork from homes around Tracy. Tap any photo to see it bigger.": [
   "projects.html"
  ],
+ "Before and after": [
+  "projects.html"
+ ],
  "Swipe to See <span class=\"accent\">the After.</span>": [
   "projects.html"
  ],
- "Drag the slider to compare the old unit with the new one. <span class=\"tag\">Illustrative photos</span>": [
+ "Same wall, same house: a 20-year-old AC next to the new one that replaced it. <span class=\"tag\">AI-made sample photos</span>": [
   "projects.html"
  ],
  "Projects | AC, Furnace, Heat Pump & Duct Work in Tracy, CA | Pinwheel": [
@@ -12861,7 +12713,7 @@
   "resources.html",
   "resources/ac-repair-or-replace.html"
  ],
- "Read the guide⟦s⟧": [
+ "Read the Guide⟦s⟧": [
   "resources.html"
  ],
  "5 min read": [
@@ -13074,7 +12926,7 @@
  "Every customer sees the same review button. We never pick and choose who gets asked.": [
   "review.html"
  ],
- "Book online <span class=\"tag\">Demo</span>": [
+ "Book online": [
   "review.html"
  ],
  "Book Your Visit": [
@@ -13146,7 +12998,7 @@
  "Where should we come?": [
   "review.html"
  ],
- "We text to confirm your window. This demo sends nothing.": [
+ "We text to confirm your window.": [
   "review.html"
  ],
  "Choose your city": [
@@ -13161,16 +13013,13 @@
  "Here's the request the owner would get:": [
   "review.html"
  ],
- "⟦s⟧This is a demo. On a live site, this goes straight to the owner's phone.": [
-  "review.html"
- ],
  "Back": [
   "review.html"
  ],
  "Next": [
   "review.html"
  ],
- "Book my visit": [
+ "Book My Visit": [
   "review.html"
  ],
  "Done": [
@@ -13197,7 +13046,7 @@
  "Here is what homeowners across Tracy and the valley say about our work. We have 4.9 stars from 186 Google reviews.": [
   "reviews.html"
  ],
- "⟦s⟧Write a review": [
+ "⟦s⟧Write a Review": [
   "reviews.html"
  ],
  "All <span>26</span>": [
@@ -13270,67 +13119,67 @@
  "Home base since 2010. Most calls get a same-day visit.": [
   "service-areas.html"
  ],
- "See Tracy details⟦s⟧": [
+ "See Tracy Details⟦s⟧": [
   "service-areas.html"
  ],
  "About 15 minutes from our Tracy shop.": [
   "service-areas.html"
  ],
- "See Mountain House details⟦s⟧": [
+ "See Mountain House Details⟦s⟧": [
   "service-areas.html"
  ],
  "Our Manteca yard is right in town.": [
   "service-areas.html"
  ],
- "See Manteca details⟦s⟧": [
+ "See Manteca Details⟦s⟧": [
   "service-areas.html"
  ],
  "From River Islands to Mossdale Landing.": [
   "service-areas.html"
  ],
- "See Lathrop details⟦s⟧": [
+ "See Lathrop Details⟦s⟧": [
   "service-areas.html"
  ],
  "Same day or the next morning, citywide.": [
   "service-areas.html"
  ],
- "See Stockton details⟦s⟧": [
+ "See Stockton Details⟦s⟧": [
   "service-areas.html"
  ],
  "Over the Altamont, usually the same day.": [
   "service-areas.html"
  ],
- "See Livermore details⟦s⟧": [
+ "See Livermore Details⟦s⟧": [
   "service-areas.html"
  ],
  "Covered from our Manteca yard, usually the same day.": [
   "service-areas.html"
  ],
- "Call to book in French Camp⟦s⟧": [
+ "Call to Book in French Camp⟦s⟧": [
   "service-areas.html"
  ],
  "Same day or the next morning, including older homes with boilers.": [
   "service-areas.html"
  ],
- "Call to book in Lodi⟦s⟧": [
+ "Call to Book in Lodi⟦s⟧": [
   "service-areas.html"
  ],
  "Covered from our Manteca yard, about 15 minutes away.": [
   "service-areas.html"
  ],
- "Call to book in Ripon⟦s⟧": [
+ "Call to Book in Ripon⟦s⟧": [
   "service-areas.html"
  ],
- "Call to book in Escalon⟦s⟧": [
+ "Call to Book in Escalon⟦s⟧": [
   "service-areas.html"
  ],
  "Same day or the next morning from Tracy.": [
   "service-areas.html"
  ],
- "Call to book in Pleasanton⟦s⟧": [
+ "Call to Book in Pleasanton⟦s⟧": [
   "service-areas.html"
  ],
- "Call to book in Dublin⟦s⟧": [
+ "Call to Book in Dublin⟦s⟧": [
   "service-areas.html"
  ],
  "Service Areas | Heating, AC & Plumbing Around Tracy, CA | Pinwheel": [
@@ -13498,9 +13347,6 @@
   "service-areas/stockton.html",
   "service-areas/tracy.html"
  ],
- "Lathrop <span class=\"accent\">Questions.</span>": [
-  "service-areas/lathrop.html"
- ],
  "Still wondering about something? <a href=\"../faq.html\">See every question</a> or call <span class=\"nowrap\">(209) 555-0142</span>.": [
   "service-areas/lathrop.html",
   "service-areas/livermore.html",
@@ -13627,9 +13473,6 @@
  "From Your Neighbors in <span class=\"accent\">Livermore.</span>": [
   "service-areas/livermore.html"
  ],
- "Livermore <span class=\"accent\">Questions.</span>": [
-  "service-areas/livermore.html"
- ],
  "Do you charge extra to come over the Altamont?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
   "service-areas/livermore.html"
  ],
@@ -13747,9 +13590,6 @@
   "service-areas/manteca.html"
  ],
  "From Your Neighbors in <span class=\"accent\">Manteca.</span>": [
-  "service-areas/manteca.html"
- ],
- "Manteca <span class=\"accent\">Questions.</span>": [
   "service-areas/manteca.html"
  ],
  "How fast can you get to Manteca?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
@@ -13872,9 +13712,6 @@
  "From Your Neighbors in <span class=\"accent\">Mountain House.</span>": [
   "service-areas/mountain-house.html"
  ],
- "Mountain House <span class=\"accent\">Questions.</span>": [
-  "service-areas/mountain-house.html"
- ],
  "Is my older system on R-22?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
   "service-areas/mountain-house.html"
  ],
@@ -13987,9 +13824,6 @@
   "service-areas/stockton.html"
  ],
  "From Your Neighbors in <span class=\"accent\">Stockton.</span>": [
-  "service-areas/stockton.html"
- ],
- "Stockton <span class=\"accent\">Questions.</span>": [
   "service-areas/stockton.html"
  ],
  "Do you still work on boilers and wall furnaces?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
@@ -14112,9 +13946,6 @@
  "From Your Neighbors in <span class=\"accent\">Tracy.</span>": [
   "service-areas/tracy.html"
  ],
- "Tracy <span class=\"accent\">Questions.</span>": [
-  "service-areas/tracy.html"
- ],
  "Do you charge extra to come to Tracy?<span class=\"acc-icon\" aria-hidden=\"true\"></span>": [
   "service-areas/tracy.html"
  ],
@@ -14232,7 +14063,7 @@
  "This offer runs through December 31, one per home.": [
   "specials.html"
  ],
- "⟦s⟧Book with this offer": [
+ "⟦s⟧Book With This Offer": [
   "specials.html"
  ],
  "$50 off": [
@@ -14521,6 +14352,9 @@
   "(script)"
  ],
  "Book a repair visit": [
+  "(script)"
+ ],
+ "Book a free in-home quote": [
   "(script)"
  ]
 }

@@ -6,24 +6,25 @@ import { ic, tag, faqList } from './components.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
-/* ---------- Hero: full photo, words over it, two buttons, trust strip ---------- */
-export function homeHero(R, o) {
-  return `  <section class="hero pw-hhero" aria-labelledby="hero-title">
-    <picture class="pw-hhero-photo">
-      <source data-photo="${o.photoPhone || o.photo}" data-crop="4:5" data-widths="480,760,960,1200"${o.fpPhone ? ` data-fp="${o.fpPhone}"` : ''} media="(max-width: 599px)" sizes="100vw">
-      <img data-photo="${o.photo}" data-crop="orig" data-widths="1024,1600,2400" data-eager sizes="100vw" alt="${esc(o.alt)}">
+/* ---------- Hero: the Nov 18 comfort hero (mom and son, one even black layer, faces uncovered), with today's buttons
+   and the trust strip under the words. Desktop: wide crop, faces on the right. Phones: tall crop, faces at the top. ---------- */
+export function homeHero(R) {
+  return `  <section class="hero pw-ohero" aria-labelledby="hero-title">
+    <picture class="pw-ohero-photo">
+      <source data-photo="pinwheel-family-tall" data-crop="orig" data-widths="480,640,840" media="(max-width: 599px)" sizes="100vw">
+      <img data-photo="pinwheel-family" data-crop="orig" data-widths="768,1024,1600,2400" data-eager sizes="100vw">
     </picture>
-    <div class="container pw-hhero-wrap">
-      <div class="pw-hhero-copy">
-        <p class="hero-pill pw-pill">${ic('i-map-pin')}Heating, Air &amp; Plumbing in Tracy, CA</p>
-        <h1 class="pw-hhero-h" id="hero-title">Fixed Right.<br> On Time.<br> Price <span class="accent">Up Front.</span></h1>
-        <p class="lead">Heating, air conditioning, and plumbing repair, tune-ups, and new systems in Tracy and nearby. Licensed techs, a price before any work, and real people who answer the phone.</p>
-        <div class="btn-row pw-hhero-btns" data-hide-bar>
+    <div class="container pw-ohero-wrap">
+      <div class="hero-copy pw-ohero-copy">
+        <h1 class="hero-pill pw-pill">${ic('i-map-pin')}Heating, Air &amp; Plumbing in Tracy, CA</h1>
+        <p class="h1 hero-h" id="hero-title">Keep Your Family<br> <span class="accent">Comfortable</span><br class="pw-m-br"> All&nbsp;Year.</p>
+        <p class="lead">AC out, heater down, or no hot water? We fix it the same day, with honest, upfront pricing. Serving Tracy, Mountain House, Manteca, Lathrop, Stockton, Livermore, and 6 more cities.</p>
+        <div class="hero-ctas pw-ohero-btns" data-hide-bar>
           <a class="btn btn-primary btn-lg" href="#quote" data-quote-link>${ic('i-send')}Get My Free Quote</a>
           <a class="btn btn-glass btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
         </div>
+        ${trustStrip(R)}
       </div>
-      ${trustStrip(R)}
     </div>
   </section>`;
 }
@@ -83,114 +84,88 @@ export function servicesBlock(R) {
       <ul class="pw-addons">
         ${ADDONS.map((a) => `<li><a href="${R}${a.href}"><span class="pw-addon-icon">${ic(a.icon)}</span><span><strong>${a.title}</strong><span>${a.text}</span></span></a></li>`).join('\n        ')}
       </ul>
-      <p class="pw-center"><a class="btn btn-secondary" href="${R}services.html">See All Services${ic('i-arrow-right')}</a></p>
+      <p class="pw-center"><a class="btn btn-navy" href="${R}services.html">See All Services${ic('i-arrow-right')}</a></p>
     </div>
   </section>`;
 }
 
-/* ---------- Signature explainer: Repair or Replace? (tap-through, two slides, SVG cutaways) ---------- */
-function systemArt(after) {
-  const navy = '#14213D', unit = after ? '#E9EEF3' : '#B9AFA5', rust = '#A8562C', duct = after ? '#C9D2DB' : '#B7B0A8';
-  const mark = (n, x, y) => `<g class="pw-mark" transform="translate(${x} ${y})"><circle r="17"/><text y="6" text-anchor="middle">0${n}</text></g>`;
-  const leak = after ? '' : `<g class="pw-leak" fill="#D9D4CE"><circle cx="300" cy="186" r="9"/><circle cx="312" cy="176" r="7"/><circle cx="292" cy="173" r="6"/><circle cx="318" cy="190" r="5"/></g>`;
-  const tape = after ? `<g fill="#EE5600"><rect x="296" y="193" width="9" height="22"/><rect x="398" y="193" width="9" height="22"/><rect x="228" y="214" width="22" height="8"/><rect x="348" y="214" width="22" height="8"/></g>` : '';
-  const air = after ? `<g fill="none" stroke="#3FA9E6" stroke-width="3" stroke-linecap="round"><path d="M226 262c0 10 8 14 0 24"/><path d="M240 262c0 10 8 14 0 24"/><path d="M346 262c0 10 8 14 0 24"/><path d="M360 262c0 10 8 14 0 24"/></g>`
-    : `<g fill="none" stroke="#C7BFB7" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"><path d="M232 262c0 10 6 14 0 22"/><path d="M352 262c0 10 6 14 0 22"/></g>`;
-  const crack = after ? '' : `<path d="M486 372l8 10-7 9 9 11-6 8" fill="none" stroke="${rust}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
-  const rustSpots = after ? '' : `<g fill="${rust}" opacity=".8"><circle cx="704" cy="402" r="4"/><circle cx="752" cy="440" r="5"/><circle cx="726" cy="458" r="3"/><rect x="690" y="452" width="16" height="5" rx="2"/></g>`;
-  const fins = after ? '#C3CCD6' : '#9C9187';
-  return `<svg class="pw-x-art" viewBox="0 0 800 520" role="img" aria-label="${after ? 'A new, clean system with sealed ducts' : 'A worn system 15 or more years old'}">
-          <rect x="0" y="0" width="800" height="520" fill="${after ? '#F3F7FA' : '#F6F3EF'}"/>
-          <path d="M110 252 400 92 690 252Z" fill="${navy}"/>
-          <path d="M150 252 400 116 650 252Z" fill="#FFFFFF"/>
-          <rect x="140" y="252" width="520" height="220" fill="#FFFFFF" stroke="${navy}" stroke-width="4"/>
-          <line x1="140" y1="252" x2="660" y2="252" stroke="${navy}" stroke-width="4"/>
-          <line x1="430" y1="252" x2="430" y2="472" stroke="${navy}" stroke-width="3"/>
-          <rect x="0" y="472" width="800" height="48" fill="${after ? '#DCE6EE' : '#E5DED6'}"/>
-          <path d="M470 252 470 206 300 206 300 214 190 214" fill="none" stroke="${duct}" stroke-width="22" stroke-linejoin="round"/>
-          <path d="M470 206 420 206 420 214" fill="none" stroke="${duct}" stroke-width="22"/>
-          <rect x="222" y="214" width="34" height="46" fill="${duct}"/><rect x="342" y="214" width="34" height="46" fill="${duct}"/>
-          <rect x="216" y="252" width="46" height="8" fill="${navy}"/><rect x="336" y="252" width="46" height="8" fill="${navy}"/>
-          ${leak}${tape}${air}
-          <rect x="452" y="282" width="94" height="22" fill="${unit}" stroke="${navy}" stroke-width="3"/>
-          <rect x="448" y="304" width="102" height="164" rx="4" fill="${unit}" stroke="${navy}" stroke-width="3"/>
-          <rect x="464" y="322" width="70" height="34" rx="3" fill="#FFFFFF" stroke="${navy}" stroke-width="2"/>
-          <text x="499" y="345" text-anchor="middle" class="pw-x-afue">${after ? 'AFUE 96%' : 'AFUE 56%'}</text>
-          <rect x="468" y="366" width="62" height="56" rx="3" fill="${after ? '#FFFFFF' : '#E7DFD7'}" stroke="${navy}" stroke-width="2"/>
-          <path d="M486 412c-6-10 4-14 2-22 8 6 10 12 8 22M504 412c-4-8 4-10 2-18 7 5 8 10 6 18" fill="${after ? '#3FA9E6' : '#E58A3C'}"/>
-          ${crack}
-          <path d="M546 300 C 600 300 600 300 640 300 L 690 300 690 400" fill="none" stroke="${after ? '#B87333' : '#8C6A4A'}" stroke-width="5"/>
-          <rect x="680" y="380" width="96" height="92" rx="6" fill="${unit}" stroke="${navy}" stroke-width="3"/>
-          <g stroke="${fins}" stroke-width="2">${Array.from({ length: 9 }, (_, i) => `<line x1="${690 + i * 10}" y1="392" x2="${690 + i * 10}" y2="462"/>`).join('')}</g>
-          <circle cx="728" cy="426" r="24" fill="${after ? '#FFFFFF' : '#D9D1C8'}" stroke="${navy}" stroke-width="3"/>
-          <path d="M728 426 714 414M728 426 742 438M728 426 742 412M728 426 714 440" stroke="${navy}" stroke-width="3" stroke-linecap="round"/>
-          ${rustSpots}
-          <rect x="190" y="330" width="40" height="52" rx="6" fill="#FFFFFF" stroke="${navy}" stroke-width="3"/>
-          <text x="210" y="362" text-anchor="middle" class="pw-x-temp">${after ? '72°' : '81°'}</text>
-          ${mark(1, 728, 362)}${mark(2, 584, 334)}${mark(3, after ? 262 : 300, 152)}${mark(4, 440, 396)}
-        </svg>`;
-}
+/* ---------- Repair or Replace: "specialized service" layout. Copy on the left (word for word from Ben), a photo card on the
+   right with a before/after pair from the same garage (stacked on phones). The BEFORE/AFTER pill, the 01 / 02 counter,
+   the dots, and the round prev/next arrows sit on the photo. The before photo has 4 small numbered markers on the
+   matching spots; marker spots are set in X_MARKS as % of the photo (left, top). ---------- */
+export const X_MARKS = [[24, 18], [70, 12], [83, 47], [58, 64]];
 export function explainer(R) {
+  const checks = ['Full system test, inside and out', 'Repair and replace prices side by side', 'Carbon monoxide check on every furnace', 'Rebate and financing help on new systems', 'Nothing starts until you say yes'];
   const before = [
-    ['Worn parts', 'more breakdowns on the hottest and coldest days.'],
-    ['Old efficiency', 'an older furnace can be as low as 56% efficient.'],
-    ['Leaky ducts', 'up to 30% of your air never reaches your rooms.'],
-    ['Heat exchanger cracks', 'a carbon monoxide risk.'],
+    ['Leaky ducts', 'up to 30% of your air never reaches your rooms'],
+    ['Rusty vent pipe', 'exhaust can leak into the garage'],
+    ['Clogged filter', 'the system works harder and costs more to run'],
+    ['Sooty burners', 'a sign it isn\'t burning clean, and a carbon monoxide risk'],
   ];
-  const after = [
-    ['We test the whole system', 'outdoor unit, furnace, ducts, and safety.'],
-    ['Two prices, side by side', 'you see the repair price and the replace price.'],
-    ['90% efficient or better', 'new systems waste far less of what you pay for.'],
-    ['You choose', 'nothing starts until you say yes.'],
-  ];
-  const list = (items) => `<ol class="pw-x-list">${items.map(([b, t], i) => `<li><span class="pw-x-n" aria-hidden="true">0${i + 1}</span><span><strong>${b}:</strong> ${t}</span></li>`).join('')}</ol>`;
+  const afterChecks = ['Duct seams sealed with mastic', 'New PVC venting, no rust', 'Clean filter, easy to reach', 'Carbon monoxide test passed'];
+  const n2 = (i) => String(i + 1).padStart(2, '0');
   return `  <section class="section pw-explain" id="system-check" aria-labelledby="explain-title" data-x>
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">System check</p>
-        <h2 id="explain-title">Repair or Replace? <span class="accent">Here's What We Check.</span></h2>
-      </div>
-      <div class="pw-x-tabs" role="tablist" aria-label="Before and after">
-        <button type="button" role="tab" id="x-tab-1" aria-controls="x-slide-1" aria-selected="true">Before</button>
-        <button type="button" role="tab" id="x-tab-2" aria-controls="x-slide-2" aria-selected="false" tabindex="-1">After</button>
-      </div>
-      <div class="pw-x-track" data-x-track>
-        <div class="pw-x-slide" id="x-slide-1" role="tabpanel" aria-labelledby="x-tab-1">
-          <div class="pw-x-media">${systemArt(false)}</div>
-          <div class="pw-x-copy">
-            <h3>A System 15+ Years Old</h3>
-            ${list(before)}
-            <p class="pw-x-note">Older systems tend to quit when you need them most, and they cost more to run every month.</p>
-            <button class="btn btn-secondary pw-x-next" type="button" data-x-go="2">Swipe to See the After${ic('i-arrow-right')}</button>
-          </div>
-        </div>
-        <div class="pw-x-slide" id="x-slide-2" role="tabpanel" aria-labelledby="x-tab-2">
-          <div class="pw-x-media">${systemArt(true)}</div>
-          <div class="pw-x-copy">
-            <h3>What We Do</h3>
-            ${list(after)}
-            <div class="pw-x-ctas">
-              <a class="btn btn-primary" href="#quote" data-quote-link data-pick-service="Repair or replace check">${ic('i-calendar')}Book a System Check</a>
-              <a class="pw-text-link" href="${R}faq.html#repair-or-replace">More questions about repair or replace${ic('i-arrow-right')}</a>
-            </div>
-          </div>
+    <div class="container pw-x-grid">
+      <div class="pw-x-left">
+        <p class="eyebrow">Specialized service</p>
+        <h2 id="explain-title">Repair or Replace? We'll Show You <span class="accent">Both Prices.</span></h2>
+        <p class="lead">A furnace or AC over 15 years old can look fine and still cost you every month. Before you pay for a big repair, we test the whole system and show you what it needs.</p>
+        <div class="pw-x-callout"><p><strong>Best for systems 15 years or older</strong>, or any time a repair quote feels high. You see the repair price and the replace price side by side, in writing.</p></div>
+        <ul class="pw-x-checks">${checks.map((c) => `<li>${ic('i-check')}<span>${c}</span></li>`).join('')}</ul>
+        <div class="pw-x-ctas">
+          <a class="btn btn-primary" href="#quote" data-quote-link data-pick-service="System check">${ic('i-calendar')}Book a System Check</a>
+          <a class="pw-text-link" href="${R}faq.html#repair-or-replace">More Questions About Repair or Replace${ic('i-arrow-right')}</a>
         </div>
       </div>
-      <p class="pw-x-src">Sources: U.S. Department of Energy; ENERGY STAR.</p>
+      <div class="pw-x-card">
+        <div class="pw-x-frame">
+          <div class="pw-x-track" data-x-track tabindex="0" role="region" aria-label="Before and after photos" aria-roledescription="carousel">
+            <figure class="pw-x-slide" aria-label="Before, 1 of 2">
+              <img data-photo="pw-explainer-furnace-before" data-crop="4:5" data-widths="480,720,960,1200" sizes="(min-width: 1000px) 560px, 92vw" alt="">
+              ${X_MARKS.map(([l, t], i) => `<span class="pw-x-mark" style="left:${l}%;top:${t}%" aria-hidden="true">${n2(i)}</span>`).join('')}
+              <figcaption class="pw-x-cap">
+                <p class="pw-x-cap-label">Inside a 20-year-old system</p>
+                <ol class="pw-x-list">${before.map(([b, t], i) => `<li><span class="pw-x-n" aria-hidden="true">${n2(i)}</span><span><strong>${b}:</strong> ${t}</span></li>`).join('')}</ol>
+                <p class="pw-x-line">An older furnace can be as low as 56% efficient. New ones run 90% or better.</p>
+                <button class="pw-x-go" type="button" data-x-go="2">Swipe to See the After ${ic('i-arrow-right')}</button>
+              </figcaption>
+            </figure>
+            <figure class="pw-x-slide" aria-label="After, 2 of 2">
+              <img data-photo="pw-explainer-furnace-after" data-crop="4:5" data-widths="480,720,960,1200" sizes="(min-width: 1000px) 560px, 92vw" alt="">
+              <figcaption class="pw-x-cap">
+                <p class="pw-x-cap-label">After · Same garage, new system</p>
+                <p class="pw-x-line">Sealed ducts, clean venting, and a furnace that runs 90% efficient or better.</p>
+                <ul class="pw-x-after">${afterChecks.map((c) => `<li>${ic('i-check')}<span>${c}</span></li>`).join('')}</ul>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="pw-x-top" aria-hidden="true">
+            <div class="pw-x-status"><span class="pw-x-pill" data-x-pill>Before</span><span class="pw-x-count"><span data-x-n>01</span> / 02</span></div>
+            <div class="pw-x-dots"><span class="is-on"></span><span></span></div>
+          </div>
+          <div class="pw-x-arrows">
+            <button class="pw-arrow" type="button" data-x-prev aria-label="Previous photo">${ic('i-chevron-left')}</button>
+            <button class="pw-arrow" type="button" data-x-next aria-label="Next photo">${ic('i-chevron-right')}</button>
+          </div>
+        </div>
+        <p class="pw-x-strip">${ic('i-shield-check')}<span>You see both prices before we touch anything.</span></p>
+      </div>
+      <p class="pw-x-src">Sources: U.S. Department of Energy; ENERGY STAR. AI-made sample photos.</p>
     </div>
   </section>`;
 }
 
 /* ---------- Projects: one featured before/after slider, then 4 swipe cards ---------- */
 export const PROJECTS = [
-  { key: 'ac', title: 'AC Installs', photos: ['pw-pj-ac-1', 'pw-ac-install', 'pw-pj-ac-2', 'pw-pj-ac-3', 'pw-article-ac'] },
-  { key: 'furnace', title: 'Furnaces', photos: ['pinwheel-heating', 'pw-heating', 'pw-heating-2', 'pw-svc-heating'] },
-  { key: 'heatpump', title: 'Heat Pumps and Mini-Splits', photos: ['pw-pj-hp-1', 'heat-pump', 'pw-pj-hp-2', 'pw-svc-cooling', 'pw-heat-pumps'] },
-  { key: 'ducts', title: 'Ductwork', photos: ['pw-pj-ducts-1', 'pinwheel-air-quality', 'pw-pj-ducts-2', 'pw-svc-air'] },
+  { key: 'ac', title: 'AC Installs', photos: ['pw-pj-ac-side-yard', 'pw-pj-ac-pair', 'pw-pj-ac-1', 'pw-article-ac'] },
+  { key: 'furnace', title: 'Furnaces', photos: ['pw-pj-furnace-attic', 'pw-pj-furnace-closet', 'pw-pj-furnace-garage'] },
+  { key: 'heatpump', title: 'Heat Pumps and Mini-Splits', photos: ['pw-pj-hp-1', 'pw-pj-hp-2', 'pw-svc-cooling', 'pw-heat-pumps'] },
+  { key: 'ducts', title: 'Ductwork', photos: ['pw-pj-ducts-attic', 'pw-pj-ducts-plenum', 'pw-pj-ducts-register'] },
 ];
+export const BA_PAIR = ['pw-projects-ac-before', 'pw-projects-ac-after'];
 export function baSlider(before, after, alt) {
   return `<div class="pw-ba" data-ba style="--pos:50%">
-          <img class="pw-ba-img" data-photo="${after}" data-crop="3:2" data-widths="480,720,960,1200,1600" sizes="(min-width: 1000px) 760px, 92vw" alt="${esc(alt[1])}">
+          <img class="pw-ba-img" data-photo="${after}" data-crop="3:2" data-widths="480,720,960,1200,1600" sizes="(min-width: 1000px) 760px, 92vw" alt="${esc(alt[1] || '')}">
           <div class="pw-ba-before"><img class="pw-ba-img" data-photo="${before}" data-crop="3:2" data-widths="480,720,960,1200,1600" sizes="(min-width: 1000px) 760px, 92vw" alt="${esc(alt[0])}"></div>
           <span class="pw-ba-label is-before">Before</span><span class="pw-ba-label is-after">After</span>
           <span class="pw-ba-handle" aria-hidden="true"><span class="pw-ba-knob">${ic('i-chevron-left')}${ic('i-chevron-right')}</span></span>
@@ -202,6 +177,7 @@ export function projectCard(p, big) {
           <div class="pw-pgal" data-pgal-track tabindex="0" aria-label="${esc(p.title)} photos">
             ${p.photos.map((k) => `<button class="pw-pgal-item" type="button" data-zoom aria-label="See this photo bigger"><img data-photo="${k}" data-crop="${big ? '4:3' : '1:1'}" data-widths="${big ? '480,720,960' : '320,480,640'}" sizes="${big ? '(min-width: 900px) 45vw, 92vw' : '(min-width: 1000px) 290px, 46vw'}" alt=""></button>`).join('')}
           </div>
+          <div class="pw-pgal-arrows"><button class="pw-arrow" type="button" data-pgal-prev aria-label="Previous ${esc(p.title)} photo">${ic('i-chevron-left')}</button><button class="pw-arrow" type="button" data-pgal-next aria-label="Next ${esc(p.title)} photo">${ic('i-chevron-right')}</button></div>
           <div class="pw-pcard-cap"><h3>${p.title}</h3><span class="pw-pcount" aria-live="polite"><span data-pgal-n>1</span>/${p.photos.length}</span></div>
           <div class="pw-pdots" aria-hidden="true">${p.photos.map((_, i) => `<span${i ? '' : ' class="is-on"'}></span>`).join('')}</div>
         </li>`;
@@ -210,21 +186,21 @@ export function projectsBlock(R) {
   return `  <section class="section pw-projects bg-white" id="projects" aria-labelledby="projects-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Before and after</p>
+        <p class="eyebrow">Projects</p>
         <h2 id="projects-title">Our Work, <span class="accent">Old to New.</span></h2>
-        <p class="lead">Drag the slider to compare a worn-out unit with a new one. Swipe each card for more. ${tag('Illustrative photos')}</p>
+        <p class="lead">Same wall, same house: a 20-year-old AC next to the new one that replaced it. Swipe each card for more. ${tag('AI-made sample photos')}</p>
       </div>
-      <div class="pw-ba-wrap">${baSlider('pw-ba-before', 'pw-ba-after', ['Old, grimy outdoor AC unit on a stained wall', 'New, clean outdoor AC unit on a painted brick wall'])}</div>
+      <div class="pw-ba-wrap">${baSlider(BA_PAIR[0], BA_PAIR[1], ['', ''])}</div>
       <ul class="pw-pcards">
         ${PROJECTS.map((p) => projectCard(p)).join('\n        ')}
       </ul>
-      <p class="pw-center"><a class="btn btn-secondary" href="${R}projects.html">See All Projects${ic('i-arrow-right')}</a></p>
+      <p class="pw-center"><a class="btn btn-navy" href="${R}projects.html">See All Projects${ic('i-arrow-right')}</a></p>
     </div>
   </section>`;
 }
 
 /* ---------- The quote block: every page ends with it ---------- */
-export const QUOTE_SERVICES = ['No cooling', 'No heat', 'Strange noise', 'Tune-up', 'New system', 'Repair or replace check', 'Plumbing problem'];
+export const QUOTE_SERVICES = ['No cooling', 'No heat', 'Strange noise', 'Tune-up', 'New system', 'System check', 'Plumbing problem'];
 export function quoteBlock(R, o = {}) {
   const cities = CITIES.map((c) => c.name);
   const picked = o.service || '';
@@ -250,11 +226,7 @@ export function quoteBlock(R, o = {}) {
                 <div class="field"><label for="q-name">Your name</label><input class="input" id="q-name" name="name" type="text" autocomplete="name" required></div>
                 <div class="field"><label for="q-phone">Mobile number</label><input class="input" id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
               </div>
-              <div class="field"><label for="q-city">City</label><select class="select input" id="q-city" name="city" required data-quote-city>
-                <option value="">Pick your city</option>
-                ${cities.map((c) => `<option${o.city === c ? ' selected' : ''}>${c}</option>`).join('')}
-                <option value="Somewhere else">Somewhere else nearby</option>
-              </select></div>
+              <div class="field"><label for="q-city">City</label><input class="input" id="q-city" name="city" type="text" autocomplete="address-level2" required data-quote-city${o.city ? ` value="${esc(o.city)}"` : ''}></div>
               <fieldset class="q"><legend>What's Going On?</legend><div class="chips-grid">
                 ${QUOTE_SERVICES.map((s, i) => `<label class="chip"><input type="radio" name="service" value="${s}"${i === 0 ? ' required' : ''}${s === picked ? ' checked' : ''}><span>${s}</span></label>`).join('')}
               </div></fieldset>
@@ -289,7 +261,7 @@ export function quoteBlock(R, o = {}) {
                 <p class="pw-est-range"><span data-est-low></span> <span class="pw-est-to">to</span> <span data-est-high></span></p>
                 <p class="pw-est-for" data-est-for></p>
                 <p class="fine">${tag()} A typical range for a Tracy-area home, installed. Your exact price comes after we see your home.</p>
-                <a class="btn btn-secondary btn-block" href="#quote" data-quote-link data-pick-service="New system" data-to-visit>${ic('i-calendar')}Book a Free In-Home Quote</a>
+                <a class="btn btn-navy btn-block" href="#quote" data-quote-link data-pick-service="New system" data-to-visit>${ic('i-calendar')}Book a Free In-Home Quote</a>
               </div>
             </form>
           </div>
@@ -309,6 +281,8 @@ export function quoteBlock(R, o = {}) {
 }
 
 /* ---------- Meet the Owner: photo, 2 to 3 lines, 4 promise cards ---------- */
+/* The owner story, word for word from Ben. Used on the homepage and the About page. */
+export const OWNER_STORY = 'Hi, I\'m Luis Ortega. I started Pinwheel in 2010 with one van. Today my wife, Carmen, runs the office, and our 14 techs cover Tracy and the towns around it. I still look over every new install before we call it done.';
 export const PROMISES = [
   ['i-tag', 'Price Before Any Work', 'You see the price and say yes before we pick up a tool.'],
   ['i-message', 'We Text When We\'re On the Way', 'No waiting around all day.'],
@@ -320,15 +294,15 @@ export function ownerBlock(R) {
     <div class="container">
       <div class="pw-owner-top">
         <figure class="owner-figure pw-owner-fig">
-          <div class="arch"><img data-photo="pw-owner" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 360px, 70vw" alt="Luis Ortega, owner of Pinwheel, in a gray work shirt in the shop"></div>
-          <figcaption><strong>Luis Ortega</strong><span>Owner and master tech</span></figcaption>
+          <div class="arch"><img data-photo="pw-owner" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 360px, 70vw" alt=""></div>
+          <figcaption><strong>Luis Ortega</strong><span>Owner</span></figcaption>
         </figure>
         <div>
           <p class="eyebrow">Meet the owner</p>
-          <h2 id="owner-title">Local Owners Who Still <span class="accent">Answer the Phone.</span></h2>
-          <p class="lead">Luis's dad started Pinwheel in 2010 with one van. Luis grew up riding along, and today he and Carmen run it with 14 trained techs.</p>
-          <blockquote class="pull-quote"><p>If something isn't right, text me. I read every message.</p><cite>Luis Ortega, owner</cite></blockquote>
-          <p class="pw-owner-more"><a class="pw-text-link" href="${R}about.html">Meet the whole team${ic('i-arrow-right')}</a></p>
+          <h2 id="owner-title">Family Owned in Tracy <span class="accent">Since 2010.</span></h2>
+          <p class="lead">${OWNER_STORY}</p>
+          <p class="pw-owner-tag">${tag('Illustrative owner story')}</p>
+          <p class="pw-owner-more"><a class="pw-text-link" href="${R}about.html">More About Us${ic('i-arrow-right')}</a></p>
         </div>
       </div>
       <ul class="pw-promises pw-swipe" data-swipe aria-label="Our promises" tabindex="0">
@@ -373,8 +347,10 @@ export function reviewsBand(R) {
 /* ---------- Service area: the map, a dropdown per county, and Check My Area ---------- */
 export function areasBlock(R) {
   const counties = ['San Joaquin', 'Alameda'];
-  const list = (county) => CITIES.filter((c) => c.county === county).map((c) =>
-    `<li><button type="button" class="pw-city" data-city-pick="${c.name}" aria-pressed="false">${ic('i-map-pin')}${c.name}</button></li>`).join('');
+  // Plain chips; only home base (Tracy) is highlighted, with a small home icon
+  const list = (county) => CITIES.filter((c) => c.county === county).map((c) => c.name === 'Tracy'
+    ? `<li class="pw-area-chip is-home">${ic('i-home')}${c.name} <span class="visually-hidden">(home base)</span></li>`
+    : `<li class="pw-area-chip">${c.name}</li>`).join('');
   return `  <section class="section pw-areas" id="areas" aria-labelledby="areas-title">
     <div class="container pw-areas-grid">
       <div class="map-card">
@@ -386,17 +362,13 @@ export function areasBlock(R) {
         <h2 id="areas-title">Close By, So We <span class="accent">Get There Fast.</span></h2>
         <p class="lead">Our vans start each day in Tracy and Manteca, so most of the 12 cities we cover see a tech the same day.</p>
         <div class="pw-counties">
-          ${counties.map((c, i) => `<details class="pw-county"${i === 0 ? ' open' : ''}>
+          ${counties.map((c) => `<details class="pw-county">
             <summary><span><strong>${c} County</strong><span>${CITIES.filter((x) => x.county === c).length} cities</span></span>${ic('i-chevron-down')}</summary>
             <ul class="pw-city-list">${list(c)}</ul>
           </details>`).join('\n          ')}
         </div>
         <p class="pw-areas-note">Just outside these cities? Call us.</p>
-        <div class="pw-areas-actions">
-          <a class="btn btn-primary" href="#quote" data-check-area>${ic('i-map-pin')}Check My Area</a>
-          <p class="pw-area-picked" data-area-picked aria-live="polite" hidden>Checking <strong data-area-name></strong></p>
-        </div>
-        <p class="pw-areas-all"><a class="pw-text-link" href="${R}service-areas.html">See every service area${ic('i-arrow-right')}</a></p>
+        <p class="pw-areas-all"><a class="pw-text-link" href="${R}service-areas.html">See Every Service Area${ic('i-arrow-right')}</a></p>
       </div>
     </div>
   </section>`;
@@ -415,8 +387,8 @@ export function homeFaq(R) {
     <div class="container faq-grid">
       <div class="faq-head">
         <p class="eyebrow">Questions</p>
-        <h2 id="faq-title">Questions We Hear <span class="accent">Every Week.</span></h2>
-        <p><a class="btn btn-secondary" href="${R}faq.html">See All Questions${ic('i-arrow-right')}</a></p>
+        <h2 id="faq-title">You've Got Questions. <span class="accent">We've Got Answers.</span></h2>
+        <p><a class="btn btn-navy" href="${R}faq.html">See All Questions${ic('i-arrow-right')}</a></p>
       </div>
       ${faqList(HOME_FAQ, 'hfq')}
     </div>

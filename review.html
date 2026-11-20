@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="css/alive.css?v=20261111">
 <script>(function(r){r.classList.replace('no-js','js');try{if(localStorage.getItem('pw-lang')==='es'||/[?&]lang=es\b/.test(location.search)){r.classList.add('pw-es-wait');setTimeout(function(){r.classList.remove('pw-es-wait')},2500)}}catch(e){}})(document.documentElement)</script>
 <script src="js/pinwheel.js?v=20261124" defer></script>
-<script src="js/pw-i18n.js?v=20261124" data-v="8bd8d3d9" defer></script>
+<script src="js/pw-i18n.js?v=20261124" data-v="c561db11" defer></script>
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
@@ -356,7 +356,7 @@
 <dialog class="booking" id="book" aria-labelledby="booking-title">
   <form class="booking-form" method="dialog" data-booking novalidate>
     <div class="booking-head">
-      <p class="eyebrow">Book online <span class="tag">Demo</span></p>
+      <p class="eyebrow">Book online</p>
       <h2 id="booking-title" tabindex="-1">Book Your Visit</h2>
       <button class="dialog-close" type="button" aria-label="Close booking" data-booking-close><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
       <ol class="steps" data-steps aria-label="Booking progress">
@@ -405,7 +405,7 @@
         <div class="field">
           <label for="bk-phone">Mobile number</label>
           <input class="input" id="bk-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="bk-phone-hint">
-          <span class="hint" id="bk-phone-hint">We text to confirm your window. This demo sends nothing.</span>
+          <span class="hint" id="bk-phone-hint">We text to confirm your window.</span>
         </div>
         <div class="field">
           <label for="bk-city">City</label>
@@ -436,13 +436,12 @@
         <h3>You're on the schedule</h3>
         <p class="confirm-summary">Here's the request the owner would get:</p>
         <ul class="confirm-list" data-summary></ul>
-        <p class="demo-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>This is a demo. On a live site, this goes straight to the owner's phone.</p>
       </div>
     </div>
     <div class="booking-foot">
-      <button class="btn btn-secondary" type="button" data-back hidden>Back</button>
+      <button class="btn btn-navy" type="button" data-back hidden>Back</button>
       <button class="btn btn-primary" type="button" data-next>Next</button>
-      <button class="btn btn-primary" type="submit" data-submit hidden>Book my visit</button>
+      <button class="btn btn-primary" type="submit" data-submit hidden>Book My Visit</button>
       <button class="btn btn-navy" type="button" data-done hidden>Done</button>
     </div>
   </form>

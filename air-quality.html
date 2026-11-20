@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="css/alive.css?v=20261111">
 <script>(function(r){r.classList.replace('no-js','js');try{if(localStorage.getItem('pw-lang')==='es'||/[?&]lang=es\b/.test(location.search)){r.classList.add('pw-es-wait');setTimeout(function(){r.classList.remove('pw-es-wait')},2500)}}catch(e){}})(document.documentElement)</script>
 <script src="js/pinwheel.js?v=20261124" defer></script>
-<script src="js/pw-i18n.js?v=20261124" data-v="8bd8d3d9" defer></script>
+<script src="js/pw-i18n.js?v=20261124" data-v="c561db11" defer></script>
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /partial:head -->
@@ -474,7 +474,7 @@
           <span class="stars5" role="img" aria-label="5 out of 5 stars"></span>
           <p class="review-text">Upstairs bedrooms were always stuffy. They added a fresh air system and balanced the ducts. Now the kids sleep with the door closed and it stays comfortable.</p>
         </li></ul>
-      <p class="pw-more"><a class="btn btn-secondary" href="reviews.html">Read all reviews<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></p>
+      <p class="pw-more"><a class="btn btn-navy" href="reviews.html">Read All Reviews<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></p>
     </div>
   </section>
 
@@ -482,7 +482,7 @@
     <div class="container faq-grid">
       <div class="faq-head">
         <p class="eyebrow">FAQ</p>
-        <h2 id="faq-title">Common <span class="accent">Questions.</span></h2>
+        <h2 id="faq-title">You've Got Questions. <span class="accent">We've Got Answers.</span></h2>
         <p>Still wondering about something? <a href="faq.html">See every question</a> or call <span class="nowrap">(209) 555-0142</span>.</p>
       </div>
       <div class="accordion" data-accordion>
@@ -524,7 +524,7 @@
     <div class="container">
       <div class="pw-strip-head">
         <h2 id="strip-title">We Serve 12 Cities Around <span class="accent">Tracy.</span></h2>
-        <a class="pw-text-link" href="service-areas.html">See every service area<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="pw-text-link" href="service-areas.html">See Every Service Area<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
       <ul class="area-chips"><li><a class="is-hq" href="service-areas/tracy.html"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Tracy</a></li><li><a href="service-areas/mountain-house.html"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Mountain House</a></li><li><a href="service-areas/manteca.html"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Manteca</a></li><li><a href="service-areas/lathrop.html"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Lathrop</a></li><li><a href="service-areas/stockton.html"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Stockton</a></li><li><a href="service-areas/livermore.html"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Livermore</a></li><li><a href="service-areas.html#french-camp"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>French Camp</a></li><li><a href="service-areas.html#lodi"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Lodi</a></li><li><a href="service-areas.html#ripon"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Ripon</a></li><li><a href="service-areas.html#escalon"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Escalon</a></li><li><a href="service-areas.html#pleasanton"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Pleasanton</a></li><li><a href="service-areas.html#dublin"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>Dublin</a></li></ul>
     </div>
@@ -551,13 +551,9 @@
                 <div class="field"><label for="q-name">Your name</label><input class="input" id="q-name" name="name" type="text" autocomplete="name" required></div>
                 <div class="field"><label for="q-phone">Mobile number</label><input class="input" id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
               </div>
-              <div class="field"><label for="q-city">City</label><select class="select input" id="q-city" name="city" required data-quote-city>
-                <option value="">Pick your city</option>
-                <option>Tracy</option><option>Mountain House</option><option>Manteca</option><option>Lathrop</option><option>Stockton</option><option>Livermore</option><option>French Camp</option><option>Lodi</option><option>Ripon</option><option>Escalon</option><option>Pleasanton</option><option>Dublin</option>
-                <option value="Somewhere else">Somewhere else nearby</option>
-              </select></div>
+              <div class="field"><label for="q-city">City</label><input class="input" id="q-city" name="city" type="text" autocomplete="address-level2" required data-quote-city></div>
               <fieldset class="q"><legend>What's Going On?</legend><div class="chips-grid">
-                <label class="chip"><input type="radio" name="service" value="No cooling" required><span>No cooling</span></label><label class="chip"><input type="radio" name="service" value="No heat"><span>No heat</span></label><label class="chip"><input type="radio" name="service" value="Strange noise"><span>Strange noise</span></label><label class="chip"><input type="radio" name="service" value="Tune-up" checked><span>Tune-up</span></label><label class="chip"><input type="radio" name="service" value="New system"><span>New system</span></label><label class="chip"><input type="radio" name="service" value="Repair or replace check"><span>Repair or replace check</span></label><label class="chip"><input type="radio" name="service" value="Plumbing problem"><span>Plumbing problem</span></label>
+                <label class="chip"><input type="radio" name="service" value="No cooling" required><span>No cooling</span></label><label class="chip"><input type="radio" name="service" value="No heat"><span>No heat</span></label><label class="chip"><input type="radio" name="service" value="Strange noise"><span>Strange noise</span></label><label class="chip"><input type="radio" name="service" value="Tune-up" checked><span>Tune-up</span></label><label class="chip"><input type="radio" name="service" value="New system"><span>New system</span></label><label class="chip"><input type="radio" name="service" value="System check"><span>System check</span></label><label class="chip"><input type="radio" name="service" value="Plumbing problem"><span>Plumbing problem</span></label>
               </div></fieldset>
               <div class="field pw-file"><label for="q-photos">Photos of the problem <span class="pw-opt">(optional)</span></label>
                 <input class="input" id="q-photos" name="photos" type="file" accept="image/*" multiple data-max-files="4">
@@ -590,7 +586,7 @@
                 <p class="pw-est-range"><span data-est-low></span> <span class="pw-est-to">to</span> <span data-est-high></span></p>
                 <p class="pw-est-for" data-est-for></p>
                 <p class="fine"><span class="tag">Illustrative</span> A typical range for a Tracy-area home, installed. Your exact price comes after we see your home.</p>
-                <a class="btn btn-secondary btn-block" href="#quote" data-quote-link data-pick-service="New system" data-to-visit><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a Free In-Home Quote</a>
+                <a class="btn btn-navy btn-block" href="#quote" data-quote-link data-pick-service="New system" data-to-visit><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a Free In-Home Quote</a>
               </div>
             </form>
           </div>

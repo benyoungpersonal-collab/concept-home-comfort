@@ -23,7 +23,7 @@
       0.85,
       1
     ],
-    "use": "Older showcase page"
+    "use": "Home hero"
   },
   "pinwheel-family-tall": {
     "id": "tSwr_HGh0kQ",
@@ -48,7 +48,7 @@
       0.6862,
       1
     ],
-    "use": "Older showcase page (phone crop)",
+    "use": "Home hero (phone crop)",
     "creditAs": "pinwheel-family"
   },
   "pinwheel-hero": {
@@ -498,23 +498,23 @@
     "preview": "pexels__39191159.jpg"
   },
   "pw-services": {
-    "id": "MwrTpnOn8fA",
+    "id": "L5sEqpQukJI",
     "site": "Unsplash",
-    "src": "https://images.unsplash.com/photo-1581579746581-3954f2a31e7a?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTZ8fHJlcGFpcm1hbiUyMGhvbWVvd25lcnxlbnwwfDB8fHwxNzk1MDI3NDYxfDI&ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
-    "w": 2400,
-    "h": 1600,
+    "src": "https://images.unsplash.com/photo-1792799888905-8696bd32a11a?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MjZ8fGFpciUyMGNvbmRpdGlvbmVyJTIwdW5pdHMlMjBvdXRzaWRlfGVufDB8fDJ8fDE3OTUxNDY1NzV8Mg&ixlib=rb-4.1.0&w=2736&q=85&fm=jpg",
+    "w": 2736,
+    "h": 4104,
     "fp": [
-      0.66,
-      0.45
+      0.62,
+      0.28
     ],
-    "color": "#a59080",
-    "alt": "Technician in a navy shirt working on a wall outlet while a boy plays on the rug nearby",
-    "by": "CDC",
-    "page": "https://unsplash.com/photos/man-in-blue-shirt-and-blue-denim-jeans-sitting-on-brown-wooden-table-MwrTpnOn8fA",
-    "profile": "https://unsplash.com/@cdc",
+    "color": "#9aa19d",
+    "alt": "Technician in a blue shirt checking an outdoor AC unit with pressure gauges",
+    "by": "Joel Muniz",
+    "page": "https://unsplash.com/photos/technician-servicing-outdoor-air-conditioning-unit-L5sEqpQukJI",
+    "profile": "https://unsplash.com/@jmuniz",
     "use": "Services hero",
-    "user": "cdc",
-    "base": "https://images.unsplash.com/photo-1581579746581-3954f2a31e7a"
+    "user": "jmuniz",
+    "base": "https://images.unsplash.com/photo-1792799888905-8696bd32a11a"
   },
   "pw-svc-cooling": {
     "id": "JsPkVrHMQoo",
@@ -1251,23 +1251,6 @@
     "user": "nknezevic",
     "base": "https://images.unsplash.com/photo-1616113364365-b6013f3dad25"
   },
-  "pw-home-hero": {
-    "id": "34558045",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/34558045/pexels-photo-34558045.jpeg?auto=compress&cs=tinysrgb&w=4000",
-    "w": 6641,
-    "h": 4427,
-    "fp": [
-      0.78,
-      0.4
-    ],
-    "color": "#9e9a98",
-    "alt": "Technician in a black polo adjusting a wall thermostat in a bright home",
-    "by": "HONG SON",
-    "page": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
-    "profile": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
-    "use": "Homepage hero"
-  },
   "pw-ba-before": {
     "id": "JBw9IlbHhVY",
     "site": "Unsplash",
@@ -1443,28 +1426,5 @@
     "use": "Projects, ductwork",
     "user": "timschmidbauer",
     "base": "https://images.unsplash.com/photo-1770816306659-adcf99a11aeb"
-  },
-  "pw-home-hero-phone": {
-    "id": "34558045",
-    "site": "Pexels",
-    "src": "https://images.pexels.com/photos/34558045/pexels-photo-34558045.jpeg?auto=compress&cs=tinysrgb&w=4000",
-    "w": 6641,
-    "h": 4427,
-    "fp": [
-      0.66,
-      0.3
-    ],
-    "color": "#9e9a98",
-    "alt": "Technician in a black polo adjusting a wall thermostat in a bright home",
-    "by": "HONG SON",
-    "page": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
-    "profile": "https://www.pexels.com/photo/man-adjusting-thermostat-in-modern-home-interior-34558045/",
-    "use": "Homepage hero, phone crop",
-    "box": [
-      0.35,
-      0.12,
-      1.0,
-      1.0
-    ]
   }
 }

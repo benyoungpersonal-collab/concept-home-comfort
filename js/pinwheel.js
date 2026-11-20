@@ -162,10 +162,8 @@
     if (r) r.checked = true;
   }
   function pickCity(v) {
-    var sel = quote && $('[data-quote-city]', quote);
-    if (!sel || !v) return;
-    var o = $$('option', sel).filter(function (x) { return x.value === v || x.textContent === v; })[0];
-    if (o) sel.value = o.value;
+    var f = quote && $('[data-quote-city]', quote);
+    if (f && v && !f.value) f.value = v;
   }
   function goQuote(focusSel) {
     if (!quote) return;
@@ -217,25 +215,6 @@
     form.addEventListener('change', function () { if (shown) compute(false); });
   });
 
-  /* ---------- Service area: tap a city, then Check My Area fills it in the quote form ---------- */
-  var picked = '';
-  $$('[data-city-pick]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var on = b.getAttribute('aria-pressed') !== 'true';
-      $$('[data-city-pick]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      picked = on ? b.getAttribute('data-city-pick') : '';
-      var box = $('[data-area-picked]'); if (box) { box.hidden = !picked; var n = $('[data-area-name]', box); if (n) n.textContent = picked; }
-    });
-  });
-  $$('[data-check-area]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      if (!quote) return; e.preventDefault();
-      setTab('qpanel-visit');
-      if (picked) pickCity(picked);
-      goQuote(picked ? '#q-name' : '#q-city');
-    });
-  });
 
   /* ---------- Swipe rows: dots on phones ---------- */
   $$('[data-swipe]').forEach(function (row) {
@@ -255,18 +234,28 @@
     }, { passive: true });
   });
 
-  /* ---------- Repair or Replace tap-through: tabs, swipe, and the "Swipe to See the After" button ---------- */
+  /* ---------- Repair or Replace photo card: swipe, round arrows, BEFORE/AFTER pill, 01 / 02 counter, dots ---------- */
   $$('[data-x]').forEach(function (x) {
-    var track = $('[data-x-track]', x), slides = $$('.pw-x-slide', x), tabs = $$('.pw-x-tabs [role="tab"]', x);
-    var mark = function (i) { tabs.forEach(function (t, j) { t.setAttribute('aria-selected', j === i ? 'true' : 'false'); t.tabIndex = j === i ? 0 : -1; }); };
-    var go = function (i) { track.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced() ? 'auto' : 'smooth' }); mark(i); };
-    tablist($('.pw-x-tabs', x), function (t) { go(tabs.indexOf(t)); });
+    var track = $('[data-x-track]', x), slides = $$('.pw-x-slide', x), pill = $('[data-x-pill]', x), n = $('[data-x-n]', x), dots = $$('.pw-x-dots span', x);
+    var names = ['Before', 'After'], cur = 0;
+    var mark = function (i) {
+      cur = i;
+      if (pill) { pill.textContent = names[i] || ''; pill.classList.toggle('is-after', i === 1); }
+      if (n) n.textContent = '0' + (i + 1);
+      dots.forEach(function (d, j) { d.classList.toggle('is-on', j === i); });
+    };
+    var go = function (i) { i = Math.max(0, Math.min(slides.length - 1, i)); track.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: reduced() ? 'auto' : 'smooth' }); mark(i); };
     $$('[data-x-go]', x).forEach(function (b) { b.addEventListener('click', function () { go(Number(b.getAttribute('data-x-go')) - 1); }); });
+    var prev = $('[data-x-prev]', x), next = $('[data-x-next]', x);
+    if (prev) prev.addEventListener('click', function () { go(cur - 1); });
+    if (next) next.addEventListener('click', function () { go(cur + 1); });
+    track.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); } });
     var tick = false;
     track.addEventListener('scroll', function () {
       if (tick) return; tick = true;
-      requestAnimationFrame(function () { tick = false; mark(Math.round(track.scrollLeft / Math.max(1, track.clientWidth))); });
+      requestAnimationFrame(function () { tick = false; var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth)); if (i !== cur) mark(i); });
     }, { passive: true });
+    mark(0);
   });
 
   /* ---------- Before/after drag slider (mouse, touch, keyboard) ---------- */
@@ -299,6 +288,16 @@
         dots.forEach(function (s, j) { s.classList.toggle('is-on', j === i); });
       });
     }, { passive: true });
+    /* Round prev/next arrows on the photo (desktop) */
+    var step = function (dir) {
+      var w = Math.max(1, track.clientWidth), count = track.children.length;
+      var i = Math.round(track.scrollLeft / w) + dir;
+      if (i < 0) i = count - 1; if (i >= count) i = 0;
+      track.scrollTo({ left: i * w, behavior: reduced() ? 'auto' : 'smooth' });
+    };
+    var pv = $('[data-pgal-prev]', card), nx = $('[data-pgal-next]', card);
+    if (pv) pv.addEventListener('click', function () { step(-1); });
+    if (nx) nx.addEventListener('click', function () { step(1); });
   });
   var zoom = null;
   d.addEventListener('click', function (e) {
@@ -322,7 +321,7 @@
   if (float) {
     var heroBtns = $$('[data-hide-bar]'), onScreen = new Set();
     var waitFor = function () { return heroBtns.length ? onScreen.size > 0 : window.scrollY < 320; };
-    var DARK = '.on-dark, .site-footer, .pw-hhero, .hero, .pw-next, .pw-ribbon';
+    var DARK = '.on-dark, .site-footer, .pw-hhero, .pw-ohero, .hero, .pw-next, .pw-ribbon';
     var check = function () {
       float.classList.toggle('is-waiting', waitFor());
       var r = float.getBoundingClientRect();
@@ -350,4 +349,11 @@
     setFoot();
     if (wide.addEventListener) wide.addEventListener('change', setFoot);
   }
+
+  /* ---------- Logo spin replays when a phone restores the page from its back/forward cache (standing rule 3) ---------- */
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    var m = d.querySelector('.site-header .logo-mark'); if (!m) return;
+    m.style.animation = 'none'; void m.getBoundingClientRect(); m.style.animation = '';
+  });
 })();

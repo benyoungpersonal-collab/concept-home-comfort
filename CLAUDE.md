@@ -1,5 +1,23 @@
 # Rules for this repo
 
+## Standing build rules
+
+These apply to every build in this repo, every session.
+
+1. Copy is locked. Use only the words in Ben's prompts or already on the site. Never invent owner stories, quotes, stats, or years. Spanish versions of approved lines are fine, written naturally. If a spot needs new words, keep what's there and list it in your report.
+2. Every button has white text (or bright text on a dark button). Never black.
+3. The logo animation plays on every page load and refresh.
+4. Before/After labels and the 01/02 counter sit on the image, never as tabs above it.
+5. Explainer and before/after images are realistic photos (real or AI-made), never drawings. A before/after pair is always the same scene.
+6. On desktop, every swipe card and slider has small round prev/next arrow buttons on the image.
+7. Numbered markers on images are small (24px circle, 12px number, weight 600). Checks are small and in one block. No bright green.
+8. Service areas: county dropdowns start closed. No pin icon on each city chip. Only home base is highlighted. No city dropdown or Check My Area.
+9. FAQ title: "You've Got Questions. We've Got Answers."
+10. People photos are real stock. Owners are mid-30s to early 40s in a dark work polo or work shirt, in a home setting. Never auto shops, car lifts, hard hats, hi-vis, coveralls, gray shirts, or another company's logo. Equipment photos can be AI if they look real. No photo appears twice on one page.
+11. Every build ends with a labeled contact sheet of every photo on the homepage, sent with the report.
+12. Clean copy pass before publishing: one name per thing (pick Free Quote or Free Estimate and use it on every button, heading, and form), Title Case on every headline and button, the same headline punctuation on every page, parallel lists, numerals for numbers, one phone format, no double spaces, no orphan word at the end of a headline at 375 or 390, correct Spanish accents and opening marks. Then read the page out loud once in English and once in Spanish.
+13. Photos show the service: the equipment for HVAC, the floor for flooring, the finished room for remodel. Every service and add-on has its own photo on its service page.
+
 ## Homepage previews: deploy every build yourself
 
 After any preview build or change, deploy it yourself with Wrangler:

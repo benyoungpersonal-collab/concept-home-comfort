@@ -11,8 +11,9 @@ const plain = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').re
 
 export const bookHref = (R, service) => `${R}book.html${service ? `?service=${encodeURIComponent(service).replace(/%20/g, '+')}` : ''}`;
 export const callBtn = (cls = 'btn btn-primary btn-lg') => `<a class="${cls}" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>`;
-export const bookBtn = (R, service, cls = 'btn btn-glass btn-lg', label = 'Book online') => `<a class="${cls}" href="${bookHref(R, service)}">${ic('i-calendar')}${label}</a>`;
+export const bookBtn = (R, service, cls = 'btn btn-glass btn-lg', label = 'Book Online') => `<a class="${cls}" href="${bookHref(R, service)}">${ic('i-calendar')}${label}</a>`;
 export const quoteBtn = (R, service, cls = 'btn btn-primary btn-lg', label = 'Get My Free Quote') => `<a class="${cls}" href="#quote" data-quote-link data-home="${R}index.html#quote"${service ? ` data-pick-service="${service}"` : ''}>${ic('i-send')}${label}</a>`;
+export const FAQ_TITLE = `You've Got Questions. <span class="accent">We've Got Answers.</span>`; // standing rule 9: every FAQ section uses this title
 export const tag = (t = 'Illustrative') => `<span class="tag">${t}</span>`;
 
 /* The full page: head (title, description, share tags), shared partials, main, scripts */
@@ -145,7 +146,7 @@ export function reviewsSection(R, list, o = {}) {
   return sec({ id: o.id || 'reviews', cls: o.cls || 'tpl-bg-tint', eyebrow: 'Reviews', h2: o.h2 || 'What Neighbors <span class="accent">Tell Us.</span>',
     lead: `${STATS.rating} stars from ${STATS.count} Google reviews. ${tag('Illustrative reviews')}`,
     inner: `<ul class="pw-reviews">${list.map(reviewCard).join('\n        ')}</ul>
-      <p class="pw-more"><a class="btn btn-secondary" href="${R}reviews.html">Read all reviews${ic('i-arrow-right')}</a></p>` });
+      <p class="pw-more"><a class="btn btn-navy" href="${R}reviews.html">Read All Reviews${ic('i-arrow-right')}</a></p>` });
 }
 
 /* FAQ dropdowns (the site's accordion) plus the matching FAQPage data */
@@ -165,7 +166,7 @@ export function faqSection(R, items, o = {}) {
     <div class="container faq-grid">
       <div class="faq-head">
         <p class="eyebrow">FAQ</p>
-        <h2 id="${o.id || 'faq'}-title">${o.h2 || 'Common <span class="accent">Questions.</span>'}</h2>
+        <h2 id="${o.id || 'faq'}-title">${FAQ_TITLE}</h2>
         <p>Still wondering about something? <a href="${R}faq.html">See every question</a> or call ${PHONE}.</p>
       </div>
       ${faqList(items, o.prefix)}
@@ -197,7 +198,7 @@ export const bookCall = (R, service, h2) => `  <section class="section pw-bookca
         <p class="lead">A real person answers from 7am to 7pm, Monday to Saturday, and the emergency line is open 24/7. We text you a 3-hour arrival window and the tech's name before we head over.</p>
       </div>
       <div class="pw-bookcall-cards">
-        <a class="pw-bc-card" href="${bookHref(R, service)}" data-reveal><span class="pw-bc-icon">${ic('i-calendar')}</span><span><strong>Book online</strong><span>Pick a day and a 3-hour window in about a minute.</span></span>${ic('i-arrow-right')}</a>
+        <a class="pw-bc-card" href="${bookHref(R, service)}" data-reveal><span class="pw-bc-icon">${ic('i-calendar')}</span><span><strong>Book Online</strong><span>Pick a day and a 3-hour window in about a minute.</span></span>${ic('i-arrow-right')}</a>
         <a class="pw-bc-card" href="${TEL}" data-reveal><span class="pw-bc-icon">${ic('i-phone')}</span><span><strong>Call ${PHONE}</strong><span>Talk to a real person right now.</span></span>${ic('i-arrow-right')}</a>
         <a class="pw-bc-card" href="${SMS}" data-reveal><span class="pw-bc-icon">${ic('i-message')}</span><span><strong>Text the same number</strong><span>Send a photo of the problem and we text back.</span></span>${ic('i-arrow-right')}</a>
       </div>
@@ -209,7 +210,7 @@ export const areasStrip = (R, current) => `  <section class="section pw-areas-st
     <div class="container">
       <div class="pw-strip-head">
         <h2 id="strip-title">We Serve 12 Cities Around <span class="accent">Tracy.</span></h2>
-        <a class="pw-text-link" href="${R}service-areas.html">See every service area${ic('i-arrow-right')}</a>
+        <a class="pw-text-link" href="${R}service-areas.html">See Every Service Area${ic('i-arrow-right')}</a>
       </div>
       <ul class="area-chips">${CITIES.map((c) => {
         const href = c.file ? `${R}${c.file}` : `${R}service-areas.html#${c.slug}`;
