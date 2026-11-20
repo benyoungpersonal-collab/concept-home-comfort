@@ -1,6 +1,6 @@
 /* pages-areas.mjs: the Service Areas hub and one page per city with local details (not copy-paste).
    Sample data for a fictional business. */
-import { hero, sec, reviewCard, faqSection, faqLd, club, bookCall, areasStrip, linkCards, serviceLd, crumbLd, heroPreload, ic, tag } from './components.mjs';
+import { hero, sec, reviewCard, faqSection, faqLd, club, areasStrip, linkCards, serviceLd, crumbLd, heroPreload, ic, tag } from './components.mjs';
 import { CITIES, REVIEWS, PHONE, SITE } from './site-data.mjs';
 
 const CITY = {
@@ -66,9 +66,9 @@ export const cityPages = (ph) => CITIES.filter((c) => c.file).map((c) => {
   const trail = [['Home', 'index.html'], ['Service Areas', 'service-areas.html'], [c.name]];
   return {
     file: c.file, title: `Heating, AC & Plumbing in ${c.name}, CA | Pinwheel`,
-    desc: `AC repair, furnace repair, water heaters, drains, and leak repair in ${c.name}, CA. ${d.pill}. Upfront prices from a local family-owned team. Sample site.`,
-    ogTitle: `Heating, AC & Plumbing in ${c.name}, CA`, preload: heroPreload(ph(d.photo)),
-    jsonld: [serviceLd({ name: `Heating, cooling, and plumbing in ${c.name}`, type: 'HVAC and plumbing', desc: `Service for homes in ${c.name}, CA. Sample data.`, file: c.file }), faqLd(d.faq), crumbLd(c.file, trail)],
+    desc: `AC repair, furnace repair, water heaters, drains, and leak repair in ${c.name}, CA. ${d.pill}. Upfront prices from a local family-owned team.`,
+    ogTitle: `Heating, AC & Plumbing in ${c.name}, CA`, quoteCity: c.name, preload: heroPreload(ph(d.photo)),
+    jsonld: [serviceLd({ name: `Heating, cooling, and plumbing in ${c.name}`, type: 'HVAC and plumbing', desc: `Service for homes in ${c.name}, CA.`, file: c.file }), faqLd(d.faq), crumbLd(c.file, trail)],
     body: (R) => [
       hero(R, { photo: ph(d.photo), crumbs: trail, pill: d.pill, title: `Heating, Air &amp; Plumbing in <span class="accent">${c.name}, CA.</span>`, lead: d.lead }),
       sec({ id: 'local', cls: 'bg-white', eyebrow: `What we see in ${c.name}`, h2: `Local Homes, <span class="accent">Local Problems.</span>`, lead: d.seeLead,
@@ -91,14 +91,14 @@ export const cityPages = (ph) => CITIES.filter((c) => c.file).map((c) => {
         lead: `${tag('Illustrative reviews')}`, inner: `<ul class="pw-reviews">${reviews.map(reviewCard).join('')}</ul>
       <p class="pw-more"><a class="btn btn-secondary" href="${R}reviews.html">Read all reviews${ic('i-arrow-right')}</a></p>` }) : '',
       faqSection(R, d.faq, { h2: `${c.name} <span class="accent">Questions.</span>`, cls: 'bg-white', prefix: 'city' }),
-      club(R), bookCall(R), areasStrip(R, c.file),
+      club(R), areasStrip(R, c.file),
     ].join('\n\n'),
   };
 });
 
 export const areasHub = (ph) => ({
   file: 'service-areas.html', title: 'Service Areas | Heating, AC & Plumbing Around Tracy, CA | Pinwheel',
-  desc: 'Pinwheel serves 12 cities around Tracy, CA: Mountain House, Manteca, Lathrop, Stockton, Livermore, Lodi, Ripon, Escalon, French Camp, Pleasanton, and Dublin. Sample site.',
+  desc: 'Pinwheel serves 12 cities around Tracy, CA: Mountain House, Manteca, Lathrop, Stockton, Livermore, Lodi, Ripon, Escalon, French Camp, Pleasanton, and Dublin.',
   ogTitle: 'Service Areas Around Tracy, CA', preload: heroPreload(ph('areas-hero')),
   jsonld: [crumbLd('service-areas.html', [['Home', 'index.html'], ['Service Areas']])],
   body: (R) => [
@@ -125,6 +125,6 @@ export const areasHub = (ph) => ({
           <p>${c.note}</p>
           ${c.file ? `<a class="pw-text-link" href="${R}${c.file}">See ${c.name} details${ic('i-arrow-right')}</a>` : `<a class="pw-text-link" href="tel:+12095550142">Call to book in ${c.name}${ic('i-arrow-right')}</a>`}
         </li>`).join('\n        ')}</ul>` }),
-    club(R), bookCall(R),
+    club(R),
   ].join('\n\n'),
 });

@@ -35,7 +35,6 @@
             </div>
           </div>
         </li>
-        <li><a class="nav-link" href="{{root}}instant-estimate.html" data-nav="instant-estimate.html">Instant Estimate</a></li>
         <li><a class="nav-link" href="{{root}}comfort-club.html" data-nav="comfort-club.html">Comfort Club</a></li>
         <li><a class="nav-link" href="{{root}}specials.html" data-nav="specials.html">Specials</a></li>
         <li>
@@ -51,7 +50,11 @@
             <div class="panel-grid">
               <a class="panel-link" href="{{root}}about.html" data-nav="about.html">
                 <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span>
-                <span><strong>About Us</strong><span>Meet the owner, the team, and the van.</span></span>
+                <span><strong>About Us</strong><span>Meet the owner and the team.</span></span>
+              </a>
+              <a class="panel-link" href="{{root}}projects.html" data-nav="projects.html">
+                <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg></span>
+                <span><strong>Projects</strong><span>Installs and repairs, before and after.</span></span>
               </a>
               <a class="panel-link" href="{{root}}reviews.html" data-nav="reviews.html">
                 <span class="icon-bubble"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span>
@@ -76,11 +79,14 @@
       </ul>
     </nav>
     <div class="header-actions">
+      <div class="pw-lang" role="group" aria-label="Language / Idioma" translate="no">
+        <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button><span class="pw-lang-sep" aria-hidden="true">/</span><button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+      </div>
       <a class="header-phone" href="tel:+12095550142" aria-label="Call or text us (209) 555-0142">
         <span class="icon-wrap"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
         <span class="header-phone-text" aria-hidden="true"><small>Call or text us</small><span>(209) 555-0142</span></span>
       </a>
-      <a class="btn btn-primary btn-sm header-book" href="{{root}}book.html">Book Online</a>
+      <a class="btn btn-primary btn-sm header-book" href="#quote" data-quote-link data-home="{{root}}index.html#quote">Free Quote</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-open><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
   </div>
@@ -122,13 +128,13 @@
       </details>
       <details class="mm-acc">
         <summary><span class="icon-bubble navy"><svg class="icon" aria-hidden="true"><use href="#i-home-heart"/></svg></span>About<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
-        <ul class="mm-links"><li><a href="{{root}}about.html" data-nav="about.html">About Us <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}reviews.html" data-nav="reviews.html">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}faq.html" data-nav="faq.html">FAQ <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}financing.html" data-nav="financing.html">Financing <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}resources.html" data-nav="resources.html">Resources <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
+        <ul class="mm-links"><li><a href="{{root}}about.html" data-nav="about.html">About Us <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}projects.html" data-nav="projects.html">Projects <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}reviews.html" data-nav="reviews.html">Reviews <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}faq.html" data-nav="faq.html">FAQ <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}financing.html" data-nav="financing.html">Financing <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li><li><a href="{{root}}resources.html" data-nav="resources.html">Resources <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
       </details>
       <ul class="mm-links mm-top"><li><a href="{{root}}contact.html" data-nav="contact.html">Contact <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></a></li></ul>
     </div>
     <div class="mm-cta">
       <a class="btn btn-primary btn-lg" href="tel:+12095550142"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Call (209) 555-0142</a>
-      <a class="btn btn-navy btn-lg" href="{{root}}book.html"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book online</a>
+      <a class="btn btn-navy btn-lg" href="#quote" data-quote-link data-home="{{root}}index.html#quote" data-menu-close><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>Get My Free Quote</a>
     </div>
     <p class="mm-hours">We answer Monday to Saturday, 7am to 7pm, and the emergency line is open 24/7.</p>
   </nav>

@@ -1,0 +1,14 @@
+{
+ "_note": "Words the scripts write on the fly (js/site.js, js/pinwheel.js). Patterns for dates, counts, and price labels live in scripts/i18n-build.mjs.",
+ "strings": [
+  "Today", "Tomorrow", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
+  "Day", "Arrival", "Name", "City", "Close",
+  "Repair it. Your system has good years left.",
+  "A repair is the smart money move right now. We will fix it, check the rest of the system, and tell you honestly how many years you can expect.",
+  "Repair for now, and start planning.",
+  "A repair makes sense today, but your system is getting close. Ask for a free replacement quote so you can pick a new system on your schedule, not in a heat wave.",
+  "Replacing will likely save you money.",
+  "Between the age, the repair cost, and your bills, a new system will probably cost less over the next five years. A free in-home quote shows your real numbers, with no pressure.",
+  "Book a repair visit", "Book a free in-home quote"
+ ]
+}

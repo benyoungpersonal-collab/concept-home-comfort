@@ -1,7 +1,7 @@
 /* pages-other.mjs: hubs, plans, tools, company pages, city pages, articles, legal, and the 404.
    Sample data for a fictional business. */
 import { readFileSync } from 'node:fs';
-import { hero, sec, checklist, steps, prices, reviewCard, reviewsSection, faqList, faqSection, faqLd, club, bookCall,
+import { hero, sec, checklist, steps, prices, reviewCard, reviewsSection, faqList, faqSection, faqLd, club,
   areasStrip, split, linkCards, serviceLd, crumbLd, heroPreload, callBtn, bookBtn, bookHref, ic, tag } from './components.mjs';
 import { GROUPS, CITIES, REVIEWS, STATS, PHONE, TEL, SMS, SITE } from './site-data.mjs';
 
@@ -17,7 +17,7 @@ function netlifyForm(name, inner, thanks, submitLabel, o = {}) {
           <p class="form-error" data-error role="alert" hidden>${o.error || 'Please fill in the highlighted fields.'}</p>
           <p class="form-error" data-fail role="alert" hidden>That did not go through. Please call ${PHONE} and we will set it up on the phone.</p>
           <button class="btn btn-primary btn-lg btn-block" type="submit">${ic('i-send')}${submitLabel}</button>
-          <p class="fine">Sample site. Your request goes to the site's form inbox, not to a real company.</p>
+          
         </form>
         <div class="pw-thanks" tabindex="-1" hidden>
           <span class="pw-thanks-icon">${ic('i-check')}</span>
@@ -38,7 +38,7 @@ const GROUP_TEXT = {
 };
 export const services = (ph) => ({
   file: 'services.html', title: 'Heating, Cooling & Plumbing Services in Tracy, CA | Pinwheel',
-  desc: 'Every Pinwheel service in one place: AC repair and installation, furnace repair, heat pumps, water heaters, drains, leak repair, and indoor air quality in Tracy, CA. Sample site.',
+  desc: 'Every Pinwheel service in one place: AC repair and installation, furnace repair, heat pumps, water heaters, drains, leak repair, and indoor air quality in Tracy, CA.',
   ogTitle: 'Heating, Cooling & Plumbing Services in Tracy, CA', preload: hp(ph('services-hero')),
   jsonld: [crumbLd('services.html', crumbs(['Services']))],
   body: (R) => [
@@ -60,16 +60,16 @@ export const services = (ph) => ({
         <div><h2 id="emergency-band-title">24/7 Emergency <span class="accent">Service.</span></h2><p>Burst pipe, no heat, or a sewer backup at night? A real person answers the emergency line around the clock and talks you through what to shut off while a tech heads over.</p></div>
         <div class="btn-row"><a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a><a class="btn btn-glass btn-lg" href="${R}emergency.html">What counts as an emergency</a></div>
       </div>` }),
-    club(R), bookCall(R), areasStrip(R),
+    club(R), areasStrip(R),
   ].join('\n\n'),
 });
 
 /* ---------- Cooling overview ---------- */
 export const cooling = (ph) => ({
   file: 'cooling.html', title: 'Cooling & AC Services in Tracy, CA | Pinwheel',
-  desc: 'AC repair, new AC systems, tune-ups, duct sealing, and smart thermostats for Tracy-area homes, plus a free repair-or-replace helper. Sample site.',
+  desc: 'AC repair, new AC systems, tune-ups, duct sealing, and smart thermostats for Tracy-area homes, plus a free repair-or-replace helper.',
   ogTitle: 'Cooling & AC Services in Tracy, CA', preload: hp(ph('cooling-hero')),
-  jsonld: [serviceLd({ name: 'Cooling service', type: 'AC repair, AC installation, tune-ups, duct sealing, thermostats', desc: 'Cooling services for Tracy-area homes. Sample data.', file: 'cooling.html' }),
+  jsonld: [serviceLd({ name: 'Cooling service', type: 'AC repair, AC installation, tune-ups, duct sealing, thermostats', desc: 'Cooling services for Tracy-area homes.', file: 'cooling.html' }),
     faqLd(COOL_FAQ), crumbLd('cooling.html', crumbs(['Services', 'services.html'], ['Cooling']))],
   body: (R) => [
     hero(R, { photo: ph('cooling-hero'), crumbs: crumbs(['Services', 'services.html'], ['Cooling']), pill: 'Cooling services in Tracy, CA', service: 'AC repair',
@@ -92,7 +92,7 @@ export const cooling = (ph) => ({
     </div>
   </section>`,
     faqSection(R, COOL_FAQ, { h2: 'Cooling <span class="accent">Questions.</span>', prefix: 'cool' }),
-    club(R), bookCall(R, 'AC repair'), areasStrip(R),
+    club(R), areasStrip(R),
   ].join('\n\n'),
 });
 const COOL_FAQ = [['How often should my AC be serviced?', 'We recommend once a year, in spring, before the first heat wave. Valley dust and pollen clog coils fast, and a clean coil keeps your bills down.'], ['What size AC do I need?', 'It depends on more than square feet. Windows, insulation, the attic, and the sun all matter. We run a real load calculation instead of guessing, because an oversized unit short cycles and never dries the air.'], ['Is a heat pump worth it here?', 'Yes. Our winters are mild, which is exactly where heat pumps shine. Many valley homes save on both summer and winter bills.'], ['Why is one room always hotter?', 'Usually leaky attic ducts, a weak blower, or no zoning. A duct test tells us which one you have.']];
@@ -101,9 +101,9 @@ const COOL_FAQ = [['How often should my AC be serviced?', 'We recommend once a y
 const PLUMB_FAQ = [['Do you charge more for evenings and weekends?', 'Evenings and weekends carry a small after-hours fee, which we tell you before anyone drives over. Comfort Club members never pay it.'], ['How do I know if I need a repipe?', 'Rusty water, low pressure in several rooms, and repeated pinhole leaks are the usual signs, especially in homes built before 1980 with galvanized pipe. A camera and pressure test confirm it.'], ['Will you patch the drywall?', 'Yes. Our plumbers cut the smallest opening they can, and the patch and texture are part of the quote.'], ['Do you install water softeners?', 'Yes. Valley water is hard on pipes and appliances, and we install and service softeners and whole-home filters.']];
 export const plumbing = (ph) => ({
   file: 'plumbing.html', title: 'Plumbing Services in Tracy, CA | Pinwheel',
-  desc: 'Water heaters, drain cleaning, leak repair, repiping, fixtures, softeners, and gas lines for Tracy-area homes. Upfront prices and clean techs. Sample site.',
+  desc: 'Water heaters, drain cleaning, leak repair, repiping, fixtures, softeners, and gas lines for Tracy-area homes. Upfront prices and clean techs.',
   ogTitle: 'Plumbing Services in Tracy, CA', preload: hp(ph('plumbing-hero')),
-  jsonld: [serviceLd({ name: 'Plumbing service', type: 'Water heaters, drains, leak repair, repiping, fixtures, gas lines', desc: 'Plumbing services for Tracy-area homes. Sample data.', file: 'plumbing.html' }),
+  jsonld: [serviceLd({ name: 'Plumbing service', type: 'Water heaters, drains, leak repair, repiping, fixtures, gas lines', desc: 'Plumbing services for Tracy-area homes.', file: 'plumbing.html' }),
     faqLd(PLUMB_FAQ), crumbLd('plumbing.html', crumbs(['Services', 'services.html'], ['Plumbing']))],
   body: (R) => [
     hero(R, { photo: ph('plumbing-hero'), crumbs: crumbs(['Services', 'services.html'], ['Plumbing']), pill: 'Plumbing services in Tracy, CA', service: 'Plumbing repair',
@@ -131,7 +131,7 @@ export const plumbing = (ph) => ({
         <a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
       </aside>` }),
     faqSection(R, PLUMB_FAQ, { h2: 'Plumbing <span class="accent">Questions.</span>', prefix: 'plumb' }),
-    club(R), bookCall(R, 'Plumbing repair'), areasStrip(R),
+    club(R), areasStrip(R),
   ].join('\n\n'),
 });
 
@@ -139,9 +139,9 @@ export const plumbing = (ph) => ({
 const EMERG_FAQ = [['Do you really answer at night?', 'Yes. The emergency line rings to a real person on our team 24 hours a day, every day of the year.'], ['How much does an after-hours visit cost?', 'After-hours visits carry a $99 fee on top of the repair, and we tell you the total before anyone drives over. Comfort Club members never pay it. ' + '<span class="tag">Illustrative</span>'], ['What if it can wait until morning?', 'We will tell you honestly. If it is safe to wait, we book you the first slot in the morning and save you the after-hours fee.']];
 export const emergency = (ph) => ({
   file: 'emergency.html', title: '24/7 Emergency Plumbing, Heating & AC in Tracy, CA | Pinwheel',
-  desc: 'Burst pipe, no heat, gas smell, or sewer backup? Pinwheel answers 24/7 in Tracy and nearby cities. What counts as an emergency and what to do while you wait. Sample site.',
+  desc: 'Burst pipe, no heat, gas smell, or sewer backup? Pinwheel answers 24/7 in Tracy and nearby cities. What counts as an emergency and what to do while you wait.',
   ogTitle: '24/7 Emergency Service in Tracy, CA', preload: hp(ph('emergency-hero')), bodyClass: 'pw-emergency',
-  jsonld: [serviceLd({ name: '24/7 emergency service', type: 'Emergency plumbing, heating, and cooling repair', desc: 'Emergency service around the clock. Sample data.', file: 'emergency.html' }), faqLd(EMERG_FAQ), crumbLd('emergency.html', crumbs(['Services', 'services.html'], ['24/7 Emergency']))],
+  jsonld: [serviceLd({ name: '24/7 emergency service', type: 'Emergency plumbing, heating, and cooling repair', desc: 'Emergency service around the clock.', file: 'emergency.html' }), faqLd(EMERG_FAQ), crumbLd('emergency.html', crumbs(['Services', 'services.html'], ['24/7 Emergency']))],
   body: (R) => [
     hero(R, { photo: ph('emergency-hero'), crumbs: crumbs(['Services', 'services.html'], ['24/7 Emergency']), pill: 'Open 24/7 in Tracy, CA', title: '24/7 <span class="accent">Emergency Service</span> in Tracy, CA.',
       lead: 'A real person answers our emergency line day and night. We talk you through what to shut off, then send the nearest tech.',
@@ -179,9 +179,9 @@ export const emergency = (ph) => ({
 const CLUB_FAQ = [['Can I cancel anytime?', 'Yes. There is no contract and no cancellation fee. Text or call and we will cancel it that day.'], ['What if something breaks between tune-ups?', 'You get the first open slot, no overtime fees, and 15% off the repair.'], ['Does the plan move with the house?', 'Yes. It can move to the new owners, which is a nice selling point.'], ['What does a tune-up include?', 'The spring visit cleans the outdoor coil, checks refrigerant and electrical parts, and clears the drain line. The fall visit checks the burners, igniter, flame sensor, heat exchanger, and carbon monoxide.']];
 export const comfortClub = (ph) => ({
   file: 'comfort-club.html', title: 'Comfort Club Maintenance Plan in Tracy, CA | Pinwheel',
-  desc: 'Two tune-ups a year, priority scheduling, 15% off repairs, and no overtime fees for $15 a month. Pinwheel Comfort Club for Tracy-area homes. Sample site.',
+  desc: 'Two tune-ups a year, priority scheduling, 15% off repairs, and no overtime fees for $15 a month. Pinwheel Comfort Club for Tracy-area homes.',
   ogTitle: 'Comfort Club Maintenance Plan in Tracy, CA', preload: hp(ph('comfort-club-hero')),
-  jsonld: [{ '@type': 'Offer', name: 'Comfort Club maintenance plan', price: '15', priceCurrency: 'USD', description: 'Sample pricing for a concept business.', url: SITE + 'comfort-club.html' }, faqLd(CLUB_FAQ), crumbLd('comfort-club.html', crumbs(['Comfort Club']))],
+  jsonld: [{ '@type': 'Offer', name: 'Comfort Club maintenance plan', price: '15', priceCurrency: 'USD', description: 'Two tune-ups a year, priority scheduling, and 15% off repairs.', url: SITE + 'comfort-club.html' }, faqLd(CLUB_FAQ), crumbLd('comfort-club.html', crumbs(['Comfort Club']))],
   body: (R) => [
     hero(R, { photo: ph('comfort-club-hero'), crumbs: crumbs(['Comfort Club']), pill: 'Maintenance plan in Tracy, CA', title: 'The <span class="accent">Comfort Club</span> in Tracy, CA.',
       lead: 'For $15 a month, we tune up your AC every spring and your heating every fall, put you first in line when something breaks, and take 15% off every repair.',
@@ -198,7 +198,7 @@ export const comfortClub = (ph) => ({
         <div class="pw-plan-card" data-reveal>
           <p class="eyebrow">Comfort Club</p>
           <p class="pw-plan-price"><span>$15</span><small>a month</small></p>
-          <p class="fine">${tag()} Sample price. Billed monthly, cancel anytime.</p>
+          <p class="fine">${tag()} Billed monthly, cancel anytime.</p>
           <ul class="pw-plan-list"><li>${ic('i-check')}2 tune-ups a year</li><li>${ic('i-check')}Priority scheduling</li><li>${ic('i-check')}15% off repairs</li><li>${ic('i-check')}No overtime fees</li></ul>
           <a class="btn btn-primary btn-lg btn-block" href="#join">Join now</a>
         </div>
@@ -209,7 +209,7 @@ export const comfortClub = (ph) => ({
         <div><p class="pw-math-label">Two tune-ups without the plan</p><p class="pw-math-amt">$198</p></div>
         <div><p class="pw-math-label">15% off one $450 repair</p><p class="pw-math-amt">$68</p></div>
         <div><p class="pw-math-label">One after-hours fee avoided</p><p class="pw-math-amt">$99</p></div>
-        <div class="pw-math-total"><p class="pw-math-label">Value in a typical year</p><p class="pw-math-amt">$365</p><p class="fine">The plan costs $180 a year. Sample numbers for a concept site.</p></div>
+        <div class="pw-math-total"><p class="pw-math-label">Value in a typical year</p><p class="pw-math-amt">$365</p><p class="fine">The plan costs $180 a year.</p></div>
       </div>` }),
     sec({ id: 'join', cls: 'bg-white', eyebrow: 'Join in a minute', h2: 'Sign Up for the <span class="accent">Comfort Club.</span>',
       lead: 'Tell us where to reach you, and we will text you to schedule your first tune-up within a week.',
@@ -222,7 +222,7 @@ export const comfortClub = (ph) => ({
             <label class="chip"><input type="radio" name="system" value="AC and furnace" required><span>AC and furnace</span></label>
             <label class="chip"><input type="radio" name="system" value="Heat pump"><span>Heat pump</span></label>
             <label class="chip"><input type="radio" name="system" value="Not sure"><span>Not sure</span></label>
-          </div></fieldset>`, '<h3>You Are in the Comfort Club.</h3><p>Thanks for joining. We will text you within one business day to set up your first tune-up.</p><p class="fine">Sample site: no card was charged and nothing was booked.</p>', 'Join the Comfort Club')}
+          </div></fieldset>`, '<h3>You Are in the Comfort Club.</h3><p>Thanks for joining. We will text you within one business day to set up your first tune-up.</p>', 'Join the Comfort Club')}
         </div>
         <ul class="pw-side-list">
           <li>${ic('i-check')}Cancel anytime, with no fee.</li>
@@ -232,15 +232,15 @@ export const comfortClub = (ph) => ({
         </ul>
       </div>` }),
     faqSection(R, CLUB_FAQ, { h2: 'Comfort Club <span class="accent">Questions.</span>', prefix: 'club' }),
-    bookCall(R, 'Tune-up'), areasStrip(R),
+    areasStrip(R),
   ].join('\n\n'),
 });
 
 /* ---------- Financing ---------- */
-const FIN_FAQ = [['Will checking my options hurt my credit?', 'Checking your options uses a soft credit check, which does not affect your score. The lender explains everything before you accept.'], ['Can I pay it off early?', 'Yes. The example plans have no prepayment penalty.'], ['What can I finance?', 'You can finance new heating and cooling systems, heat pumps, water heaters, repipes, and larger repairs.'], ['Who is the lender?', 'This is a sample site, so no real lender is named. On a real site, we list the lending partner and their terms here.']];
+const FIN_FAQ = [['Will checking my options hurt my credit?', 'Checking your options uses a soft credit check, which does not affect your score. The lender explains everything before you accept.'], ['Can I pay it off early?', 'Yes. The example plans have no prepayment penalty.'], ['What can I finance?', 'You can finance new heating and cooling systems, heat pumps, water heaters, repipes, and larger repairs.'], ['Who is the lender?', 'We work with a lending partner who explains the rate and terms before you sign anything. Ask your tech on the visit, or call us.']];
 export const financing = (ph) => ({
   file: 'financing.html', title: 'Financing for AC, Furnace & Plumbing in Tracy, CA | Pinwheel',
-  desc: 'Spread the cost of a new AC, furnace, heat pump, or water heater into monthly payments. Try the payment estimator and see how to apply on the visit. Sample site.',
+  desc: 'Spread the cost of a new AC, furnace, heat pump, or water heater into monthly payments. Try the payment estimator and see how to apply on the visit.',
   ogTitle: 'Financing in Tracy, CA', preload: hp(ph('couple')),
   jsonld: [faqLd(FIN_FAQ), crumbLd('financing.html', crumbs(['About', 'about.html'], ['Financing']))],
   body: (R) => [
@@ -248,7 +248,7 @@ export const financing = (ph) => ({
       lead: 'You should not have to wait for a perfect month to replace a system. You can spread the cost into monthly payments and apply right on the visit.',
       ctas: `<a class="btn btn-primary btn-lg" href="#calculator">${ic('i-calculator')}Estimate my payment</a>${callBtn('btn btn-glass btn-lg')}` }),
     block('finance-calc.html'),
-    sec({ id: 'who', eyebrow: 'Who it is for', h2: 'It Helps When the Timing <span class="accent">Is Not Great.</span>',
+    sec({ id: 'who', eyebrow: 'Who it is for', h2: 'It Helps When Timing <span class="accent">Is Tight.</span>',
       inner: `<ul class="pw-mini">
         <li data-reveal>${ic('i-snowflake')}<span><strong>A system that quit in July</strong>Your AC is done and you need cool air this week, not after you save up.</span></li>
         <li data-reveal>${ic('i-heatpump')}<span><strong>An upgrade that pays you back</strong>A heat pump or high-efficiency system lowers your bills, and the payment can be close to what you save.</span></li>
@@ -259,7 +259,7 @@ export const financing = (ph) => ({
       lead: 'There is nothing to do ahead of time. Your tech or comfort advisor walks you through it at the kitchen table.',
       inner: steps([['We quote the job', 'You get a written price with a few options. Each one shows the monthly payment next to it.'], ['You check your options', 'The application takes about 2 minutes on a tablet and uses a soft credit check, so your score is not affected.'], ['You pick a plan', 'Choose the term and payment that fit your budget. You see every term in writing before you sign.'], ['We install', 'Most systems go in within a day or two of approval.']]) }),
     faqSection(R, FIN_FAQ, { h2: 'Financing <span class="accent">Questions.</span>', prefix: 'fin' }),
-    bookCall(R, 'New system quote'), areasStrip(R),
+    areasStrip(R),
   ].join('\n\n'),
 });
 
@@ -274,13 +274,13 @@ const COUPONS = [
 ];
 export const specials = (ph) => ({
   file: 'specials.html', title: 'Specials & Coupons on Heating, AC & Plumbing in Tracy, CA | Pinwheel',
-  desc: 'Current Pinwheel specials: $50 off any repair, a $79 tune-up, a $99 water heater flush, up to $2,000 off a new system, and more in Tracy, CA. Sample offers.',
+  desc: 'Current Pinwheel specials: $50 off any repair, a $79 tune-up, a $99 water heater flush, up to $2,000 off a new system, and more in Tracy, CA.',
   ogTitle: 'Specials in Tracy, CA', preload: hp(ph('specials-hero')),
   jsonld: [crumbLd('specials.html', crumbs(['Specials']))],
   body: (R) => [
     hero(R, { photo: ph('specials-hero'), crumbs: crumbs(['Specials']), pill: 'Current offers in Tracy, CA', title: '<span class="accent">Specials</span> in Tracy, CA.',
       lead: 'These are our current offers for homeowners in Tracy and the valley. Book online with the offer, or mention it on the phone, and we apply it to your bill.' }),
-    sec({ id: 'coupons', cls: 'bg-white', eyebrow: 'Current offers', h2: 'Save on Your <span class="accent">Next Visit.</span>', lead: `Print one, show it on your phone, or just mention it. ${tag('Sample offers')}`,
+    sec({ id: 'coupons', cls: 'bg-white', eyebrow: 'Current offers', h2: 'Save on Your <span class="accent">Next Visit.</span>', lead: `Print one, show it on your phone, or just mention it. ${tag()}`,
       inner: `<div class="pw-coupons">${COUPONS.map(([amt, t, d, terms, svc]) => `<article class="pw-coupon" data-reveal>
           <p class="pw-coupon-amt">${amt}</p>
           <h3>${t}</h3>
@@ -288,10 +288,10 @@ export const specials = (ph) => ({
           <p class="fine">${terms}</p>
           <a class="btn btn-primary" href="${bookHref(R, svc)}">${ic('i-calendar')}Book with this offer</a>
         </article>`).join('\n')}</div>
-      <p class="fine pw-prices-foot">These are sample offers for a concept site. A real site lists the real terms here.</p>` }),
+      <p class="fine pw-prices-foot">One offer per visit. Mention it when you book, and we apply it before you pay.</p>` }),
     sec({ id: 'how', eyebrow: 'How it works', h2: 'Using an Offer <span class="accent">Is Easy.</span>',
       inner: steps([['Pick an offer', 'Choose the one that fits what you need. You can use one offer per visit.'], ['Book or call', 'Book online with the offer, or mention it when you call.'], ['We apply it', 'Your tech takes it off the written price before any work starts.']]) }),
-    club(R), bookCall(R), areasStrip(R),
+    club(R), areasStrip(R),
   ].join('\n\n'),
 });
 
@@ -299,7 +299,7 @@ export const specials = (ph) => ({
 const EST_FAQ = [['How accurate is this estimate?', 'It shows the range most Tracy-area homes fall into. Your exact price depends on your ducts, electrical panel, and where the equipment goes, and we confirm it in writing on a free visit.'], ['What is included in the price?', 'Equipment, installation, permits, haul-away of the old system, and a 10-year parts warranty on most systems.'], ['Should I repair instead?', 'Systems under 10 years old can often be repaired. Our <a href="cooling.html#repair-or-replace">repair-or-replace helper</a> and our guide, <a href="resources/ac-repair-or-replace.html">Repair or Replace? 6 Signs Your AC Is Done</a>, help you decide.']];
 export const estimate = (ph) => ({
   file: 'instant-estimate.html', title: 'Instant Estimate: New AC or Furnace Cost in Tracy, CA | Pinwheel',
-  desc: 'Answer 3 quick questions and see a price range for a new AC, furnace, or heat pump in Tracy, CA. No email or phone number needed. Sample pricing.',
+  desc: 'Answer 3 quick questions and see a price range for a new AC, furnace, or heat pump in Tracy, CA. No email or phone number needed.',
   ogTitle: 'Instant Estimate in Tracy, CA', preload: hp(ph('estimate-hero')),
   jsonld: [faqLd(EST_FAQ), crumbLd('instant-estimate.html', crumbs(['Instant Estimate']))],
   body: (R) => [
@@ -321,7 +321,7 @@ export const estimate = (ph) => ({
         { href: 'specials.html', icon: 'i-tag', bubble: 'cool', title: 'Check current specials', text: 'Up to $2,000 off qualifying new systems with rebates.' },
       ]) }),
     faqSection(R, EST_FAQ, { h2: 'Estimate <span class="accent">Questions.</span>', cls: 'bg-white', prefix: 'est' }),
-    bookCall(R, 'New system quote'), areasStrip(R),
+    areasStrip(R),
   ].join('\n\n'),
 });
 
@@ -329,7 +329,7 @@ export const estimate = (ph) => ({
 const SVC_CHOICES = ['AC repair', 'Heating repair', 'Heat pump', 'Plumbing repair', 'Water heater', 'Drain cleaning', 'Leak repair', 'Air quality check', 'Tune-up', 'New system quote', 'Something else'];
 export const book = (ph) => ({
   file: 'book.html', title: 'Book Online | Heating, AC & Plumbing in Tracy, CA | Pinwheel',
-  desc: 'Book a Pinwheel visit online in about a minute. Pick a service, a day, and a 3-hour arrival window. Tracy, CA and nearby cities. Sample site.',
+  desc: 'Book a Pinwheel visit online in about a minute. Pick a service, a day, and a 3-hour arrival window. Tracy, CA and nearby cities.',
   ogTitle: 'Book Online in Tracy, CA', preload: hp(ph('book-hero')),
   jsonld: [crumbLd('book.html', crumbs(['Book Online']))],
   body: (R) => [
@@ -348,7 +348,7 @@ export const book = (ph) => ({
             <div class="field-row">${field('bk-name', 'Your name', 'text', 'autocomplete="name" required')}${field('bk-phone', 'Mobile number', 'tel', 'autocomplete="tel" inputmode="tel" required')}</div>
             ${field('bk-address', 'Home address', 'text', 'autocomplete="street-address" required')}
             <div class="field"><label for="bk-notes">Anything we should know? (optional)</label><textarea class="textarea" id="bk-notes" name="notes" rows="3"></textarea></div>
-          </fieldset>`, '<h3>You Are on the Schedule.</h3><p>Thanks. We will text you within a few minutes to confirm your arrival window and your tech\'s name.</p><p class="fine">Sample site: this request goes to the site\'s form inbox, and no real visit is booked.</p>', 'Book my visit')}
+          </fieldset>`, '<h3>You Are on the Schedule.</h3><p>Thanks. We will text you within a few minutes to confirm your arrival window and your tech\'s name.</p>', 'Book my visit')}
         </div>
         <aside class="pw-side-card">
           <h3>What Happens Next</h3>
@@ -391,14 +391,14 @@ export const reviews = (ph) => ({
       <p class="pw-more"><a class="btn btn-secondary" href="${R}review.html">${ic('i-star')}Write a review</a></p>
     </div>
   </section>`,
-    bookCall(R), areasStrip(R),
+    areasStrip(R),
   ].join('\n\n'),
 });
 
 /* ---------- About ---------- */
 export const about = (ph) => ({
   file: 'about.html', title: 'About Pinwheel | Family-Owned Heating, AC & Plumbing in Tracy, CA',
-  desc: 'Meet Luis and Carmen Ortega and the Pinwheel team. Family owned in Tracy since 2010, with 14 trained techs, upfront pricing, and four promises. Sample site.',
+  desc: 'Meet Luis and Carmen Ortega and the Pinwheel team. Family owned in Tracy since 2010, with 14 trained techs, upfront pricing, and four promises.',
   ogTitle: 'About Pinwheel in Tracy, CA', preload: hp(ph('about-team')),
   jsonld: [crumbLd('about.html', crumbs(['About']))],
   body: (R) => [
@@ -420,34 +420,19 @@ export const about = (ph) => ({
       </div>
     </div>
   </section>`,
-    sec({ id: 'name', inner: split({ photo: ph('about-street'), id: 'name-title', reverse: true, eyebrow: 'Why "Pinwheel"?', h2: 'Named for the Street <span class="accent">Luis Grew Up On.</span>',
+    sec({ id: 'name', inner: split({ photo: ph('about-street'), id: 'name-title', reverse: true, eyebrow: 'Why "Pinwheel"?', h2: 'Named for Luis\'s <span class="accent">Childhood Street.</span>',
       lead: 'Every summer on the Tracy street where Luis grew up, kids stuck paper pinwheels in the front lawns, and they spun all evening in the Delta breeze. When his dad needed a name for the company in 2010, that was the picture in his head.',
       paras: ['A pinwheel is moving air, and moving air is our whole job. Two warm blades stand for heating and two cool blades for cooling, and they all turn around one steady center. That center is the promise we make to every family we work for.'] }) }),
-    sec({ id: 'how', cls: 'bg-white', eyebrow: 'How we work', h2: 'Our Four <span class="accent">Promises.</span>',
-      lead: 'These are the promises on the whiteboard. Every tech learns them on day one.',
-      inner: steps([['We show up on time', 'We give you a real 3-hour arrival window and text you when we are on the way.'], ['We give the price first', 'You approve the full price in writing before we pick up a tool.'], ['We clean up', 'We put drop cloths down, wipe every surface, and take the mess with us.'], ['We make it right', 'If you are not happy with the work, we come back and fix it.']]) }),
-    sec({ id: 'team', eyebrow: 'Our team', h2: 'The People Who <span class="accent">Show Up.</span>', lead: `Every tech is background-checked, drug-tested, and trained every month. ${tag('Illustrative names')}`,
+    sec({ id: 'how', cls: 'bg-white', eyebrow: 'Our promises', h2: 'Four Promises on <span class="accent">Every Job.</span>',
+      lead: 'Dad wrote these on the whiteboard. Every tech learns them on day one.',
+      inner: steps([['Price before any work', 'Your tech finds the problem, shows you what failed, and gives you the full price in writing. You say yes before we pick up a tool, and the price does not change.'], ['We text when we\'re on the way', 'You get a time window when you book and a text with your tech\'s name when they head over. No waiting around all day.'], ['Clean work', 'Shoe covers go on at the door. We put down drop cloths, haul away old parts, and leave the space the way we found it.'], ['Licensed and insured', 'We hold a California C-20 HVAC license, and we\'re bonded and insured. Every employee is covered by workers\' comp.']]) }),
+    sec({ id: 'team', eyebrow: 'Our team', h2: 'The People Who <span class="accent">Show Up.</span>', lead: `These are the people who answer the phone and show up at your door. ${tag('Illustrative names')}`,
       inner: `<div class="pw-team">
         <figure class="pw-team-photo" data-reveal><img data-photo="tech-ray" data-crop="4:3" data-widths="480,720,960" sizes="(min-width: 900px) 520px, 92vw" alt=""><figcaption><strong>Ray</strong>Install lead, 22 years with tools in hand</figcaption></figure>
         <ul class="pw-people">
           ${[['Luis', 'Owner and master tech, on the trucks since he was a kid'], ['Carmen', 'Co-owner, runs the office'], ['Marcus', 'Lead HVAC tech, 12 years'], ['Andre', 'Plumbing lead, 15 years'], ['Jess', 'Service tech, 5 years'], ['Diego', 'Service tech, 7 years'], ['Tanya', 'Dispatch, the voice on the phone'], ['+7', 'And seven more techs and installers']].map(([n, r], i) => `<li data-reveal><span class="avatar" style="--h:${(i * 47) % 360}" aria-hidden="true">${n.startsWith('+') ? n : n[0]}</span><span><strong>${n.startsWith('+') ? 'And seven more' : n}</strong>${n.startsWith('+') ? 'Techs, installers, and our dispatch team' : r}</span></li>`).join('\n          ')}
         </ul>
       </div>` }),
-    `  <section class="section bg-white" id="van" aria-labelledby="van-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">The van</p>
-        <h2 id="van-title">Look for the Orange <span class="accent">Stripe.</span></h2>
-        <p class="lead">Every Pinwheel van is white with an orange stripe and our number on the side. Each one carries the parts we use most, so most repairs get done in one visit.</p>
-      </div>
-      <div class="split pw-split pw-van-split">
-        <div class="photo"><img data-photo="${ph('about-van')}" data-crop="4:3" data-widths="480,720,960,1200" sizes="(min-width: 900px) 560px, 92vw" alt=""></div>
-        <ul class="pw-check">${['Capacitors, contactors, and fan motors for summer AC calls', 'Igniters, flame sensors, and filters for winter heating calls', 'Common water heater parts, valves, and fittings', 'Drop cloths, shoe covers, and a shop vacuum for cleanup'].map((t) => `<li data-reveal>${ic('i-check-circle')}<span>${t}</span></li>`).join('')}</ul>
-      </div>
-      <!-- partial:van -->
-<!-- /partial:van -->
-    </div>
-  </section>`,
     sec({ id: 'licensed', eyebrow: 'Licensed and insured', h2: 'The Paperwork, <span class="accent">Handled.</span>', lead: 'We carry the licenses and insurance you would expect from a company you let into your home.',
       inner: checklist(["We're a licensed California contractor.", "We're bonded and carry general liability coverage.", 'Every employee is covered by workers\' comp.', 'Each winter we do one free furnace repair for a neighbor in need.']) }),
     sec({ id: 'more-links', cls: 'bg-white', eyebrow: 'Good to know', h2: 'Questions Before You <span class="accent">Call?</span>',
@@ -456,24 +441,46 @@ export const about = (ph) => ({
         { href: 'financing.html', icon: 'i-dollar', title: 'Financing', text: 'Monthly payments on new systems and bigger repairs.' },
         { href: 'reviews.html', icon: 'i-star', bubble: 'cool', title: 'Reviews', text: 'What Tracy-area homeowners say about our work.' },
       ]) }),
-    bookCall(R), areasStrip(R),
+    areasStrip(R),
   ].join('\n\n'),
 });
 
 /* ---------- FAQ ---------- */
 const FAQ_GROUPS = [
-  ['Cooling', 'cooling', [['How fast can you fix my AC?', 'Most homes in Tracy, Mountain House, Lathrop, and Manteca get a same-day visit, and most repairs are done in one visit because the common parts are on the van.'], ['How often should my AC be serviced?', 'Once a year, in spring, before the first heat wave. Valley dust and pollen clog coils fast.'], ['Should I repair or replace my AC?', 'Under 10 years old, a repair usually wins. Past 15 years, or when a repair costs more than a third of a new system, replacing often saves money. Read <a href="resources/ac-repair-or-replace.html">Repair or Replace? 6 Signs Your AC Is Done</a>.'], ['Why is my upstairs so much hotter?', 'Heat rises, and many two-story homes run both floors off one system. Duct balancing, zoning, or a small ductless unit usually fixes it.']]],
-  ['Heating', 'heating', [['Why does my furnace keep shutting off?', 'Usually a dirty filter, a clogged flame sensor, or an overheating heat exchanger. The first two are quick fixes. The third is a safety issue, so call the same day.'], ['Is a heat pump a good idea in Tracy?', 'Yes. Our winters are mild, which is exactly where heat pumps work best, and most homes qualify for rebates.'], ['How often should a furnace be serviced?', 'Once a year, in the fall. A tune-up catches cracked heat exchangers and failing igniters before a cold December morning.']]],
-  ['Plumbing', 'plumbing', [['How long does a water heater last here?', 'Eight to twelve years for a tank, and longer for tankless with a yearly flush. Valley water is hard, so flushing matters.'], ['Why is my water heater making noise?', 'Usually sediment at the bottom of the tank. Read <a href="resources/water-heater-noise.html">Why Is My Water Heater Making That Noise?</a> for what each sound means.'], ['How do I know if I have a slab leak?', 'Warm spots on the floor, the sound of running water, and a water bill that jumped are the usual signs. A leak detection visit confirms it.'], ['Can you clear a sewer line without digging?', 'Usually, yes. Most clogs clear with a cable or hydro jetting, and many damaged lines can be lined or replaced through small openings.']]],
-  ['Pricing', 'pricing', [['How much is a diagnostic visit?', 'Our diagnostic visit is $79, and we waive it when you go ahead with the repair. <span class="tag">Illustrative</span>'], ['Do you give the price before the work?', 'Yes. You approve the full price in writing before we pick up a tool. You will not get any hourly surprises.'], ['Do you charge more at night or on weekends?', 'Evenings and Sundays carry an after-hours fee, and we tell you the amount before anyone drives over. Comfort Club members never pay it.'], ['Do you offer financing?', 'Yes. New systems and bigger repairs can be spread into monthly payments. See the <a href="financing.html">financing page</a>.']]],
-];
-export const faq = (ph) => ({
+  ['Repair or Replace', 'repair-or-replace', [
+    ['Should I repair or replace my system?', 'If it\'s over 15 years old or needs a big repair, we show you both prices side by side so you can decide. Under 10 years old, a repair usually makes more sense.'],
+    ['How long does an AC or furnace last?', 'Most AC units and heat pumps last about 15 to 20 years. Furnaces last about 15 to 30, depending on care. Valley dust and summer heat wear AC units out faster.'],
+    ['When is a repair not worth it?', 'When the repair costs more than a third of a new system, when the system still uses R-22 refrigerant, or when you\'ve paid for repairs two years in a row. Read <a href="resources/ac-repair-or-replace.html">Repair or Replace? 6 Signs Your AC Is Done</a>.'],
+    ['Is a cracked heat exchanger dangerous?', 'Yes. A crack can let carbon monoxide into your home. We check for it on every heating visit, and we show you what we find before we recommend anything.'],
+    ['Is a heat pump a good idea in Tracy?', 'Yes. Our winters are mild, which is where heat pumps work best, and most homes qualify for rebates. We show you the numbers for a heat pump and a furnace side by side.'],
+  ]],
+  ['Cost and Estimates', 'cost', [
+    ['Do you charge to come out?', 'Our service call is $79, and we waive it when you go ahead with the repair. You see that price before we head over. <span class="tag">Illustrative</span>'],
+    ['How much does a new system cost?', 'Use our <a href="instant-estimate.html">price range tool</a> for a quick number. Your exact price comes after we see your home.'],
+    ['Do you give the price before the work?', 'Yes. You approve the full price in writing before we pick up a tool, so there are no hourly surprises.'],
+    ['Do you charge more at night or on weekends?', 'Evenings and Sundays carry an after-hours fee, and we tell you the amount before anyone drives over. Comfort Club members never pay it.'],
+    ['Do you offer financing?', 'Yes. New systems and bigger repairs can be spread into monthly payments. See the <a href="financing.html">financing page</a>.'],
+  ]],
+  ['Timing and Scheduling', 'timing', [
+    ['How soon can you get here?', 'Most homes in Tracy, Mountain House, Lathrop, and Manteca get a same-day visit. Stockton and Livermore are usually the same day or the next morning.'],
+    ['Will you tell me when you\'re on the way?', 'Yes. We text you a time window when you book, and we text again when your tech is on the way, with their name.'],
+    ['How long does a new system install take?', 'Most replacements take one day. A new system in a home with no ducts can take two or three.'],
+    ['Do you handle emergencies?', 'Yes. Our emergency line is open 24/7 for no heat, burst pipes, gas smells, and sewer backups. See <a href="emergency.html">24/7 emergency service</a>.'],
+  ]],
+  ['How We Work', 'how-we-work', [
+    ['Are your techs licensed?', 'Yes. We hold a California C-20 HVAC license, and we\'re bonded and insured.'],
+    ['Do you work on every brand?', 'Yes. We service every major brand of AC, furnace, heat pump, ductless system, and water heater.'],
+    ['Do you clean up after the job?', 'Yes. Shoe covers go on at the door, we protect your floors, and we haul away old parts and equipment.'],
+    ['Do you do plumbing too?', 'Yes. We repair and replace water heaters, clear drains and sewer lines, find hidden leaks, and repipe homes. See <a href="plumbing.html">plumbing services</a>.'],
+    ['How often should my system be serviced?', 'Once a year for each: the AC in spring and the furnace in fall. A tune-up catches small problems before they turn into a no-AC day in July.'],
+  ]],
+];export const faq = (ph) => ({
   file: 'faq.html', title: 'FAQ | Heating, AC & Plumbing Questions in Tracy, CA | Pinwheel',
-  desc: 'Answers to common questions about AC repair, furnaces, heat pumps, water heaters, drains, leaks, and pricing for Tracy-area homes. Sample site.',
+  desc: 'Answers to common questions about AC repair, furnaces, heat pumps, water heaters, drains, leaks, and pricing for Tracy-area homes.',
   ogTitle: 'Heating, AC & Plumbing FAQ for Tracy, CA', preload: hp(ph('faq-hero')),
   jsonld: [faqLd(FAQ_GROUPS.flatMap((g) => g[2])), crumbLd('faq.html', crumbs(['About', 'about.html'], ['FAQ']))],
   body: (R) => [
-    hero(R, { photo: ph('faq-hero'), crumbs: crumbs(['About', 'about.html'], ['FAQ']), pill: 'Straight answers in Tracy, CA', title: '<span class="accent">Questions</span> from Tracy, CA.',
+    hero(R, { photo: ph('faq-hero'), crumbs: crumbs(['About', 'about.html'], ['FAQ']), pill: 'Straight answers in Tracy, CA', title: '<span class="accent">Questions</span> from Tracy, CA.', quoteService: '',
       lead: 'These are the questions we hear most on the phone. If yours is not here, call or text us and a real person will answer it.' }),
     `  <section class="section bg-white" id="faq-all" aria-labelledby="faq-all-title">
     <div class="container">
@@ -488,7 +495,7 @@ export const faq = (ph) => ({
       </div>`).join('\n      ')}
     </div>
   </section>`,
-    club(R), bookCall(R), areasStrip(R),
+    club(R), areasStrip(R),
   ].join('\n\n'),
 });
 
@@ -501,7 +508,7 @@ const ARTICLES = [
 ];
 export const resources = (ph) => ({
   file: 'resources.html', title: 'Homeowner Resources | Heating, AC & Plumbing Guides | Pinwheel, Tracy, CA',
-  desc: 'Plain guides for Tracy-area homeowners: when to repair or replace an AC, and what water heater noises mean. Sample site.',
+  desc: 'Plain guides for Tracy-area homeowners: when to repair or replace an AC, and what water heater noises mean.',
   ogTitle: 'Homeowner Resources from Pinwheel in Tracy, CA', preload: hp(ph('resources-hero')),
   jsonld: [crumbLd('resources.html', crumbs(['About', 'about.html'], ['Resources']))],
   body: (R) => [
@@ -515,7 +522,7 @@ export const resources = (ph) => ({
         { href: 'cooling.html#repair-or-replace', icon: 'i-refresh', bubble: 'cool', title: 'Repair-or-Replace Helper', text: 'Answer four questions and get our honest take.' },
         { href: 'faq.html', icon: 'i-info', bubble: 'navy', title: 'FAQ', text: 'Answers on cooling, heating, plumbing, and pricing.' },
       ]) }),
-    bookCall(R), areasStrip(R),
+    areasStrip(R),
   ].join('\n\n'),
 });
 
@@ -557,7 +564,7 @@ const ARTICLE_BODY = {
         <p>Flush your tank once a year. It is the easiest way to quiet the noise and add years of life. Our <a href="../specials.html">water heater flush special</a> covers it, and if your heater is past its prime, our <a href="../water-heaters.html">water heater page</a> explains your options.</p>`,
 };
 export const articles = (ph) => ARTICLES.map((a) => ({
-  file: a.file, title: `${a.title} | Pinwheel, Tracy, CA`, desc: a.blurb + ' A guide for Tracy-area homeowners. Sample site.',
+  file: a.file, title: `${a.title} | Pinwheel, Tracy, CA`, desc: a.blurb + ' A guide for Tracy-area homeowners.',
   ogTitle: a.title, preload: hp(ph(a.photo)),
   jsonld: [{ '@type': 'Article', headline: a.title, datePublished: a.date, author: { '@type': 'Organization', name: 'Pinwheel Heating, Air & Plumbing' }, mainEntityOfPage: SITE + a.file },
     crumbLd(a.file, crumbs(['Resources', 'resources.html'], [a.crumb]))],
@@ -577,14 +584,14 @@ export const articles = (ph) => ARTICLES.map((a) => ({
       </aside>
     </div>
   </section>`,
-    bookCall(R), areasStrip(R),
+    areasStrip(R),
   ].join('\n\n'),
 }));
 
 /* ---------- Contact ---------- */
 export const contact = (ph) => ({
   file: 'contact.html', title: 'Contact Pinwheel | Heating, AC & Plumbing in Tracy, CA',
-  desc: 'Call or text (209) 555-0142, book online, or visit our Tracy shop. A real person answers 7am to 7pm, and the emergency line is open 24/7. Sample site.',
+  desc: 'Call or text (209) 555-0142, book online, or visit our Tracy shop. A real person answers 7am to 7pm, and the emergency line is open 24/7.',
   ogTitle: 'Contact Pinwheel in Tracy, CA', preload: hp(ph('tech-door')),
   jsonld: [crumbLd('contact.html', crumbs(['Contact']))],
   body: (R) => [
@@ -601,7 +608,7 @@ export const contact = (ph) => ({
           <li data-reveal><span class="icon-bubble">${ic('i-phone')}</span><span><strong><a href="${TEL}">Call ${PHONE}</a></strong>A real person answers 7am to 7pm, Monday to Saturday, and the emergency line is open 24/7.</span></li>
           <li data-reveal><span class="icon-bubble cool">${ic('i-message')}</span><span><strong><a href="${SMS}">Text the same number</a></strong>Send a photo of the problem and we will text back a window.</span></li>
           <li data-reveal><span class="icon-bubble navy">${ic('i-calendar')}</span><span><strong><a href="${R}book.html">Book online</a></strong>Pick a day and a 3-hour window in about a minute.</span></li>
-          <li data-reveal><span class="icon-bubble">${ic('i-send')}</span><span><strong>Email</strong>hello@pinwheel-example.com ${tag('Sample address')}</span></li>
+          <li data-reveal><span class="icon-bubble">${ic('i-send')}</span><span><strong>Email</strong>hello@pinwheel-example.com ${tag()}</span></li>
         </ul>
         ${split({ photo: ph('contact-2'), id: 'dispatch-title', eyebrow: 'Dispatch', h2: 'The Voice on <span class="accent">the Phone.</span>', lead: 'Tanya and our dispatch team answer every call from our Tracy shop. They know the techs, the neighborhoods, and the schedule.', paras: ['If you call during a busy summer afternoon, you still get a person, not a menu. They can usually give you an arrival window before you hang up.'] })}
       </div>
@@ -613,13 +620,13 @@ export const contact = (ph) => ({
             ${field('sf-phone', 'Mobile number', 'tel', 'autocomplete="tel" inputmode="tel" required')}
             ${field('sf-address', 'Home address', 'text', 'autocomplete="street-address" required')}
             <div class="field"><label for="sf-help">How can we help?</label><textarea class="textarea" id="sf-help" name="help" rows="3" required></textarea></div>`,
-            '<h3>Got It. Thanks.</h3><p>We will text you back during business hours, usually the same day.</p><p class="fine">Sample site: this went to the site form inbox, not to a real company.</p>',
+            '<h3>Got It. Thanks.</h3><p>We will text you back during business hours, usually the same day.</p>',
             'Send request', { cls: 'side-form', label: 'side-title', error: 'Add your name, number, address, and a few words about the problem.' })}
         </div>
       </aside>
     </div>
   </section>`,
-    sec({ id: 'locations', eyebrow: 'Locations', h2: 'Two Shops, <span class="accent">One Number.</span>', lead: `Vans roll out of both locations every morning, so most of the valley gets a same-day visit. ${tag('Sample addresses')}`,
+    sec({ id: 'locations', eyebrow: 'Locations', h2: 'Two Shops, <span class="accent">One Number.</span>', lead: `Vans roll out of both locations every morning, so most of the valley gets a same-day visit. ${tag()}`,
       inner: `<div class="pw-locs">
         <article class="pw-loc" data-reveal><h3>Tracy Shop</h3><p class="location">Tracy, CA 95376</p><p class="hours"><strong>Mon to Sat</strong> 7am to 7pm<br><strong>Sunday</strong> Emergency calls only</p><p>This is where you will find our parts counter, a showroom with heat pumps and water heaters on display, and the dispatch desk.</p></article>
         <article class="pw-loc" data-reveal><h3>Manteca Yard</h3><p class="location">Manteca, CA 95336</p><p class="hours"><strong>Mon to Fri</strong> 7am to 5pm<br>This yard is for our vans, so we can't take walk-ins.</p><p>This yard covers Manteca, Lathrop, French Camp, Stockton, Lodi, Ripon, and Escalon.</p></article>
@@ -631,7 +638,7 @@ export const contact = (ph) => ({
 /* ---------- Credits, Privacy, 404 ---------- */
 export const credits = (ph) => ({
   file: 'credits.html', title: 'Photo Credits | Pinwheel Heating, Air & Plumbing, Tracy, CA',
-  desc: 'Photo, video, type, and code credits for the Pinwheel Heating, Air & Plumbing concept site. Sample site.',
+  desc: 'Photo, video, type, and code credits for the Pinwheel Heating, Air & Plumbing website.',
   ogTitle: 'Photo Credits | Pinwheel', preload: hp(ph('credits-hero')),
   body: (R) => [
     hero(R, { photo: ph('credits-hero'), crumbs: crumbs(['Credits']), pill: 'Thanks to these photographers', title: 'Photo <span class="accent">Credits</span> and Thanks.', cls: 'pw-phero-short', ctas: false,
@@ -657,7 +664,7 @@ export const credits = (ph) => ({
 
 export const privacy = (ph) => ({
   file: 'privacy.html', title: 'Privacy Policy | Pinwheel Heating, Air & Plumbing, Tracy, CA',
-  desc: 'How the Pinwheel Heating, Air & Plumbing sample site handles the information you send through its forms. Sample site.',
+  desc: 'How Pinwheel Heating, Air & Plumbing handles the information you send through our forms.',
   ogTitle: 'Privacy Policy | Pinwheel', preload: hp(ph('privacy-hero')),
   body: (R) => [
     hero(R, { photo: ph('privacy-hero'), crumbs: crumbs(['Privacy']), pill: 'Your information stays yours', title: '<span class="accent">Privacy</span> Policy.', cls: 'pw-phero-short', ctas: false,
@@ -665,11 +672,11 @@ export const privacy = (ph) => ({
     `  <section class="section bg-white" aria-label="Privacy policy">
     <div class="container pw-article-wrap">
       <article class="pw-article">
-        <p class="fine">Last updated November 2026. Pinwheel Heating, Air &amp; Plumbing is a fictional business, and this is a sample policy for a concept site.</p>
+        <p class="fine">Last updated November 2026.</p>
         <h2>What We Collect</h2>
         <p>When you book online, join the Comfort Club, or send us a note, we collect what you type into the form: your name, phone number, address, and any details about the problem. We use it only to schedule and do the work you asked for.</p>
         <h2>How Forms Are Handled</h2>
-        <p>On this sample site, forms are received by our website host's form service. On a real site, they would go straight to the office and the owner's phone. We do not add you to a mailing list unless you ask.</p>
+        <p>Forms on this site go through our website host's form service to our office. We do not add you to a mailing list unless you ask.</p>
         <h2>Cookies and Tracking</h2>
         <p>This site does not use advertising cookies or third-party trackers. Your browser may remember small settings, like whether you closed the chat helper.</p>
         <h2>Who We Share It With</h2>
@@ -686,7 +693,7 @@ export const privacy = (ph) => ({
 
 export const notFound = (ph) => ({
   file: '404.html', title: 'Page Not Found | Pinwheel Heating, Air & Plumbing, Tracy, CA',
-  desc: 'This page took a wrong turn. Head back home or book a visit online. Sample site.',
+  desc: 'This page took a wrong turn. Head back home or book a visit online.',
   ogTitle: 'Page Not Found | Pinwheel', preload: hp(ph('notfound-hero')),
   body: (R) => [
     hero(R, { photo: ph('notfound-hero'), pill: 'Error 404', title: 'This Page Took a <span class="accent">Wrong Turn.</span>',

@@ -82,3 +82,7 @@ npx wrangler pages deploy previews/<slug> --project-name=byw-<slug> --branch=mai
 
 - Never save anything to Ben's Desktop. Keep test screenshots and check scripts in a qa/ folder kept out of git, and replace them on each run.
 - Photos for previews: Ben puts full-size originals in his Google Drive folder "BYWD Preview Photos". Download them from there, since photos attached in chat get shrunk.
+
+## Pinwheel Spanish (EN / ES toggle)
+
+- After any Pinwheel copy change: rebuild (`node scripts/build-pinwheel.mjs && node scripts/sync.mjs`), run `node scripts/i18n-extract.mjs` (needs the local server on 4173), translate every key it lists in `scripts/i18n/missing.json` into warm Latin American Spanish (same HTML tags, same ⟦s⟧ icon tokens, accent span on the matching words), then `node scripts/i18n-build.mjs extra.json` and `node scripts/sync.mjs`. Never ship with missing keys.

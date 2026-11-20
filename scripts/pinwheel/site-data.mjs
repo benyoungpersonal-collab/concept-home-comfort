@@ -46,7 +46,8 @@ export const CITIES = [
 ];
 
 export const ABOUT_MENU = [
-  { file: 'about.html', name: 'About Us', blurb: 'Meet the owner, the team, and the van.', icon: 'i-home-heart' },
+  { file: 'about.html', name: 'About Us', blurb: 'Meet the owner and the team.', icon: 'i-home-heart' },
+  { file: 'projects.html', name: 'Projects', blurb: 'Installs and repairs, before and after.', icon: 'i-camera' },
   { file: 'reviews.html', name: 'Reviews', blurb: 'What Tracy-area neighbors say about us.', icon: 'i-star' },
   { file: 'faq.html', name: 'FAQ', blurb: 'Straight answers on cooling, heating, plumbing, and price.', icon: 'i-info' },
   { file: 'financing.html', name: 'Financing', blurb: 'Monthly payments on new systems and big repairs.', icon: 'i-dollar' },

@@ -2,6 +2,8 @@
    Output is plain HTML with sync markers (<!-- partial:NAME -->) and data-photo images; `node scripts/sync.mjs`
    fills the shared header, footer, and bar, and builds every photo's srcset from scripts/photos.json. */
 import { SITE, NAME, PHONE, TEL, SMS, CITIES, REVIEWS, STATS } from './site-data.mjs';
+import { quoteBlock } from './blocks.mjs';
+export const OG_IMAGE = 'https://byw-home-comfort.netlify.app/images/og-share-2026-11-20.jpg';
 
 export const ic = (id, cls = 'icon') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 const attr = (s) => String(s).replace(/&(?![a-z]+;|#\d+;)/g, '&amp;').replace(/"/g, '&quot;');
@@ -10,6 +12,7 @@ const plain = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').re
 export const bookHref = (R, service) => `${R}book.html${service ? `?service=${encodeURIComponent(service).replace(/%20/g, '+')}` : ''}`;
 export const callBtn = (cls = 'btn btn-primary btn-lg') => `<a class="${cls}" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>`;
 export const bookBtn = (R, service, cls = 'btn btn-glass btn-lg', label = 'Book online') => `<a class="${cls}" href="${bookHref(R, service)}">${ic('i-calendar')}${label}</a>`;
+export const quoteBtn = (R, service, cls = 'btn btn-primary btn-lg', label = 'Get My Free Quote') => `<a class="${cls}" href="#quote" data-quote-link data-home="${R}index.html#quote"${service ? ` data-pick-service="${service}"` : ''}>${ic('i-send')}${label}</a>`;
 export const tag = (t = 'Illustrative') => `<span class="tag">${t}</span>`;
 
 /* The full page: head (title, description, share tags), shared partials, main, scripts */
@@ -30,12 +33,12 @@ export function shell(p) {
   const depth = p.file.split('/').length - 1;
   const R = p.file === '404.html' ? '/' : '../'.repeat(depth);
   const url = SITE + (p.file === 'index.html' ? '' : p.file);
-  const og = 'https://byw-home-comfort.netlify.app/images/og-share-2026-11-18-v2.jpg';
+  const og = OG_IMAGE;
   const ogAlt = 'Pinwheel Heating, Air &amp; Plumbing homepage on a laptop and a phone.';
   const ld = p.jsonld ? `<script type="application/ld+json">\n${JSON.stringify({ '@context': 'https://schema.org', '@graph': p.jsonld }, null, 2)}\n</script>\n` : '';
   const pre = (p.preload || []).join('\n');
   return `<!doctype html>
-<html lang="en" class="no-js fs-bold site-pw pw-ov${p.htmlClass ? ' ' + p.htmlClass : ''}">
+<html lang="en" class="no-js fs-bold site-pw ${p.home ? 'pw-home pw-pb' : 'pw-ov pw-pb'}${p.htmlClass ? ' ' + p.htmlClass : ''}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -50,25 +53,23 @@ export function shell(p) {
 <meta name="twitter:image" content="${og}">
 <meta name="twitter:image:alt" content="${ogAlt}">
 ${pre}
-<meta property="og:title" content="${attr(p.ogTitle || p.title)}">
+<meta property="og:title" content="${attr(p.home ? p.ogTitle : NAME + ' | ' + plain(p.ogTitle || p.title))}">
 <meta property="og:description" content="${attr(p.desc)}">
 <meta property="og:url" content="${url}">
 <link rel="canonical" href="${url}">
 ${ld}</head>
-<body class="has-sticky-bar${p.bodyClass ? ' ' + p.bodyClass : ''}">
+<body class="has-float${p.bodyClass ? ' ' + p.bodyClass : ''}">
 <!-- partial:sprite -->
 <!-- /partial:sprite -->
 <!-- partial:header -->
 <!-- /partial:header -->
 <main id="main">
-${keepPhone(titleH3(p.body(R)))}
+${keepPhone(titleH3(p.body(R) + (p.quote === false ? '' : '\n' + quoteBlock(R, { page: p.file, service: p.quoteService, city: p.quoteCity }))))}
 </main>
 <!-- partial:footer -->
 <!-- /partial:footer -->
 <!-- partial:stickybar -->
 <!-- /partial:stickybar -->
-<!-- partial:chat -->
-<!-- /partial:chat -->
 <script src="${R}js/site.js?v=20261111" defer></script>
 <script src="${R}js/reveal.js?v=20261111" defer></script>
 </body>
@@ -78,7 +79,7 @@ ${keepPhone(titleH3(p.body(R)))}
 
 /* Hero preload tags (one per crop), so the hero photo starts loading right away */
 export const heroPreload = (key, fpPhone) => [
-  `<link rel="preload" as="image" data-photo="${key}" data-crop="4:5" data-widths="480,720,960"${fpPhone ? ` data-fp="${fpPhone}"` : ''} imagesizes="100vw" media="(max-width: 599px)" fetchpriority="high">`,
+  `<link rel="preload" as="image" data-photo="${key}" data-crop="4:5" data-widths="480,760,960"${fpPhone ? ` data-fp="${fpPhone}"` : ''} imagesizes="100vw" media="(max-width: 599px)" fetchpriority="high">`,
   `<link rel="preload" as="image" data-photo="${key}" data-crop="orig" data-widths="1024,1600,2400" imagesizes="100vw" media="(min-width: 600px)" fetchpriority="high">`,
 ];
 
@@ -87,10 +88,10 @@ export const heroPreload = (key, fpPhone) => [
 export function hero(R, h) {
   const crumbs = h.crumbs ? `<nav class="pw-crumbs" aria-label="Breadcrumb"><ol>${h.crumbs.map(([t, href], i) =>
     href ? `<li><a href="${R}${href}">${t}</a></li>` : `<li aria-current="page">${t}</li>`).join('')}</ol></nav>` : '';
-  const ctas = h.ctas === false ? '' : `<div class="btn-row" data-hide-bar>${h.ctas || callBtn() + bookBtn(R, h.service)}</div>`;
+  const ctas = h.ctas === false ? '' : `<div class="btn-row" data-hide-bar>${h.ctas || quoteBtn(R, h.quoteService) + callBtn('btn btn-glass btn-lg')}</div>`;
   return `  <section class="hero pw-phero${h.cls ? ' ' + h.cls : ''}" aria-labelledby="page-title">
     <picture class="pw-phero-photo">
-      <source data-photo="${h.photo}" data-crop="4:5" data-widths="480,720,960"${h.fpPhone ? ` data-fp="${h.fpPhone}"` : ''} media="(max-width: 599px)" sizes="100vw">
+      <source data-photo="${h.photo}" data-crop="4:5" data-widths="480,760,960"${h.fpPhone ? ` data-fp="${h.fpPhone}"` : ''} media="(max-width: 599px)" sizes="100vw">
       <img data-photo="${h.photo}" data-crop="orig" data-widths="1024,1600,2400" data-eager sizes="100vw" alt="">
     </picture>
     <div class="container pw-phero-wrap">
@@ -130,7 +131,7 @@ export const steps = (items) => `<ol class="pw-steps">${items.map(([t, d], i) =>
 /* Upfront pricing: "starting at" sample prices */
 export const prices = (items, foot) => `<ul class="pw-prices">${items.map(([name, amt, note]) =>
   `<li data-reveal><p class="pw-price-name">${name}</p><p class="pw-price-amt"><small>Starting at</small>${amt}</p>${note ? `<p class="pw-price-note">${note}</p>` : ''}</li>`).join('')}</ul>
-      <p class="fine pw-prices-foot">${tag()} ${foot || 'Sample prices for a concept site. Your tech confirms the exact price in writing before any work starts.'}</p>`;
+      <p class="fine pw-prices-foot">${tag()} ${foot || 'Starting prices. Your tech confirms the exact price in writing before any work starts.'}</p>`;
 
 export function reviewCard(r) {
   return `<li class="review-card" data-group="${r.group}">
@@ -179,7 +180,7 @@ export const club = (R) => `  <section class="section pw-club-wrap" aria-label="
         <span class="pw-club-icon" aria-hidden="true">${ic('i-shield-check')}</span>
         <div class="pw-club-copy">
           <p class="eyebrow">Comfort Club</p>
-          <h2>Two Tune-Ups a Year and <span class="accent">15% Off Repairs.</span></h2>
+          <h2>Two Tune-Ups a Year, <span class="accent">15% Off Repairs.</span></h2>
           <p>Members get an AC tune-up every spring, a heating tune-up every fall, priority scheduling, and no overtime fees, for $15 a month. ${tag()}</p>
         </div>
         <a class="btn btn-primary btn-lg" href="${R}comfort-club.html">See the Comfort Club${ic('i-arrow-right')}</a>
