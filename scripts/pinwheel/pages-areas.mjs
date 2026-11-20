@@ -89,7 +89,7 @@ export const cityPages = (ph) => CITIES.filter((c) => c.file).map((c) => {
         ]) }),
       reviews.length ? sec({ id: 'reviews', cls: 'tpl-bg-tint', eyebrow: 'Reviews', h2: `From Your Neighbors in <span class="accent">${c.name}.</span>`,
         lead: `${tag('Illustrative reviews')}`, inner: `<ul class="pw-reviews">${reviews.map(reviewCard).join('')}</ul>
-      <p class="pw-more"><a class="btn btn-secondary" href="${R}reviews.html">Read all reviews${ic('i-arrow-right')}</a></p>` }) : '',
+      <p class="pw-more"><a class="btn btn-navy" href="${R}reviews.html">Read All Reviews${ic('i-arrow-right')}</a></p>` }) : '',
       faqSection(R, d.faq, { h2: `${c.name} <span class="accent">Questions.</span>`, cls: 'bg-white', prefix: 'city' }),
       club(R), areasStrip(R, c.file),
     ].join('\n\n'),
@@ -123,7 +123,7 @@ export const areasHub = (ph) => ({
           <p class="pw-city-county">${c.county} County</p>
           <h3>${c.file ? `<a href="${R}${c.file}">${c.name}</a>` : c.name}</h3>
           <p>${c.note}</p>
-          ${c.file ? `<a class="pw-text-link" href="${R}${c.file}">See ${c.name} details${ic('i-arrow-right')}</a>` : `<a class="pw-text-link" href="tel:+12095550142">Call to book in ${c.name}${ic('i-arrow-right')}</a>`}
+          ${c.file ? `<a class="pw-text-link" href="${R}${c.file}">See ${c.name} Details${ic('i-arrow-right')}</a>` : `<a class="pw-text-link" href="tel:+12095550142">Call to Book in ${c.name}${ic('i-arrow-right')}</a>`}
         </li>`).join('\n        ')}</ul>` }),
     club(R),
   ].join('\n\n'),

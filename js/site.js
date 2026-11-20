@@ -555,7 +555,7 @@
       $('[data-helper-empty]', result).hidden = true;
       $('[data-helper-output]', result).hidden = false;
       $('[data-helper-cta]', result).setAttribute('data-service', key === 'repair' ? 'AC repair' : 'New system quote');
-      $('[data-helper-cta]', result).lastChild.textContent = key === 'repair' ? 'Book a repair visit' : 'Book a free in-home quote';
+      $('[data-helper-cta]', result).lastChild.textContent = key === 'repair' ? 'Book a repair visit' : 'Book a Free In-Home Quote';
       return true;
     };
     form.addEventListener('submit', function (e) {
@@ -578,7 +578,7 @@
     var form = $('[data-chat-form]', wrap);
     var input = $('#chat-input');
     var started = false;
-    var BOOK = ['Book online', '#book'];
+    var BOOK = ['Book Online', '#book'];
     var CALL = ['Call now', 'tel:+12095550142'];
     var KB = [
       { q: 'Do you serve Mountain House?', keys: ['mountain house', 'mountain', 'mh '],

@@ -3,6 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { hero, sec, checklist, steps, prices, reviewCard, reviewsSection, faqList, faqSection, faqLd, club,
   areasStrip, split, linkCards, serviceLd, crumbLd, heroPreload, callBtn, bookBtn, bookHref, ic, tag } from './components.mjs';
+import { OWNER_STORY } from './blocks.mjs';
 import { GROUPS, CITIES, REVIEWS, STATS, PHONE, TEL, SMS, SITE } from './site-data.mjs';
 
 const block = (name) => readFileSync(new URL(`../pinwheel-blocks/${name}`, import.meta.url), 'utf8');
@@ -58,7 +59,7 @@ export const services = (ph) => ({
     sec({ id: 'emergency-band', cls: 'pw-emerg-band on-dark', inner: `<div class="pw-emerg-inner" data-reveal>
         <span class="pw-emerg-icon" aria-hidden="true">${ic('i-zap')}</span>
         <div><h2 id="emergency-band-title">24/7 Emergency <span class="accent">Service.</span></h2><p>Burst pipe, no heat, or a sewer backup at night? A real person answers the emergency line around the clock and talks you through what to shut off while a tech heads over.</p></div>
-        <div class="btn-row"><a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a><a class="btn btn-glass btn-lg" href="${R}emergency.html">What counts as an emergency</a></div>
+        <div class="btn-row"><a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a><a class="btn btn-glass btn-lg" href="${R}emergency.html">What Counts as an Emergency</a></div>
       </div>` }),
     club(R), areasStrip(R),
   ].join('\n\n'),
@@ -82,10 +83,10 @@ export const cooling = (ph) => ({
         { href: 'heat-pumps.html', icon: 'i-heatpump', bubble: '', title: 'Heat Pumps', text: 'One quiet system that cools in July and heats in January.' },
         { href: 'air-quality.html', icon: 'i-wind', bubble: 'navy', title: 'Indoor Air Quality', text: 'Filters, purifiers, and duct cleaning for smoke season.' },
       ]) }),
-    sec({ id: 'more', inner: split({ photo: ph('thermostat'), id: 'more-title', eyebrow: 'Built for valley heat', h2: 'The Small Jobs That Keep <span class="accent">Bills Down.</span>',
+    sec({ id: 'more', inner: split({ photo: ph('pw-pj-ducts-attic'), id: 'more-title', eyebrow: 'Built for valley heat', h2: 'The Small Jobs That Keep <span class="accent">Bills Down.</span>',
       lead: 'Afternoons top 100 degrees, and the wind off the Altamont packs dust and dry grass into outdoor coils. A clogged coil makes your system run longer and work harder.',
       paras: ['That is why so many summer calls end with a coil cleaning and a new capacitor, not a whole new system. We also do spring tune-ups, seal and insulate attic ducts, and set up smart thermostats with schedules that trim the afternoon peak.'],
-      after: `<div class="btn-row"><a class="btn btn-primary" href="${bookHref(R, 'Tune-up')}">${ic('i-calendar')}Book a spring tune-up</a></div>` }) }),
+      after: `<div class="btn-row"><a class="btn btn-primary" href="${bookHref(R, 'Tune-up')}">${ic('i-calendar')}Book a Spring Tune-Up</a></div>` }) }),
     `  <section class="section bg-white" id="repair-or-replace-section" aria-labelledby="helper-title">
     <div class="container">
       ${block('helper.html').replace(/href="book\.html/g, `href="${R}book.html`)}
@@ -139,14 +140,14 @@ export const plumbing = (ph) => ({
 const EMERG_FAQ = [['Do you really answer at night?', 'Yes. The emergency line rings to a real person on our team 24 hours a day, every day of the year.'], ['How much does an after-hours visit cost?', 'After-hours visits carry a $99 fee on top of the repair, and we tell you the total before anyone drives over. Comfort Club members never pay it. ' + '<span class="tag">Illustrative</span>'], ['What if it can wait until morning?', 'We will tell you honestly. If it is safe to wait, we book you the first slot in the morning and save you the after-hours fee.']];
 export const emergency = (ph) => ({
   file: 'emergency.html', title: '24/7 Emergency Plumbing, Heating & AC in Tracy, CA | Pinwheel',
-  desc: 'Burst pipe, no heat, gas smell, or sewer backup? Pinwheel answers 24/7 in Tracy and nearby cities. What counts as an emergency and what to do while you wait.',
+  desc: 'Burst pipe, no heat, gas smell, or sewer backup? Pinwheel answers 24/7 in Tracy and nearby cities. What Counts as an Emergency and what to do while you wait.',
   ogTitle: '24/7 Emergency Service in Tracy, CA', preload: hp(ph('emergency-hero')), bodyClass: 'pw-emergency',
   jsonld: [serviceLd({ name: '24/7 emergency service', type: 'Emergency plumbing, heating, and cooling repair', desc: 'Emergency service around the clock.', file: 'emergency.html' }), faqLd(EMERG_FAQ), crumbLd('emergency.html', crumbs(['Services', 'services.html'], ['24/7 Emergency']))],
   body: (R) => [
     hero(R, { photo: ph('emergency-hero'), crumbs: crumbs(['Services', 'services.html'], ['24/7 Emergency']), pill: 'Open 24/7 in Tracy, CA', title: '24/7 <span class="accent">Emergency Service</span> in Tracy, CA.',
       lead: 'A real person answers our emergency line day and night. We talk you through what to shut off, then send the nearest tech.',
-      ctas: `<a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE} now</a>` }),
-    sec({ id: 'counts', cls: 'bg-white', eyebrow: 'What counts as an emergency', h2: 'Call Right Away <span class="accent">for These.</span>',
+      ctas: `<a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE} Now</a>` }),
+    sec({ id: 'counts', cls: 'bg-white', eyebrow: 'What Counts as an Emergency', h2: 'Call Right Away <span class="accent">for These.</span>',
       lead: 'If you are not sure, call anyway. We would rather tell you it can wait than have you guess.',
       inner: checklist(['Water spraying or pouring from a pipe, fitting, or water heater', 'A sewer backup into a tub, shower, or floor drain', 'No heat when it is below 40 degrees outside, especially with babies, seniors, or anyone sick at home', 'No AC during a heat wave with someone vulnerable at home', 'A burning or electrical smell from your furnace or AC', 'Your carbon monoxide alarm is going off', 'Water leaking through a ceiling or into a light fixture', 'No water at all in the house']) }),
     sec({ id: 'wait', eyebrow: 'While you wait', h2: 'What to Do <span class="accent">Before We Get There.</span>',
@@ -200,7 +201,7 @@ export const comfortClub = (ph) => ({
           <p class="pw-plan-price"><span>$15</span><small>a month</small></p>
           <p class="fine">${tag()} Billed monthly, cancel anytime.</p>
           <ul class="pw-plan-list"><li>${ic('i-check')}2 tune-ups a year</li><li>${ic('i-check')}Priority scheduling</li><li>${ic('i-check')}15% off repairs</li><li>${ic('i-check')}No overtime fees</li></ul>
-          <a class="btn btn-primary btn-lg btn-block" href="#join">Join now</a>
+          <a class="btn btn-primary btn-lg btn-block" href="#join">Join Now</a>
         </div>
       </div>` }),
     sec({ id: 'pays', eyebrow: 'Does it pay for itself?', h2: 'One Repair Visit <span class="accent">Usually Covers It.</span>',
@@ -246,7 +247,7 @@ export const financing = (ph) => ({
   body: (R) => [
     hero(R, { photo: ph('couple'), crumbs: crumbs(['About', 'about.html'], ['Financing']), pill: 'Monthly payments in Tracy, CA', title: '<span class="accent">Financing</span> in Tracy, CA.',
       lead: 'You should not have to wait for a perfect month to replace a system. You can spread the cost into monthly payments and apply right on the visit.',
-      ctas: `<a class="btn btn-primary btn-lg" href="#calculator">${ic('i-calculator')}Estimate my payment</a>${callBtn('btn btn-glass btn-lg')}` }),
+      ctas: `<a class="btn btn-primary btn-lg" href="#calculator">${ic('i-calculator')}Estimate My Payment</a>${callBtn('btn btn-glass btn-lg')}` }),
     block('finance-calc.html'),
     sec({ id: 'who', eyebrow: 'Who it is for', h2: 'It Helps When Timing <span class="accent">Is Tight.</span>',
       inner: `<ul class="pw-mini">
@@ -286,7 +287,7 @@ export const specials = (ph) => ({
           <h3>${t}</h3>
           <p>${d}</p>
           <p class="fine">${terms}</p>
-          <a class="btn btn-primary" href="${bookHref(R, svc)}">${ic('i-calendar')}Book with this offer</a>
+          <a class="btn btn-primary" href="${bookHref(R, svc)}">${ic('i-calendar')}Book With This Offer</a>
         </article>`).join('\n')}</div>
       <p class="fine pw-prices-foot">One offer per visit. Mention it when you book, and we apply it before you pay.</p>` }),
     sec({ id: 'how', eyebrow: 'How it works', h2: 'Using an Offer <span class="accent">Is Easy.</span>',
@@ -305,7 +306,7 @@ export const estimate = (ph) => ({
   body: (R) => [
     hero(R, { photo: ph('estimate-hero'), crumbs: crumbs(['Instant Estimate']), pill: 'New system pricing in Tracy, CA', title: '<span class="accent">Instant Estimate</span> for Tracy, CA.',
       lead: 'Answer 3 quick questions and see a real price range for a new AC, furnace, or heat pump in seconds. We will not ask for your email or phone number.',
-      ctas: `<a class="btn btn-primary btn-lg" href="#estimate">${ic('i-calculator')}Start my estimate</a>${callBtn('btn btn-glass btn-lg')}` }),
+      ctas: `<a class="btn btn-primary btn-lg" href="#estimate">${ic('i-calculator')}Start My Estimate</a>${callBtn('btn btn-glass btn-lg')}` }),
     block('estimator.html').replace('href="#book" data-book data-service="New system quote"', `href="${bookHref(R, 'New system quote')}"`).replace(/<h2 id="estimate-title">What Will a New System Cost\?<\/h2>/, '<h2 id="estimate-title">What Will a New System <span class="accent">Cost?</span></h2>'),
     sec({ id: 'factors', cls: 'bg-white', eyebrow: 'What changes the price', h2: 'Why Two Homes Get <span class="accent">Different Prices.</span>',
       inner: `<ul class="pw-mini">
@@ -316,7 +317,7 @@ export const estimate = (ph) => ({
       </ul>` }),
     sec({ id: 'next', eyebrow: 'Next steps', h2: 'Ready for an <span class="accent">Exact Price?</span>',
       inner: linkCards(R, [
-        { href: 'book.html?service=New+system+quote', icon: 'i-calendar', title: 'Book a free in-home quote', text: 'We measure your home and give you options in writing, with no pressure.' },
+        { href: 'book.html?service=New+system+quote', icon: 'i-calendar', title: 'Book a Free In-Home Quote', text: 'We measure your home and give you options in writing, with no pressure.' },
         { href: 'financing.html', icon: 'i-dollar', bubble: 'navy', title: 'See monthly payments', text: 'Spread the cost of a new system into monthly payments.' },
         { href: 'specials.html', icon: 'i-tag', bubble: 'cool', title: 'Check current specials', text: 'Up to $2,000 off qualifying new systems with rebates.' },
       ]) }),
@@ -335,7 +336,7 @@ export const book = (ph) => ({
   body: (R) => [
     hero(R, { photo: ph('book-hero'), crumbs: crumbs(['Book Online']), pill: 'Book a visit in Tracy, CA', title: '<span class="accent">Book Online</span> in Tracy, CA.', cls: 'pw-phero-short',
       lead: 'Pick a service, a day, and a 3-hour arrival window. A real person confirms your visit by text, usually within minutes.',
-      ctas: `<a class="btn btn-primary btn-lg" href="#book-form">${ic('i-calendar')}Start booking</a>${callBtn('btn btn-glass btn-lg')}` }),
+      ctas: `<a class="btn btn-primary btn-lg" href="#book-form">${ic('i-calendar')}Start Booking</a>${callBtn('btn btn-glass btn-lg')}` }),
     sec({ id: 'book-form', cls: 'bg-white', eyebrow: 'Book a visit', h2: 'Pick a Time That <span class="accent">Works for You.</span>',
       inner: `<div class="pw-form-grid">
         <div class="pw-form-card">
@@ -348,13 +349,13 @@ export const book = (ph) => ({
             <div class="field-row">${field('bk-name', 'Your name', 'text', 'autocomplete="name" required')}${field('bk-phone', 'Mobile number', 'tel', 'autocomplete="tel" inputmode="tel" required')}</div>
             ${field('bk-address', 'Home address', 'text', 'autocomplete="street-address" required')}
             <div class="field"><label for="bk-notes">Anything we should know? (optional)</label><textarea class="textarea" id="bk-notes" name="notes" rows="3"></textarea></div>
-          </fieldset>`, '<h3>You Are on the Schedule.</h3><p>Thanks. We will text you within a few minutes to confirm your arrival window and your tech\'s name.</p>', 'Book my visit')}
+          </fieldset>`, '<h3>You Are on the Schedule.</h3><p>Thanks. We will text you within a few minutes to confirm your arrival window and your tech\'s name.</p>', 'Book My Visit')}
         </div>
         <aside class="pw-side-card">
           <h3>What Happens Next</h3>
           <ol class="pw-ol"><li>We text you to confirm the window, usually within minutes.</li><li>The morning of, we text you the tech's name and photo.</li><li>We text again when the tech is on the way.</li></ol>
           <p>Need someone today? Call ${PHONE}. For a burst pipe or no heat, use the <a href="${R}emergency.html">24/7 emergency line</a>.</p>
-          <a class="btn btn-secondary btn-block" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
+          <a class="btn btn-navy btn-block" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
         </aside>
       </div>` }),
     areasStrip(R),
@@ -370,7 +371,7 @@ export const reviews = (ph) => ({
   body: (R) => [
     hero(R, { photo: ph('reviews-hero'), crumbs: crumbs(['About', 'about.html'], ['Reviews']), pill: 'Reviews from Tracy, CA', title: '<span class="accent">Reviews</span> from Tracy, CA.',
       lead: `Here is what homeowners across Tracy and the valley say about our work. We have ${STATS.rating} stars from ${STATS.count} Google reviews.`,
-      ctas: `<a class="btn btn-primary btn-lg" href="${R}book.html">${ic('i-calendar')}Book online</a><a class="btn btn-glass btn-lg" href="${R}review.html">${ic('i-star')}Write a review</a>` }),
+      ctas: `<a class="btn btn-primary btn-lg" href="${R}book.html">${ic('i-calendar')}Book Online</a><a class="btn btn-glass btn-lg" href="${R}review.html">${ic('i-star')}Write a Review</a>` }),
     `  <section class="section bg-white" id="all-reviews" aria-labelledby="all-reviews-title">
     <div class="container">
       <div class="section-head">
@@ -388,7 +389,7 @@ export const reviews = (ph) => ({
       <ul class="pw-reviews pw-reviews-all" data-review-list>
         ${REVIEWS.map(reviewCard).join('\n        ')}
       </ul>
-      <p class="pw-more"><a class="btn btn-secondary" href="${R}review.html">${ic('i-star')}Write a review</a></p>
+      <p class="pw-more"><a class="btn btn-navy" href="${R}review.html">${ic('i-star')}Write a Review</a></p>
     </div>
   </section>`,
     areasStrip(R),
@@ -403,34 +404,31 @@ export const about = (ph) => ({
   jsonld: [crumbLd('about.html', crumbs(['About']))],
   body: (R) => [
     hero(R, { photo: ph('about-team'), crumbs: crumbs(['About']), pill: 'Family owned in Tracy since 2010', title: '<span class="accent">About Us</span> in Tracy, CA.',
-      lead: 'Luis\'s dad started Pinwheel in 2010 with one van, one phone, and a simple idea: treat every home like it belongs to family. Today Luis and Carmen Ortega run it the same way.' }),
+      lead: 'Hi, I\'m Luis Ortega. I started Pinwheel in 2010 with one van.' }),
     `  <section class="section bg-white" id="owner" aria-labelledby="owner-title">
     <div class="container">
       <div class="split pw-split pw-owner">
-        <figure class="photo owner-figure"><img data-photo="pw-owner" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 92vw" alt=""><figcaption><strong>Luis Ortega</strong>Owner and master tech</figcaption></figure>
+        <figure class="photo owner-figure"><img data-photo="pw-owner" data-crop="4:5" data-widths="400,640,900" sizes="(min-width: 900px) 440px, 92vw" alt=""><figcaption><strong>Luis Ortega</strong>Owner</figcaption></figure>
         <div>
           <p class="eyebrow">Meet the owner</p>
-          <h2 id="owner-title">A Price First, Then <span class="accent">the Work.</span></h2>
-          <p class="lead">My dad started Pinwheel in 2010 with one van and his name on the side. I grew up riding along on his calls, and I learned early that people remember how you treat them more than what you fixed.</p>
-          <p>He started it because too many neighbors were hearing the price after the work instead of before it. He wanted a company where the price comes first, the tech shows up when he said he would, and the owner's cell number is on the side of the van. Carmen and I took over the day-to-day a few years ago, and we have kept every one of those rules.</p>
-          <p>Back then, Dad wrote four promises on a whiteboard in our garage. We still read them at every Monday meeting. We are bigger now, with 14 trained techs and 12 cities across two counties, but the whiteboard has not changed.</p>
-          <p>If something isn't right, text me at ${PHONE}. I read every message.</p>
-          <p class="fine">Names and photos are illustrative.</p>
+          <h2 id="owner-title">Family Owned in Tracy <span class="accent">Since 2010.</span></h2>
+          <p class="lead">${OWNER_STORY}</p>
+          <p class="pw-owner-tag">${tag('Illustrative owner story')}</p>
         </div>
       </div>
     </div>
   </section>`,
     sec({ id: 'name', inner: split({ photo: ph('about-street'), id: 'name-title', reverse: true, eyebrow: 'Why "Pinwheel"?', h2: 'Named for Luis\'s <span class="accent">Childhood Street.</span>',
-      lead: 'Every summer on the Tracy street where Luis grew up, kids stuck paper pinwheels in the front lawns, and they spun all evening in the Delta breeze. When his dad needed a name for the company in 2010, that was the picture in his head.',
+      lead: 'Every summer on the Tracy street where Luis grew up, kids stuck paper pinwheels in the front lawns, and they spun all evening in the Delta breeze. When he needed a name for the company in 2010, that was the picture in his head.',
       paras: ['A pinwheel is moving air, and moving air is our whole job. Two warm blades stand for heating and two cool blades for cooling, and they all turn around one steady center. That center is the promise we make to every family we work for.'] }) }),
     sec({ id: 'how', cls: 'bg-white', eyebrow: 'Our promises', h2: 'Four Promises on <span class="accent">Every Job.</span>',
-      lead: 'Dad wrote these on the whiteboard. Every tech learns them on day one.',
+      lead: 'Every tech learns them on day one.',
       inner: steps([['Price before any work', 'Your tech finds the problem, shows you what failed, and gives you the full price in writing. You say yes before we pick up a tool, and the price does not change.'], ['We text when we\'re on the way', 'You get a time window when you book and a text with your tech\'s name when they head over. No waiting around all day.'], ['Clean work', 'Shoe covers go on at the door. We put down drop cloths, haul away old parts, and leave the space the way we found it.'], ['Licensed and insured', 'We hold a California C-20 HVAC license, and we\'re bonded and insured. Every employee is covered by workers\' comp.']]) }),
     sec({ id: 'team', eyebrow: 'Our team', h2: 'The People Who <span class="accent">Show Up.</span>', lead: `These are the people who answer the phone and show up at your door. ${tag('Illustrative names')}`,
       inner: `<div class="pw-team">
         <figure class="pw-team-photo" data-reveal><img data-photo="tech-ray" data-crop="4:3" data-widths="480,720,960" sizes="(min-width: 900px) 520px, 92vw" alt=""><figcaption><strong>Ray</strong>Install lead, 22 years with tools in hand</figcaption></figure>
         <ul class="pw-people">
-          ${[['Luis', 'Owner and master tech, on the trucks since he was a kid'], ['Carmen', 'Co-owner, runs the office'], ['Marcus', 'Lead HVAC tech, 12 years'], ['Andre', 'Plumbing lead, 15 years'], ['Jess', 'Service tech, 5 years'], ['Diego', 'Service tech, 7 years'], ['Tanya', 'Dispatch, the voice on the phone'], ['+7', 'And seven more techs and installers']].map(([n, r], i) => `<li data-reveal><span class="avatar" style="--h:${(i * 47) % 360}" aria-hidden="true">${n.startsWith('+') ? n : n[0]}</span><span><strong>${n.startsWith('+') ? 'And seven more' : n}</strong>${n.startsWith('+') ? 'Techs, installers, and our dispatch team' : r}</span></li>`).join('\n          ')}
+          ${[['Luis', 'Owner'], ['Carmen', 'Co-owner, runs the office'], ['Marcus', 'Lead HVAC tech, 12 years'], ['Andre', 'Plumbing lead, 15 years'], ['Jess', 'Service tech, 5 years'], ['Diego', 'Service tech, 7 years'], ['Tanya', 'Dispatch, the voice on the phone'], ['+7', 'And seven more techs and installers']].map(([n, r], i) => `<li data-reveal><span class="avatar" style="--h:${(i * 47) % 360}" aria-hidden="true">${n.startsWith('+') ? n : n[0]}</span><span><strong>${n.startsWith('+') ? 'And seven more' : n}</strong>${n.startsWith('+') ? 'Techs, installers, and our dispatch team' : r}</span></li>`).join('\n          ')}
         </ul>
       </div>` }),
     sec({ id: 'licensed', eyebrow: 'Licensed and insured', h2: 'The Paperwork, <span class="accent">Handled.</span>', lead: 'We carry the licenses and insurance you would expect from a company you let into your home.',
@@ -486,7 +484,7 @@ const FAQ_GROUPS = [
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">FAQ</p>
-        <h2 id="faq-all-title">Answers by <span class="accent">Topic.</span></h2>
+        <h2 id="faq-all-title">You've Got Questions. <span class="accent">We've Got Answers.</span></h2>
         <nav class="pw-jump" aria-label="FAQ topics"><ul>${FAQ_GROUPS.map(([n, id]) => `<li><a href="#${id}">${n}</a></li>`).join('')}</ul></nav>
       </div>
       ${FAQ_GROUPS.map(([n, id, items]) => `<div class="pw-faq-group" id="${id}">
@@ -515,7 +513,7 @@ export const resources = (ph) => ({
     hero(R, { photo: ph('resources-hero'), crumbs: crumbs(['About', 'about.html'], ['Resources']), pill: 'Homeowner guides from Tracy, CA', title: 'Homeowner <span class="accent">Resources</span> for Tracy, CA.',
       lead: 'We wrote these guides the way we would explain things at your kitchen table. No jargon and no sales pitch.', ctas: false }),
     sec({ id: 'articles', cls: 'bg-white', eyebrow: 'Guides', h2: 'Read Before <span class="accent">You Call.</span>',
-      inner: `<ul class="pw-articles">${ARTICLES.map((a) => `<li data-reveal><a class="pw-article-card" href="${R}${a.file}"><span class="icon-bubble ${a.bubble}">${ic(a.icon)}</span><span class="pw-article-meta">${a.read}</span><strong>${a.title}</strong><span>${a.blurb}</span><span class="pw-text-link">Read the guide${ic('i-arrow-right')}</span></a></li>`).join('')}</ul>` }),
+      inner: `<ul class="pw-articles">${ARTICLES.map((a) => `<li data-reveal><a class="pw-article-card" href="${R}${a.file}"><span class="icon-bubble ${a.bubble}">${ic(a.icon)}</span><span class="pw-article-meta">${a.read}</span><strong>${a.title}</strong><span>${a.blurb}</span><span class="pw-text-link">Read the Guide${ic('i-arrow-right')}</span></a></li>`).join('')}</ul>` }),
     sec({ id: 'tools', eyebrow: 'Free tools', h2: 'Quick Answers <span class="accent">in a Minute.</span>',
       inner: linkCards(R, [
         { href: 'instant-estimate.html', icon: 'i-calculator', title: 'Instant Estimate', text: 'See a price range for a new system in seconds.' },
@@ -579,8 +577,8 @@ export const articles = (ph) => ARTICLES.map((a) => ({
       <aside class="pw-side-card pw-article-side">
         <h3>Want a Second Opinion?</h3>
         <p>We will look at your system and tell you honestly what we would do if it were our own house.</p>
-        <a class="btn btn-primary btn-block" href="${R}book.html">${ic('i-calendar')}Book online</a>
-        <a class="btn btn-secondary btn-block" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
+        <a class="btn btn-primary btn-block" href="${R}book.html">${ic('i-calendar')}Book Online</a>
+        <a class="btn btn-navy btn-block" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
       </aside>
     </div>
   </section>`,
@@ -607,7 +605,7 @@ export const contact = (ph) => ({
         <ul class="contact-ways pw-ways">
           <li data-reveal><span class="icon-bubble">${ic('i-phone')}</span><span><strong><a href="${TEL}">Call ${PHONE}</a></strong>A real person answers 7am to 7pm, Monday to Saturday, and the emergency line is open 24/7.</span></li>
           <li data-reveal><span class="icon-bubble cool">${ic('i-message')}</span><span><strong><a href="${SMS}">Text the same number</a></strong>Send a photo of the problem and we will text back a window.</span></li>
-          <li data-reveal><span class="icon-bubble navy">${ic('i-calendar')}</span><span><strong><a href="${R}book.html">Book online</a></strong>Pick a day and a 3-hour window in about a minute.</span></li>
+          <li data-reveal><span class="icon-bubble navy">${ic('i-calendar')}</span><span><strong><a href="${R}book.html">Book Online</a></strong>Pick a day and a 3-hour window in about a minute.</span></li>
           <li data-reveal><span class="icon-bubble">${ic('i-send')}</span><span><strong>Email</strong>hello@pinwheel-example.com ${tag()}</span></li>
         </ul>
         ${split({ photo: ph('contact-2'), id: 'dispatch-title', eyebrow: 'Dispatch', h2: 'The Voice on <span class="accent">the Phone.</span>', lead: 'Tanya and our dispatch team answer every call from our Tracy shop. They know the techs, the neighborhoods, and the schedule.', paras: ['If you call during a busy summer afternoon, you still get a person, not a menu. They can usually give you an arrival window before you hang up.'] })}
@@ -621,7 +619,7 @@ export const contact = (ph) => ({
             ${field('sf-address', 'Home address', 'text', 'autocomplete="street-address" required')}
             <div class="field"><label for="sf-help">How can we help?</label><textarea class="textarea" id="sf-help" name="help" rows="3" required></textarea></div>`,
             '<h3>Got It. Thanks.</h3><p>We will text you back during business hours, usually the same day.</p>',
-            'Send request', { cls: 'side-form', label: 'side-title', error: 'Add your name, number, address, and a few words about the problem.' })}
+            'Send Request', { cls: 'side-form', label: 'side-title', error: 'Add your name, number, address, and a few words about the problem.' })}
         </div>
       </aside>
     </div>
@@ -646,6 +644,7 @@ export const credits = (ph) => ({
     `  <section class="section bg-white" aria-labelledby="photos-title">
     <div class="container">
       <h2 id="photos-title" class="h3 credits-h">Photography</h2>
+      <p class="credits-ai">Some equipment photos are AI-made samples.</p>
     <!-- credits -->
     <!-- /credits -->
       ${block('credits-rest.html')}
@@ -698,7 +697,7 @@ export const notFound = (ph) => ({
   body: (R) => [
     hero(R, { photo: ph('notfound-hero'), pill: 'Error 404', title: 'This Page Took a <span class="accent">Wrong Turn.</span>',
       lead: 'The page you were looking for has moved or never existed. Let us get you back on the right road.',
-      ctas: `<a class="btn btn-primary btn-lg" href="${R}index.html">${ic('i-home')}Back to home</a><a class="btn btn-glass btn-lg" href="${R}book.html">${ic('i-calendar')}Book online</a>` }),
+      ctas: `<a class="btn btn-primary btn-lg" href="${R}index.html">${ic('i-home')}Back to Home</a><a class="btn btn-glass btn-lg" href="${R}book.html">${ic('i-calendar')}Book Online</a>` }),
     sec({ id: 'popular', cls: 'bg-white', eyebrow: 'Popular pages', h2: 'Maybe You Were <span class="accent">Looking for These.</span>',
       inner: linkCards(R, [
         { href: 'services.html', icon: 'i-wrench', title: 'All services', text: 'Cooling, heating, plumbing, and indoor air quality.' },

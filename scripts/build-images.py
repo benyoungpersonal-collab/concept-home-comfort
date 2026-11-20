@@ -86,6 +86,9 @@ def main():
         if os.path.exists(dest) and not (force or spec['key'] in keys):
             continue
         key = spec['key']
+        if key not in photos:  # a slot still waiting for its photo (a local preview built with PW_STANDIN=1)
+            print(f'  skipping {spec["file"]}: {key} is not in photos.json yet')
+            continue
         if key not in cache:
             cache[key] = source(key, photos[key])
         render(cache[key], spec).save(dest, 'WEBP', quality=spec['q'], method=6)

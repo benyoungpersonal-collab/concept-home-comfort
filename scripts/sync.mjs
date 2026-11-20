@@ -87,7 +87,14 @@ function photoSet(key, attrs, file) {
   const box = p.box || [0, 0, 1, 1];
   let rw = p.w * (box[2] - box[0]), rh = p.h * (box[3] - box[1]), crop = false;
   if (cropAttr !== 'orig') { [rw, rh] = cropAttr.split(':').map(Number); crop = true; }
-  const set = widths.map((w) => ({ w, h: Math.round((w * rh) / rw) }));
+  // A copy kept in the repo (`file`, e.g. an AI-made image) is often smaller than the slot asks for: stop at its real width, never upscale.
+  let ws = widths;
+  if (p.file) {
+    const bw = p.w * (box[2] - box[0]), bh = p.h * (box[3] - box[1]);
+    const avail = Math.floor(crop ? Math.min(bw, (bh * rw) / rh) : bw);
+    if (Math.max(...widths) > avail) ws = [...widths.filter((w) => w < avail), avail];
+  }
+  const set = ws.map((w) => ({ w, h: Math.round((w * rh) / rw) }));
   return { p, set, crop };
 }
 
