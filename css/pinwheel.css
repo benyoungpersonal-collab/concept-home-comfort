@@ -1295,3 +1295,5 @@ html.site-pw { background: var(--c-bg); }
 @media (max-width: 359px) { .site-header .logo-tag { letter-spacing: 0; font-size: 8px; } .site-header .logo-name { font-size: 20px; } .site-header .logo-mark { width: 30px; height: 30px; } .site-header .header-actions { gap: 6px; } }
 /* The other hero photos stay out of layout (and unloaded) until the page has finished loading, so the first photo loads alone */
 .pw-hs:not(.is-ready) .pw-hs-slide:not(.is-on) { display: none; }
+/* Hero content keeps the 16px side gutter on phones (and the page gutter everywhere) */
+.pw-chero .pw-chero-wrap { padding-inline: var(--gutter, 16px); box-sizing: border-box; }
