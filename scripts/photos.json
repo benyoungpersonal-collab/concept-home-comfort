@@ -723,7 +723,7 @@
     "by": "bhagya laxmi",
     "page": "https://unsplash.com/photos/a-plumber-repairs-plumbing-in-a-bathroom-jaP5ClBdIyU",
     "profile": "https://unsplash.com/@bhagya_laxmi",
-    "use": "Plumbing hero",
+    "use": "Plumbing hero; homepage Plumbing Repair card",
     "user": "bhagya_laxmi",
     "base": "https://images.unsplash.com/photo-1749532125405-70950966b0e5"
   },
@@ -1610,5 +1610,159 @@
     "by": "Ben Young Web Design",
     "use": "Ductwork project card",
     "edit": "AI-made sample image with no people."
+  },
+  "pw-plumb-2": {
+    "id": "7578999",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/7578999/pexels-photo-7578999.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 5184,
+    "h": 2920,
+    "fp": [
+      0.4,
+      0.4
+    ],
+    "color": "#d6ccc1",
+    "alt": "Hand turning the handle of a new chrome widespread faucet on a bathroom vanity",
+    "by": "Kindel Media",
+    "page": "https://www.pexels.com/photo/7578999/",
+    "profile": "https://www.pexels.com/@kindelmedia/",
+    "use": "Plumbing Overview photos"
+  },
+  "pw-plumb-3": {
+    "id": "9hAk56XMa6Q",
+    "site": "Unsplash",
+    "base": "https://images.unsplash.com/photo-1687202261861-266a05a3e795",
+    "src": "https://images.unsplash.com/photo-1687202261861-266a05a3e795?ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 3236,
+    "h": 2160,
+    "fp": [
+      0.7,
+      0.5
+    ],
+    "color": "#a3a1a7",
+    "alt": "Hands adjusting the aerator on a chrome faucet over a white bathroom sink",
+    "by": "Konstantinos Papadopoulos",
+    "user": "kosti_2",
+    "page": "https://unsplash.com/photos/a-person-is-washing-their-hands-in-a-sink-9hAk56XMa6Q",
+    "profile": "https://unsplash.com/@kosti_2",
+    "box": [
+      0.3,
+      0,
+      1,
+      1
+    ],
+    "use": "Plumbing Overview photos"
+  },
+  "pw-wh-3": {
+    "id": "28479466",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/28479466/pexels-photo-28479466.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 3120,
+    "h": 3120,
+    "fp": [
+      0.5,
+      0.25
+    ],
+    "color": "#a0a1a7",
+    "alt": "Wall-mounted electric water heater above a washer and dryer in a bright white laundry room",
+    "by": "Pușcaș Adryan",
+    "page": "https://www.pexels.com/photo/28479466/",
+    "profile": "https://www.pexels.com/@pu-ca-adryan-163345030/",
+    "use": "Water Heaters photos"
+  },
+  "pw-drain-1": {
+    "id": "EcCUsk8iSSo",
+    "site": "Unsplash",
+    "base": "https://images.unsplash.com/photo-1594072282386-915fadf1a2d6",
+    "src": "https://images.unsplash.com/photo-1594072282386-915fadf1a2d6?ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 4480,
+    "h": 4480,
+    "fp": [
+      0.45,
+      0.55
+    ],
+    "color": "#c6c0ad",
+    "alt": "Hands feeding a small cleaning tool into a bathroom sink drain under running water",
+    "by": "Cannabox",
+    "user": "cannabox",
+    "page": "https://unsplash.com/photos/person-holding-silver-steel-faucet-EcCUsk8iSSo",
+    "profile": "https://unsplash.com/@cannabox",
+    "box": [
+      0,
+      0.12,
+      1,
+      1
+    ],
+    "use": "Drains & Sewer photos (first one is its thumbnail)"
+  },
+  "pw-drain-2": {
+    "id": "9462312",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/9462312/pexels-photo-9462312.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 4000,
+    "h": 6000,
+    "fp": [
+      0.35,
+      0.55
+    ],
+    "color": "#7e8686",
+    "alt": "Gloved hand scrubbing a stainless kitchen sink drain basket",
+    "by": "Liliana Drew",
+    "page": "https://www.pexels.com/photo/9462312/",
+    "profile": "https://www.pexels.com/@liliana-drew/",
+    "use": "Drains & Sewer photos"
+  },
+  "pw-drain-3": {
+    "id": "5768318",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/5768318/pexels-photo-5768318.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 2536,
+    "h": 3800,
+    "fp": [
+      0.5,
+      0.5
+    ],
+    "color": "#cac6c5",
+    "alt": "Square stainless floor drain in a white-tiled shower",
+    "by": "Ksenia Chernaya",
+    "page": "https://www.pexels.com/photo/5768318/",
+    "profile": "https://www.pexels.com/@kseniachernaya/",
+    "use": "Drains & Sewer photos"
+  },
+  "pw-leak-1": {
+    "id": "9Y3YGj7f9e8",
+    "site": "Unsplash",
+    "base": "https://images.unsplash.com/photo-1760571327612-8ab776dcd462",
+    "src": "https://images.unsplash.com/photo-1760571327612-8ab776dcd462?ixlib=rb-4.1.0&w=2400&q=85&fm=jpg",
+    "w": 4032,
+    "h": 3024,
+    "fp": [
+      0.6,
+      0.4
+    ],
+    "color": "#876b5b",
+    "alt": "Hand holding a brass compression fitting on white flexible water supply tubing",
+    "by": "Jah Mc",
+    "user": "jahbar",
+    "page": "https://unsplash.com/photos/hand-holding-a-brass-fitting-on-a-white-tube-9Y3YGj7f9e8",
+    "profile": "https://unsplash.com/@jahbar",
+    "use": "Leak Repair & Repiping photos (first one is its thumbnail)"
+  },
+  "pw-leak-2": {
+    "id": "14953886",
+    "site": "Pexels",
+    "src": "https://images.pexels.com/photos/14953886/pexels-photo-14953886.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    "w": 6000,
+    "h": 4000,
+    "fp": [
+      0.45,
+      0.45
+    ],
+    "color": "#bab8c4",
+    "alt": "New braided stainless supply lines, a chrome faucet and a wrench on a plumbing floor plan",
+    "by": "AS Photography",
+    "page": "https://www.pexels.com/photo/14953886/",
+    "profile": "https://www.pexels.com/@asphotography/",
+    "use": "Leak Repair & Repiping photos"
   }
 }

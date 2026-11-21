@@ -594,10 +594,10 @@
   "q": 70
  },
  {
-  "file": "pinwheel-drains-360x240.webp",
+  "file": "pinwheel-drains-160x160.webp",
   "key": "pinwheel-drains",
-  "w": 360,
-  "h": 240,
+  "w": 160,
+  "h": 160,
   "crop": true,
   "fp": [
    0.62,
@@ -630,46 +630,46 @@
   "q": 70
  },
  {
-  "file": "pinwheel-drains-540x360.webp",
-  "key": "pinwheel-drains",
-  "w": 540,
-  "h": 360,
-  "crop": true,
-  "fp": [
-   0.62,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
-  "file": "pinwheel-drains-720x480.webp",
-  "key": "pinwheel-drains",
-  "w": 720,
-  "h": 480,
-  "crop": true,
-  "fp": [
-   0.62,
-   0.5
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "pinwheel-drains-720x540.webp",
   "key": "pinwheel-drains",
   "w": 720,
   "h": 540,
+  "crop": true,
+  "fp": [
+   0.62,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-drains-960x720.webp",
+  "key": "pinwheel-drains",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.62,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-drains-96x96.webp",
+  "key": "pinwheel-drains",
+  "w": 96,
+  "h": 96,
   "crop": true,
   "fp": [
    0.62,
@@ -990,6 +990,24 @@
   "q": 70
  },
  {
+  "file": "pinwheel-water-heater-1024x576.webp",
+  "key": "pinwheel-water-heater",
+  "w": 1024,
+  "h": 576,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pinwheel-water-heater-1024x765-full.webp",
   "key": "pinwheel-water-heater",
   "w": 1024,
@@ -1013,6 +1031,24 @@
   "w": 1600,
   "h": 1195,
   "crop": false,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pinwheel-water-heater-1600x900.webp",
+  "key": "pinwheel-water-heater",
+  "w": 1600,
+  "h": 900,
+  "crop": true,
   "fp": [
    0.55,
    0.55
@@ -1080,6 +1116,42 @@
   "q": 70
  },
  {
+  "file": "pinwheel-water-heater-480x800.webp",
+  "key": "pinwheel-water-heater",
+  "w": 480,
+  "h": 800,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-water-heater-640x1067.webp",
+  "key": "pinwheel-water-heater",
+  "w": 640,
+  "h": 1067,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pinwheel-water-heater-720x540.webp",
   "key": "pinwheel-water-heater",
   "w": 720,
@@ -1116,10 +1188,64 @@
   "q": 70
  },
  {
+  "file": "pinwheel-water-heater-768x432.webp",
+  "key": "pinwheel-water-heater",
+  "w": 768,
+  "h": 432,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-water-heater-840x1400.webp",
+  "key": "pinwheel-water-heater",
+  "w": 840,
+  "h": 1400,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pinwheel-water-heater-960x1200.webp",
   "key": "pinwheel-water-heater",
   "w": 960,
   "h": 1200,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pinwheel-water-heater-960x720.webp",
+  "key": "pinwheel-water-heater",
+  "w": 960,
+  "h": 720,
   "crop": true,
   "fp": [
    0.55,
@@ -1386,6 +1512,24 @@
   "q": 70
  },
  {
+  "file": "pw-ac-repair-1024x576.webp",
+  "key": "pw-ac-repair",
+  "w": 1024,
+  "h": 576,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pw-ac-repair-1024x683-full.webp",
   "key": "pw-ac-repair",
   "w": 1024,
@@ -1409,6 +1553,24 @@
   "w": 1600,
   "h": 1067,
   "crop": false,
+  "fp": [
+   0.35,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 62
+ },
+ {
+  "file": "pw-ac-repair-1600x900.webp",
+  "key": "pw-ac-repair",
+  "w": 1600,
+  "h": 900,
+  "crop": true,
   "fp": [
    0.35,
    0.5
@@ -1458,10 +1620,82 @@
   "q": 70
  },
  {
+  "file": "pw-ac-repair-480x800.webp",
+  "key": "pw-ac-repair",
+  "w": 480,
+  "h": 800,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-ac-repair-640x1067.webp",
+  "key": "pw-ac-repair",
+  "w": 640,
+  "h": 1067,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pw-ac-repair-760x950.webp",
   "key": "pw-ac-repair",
   "w": 760,
   "h": 950,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-ac-repair-768x432.webp",
+  "key": "pw-ac-repair",
+  "w": 768,
+  "h": 432,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-ac-repair-840x1400.webp",
+  "key": "pw-ac-repair",
+  "w": 840,
+  "h": 1400,
   "crop": true,
   "fp": [
    0.35,
@@ -2430,6 +2664,204 @@
   "q": 70
  },
  {
+  "file": "pw-drain-1-160x160.webp",
+  "key": "pw-drain-1",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.55
+  ],
+  "box": [
+   0,
+   0.12,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-1-480x360.webp",
+  "key": "pw-drain-1",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.55
+  ],
+  "box": [
+   0,
+   0.12,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-1-720x540.webp",
+  "key": "pw-drain-1",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.55
+  ],
+  "box": [
+   0,
+   0.12,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-1-960x720.webp",
+  "key": "pw-drain-1",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.55
+  ],
+  "box": [
+   0,
+   0.12,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-1-96x96.webp",
+  "key": "pw-drain-1",
+  "w": 96,
+  "h": 96,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.55
+  ],
+  "box": [
+   0,
+   0.12,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-2-480x360.webp",
+  "key": "pw-drain-2",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-2-720x540.webp",
+  "key": "pw-drain-2",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-2-960x720.webp",
+  "key": "pw-drain-2",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.35,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-3-480x360.webp",
+  "key": "pw-drain-3",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-3-720x540.webp",
+  "key": "pw-drain-3",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-drain-3-960x720.webp",
+  "key": "pw-drain-3",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pw-drains-1024x683-full.webp",
   "key": "pw-drains",
   "w": 1024,
@@ -3312,10 +3744,64 @@
   "q": 62
  },
  {
+  "file": "pw-heating-2-320x320.webp",
+  "key": "pw-heating-2",
+  "w": 320,
+  "h": 320,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pw-heating-2-480x360.webp",
   "key": "pw-heating-2",
   "w": 480,
   "h": 360,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-heating-2-480x480.webp",
+  "key": "pw-heating-2",
+  "w": 480,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-heating-2-640x640.webp",
+  "key": "pw-heating-2",
+  "w": 640,
+  "h": 640,
   "crop": true,
   "fp": [
    0.5,
@@ -3546,6 +4032,96 @@
   "q": 70
  },
  {
+  "file": "pw-leak-1-160x160.webp",
+  "key": "pw-leak-1",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-leak-1-480x360.webp",
+  "key": "pw-leak-1",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-leak-1-720x540.webp",
+  "key": "pw-leak-1",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-leak-1-960x720.webp",
+  "key": "pw-leak-1",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-leak-1-96x96.webp",
+  "key": "pw-leak-1",
+  "w": 96,
+  "h": 96,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pw-leak-1024x684-full.webp",
   "key": "pw-leak",
   "w": 1024,
@@ -3580,6 +4156,60 @@
    1
   ],
   "q": 62
+ },
+ {
+  "file": "pw-leak-2-480x360.webp",
+  "key": "pw-leak-2",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.45
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-leak-2-720x540.webp",
+  "key": "pw-leak-2",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.45
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-leak-2-960x720.webp",
+  "key": "pw-leak-2",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.45,
+   0.45
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
  },
  {
   "file": "pw-leak-2400x1602-full.webp",
@@ -4338,10 +4968,10 @@
   "q": 70
  },
  {
-  "file": "pw-pj-ac-side-yard-320x320.webp",
+  "file": "pw-pj-ac-side-yard-1024x576.webp",
   "key": "pw-pj-ac-side-yard",
-  "w": 320,
-  "h": 320,
+  "w": 1024,
+  "h": 576,
   "crop": true,
   "fp": [
    0.48,
@@ -4374,24 +5004,6 @@
   "q": 70
  },
  {
-  "file": "pw-pj-ac-side-yard-480x480.webp",
-  "key": "pw-pj-ac-side-yard",
-  "w": 480,
-  "h": 480,
-  "crop": true,
-  "fp": [
-   0.48,
-   0.55
-  ],
-  "box": [
-   0,
-   0,
-   1,
-   1
-  ],
-  "q": 70
- },
- {
   "file": "pw-pj-ac-side-yard-480x600.webp",
   "key": "pw-pj-ac-side-yard",
   "w": 480,
@@ -4410,10 +5022,28 @@
   "q": 70
  },
  {
-  "file": "pw-pj-ac-side-yard-640x640.webp",
+  "file": "pw-pj-ac-side-yard-480x800.webp",
   "key": "pw-pj-ac-side-yard",
-  "w": 640,
-  "h": 640,
+  "w": 480,
+  "h": 800,
+  "crop": true,
+  "fp": [
+   0.48,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-pj-ac-side-yard-614x1023.webp",
+  "key": "pw-pj-ac-side-yard",
+  "w": 614,
+  "h": 1023,
   "crop": true,
   "fp": [
    0.48,
@@ -4450,6 +5080,24 @@
   "key": "pw-pj-ac-side-yard",
   "w": 760,
   "h": 950,
+  "crop": true,
+  "fp": [
+   0.48,
+   0.55
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-pj-ac-side-yard-768x432.webp",
+  "key": "pw-pj-ac-side-yard",
+  "w": 768,
+  "h": 432,
   "crop": true,
   "fp": [
    0.48,
@@ -4950,10 +5598,10 @@
   "q": 70
  },
  {
-  "file": "pw-pj-furnace-closet-320x320.webp",
+  "file": "pw-pj-furnace-closet-1024x576.webp",
   "key": "pw-pj-furnace-closet",
-  "w": 320,
-  "h": 320,
+  "w": 1024,
+  "h": 576,
   "crop": true,
   "fp": [
    0.47,
@@ -4986,10 +5634,10 @@
   "q": 70
  },
  {
-  "file": "pw-pj-furnace-closet-480x480.webp",
+  "file": "pw-pj-furnace-closet-480x800.webp",
   "key": "pw-pj-furnace-closet",
   "w": 480,
-  "h": 480,
+  "h": 800,
   "crop": true,
   "fp": [
    0.47,
@@ -5004,10 +5652,10 @@
   "q": 70
  },
  {
-  "file": "pw-pj-furnace-closet-640x640.webp",
+  "file": "pw-pj-furnace-closet-614x1023.webp",
   "key": "pw-pj-furnace-closet",
-  "w": 640,
-  "h": 640,
+  "w": 614,
+  "h": 1023,
   "crop": true,
   "fp": [
    0.47,
@@ -5040,6 +5688,24 @@
   "q": 70
  },
  {
+  "file": "pw-pj-furnace-closet-768x432.webp",
+  "key": "pw-pj-furnace-closet",
+  "w": 768,
+  "h": 432,
+  "crop": true,
+  "fp": [
+   0.47,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
   "file": "pw-pj-furnace-closet-960x720.webp",
   "key": "pw-pj-furnace-closet",
   "w": 960,
@@ -5047,6 +5713,24 @@
   "crop": true,
   "fp": [
    0.47,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-pj-furnace-garage-160x160.webp",
+  "key": "pw-pj-furnace-garage",
+  "w": 160,
+  "h": 160,
+  "crop": true,
+  "fp": [
+   0.55,
    0.5
   ],
   "box": [
@@ -5152,6 +5836,24 @@
   "key": "pw-pj-furnace-garage",
   "w": 960,
   "h": 720,
+  "crop": true,
+  "fp": [
+   0.55,
+   0.5
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-pj-furnace-garage-96x96.webp",
+  "key": "pw-pj-furnace-garage",
+  "w": 96,
+  "h": 96,
   "crop": true,
   "fp": [
    0.55,
@@ -5371,6 +6073,222 @@
   "crop": true,
   "fp": [
    0.3,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumb-2-480x360.webp",
+  "key": "pw-plumb-2",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.4,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumb-2-720x540.webp",
+  "key": "pw-plumb-2",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.4,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumb-2-960x720.webp",
+  "key": "pw-plumb-2",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.4,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumb-3-480x360.webp",
+  "key": "pw-plumb-3",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.7,
+   0.5
+  ],
+  "box": [
+   0.3,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumb-3-720x540.webp",
+  "key": "pw-plumb-3",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.7,
+   0.5
+  ],
+  "box": [
+   0.3,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumb-3-960x720.webp",
+  "key": "pw-plumb-3",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.7,
+   0.5
+  ],
+  "box": [
+   0.3,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumbing-360x240.webp",
+  "key": "pw-plumbing",
+  "w": 360,
+  "h": 240,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumbing-480x360.webp",
+  "key": "pw-plumbing",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumbing-540x360.webp",
+  "key": "pw-plumbing",
+  "w": 540,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumbing-720x480.webp",
+  "key": "pw-plumbing",
+  "w": 720,
+  "h": 480,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumbing-720x540.webp",
+  "key": "pw-plumbing",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.6,
+   0.4
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-plumbing-960x720.webp",
+  "key": "pw-plumbing",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.6,
    0.4
   ],
   "box": [
@@ -6650,6 +7568,60 @@
   "fp": [
    0.42,
    0.6
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-wh-3-480x360.webp",
+  "key": "pw-wh-3",
+  "w": 480,
+  "h": 360,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.25
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-wh-3-720x540.webp",
+  "key": "pw-wh-3",
+  "w": 720,
+  "h": 540,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.25
+  ],
+  "box": [
+   0,
+   0,
+   1,
+   1
+  ],
+  "q": 70
+ },
+ {
+  "file": "pw-wh-3-960x720.webp",
+  "key": "pw-wh-3",
+  "w": 960,
+  "h": 720,
+  "crop": true,
+  "fp": [
+   0.5,
+   0.25
   ],
   "box": [
    0,

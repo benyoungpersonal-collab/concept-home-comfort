@@ -85,3 +85,11 @@ export const REVIEWS = [
 ];
 
 export const STATS = { rating: '4.9', count: 186 };
+
+/* Plumbing photos (round 5): each plumbing page gets 3 swipeable photos; the first one is its thumbnail in the lists */
+export const PLUMB_PHOTOS = {
+  'plumbing.html': ['pinwheel-drains', 'pw-plumb-3', 'pw-plumb-2'],
+  'water-heaters.html': ['pw-pj-furnace-garage', 'pinwheel-water-heater', 'pw-wh-3'],
+  'drains.html': ['pw-drain-1', 'pw-drain-2', 'pw-drain-3'],
+  'leak-repair.html': ['pw-leak-1', 'pw-leak-2', 'pw-svc-plumbing'],
+};

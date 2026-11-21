@@ -22,7 +22,7 @@ const photos = JSON.parse(readFileSync(join(ROOT, 'scripts/photos.json'), 'utf8'
 
 /* Photo slot -> photos.json key. Slots without a registered photo yet fall back to a stand-in photo (and are listed). */
 const PHOTO = {
-  'services-hero': 'pw-services', 'svc-cooling': 'pw-svc-cooling', 'svc-heating': 'pw-svc-heating', 'svc-plumbing': 'pw-svc-plumbing', 'svc-air': 'pw-svc-air',
+  'services-hero': 'pw-services', 'svc-cooling': 'pw-svc-cooling', 'svc-heating': 'pw-svc-heating', 'svc-plumbing': 'pw-plumbing', 'svc-air': 'pw-svc-air',
   'cooling-hero': 'pw-pj-ac-side-yard', 'ac-repair-hero': 'pw-ac-repair', 'ac-install-hero': 'pw-ac-install',
   'heating-hero': 'pw-heating', 'heating-2': 'pw-heating-2', 'heat-pumps-hero': 'pw-heat-pumps', 'plumbing-hero': 'pinwheel-water-heater',
   'water-heaters-hero': 'pw-water-heaters', 'drains-hero': 'pw-drains', 'leak-hero': 'pw-leak', 'repipe-2': 'pw-repipe',
@@ -114,7 +114,7 @@ ${ABOUT_MENU.map((m) => `              <a class="panel-link" href="{{root}}${m.f
         <span class="icon-wrap">${ic('i-phone')}</span>
         <span class="header-phone-text" aria-hidden="true"><small>Call or text us</small><span>${PHONE}</span></span>
       </a>
-      <a class="btn btn-primary btn-sm header-book" href="#quote" data-quote-link data-home="{{root}}index.html#quote">Free Quote</a>
+      <a class="btn btn-primary btn-sm header-book" href="#quote" data-quote-link data-home="{{root}}index.html#quote">Get a Free Quote</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-open>${ic('i-menu')}</button>
     </div>
   </div>
@@ -150,7 +150,7 @@ ${GROUPS.map((g) => `      <details class="mm-acc">
     </div>
     <div class="mm-cta">
       <a class="btn btn-primary btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
-      <a class="btn btn-navy btn-lg" href="#quote" data-quote-link data-home="{{root}}index.html#quote" data-menu-close>${ic('i-send')}Get My Free Quote</a>
+      <a class="btn btn-navy btn-lg" href="#quote" data-quote-link data-home="{{root}}index.html#quote" data-menu-close>${ic('i-send')}Get a Free Quote</a>
     </div>
     <p class="mm-hours">We answer Monday to Saturday, 7am to 7pm, and the emergency line is open 24/7.</p>
   </nav>

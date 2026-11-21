@@ -3,7 +3,7 @@
    and the service areas strip. Sample data for a fictional business. */
 import { hero, sec, checklist, steps, prices, reviewsSection, reviewsFor, faqSection, faqLd, club, areasStrip,
   split, serviceLd, crumbLd, heroPreload, callBtn, bookBtn, ic, tag } from './components.mjs';
-import { PHONE } from './site-data.mjs';
+import { PHONE, PLUMB_PHOTOS } from './site-data.mjs';
 import { subServices } from './blocks.mjs';
 
 export function servicePage(o, ph) {
@@ -15,7 +15,7 @@ export function servicePage(o, ph) {
     jsonld: [serviceLd({ name: o.name, type: o.type, desc: o.desc, file: o.file }), faqLd(o.faq), crumbLd(o.file, trail)],
     body: (R) => [
       hero(R, { photo, fpPhone: o.fpPhone, crumbs: trail, pill: o.pill, title: o.h1, lead: o.lead, quoteService: o.quote }),
-      subServices(R, { h2: o.subsH2, lead: o.subsLead, items: o.subs, page: o.file }),
+      subServices(R, { h2: o.subsH2, lead: o.subsLead, items: o.subs, page: o.file, gallery: PLUMB_PHOTOS[o.file] ? { key: o.file.replace('.html', ''), title: o.short || o.name, photos: PLUMB_PHOTOS[o.file] } : null }),
       sec({ id: 'signs', cls: 'bg-white', eyebrow: 'Signs to watch for', h2: o.signsH2, lead: o.signsLead,
         inner: checklist(o.signs) + (o.signsAfter || '') }),
       o.second ? sec({ id: 'more', inner: split({ ...o.second, photo: o.second.photo ? ph(o.second.photo) : null, id: 'more-title' }) }) : '',
