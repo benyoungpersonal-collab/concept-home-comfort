@@ -316,29 +316,68 @@
     if (zoom.showModal) zoom.showModal(); else zoom.setAttribute('open', '');
   });
 
-  /* ---------- Floating buttons: show once the hero buttons scroll away; flip on dark sections ---------- */
+  /* ---------- Floating buttons (standing rule 15): hidden while the hero buttons show; after that Call and Text
+     stay to the end of every page, and only the Free Quote pill hides while the quote form is on screen. Each
+     button is fixed on its own (no wide fixed bar), so iPhone Safari has no solid strip to stretch under its toolbar. ---------- */
   var float = $('[data-float]');
   if (float) {
     var heroBtns = $$('[data-hide-bar]'), onScreen = new Set();
+    var forms = $$('#quote form, form[name="quote"], .pw-sideform form'), formsOn = new Set();
     var waitFor = function () { return heroBtns.length ? onScreen.size > 0 : window.scrollY < 320; };
-    var DARK = '.on-dark, .site-footer, .pw-hhero, .pw-ohero, .hero, .pw-next, .pw-ribbon';
+    var DARK = '.on-dark, .site-footer, .pw-hhero, .pw-ohero, .pw-chero, .hero, .pw-next, .pw-ribbon';
     var check = function () {
       float.classList.toggle('is-waiting', waitFor());
-      var r = float.getBoundingClientRect();
-      var x = Math.min(window.innerWidth - 8, Math.max(8, r.right - 30)), y = Math.min(window.innerHeight - 8, Math.max(8, r.bottom - 26));
+      float.classList.toggle('is-form', formsOn.size > 0);
+      var vis = [$('.pw-fl-call', float), $('.pw-fl-textus', float)].filter(function (el) { return el && el.getClientRects().length && getComputedStyle(el).display !== 'none'; })[0];
+      if (!vis) return;
+      var r = vis.getBoundingClientRect();
+      var x = Math.min(window.innerWidth - 8, Math.max(8, r.left + r.width / 2)), y = Math.min(window.innerHeight - 8, Math.max(8, r.top + r.height / 2));
       var stack = d.elementsFromPoint ? d.elementsFromPoint(x, y) : [];
       var under = stack.filter(function (el) { return !float.contains(el); })[0];
       float.classList.toggle('is-dark', !!(under && under.closest && under.closest(DARK)));
     };
-    if ('IntersectionObserver' in window && heroBtns.length) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) onScreen.add(e.target); else onScreen.delete(e.target); }); check(); });
-      heroBtns.forEach(function (b) { io.observe(b); });
+    if ('IntersectionObserver' in window) {
+      if (heroBtns.length) {
+        var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) onScreen.add(e.target); else onScreen.delete(e.target); }); check(); });
+        heroBtns.forEach(function (b) { io.observe(b); });
+      }
+      if (forms.length) {
+        var fo = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) formsOn.add(e.target); else formsOn.delete(e.target); }); check(); });
+        forms.forEach(function (f) { fo.observe(f); });
+      }
     }
     var ft = false;
     window.addEventListener('scroll', function () { if (!ft) { ft = true; requestAnimationFrame(function () { ft = false; check(); }); } }, { passive: true });
     window.addEventListener('resize', check);
     float.classList.add('is-waiting');
     check();
+  }
+
+  /* ---------- Hero slideshow (standing rule 13): 7 s per photo with a slow zoom out, then a 400 ms fade.
+     Reduced motion keeps the first photo still. Pauses while the tab is hidden. ---------- */
+  var show = $('[data-hero-show]');
+  if (show) {
+    var slides = $$('.pw-hs-slide', show), dots = $$('[data-hs-dot]', show), cur = 0, timer = null;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var goTo = function (n) {
+      n = (n + slides.length) % slides.length;
+      if (n === cur) return;
+      var prev = slides[cur]; cur = n;
+      var next = slides[cur];
+      slides.forEach(function (s) { if (s !== prev && s !== next) s.classList.remove('is-on', 'is-out'); });
+      var img = $('img', next); if (img && img.loading === 'lazy') img.loading = 'eager';
+      prev.classList.remove('is-on'); prev.classList.add('is-out');
+      next.classList.remove('is-out'); void next.offsetWidth; next.classList.add('is-on');
+      setTimeout(function () { prev.classList.remove('is-out'); }, 450);
+      dots.forEach(function (dt, i) { if (i === cur) dt.setAttribute('aria-current', 'true'); else dt.removeAttribute('aria-current'); });
+    };
+    var start = function () { if (still || timer) return; timer = setInterval(function () { goTo(cur + 1); }, 7000); };
+    var stop = function () { clearInterval(timer); timer = null; };
+    dots.forEach(function (dt, i) { dt.addEventListener('click', function () { stop(); goTo(i); start(); }); });
+    d.addEventListener('visibilitychange', function () { if (d.hidden) stop(); else start(); });
+    var warm = function () { var box = $('.pw-hs', show); if (box) box.classList.add('is-ready'); slides.forEach(function (s) { var im = $('img', s); if (im && im.loading === 'lazy') im.loading = 'eager'; }); };
+    if (d.readyState === 'complete') warm(); else window.addEventListener('load', warm);
+    start();
   }
 
   /* ---------- Footer link groups: tap-to-open rows on phones, always open from 760px ---------- */
@@ -356,4 +395,10 @@
     var m = d.querySelector('.site-header .logo-mark'); if (!m) return;
     m.style.animation = 'none'; void m.getBoundingClientRect(); m.style.animation = '';
   });
+  /* ---------- ...and every 35 seconds (standing rule 16). Reduced motion has no animation in the CSS. ---------- */
+  setInterval(function () {
+    if (d.hidden) return;
+    var m = d.querySelector('.site-header .logo-mark'); if (!m) return;
+    m.style.animation = 'none'; void m.getBoundingClientRect(); m.style.animation = '';
+  }, 35000);
 })();

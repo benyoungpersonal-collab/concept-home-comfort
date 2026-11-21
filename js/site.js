@@ -555,7 +555,7 @@
       $('[data-helper-empty]', result).hidden = true;
       $('[data-helper-output]', result).hidden = false;
       $('[data-helper-cta]', result).setAttribute('data-service', key === 'repair' ? 'AC repair' : 'New system quote');
-      $('[data-helper-cta]', result).lastChild.textContent = key === 'repair' ? 'Book a repair visit' : 'Book a Free In-Home Quote';
+      $('[data-helper-cta]', result).lastChild.textContent = key === 'repair' ? 'Book a repair visit' : 'Get a Free Quote';
       return true;
     };
     form.addEventListener('submit', function (e) {

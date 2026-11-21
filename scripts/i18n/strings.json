@@ -2417,7 +2417,7 @@
   "specials.html",
   "water-heaters.html"
  ],
- "Free Quote": [
+ "Get a Free Quote": [
   "404.html",
   "about.html",
   "ac-installation.html",
@@ -4133,7 +4133,7 @@
   "specials.html",
   "water-heaters.html"
  ],
- "⟦s⟧Get My Free Quote": [
+ "⟦s⟧Get a Free Quote": [
   "404.html",
   "about.html",
   "ac-installation.html",
@@ -6000,44 +6000,6 @@
   "specials.html",
   "water-heaters.html"
  ],
- "⟦s⟧Book a Free In-Home Quote": [
-  "404.html",
-  "about.html",
-  "ac-installation.html",
-  "ac-repair.html",
-  "air-quality.html",
-  "book.html",
-  "comfort-club.html",
-  "contact.html",
-  "cooling.html",
-  "credits.html",
-  "drains.html",
-  "emergency.html",
-  "faq.html",
-  "financing.html",
-  "heat-pumps.html",
-  "heating.html",
-  "index.html",
-  "instant-estimate.html",
-  "leak-repair.html",
-  "plumbing.html",
-  "privacy.html",
-  "projects.html",
-  "resources.html",
-  "resources/ac-repair-or-replace.html",
-  "resources/water-heater-noise.html",
-  "reviews.html",
-  "service-areas.html",
-  "service-areas/lathrop.html",
-  "service-areas/livermore.html",
-  "service-areas/manteca.html",
-  "service-areas/mountain-house.html",
-  "service-areas/stockton.html",
-  "service-areas/tracy.html",
-  "services.html",
-  "specials.html",
-  "water-heaters.html"
- ],
  "What Happens Next": [
   "404.html",
   "about.html",
@@ -7359,44 +7321,6 @@
   "specials.html",
   "water-heaters.html"
  ],
- "⟦s⟧Free Quote": [
-  "404.html",
-  "about.html",
-  "ac-installation.html",
-  "ac-repair.html",
-  "air-quality.html",
-  "book.html",
-  "comfort-club.html",
-  "contact.html",
-  "cooling.html",
-  "credits.html",
-  "drains.html",
-  "emergency.html",
-  "faq.html",
-  "financing.html",
-  "heat-pumps.html",
-  "heating.html",
-  "index.html",
-  "instant-estimate.html",
-  "leak-repair.html",
-  "plumbing.html",
-  "privacy.html",
-  "projects.html",
-  "resources.html",
-  "resources/ac-repair-or-replace.html",
-  "resources/water-heater-noise.html",
-  "reviews.html",
-  "service-areas.html",
-  "service-areas/lathrop.html",
-  "service-areas/livermore.html",
-  "service-areas/manteca.html",
-  "service-areas/mountain-house.html",
-  "service-areas/stockton.html",
-  "service-areas/tracy.html",
-  "services.html",
-  "specials.html",
-  "water-heaters.html"
- ],
  "Text Us": [
   "404.html",
   "about.html",
@@ -8128,7 +8052,6 @@
   "financing.html",
   "heat-pumps.html",
   "heating.html",
-  "index.html",
   "instant-estimate.html",
   "leak-repair.html",
   "plumbing.html",
@@ -9588,7 +9511,8 @@
  ],
  "Technician's hands connecting a gauge hose to an outdoor AC unit's refrigerant line": [
   "ac-repair.html",
-  "credits.html"
+  "credits.html",
+  "index.html"
  ],
  "⟦s⟧Air quality service in Tracy, CA": [
   "air-quality.html"
@@ -10405,7 +10329,8 @@
  ],
  "Plumber in an orange shirt tightening a drain pipe under a bathroom sink": [
   "credits.html",
-  "index.html"
+  "plumbing.html",
+  "services.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@shaker_jpg?utm_source=pinwheel_concept&amp;utm_medium=referral\">Timur Shakerzianov</a> on <a href=\"https://unsplash.com/photos/a-man-working-on-a-pipe-in-a-wall-c314Gh8dXAo?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Drains service card, plumbing hero. Shirt color changed to Pinwheel orange; exposure and white balance matched to the other service cards.": [
   "credits.html"
@@ -10419,7 +10344,9 @@
  ],
  "Gray gas water heater on a drip pan in the corner of a clean garage, with copper lines and an expansion tank": [
   "credits.html",
-  "plumbing.html"
+  "index.html",
+  "plumbing.html",
+  "water-heaters.html"
  ],
  "Photo supplied by Ben Young Web Design. Used for: Water heaters service card. Exposure and white balance matched to the other service cards.": [
   "credits.html"
@@ -10462,7 +10389,7 @@
  ],
  "Chrome kitchen faucet over a round steel sink": [
   "credits.html",
-  "services.html"
+  "leak-repair.html"
  ],
  "Photo by <a href=\"https://www.pexels.com/photo/34295402/\">Zulfugar Karimov</a> on <a href=\"https://www.pexels.com/photo/34295402/\">Pexels</a>. Used for: Services page, Plumbing card.": [
   "credits.html"
@@ -10489,7 +10416,8 @@
  ],
  "Blue gas flames on a furnace burner": [
   "credits.html",
-  "heating.html"
+  "heating.html",
+  "index.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@peter_fly?utm_source=pinwheel_concept&amp;utm_medium=referral\">Peter Fly</a> on <a href=\"https://unsplash.com/photos/a-group-of-people-standing-in-front-of-a-green-and-red-flame-qHpxnoo-gXg?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Furnace page, what we check.": [
   "credits.html"
@@ -10501,6 +10429,14 @@
   "projects.html"
  ],
  "Photo by <a href=\"https://unsplash.com/@lisaanna195?utm_source=pinwheel_concept&amp;utm_medium=referral\">Lisa Anna</a> on <a href=\"https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-ceiling-fan-Qk-EBWUIqBQ?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Heat Pumps hero.": [
+  "credits.html"
+ ],
+ "Plumber in navy overalls carrying a toolbox into a bathroom": [
+  "credits.html",
+  "index.html",
+  "services.html"
+ ],
+ "Photo by <a href=\"https://unsplash.com/@bhagya_laxmi?utm_source=pinwheel_concept&amp;utm_medium=referral\">bhagya laxmi</a> on <a href=\"https://unsplash.com/photos/a-plumber-repairs-plumbing-in-a-bathroom-jaP5ClBdIyU?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Plumbing hero; homepage Plumbing Repair card.": [
   "credits.html"
  ],
  "Tidy laundry room with shelves and a tank water heater": [
@@ -10740,7 +10676,10 @@
  "New gray furnace beside a water heater on a raised garage platform": [
   "credits.html",
   "index.html",
-  "projects.html"
+  "plumbing.html",
+  "projects.html",
+  "services.html",
+  "water-heaters.html"
  ],
  "Photo supplied by Ben Young Web Design. Used for: Ductwork project card, Cooling page split photo. AI-made sample image with no people.": [
   "credits.html"
@@ -10757,6 +10696,66 @@
   "credits.html",
   "index.html",
   "projects.html"
+ ],
+ "Hand turning the handle of a new chrome widespread faucet on a bathroom vanity": [
+  "credits.html",
+  "plumbing.html"
+ ],
+ "Photo by <a href=\"https://www.pexels.com/@kindelmedia/\">Kindel Media</a> on <a href=\"https://www.pexels.com/photo/7578999/\">Pexels</a>. Used for: Plumbing Overview photos.": [
+  "credits.html"
+ ],
+ "Hands adjusting the aerator on a chrome faucet over a white bathroom sink": [
+  "credits.html",
+  "plumbing.html"
+ ],
+ "Photo by <a href=\"https://unsplash.com/@kosti_2?utm_source=pinwheel_concept&amp;utm_medium=referral\">Konstantinos Papadopoulos</a> on <a href=\"https://unsplash.com/photos/a-person-is-washing-their-hands-in-a-sink-9hAk56XMa6Q?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Plumbing Overview photos.": [
+  "credits.html"
+ ],
+ "Wall-mounted electric water heater above a washer and dryer in a bright white laundry room": [
+  "credits.html",
+  "water-heaters.html"
+ ],
+ "Photo by <a href=\"https://www.pexels.com/@pu-ca-adryan-163345030/\">Pușcaș Adryan</a> on <a href=\"https://www.pexels.com/photo/28479466/\">Pexels</a>. Used for: Water Heaters photos.": [
+  "credits.html"
+ ],
+ "Hands feeding a small cleaning tool into a bathroom sink drain under running water": [
+  "credits.html",
+  "drains.html",
+  "plumbing.html",
+  "services.html"
+ ],
+ "Photo by <a href=\"https://unsplash.com/@cannabox?utm_source=pinwheel_concept&amp;utm_medium=referral\">Cannabox</a> on <a href=\"https://unsplash.com/photos/person-holding-silver-steel-faucet-EcCUsk8iSSo?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Drains &amp; Sewer photos (first one is its thumbnail).": [
+  "credits.html"
+ ],
+ "Gloved hand scrubbing a stainless kitchen sink drain basket": [
+  "credits.html",
+  "drains.html"
+ ],
+ "Photo by <a href=\"https://www.pexels.com/@liliana-drew/\">Liliana Drew</a> on <a href=\"https://www.pexels.com/photo/9462312/\">Pexels</a>. Used for: Drains &amp; Sewer photos.": [
+  "credits.html"
+ ],
+ "Square stainless floor drain in a white-tiled shower": [
+  "credits.html",
+  "drains.html"
+ ],
+ "Photo by <a href=\"https://www.pexels.com/@kseniachernaya/\">Ksenia Chernaya</a> on <a href=\"https://www.pexels.com/photo/5768318/\">Pexels</a>. Used for: Drains &amp; Sewer photos.": [
+  "credits.html"
+ ],
+ "Hand holding a brass compression fitting on white flexible water supply tubing": [
+  "credits.html",
+  "leak-repair.html",
+  "plumbing.html",
+  "services.html"
+ ],
+ "Photo by <a href=\"https://unsplash.com/@jahbar?utm_source=pinwheel_concept&amp;utm_medium=referral\">Jah Mc</a> on <a href=\"https://unsplash.com/photos/hand-holding-a-brass-fitting-on-a-white-tube-9Y3YGj7f9e8?utm_source=pinwheel_concept&amp;utm_medium=referral\">Unsplash</a>. Used for: Leak Repair &amp; Repiping photos (first one is its thumbnail).": [
+  "credits.html"
+ ],
+ "New braided stainless supply lines, a chrome faucet and a wrench on a plumbing floor plan": [
+  "credits.html",
+  "leak-repair.html"
+ ],
+ "Photo by <a href=\"https://www.pexels.com/@asphotography/\">AS Photography</a> on <a href=\"https://www.pexels.com/photo/14953886/\">Pexels</a>. Used for: Leak Repair &amp; Repiping photos.": [
+  "credits.html"
  ],
  "Video": [
   "credits.html"
@@ -11005,6 +11004,23 @@
   "drains.html"
  ],
  "Drain Cleaning & Sewer Line Repair in Tracy, CA | Pinwheel": [
+  "drains.html"
+ ],
+ "Drains & Sewer photos": [
+  "drains.html"
+ ],
+ "See this photo bigger": [
+  "drains.html",
+  "index.html",
+  "leak-repair.html",
+  "plumbing.html",
+  "projects.html",
+  "water-heaters.html"
+ ],
+ "Previous Drains & Sewer photo": [
+  "drains.html"
+ ],
+ "Next Drains & Sewer photo": [
   "drains.html"
  ],
  "⟦s⟧Open 24/7 in Tracy, CA": [
@@ -11803,22 +11819,37 @@
  "Furnace Repair & Replacement in Tracy, CA | Pinwheel": [
   "heating.html"
  ],
- "⟦s⟧Heating, Air &amp; Plumbing in Tracy, CA": [
+ "Serving Tracy Since 2010": [
   "index.html"
  ],
  "Keep Your Family<br> <span class=\"accent\">Comfortable</span><br class=\"pw-m-br\"> All&nbsp;Year.": [
   "index.html"
  ],
- "AC out, heater down, or no hot water? We fix it the same day, with honest, upfront pricing. Serving Tracy, Mountain House, Manteca, Lathrop, Stockton, Livermore, and 6 more cities.": [
+ "AC out, heater down, or no hot water?<br> We fix it the same day.": [
   "index.html"
  ],
- "16+ Years in HVAC": [
+ "⟦s⟧Call": [
   "index.html"
  ],
- "CSLB C-20 Licensed": [
+ "Years in Tracy": [
   "index.html"
  ],
- "4.9 on Google": [
+ "4.9<span class=\"pw-hstar\" aria-hidden=\"true\">★</span><span class=\"visually-hidden\"> stars</span>": [
+  "index.html"
+ ],
+ "Google Rating": [
+  "index.html"
+ ],
+ "CSLB Licensed": [
+  "index.html"
+ ],
+ "Upfront": [
+  "index.html"
+ ],
+ "Pricing": [
+  "index.html"
+ ],
+ "Licensed techs, a price before any work, and real people who answer the phone.": [
   "index.html"
  ],
  "Heat or AC Out? <span class=\"accent\">We'll Fix It.</span>": [
@@ -12166,7 +12197,25 @@
  "Pinwheel Heating, Air & Plumbing | AC & Heating Repair in Tracy, CA": [
   "index.html"
  ],
- "Why homeowners trust us": [
+ "Hero photos": [
+  "index.html"
+ ],
+ "Photo 1 of 5": [
+  "index.html"
+ ],
+ "Photo 2 of 5": [
+  "index.html"
+ ],
+ "Photo 3 of 5": [
+  "index.html"
+ ],
+ "Photo 4 of 5": [
+  "index.html"
+ ],
+ "Photo 5 of 5": [
+  "index.html"
+ ],
+ "Why homeowners pick Pinwheel": [
   "index.html"
  ],
  "Our services": [
@@ -12193,10 +12242,6 @@
  ],
  "AC Installs photos": [
   "index.html"
- ],
- "See this photo bigger": [
-  "index.html",
-  "projects.html"
  ],
  "Previous AC Installs photo": [
   "index.html"
@@ -12385,9 +12430,6 @@
   "instant-estimate.html"
  ],
  "Ready for an <span class=\"accent\">Exact Price?</span>": [
-  "instant-estimate.html"
- ],
- "Book a Free In-Home Quote": [
   "instant-estimate.html"
  ],
  "We measure your home and give you options in writing, with no pressure.": [
@@ -12604,6 +12646,15 @@
  "Leak Repair & Repiping in Tracy, CA | Pinwheel": [
   "leak-repair.html"
  ],
+ "Leak Repair photos": [
+  "leak-repair.html"
+ ],
+ "Previous Leak Repair photo": [
+  "leak-repair.html"
+ ],
+ "Next Leak Repair photo": [
+  "leak-repair.html"
+ ],
  "⟦s⟧Plumbing services in Tracy, CA": [
   "plumbing.html"
  ],
@@ -12689,6 +12740,15 @@
   "plumbing.html"
  ],
  "Plumbing Services in Tracy, CA | Pinwheel": [
+  "plumbing.html"
+ ],
+ "Plumbing photos": [
+  "plumbing.html"
+ ],
+ "Previous Plumbing photo": [
+  "plumbing.html"
+ ],
+ "Next Plumbing photo": [
   "plumbing.html"
  ],
  "⟦s⟧Your information stays yours": [
@@ -14057,46 +14117,16 @@
  "AC repair, new systems, tune-ups, ducts, and thermostats for valley summers.": [
   "services.html"
  ],
- "AC Repair⟦s⟧": [
-  "services.html"
- ],
- "AC Installation &amp; Replacement⟦s⟧": [
-  "services.html"
- ],
- "Cooling Overview⟦s⟧": [
-  "services.html"
- ],
  "Furnace repair and replacement, heat pumps, and ductless systems for cold mornings.": [
   "services.html"
  ],
- "Furnace Repair &amp; Replacement⟦s⟧": [
-  "services.html"
- ],
- "Heat Pumps⟦s⟧": [
-  "services.html"
- ],
  "Water heaters, drains and sewer lines, leaks, and whole-home repiping.": [
-  "services.html"
- ],
- "Water Heaters⟦s⟧": [
-  "services.html"
- ],
- "Drains &amp; Sewer⟦s⟧": [
-  "services.html"
- ],
- "Leak Repair &amp; Repiping⟦s⟧": [
-  "services.html"
- ],
- "Plumbing Overview⟦s⟧": [
   "services.html"
  ],
  "Air Quality": [
   "services.html"
  ],
  "Better filters, whole-home purifiers, duct cleaning, and humidity control.": [
-  "services.html"
- ],
- "Indoor Air Quality⟦s⟧": [
   "services.html"
  ],
  "24/7 Emergency <span class=\"accent\">Service.</span>": [
@@ -14367,6 +14397,15 @@
   "water-heaters.html"
  ],
  "Water Heater Repair & Replacement in Tracy, CA | Pinwheel": [
+  "water-heaters.html"
+ ],
+ "Water Heaters photos": [
+  "water-heaters.html"
+ ],
+ "Previous Water Heaters photo": [
+  "water-heaters.html"
+ ],
+ "Next Water Heaters photo": [
   "water-heaters.html"
  ],
  "Today": [

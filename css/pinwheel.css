@@ -864,16 +864,17 @@ html[lang="es"] .pw-ohero .hero-pill.pw-pill { white-space: normal; }
 @media (min-width: 900px) { .pw-trust { grid-template-columns: repeat(4, auto); justify-content: start; gap: 12px 34px; } .pw-trust li { font-size: 15.5px; } }
 
 /* Header: EN / ES and the Free Quote button; on phones only the logo, the name, ES, and the menu */
-.pw-lang { display: inline-flex; align-items: center; gap: 2px; margin-right: 4px; }
-.pw-lang button { min-width: 36px; min-height: 40px; padding: 0 6px; border: 0; border-radius: 8px; background: none; color: var(--c-muted); font-family: var(--ff-ui); font-weight: 800; font-size: 14px; letter-spacing: .06em; cursor: pointer; }
-.pw-lang button[aria-pressed="true"] { color: var(--c-navy); text-decoration: underline; text-decoration-color: var(--c-brand); text-decoration-thickness: 3px; text-underline-offset: 6px; }
-.pw-lang-sep { color: var(--c-line-strong); }
-:is(.pw-home, .pw-ov) .site-header:not(.is-compact) .pw-lang button { color: rgb(255 255 255 / .8); }
-:is(.pw-home, .pw-ov) .site-header:not(.is-compact) .pw-lang button[aria-pressed="true"] { color: #fff; }
+/* Standing rule 14: a real EN | ES switch, both labels always visible, the active one filled */
+.pw-lang { display: inline-flex; align-items: center; gap: 0; margin-right: 4px; padding: 3px; border-radius: 999px; border: 1.5px solid var(--c-line-strong); background: rgb(255 255 255 / .9); }
+.pw-lang button { min-width: 38px; min-height: 34px; padding: 0 8px; border: 0; border-radius: 999px; background: none; color: var(--c-navy); font-family: var(--ff-ui); font-weight: 800; font-size: 13.5px; letter-spacing: .06em; line-height: 1; cursor: pointer; }
+.pw-lang button[aria-pressed="true"] { background: var(--c-brand-deep); color: #fff; box-shadow: inset 0 1px 0 rgb(255 255 255 / .25); }
+.pw-lang button[aria-pressed="false"]:hover { background: rgb(20 33 61 / .08); }
+.pw-lang-sep { width: 1px; height: 16px; margin: 0 1px; background: var(--c-line-strong); color: transparent; font-size: 0; overflow: hidden; }
+.pw-lang button[aria-pressed="true"] + .pw-lang-sep, .pw-lang-sep:has(+ button[aria-pressed="true"]) { visibility: hidden; }
+:is(.pw-home, .pw-ov) .site-header:not(.is-compact) .pw-lang { border-color: rgb(255 255 255 / .6); background: rgb(9 13 22 / .28); }
+:is(.pw-home, .pw-ov) .site-header:not(.is-compact) .pw-lang button[aria-pressed="false"] { color: #fff; }
+:is(.pw-home, .pw-ov) .site-header:not(.is-compact) .pw-lang-sep { background: rgb(255 255 255 / .5); }
 @media (max-width: 1199px) {
-  .site-pw .pw-lang button[aria-pressed="true"], .site-pw .pw-lang-sep { display: none; }
-  .site-pw .pw-lang button { min-width: 44px; min-height: 44px; border: 1.5px solid var(--c-line-strong); border-radius: 50%; color: var(--c-navy); }
-  :is(.pw-home, .pw-ov) .site-header:not(.is-compact) .pw-lang button { border-color: rgb(255 255 255 / .55); color: #fff; }
   .site-pw .header-phone, .site-pw .header-book { display: none; }
 }
 
@@ -1095,29 +1096,36 @@ html[lang="es"] .pw-ohero .hero-pill.pw-pill { white-space: normal; }
 
 /* ---------- Floating buttons (replace the bottom bar and the chat panel) ---------- */
 .has-float { padding-bottom: 0; }
-.pw-float { position: fixed; z-index: 60; inset: auto 16px calc(16px + env(safe-area-inset-bottom, 0px)) 16px; display: flex; align-items: flex-end; justify-content: space-between; pointer-events: none;
-  transition: opacity .3s ease, transform .3s ease; }
-.pw-float.is-waiting { opacity: 0; transform: translateY(18px); }
+/* No wide fixed bar: the wrapper has no box (transparent, click-through), and each button is fixed on its own.
+   iPhone Safari stretches the color of a solid bar fixed to the bottom under its toolbar; nothing here is solid or wide. */
+.pw-float { display: contents; background: transparent; pointer-events: none; }
+.site-pw .pw-float > * { position: fixed !important; z-index: 60; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); pointer-events: auto; transition: opacity .3s ease, transform .3s ease, visibility .3s; }
+.pw-float .pw-fl-quote { left: 16px; }
+.pw-float .pw-fl-stack { right: 16px; pointer-events: none; }
+.pw-float .pw-fl-stack > * { pointer-events: auto; }
+.pw-float.is-waiting > *, .pw-float.is-form .pw-fl-quote { opacity: 0; visibility: hidden; transform: translateY(18px); pointer-events: none; }
 .pw-float.is-waiting .pw-fl { pointer-events: none; }
 .pw-fl { pointer-events: auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; color: #fff; text-decoration: none; font-family: var(--ff-ui); font-weight: 800; letter-spacing: .02em;
   box-shadow: 0 8px 22px rgb(9 13 22 / .28) !important; }
 .pw-fl .icon { width: 20px; height: 20px; color: #fff; }
-.pw-fl-quote { min-height: 52px; padding: 0 20px; font-size: 16px; text-transform: uppercase; }
+.pw-fl-quote { min-height: 48px; padding: 0 18px; font-size: 15px; text-transform: uppercase; }
 .pw-fl-stack { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .pw-fl-text { width: 46px; height: 46px; }
-.pw-fl-call { width: 62px; height: 62px; }
-.pw-fl-call .icon { width: 26px; height: 26px; }
+.pw-fl-call { width: 58px; height: 58px; }
+.pw-fl-call .icon { width: 24px; height: 24px; }
 .pw-fl-textus { display: none; }
 .pw-float.is-dark .pw-fl { --btn-bg: var(--c-brand); box-shadow: inset 0 0 0 2px #fff, 0 8px 22px rgb(9 13 22 / .35) !important; }
 @media (min-width: 900px) {
-  .pw-float { left: auto; right: 24px; bottom: 24px; }
-  .pw-fl-quote, .pw-fl-stack { display: none; }
-  .pw-fl-textus { display: inline-flex; min-height: 58px; padding: 0 22px 0 16px; gap: 10px; }
+  .pw-float > * { bottom: 24px; }
+  .pw-float .pw-fl-quote, .pw-float .pw-fl-text { display: none; }
+  .pw-float .pw-fl-stack { right: 24px; bottom: 96px; }
+  .pw-fl-call { width: 52px; height: 52px; }
+  .pw-float .pw-fl-textus { right: 24px; display: inline-flex; min-height: 58px; padding: 0 22px 0 16px; gap: 10px; }
   .pw-fl-textus > span { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
   .pw-fl-textus strong { font-size: 16px; text-transform: uppercase; }
   .pw-fl-textus > span > span { font-size: 14px; font-weight: 600; letter-spacing: 0; opacity: .95; }
 }
-@media (prefers-reduced-motion: reduce) { .pw-float { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .pw-float > * { transition: none; } }
 .site-pw .sticky-bar, .site-pw .chat-launcher, .site-pw .chat-panel { display: none !important; }
 
 /* Projects page: every photo in a simple grid per category, tap to zoom */
@@ -1132,10 +1140,11 @@ html[lang="es"] .pw-ohero .hero-pill.pw-pill { white-space: normal; }
 /* EN / ES: hide the page for a moment while the Spanish words load, so English never flashes (removed after 2.5 s at most) */
 html.pw-es-wait body { visibility: hidden; }
 /* Spanish runs longer: on laptops the header keeps only the phone icon and tightens the nav */
-@media (min-width: 1200px) and (max-width: 1699px) {
+@media (min-width: 1200px) {
   html[lang="es"].site-pw .header-phone-text { display: none; }
   html[lang="es"].site-pw .nav-link { padding: 0 7px; font-size: 14.5px; }
 }
+@media (min-width: 1200px) and (max-width: 1299px) { html[lang="es"].site-pw .header-phone { display: none; } html[lang="es"].site-pw .nav-link { padding: 0 5px; font-size: 14px; } html[lang="es"].site-pw .header-actions { gap: 6px; } }
 
 /* Tap targets: every link people tap on a phone is at least 44px tall */
 .site-pw .pw-text-link { min-height: 44px; }
@@ -1177,3 +1186,112 @@ html.pw-es-wait body { visibility: hidden; }
 .site-pw :is(h1, h2, h3, .h1, .hero-h) { text-wrap: balance; }
 /* Spanish tagline ("Calefacción · Aire · Plomería") is longer than the English one: keep the header inside 320px phones */
 @media (max-width: 359px) { html[lang="es"] .site-header .logo-tag { letter-spacing: .04em; font-size: 8.5px; } }
+
+/* ==========================================================================================================
+   Clean hero (standing rules 11 and 13). Bright slideshow, light overlay, a tight shadow on the letters only
+   (never a dark patch), centered words, small buttons sized to their text, dots, and a stats card inside the photo.
+   ========================================================================================================== */
+.pw-chero { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; background: #3c4552; color: #fff; padding: calc(var(--header-h, 72px) + 36px) 0 24px; }
+.pw-hs { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.pw-hs-slide { position: absolute; inset: 0; z-index: 0; display: block; opacity: 0; }
+.pw-hs-slide img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transform-origin: 50% 50%; }
+.pw-hs-slide.is-out { z-index: 1; opacity: 1; }
+.pw-hs-slide.is-out img { transform: scale(1); }
+.pw-hs-slide.is-on { z-index: 2; opacity: 1; transition: opacity .4s ease; }
+.pw-hs-slide.is-on img { animation: pw-hs-zoom 7s cubic-bezier(.25, .1, .35, 1) both; }
+@keyframes pw-hs-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+/* A light, even overlay (a touch deeper under the header so the menu reads) */
+.pw-hs::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(180deg, rgb(9 13 22 / .34) 0, rgb(9 13 22 / .16) 22%, rgb(9 13 22 / .16) 70%, rgb(9 13 22 / .26) 100%); }
+.pw-chero-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 28px; flex: 1; width: 100%; }
+.pw-chero-copy { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 820px; text-align: center; }
+.pw-chero-copy > * { margin: 0; }
+.pw-chero :is(.pw-chero-eyebrow, .hero-h, .pw-chero-sub) { color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .6), 0 1px 7px rgb(0 0 0 / .32); }
+.pw-chero-eyebrow { font-family: var(--ff-ui); font-weight: 800; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; }
+.pw-chero .hero-h { line-height: 1.02; letter-spacing: .005em; font-size: clamp(2.6rem, 6.2vw, 5rem); text-wrap: balance; }
+.pw-chero .hero-h .accent { color: var(--c-brand); padding-bottom: .1em; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10.5C40 4 78 3.5 112 6.5S170 11 197 4.5' fill='none' stroke='%23EE5600' stroke-width='4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); background-size: 100% .2em; background-position: left bottom; background-repeat: no-repeat;
+  text-shadow: 0 1px 2px rgb(0 0 0 / .65), 0 0 .14em rgb(0 0 0 / .45); }
+.pw-chero-sub { font-weight: 600; font-size: 20px; line-height: 1.4; }
+.pw-chero-btns { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-top: 6px !important; }
+.pw-chero-btns .btn { width: auto; }
+.pw-chero-btns .btn-primary { min-height: 46px; padding: 0 22px; font-size: 15px; }
+.pw-btn-outline { --btn-bg: transparent; --btn-fg: #fff; --btn-bd: rgb(255 255 255 / .85); --btn-shadow: none; min-height: 44px !important; padding: 0 16px !important; font-size: 14px !important; gap: 6px !important; background: rgb(9 13 22 / .14); text-shadow: 0 1px 2px rgb(0 0 0 / .45); }
+.pw-btn-outline:hover { --btn-bg: rgb(255 255 255 / .16); color: #fff; }
+.pw-btn-outline .icon { width: 16px; height: 16px; }
+.pw-hs-dots { display: flex; gap: 2px; justify-content: center; }
+.pw-hs-dots button { display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+.pw-hs-dots button::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: rgb(255 255 255 / .6); box-shadow: 0 1px 2px rgb(0 0 0 / .4); transition: width .3s ease, background-color .3s ease; }
+.pw-hs-dots button[aria-current="true"]::before { width: 20px; background: #fff; }
+/* Stats card, inside the photo */
+.pw-hstats { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(100%, 880px); margin: auto 0 0; padding: 16px 8px; border-radius: 18px; background: rgb(255 255 255 / .95); box-shadow: 0 14px 34px rgb(9 13 22 / .22); color: var(--c-navy); text-shadow: none; }
+.pw-hstats li { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 2px 10px; text-align: center; min-width: 0; }
+.pw-hstats li + li { border-left: 1px solid var(--c-line); }
+.pw-hstats strong { font-family: var(--ff-head); font-size: 30px; line-height: 1; letter-spacing: .01em; color: var(--c-navy); }
+.pw-hstar { color: var(--c-brand); font-size: .8em; margin-left: 2px; }
+.pw-hstats li > span { font-family: var(--ff-ui); font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--c-muted); }
+.pw-chero-intro { padding: 26px 0 0; text-align: center; }
+.pw-chero-intro p { max-width: 40rem; margin: 0 auto; font-size: 19px; line-height: 1.5; font-weight: 600; color: var(--c-navy); text-wrap: balance; }
+@media (min-width: 900px) {
+  .pw-chero { min-height: min(100svh, 920px); padding-top: calc(var(--header-h, 80px) + 56px); padding-bottom: 32px; }
+  .pw-chero-copy { gap: 16px; }
+}
+@media (min-width: 900px) and (max-height: 760px) { .pw-chero { padding-top: calc(var(--header-h, 80px) + 30px); } .pw-chero .hero-h { font-size: clamp(2.6rem, 5.4vw, 4.4rem); } .pw-chero-copy { gap: 12px; } }
+@media (max-width: 599px) {
+  .pw-chero { padding: calc(var(--header-h, 64px) + 26px) 0 18px; min-height: 640px; }
+  .pw-chero-copy { gap: 12px; }
+  .pw-chero-eyebrow { font-size: 12.5px; letter-spacing: .14em; }
+  .pw-chero .hero-h { font-size: calc((100vw - 32px) / 7.6); line-height: 1.04; }
+  .pw-chero-sub { font-size: 17px; }
+  .pw-hstats { grid-template-columns: 1fr 1fr; gap: 12px 0; padding: 14px 6px; }
+  .pw-hstats li:nth-child(3) { border-left: 0; }
+  .pw-hstats strong { font-size: 25px; }
+  .pw-hstats li > span { font-size: 11.5px; }
+  .pw-chero-intro p { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pw-hs-slide img, .pw-hs-slide.is-on img { animation: none; transform: none; }
+  .pw-hs-slide.is-on { transition: none; }
+}
+
+/* iPhone Safari: the page color runs under the toolbar (no white strip) */
+html.site-pw { background: var(--c-bg); }
+
+/* Round 5, item 5: every button is smaller and sized to its text (no full-width buttons) */
+.site-pw .btn { min-height: 44px; padding: 0 20px; font-size: 15px; gap: 8px; width: auto; max-width: 100%; }
+.site-pw .btn-lg { min-height: 46px; padding: 0 22px; font-size: 15px; }
+.site-pw .btn-sm { min-height: 40px; padding: 0 16px; font-size: 14px; }
+.site-pw .btn .icon { width: 18px; height: 18px; }
+.site-pw .btn-block, .site-pw .pw-phero .btn-row .btn, .site-pw .pw-hhero-btns .btn, .site-pw .pw-x-ctas .btn,
+.site-pw .est-form .btn, .site-pw .helper-form .btn-submit { width: auto; }
+.site-pw .pw-phero .btn-row, .site-pw .pw-hhero-btns { display: flex; flex-wrap: wrap; width: auto; }
+.site-pw .hero-ctas { display: flex; flex-wrap: wrap; }
+.site-pw .btn-block { align-self: flex-start; }
+.site-pw .header-book { min-height: 40px; padding: 0 16px; font-size: 14px; }
+/* Phones: a compact EN | ES switch; the longer Spanish tagline and headline get a little less room */
+@media (max-width: 599px) {
+  .site-pw .pw-lang { padding: 2px; margin-right: 2px; }
+  .site-pw .pw-lang button { min-width: 44px; min-height: 44px; padding: 0 6px; font-size: 13px; }
+  .site-pw .pw-lang { padding: 1px; }
+  html[lang="es"] .site-header .logo-tag { letter-spacing: .06em; }
+  html[lang="es"] .pw-chero .hero-h { font-size: calc((100vw - 32px) / 9.1); }
+}
+@media (max-width: 374px) {
+  .site-header .logo-tag { letter-spacing: .04em; font-size: 8.5px; }
+  .site-header .logo-name { font-size: 21px; }
+  .site-pw .menu-toggle { width: 42px; height: 42px; }
+}
+@media (max-width: 359px) { html[lang="es"] .site-header .logo-tag { display: none; } }
+/* Plumbing pages: a 3-photo swipe card under the what-we-do list, and photo thumbnails in the lists */
+.pw-page-gal { list-style: none; display: block; margin: 24px 0 0; padding: 0; max-width: 560px; }
+.pw-page-gal .pw-pcard { margin: 0; }
+.pw-link-card.has-thumb { align-items: center; }
+.pw-link-thumb { flex: none; width: 64px; height: 64px; border-radius: 14px; overflow: hidden; background: var(--c-bg); }
+.pw-link-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pw-group-links a.has-thumb { display: flex; align-items: center; gap: 10px; }
+.pw-group-links a.has-thumb > span { flex: 1; }
+.pw-gl-thumb { flex: none; width: 44px; height: 44px; border-radius: 10px; object-fit: cover; }
+/* Phones: room for the 44px EN | ES buttons */
+@media (max-width: 399px) { html[lang="es"] .site-header .logo-tag { letter-spacing: .01em; font-size: 8.5px; } }
+@media (max-width: 359px) { .site-header .logo-tag { letter-spacing: 0; font-size: 8px; } .site-header .logo-name { font-size: 20px; } .site-header .logo-mark { width: 30px; height: 30px; } .site-header .header-actions { gap: 6px; } }
+/* The other hero photos stay out of layout (and unloaded) until the page has finished loading, so the first photo loads alone */
+.pw-hs:not(.is-ready) .pw-hs-slide:not(.is-on) { display: none; }

@@ -1,32 +1,57 @@
 /* blocks.mjs: the TEMPLATE-PLAYBOOK parts for Pinwheel (homepage sections, the quote block every page ends with,
    the repair-or-replace tap-through, projects, owner, reviews band, service area with county lists, side form).
    Words come from the playbook's HVAC wording bank. Spanish lives in js/i18n/pw-es.js (keyed by the English HTML). */
-import { PHONE, TEL, SMS, CITIES, REVIEWS, STATS } from './site-data.mjs';
+import { PHONE, TEL, SMS, CITIES, REVIEWS, STATS, PLUMB_PHOTOS } from './site-data.mjs';
 import { ic, tag, faqList } from './components.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
-/* ---------- Hero: the Nov 18 comfort hero (mom and son, one even black layer, faces uncovered), with today's buttons
-   and the trust strip under the words. Desktop: wide crop, faces on the right. Phones: tall crop, faces at the top. ---------- */
+/* ---------- Hero (standing rules 11 and 13): a clean, bright slideshow. Light overlay, a tight shadow on the letters
+   only, everything centered: eyebrow, headline, 2-line subhead, small buttons sized to their text, dots, and a stats
+   card inside the photo. The intro line sits below the card. Each photo shows 7 s while it zooms out (1.12 to 1.0),
+   then a 400 ms fade; reduced motion keeps the first photo still (js/pinwheel.js). ---------- */
+export const HERO_SLIDES = [
+  { key: 'pinwheel-family', tall: 'pinwheel-family-tall' },
+  { key: 'pw-pj-ac-side-yard' },
+  { key: 'pw-pj-furnace-closet' },
+  { key: 'pinwheel-water-heater' },
+  { key: 'pw-ac-repair' },
+];
 export function homeHero(R) {
-  return `  <section class="hero pw-ohero" aria-labelledby="hero-title">
-    <picture class="pw-ohero-photo">
-      <source data-photo="pinwheel-family-tall" data-crop="orig" data-widths="480,640,840" media="(max-width: 599px)" sizes="100vw">
-      <img data-photo="pinwheel-family" data-crop="orig" data-widths="768,1024,1600,2400" data-eager sizes="100vw">
-    </picture>
-    <div class="container pw-ohero-wrap">
-      <div class="hero-copy pw-ohero-copy">
-        <h1 class="hero-pill pw-pill">${ic('i-map-pin')}Heating, Air &amp; Plumbing in Tracy, CA</h1>
-        <p class="h1 hero-h" id="hero-title">Keep Your Family<br> <span class="accent">Comfortable</span><br class="pw-m-br"> All&nbsp;Year.</p>
-        <p class="lead">AC out, heater down, or no hot water? We fix it the same day, with honest, upfront pricing. Serving Tracy, Mountain House, Manteca, Lathrop, Stockton, Livermore, and 6 more cities.</p>
-        <div class="hero-ctas pw-ohero-btns" data-hide-bar>
-          <a class="btn btn-primary btn-lg" href="#quote" data-quote-link>${ic('i-send')}Get My Free Quote</a>
-          <a class="btn btn-glass btn-lg" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>
-        </div>
-        ${trustStrip(R)}
-      </div>
+  const slide = (s, i) => {
+    const phone = s.tall
+      ? `<source data-photo="${s.tall}" data-crop="orig" data-widths="480,640,840" media="(max-width: 599px)" sizes="100vw">`
+      : `<source data-photo="${s.key}" data-crop="3:5" data-widths="480,640,840" media="(max-width: 599px)" sizes="100vw">`;
+    const wide = s.tall ? `data-crop="orig" data-widths="768,1024,1600,2400"` : `data-crop="16:9" data-widths="768,1024,1600"`;
+    return `<picture class="pw-hs-slide${i ? '' : ' is-on'}"${i ? ' aria-hidden="true"' : ''}>
+        ${phone}
+        <img data-photo="${s.key}" ${wide}${i ? ' loading="lazy"' : ' data-eager'} sizes="100vw"${i ? ' alt=""' : ''}>
+      </picture>`;
+  };
+  return `  <section class="hero pw-chero" aria-labelledby="hero-title" data-hero-show>
+    <div class="pw-hs" aria-hidden="false">
+      ${HERO_SLIDES.map(slide).join('\n      ')}
     </div>
-  </section>`;
+    <div class="container pw-chero-wrap">
+      <div class="pw-chero-copy">
+        <p class="pw-chero-eyebrow">Serving Tracy Since 2010</p>
+        <h1 class="h1 hero-h" id="hero-title">Keep Your Family<br> <span class="accent">Comfortable</span><br class="pw-m-br"> All&nbsp;Year.</h1>
+        <p class="pw-chero-sub">AC out, heater down, or no hot water?<br> We fix it the same day.</p>
+        <div class="pw-chero-btns" data-hide-bar>
+          <a class="btn btn-primary" href="#quote" data-quote-link>Get a Free Quote</a>
+          <a class="btn pw-btn-outline" href="${TEL}" aria-label="Call ${PHONE}">${ic('i-phone')}Call</a>
+        </div>
+        <div class="pw-hs-dots" role="group" aria-label="Hero photos">${HERO_SLIDES.map((_, i) => `<button type="button" data-hs-dot="${i}" aria-label="Photo ${i + 1} of ${HERO_SLIDES.length}"${i ? '' : ' aria-current="true"'}></button>`).join('')}</div>
+      </div>
+      <ul class="pw-hstats" aria-label="Why homeowners pick Pinwheel">
+        <li><strong>15+</strong><span>Years in Tracy</span></li>
+        <li><strong>${STATS.rating}<span class="pw-hstar" aria-hidden="true">★</span><span class="visually-hidden"> stars</span></strong><span>Google Rating</span></li>
+        <li><strong>C-20</strong><span>CSLB Licensed</span></li>
+        <li><strong>Upfront</strong><span>Pricing</span></li>
+      </ul>
+    </div>
+  </section>
+  <div class="pw-chero-intro"><div class="container"><p>Licensed techs, a price before any work, and real people who answer the phone.</p></div></div>`;
 }
 
 export function trustStrip(R) {
@@ -52,7 +77,7 @@ const SVC = [
   { label: 'Fewer breakdowns', title: 'Tune-Ups and Maintenance Plans', href: 'comfort-club.html', photo: 'pinwheel-air-quality', icon: 'i-wrench',
     text: 'A yearly check catches small problems before they turn into a no-AC day in July.',
     checks: ['Filter, coils, and refrigerant', 'Priority booking', 'Lower power bills'] },
-  { label: 'Plumbing too', title: 'Plumbing Repair', href: 'plumbing.html', photo: 'pinwheel-drains', icon: 'i-droplet',
+  { label: 'Plumbing too', title: 'Plumbing Repair', href: 'plumbing.html', photo: 'pw-plumbing', icon: 'i-droplet',
     text: 'Leaks, clogs, or no hot water? The same trained techs and the same price-first visit.',
     checks: ['Water heaters', 'Drains and sewer lines', 'Leaks and repiping'] },
 ];
@@ -160,7 +185,7 @@ export function explainer(R) {
 /* ---------- Projects: one featured before/after slider, then 4 swipe cards ---------- */
 export const PROJECTS = [
   { key: 'ac', title: 'AC Installs', photos: ['pw-pj-ac-side-yard', 'pw-pj-ac-pair', 'pw-pj-ac-1', 'pw-article-ac'] },
-  { key: 'furnace', title: 'Furnaces', photos: ['pw-pj-furnace-attic', 'pw-pj-furnace-closet', 'pw-pj-furnace-garage'] },
+  { key: 'furnace', title: 'Furnaces', photos: ['pw-pj-furnace-attic', 'pw-pj-furnace-closet', 'pw-pj-furnace-garage'], homeExtra: ['pw-heating-2'] },
   { key: 'heatpump', title: 'Heat Pumps and Mini-Splits', photos: ['pw-pj-hp-1', 'pw-pj-hp-2', 'pw-svc-cooling', 'pw-heat-pumps'] },
   { key: 'ducts', title: 'Ductwork', photos: ['pw-pj-ducts-attic', 'pw-pj-ducts-plenum', 'pw-pj-ducts-register'] },
 ];
@@ -194,7 +219,7 @@ export function projectsBlock(R) {
       </div>
       <div class="pw-ba-wrap">${baSlider(BA_PAIR[0], BA_PAIR[1], ['', ''])}</div>
       <ul class="pw-pcards">
-        ${PROJECTS.map((p) => projectCard(p)).join('\n        ')}
+        ${PROJECTS.map((p) => projectCard({ ...p, photos: p.photos.filter((k) => !HERO_SLIDES.some((h) => h.key === k)).concat(p.homeExtra || []) })).join('\n        ')}
       </ul>
       <p class="pw-center"><a class="btn btn-navy" href="${R}projects.html">See All Projects${ic('i-arrow-right')}</a></p>
     </div>
@@ -238,7 +263,7 @@ export function quoteBlock(R, o = {}) {
               <div class="field"><label for="q-notes">Anything else we should know? <span class="pw-opt">(optional)</span></label><textarea class="textarea" id="q-notes" name="notes" rows="2"></textarea></div>
               <p class="form-error" data-error role="alert" hidden>Please fill in your name, number, city, and what's going on.</p>
               <p class="form-error" data-fail role="alert" hidden>That did not go through. Please call ${PHONE} and we will set it up on the phone.</p>
-              <button class="btn btn-primary btn-lg btn-block" type="submit">${ic('i-send')}Get My Free Quote</button>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">${ic('i-send')}Get a Free Quote</button>
             </form>
             <div class="pw-thanks" tabindex="-1" hidden>
               <span class="pw-thanks-icon">${ic('i-check')}</span>
@@ -263,7 +288,7 @@ export function quoteBlock(R, o = {}) {
                 <p class="pw-est-range"><span data-est-low></span> <span class="pw-est-to">to</span> <span data-est-high></span></p>
                 <p class="pw-est-for" data-est-for></p>
                 <p class="fine">${tag()} A typical range for a Tracy-area home, installed. Your exact price comes after we see your home.</p>
-                <a class="btn btn-navy btn-block" href="#quote" data-quote-link data-pick-service="New system" data-to-visit>${ic('i-calendar')}Book a Free In-Home Quote</a>
+                <a class="btn btn-navy btn-block" href="#quote" data-quote-link data-pick-service="New system" data-to-visit>${ic('i-calendar')}Get a Free Quote</a>
               </div>
             </form>
           </div>
@@ -406,6 +431,7 @@ export function subServices(R, o) {
         <h2 id="subs-title">${o.h2}</h2>
         ${o.lead ? `<p class="lead">${o.lead}</p>` : ''}
         <ul class="pw-sublist">${o.items.map(([t, d]) => `<li data-reveal>${ic('i-check-circle')}<span><strong>${t}</strong>${d}</span></li>`).join('')}</ul>
+        ${o.gallery ? `<ul class="pw-pgrid pw-page-gal">${projectCard(o.gallery, true)}</ul>` : ''}
       </div>
       <aside class="pw-sideform" aria-labelledby="side-title">
         <h3 id="side-title">Ask a Quick Question</h3>

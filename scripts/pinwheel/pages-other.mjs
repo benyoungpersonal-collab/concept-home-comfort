@@ -3,8 +3,8 @@
 import { readFileSync } from 'node:fs';
 import { hero, sec, checklist, steps, prices, reviewCard, reviewsSection, faqList, faqSection, faqLd, club,
   areasStrip, split, linkCards, serviceLd, crumbLd, heroPreload, callBtn, bookBtn, bookHref, ic, tag } from './components.mjs';
-import { OWNER_STORY } from './blocks.mjs';
-import { GROUPS, CITIES, REVIEWS, STATS, PHONE, TEL, SMS, SITE } from './site-data.mjs';
+import { OWNER_STORY, projectCard } from './blocks.mjs';
+import { GROUPS, CITIES, REVIEWS, STATS, PHONE, TEL, SMS, SITE, PLUMB_PHOTOS } from './site-data.mjs';
 
 const block = (name) => readFileSync(new URL(`../pinwheel-blocks/${name}`, import.meta.url), 'utf8');
 const hp = (key, fpPhone) => heroPreload(key, fpPhone);
@@ -53,7 +53,7 @@ export const services = (ph) => ({
           <div class="pcard-body">
             <h3><a href="${R}${g.overview}">${g.name}</a></h3>
             <p>${GROUP_TEXT[g.key]}</p>
-            <ul class="pw-group-links">${g.pages.map((s) => `<li><a href="${R}${s.file}">${s.name}${ic('i-arrow-right')}</a></li>`).join('')}</ul>
+            <ul class="pw-group-links">${g.pages.map((s) => `<li><a href="${R}${s.file}"${PLUMB_PHOTOS[s.file] ? ' class="has-thumb"' : ''}>${PLUMB_PHOTOS[s.file] ? `<img class="pw-gl-thumb" data-photo="${PLUMB_PHOTOS[s.file][0]}" data-crop="1:1" data-widths="96,160" sizes="48px" alt="">` : ''}<span>${s.name}</span>${ic('i-arrow-right')}</a></li>`).join('')}</ul>
           </div>
         </article>`).join('\n')}</div>` }),
     sec({ id: 'emergency-band', cls: 'pw-emerg-band on-dark', inner: `<div class="pw-emerg-inner" data-reveal>
@@ -112,9 +112,9 @@ export const plumbing = (ph) => ({
     sec({ id: 'plumb-pages', cls: 'bg-white', eyebrow: 'Plumbing services', h2: 'Start With the Problem <span class="accent">You Have.</span>',
       lead: 'Each page explains the signs, what we do on the visit, and starting prices.',
       inner: linkCards(R, [
-        { href: 'water-heaters.html', icon: 'i-waterheater', bubble: 'navy', title: 'Water Heaters', text: 'Tank and tankless repair, flushes, and same-day replacement.' },
-        { href: 'drains.html', icon: 'i-drain', bubble: 'navy', title: 'Drains & Sewer', text: 'Slow drains, main line clogs, camera inspections, and sewer repair.' },
-        { href: 'leak-repair.html', icon: 'i-pipes', bubble: 'navy', title: 'Leak Repair & Repiping', text: 'Hidden leaks found with listening gear, and whole homes repiped.' },
+        { href: 'water-heaters.html', photo: PLUMB_PHOTOS['water-heaters.html'][0], icon: 'i-waterheater', bubble: 'navy', title: 'Water Heaters', text: 'Tank and tankless repair, flushes, and same-day replacement.' },
+        { href: 'drains.html', photo: PLUMB_PHOTOS['drains.html'][0], icon: 'i-drain', bubble: 'navy', title: 'Drains & Sewer', text: 'Slow drains, main line clogs, camera inspections, and sewer repair.' },
+        { href: 'leak-repair.html', photo: PLUMB_PHOTOS['leak-repair.html'][0], icon: 'i-pipes', bubble: 'navy', title: 'Leak Repair & Repiping', text: 'Hidden leaks found with listening gear, and whole homes repiped.' },
         { href: 'emergency.html', icon: 'i-zap', bubble: '', title: '24/7 Emergency Service', text: 'Burst pipe or sewer backup? The emergency line answers around the clock.' },
       ]) }),
     sec({ id: 'other', eyebrow: 'Also on the van', h2: 'The Everyday Fixes <span class="accent">We Handle Too.</span>',
@@ -123,7 +123,8 @@ export const plumbing = (ph) => ({
         <li data-reveal>${ic('i-filter')}<span><strong>Water softeners and filtration</strong>Valley water is hard on pipes and appliances. We install and service softeners and whole-home filters.</span></li>
         <li data-reveal>${ic('i-flame')}<span><strong>Gas lines</strong>We run new gas lines for ranges, dryers, fire pits, and generators, and we test and permit every one.</span></li>
         <li data-reveal>${ic('i-home')}<span><strong>Hose bibs and shutoff valves</strong>We replace stuck shutoffs and leaky outdoor faucets before they fail at the worst time.</span></li>
-      </ul>` }),
+      </ul>
+      <ul class="pw-pgrid pw-page-gal">${projectCard({ key: 'plumbing', title: 'Plumbing', photos: PLUMB_PHOTOS['plumbing.html'] }, true)}</ul>` }),
     sec({ id: 'shutoff', cls: 'bg-white', inner: `<aside class="callout pw-shutoff" data-reveal>
         <div>
           <h2 id="shutoff-title">If Water Is Spraying, <span class="accent">Do This First.</span></h2>
@@ -317,7 +318,7 @@ export const estimate = (ph) => ({
       </ul>` }),
     sec({ id: 'next', eyebrow: 'Next steps', h2: 'Ready for an <span class="accent">Exact Price?</span>',
       inner: linkCards(R, [
-        { href: 'book.html?service=New+system+quote', icon: 'i-calendar', title: 'Book a Free In-Home Quote', text: 'We measure your home and give you options in writing, with no pressure.' },
+        { href: 'book.html?service=New+system+quote', icon: 'i-calendar', title: 'Get a Free Quote', text: 'We measure your home and give you options in writing, with no pressure.' },
         { href: 'financing.html', icon: 'i-dollar', bubble: 'navy', title: 'See monthly payments', text: 'Spread the cost of a new system into monthly payments.' },
         { href: 'specials.html', icon: 'i-tag', bubble: 'cool', title: 'Check current specials', text: 'Up to $2,000 off qualifying new systems with rebates.' },
       ]) }),

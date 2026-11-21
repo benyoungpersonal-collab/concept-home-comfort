@@ -14,9 +14,15 @@ These apply to every build in this repo, every session.
 8. Service areas: county dropdowns start closed. No pin icon on each city chip. Only home base is highlighted. No city dropdown or Check My Area.
 9. FAQ title: "You've Got Questions. We've Got Answers."
 10. People photos are real stock. Owners are mid-30s to early 40s in a dark work polo or work shirt, in a home setting. Never auto shops, car lifts, hard hats, hi-vis, coveralls, gray shirts, or another company's logo. Equipment photos can be AI if they look real. No photo appears twice on one page.
-11. Every build ends with a labeled contact sheet of every photo on the homepage, sent with the report.
-12. Clean copy pass before publishing: one name per thing (pick Free Quote or Free Estimate and use it on every button, heading, and form), Title Case on every headline and button, the same headline punctuation on every page, parallel lists, numerals for numbers, one phone format, no double spaces, no orphan word at the end of a headline at 375 or 390, correct Spanish accents and opening marks. Then read the page out loud once in English and once in Spanish.
-13. Photos show the service: the equipment for HVAC, the floor for flooring, the finished room for remodel. Every service and add-on has its own photo on its service page.
+11. Clean hero: bright photos, light overlay, a tight shadow on the letters only (never a dark patch). Centered eyebrow, headline, 2-line subhead, small buttons sized to their text, dots, and a stats card that sits inside the photo. The long intro goes below the card.
+12. Always borrow, always adjust. Start from the best real lines in the trade, taglines included, and change only what makes them the client's. Common phrases can be used word for word. Never use another company's numbers, license, reviews, or photos. Button label everywhere: Get a Free Quote.
+13. Hero: 5 to 6 photos, 7 seconds each, each one slowly zooms OUT (1.12 to 1.0), then a quick 400ms fade. Reduced motion gets a still photo.
+14. A real EN | ES switch in the sticky header on every page, both labels visible, the active one filled.
+15. Once the hero buttons scroll away, Call and Text stay visible to the end of every page. Only the Free Quote pill hides, while the quote form is on screen.
+16. The logo animation also replays every 35 seconds.
+17. Every build ends with a labeled contact sheet of every photo on the homepage, sent with the report.
+18. Clean copy pass before publishing: one name per thing (pick Free Quote or Free Estimate and use it on every button, heading, and form; buttons say Get a Free Quote, rule 12), Title Case on every headline and button, the same headline punctuation on every page, parallel lists, numerals for numbers, one phone format, no double spaces, no orphan word at the end of a headline at 375 or 390, correct Spanish accents and opening marks. Then read the page out loud once in English and once in Spanish.
+19. Photos show the service: the equipment for HVAC, the floor for flooring, the finished room for remodel. Every service and add-on has its own photo on its service page.
 
 ## Homepage previews: deploy every build yourself
 

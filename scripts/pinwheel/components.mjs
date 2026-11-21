@@ -3,7 +3,7 @@
    fills the shared header, footer, and bar, and builds every photo's srcset from scripts/photos.json. */
 import { SITE, NAME, PHONE, TEL, SMS, CITIES, REVIEWS, STATS } from './site-data.mjs';
 import { quoteBlock } from './blocks.mjs';
-export const OG_IMAGE = 'https://byw-home-comfort.netlify.app/images/og-share-2026-11-20-v2.jpg';
+export const OG_IMAGE = 'https://byw-home-comfort.netlify.app/images/og-share-2026-11-21.jpg';
 
 export const ic = (id, cls = 'icon') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 const attr = (s) => String(s).replace(/&(?![a-z]+;|#\d+;)/g, '&amp;').replace(/"/g, '&quot;');
@@ -12,7 +12,7 @@ const plain = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').re
 export const bookHref = (R, service) => `${R}book.html${service ? `?service=${encodeURIComponent(service).replace(/%20/g, '+')}` : ''}`;
 export const callBtn = (cls = 'btn btn-primary btn-lg') => `<a class="${cls}" href="${TEL}">${ic('i-phone')}Call ${PHONE}</a>`;
 export const bookBtn = (R, service, cls = 'btn btn-glass btn-lg', label = 'Book Online') => `<a class="${cls}" href="${bookHref(R, service)}">${ic('i-calendar')}${label}</a>`;
-export const quoteBtn = (R, service, cls = 'btn btn-primary btn-lg', label = 'Get My Free Quote') => `<a class="${cls}" href="#quote" data-quote-link data-home="${R}index.html#quote"${service ? ` data-pick-service="${service}"` : ''}>${ic('i-send')}${label}</a>`;
+export const quoteBtn = (R, service, cls = 'btn btn-primary btn-lg', label = 'Get a Free Quote') => `<a class="${cls}" href="#quote" data-quote-link data-home="${R}index.html#quote"${service ? ` data-pick-service="${service}"` : ''}>${ic('i-send')}${label}</a>`;
 export const FAQ_TITLE = `You've Got Questions. <span class="accent">We've Got Answers.</span>`; // standing rule 9: every FAQ section uses this title
 export const tag = (t = 'Illustrative') => `<span class="tag">${t}</span>`;
 
@@ -240,9 +240,9 @@ export function split(o) {
       </div>`;
 }
 
-/* Cards that link to other pages (no photos) */
+/* Cards that link to other pages (an icon, or a small photo thumbnail when c.photo is set) */
 export const linkCards = (R, items) => `<ul class="pw-links">${items.map((c) =>
-  `<li data-reveal><a class="pw-link-card" href="${R}${c.href}"><span class="icon-bubble${c.bubble ? ' ' + c.bubble : ''}">${ic(c.icon)}</span><span><strong>${c.title}</strong><span>${c.text}</span></span>${ic('i-arrow-right')}</a></li>`).join('')}</ul>`;
+  `<li data-reveal><a class="pw-link-card${c.photo ? ' has-thumb' : ''}" href="${R}${c.href}">${c.photo ? `<span class="pw-link-thumb"><img data-photo="${c.photo}" data-crop="1:1" data-widths="96,160" sizes="72px" alt=""></span>` : `<span class="icon-bubble${c.bubble ? ' ' + c.bubble : ''}">${ic(c.icon)}</span>`}<span><strong>${c.title}</strong><span>${c.text}</span></span>${ic('i-arrow-right')}</a></li>`).join('')}</ul>`;
 
 export const serviceLd = (o) => ({
   '@type': 'Service', name: o.name, serviceType: o.type || o.name, description: o.desc,
